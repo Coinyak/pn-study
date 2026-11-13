@@ -4,7 +4,7 @@
 Inputs (all read, none written):
   content/core.html       core sections (single source for study page, A4 and cheat)
   content/nav.json        left menu (topic, target section, label)
-  content/questions.json  question bank; the default quiz pool is includeInBasicSet
+  content/questions.json  question bank; all questions are embedded; the default quiz pool is includeInBasicSet
   content/products.json   domestic product comparison rows (<!--@@PRODUCTS@@-->)
   src/split-shell.html    study page layout, CSS and quiz JS
   src/a4-shell.html       A4 print layout
@@ -31,7 +31,7 @@ OUT_A4 = "PN_core_A4_print.html"
 
 # Fields the study page needs now (Task 4–5 grading/review UI reads the rest).
 BANK_FIELDS = ["id", "revision", "topic", "source", "stem", "choices", "answer", "explain", "needle",
-               "choiceExplanations", "reviewStatus", "includeInBasicSet", "originType",
+               "choiceExplanations", "reviewStatus", "includeInBasicSet", "language", "originType",
                "coreSectionIds", "scopeIds", "referenceIds", "errataIds"]
 STUDY_UI_FILES = [("study.css", "style"), ("study-state.js", "script"), ("study-ui.js", "script")]
 SECTION_OPEN = re.compile(r'<section class="sec" data-topic="[^"]+" id="([^"]+)"(?: data-added="[^"]+")?>')
@@ -60,7 +60,12 @@ def render_products(prod):
         confirmed = p.get("status") == "confirmed"
         cells = [("—" if per.get(f) is None else esc(per[f])) for f in fields[:5]]
         kcal = per.get("totalKcal")
-        vol = f"{round(2000 / kcal * 1000):,} mL" if confirmed and kcal else "—"
+        kcal_target = prod["meta"]["comparisonTargets"]["kcalPerDay"]
+        vol = f"{round(kcal_target / kcal * 1000):,} mL" if confirmed and kcal else "—"
+        aa = per.get("aminoAcidG")
+        # Same-AA comparison is target-free: volume and energy that come with 1 g of amino acid.
+        aa_vol = f"{1000 / aa:.1f} mL" if confirmed and aa else "—"
+        aa_kcal = f"{kcal / aa:.1f} kcal" if confirmed and aa and kcal else "—"
         src = p.get("source") or {}
         src_txt = esc(src.get("url") or src.get("heldFile") or "") if confirmed else "허가자료 미확인"
         rows.append(
@@ -75,7 +80,7 @@ def render_products(prod):
     head = ("<table class=\"jg nest\"><tr>\n<th class=\"th\">제품</th>\n<th class=\"th\">형태</th>\n"
             "<th class=\"th\">허가 확인일</th>\n<th class=\"th\">AA g/L</th>\n<th class=\"th\">포도당 g/L</th>\n"
             "<th class=\"th\">지질 g/L</th>\n<th class=\"th\">kcal/L</th>\n<th class=\"th\">mOsm/L</th>\n"
-            "<th class=\"th\">2,000 kcal 공급 부피</th>\n<th class=\"th\">출처 · 비고</th>\n</tr>\n")
+            "<th class=\"th\">같은 kcal(2,000 kcal) 공급 부피</th>\n<th class=\"th\">같은 AA 기준 · AA 1 g당 부피</th>\n<th class=\"th\">같은 AA 기준 · AA 1 g당 kcal</th>\n<th class=\"th\">출처 · 비고</th>\n</tr>\n")
     others = [p for p in prod["products"] if not p.get("inBagTable", True)]
     tail = ""
     if others:
@@ -95,12 +100,10 @@ def render_nav(nav):
 
 
 def question_bank(qdoc):
-    bank = []
-    for q in qdoc["questions"]:
-        if q.get("language") != "ko":
-            continue  # Korean-only study set; English originals stay archived in questions.json
-        bank.append({k: q.get(k, "" if k == "needle" else None) for k in BANK_FIELDS})
-    return bank
+    # Embed every question (verified + pending + excluded, ko + en) for the later review UI.
+    # The visible default quiz pool is filtered client-side to includeInBasicSet === true
+    # (verified Korean only; see QUESTIONS in split-shell.html).
+    return [{k: q.get(k, "" if k == "needle" else None) for k in BANK_FIELDS} for q in qdoc["questions"]]
 
 
 def study_ui_block():

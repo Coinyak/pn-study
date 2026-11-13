@@ -96,9 +96,6 @@ button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertica
 .quiz-sticky{flex-shrink:0;background:var(--quiz);border-bottom:1px solid var(--line);z-index:3}
 .quiz-head{padding:8px 12px;font-size:13.5px;font-weight:700;line-height:1.4;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .quiz-head-title{min-width:0;flex:1}
-.quiz-fav-filter{flex-shrink:0;margin-left:auto;border:1px solid #c5d0e0;background:#fff;color:#334;border-radius:6px;padding:6px 10px;font-size:12.5px;font-weight:700;cursor:pointer;min-height:36px}
-.quiz-fav-filter[aria-pressed="true"]{background:#fff7d6;border-color:#e0c35a;color:#7a5b00}
-.quiz-fav-filter:focus-visible{outline:2px solid var(--chip-on);outline-offset:2px}
 .cite-box{display:none;padding:0 12px 10px}
 .cite-box.show{display:block}
 .cite-box .cite-inner{background:#fff;border:1px solid #d0d7e2;padding:12px 14px;font-size:13.5px;line-height:1.55}
@@ -108,24 +105,7 @@ button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertica
 .cite-box .cite-close{border:0;background:#eef2f6;color:var(--muted);width:32px;height:32px;border-radius:4px;cursor:pointer;font-size:18px;line-height:1;flex-shrink:0}
 .qcard{background:#fff;border:1px solid #d8dee8;margin:8px 10px;padding:12px 14px}
 .qcard.hl{border-color:var(--chip-on);box-shadow:0 0 0 2px rgba(26,95,180,.15)}
-.qcard .src{font-size:12px;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
-.qcard .src-meta{min-width:0;flex:1}
-.qcard .q-star{margin-left:auto;flex-shrink:0;border:0;background:transparent;color:#b7a000;font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;min-width:40px;min-height:40px;border-radius:6px}
-.qcard .q-star[aria-pressed="true"]{color:#d4a000}
-.qcard .q-star:hover,.qcard .q-star:focus-visible{background:#fff6cc;outline:none}
-.qcard .q-choices{border:0;margin:0;padding:0}
-.qcard .q-choice{display:flex;align-items:flex-start;gap:8px;margin:.35em 0;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:14px;line-height:1.55}
-.qcard .q-choice:hover{background:#f3f6fb}
-.qcard .q-choice input{margin-top:.3em;flex-shrink:0}
-.qcard .q-choice.is-correct{background:#e8f7ee;box-shadow:inset 0 0 0 1px #8dcf9f}
-.qcard .q-choice.is-wrong{background:#fdeceb;box-shadow:inset 0 0 0 1px #e3a29a}
-.qcard .q-actions{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
-.qcard .q-grade{border:1px solid #c5d0e0;background:#f7f9fc;border-radius:6px;padding:7px 12px;font-size:13px;font-weight:700;cursor:pointer;min-height:36px}
-.qcard .q-grade:hover{border-color:#9eb6d4}
-.qcard .q-result{font-size:13px;font-weight:700}
-.qcard .q-result.ok{color:#1b7a3d}
-.qcard .q-result.bad{color:#b42318}
-.qcard.is-bookmarked{border-color:#e0c35a}
+.qcard .src{font-size:12px;color:var(--muted);margin-bottom:8px}
 .qcard .stem{font-size:15px;line-height:1.65;margin-bottom:10px}
 .qcard ol{margin:0;padding-left:1.35em;font-size:14px;line-height:1.6}
 .qcard ol li{margin:.35em 0}
@@ -174,7 +154,7 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 <body class="mode-core">
 <div class="app"> <div class="header"> <div class="header-title">영양불백 <span>정맥영양(PN)</span></div> <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사(임상영양길라잡이 EXAM)</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회 영양약료</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div> </div> <div class="tabs" id="tabs"> <button type="button" class="active" data-pane="core">핵심</button> <button type="button" data-pane="quiz">문제</button> </div> <div class="main"> <nav class="nav" id="nav" aria-label="소단원"><!--@@NAV@@--></nav> <section class="pane pane-core" id="core">
 <!--@@CORE@@-->
-<p class="muted" style="padding:10px">문제 카드 클릭 → 핵심본 형광</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span><button type="button" class="quiz-fav-filter" id="quizFavFilter" aria-pressed="false" title="즐겨찾기한 문제만 보기">★ 즐겨찾기</button></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
+<p class="muted" style="padding:10px">문제 카드 클릭 → 핵심본 형광</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
 </div>
 <script>
 const QUESTION_BANK = /*@@QUESTION_BANK@@*/[];
@@ -2670,87 +2650,33 @@ function isKoreanStem(stem){
   const latin=letters.filter(c=>c.charCodeAt(0)<128).length;
   return latin/letters.length <= 0.9;
 }
-const PROGRESS_KEY = "pn-study-progress-v1";
-let quizFavOnly = false;
-function loadProgress(){
-  try{
-    const raw = localStorage.getItem(PROGRESS_KEY);
-    if(!raw) return {bookmarks:{}, grades:{}};
-    const data = JSON.parse(raw);
-    return {
-      bookmarks: data.bookmarks && typeof data.bookmarks === "object" ? data.bookmarks : {},
-      grades: data.grades && typeof data.grades === "object" ? data.grades : {}
-    };
-  }catch(_){
-    return {bookmarks:{}, grades:{}};
-  }
-}
-function saveProgress(data){
-  try{ localStorage.setItem(PROGRESS_KEY, JSON.stringify({schemaVersion:1, bookmarks:data.bookmarks, grades:data.grades})); }
-  catch(err){ console.warn("학습 기록 저장 실패", err); }
-}
-function isBookmarked(id){ return !!loadProgress().bookmarks[id]; }
-function toggleBookmark(id){
-  const data = loadProgress();
-  if(data.bookmarks[id]) delete data.bookmarks[id];
-  else data.bookmarks[id] = true;
-  saveProgress(data);
-  return !!data.bookmarks[id];
-}
-function saveGrade(id, selected, correct){
-  const data = loadProgress();
-  data.grades[id] = {selected, correct, at: Date.now()};
-  saveProgress(data);
-}
-function questionById(id){ return QUESTIONS.find(q=>q.id===id); }
+/* Task 3: grading/favorites/progress persistence deliberately NOT here.
+   Task 4 owns localStorage key "pn-study-progress-v1" (schemaVersion, contentVersion,
+   attemptsByQuestionId, bookmarks, lastSession). Quiz cards are read-only until then. */
 function renderQuiz(force){
   const list=document.getElementById("quizList");
   const title=document.getElementById("quizHeadTitle") || document.getElementById("quizHead");
-  const favBtn=document.getElementById("quizFavFilter");
-  const cacheKey = activeTopic + "|" + (quizFavOnly ? "fav" : "all");
-  if(!force && list.dataset.topic === cacheKey) return;
-  list.dataset.topic = cacheKey;
-  if(favBtn) favBtn.setAttribute("aria-pressed", quizFavOnly ? "true" : "false");
-  let items=QUESTIONS.filter(q=>isKoreanStem(q.stem) && (quizFavOnly ? isBookmarked(q.id) : q.topic===activeTopic));
-  const label = quizFavOnly ? "즐겨찾기" : (TOPIC_LABEL[activeTopic]||activeTopic);
+  if(!force && list.dataset.topic === activeTopic) return;
+  list.dataset.topic = activeTopic;
+  const items=QUESTIONS.filter(q=>isKoreanStem(q.stem) && q.topic===activeTopic);
+  const label = TOPIC_LABEL[activeTopic]||activeTopic;
   if(title) title.textContent = "관련 문제 · " + label + " (" + items.length + ")";
   if(!items.length){
-    list.innerHTML = quizFavOnly
-      ? '<div class="empty">즐겨찾기한 문제가 없습니다. 카드 오른쪽 ★으로 추가하세요.</div>'
-      : '<div class="empty">이 소단원에 검증 완료 문항이 아직 없습니다(검토 대기 문항은 기본 세트에서 제외). 왼쪽에서 다른 소단원을 고르세요.</div>';
+    list.innerHTML = '<div class="empty">이 소단원에 검증 완료 문항이 아직 없습니다(검토 대기 문항은 기본 세트에서 제외). 왼쪽에서 다른 소단원을 고르세요.</div>';
     return;
   }
-  const progress = loadProgress();
   list.innerHTML=items.map(q=>{
     const ans=q.choices[q.answer]||"";
     const linked = !CORE_SKIP.has(q.id);
     const cardHint = linked ? ' title="줄기 클릭 시 왼쪽 핵심본을 형광 표시"' : '';
     const stemControl = linked ? ' role="button" tabindex="0" title="핵심본에서 위치 표시"' : '';
     const linkNote = linked ? '' : ' · 핵심 연결 없음';
-    const starred = !!progress.bookmarks[q.id];
-    const grade = progress.grades[q.id];
-    const choices=q.choices.map((c,i)=>{
-      let cls="q-choice";
-      let checked = grade && grade.selected===i ? " checked" : "";
-      if(grade){
-        if(i===q.answer) cls += " is-correct";
-        else if(grade.selected===i && !grade.correct) cls += " is-wrong";
-      }
-      return `<label class="${cls}"><input type="radio" name="ans-${escapeHtml(q.id)}" value="${i}"${checked}><span>${i+1}. ${escapeHtml(c)}</span></label>`;
-    }).join("");
-    let result = "";
-    if(grade){
-      result = grade.correct
-        ? '<span class="q-result ok">정답</span>'
-        : `<span class="q-result bad">오답 · 정답 ${q.answer+1}번</span>`;
-    }
-    return `<article class="qcard${linked ? '' : ' no-core'}${starred ? ' is-bookmarked' : ''}" data-qid="${escapeHtml(q.id)}"${cardHint}>
-      <div class="src"><span class="src-meta">${escapeHtml(q.source)} · ${escapeHtml(q.id)}${linkNote}</span>
-      <button type="button" class="q-star" aria-label="즐겨찾기" aria-pressed="${starred ? 'true' : 'false'}" title="즐겨찾기">${starred ? '★' : '☆'}</button></div>
+    const choices=q.choices.map(c=>`<li>${escapeHtml(c)}</li>`).join("");
+    return `<article class="qcard${linked ? '' : ' no-core'}" data-qid="${escapeHtml(q.id)}"${cardHint}>
+      <div class="src">${escapeHtml(q.source)} · ${escapeHtml(q.id)}${linkNote}</div>
       <div class="stem"${stemControl}>${escapeHtml(q.stem)}</div>
-      <fieldset class="q-choices">${choices}</fieldset>
-      <div class="q-actions"><button type="button" class="q-grade">채점</button>${result}</div>
-      <details${grade ? ' open' : ''}><summary>정답·해설 보기</summary>
+      <ol>${choices}</ol>
+      <details><summary>정답·해설 보기</summary>
       <p><b>정답:</b> ${q.answer+1}. ${escapeHtml(ans)}</p>
       <p>${escapeHtml(q.explain||"")}</p></details></article>`;
   }).join("");
@@ -2915,51 +2841,8 @@ function activateQcard(card){
   document.querySelectorAll(".qcard").forEach(c=>c.classList.toggle("hl", c===card));
   highlightFromQuestion(q);
 }
-document.getElementById("quizFavFilter")?.addEventListener("click", ()=>{
-  quizFavOnly = !quizFavOnly;
-  renderQuiz(true);
-});
 document.getElementById("quizList").addEventListener("click", e=>{
-  const star = e.target.closest(".q-star");
-  if(star){
-    e.preventDefault();
-    e.stopPropagation();
-    const card = star.closest(".qcard");
-    const on = toggleBookmark(card.dataset.qid);
-    star.setAttribute("aria-pressed", on ? "true" : "false");
-    star.textContent = on ? "★" : "☆";
-    card.classList.toggle("is-bookmarked", on);
-    if(quizFavOnly && !on) renderQuiz(true);
-    return;
-  }
-  const gradeBtn = e.target.closest(".q-grade");
-  if(gradeBtn){
-    e.preventDefault();
-    e.stopPropagation();
-    const card = gradeBtn.closest(".qcard");
-    const q = questionById(card.dataset.qid);
-    if(!q) return;
-    const picked = card.querySelector('input[type="radio"]:checked');
-    const resultEl = card.querySelector(".q-result") || (()=>{ const s=document.createElement("span"); s.className="q-result"; gradeBtn.after(s); return s; })();
-    if(!picked){
-      resultEl.className = "q-result bad";
-      resultEl.textContent = "답을 선택한 뒤 채점하세요";
-      return;
-    }
-    const selected = Number(picked.value);
-    const correct = selected === q.answer;
-    saveGrade(q.id, selected, correct);
-    card.querySelectorAll(".q-choice").forEach((lab,i)=>{
-      lab.classList.toggle("is-correct", i===q.answer);
-      lab.classList.toggle("is-wrong", i===selected && !correct);
-    });
-    resultEl.className = "q-result " + (correct ? "ok" : "bad");
-    resultEl.textContent = correct ? "정답" : ("오답 · 정답 " + (q.answer+1) + "번");
-    const details = card.querySelector("details");
-    if(details) details.open = true;
-    return;
-  }
-  if(e.target.closest("summary") || e.target.closest("a") || e.target.closest(".q-choices") || e.target.closest(".q-actions") || e.target.closest("input") || e.target.closest("label") || e.target.closest("button")) return;
+  if(e.target.closest("summary") || e.target.closest("a") || e.target.closest("button")) return;
   const card = e.target.closest(".qcard"); if(!card) return;
   activateQcard(card);
 });
