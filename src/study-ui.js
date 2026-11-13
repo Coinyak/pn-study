@@ -18,8 +18,8 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function (root) {
   "use strict";
 
-  const FILTERS = [["all", "전체"], ["unseen", "미풀이"], ["wrong", "오답"], ["unsure", "헷갈림"], ["bookmarked", "즐겨찾기"]];
-  const REVIEW_FILTERS = ["wrong", "unsure", "bookmarked"];
+  const FILTERS = [["all", "전체"], ["unseen", "미표시"], ["marked", "표시 있음"], ["bookmarked", "즐겨찾기"]];
+  const REVIEW_FILTERS = ["marked", "bookmarked"];
   const MOCK_PLAN = { common: 20, pn: 80 };
   const COMMON_TOPIC = "common";
 
@@ -104,8 +104,8 @@
   /**
    * Questions for the list view.
    * opts: { filter, search, topic, scope: "topic"|"all", includePending }
-   * Review filters (wrong/unsure/bookmarked) look at every displayable question, so an answered
-   * pending item still shows up in 오답 after the 검토 대기 toggle is turned off again.
+   * Review filters (marked/bookmarked) look at every displayable question, so a marked pending
+   * item still shows up after the 검토 대기 toggle is turned off again.
    * A non-empty search always spans every topic.
    */
   function buildList(bank, state, opts, SS) {
@@ -151,7 +151,7 @@
     return createSession(common.concat(pn), Object.assign({}, opts, { shuffle: false, kind: "mock", label: "모의고사 20+80" }));
   }
 
-  /** Every view except 전체 (all) derives membership from study state (unseen/wrong/unsure/bookmarked). */
+  /** Every view except 전체 (all) derives membership from study state (unseen/marked/bookmarked). */
   function filterUsesState(filter) {
     return !!filter && filter !== "all";
   }
@@ -271,7 +271,7 @@
     function listKey() {
       const s = ui.session;
       // stateRev counts study-state mutations (submit, bookmark, restore); state-derived filters
-      // (미풀이/오답/헷갈림/즐겨찾기) must rebuild when it moves. A frozen session never depends on it.
+      // (미표시/표시 있음/즐겨찾기) must rebuild when it moves. A frozen session never depends on it.
       return JSON.stringify(s ? ["s", s.id, ui.listVersion]
         : [ui.mode, ui.filter, ui.scope, ui.search, ui.includePending, ui.sourceLabel, ui.scope === "all" || ui.search ? "" : topicNow(), ui.listVersion,
           filterUsesState(ui.filter) ? ui.stateRev : 0]);
@@ -318,21 +318,47 @@
       return m.get(id);
     }
 
-    function statusBadge(q) {
-      const last = SS.latestAttempt(q, state);
-      if (!last) return "";
-      const t = last.correct ? (last.confidence === "unsure" ? "맞음·헷갈림" : "맞음") : "틀림";
-      return ' · <span class="q-last ' + (last.correct ? "ok" : "ng") + '">지난 풀이 ' + t + "</span>";
-    }
-
-    function cardHtml(q, idx) {
-      const cs = cardState(q.id);
-      const inSession = !!ui.session;
-      const done = !!cs.result;
+    function cardTop(q, idx, extra) {
       const linked = coreLinked(q);
       const bm = state.bookmarks.indexOf(q.id) >= 0;
       const pending = q.reviewStatus === "pending" ? ' · <span class="q-pending">검토 대기</span>' : "";
-      const num = inSession ? '<b class="q-no">' + (idx + 1) + ".</b> " : "";
+      const num = ui.session ? '<b class="q-no">' + (idx + 1) + ".</b> " : "";
+      return '<div class="q-top"><div class="src">' + num +
+        '<span class="src-meta ' + sourceToneClass(coreSourceLabel(q)) + '">' + esc(coreSourceLabel(q)) + "</span>" +
+        " · " + esc(q.id) + (linked ? "" : " · 핵심 연결 없음") + pending + (extra || "") + "</div>" +
+        '<button type="button" class="q-bm" data-act="bookmark" aria-pressed="' + bm + '" aria-label="즐겨찾기" title="즐겨찾기">' + (bm ? "★" : "☆") + "</button></div>";
+    }
+
+    /** Learn mode: quiet original-style card (no radio grading). */
+    function learnCardHtml(q, idx) {
+      const linked = coreLinked(q);
+      const marks = SS.getMarks(state, q.id);
+      const markBoxes = marks.map((on, i) =>
+        '<label class="q-mark" title="풀이 표시 ' + (i + 1) + '"><input type="checkbox" data-act="mark" data-mi="' + i + '"' +
+          (on ? " checked" : "") + '><span class="sr-only">풀이 표시 ' + (i + 1) + "</span></label>"
+      ).join("");
+      const choices = '<ol class="q-ol">' + (q.choices || []).map((c) => "<li>" + esc(c) + "</li>").join("") + "</ol>";
+      const ans = (q.choices && q.choices[q.answer]) || "";
+      const explain =
+        '<details class="q-details"><summary>정답·해설 보기</summary>' +
+        "<p><b>정답:</b> " + (q.answer + 1) + ". " + esc(ans) + "</p>" +
+        (q.explain ? "<p>" + esc(q.explain) + "</p>" : "") +
+        "</details>";
+      return '<article class="qcard sq" data-qid="' + esc(q.id) + '" data-idx="' + idx + '">' +
+        cardTop(q, idx, "") +
+        '<div class="stem" id="stem-' + idx + '">' + esc(q.stem) + "</div>" +
+        choices +
+        '<div class="q-actions">' +
+          '<span class="q-marks" role="group" aria-label="풀이 횟수 표시">' + markBoxes + "</span>" +
+          (linked ? '<button type="button" class="sb-btn" data-act="core" title="왼쪽 핵심본에서 관련 위치 표시">핵심 위치</button>' : "") +
+        "</div>" + explain + "</article>";
+    }
+
+    /** Drill/mock session: keep answerable grading UI. */
+    function sessionCardHtml(q, idx) {
+      const cs = cardState(q.id);
+      const done = !!cs.result;
+      const linked = coreLinked(q);
       const name = "ans-" + idx;
       const choices = q.choices.map((c, i) => {
         let cls = "q-choice";
@@ -341,8 +367,6 @@
         return '<label class="' + cls + '"><input type="radio" name="' + name + '" value="' + i + '"' +
           (cs.selected === i ? " checked" : "") + (done ? " disabled" : "") + '><span class="q-n">' + (i + 1) + '.</span><span class="q-t">' + esc(c) + "</span></label>";
       }).join("");
-      const showCore = linked && (!inSession || done);
-      const canExplain = !inSession || done;
       let result = "";
       if (done) {
         const r = cs.result;
@@ -350,30 +374,31 @@
         if (cs.unsure) result += " · 헷갈림 표시";
       }
       let explain = "";
-      if (cs.explain && canExplain) {
+      if (cs.explain && done) {
         const ce = Array.isArray(q.choiceExplanations) ? q.choiceExplanations : [];
-        const sel = done ? cs.result.selected : null;
+        const sel = cs.result.selected;
         explain = '<div class="q-explain"><p><b>정답:</b> ' + (q.answer + 1) + ". " + esc(q.choices[q.answer] || "") + "</p>" +
           (q.explain ? "<p>" + esc(q.explain) + "</p>" : "") +
-          (sel !== null && sel !== q.answer && ce[sel] ? '<p class="muted">내 선택 ' + (sel + 1) + "번: " + esc(ce[sel]) + "</p>" : "") +
+          (sel !== q.answer && ce[sel] ? '<p class="muted">내 선택 ' + (sel + 1) + "번: " + esc(ce[sel]) + "</p>" : "") +
           "</div>";
       }
       return '<article class="qcard sq" data-qid="' + esc(q.id) + '" data-idx="' + idx + '">' +
-        '<div class="q-top"><div class="src">' + num +
-          '<span class="src-meta ' + sourceToneClass(coreSourceLabel(q)) + '">' + esc(coreSourceLabel(q)) + "</span>" +
-          " · " + esc(q.id) + (linked ? "" : " · 핵심 연결 없음") + pending + statusBadge(q) + "</div>" +
-        '<button type="button" class="q-bm" data-act="bookmark" aria-pressed="' + bm + '" aria-label="즐겨찾기" title="즐겨찾기">' + (bm ? "★" : "☆") + "</button></div>" +
+        cardTop(q, idx, "") +
         '<div class="stem" id="stem-' + idx + '">' + esc(q.stem) + "</div>" +
         '<fieldset class="q-choices" aria-labelledby="stem-' + idx + '"><legend class="sr-only">선택지</legend>' + choices + "</fieldset>" +
         '<div class="q-actions">' +
           '<label class="q-unsure"><input type="checkbox" data-act="unsure"' + (cs.unsure ? " checked" : "") + (done ? " disabled" : "") + "> 헷갈림</label>" +
           (done
-            ? (inSession ? "" : '<button type="button" class="sb-btn" data-act="retry">다시 풀기</button>')
+            ? ""
             : '<button type="button" class="sb-btn primary" data-act="submit"' + (cs.selected === null ? " disabled" : "") + ">제출</button>") +
-          (canExplain ? '<button type="button" class="sb-btn" data-act="explain" aria-expanded="' + !!cs.explain + '">' + (cs.explain ? "해설 닫기" : "해설 보기") + "</button>" : "") +
-          (showCore ? '<button type="button" class="sb-btn" data-act="core" title="왼쪽 핵심본에서 관련 위치 표시">핵심 위치</button>' : "") +
+          (done ? '<button type="button" class="sb-btn" data-act="explain" aria-expanded="' + !!cs.explain + '">' + (cs.explain ? "해설 닫기" : "해설 보기") + "</button>" : "") +
+          (linked && done ? '<button type="button" class="sb-btn" data-act="core" title="왼쪽 핵심본에서 관련 위치 표시">핵심 위치</button>' : "") +
           '<span class="q-result" tabindex="-1">' + result + "</span>" +
         "</div>" + explain + "</article>";
+    }
+
+    function cardHtml(q, idx) {
+      return ui.session ? sessionCardHtml(q, idx) : learnCardHtml(q, idx);
     }
 
     function headTitle(items) {
@@ -397,7 +422,7 @@
 
     function updateSummary() {
       const s = SS.summarizeProgress(basePool(BANK, ui.includePending), state);
-      el.sum.textContent = "풀이 " + s.seen + "/" + s.total + " · 오답 " + s.wrong + " · 헷갈림 " + s.unsure + " · ★" + s.bookmarked;
+      el.sum.textContent = "표시 " + s.marked + "/" + s.total + " · ★" + s.bookmarked;
       const ls = state.lastSession;
       const q = ls && BY_ID.get(ls.questionId);
       el.resume.hidden = !q || !isDisplayable(q) || !!ui.session;
@@ -466,7 +491,7 @@
       } else {
         notice("현재 보기(" + FILTERS.find((x) => x[0] === ui.filter)[1] + ") 조건에서 벗어나 목록에서 제외했습니다.", false);
         const t = target && find(target);
-        const f = t ? (t.querySelector('input[type="radio"]:not(:disabled)') || t.querySelector("button:not(:disabled)")) : null;
+        const f = t ? (t.querySelector('input[data-act="mark"]') || t.querySelector('input[type="radio"]:not(:disabled)') || t.querySelector("button:not(:disabled)")) : null;
         if (f) f.focus({ preventScroll: true });
         else {
           // Never leave focus detached: the card itself, then the empty state, then the list.
@@ -509,6 +534,14 @@
     list.addEventListener("change", (e) => {
       const card = e.target.closest(".qcard.sq");
       if (!card) return;
+      if (e.target.dataset.act === "mark") {
+        const mi = Number(e.target.dataset.mi);
+        if (!Number.isInteger(mi)) return;
+        state = SS.setMark(state, card.dataset.qid, mi, e.target.checked);
+        persist();
+        afterStateChange(card, 'input[data-act="mark"][data-mi="' + mi + '"]');
+        return;
+      }
       const cs = cardState(card.dataset.qid);
       if (e.target.type === "radio") {
         cs.selected = Number(e.target.value);
@@ -706,6 +739,7 @@
         '<tr><td class="l1">현재 문항과 일치</td><td class="num">' + s.matchedQuestions + "</td></tr>" +
         '<tr><td class="l1">문항 개정됨(이력만)</td><td class="num">' + s.staleQuestions + "</td></tr>" +
         '<tr><td class="l1">현재 없는 문항</td><td class="num">' + s.orphanIds + "</td></tr>" +
+        '<tr><td class="l1">풀이 표시</td><td class="num">' + (s.markedQuestions || 0) + "문항</td></tr>" +
         '<tr><td class="l1">즐겨찾기</td><td class="num">' + s.bookmarks + "</td></tr>" +
         '<tr><td class="l1">중복 제거 · 손상 제외 · 재채점</td><td class="num">' + s.duplicatesRemoved + " · " + s.invalidDropped + " · " + s.regraded + "</td></tr>" +
         '<tr><td class="l1">콘텐츠 버전</td><td>' + esc(s.contentVersion || "—") + (CV && s.contentVersion && s.contentVersion !== CV ? " (현재 " + esc(CV) + ")" : "") + "</td></tr></table>" +

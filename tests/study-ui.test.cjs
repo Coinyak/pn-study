@@ -32,23 +32,23 @@ test("buildList scopes by topic, and search spans all topics", () => {
   assert.deepEqual(ids(UI.buildList(BANK, st, { filter: "all", search: "  v3 " }, SS)), ["v3"]);
 });
 
-test("buildList reacts to state: wrong/unsure/unseen/bookmarked", () => {
+test("buildList reacts to state: unseen/marked/bookmarked (mark-based)", () => {
   let st = SS.createEmptyState();
-  st = SS.recordAttempt(st, BANK[0], 0, "sure", 1);    // v1 wrong
-  st = SS.recordAttempt(st, BANK[1], 1, "unsure", 2);  // v2 correct but unsure
+  st = SS.setMark(st, "v1", 0, true);
+  st = SS.setMark(st, "v2", 3, true);
   st = SS.toggleBookmark(st, "v3");
   const opts = (filter) => ({ filter, topic: "lipid", scope: "all" });
-  assert.deepEqual(ids(UI.buildList(BANK, st, opts("오답"), SS)), ["v1"]);
-  assert.deepEqual(ids(UI.buildList(BANK, st, opts("unsure"), SS)), ["v2"]);
+  assert.deepEqual(ids(UI.buildList(BANK, st, opts("marked"), SS)), ["v1", "v2"]);
   assert.deepEqual(ids(UI.buildList(BANK, st, opts("unseen"), SS)), ["v3"]);
+  assert.deepEqual(ids(UI.buildList(BANK, st, opts("미표시"), SS)), ["v3"]);
   assert.deepEqual(ids(UI.buildList(BANK, st, opts("bookmarked"), SS)), ["v3"]);
 });
 
-test("review filters still surface an answered pending item with the toggle off; excluded stays hidden", () => {
+test("review filters still surface a marked pending item with the toggle off; excluded stays hidden", () => {
   let st = SS.createEmptyState();
-  st = SS.recordAttempt(st, BANK[3], 0, "sure", 1);
-  st = SS.recordAttempt(st, BANK[4], 0, "sure", 2);
-  const list = UI.buildList(BANK, st, { filter: "wrong", scope: "all", includePending: false }, SS);
+  st = SS.setMark(st, "p1", 1, true);
+  st = SS.setMark(st, "x1", 0, true); // excluded — never listed
+  const list = UI.buildList(BANK, st, { filter: "marked", scope: "all", includePending: false }, SS);
   assert.deepEqual(ids(list), ["p1"]);
   assert.deepEqual(ids(UI.buildList(BANK, st, { filter: "unseen", scope: "all", includePending: false }, SS)), ["v1", "v2", "v3"]);
 });
@@ -80,12 +80,12 @@ test("mock 20+80 is unavailable with the current small verified pool", () => {
 
 test("state-derived filters need a revision; focus moves to the next remaining card", () => {
   assert.equal(UI.filterUsesState("all"), false);
-  ["unseen", "wrong", "unsure", "bookmarked"].forEach((f) => assert.equal(UI.filterUsesState(f), true, f));
-  // submit under 미풀이 removes the answered card from membership
+  ["unseen", "marked", "bookmarked"].forEach((f) => assert.equal(UI.filterUsesState(f), true, f));
+  // marking under 미표시 removes the card from membership
   let st = SS.createEmptyState();
   const opts = { filter: "unseen", topic: "lipid", scope: "topic" };
   assert.deepEqual(ids(UI.buildList(BANK, st, opts, SS)), ["v1", "v2"]);
-  st = SS.recordAttempt(st, BANK[0], 1, "sure", 1);
+  st = SS.setMark(st, "v1", 0, true);
   const after = ids(UI.buildList(BANK, st, opts, SS));
   assert.deepEqual(after, ["v2"]);
   assert.equal(UI.focusAfterRebuild(["v1", "v2"], "v1", after), "v2");
@@ -94,6 +94,11 @@ test("state-derived filters need a revision; focus moves to the next remaining c
   assert.equal(UI.focusAfterRebuild(["a", "b", "c"], "b", ["a", "c"]), "c");
   assert.equal(UI.focusAfterRebuild(["a"], "a", []), null);
   assert.equal(UI.focusAfterRebuild(["a", "b"], "a", ["a", "b"]), "a");
+});
+
+test("FILTERS expose mark-based views only (no 오답/헷갈림 in learn bar)", () => {
+  assert.deepEqual(UI.FILTERS.map((f) => f[0]), ["all", "unseen", "marked", "bookmarked"]);
+  assert.deepEqual(UI.FILTERS.map((f) => f[1]), ["전체", "미표시", "표시 있음", "즐겨찾기"]);
 });
 
 test("focus falls back to the first new card when no old card survives (cleared source chip)", () => {

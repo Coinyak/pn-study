@@ -96,28 +96,77 @@ function build(steps) {
 }
 const ids = (qs) => qs.map((q) => q.id);
 
-test("selectReviewQuestions: wrong / unseen / unsure / bookmarked", () => {
+test("selectReviewQuestions: wrong / unseen / unsure / bookmarked / marked", () => {
   let s = build([
     [QUESTIONS[0], 0, "sure"], // q1 wrong
     [QUESTIONS[1], 0, "unsure"], // q2 correct but unsure
     [QUESTIONS[2], 1, "sure"], // q3 correct sure
   ]);
   s = S.toggleBookmark(s, "q4");
+  s = S.setMark(s, "q1", 0, true);
   assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "wrong")), ["q1"]);
   assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "unsure")), ["q2"]);
-  assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "unseen")), ["q4"]);
+  // unseen/marked are mark-based (attempts do not matter)
+  assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "unseen")), ["q2", "q3", "q4"]);
+  assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "marked")), ["q1"]);
   assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "bookmarked")), ["q4"]);
 });
 
 test("selectReviewQuestions: aliases and unknown filter", () => {
-  const s = build([[QUESTIONS[0], 0, "sure"]]);
+  let s = build([[QUESTIONS[0], 0, "sure"]]);
+  s = S.setMark(s, "q1", 2, true);
   for (const a of ["incorrect", "오답"]) assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, a)), ["q1"], a);
-  for (const a of ["new", "미풀이"]) assert.equal(S.selectReviewQuestions(QUESTIONS, s, a).length, 3, a);
+  for (const a of ["new", "미풀이", "미표시"]) assert.equal(S.selectReviewQuestions(QUESTIONS, s, a).length, 3, a);
+  for (const a of ["marked", "표시 있음"]) assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, a)), ["q1"], a);
   assert.equal(S.normalizeFilter("confused"), "unsure");
   assert.equal(S.normalizeFilter("헷갈림"), "unsure");
   assert.equal(S.normalizeFilter("favorites"), "bookmarked");
   assert.equal(S.normalizeFilter("즐겨찾기"), "bookmarked");
   assert.throws(() => S.selectReviewQuestions(QUESTIONS, s, "bogus"), /filter/);
+});
+
+test("setMark: independent slots, toggle, clear when all false", () => {
+  const s0 = S.createEmptyState(CV);
+  assert.deepEqual(S.getMarks(s0, "q1"), [false, false, false, false, false]);
+  const s1 = S.setMark(s0, "q1", 0, true);
+  assert.deepEqual(S.getMarks(s1, "q1"), [true, false, false, false, false]);
+  const s2 = S.setMark(s1, "q1", 3, true);
+  assert.deepEqual(S.getMarks(s2, "q1"), [true, false, false, true, false]);
+  const s3 = S.setMark(s2, "q1", 0); // toggle off
+  assert.deepEqual(S.getMarks(s3, "q1"), [false, false, false, true, false]);
+  const s4 = S.setMark(s3, "q1", 3, false);
+  assert.equal(Object.prototype.hasOwnProperty.call(s4.marksByQuestionId, "q1"), false);
+  assert.throws(() => S.setMark(s0, "q1", 5, true), /index/);
+});
+
+test("sanitize/backup: missing marks ok; invalid marks coerced; merge ORs slots", () => {
+  const st = fakeStorage();
+  const store = S.createStore({ storage: st, contentVersion: CV });
+  let s = S.setMark(S.createEmptyState(CV), "q1", 0, true);
+  s = S.setMark(s, "q1", 2, true);
+  assert.deepEqual(store.save(s), { ok: true });
+  assert.deepEqual(store.load().state.marksByQuestionId.q1, [true, false, true, false, false]);
+
+  const oldText = JSON.stringify({
+    schemaVersion: 1, contentVersion: CV, attemptsByQuestionId: {}, bookmarks: [], lastSession: null,
+  });
+  const old = S.parseBackup(oldText, QUESTIONS);
+  assert.equal(old.ok, true);
+  assert.deepEqual(old.payload.marksByQuestionId, {});
+
+  const badText = JSON.stringify({
+    schemaVersion: 1, contentVersion: CV, attemptsByQuestionId: {}, bookmarks: [], lastSession: null,
+    marksByQuestionId: { q2: [true], q3: [1, 0, 0, 0, 0], q4: [true, false, false, false, false] },
+  });
+  const bad = S.parseBackup(badText, QUESTIONS);
+  assert.equal(bad.ok, true);
+  assert.deepEqual(bad.payload.marksByQuestionId, { q4: [true, false, false, false, false] });
+  assert.ok(bad.summary.invalidDropped >= 2);
+
+  const remote = S.setMark(S.createEmptyState(CV), "q1", 4, true);
+  const prev = S.parseBackup(S.exportBackup(remote), QUESTIONS);
+  const merged = S.applyBackup(prev, s, { confirmed: true });
+  assert.deepEqual(merged.marksByQuestionId.q1, [true, false, true, false, true]);
 });
 
 test("re-solving a wrong question correctly removes it from wrong (latest state wins)", () => {
@@ -167,10 +216,13 @@ test("revision bump: history preserved but excluded from current mastery", () =>
   const bumped = [Q("q1", 2, 2), Q("q2", 0, 2), QUESTIONS[2], QUESTIONS[3]];
   assert.equal(s.attemptsByQuestionId.q1.length, 1); // history kept
   assert.deepEqual(ids(S.selectReviewQuestions(bumped, s, "wrong")), []); // no stale wrong
-  assert.deepEqual(ids(S.selectReviewQuestions(bumped, s, "unseen")), ["q1", "q2", "q3", "q4"]);
+  assert.deepEqual(ids(S.selectReviewQuestions(bumped, s, "unseen")), ["q1", "q2", "q3", "q4"]); // no marks
   assert.equal(S.latestAttempt(bumped[0], s), null);
   const sum = S.summarizeProgress(bumped, s);
-  assert.deepEqual(sum, { total: 4, seen: 0, unseen: 4, correct: 0, wrong: 0, unsure: 0, bookmarked: 0, staleQuestions: 2, orphanIds: 0 });
+  assert.deepEqual(sum, {
+    total: 4, seen: 0, unseen: 4, marked: 0, correct: 0, wrong: 0, unsure: 0,
+    bookmarked: 0, staleQuestions: 2, orphanIds: 0,
+  });
 });
 
 test("revision bump: new attempt after bump counts, old stays in history", () => {
@@ -222,7 +274,7 @@ test("store: save then load round-trips and stamps contentVersion", () => {
   const raw = JSON.parse(st.getItem("pn-study-progress-v1"));
   assert.equal(raw.schemaVersion, 1);
   assert.equal(raw.contentVersion, CV);
-  assert.deepEqual(Object.keys(raw).sort(), ["attemptsByQuestionId", "bookmarks", "contentVersion", "lastSession", "schemaVersion"]);
+  assert.deepEqual(Object.keys(raw).sort(), ["attemptsByQuestionId", "bookmarks", "contentVersion", "lastSession", "marksByQuestionId", "schemaVersion"]);
   const again = store.load();
   assert.equal(again.status, "ok");
   assert.deepEqual(again.state.attemptsByQuestionId, s.attemptsByQuestionId);

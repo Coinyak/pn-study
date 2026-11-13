@@ -21,8 +21,16 @@
 .ok{color:#1b7a3a;font-weight:700}
 .ng{color:var(--danger);font-weight:700}
 
-/* question cards: same dense card as before, now answerable */
+/* question cards: learn = quiet list; session = answerable */
 .qcard.sq{cursor:default}
+.q-ol{margin:0 0 8px;padding-left:1.35em;font-size:14px;line-height:1.6}
+.q-ol li{margin:.35em 0}
+.q-marks{display:inline-flex;align-items:center;gap:6px;margin-right:4px}
+.q-mark{display:inline-flex;align-items:center;cursor:pointer;min-height:28px}
+.q-mark input{width:1rem;height:1rem;margin:0;cursor:pointer;accent-color:var(--chip-on)}
+.q-details{margin-top:10px;font-size:13.5px;line-height:1.55}
+.q-details summary{cursor:pointer;color:var(--chip-on);font-weight:600;min-height:36px;display:flex;align-items:center}
+.q-details p{margin:.35em 0}
 .qcard.sq .q-top{display:flex;align-items:flex-start;gap:8px}
 .qcard.sq .q-top .src{flex:1;min-width:0;margin-bottom:6px}
 .qcard .src-meta{font-weight:700}
