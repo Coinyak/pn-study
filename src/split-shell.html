@@ -14,7 +14,11 @@ body{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif
 .app{display:grid;grid-template-rows:auto auto 1fr;height:100%;max-height:100dvh}
 .header{background:var(--navy);color:#fff;padding:10px 16px;font-weight:700;font-size:16px;letter-spacing:-.01em;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:nowrap}
 .header-title{flex:0 1 auto;min-width:0;white-space:nowrap}
-.header-title > span{font-weight:500;opacity:.85;font-size:13px;margin-left:8px}
+.header-title a.home{color:inherit;text-decoration:none}
+.header-title a.home:hover{text-decoration:underline;text-underline-offset:3px}
+.header-title a.home:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:2px}
+.header-title > span,.header-title a.home + span{font-weight:500;opacity:.85;font-size:13px;margin-left:8px}
+td.num.diff{color:#c2410c;font-weight:700;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .hl-legend{margin-left:auto;flex:0 0 auto;display:flex;gap:12px;flex-wrap:nowrap;align-items:center;justify-content:flex-end;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.92);white-space:nowrap}
 .hl-legend .swatch{ display:inline-block;width:22px;height:16px;vertical-align:middle;margin-right:6px; border-radius:2px;border:1px solid rgba(255,255,255,.55);flex-shrink:0;
 }
@@ -152,9 +156,9 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 } </style>
 </head>
 <body class="mode-core">
-<div class="app"> <div class="header"> <div class="header-title">영양불백 <span>정맥영양(PN)</span></div> <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사(임상영양길라잡이 EXAM)</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회 영양약료</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div> </div> <div class="tabs" id="tabs"> <button type="button" class="active" data-pane="core">핵심</button> <button type="button" data-pane="quiz">문제</button> </div> <div class="main"> <nav class="nav" id="nav" aria-label="소단원"><!--@@NAV@@--></nav> <section class="pane pane-core" id="core">
+<div class="app"> <div class="header"> <div class="header-title"><a class="home" href="index.html" title="홈으로">영양불백</a> <span>정맥영양(PN)</span></div> <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사(임상영양길라잡이 EXAM)</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회 영양약료</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div> </div> <div class="tabs" id="tabs"> <button type="button" class="active" data-pane="core">핵심</button> <button type="button" data-pane="quiz">문제</button> </div> <div class="main"> <nav class="nav" id="nav" aria-label="소단원"><!--@@NAV@@--></nav> <section class="pane pane-core" id="core">
 <!--@@CORE@@-->
-<p class="muted" style="padding:10px">문제의 「핵심 위치」 → 핵심본 형광</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
+<p class="muted" style="padding:10px">카드를 누르면 핵심본 위치로 이동합니다</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
 </div>
 <script>
 const QUESTION_BANK = /*@@QUESTION_BANK@@*/[];

@@ -243,10 +243,17 @@ def check_products(prod, ref_ids, errors):
 
 
 def check_products_table(prod, errors):
-    """The rendered products table must have as many cells per row as headers."""
+    """When a numeric comparison table is rendered, each row must match the header width.
+
+    Unconfirmed-only catalogs intentionally render a compact callout (no <table>); that is OK.
+    """
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import build  # noqa: E402
-    table = build.render_products(prod).split("</table>")[0]
+    html = build.render_products(prod)
+    if "</table>" not in html:
+        # No confirmed products → callout only; do not require a grid.
+        return
+    table = html.split("</table>")[0]
     rows = re.findall(r"<tr>(.*?)</tr>", table, flags=re.S)
     if not rows:
         errors.append("products table: no rows rendered")

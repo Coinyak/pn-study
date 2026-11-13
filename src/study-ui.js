@@ -1,5 +1,5 @@
 /* study-ui.js — learn quiz pane (marks, favorites, filters, search, backup/restore)
- * on top of StudyState. No resume button, no drill/mock session UI.
+ * on top of StudyState. Card click → core jump. Compact one-line toolbar.
  *
  * Inlined after the split shell's script. Replaces the shell's read-only renderQuiz().
  * Node: require("./study-ui.js") returns the pure helpers only (no DOM).
@@ -139,35 +139,31 @@
 
     const ui = {
       filter: "all", scope: "topic", search: "", includePending: false, sourceLabel: "",
-      learnCards: new Map(), listVersion: 0, stateRev: 0, lastKey: null, lastSaveReason: null,
+      listVersion: 0, stateRev: 0, lastKey: null, lastSaveReason: null,
     };
 
     const bar = doc.createElement("div");
     bar.className = "study-bar";
     bar.id = "studyBar";
     bar.innerHTML =
-      '<div class="sb-row">' +
-        '<label class="sb-field"><span class="sb-lab">보기</span> <select id="sbFilter">' + FILTERS.map((f) => '<option value="' + f[0] + '">' + f[1] + "</option>").join("") + "</select></label>" +
-        '<label class="sb-field"><span class="sb-lab">범위</span> <select id="sbScope"><option value="topic">현재 소단원</option><option value="all">전체 단원</option></select></label>' +
-        '<input type="search" id="sbSearch" class="sb-search" placeholder="문항 검색" aria-label="문항 검색(전체 단원)" enterkeyhint="search">' +
-      "</div>" +
-      '<div class="sb-row">' +
-        '<label class="sb-chk" title="검토가 끝나지 않은 문항. 정답·해설이 바뀔 수 있습니다."><input type="checkbox" id="sbPending"> 검토 대기 포함</label>' +
-        '<button type="button" class="sb-btn" id="sbExport" title="학습 기록을 JSON 파일로 저장">백업</button>' +
-        '<button type="button" class="sb-btn" id="sbImport" title="백업 파일에서 학습 기록 불러오기">복원</button>' +
+      '<div class="sb-row sb-one">' +
+        '<select id="sbFilter" aria-label="보기">' + FILTERS.map((f) => '<option value="' + f[0] + '">' + f[1] + "</option>").join("") + "</select>" +
+        '<select id="sbScope" aria-label="범위"><option value="topic">소단원</option><option value="all">전체</option></select>' +
+        '<select id="sbSource" aria-label="출처"><option value="">출처 전체</option></select>' +
+        '<input type="search" id="sbSearch" class="sb-search" placeholder="검색" aria-label="문항 검색" enterkeyhint="search">' +
+        '<label class="sb-chk" title="검토 대기 문항 포함"><input type="checkbox" id="sbPending"> 대기</label>' +
+        '<button type="button" class="sb-btn" id="sbExport" title="학습 기록 파일로 저장">저장</button>' +
+        '<button type="button" class="sb-btn" id="sbImport" title="학습 기록 파일 불러오기">불러오기</button>' +
         '<input type="file" id="sbFile" accept=".json,application/json" hidden>' +
         '<span class="sb-sum" id="sbSum"></span>' +
       "</div>" +
-      '<div class="sb-row sb-sources" id="sbSources" aria-label="출처 필터"></div>' +
-      '<div class="sb-panel" id="sbRestore" hidden></div>' +
       '<div class="sb-notice" id="sbNotice" role="status" aria-live="polite" hidden></div>';
     head.insertAdjacentElement("afterend", bar);
     const $ = (id) => doc.getElementById(id);
     const el = {
-      filter: $("sbFilter"), scope: $("sbScope"), search: $("sbSearch"), pending: $("sbPending"),
+      filter: $("sbFilter"), scope: $("sbScope"), source: $("sbSource"), search: $("sbSearch"), pending: $("sbPending"),
       exp: $("sbExport"), imp: $("sbImport"), file: $("sbFile"), sum: $("sbSum"),
-      restore: $("sbRestore"), notice: $("sbNotice"), title: $("quizHeadTitle") || head,
-      sources: $("sbSources"),
+      notice: $("sbNotice"), title: $("quizHeadTitle") || head,
     };
 
     let noticeTimer = null;
@@ -178,10 +174,10 @@
       if (msg && !sticky) noticeTimer = setTimeout(() => { el.notice.hidden = true; }, 8000);
     }
     const SAVE_MSG = {
-      "no-storage": "브라우저 저장소를 쓸 수 없어 이 창에서만 기록됩니다. 계속 풀 수 있습니다.",
-      "storage-error": "기록 저장에 실패했습니다(용량·권한). 계속 풀 수 있지만 새로고침하면 사라질 수 있습니다.",
-      "blocked-corrupt": "저장된 기록을 읽을 수 없어 덮어쓰지 않았습니다. 이 창에서만 기록됩니다.",
-      "blocked-unknown-schema": "다른 버전의 기록이 저장돼 있어 덮어쓰지 않았습니다. 이 창에서만 기록됩니다.",
+      "no-storage": "브라우저 저장소를 쓸 수 없어 이 창에서만 기록됩니다.",
+      "storage-error": "기록 저장에 실패했습니다. 새로고침하면 사라질 수 있습니다.",
+      "blocked-corrupt": "저장된 기록을 읽을 수 없어 덮어쓰지 않았습니다.",
+      "blocked-unknown-schema": "다른 버전의 기록이 있어 덮어쓰지 않았습니다.",
     };
     function persist(opts) {
       const r = store.save(state, opts);
@@ -191,8 +187,8 @@
       return false;
     }
     if (loadStatus === "unavailable") notice(SAVE_MSG["no-storage"], false);
-    else if (loadStatus === "corrupt") notice("저장된 학습 기록이 손상돼 읽지 못했습니다. 기존 데이터는 그대로 두며, 복원(교체)으로 정리할 수 있습니다.", true);
-    else if (loadStatus === "unknown-schema") notice("다른 버전의 학습 기록이 있어 읽지 못했습니다. 기존 데이터는 그대로 둡니다.", true);
+    else if (loadStatus === "corrupt") notice("저장된 기록이 손상돼 읽지 못했습니다. 「불러오기」로 교체할 수 있습니다.", true);
+    else if (loadStatus === "unknown-schema") notice("다른 버전의 기록이 있어 읽지 못했습니다.", true);
 
     function listKey() {
       return JSON.stringify([
@@ -207,15 +203,14 @@
         includePending: ui.includePending, sourceLabel: ui.sourceLabel || "",
       }, SS);
     }
-    function poolForSourceChips() {
+    function poolForSources() {
       return buildList(BANK, state, {
         filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
         includePending: ui.includePending, sourceLabel: "",
       }, SS);
     }
-    function renderSourceChips() {
-      if (!el.sources) return;
-      const pool = poolForSourceChips();
+    function renderSourceOptions() {
+      const pool = poolForSources();
       const counts = new Map();
       pool.forEach((q) => {
         const lab = coreSourceLabel(q);
@@ -223,27 +218,20 @@
       });
       if (ui.sourceLabel && !counts.has(ui.sourceLabel)) ui.sourceLabel = "";
       const labels = Array.from(counts.keys()).sort((a, b) => a.localeCompare(b, "ko"));
-      el.sources.innerHTML =
-        '<button type="button" class="sb-src' + (ui.sourceLabel ? "" : " on") + '" data-src="">전체 (' + pool.length + ")</button>" +
-        labels.map((lab) => {
-          const on = ui.sourceLabel === lab ? " on" : "";
-          return '<button type="button" class="sb-src ' + sourceToneClass(lab) + on + '" data-src="' + esc(lab) + '">' +
-            esc(lab) + " (" + counts.get(lab) + ")</button>";
-        }).join("");
-    }
-
-    function cardTop(q, idx) {
-      const linked = coreLinked(q);
-      const bm = state.bookmarks.indexOf(q.id) >= 0;
-      const pending = q.reviewStatus === "pending" ? ' · <span class="q-pending">검토 대기</span>' : "";
-      return '<div class="q-top"><div class="src">' +
-        '<span class="src-meta ' + sourceToneClass(coreSourceLabel(q)) + '">' + esc(coreSourceLabel(q)) + "</span>" +
-        " · " + esc(q.id) + (linked ? "" : " · 핵심 연결 없음") + pending + "</div>" +
-        '<button type="button" class="q-bm" data-act="bookmark" aria-pressed="' + bm + '" aria-label="즐겨찾기" title="즐겨찾기">' + (bm ? "★" : "☆") + "</button></div>";
+      const cur = ui.sourceLabel || "";
+      el.source.innerHTML =
+        '<option value="">출처 전체 (' + pool.length + ")</option>" +
+        labels.map((lab) =>
+          '<option value="' + esc(lab) + '"' + (lab === cur ? " selected" : "") + ">" +
+          esc(lab) + " (" + counts.get(lab) + ")</option>"
+        ).join("");
+      el.source.value = cur;
     }
 
     function learnCardHtml(q, idx) {
       const linked = coreLinked(q);
+      const bm = state.bookmarks.indexOf(q.id) >= 0;
+      const pending = q.reviewStatus === "pending" ? ' · <span class="q-pending">검토 대기</span>' : "";
       const marks = SS.getMarks(state, q.id);
       const markBoxes = marks.map((on, i) =>
         '<label class="q-mark" title="풀이 표시 ' + (i + 1) + '"><input type="checkbox" data-act="mark" data-mi="' + i + '"' +
@@ -256,14 +244,18 @@
         "<p><b>정답:</b> " + (q.answer + 1) + ". " + esc(ans) + "</p>" +
         (q.explain ? "<p>" + esc(q.explain) + "</p>" : "") +
         "</details>";
-      return '<article class="qcard sq" data-qid="' + esc(q.id) + '" data-idx="' + idx + '">' +
-        cardTop(q, idx) +
+      return '<article class="qcard sq' + (linked ? " q-linked" : "") + '" data-qid="' + esc(q.id) + '" data-idx="' + idx + '"' +
+        (linked ? ' title="클릭하면 핵심본 위치로 이동합니다"' : "") + ">" +
+        '<div class="q-top">' +
+          '<div class="src"><span class="src-meta ' + sourceToneClass(coreSourceLabel(q)) + '">' + esc(coreSourceLabel(q)) + "</span>" +
+          " · " + esc(q.id) + (linked ? "" : " · 핵심 연결 없음") + pending + "</div>" +
+          '<span class="q-tools">' +
+            '<span class="q-marks" role="group" aria-label="풀이 횟수 표시">' + markBoxes + "</span>" +
+            '<button type="button" class="q-bm" data-act="bookmark" aria-pressed="' + bm + '" aria-label="즐겨찾기" title="즐겨찾기">' + (bm ? "★" : "☆") + "</button>" +
+          "</span>" +
+        "</div>" +
         '<div class="stem" id="stem-' + idx + '">' + esc(q.stem) + "</div>" +
-        choices +
-        '<div class="q-actions">' +
-          '<span class="q-marks" role="group" aria-label="풀이 횟수 표시">' + markBoxes + "</span>" +
-          (linked ? '<button type="button" class="sb-btn" data-act="core" title="왼쪽 핵심본에서 관련 위치 표시">핵심 위치</button>' : "") +
-        "</div>" + explain + "</article>";
+        choices + explain + "</article>";
     }
 
     function headTitle(items) {
@@ -275,8 +267,8 @@
 
     function emptyText() {
       if (ui.search) return "검색 결과가 없습니다.";
-      if (ui.filter !== "all") return "조건에 맞는 문항이 없습니다. 보기·범위를 바꿔 보세요.";
-      return "이 소단원에 검증 완료 문항이 아직 없습니다(검토 대기 문항은 기본 세트에서 제외). 왼쪽에서 다른 소단원을 고르거나 범위를 「전체 단원」으로 바꾸세요.";
+      if (ui.filter !== "all") return "조건에 맞는 문항이 없습니다.";
+      return "이 소단원에 검증 완료 문항이 아직 없습니다. 범위를 「전체」로 바꿔 보세요.";
     }
 
     function updateSummary() {
@@ -285,7 +277,7 @@
     }
 
     function renderQuiz(force) {
-      renderSourceChips();
+      renderSourceOptions();
       const key = listKey();
       const items = currentItems();
       el.title.textContent = headTitle(items);
@@ -336,12 +328,13 @@
       const target = focusAfterRebuild(oldIds, id, newIds);
       const find = (qid) => list.querySelector('.qcard[data-qid="' + (root.CSS && CSS.escape ? CSS.escape(qid) : qid) + '"]');
       if (target === id) {
-        const f = focusSel && find(id) && find(id).querySelector(focusSel);
+        const node = find(id);
+        const f = focusSel && node && node.querySelector(focusSel);
         if (f) f.focus({ preventScroll: true });
       } else {
-        notice("현재 보기(" + FILTERS.find((x) => x[0] === ui.filter)[1] + ") 조건에서 벗어나 목록에서 제외했습니다.", false);
+        notice("현재 보기에서 제외했습니다.", false);
         const t = target && find(target);
-        const f = t ? (t.querySelector('input[data-act="mark"]') || t.querySelector("button:not(:disabled)")) : null;
+        const f = t ? (t.querySelector('input[data-act="mark"]') || t.querySelector("button")) : null;
         if (f) f.focus({ preventScroll: true });
         else {
           const e = t || list.querySelector(".empty") || list;
@@ -371,16 +364,21 @@
       afterStateChange(card, 'input[data-act="mark"][data-mi="' + mi + '"]');
     });
     list.addEventListener("click", (e) => {
-      const btn = e.target.closest("button[data-act]");
-      const card = btn && btn.closest(".qcard.sq");
-      if (!card) return;
-      const act = btn.dataset.act;
-      if (act === "core") showCore(card);
-      else if (act === "bookmark") {
+      const bm = e.target.closest('button[data-act="bookmark"]');
+      if (bm) {
+        const card = bm.closest(".qcard.sq");
+        if (!card) return;
+        e.preventDefault();
+        e.stopPropagation();
         state = SS.toggleBookmark(state, card.dataset.qid);
         persist();
         afterStateChange(card, '[data-act="bookmark"]');
+        return;
       }
+      // Interactive controls: do not jump to core.
+      if (e.target.closest("input, button, label, summary, details, a, select, textarea")) return;
+      const card = e.target.closest(".qcard.sq");
+      if (card) showCore(card);
     });
 
     function readControls() {
@@ -388,15 +386,13 @@
       ui.scope = el.scope.value;
       ui.search = el.search.value.trim();
       ui.includePending = el.pending.checked;
+      ui.sourceLabel = el.source.value || "";
     }
-    [el.filter, el.scope, el.pending].forEach((c) => c.addEventListener("change", () => { readControls(); renderQuiz(); }));
-    el.sources.addEventListener("click", (e) => {
-      const b = e.target.closest("button.sb-src");
-      if (!b) return;
-      ui.sourceLabel = b.dataset.src || "";
+    [el.filter, el.scope, el.pending, el.source].forEach((c) => c.addEventListener("change", () => {
+      readControls();
       ui.listVersion++;
       renderQuiz(true);
-    });
+    }));
     let searchTimer = null;
     el.search.addEventListener("input", () => {
       clearTimeout(searchTimer);
@@ -414,64 +410,35 @@
       doc.body.appendChild(a);
       a.click();
       setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 0);
-      notice("백업 파일을 저장했습니다. 다른 기기에서 「복원」으로 불러올 수 있습니다.", false);
+      notice("저장했습니다.", false);
     });
     el.imp.addEventListener("click", () => { el.file.value = ""; el.file.click(); });
-    let preview = null;
-    function closeRestore() { preview = null; el.restore.hidden = true; el.restore.innerHTML = ""; }
     el.file.addEventListener("change", () => {
       const f = el.file.files && el.file.files[0];
       if (!f) return;
       const reader = new FileReader();
-      reader.onload = () => showPreview(SS.parseBackup(String(reader.result || ""), BANK));
-      reader.onerror = () => showPreview({ ok: false, errors: ["파일을 읽지 못했습니다."], warnings: [] });
+      reader.onload = () => {
+        const p = SS.parseBackup(String(reader.result || ""), BANK);
+        if (!p.ok) {
+          notice("불러올 수 없는 파일입니다" + (p.errors && p.errors[0] ? ": " + p.errors[0] : "."), false);
+          return;
+        }
+        const s = p.summary || {};
+        const msg = "기록을 합칠까요?\n표시 " + (s.markedQuestions || 0) + " · ★" + (s.bookmarks || 0) +
+          "\n확인=합치기 / 취소=덮어쓰기";
+        const merge = root.confirm(msg);
+        if (!merge && !root.confirm("지금 기록을 지우고 파일로 덮어쓸까요?")) return;
+        const mode = merge ? "merge" : "replace";
+        state = SS.applyBackup(p, state, { confirmed: true, mode, contentVersion: CV });
+        const blocked = loadStatus === "corrupt" || loadStatus === "unknown-schema";
+        const saved = persist(blocked || mode === "replace" ? { overwrite: true } : undefined);
+        ui.listVersion++;
+        ui.stateRev++;
+        renderQuiz(true);
+        if (saved) notice(mode === "merge" ? "합쳤습니다." : "덮어썼습니다.", false);
+      };
+      reader.onerror = () => notice("파일을 읽지 못했습니다.", false);
       reader.readAsText(f);
-    });
-    function showPreview(p) {
-      preview = p;
-      const box = el.restore;
-      box.hidden = false;
-      if (!p.ok) {
-        box.innerHTML = '<b>복원할 수 없는 파일입니다.</b><ul>' + p.errors.map((x) => "<li>" + esc(x) + "</li>").join("") + "</ul>" +
-          '<button type="button" class="sb-btn" data-ract="cancel">닫기</button>';
-        return;
-      }
-      const s = p.summary;
-      const blocked = loadStatus === "corrupt" || loadStatus === "unknown-schema";
-      box.innerHTML = "<b>복원 미리보기</b>" +
-        '<table class="jg nest sb-prev"><tr><td class="l1">풀이 기록</td><td class="num">' + s.attempts + "건 · " + s.questions + "문항</td></tr>" +
-        '<tr><td class="l1">현재 문항과 일치</td><td class="num">' + s.matchedQuestions + "</td></tr>" +
-        '<tr><td class="l1">문항 개정됨(이력만)</td><td class="num">' + s.staleQuestions + "</td></tr>" +
-        '<tr><td class="l1">현재 없는 문항</td><td class="num">' + s.orphanIds + "</td></tr>" +
-        '<tr><td class="l1">풀이 표시</td><td class="num">' + (s.markedQuestions || 0) + "문항</td></tr>" +
-        '<tr><td class="l1">즐겨찾기</td><td class="num">' + s.bookmarks + "</td></tr>" +
-        '<tr><td class="l1">중복 제거 · 손상 제외 · 재채점</td><td class="num">' + s.duplicatesRemoved + " · " + s.invalidDropped + " · " + s.regraded + "</td></tr>" +
-        '<tr><td class="l1">콘텐츠 버전</td><td>' + esc(s.contentVersion || "—") + (CV && s.contentVersion && s.contentVersion !== CV ? " (현재 " + esc(CV) + ")" : "") + "</td></tr></table>" +
-        (p.warnings.length ? '<details><summary>경고 ' + p.warnings.length + "건</summary><ul>" + p.warnings.map((x) => "<li>" + esc(x) + "</li>").join("") + "</ul></details>" : "") +
-        '<div class="sb-row"><label class="sb-chk"><input type="radio" name="sbRmode" value="merge" checked> 지금 기록과 합치기</label>' +
-        '<label class="sb-chk"><input type="radio" name="sbRmode" value="replace"> 지금 기록을 지우고 교체</label></div>' +
-        (blocked ? '<div class="ng">이 브라우저에 저장된 읽을 수 없는 기록은 덮어씁니다.</div>' : "") +
-        '<div class="sb-row"><button type="button" class="sb-btn primary" data-ract="apply">복원 적용</button> <button type="button" class="sb-btn" data-ract="cancel">취소</button></div>';
-      const first = box.querySelector('[data-ract="apply"]') || box.querySelector("button");
-      if (first) first.focus();
-    }
-    el.restore.addEventListener("click", (e) => {
-      const b = e.target.closest("button[data-ract]");
-      if (!b) return;
-      if (b.dataset.ract === "cancel") { closeRestore(); return; }
-      if (!preview || !preview.ok) return;
-      const modeEl = el.restore.querySelector('input[name="sbRmode"]:checked');
-      const mode = modeEl ? modeEl.value : "merge";
-      if (mode === "replace" && !root.confirm("지금 브라우저의 학습 기록을 지우고 백업으로 교체합니다. 계속할까요?")) return;
-      state = SS.applyBackup(preview, state, { confirmed: true, mode, contentVersion: CV });
-      const blocked = loadStatus === "corrupt" || loadStatus === "unknown-schema";
-      const saved = persist(blocked ? { overwrite: true } : undefined);
-      closeRestore();
-      ui.learnCards = new Map();
-      ui.listVersion++;
-      ui.stateRev++;
-      renderQuiz(true);
-      if (saved) notice("복원했습니다.", false);
     });
 
     const tabs = doc.getElementById("tabs");
