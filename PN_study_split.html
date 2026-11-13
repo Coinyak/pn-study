@@ -36,11 +36,11 @@ body{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif
 .main{
   --split-core:1fr; --split-quiz:1fr; --split-w:10px;
   display:grid;
-  grid-template-columns:92px minmax(0,var(--split-core)) var(--split-w) minmax(0,var(--split-quiz));
+  grid-template-columns:72px minmax(0,var(--split-core)) var(--split-w) minmax(0,var(--split-quiz));
   min-height:0;overflow:hidden;
 }
 .nav{background:var(--label2);border-right:1px solid var(--line);overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
-.nav-item{border:0;border-bottom:1px solid #c5d0bc;background:transparent;padding:10px 6px;font-size:12px;font-weight:700;line-height:1.35;color:var(--text);cursor:pointer;text-align:center;min-height:44px}
+.nav-item{border:0;border-bottom:1px solid #c5d0bc;background:transparent;padding:8px 3px;font-size:11px;font-weight:700;line-height:1.3;color:var(--text);cursor:pointer;text-align:center;min-height:40px}
 .nav-item.active{background:var(--navy);color:#fff}
 .pane{min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;background:var(--panel)}
 .pane-quiz{background:var(--quiz);display:flex;flex-direction:column;min-height:0}
@@ -66,7 +66,7 @@ body.is-resizing{cursor:col-resize;user-select:none;-webkit-user-select:none}
 body.is-resizing .pane{pointer-events:none}
 /* Nest tables: 짜그리 density (all nest, not only .dense) */
 table.jg.nest{width:100%;border-collapse:collapse;font-size:13px;line-height:1.3}
-table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:3px 5px;vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
+table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:2px 5px;vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
 table.jg.nest .th{font-size:12px;line-height:1.25}
 table.jg.nest .l1{font-size:12.5px;line-height:1.28}
 table.jg.nest td.dose,
@@ -91,18 +91,18 @@ table.jg.nest.dense.conc col.c-el{width:12%}
 table.jg.nest.dense.conc col.c-num{width:12.5%}
 .sec{border-bottom:2px solid var(--navy);scroll-margin-top:0}
 .sec.active-sec > .sec-h{background:#cfe0c4;box-shadow:inset 4px 0 0 var(--chip-on)}
-.sec-h{background:var(--label);font-weight:800;font-size:16px;line-height:1.4;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--navy);letter-spacing:-.02em;position:sticky;top:0;z-index:1}
-.cell{padding:12px 14px;border-bottom:1px solid #e2e8f0;line-height:var(--lh);font-size:14.5px}
+.sec-h{background:var(--label);font-weight:800;font-size:15.5px;line-height:1.35;padding:10px 12px;border-bottom:1px solid var(--line);color:var(--navy);letter-spacing:-.02em;position:sticky;top:0;z-index:1}
+.cell{padding:9px 12px;border-bottom:1px solid #e2e8f0;line-height:var(--lh);font-size:14.5px}
 .cell br{display:block;content:"";margin-top:.55em}
 .cell.hub{background:#fafbfd;color:var(--text)}
-.cell.hub .hub-lead{margin:0 0 .55em;color:var(--muted);font-size:13.5px;font-weight:600}
+.cell.hub .hub-lead{margin:0 0 .4em;color:var(--muted);font-size:13px;font-weight:600}
 .cell.hub ul.hub-list{margin:0;padding-left:1.15em}
-.cell.hub ul.hub-list li{margin:.35em 0;line-height:1.55}
+.cell.hub ul.hub-list li{margin:.28em 0;line-height:1.5}
 .bl{margin:.15em 0 0;padding-left:1.15em;list-style:disc}
-.bl li{margin:.55em 0;padding-left:.15em;line-height:var(--lh)}
+.bl li{margin:.4em 0;padding-left:.15em;line-height:var(--lh)}
 .l1,.th{background:var(--zebra);font-weight:700}
-.l1{white-space:nowrap;font-size:13.5px}
-.th{background:#eef2f6;font-size:13.5px}
+.l1{white-space:nowrap;font-size:13px}
+.th{background:#eef2f6;font-size:12.5px}
 .x{color:var(--danger);font-weight:700}
 .muted{color:var(--muted);font-size:13px}
 /* Calmer clickable superscript indices — less mid-line collision */
@@ -119,33 +119,27 @@ button.fn:active{opacity:1}
 button.fn.active{color:var(--fn-hover);opacity:1;outline:2px solid var(--chip-on);outline-offset:1px;border-radius:2px}
 button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertical-align:baseline;line-height:1}
 .quiz-sticky{flex-shrink:0;background:var(--quiz);border-bottom:1px solid var(--line);z-index:3}
-.quiz-head{padding:12px 14px;font-size:13.5px;font-weight:700;line-height:1.45}
-.cite-box{display:none;padding:0 14px 12px}
+.quiz-head{padding:10px 12px;font-size:13.5px;font-weight:700;line-height:1.4}
+.cite-box{display:none;padding:0 12px 10px}
 .cite-box.show{display:block}
 .cite-box .cite-inner{background:#fff;border:1px solid #d0d7e2;padding:12px 14px;font-size:13.5px;line-height:1.55}
 .cite-box .cite-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
 .cite-box .cite-raw{font-size:15px;font-weight:700;color:var(--navy);word-break:break-word;line-height:1.4}
 .cite-box .cite-meta{margin-top:6px;font-size:12.5px;color:var(--muted);line-height:1.45}
 .cite-box .cite-close{border:0;background:#eef2f6;color:var(--muted);width:32px;height:32px;border-radius:4px;cursor:pointer;font-size:18px;line-height:1;flex-shrink:0}
-.qcard{background:#fff;border:1px solid #d8dee8;margin:12px 14px;padding:14px 16px}
+.qcard{background:#fff;border:1px solid #d8dee8;margin:8px 10px;padding:12px 14px}
 .qcard.hl{border-color:var(--chip-on);box-shadow:0 0 0 2px rgba(26,95,180,.15)}
 .qcard .src{font-size:12px;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.qcard .q-locate{
-  margin-left:auto;border:1px solid #c5d0e0;background:#f5f8fc;color:var(--chip-on);
-  font-size:12px;font-weight:600;padding:4px 10px;border-radius:4px;cursor:pointer;min-height:32px;
-}
-.qcard .q-locate:hover{border-color:var(--chip-on);background:#eaf1fb}
-.qcard .q-locate:focus-visible{outline:2px solid var(--chip-on);outline-offset:2px}
 .qcard .stem{font-size:15px;line-height:1.65;margin-bottom:10px}
 .qcard ol{margin:0;padding-left:1.35em;font-size:14px;line-height:1.6}
 .qcard ol li{margin:.35em 0}
 .qcard details{margin-top:12px;font-size:13.5px;line-height:1.55}
 .qcard summary{cursor:pointer;color:var(--chip-on);font-weight:600;min-height:40px;display:flex;align-items:center}
-.empty{padding:28px 18px;color:var(--muted);font-size:14px;line-height:1.6}
+.empty{padding:20px 14px;color:var(--muted);font-size:14px;line-height:1.55}
 @media (max-width:899px){
   :root{--base:15.5px;--lh:1.75}
   .tabs{display:flex}
-  .main{grid-template-columns:72px 1fr}
+  .main{grid-template-columns:60px 1fr}
   .splitter{display:none!important}
   .pane-quiz{border-left:0;grid-column:2}
   body.mode-core .pane-quiz{display:none}
@@ -157,7 +151,7 @@ button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertica
   .hl-legend{flex:1 1 100%;flex-wrap:wrap;white-space:normal;justify-content:flex-start;gap:8px 12px}
   table.jg.nest{font-size:13px}
   table.jg.nest.dense{font-size:12.5px}
-  .sec-h{font-size:15.5px;padding:13px 14px}
+  .sec-h{font-size:15px;padding:11px 12px}
   .cell,.qcard .stem{font-size:15px}
 }
 
@@ -3023,7 +3017,7 @@ function renderQuiz(){
   list.innerHTML=items.map(q=>{
     const choices=q.choices.map(c=>`<li>${escapeHtml(c)}</li>`).join("");
     const ans=q.choices[q.answer]||"";
-    return `<article class="qcard" data-qid="${escapeHtml(q.id)}" title="클릭하면 왼쪽 핵심본을 형광 표시"><div class="src">${escapeHtml(q.source)} · ${escapeHtml(q.id)} <button type="button" class="q-locate" aria-label="핵심본에서 이 문항 위치 표시">위치</button></div>
+    return `<article class="qcard" data-qid="${escapeHtml(q.id)}" title="클릭하면 왼쪽 핵심본을 형광 표시"><div class="src">${escapeHtml(q.source)} · ${escapeHtml(q.id)}</div>
       <div class="stem">${escapeHtml(q.stem)}</div><ol>${choices}</ol>
       <details><summary>정답·해설 보기</summary>
       <p><b>정답:</b> ${q.answer+1}. ${escapeHtml(ans)}</p>
@@ -3184,8 +3178,8 @@ function activateQcard(card){
 document.getElementById("quizList").addEventListener("click", e=>{
   if(e.target.closest("details") || e.target.closest("summary") || e.target.closest("a")) return;
   const card = e.target.closest(".qcard"); if(!card) return;
-  // Dedicated locate button, or click on card chrome (keeps Q-click UX); skip choice list
-  if(e.target.closest(".q-locate") || !e.target.closest("ol")) activateQcard(card);
+  // Click on card chrome (stem/header); skip choice list
+  if(!e.target.closest("ol")) activateQcard(card);
 });
 
 setupScrollSpy();
