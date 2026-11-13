@@ -484,7 +484,7 @@
 
 ### 12.4 문항
 
-- 기본 퀴즈 = `includeInBasicSet`(verified ∧ 한국어) 54건. pending·excluded도 HTML의 `QUESTION_BANK`에 내장한다(§14.2 참조). 화면에서는 pending 한국어 문항만 「검토 대기 포함」을 켰을 때(기본 꺼짐) 나오고, excluded는 UI가 표시하지 않는다.
+- 기본 퀴즈 = `includeInBasicSet`(verified ∧ 한국어) 54건. pending·excluded도 HTML의 `QUESTION_BANK`에 내장한다(§14.2 참조). 화면에서는 기본 소단원 퀴즈(토글 꺼짐)에 verified만 나오고, 「검토 대기 포함」(기본 꺼짐)을 켜면 소단원·검색 목록에 pending 한국어 문항도 나온다. 오답·헷갈림·즐겨찾기 보기는 풀이 기록·즐겨찾기 기준이라 토글이 꺼져 있어도 기록·즐겨찾기가 있는 pending 문항이 나올 수 있다. excluded는 어떤 경우에도 UI가 표시하지 않는다.
 - 새 verified 3건은 모두 `originalPractice`이며 보유 원문 인용으로 정답·선택지를 되짚을 수 있다: `op-case-ppn-osm`(ASPEN Myths p.3), `op-ebm-model-rule`·`op-ebm-incidence-measure`(Liao 2026 p.1·3·4·6·8). 사람의 임상 검토는 아직이다.
 - `questions.json`에 `needle`(구 퀴즈의 위치 찾기 문구)을 추가했다. 핵심본 문구가 바뀌어 자동 연결이 생긴 4건 중 3건(`medex-019`·`bcnsp-095`·`quizlet-m2b-045`)은 우연한 일반어 일치라 Task 2 값으로 되돌렸고, `cnsc-024`(20% ILE 2.0 kcal/mL → 4.2)만 맞는 연결이라 유지했다.
 
@@ -524,7 +524,7 @@ missing→partial 6행: `common-clinical-statistics`, `common-appraisal-applicat
 ### 14.2 문항 대조
 
 - `content/questions.json` 586건과 HTML에 내장된 `QUESTION_BANK` 586건을 필드 단위로 비교: 한국어 468건 전부 존재, 차이 0. 영어 118건도 내장돼 있다.
-- 화면에 나오는 기본 풀 = `includeInBasicSet` 54건. 모두 `reviewStatus=verified`·`language=ko`이며 보기·정답이 있다. pending 400·excluded 132는 내장만 되고 기본 퀴즈에는 나오지 않는다. pending 한국어 문항은 「검토 대기 포함」 체크 시에만 보이며(검토 대기 배지 표시), excluded는 `study-ui.js`의 `isDisplayable`이 `reviewStatus==='excluded'`를 막아 어떤 보기·검색에서도 표시되지 않는다. 내장은 데이터 보존·대조용이다.
+- 화면에 나오는 기본 풀 = `includeInBasicSet` 54건. 모두 `reviewStatus=verified`·`language=ko`이며 보기·정답이 있다. pending 400·excluded 132는 내장만 되고 기본 퀴즈에는 나오지 않는다. 기본 소단원 퀴즈(토글 꺼짐)는 verified만 보여 준다. 「검토 대기 포함」을 켜면 소단원·검색 목록에 pending 한국어 문항도 함께 나온다(검토 대기 배지 표시). 다만 오답·헷갈림·즐겨찾기 보기는 토글이 아니라 풀이 기록·즐겨찾기를 기준으로 하므로(`buildList`가 `isDisplayable` 전체를 대상으로 함), 토글이 꺼져 있어도 이미 풀었거나 즐겨찾기한 pending 문항이 나올 수 있다. excluded는 `study-ui.js`의 `isDisplayable`이 `reviewStatus==='excluded'`를 막아 어떤 보기·검색에서도 표시되지 않는다. 내장은 데이터 보존·대조용이다.
 - §12.4의 "QUESTION_BANK(한국어 468건)"는 부정확하다. 실제로는 한국어·영어 586건 전체를 내장한다(`scripts/build.py` `question_bank`).
 - 제외 문항의 사유는 각 문항의 `reviewNote`·`sourceNote`와 §1–§11에 있다. 이번 작업에서 판정을 바꾼 문항은 없다.
 
