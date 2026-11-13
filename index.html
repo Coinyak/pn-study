@@ -178,26 +178,8 @@
     animation: rise 1s var(--ease) 0.48s forwards;
   }
 
-  .companions::before {
-    content: "";
-    position: absolute;
-    left: 8%;
-    right: 8%;
-    bottom: -6%;
-    height: 55%;
-    background: radial-gradient(
-      ellipse 70% 80% at 50% 80%,
-      rgba(232, 160, 180, 0.22),
-      transparent 72%
-    );
-    filter: blur(10px);
-    z-index: 0;
-  }
-
   .companions picture {
     display: block;
-    position: relative;
-    z-index: 1;
     width: 100%;
     animation: float-soft 7.2s ease-in-out 1.5s infinite;
   }
