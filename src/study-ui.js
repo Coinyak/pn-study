@@ -191,13 +191,13 @@
     const mock = mockAvailability(BANK);
     bar.innerHTML =
       '<div class="sb-row">' +
-        '<label class="sb-field">모드 <select id="sbMode">' +
+        '<label class="sb-field"><span class="sb-lab">모드</span> <select id="sbMode">' +
           '<option value="learn">학습(핵심 연계)</option>' +
           '<option value="drill">연습 세션(순서 고정)</option>' +
           '<option value="mock"' + (mock.ok ? "" : " disabled") + ">모의고사 20+80" + (mock.ok ? "" : " · 검증 문항 부족") + "</option>" +
         "</select></label>" +
-        '<label class="sb-field">보기 <select id="sbFilter">' + FILTERS.map((f) => '<option value="' + f[0] + '">' + f[1] + "</option>").join("") + "</select></label>" +
-        '<label class="sb-field">범위 <select id="sbScope"><option value="topic">현재 소단원</option><option value="all">전체 단원</option></select></label>' +
+        '<label class="sb-field"><span class="sb-lab">보기</span> <select id="sbFilter">' + FILTERS.map((f) => '<option value="' + f[0] + '">' + f[1] + "</option>").join("") + "</select></label>" +
+        '<label class="sb-field"><span class="sb-lab">범위</span> <select id="sbScope"><option value="topic">현재 소단원</option><option value="all">전체 단원</option></select></label>' +
         '<input type="search" id="sbSearch" class="sb-search" placeholder="문항 검색" aria-label="문항 검색(전체 단원)" enterkeyhint="search">' +
       "</div>" +
       '<div class="sb-row">' +

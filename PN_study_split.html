@@ -5026,7 +5026,8 @@ setupScrollSpy();
 .q-no{color:var(--navy)}
 
 .toc-toggle{display:none}
-.tbl-x{max-width:100%}
+/* tables scroll sideways inside their own box, never the whole core pane */
+.tbl-x{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
 
 @media (max-width:899px){
   .tabs .toc-toggle{display:block;flex:0 0 auto;padding:12px 10px;font-size:13px;color:var(--muted);border-right:1px solid var(--line)}
@@ -5035,8 +5036,7 @@ setupScrollSpy();
   body.toc-collapsed .pane-quiz{grid-column:1}
   /* 항목명 column: wrap instead of forcing the table wide */
   table.jg.nest td.l1,table.jg.nest th.l1{white-space:normal;word-break:keep-all;overflow-wrap:anywhere;min-width:4.5em;max-width:8em}
-  /* only wide comparison tables scroll sideways, inside their own box */
-  .tbl-x{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  /* wide comparison tables keep a readable min-width and scroll inside their box */
   .tbl-x.wide > table.jg{min-width:720px}
   .q-choice{min-height:40px;padding:6px}
   .sb-btn,.sb-field select,.sb-search{min-height:36px}
@@ -5045,10 +5045,14 @@ setupScrollSpy();
 @media (max-width:420px){
   .study-bar{padding:0 8px 6px}
   .qcard{margin:6px 6px;padding:10px 10px}
-  .sb-field{flex:1 1 45%}
-  .sb-field select{flex:1;min-width:0}
+  .study-bar .sb-row{margin-top:4px;gap:4px 6px}
+  .sb-field{flex:1 1 0;min-width:0}
+  .sb-field .sb-lab{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .sb-field select{flex:1;min-width:0;width:100%;padding:4px 2px}
+  .sb-search{flex-basis:100%}
+  .sb-btn{padding:4px 8px}
 }
-@media print{.study-bar,.toc-toggle{display:none!important}}
+@media print{.study-bar,.toc-toggle{display:none!important} .tbl-x{overflow:visible!important}}
 </style>
 <script>
 /* study-state.js — grading, progress state, review filters, storage adapter, backup.
@@ -5659,13 +5663,13 @@ setupScrollSpy();
     const mock = mockAvailability(BANK);
     bar.innerHTML =
       '<div class="sb-row">' +
-        '<label class="sb-field">모드 <select id="sbMode">' +
+        '<label class="sb-field"><span class="sb-lab">모드</span> <select id="sbMode">' +
           '<option value="learn">학습(핵심 연계)</option>' +
           '<option value="drill">연습 세션(순서 고정)</option>' +
           '<option value="mock"' + (mock.ok ? "" : " disabled") + ">모의고사 20+80" + (mock.ok ? "" : " · 검증 문항 부족") + "</option>" +
         "</select></label>" +
-        '<label class="sb-field">보기 <select id="sbFilter">' + FILTERS.map((f) => '<option value="' + f[0] + '">' + f[1] + "</option>").join("") + "</select></label>" +
-        '<label class="sb-field">범위 <select id="sbScope"><option value="topic">현재 소단원</option><option value="all">전체 단원</option></select></label>' +
+        '<label class="sb-field"><span class="sb-lab">보기</span> <select id="sbFilter">' + FILTERS.map((f) => '<option value="' + f[0] + '">' + f[1] + "</option>").join("") + "</select></label>" +
+        '<label class="sb-field"><span class="sb-lab">범위</span> <select id="sbScope"><option value="topic">현재 소단원</option><option value="all">전체 단원</option></select></label>' +
         '<input type="search" id="sbSearch" class="sb-search" placeholder="문항 검색" aria-label="문항 검색(전체 단원)" enterkeyhint="search">' +
       "</div>" +
       '<div class="sb-row">' +
