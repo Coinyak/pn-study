@@ -105,13 +105,17 @@ class CheckContentTest(unittest.TestCase):
 
     def test_products_table_cell_count_mismatch(self):
         import build
-        original = build.render_products
-        build.render_products = lambda prod: original(prod).replace(
-            '<td class="num">—</td>\n<td class="num">—</td>\n<td>', '<td class="num">—</td>\n<td>')
+        # Inject a broken confirmed-product table (header wider than a data row).
+        build.render_products = lambda prod: (
+            '<table class="jg nest compare"><tr>'
+            '<th class="th">A</th><th class="th">B</th><th class="th">C</th></tr>\n'
+            '<tr><td class="l1">x</td><td class="num">1</td></tr>\n</table>'
+        )
         try:
             self.assertFails("products table: row")
         finally:
-            build.render_products = original
+            import importlib
+            importlib.reload(build)
 
     def test_scope_topic_unknown(self):
         self.edit_json("exam-scope.json", lambda d: d["scopes"][0]["topicIds"].append("sec-ghost"))
