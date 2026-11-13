@@ -5623,8 +5623,27 @@ setupScrollSpy();
     return createSession(common.concat(pn), Object.assign({}, opts, { shuffle: false, kind: "mock", label: "모의고사 20+80" }));
   }
 
+  /** Every view except 전체 (all) derives membership from study state (unseen/wrong/unsure/bookmarked). */
+  function filterUsesState(filter) {
+    return !!filter && filter !== "all";
+  }
+
+  /**
+   * After a state mutation rebuilt the list: which question gets focus?
+   * The mutated card if it is still listed; otherwise the next previously-listed card that
+   * survived (then the nearest earlier one); null when the list is now empty.
+   */
+  function focusAfterRebuild(oldIds, mutatedId, newIds) {
+    if (newIds.indexOf(mutatedId) >= 0) return mutatedId;
+    const at = oldIds.indexOf(mutatedId);
+    if (at < 0) return newIds.length ? newIds[0] : null;
+    for (let i = at + 1; i < oldIds.length; i++) if (newIds.indexOf(oldIds[i]) >= 0) return oldIds[i];
+    for (let i = at - 1; i >= 0; i--) if (newIds.indexOf(oldIds[i]) >= 0) return oldIds[i];
+    return null;
+  }
+
   const api = {
-    FILTERS, MOCK_PLAN, isDisplayable, basePool, matchesSearch, buildList, createSession,
+    FILTERS, MOCK_PLAN, filterUsesState, focusAfterRebuild, isDisplayable, basePool, matchesSearch, buildList, createSession,
     mockAvailability, createMockSession, coreSourceLabel, sourceToneClass, mount,
   };
 
@@ -5653,7 +5672,7 @@ setupScrollSpy();
 
     const ui = {
       mode: "learn", filter: "all", scope: "topic", search: "", includePending: false, sourceLabel: "",
-      session: null, sessionCards: new Map(), learnCards: new Map(), listVersion: 0, lastKey: null, lastSaveReason: null,
+      session: null, sessionCards: new Map(), learnCards: new Map(), listVersion: 0, stateRev: 0, lastKey: null, lastSaveReason: null,
     };
 
     // ----- toolbar -----
@@ -5721,8 +5740,11 @@ setupScrollSpy();
     // ----- list -----
     function listKey() {
       const s = ui.session;
+      // stateRev counts study-state mutations (submit, bookmark, restore); state-derived filters
+      // (미풀이/오답/헷갈림/즐겨찾기) must rebuild when it moves. A frozen session never depends on it.
       return JSON.stringify(s ? ["s", s.id, ui.listVersion]
-        : [ui.mode, ui.filter, ui.scope, ui.search, ui.includePending, ui.sourceLabel, ui.scope === "all" || ui.search ? "" : topicNow(), ui.listVersion]);
+        : [ui.mode, ui.filter, ui.scope, ui.search, ui.includePending, ui.sourceLabel, ui.scope === "all" || ui.search ? "" : topicNow(), ui.listVersion,
+          filterUsesState(ui.filter) ? ui.stateRev : 0]);
     }
     function currentItems() {
       if (ui.session) return ui.session.ids.map((id) => BY_ID.get(id)).filter(Boolean);
@@ -5879,6 +5901,50 @@ setupScrollSpy();
       return next;
     }
 
+    function scrollerOf(node) {
+      for (let n = node; n && n.nodeType === 1; n = n.parentElement) {
+        const oy = root.getComputedStyle ? root.getComputedStyle(n).overflowY : "";
+        if ((oy === "auto" || oy === "scroll") && n.scrollHeight > n.clientHeight) return n;
+      }
+      return list;
+    }
+
+    /**
+     * A study-state change (submit, bookmark, restore) may change which questions belong to the
+     * current filter. Bump stateRev so listKey() moves, rebuild, and keep focus/scroll: the card
+     * stays if it still qualifies, otherwise focus goes to the next remaining card.
+     */
+    function afterStateChange(card, focusSel) {
+      ui.stateRev++;
+      if (ui.session || !filterUsesState(ui.filter)) {
+        const next = rerenderCard(card, focusSel);
+        ui.lastKey = listKey();
+        return next;
+      }
+      const id = card.dataset.qid;
+      const oldIds = Array.from(list.querySelectorAll(".qcard.sq")).map((c) => c.dataset.qid);
+      const sc = scrollerOf(list);
+      const top = sc.scrollTop;
+      renderQuiz();
+      sc.scrollTop = top;
+      const newIds = Array.from(list.querySelectorAll(".qcard.sq")).map((c) => c.dataset.qid);
+      const target = focusAfterRebuild(oldIds, id, newIds);
+      const find = (qid) => list.querySelector('.qcard[data-qid="' + (root.CSS && CSS.escape ? CSS.escape(qid) : qid) + '"]');
+      if (target === id) {
+        const f = focusSel && find(id).querySelector(focusSel);
+        if (f) f.focus({ preventScroll: true });
+      } else {
+        notice("현재 보기(" + FILTERS.find((x) => x[0] === ui.filter)[1] + ") 조건에서 벗어나 목록에서 제외했습니다.", false);
+        const t = target && find(target);
+        const f = t ? (t.querySelector('input[type="radio"]:not(:disabled)') || t.querySelector("button:not(:disabled)")) : null;
+        if (f) f.focus({ preventScroll: true });
+        else {
+          const e = list.querySelector(".empty");
+          if (e) { e.tabIndex = -1; e.focus({ preventScroll: true }); }
+        }
+      }
+    }
+
     // ----- answer actions -----
     function submit(card) {
       const q = BY_ID.get(card.dataset.qid);
@@ -5892,7 +5958,7 @@ setupScrollSpy();
       if (!ui.session) ls.filter = ui.filter;
       state = SS.setLastSession(state, ls);
       persist();
-      rerenderCard(card, ".q-result");
+      afterStateChange(card, ".q-result");
       if (ui.session && ui.session.ids.every((id) => ui.sessionCards.has(id) && ui.sessionCards.get(id).result)) renderSessionPanel();
     }
 
@@ -5941,7 +6007,7 @@ setupScrollSpy();
       else if (act === "bookmark") {
         state = SS.toggleBookmark(state, id);
         persist();
-        rerenderCard(card, '[data-act="bookmark"]');
+        afterStateChange(card, '[data-act="bookmark"]');
       }
     });
 
@@ -6133,6 +6199,7 @@ setupScrollSpy();
       closeRestore();
       ui.learnCards = new Map();
       ui.listVersion++;
+      ui.stateRev++;
       renderQuiz(true);
       if (saved) notice("복원했습니다.", false);
     });

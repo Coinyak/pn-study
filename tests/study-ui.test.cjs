@@ -77,3 +77,21 @@ test("mock 20+80 is unavailable with the current small verified pool", () => {
   assert.equal(s.kind, "mock");
   assert.ok(s.ids.slice(0, 20).every((id) => id.startsWith("c")));
 });
+
+test("state-derived filters need a revision; focus moves to the next remaining card", () => {
+  assert.equal(UI.filterUsesState("all"), false);
+  ["unseen", "wrong", "unsure", "bookmarked"].forEach((f) => assert.equal(UI.filterUsesState(f), true, f));
+  // submit under 미풀이 removes the answered card from membership
+  let st = SS.createEmptyState();
+  const opts = { filter: "unseen", topic: "lipid", scope: "topic" };
+  assert.deepEqual(ids(UI.buildList(BANK, st, opts, SS)), ["v1", "v2"]);
+  st = SS.recordAttempt(st, BANK[0], 1, "sure", 1);
+  const after = ids(UI.buildList(BANK, st, opts, SS));
+  assert.deepEqual(after, ["v2"]);
+  assert.equal(UI.focusAfterRebuild(["v1", "v2"], "v1", after), "v2");
+  // bookmark toggle off under 즐겨찾기 removes the card; falls back to the previous one at the end
+  assert.equal(UI.focusAfterRebuild(["a", "b", "c"], "c", ["a", "b"]), "b");
+  assert.equal(UI.focusAfterRebuild(["a", "b", "c"], "b", ["a", "c"]), "c");
+  assert.equal(UI.focusAfterRebuild(["a"], "a", []), null);
+  assert.equal(UI.focusAfterRebuild(["a", "b"], "a", ["a", "b"]), "a");
+});
