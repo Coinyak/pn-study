@@ -35,7 +35,7 @@ FACTS = [
     {"id": "E1-prealbumin", "section": "sec-eval-0-영양평가-PN-직결만", "cheat": "평가",
      "tokens": ["진단·효과단독X"], "forbidden": ["영양위험평가", "염증·위험지표"]},
     {"id": "E2-gir", "section": "sec-cho_gir-2-1-탄수화물-dextrose", "cheat": "GIR",
-     "tokens": ["안정4–5", "ICU≤5", "ICU/고혈당≤4", "HPN주기순간5–7", "일일≤7g/kg"], "forbidden": ["소아max5–13"]},
+     "tokens": ["안정4–5", "ICU≤5", "고혈당위험≤4", "HPN주기순간5–7", "일일≤7g/kg"], "forbidden": ["소아max5–13"]},
     {"id": "E3-dextrose-factor", "section": "sec-calc_filter-4-2-계산-5단계-상한-체크", "cheat": "계산",
      "tokens": ["÷3.4", "324g", "D50647mL"], "forbidden": ["÷3.85=286g→D50572mL"]},
     {"id": "E4-bud", "section": "sec-stability-5-4-필터-hang-time-세트-BUD", "cheat": "투여",
