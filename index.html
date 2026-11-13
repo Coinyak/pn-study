@@ -167,39 +167,21 @@
     animation: pulse 2.4s ease-in-out infinite;
   }
 
-  /* Companion art — always opaque; no wash/mask/blend/pseudo chip */
+  /* Companion art under CTAs — tight, opaque, no plate/mask/blend */
   .companions {
     position: relative;
     margin: 1.85rem auto 0;
-    width: min(92vw, 26rem);
+    width: min(100%, 15.5rem);
     pointer-events: none;
-    opacity: 1;
+    opacity: 0;
     background: transparent;
-    border-radius: 0;
-    overflow: visible;
-    box-shadow: none;
-    filter: none;
-    mix-blend-mode: normal;
-    -webkit-mask-image: none;
-    mask-image: none;
     transform: translateY(12px);
-    animation: rise-y 1s var(--ease) 0.48s forwards;
-  }
-
-  .companions::before,
-  .companions::after {
-    content: none !important;
-    display: none !important;
+    animation: rise 1s var(--ease) 0.48s forwards;
   }
 
   .companions picture {
     display: block;
-    position: relative;
-    z-index: 1;
     width: 100%;
-    opacity: 1;
-    filter: none;
-    mix-blend-mode: normal;
     animation: float-soft 7.2s ease-in-out 1.5s infinite;
   }
 
@@ -209,19 +191,10 @@
     height: auto;
     opacity: 1;
     filter: none;
-    mix-blend-mode: normal;
-    -webkit-mask-image: none;
-    mask-image: none;
-    border-radius: 0;
-    box-shadow: none;
   }
 
   @keyframes rise {
     to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes rise-y {
-    to { transform: translateY(0); }
   }
 
   @keyframes mist-sweep {
@@ -241,7 +214,7 @@
 
   @media (max-width: 420px) {
     .companions {
-      width: min(92vw, 20rem);
+      width: min(100%, 13.5rem);
       margin-top: 1.4rem;
     }
   }
@@ -259,7 +232,7 @@
 </style>
 </head>
 <body>
-  <!-- deploy-stamp: 2026-11-13-solid4 -->
+  <!-- deploy-stamp: 2026-11-13-alpha-crop -->
   <div class="page">
     <main class="hero">
       <p class="brand">영양불백</p>
@@ -276,8 +249,8 @@
       </nav>
       <div class="companions" aria-hidden="true">
         <picture>
-          <source srcset="assets/chiikawa.webp?v=solid4" type="image/webp">
-          <img src="assets/chiikawa.png?v=solid4" alt="" width="526" height="268" decoding="async">
+          <source srcset="assets/chiikawa.webp?v=alpha1" type="image/webp">
+          <img src="assets/chiikawa.png?v=alpha1" alt="" width="534" height="277" decoding="async">
         </picture>
       </div>
     </main>
