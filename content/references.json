@@ -1,0 +1,1428 @@
+{
+  "meta": {
+    "schemaVersion": 1,
+    "checkedAt": "2026-11-14",
+    "timezone": "Asia/Seoul",
+    "officialNoticeUrl": "https://exam.kshp.or.kr/sub/guide/guide_03_6.asp",
+    "accessStatusValues": [
+      "have-pdf",
+      "have-extract",
+      "public-url",
+      "not-held",
+      "paywalled-unreviewed"
+    ],
+    "rules": [
+      "reviewedAt이 null이면 원문 내용을 검토하지 않은 것이다.",
+      "reviewScope=partial-values는 기존 노트(2026-11-13)가 추출본으로 일부 수치만 대조했다는 기록이며 전권 검토가 아니다.",
+      "not-held·paywalled-unreviewed 문헌의 세부 내용은 확인된 것으로 표시하지 않는다.",
+      "designatedByNotice=true는 공지가 이름으로 열거한 항목(또는 ESPEN 목록 색인)이다. false는 일괄 지정 범위에 속할 수 있어도 공지가 열거하지 않은 보유·후보 자료다.",
+      "scopeIds·referenceIds 연결은 후보 연결이며 장·쪽 단위 근거 매핑이 아니다. scopeIds가 빈 문헌은 연결할 근거 항목을 아직 확인하지 못한 것이다.",
+      "heldFile은 로컬 참고문헌 폴더(참고문헌_정리/) 기준 상대 경로이며 저장소에는 파일이 포함되지 않는다."
+    ],
+    "extraFields": "id,title,year,url,accessStatus,reviewedAt 외 reviewScope,kind,designatedByNotice,heldFile,note,pendingLocator,scopeIds는 추가 필드"
+  },
+  "references": [
+    {
+      "id": "kshp-2026-iv-notice",
+      "title": "한국병원약사회 2026년도 제4회 전문약사 자격시험 공지 - 정맥영양 (시험과목별 공지사항)",
+      "year": 2026,
+      "url": "https://exam.kshp.or.kr/sub/guide/guide_03_6.asp",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "full-notice",
+      "kind": "official-notice",
+      "designatedByNotice": true,
+      "note": "공통 20문항(의학통계·논문비평)+전문 80문항(정맥영양), 총 180분(준비·안내·공지 시간 포함). 세부 단원별 문항 수·출제빈도는 공지에 없음. 확인: 2026-11-14 WebFetch.",
+      "scopeIds": []
+    },
+    {
+      "id": "aspen-adult-core-4e-2025",
+      "title": "The A.S.P.E.N. Adult Nutrition Support Core Curriculum, 4th ed.",
+      "year": 2025,
+      "url": "https://nutritioncare.org/11749-2/",
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "existence-only",
+      "kind": "designated-textbook",
+      "designatedByNotice": true,
+      "note": "공지 전문영역 가) 지정. 계획서가 판본 존재를 안내 페이지로 확인했으나 본 저장소·작업 폴더에는 원문 PDF 없음. 보유 노트의 쪽수·표 번호는 이 책이 아니라 '임상영양길라잡이' 기준이므로 이 책의 내용으로 표시하지 않는다.",
+      "pendingLocator": [
+        "영양선별·평가·영양불량 진단(prealbumin 취급 포함): 장·쪽 확인 대기",
+        "에너지·단백 요구량 식(일반/중환자/비만/신부전): 장·쪽 확인 대기",
+        "PN 적응증·시작 시점·SPN: 장·쪽 확인 대기",
+        "PN 구성 성분(탄수화물·GIR·dextrose kcal/g·지질·AA·전해질·비타민·TE): 장·쪽 확인 대기",
+        "접근기구·투여경로·필터·조제·안정성·BUD: 장·쪽 확인 대기",
+        "합병증(재급식·PNALD·MBD·EFAD)·모니터링: 장·쪽 확인 대기",
+        "질환별: 신장·간·GI·폐·심장·신경계·당뇨·비만·수술·암·중환자·화상·섭식장애·임부·노인: 장·쪽 확인 대기",
+        "재택영양: 장·쪽 확인 대기",
+        "영양소–약물 상호작용·EN–약물: 장·쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-components",
+        "spec-assessment",
+        "spec-requirements",
+        "spec-plan-personalized",
+        "spec-plan-calc",
+        "spec-plan-route",
+        "spec-dz-renal",
+        "spec-dz-liver",
+        "spec-dz-gi",
+        "spec-dz-lung",
+        "spec-dz-heart",
+        "spec-dz-neuro",
+        "spec-dz-diabetes",
+        "spec-dz-obesity",
+        "spec-surgery",
+        "spec-cancer",
+        "spec-burn",
+        "spec-eating-disorder",
+        "spec-pregnancy",
+        "spec-elderly",
+        "spec-hpn",
+        "spec-monitoring",
+        "spec-ddi-nutrient-drug",
+        "format-selection-plan",
+        "format-monitoring"
+      ]
+    },
+    {
+      "id": "espen-scientific-guidelines-index",
+      "title": "ESPEN Scientific Guidelines (PDF versions index)",
+      "year": null,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "public-url",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-index",
+      "designatedByNotice": true,
+      "note": "공지 나) 'ESPEN Scientific Guidelines and Practical Guidelines' 전체가 지정 범위. 개별 항목은 공지에 열거되지 않아 아래 대표 항목은 편집 후보이며, 전체 목록 대조는 미완.",
+      "scopeIds": []
+    },
+    {
+      "id": "espen-practical-guidelines-index",
+      "title": "ESPEN Practical Guidelines (PDF versions index)",
+      "year": null,
+      "url": "https://www.espen.org/guidelines/espen-practical-guidelines-pdf-versions",
+      "accessStatus": "public-url",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-index",
+      "designatedByNotice": true,
+      "note": "위와 동일.",
+      "scopeIds": []
+    },
+    {
+      "id": "espen-hpn-2020",
+      "title": "ESPEN guideline on home parenteral nutrition",
+      "year": 2020,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "designated-guideline",
+      "designatedByNotice": false,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_guideline_home_parenteral_nutrition_2020.pdf",
+      "note": "ESPEN Scientific Guidelines 일괄 지정 범위에 속하나 공지가 이 항목을 이름으로 열거하지는 않음. 텍스트 추출본(_gl_extract/ESPEN_HPN_full.txt) 보유. 기존 노트에서 포도당 속도(5–7 mg/kg/min, 3–6 g/kg/d) 등 일부만 대조됨. 전권 검토 아님.",
+      "scopeIds": [
+        "spec-hpn",
+        "spec-monitoring",
+        "format-monitoring",
+        "format-patient-education"
+      ]
+    },
+    {
+      "id": "espen-icu-2019",
+      "title": "ESPEN guideline on clinical nutrition in the intensive care unit",
+      "year": 2019,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-candidate",
+      "designatedByNotice": false,
+      "note": "대표 항목 후보(공지는 개별 항목을 열거하지 않음). 서지·판본은 ESPEN 공식 목록에서 확인 필요.",
+      "pendingLocator": [
+        "권고문·환자군·연도 대조 필요: 원문 확보 후 장·쪽 기록"
+      ],
+      "scopeIds": [
+        "spec-requirements",
+        "spec-dz-obesity",
+        "spec-critical-care"
+      ]
+    },
+    {
+      "id": "espen-liver-2019",
+      "title": "ESPEN practical guideline: Clinical nutrition in liver disease",
+      "year": 2019,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-candidate",
+      "designatedByNotice": false,
+      "note": "대표 항목 후보(공지는 개별 항목을 열거하지 않음). 서지·판본은 ESPEN 공식 목록에서 확인 필요.",
+      "pendingLocator": [
+        "권고문·환자군·연도 대조 필요: 원문 확보 후 장·쪽 기록"
+      ],
+      "scopeIds": [
+        "spec-dz-liver"
+      ]
+    },
+    {
+      "id": "espen-surgery-2017",
+      "title": "ESPEN guidelines: Clinical nutrition in surgery",
+      "year": 2017,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-candidate",
+      "designatedByNotice": false,
+      "note": "대표 항목 후보(공지는 개별 항목을 열거하지 않음). 서지·판본은 ESPEN 공식 목록에서 확인 필요.",
+      "pendingLocator": [
+        "권고문·환자군·연도 대조 필요: 원문 확보 후 장·쪽 기록"
+      ],
+      "scopeIds": [
+        "spec-surgery"
+      ]
+    },
+    {
+      "id": "espen-cancer-2021",
+      "title": "ESPEN practical guideline: Clinical nutrition in cancer",
+      "year": 2021,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-candidate",
+      "designatedByNotice": false,
+      "note": "대표 항목 후보(공지는 개별 항목을 열거하지 않음). 서지·판본은 ESPEN 공식 목록에서 확인 필요.",
+      "pendingLocator": [
+        "권고문·환자군·연도 대조 필요: 원문 확보 후 장·쪽 기록"
+      ],
+      "scopeIds": [
+        "spec-cancer"
+      ]
+    },
+    {
+      "id": "espen-geriatrics-2019",
+      "title": "ESPEN guideline on clinical nutrition and hydration in geriatrics",
+      "year": 2019,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-candidate",
+      "designatedByNotice": false,
+      "note": "대표 항목 후보(공지는 개별 항목을 열거하지 않음). 서지·판본은 ESPEN 공식 목록에서 확인 필요.",
+      "pendingLocator": [
+        "권고문·환자군·연도 대조 필요: 원문 확보 후 장·쪽 기록"
+      ],
+      "scopeIds": [
+        "spec-elderly"
+      ]
+    },
+    {
+      "id": "espen-kidney-2021",
+      "title": "ESPEN guideline on clinical nutrition in hospitalised patients with acute or chronic kidney disease",
+      "year": 2021,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-candidate",
+      "designatedByNotice": false,
+      "note": "대표 항목 후보(공지는 개별 항목을 열거하지 않음). 서지·판본은 ESPEN 공식 목록에서 확인 필요.",
+      "pendingLocator": [
+        "권고문·환자군·연도 대조 필요: 원문 확보 후 장·쪽 기록"
+      ],
+      "scopeIds": [
+        "spec-dz-renal"
+      ]
+    },
+    {
+      "id": "espen-pancreas-2020",
+      "title": "ESPEN practical guideline: Clinical nutrition in acute and chronic pancreatitis",
+      "year": 2020,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-candidate",
+      "designatedByNotice": false,
+      "note": "대표 항목 후보(공지는 개별 항목을 열거하지 않음). 서지·판본은 ESPEN 공식 목록에서 확인 필요.",
+      "pendingLocator": [
+        "권고문·환자군·연도 대조 필요: 원문 확보 후 장·쪽 기록"
+      ],
+      "scopeIds": [
+        "spec-dz-gi"
+      ]
+    },
+    {
+      "id": "espen-ibd-2023",
+      "title": "ESPEN practical guideline on clinical nutrition in inflammatory bowel disease",
+      "year": 2023,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-candidate",
+      "designatedByNotice": false,
+      "note": "대표 항목 후보(공지는 개별 항목을 열거하지 않음). 서지·판본은 ESPEN 공식 목록에서 확인 필요.",
+      "pendingLocator": [
+        "권고문·환자군·연도 대조 필요: 원문 확보 후 장·쪽 기록"
+      ],
+      "scopeIds": [
+        "spec-dz-gi"
+      ]
+    },
+    {
+      "id": "espen-cif-2016",
+      "title": "ESPEN guidelines on chronic intestinal failure in adults",
+      "year": 2016,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-candidate",
+      "designatedByNotice": false,
+      "note": "대표 항목 후보(공지는 개별 항목을 열거하지 않음). 서지·판본은 ESPEN 공식 목록에서 확인 필요. 2023 개정판 존재 가능성: 지정 판본은 ESPEN 목록에서 확인 필요.",
+      "pendingLocator": [
+        "권고문·환자군·연도 대조 필요: 원문 확보 후 장·쪽 기록"
+      ],
+      "scopeIds": [
+        "spec-dz-gi"
+      ]
+    },
+    {
+      "id": "aspen-ped-core-2e-2015",
+      "title": "The A.S.P.E.N. Pediatric Nutrition Support Core Curriculum, 2nd ed.",
+      "year": 2015,
+      "url": "https://www.nutritioncare.org/books/",
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook",
+      "designatedByNotice": true,
+      "note": "공지 지정 판본은 2판(2015). 수집 정리 문서에는 3판(2024) 안내가 있으나 지정 판본이 아니므로 대체하지 않는다.",
+      "pendingLocator": [
+        "소아 요구량·GIR·지질·AA·전해질·Ca/P·TE·비타민: 장·쪽 확인 대기",
+        "신생아·미숙아 PN, 소아 질환별·재택: 장·쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-neonate",
+        "spec-pediatric"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-01-guideline-development-process",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Guideline development process (보유 파일명 기준 표기; 정식 서지 확인 필요)",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_01_guideline_development_process.pdf",
+      "note": "공지 항목 'ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition'(총칭)이 시리즈 전체인지 개요 논문인지 공지에서 확정 불가. 보유 PDF 중 가장 가까운 개요(01)를 대응 후보로 둔다.",
+      "scopeIds": [
+        "spec-pediatric"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-02-energy",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Energy",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_02_energy.pdf",
+      "scopeIds": [
+        "spec-requirements",
+        "spec-neonate",
+        "spec-pediatric"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-03-lipids",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Lipids",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "designated-guideline",
+      "designatedByNotice": false,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_03_lipids.pdf",
+      "note": "공지 5개 항목에는 없으나 시리즈 구성 장.",
+      "scopeIds": [
+        "spec-components",
+        "spec-neonate"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-04-amino-acids",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Amino acids",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": false,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_04_amino_acids.pdf",
+      "note": "추출본 일부만 존재, 교차검증 미실시.",
+      "scopeIds": [
+        "spec-components",
+        "spec-neonate",
+        "spec-preterm"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-05-carbohydrates",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Carbohydrates",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "designated-guideline",
+      "designatedByNotice": false,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_05_carbohydrates.pdf",
+      "note": "R5.4·R5.6 등 GIR 값이 기존 노트에서 대조됨.",
+      "scopeIds": [
+        "spec-components",
+        "spec-plan-calc",
+        "spec-dz-diabetes",
+        "spec-neonate"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-06-fluid-electrolytes",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Fluid and electrolytes",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": false,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_06_fluid_electrolytes.pdf",
+      "scopeIds": [
+        "spec-components"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-07-iron-trace-minerals",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Iron and trace minerals",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "designated-guideline",
+      "designatedByNotice": false,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_07_iron_trace_minerals.pdf",
+      "note": "TE 값이 기존 노트에서 일부 대조됨.",
+      "scopeIds": [
+        "spec-components",
+        "spec-preterm"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-08-calcium-phosphorus-magnesium",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Calcium, phosphorus and magnesium",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "designated-guideline",
+      "designatedByNotice": false,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_08_calcium_phosphorus_magnesium.pdf",
+      "note": "Ca·P 값이 기존 노트에서 일부 대조됨.",
+      "scopeIds": [
+        "spec-neonate",
+        "spec-compatibility"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-09-vitamins",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Vitamins",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_09_vitamins.pdf",
+      "scopeIds": [
+        "spec-components"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-10-venous-access",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Venous access",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": false,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_10_venous_access.pdf",
+      "scopeIds": [
+        "spec-plan-route"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-11-organisational-aspects",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Organisational aspects",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": false,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_11_organisational_aspects.pdf",
+      "scopeIds": []
+    },
+    {
+      "id": "espen-ped-pn-2018-12-home-parenteral-nutrition",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Home parenteral nutrition",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": false,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_12_home_parenteral_nutrition.pdf",
+      "scopeIds": [
+        "spec-hpn"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-13-standard-vs-individualized",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Standard versus individualized parenteral nutrition",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_13_standard_vs_individualized.pdf",
+      "scopeIds": [
+        "spec-pediatric"
+      ]
+    },
+    {
+      "id": "espen-ped-pn-2018-14-complications",
+      "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Complications",
+      "year": 2018,
+      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_14_complications.pdf",
+      "note": "추출 hits 파일만 존재, 교차검증 미실시.",
+      "scopeIds": [
+        "spec-pediatric",
+        "spec-monitoring"
+      ]
+    },
+    {
+      "id": "aspen-adult-disease-pn-guidelines",
+      "title": "ASPEN guidelines on adult parenteral nutrition for specific diseases (공지 표기 그대로)",
+      "year": null,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline-unspecified",
+      "designatedByNotice": true,
+      "note": "공지에 서지 정보 없음. 정확한 문헌 식별 후에야 확보·검토 가능. 임의로 특정 논문에 대응시키지 않는다.",
+      "pendingLocator": [
+        "서지 식별 대기(공지 문구만으로는 특정 불가)"
+      ],
+      "scopeIds": []
+    },
+    {
+      "id": "aspen-preterm-pn-2023",
+      "title": "Guidelines for parenteral nutrition in preterm infants: The American Society for Parenteral and Enteral Nutrition. JPEN 2023;47:830-858",
+      "year": 2023,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37610837/",
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "PMID 37610837, DOI 10.1002/jpen.2550(수집 정리 문서 기록). 원문 미열람.",
+      "pendingLocator": [
+        "미숙아 GIR·지질·AA·전해질 권고문과 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-preterm"
+      ]
+    },
+    {
+      "id": "aspen-adult-critically-ill-2022",
+      "title": "Guidelines for the provision of nutrition support therapy in the adult critically ill patient: ASPEN. JPEN 2022;46:12-41",
+      "year": 2022,
+      "url": null,
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "원문 미열람. 공개 Factsheet(2024)와 Nestlé 요약(2016/2021 가이드라인 요약)만 보유 — 이를 원문 대체로 취급하지 않는다.",
+      "pendingLocator": [
+        "단백·에너지·SPN 시기·ILE 권고문과 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-assessment",
+        "spec-requirements",
+        "spec-dz-obesity",
+        "spec-critical-care"
+      ]
+    },
+    {
+      "id": "aspen-pn-compat-2022",
+      "title": "Parenteral Nutrition Compatibility and Stability: A Comprehensive Review. JPEN 2022;46(2):273-299",
+      "year": 2022,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34788478/",
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "PMID 34788478, DOI 10.1002/jpen.2306. 원문 미열람.",
+      "pendingLocator": [
+        "약물·전해질 배합성 표의 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-compatibility",
+        "spec-products-stability"
+      ]
+    },
+    {
+      "id": "aspen-ile-safety-part1-2020",
+      "title": "ASPEN Lipid Injectable Emulsion Safety Recommendations, Part 1: Background and Adult Considerations. NCP 2020;35(5):769-782",
+      "year": 2020,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32460429/",
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "PMID 32460429, DOI 10.1002/ncp.10496. 원문 미열람; ASPEN Myths 공개자료가 일부 인용.",
+      "pendingLocator": [
+        "ILE 속도·TG 기준·EFAD·제품 비동등 권고문과 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-components",
+        "spec-products-stability"
+      ]
+    },
+    {
+      "id": "aspen-refeeding-2020",
+      "title": "ASPEN Consensus Recommendations for Refeeding Syndrome. NCP 2020;35:178-195",
+      "year": 2020,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32115791/",
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "PMID 32115791, DOI 10.1002/ncp.10474. 원문 미열람.",
+      "pendingLocator": [
+        "위험군 정의·열량 증량·전해질·thiamine 권고문과 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-eating-disorder",
+        "spec-monitoring"
+      ]
+    },
+    {
+      "id": "aspen-cvad-hpn-2019",
+      "title": "The Selection and Care of Central Venous Access Devices for Adult Home Parenteral Nutrition Administration. JPEN 2019;43(1):15-31",
+      "year": 2019,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30339287/",
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "PMID 30339287, DOI 10.1002/jpen.1455. 원문 미열람.",
+      "pendingLocator": [
+        "카테터 선택·관리·감염 권고문과 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-plan-route",
+        "spec-hpn"
+      ]
+    },
+    {
+      "id": "sccm-aspen-ped-critical-2017",
+      "title": "Guidelines for the Provision and Assessment of Nutrition Support Therapy in the Pediatric Critically Ill Patient: SCCM and ASPEN. JPEN 2017;41:706-742",
+      "year": 2017,
+      "url": null,
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "원문 미열람. 공개 Pocket Card(2025)는 요약이며 원문 대체가 아님.",
+      "pendingLocator": [
+        "소아 중환자 에너지·단백·시기 권고문과 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-critical-care",
+        "spec-pediatric"
+      ]
+    },
+    {
+      "id": "aspen-felanpe-ecf-2017",
+      "title": "ASPEN-FELANPE Clinical Guidelines: Nutrition Support of Adult Patients With Enterocutaneous Fistula. JPEN 2017;41:1041-(공지 표기 '1041-112')",
+      "year": 2017,
+      "url": null,
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "공지의 쪽수 표기가 불완전해 서지 확인 필요. 원문 미열람. 핵심표에 장피누공 단락 없음.",
+      "pendingLocator": [
+        "서지 쪽수 확인 및 권고문 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-dz-gi"
+      ]
+    },
+    {
+      "id": "aspen-pn-safety-consensus-2014",
+      "title": "A.S.P.E.N. Parenteral Nutrition Safety Consensus Recommendations. JPEN 2014;38(3):296-333",
+      "year": 2014,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24280129/",
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "PMID 24280129, DOI 10.1177/0148607113511992. 원문 미열람. 구판 필터 권고(0.22/1.2) 등 현행 자료와의 시대 차이는 Task 2 확인 사항.",
+      "pendingLocator": [
+        "필터·라벨·투여 안전 권고문과 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-plan-personalized"
+      ]
+    },
+    {
+      "id": "aspen-pn-ordering-review-compounding-2014",
+      "title": "Parenteral Nutrition Ordering, Order Review, Compounding, Labeling, and Dispensing. JPEN 2014;38(3):334-377",
+      "year": 2014,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24531708/",
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "PMID 24531708, DOI 10.1177/0148607114521833. 원문 미열람.",
+      "pendingLocator": [
+        "처방·검토·조제 권고문과 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-plan-personalized",
+        "format-appropriateness"
+      ]
+    },
+    {
+      "id": "aspen-hyperglycemia-2013",
+      "title": "A.S.P.E.N. Clinical Guidelines: Nutrition Support of Adult Patients With Hyperglycemia. JPEN 2013;37:23-36",
+      "year": 2013,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22753619/",
+      "accessStatus": "paywalled-unreviewed",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-guideline",
+      "designatedByNotice": true,
+      "note": "PMID 22753619, DOI 10.1177/0148607112452001. 원문 미열람. 핵심표의 BG 140–180은 이 지침이 아니라 교재/기존 노트 근거로 기록된 값.",
+      "pendingLocator": [
+        "PN 중 혈당 목표·인슐린 권고문과 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "spec-dz-diabetes"
+      ]
+    },
+    {
+      "id": "dipiro-13e-2026",
+      "title": "Haines ST, et al. DiPiro's Pharmacotherapy: A Pathophysiologic Approach, 13th ed.",
+      "year": 2026,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통 참고문헌 가) 약물치료학. 공지 판본은 13판(2026). 수집 정리 문서의 12판(2023) 안내와 다르므로 판본 불일치 주의.",
+      "pendingLocator": [
+        "영양지원·영양소 관련 장·쪽은 원문 확보 후 확인"
+      ],
+      "scopeIds": []
+    },
+    {
+      "id": "casebook-12e-2023",
+      "title": "Schwinghammer TL, et al. Pharmacotherapy Casebook: A Patient-Focused Approach, 12th ed.",
+      "year": 2023,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통 참고문헌 가) 약물치료학.",
+      "pendingLocator": [
+        "영양지원·영양소 관련 장·쪽은 원문 확보 후 확인"
+      ],
+      "scopeIds": []
+    },
+    {
+      "id": "applied-therapeutics-12e-2023",
+      "title": "Zeind CS, et al. Applied Therapeutics: The Clinical Use of Drugs, 12th ed.",
+      "year": 2023,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통 참고문헌 가) 약물치료학.",
+      "pendingLocator": [
+        "영양지원·영양소 관련 장·쪽은 원문 확보 후 확인"
+      ],
+      "scopeIds": []
+    },
+    {
+      "id": "chisholm-pp-6e-2022",
+      "title": "Chisholm-Burns MA, et al. Pharmacotherapy Principles & Practice, 6th ed.",
+      "year": 2022,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통 참고문헌 가) 약물치료학.",
+      "pendingLocator": [
+        "영양지원·영양소 관련 장·쪽은 원문 확보 후 확인"
+      ],
+      "scopeIds": []
+    },
+    {
+      "id": "kscp-pharmacotherapy-6th-2025",
+      "title": "한국임상약학회. 약물치료학 제6개정. 신일북스",
+      "year": 2025,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통 참고문헌 가) 약물치료학.",
+      "pendingLocator": [
+        "영양지원·영양소 관련 장·쪽은 원문 확보 후 확인"
+      ],
+      "scopeIds": []
+    },
+    {
+      "id": "yakryojeongbo-2021",
+      "title": "약국실무분과회. 약료정보학. 신일북스 (Section III 제9–13장, 16장)",
+      "year": 2021,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통영역 나).",
+      "pendingLocator": [
+        "공지가 지정한 Section III 제9–13장·16장의 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "common-ebm-ebcp",
+        "common-literature-types"
+      ]
+    },
+    {
+      "id": "imsangsilmu-yakhak-2024",
+      "title": "약국실무분과회. 임상실무약학. 신일북스 (27장, 29장)",
+      "year": 2024,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통영역 나).",
+      "pendingLocator": [
+        "27장·29장 쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "common-clinical-statistics"
+      ]
+    },
+    {
+      "id": "users-guides-3e-2015",
+      "title": "Guyatt G, Rennie D, Meade MO, Cook DJ. Users' Guides to the Medical Literature, 3rd ed.",
+      "year": 2015,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통영역 나).",
+      "pendingLocator": [
+        "장·쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "common-ebm-ebcp",
+        "common-appraisal-application"
+      ]
+    },
+    {
+      "id": "dicenzo-biostat-2e-2015",
+      "title": "DiCenzo R, ed. Clinical Pharmacist's Guide to Biostatistics and Literature Evaluation, 2nd ed. ACCP",
+      "year": 2015,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통영역 나).",
+      "pendingLocator": [
+        "장·쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "common-ebm-ebcp",
+        "common-clinical-statistics",
+        "common-appraisal-application"
+      ]
+    },
+    {
+      "id": "browner-designing-5e-2022",
+      "title": "Browner WS, Newman TB, Cummings SR. Designing Clinical Research, 5th ed. Wolters Kluwer",
+      "year": 2022,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통영역 나).",
+      "pendingLocator": [
+        "장·쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "common-clinical-statistics"
+      ]
+    },
+    {
+      "id": "malone-drug-info-7e-2022",
+      "title": "Malone PM, Witt BA, Malone MJ, Peterson DM. Drug Information: A Guide for Pharmacists, 7th ed. McGraw Hill",
+      "year": 2022,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "designated-textbook-common",
+      "designatedByNotice": true,
+      "note": "공지 공통영역 나).",
+      "pendingLocator": [
+        "장·쪽 확인 대기"
+      ],
+      "scopeIds": [
+        "common-literature-types"
+      ]
+    },
+    {
+      "id": "cmaj-ebm-intro-wyer-2004",
+      "title": "Tips for learning and teaching evidence-based medicine: introduction to the series (Wyer PC et al., CMAJ 2004)",
+      "year": 2004,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC509048/",
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held",
+      "designatedByNotice": false,
+      "heldFile": "03_CMAJ_EBM/CMAJ_EBM_intro_Wyer_2004.pdf",
+      "note": "공지 지정 문헌이 아님(공통영역 보조 자료 후보). 핵심표·문항에 미반영. Task 3(2026-11-14) 확인: heldFile은 PDF가 아니라 PMC 'Preparing to download' 대기 HTML(약 1.8 KB)이다. 원문 미보유로 정정. URL에서 다시 받아야 한다.",
+      "scopeIds": [
+        "common-ebm-ebcp"
+      ]
+    },
+    {
+      "id": "cmaj-ebm-rrr-arr-nnt-barratt-2004",
+      "title": "Tips for learners of evidence-based medicine: 1. Relative risk reduction, absolute risk reduction and number needed to treat (Barratt A et al., CMAJ 2004)",
+      "year": 2004,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC509050/",
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held",
+      "designatedByNotice": false,
+      "heldFile": "03_CMAJ_EBM/CMAJ_EBM_RRR_ARR_NNT_Barratt_2004.pdf",
+      "note": "공지 지정 문헌이 아님. 핵심표·문항에 미반영. Task 3(2026-11-14) 확인: heldFile은 PDF가 아니라 PMC 'Preparing to download' 대기 HTML(약 1.8 KB)이다. 원문 미보유로 정정. URL에서 다시 받아야 한다.",
+      "scopeIds": [
+        "common-clinical-statistics"
+      ]
+    },
+    {
+      "id": "cmaj-ebm-ci-montori-2004",
+      "title": "Tips for learners of evidence-based medicine: 2. Measures of precision (confidence intervals) (Montori VM et al., CMAJ 2004)",
+      "year": 2004,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC516199/",
+      "accessStatus": "not-held",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held",
+      "designatedByNotice": false,
+      "heldFile": "03_CMAJ_EBM/CMAJ_EBM_confidence_intervals_Montori_2004.pdf",
+      "note": "공지 지정 문헌이 아님. 핵심표·문항에 미반영. Task 3(2026-11-14) 확인: heldFile은 PDF가 아니라 PMC 'Preparing to download' 대기 HTML(약 1.8 KB)이다. 원문 미보유로 정정. URL에서 다시 받아야 한다.",
+      "scopeIds": [
+        "common-clinical-statistics"
+      ]
+    },
+    {
+      "id": "aspen-ismp-mcb-pn-2025",
+      "title": "ISMP/ASPEN MCB-PN Consensus Statements",
+      "year": 2025,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_ISMP_MCB_PN_Recommendations_2025.pdf",
+      "note": "추출본 보유. 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": [
+        "spec-plan-route",
+        "spec-products-stability"
+      ]
+    },
+    {
+      "id": "aspen-adult-critically-ill-factsheet-2024",
+      "title": "Adult Critically Ill Patient Guidelines Factsheet",
+      "year": 2024,
+      "url": "https://www.nutritioncare.org/clinical-resources/guidelines-standards/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_Adult_Critically_Ill_Factsheet_2024.pdf",
+      "note": "추출본 보유. GIR 수치는 이 자료에 없음(기존 노트). 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료. Task 3: Question 1 해설(호흡성 산증·고TG 시 감량 검토, lipid-based sedation 열량 산입)을 8.x 보강에 인용.",
+      "scopeIds": [
+        "spec-critical-care",
+        "spec-ddi-nutrient-drug",
+        "spec-dz-lung"
+      ]
+    },
+    {
+      "id": "aspen-pocket-cards-ped-critically-ill-2025",
+      "title": "Pocket Cards: Pediatric Critically Ill Patient",
+      "year": 2025,
+      "url": "https://www.nutritioncare.org/clinical-resources/guidelines-standards/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_Pocket_Cards_Pediatric_Critically_Ill_2025.pdf",
+      "note": "공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": [
+        "spec-pediatric"
+      ]
+    },
+    {
+      "id": "aspen-role-of-pn-malnutrition-2025",
+      "title": "The Role of Parenteral Nutrition in Managing Malnutrition",
+      "year": 2025,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_Role_of_PN_in_Malnutrition_2025.pdf",
+      "note": "공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": []
+    },
+    {
+      "id": "aspen-pn-myths-practice-tool-2024",
+      "title": "Dispelling Myths About Parenteral Nutrition (Practice Tool)",
+      "year": 2024,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_PN_Myths_Practice_Tool_2024.pdf",
+      "note": "추출본 보유. 필터 단일 1.2 μm·PPN 900 mOsm/L·SPN 시기 등 기존 노트에서 대조. 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": [
+        "spec-plan-route",
+        "spec-compatibility",
+        "spec-products-stability"
+      ]
+    },
+    {
+      "id": "aspen-pn-checklist-institutions-2025",
+      "title": "How to Improve PN Safety in Your Institution Checklist",
+      "year": 2025,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_PN_Checklist_Institutions_2025.pdf",
+      "note": "공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": []
+    },
+    {
+      "id": "aspen-pn-checklist-01-prescribing-2024",
+      "title": "PN Safe Prescribing Checklist",
+      "year": 2024,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_PN_Checklist_01_Prescribing_2024.pdf",
+      "note": "공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": [
+        "format-drp"
+      ]
+    },
+    {
+      "id": "aspen-pn-checklist-02-order-review-2024",
+      "title": "PN Order Review and Verification Checklist",
+      "year": 2024,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_PN_Checklist_02_Order_Review_2024.pdf",
+      "note": "공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": [
+        "spec-monitoring",
+        "format-appropriateness",
+        "format-drp"
+      ]
+    },
+    {
+      "id": "aspen-pn-checklist-03-compounding-2024",
+      "title": "PN Compounding Checklist",
+      "year": 2024,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_PN_Checklist_03_Compounding_2024.pdf",
+      "note": "추출본 보유(교차검증 미실시). 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": [
+        "spec-compatibility",
+        "format-drp"
+      ]
+    },
+    {
+      "id": "aspen-pn-checklist-04-administration-2024",
+      "title": "PN Administration Checklist",
+      "year": 2024,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_PN_Checklist_04_Administration_2024.pdf",
+      "note": "추출본 보유. 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": [
+        "spec-plan-route",
+        "format-drp"
+      ]
+    },
+    {
+      "id": "aspen-pn-safe-care-transition-2024",
+      "title": "PN Safe Care Transition",
+      "year": 2024,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_PN_Safe_Care_Transition_2024.pdf",
+      "note": "공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": [
+        "spec-hpn",
+        "format-patient-education"
+      ]
+    },
+    {
+      "id": "aspen-direct-access-infusion-statement-2025",
+      "title": "Direct Access Infusion Statement",
+      "year": 2025,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_Direct_Access_Infusion_Statement_2025.pdf",
+      "note": "공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": []
+    },
+    {
+      "id": "aspen-nutrient-shortages-neonatal-2024",
+      "title": "Nutrient Shortages: Neonatal Population",
+      "year": 2024,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_Nutrient_Shortages_Neonatal_2024.pdf",
+      "note": "공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": [
+        "spec-preterm"
+      ]
+    },
+    {
+      "id": "aspen-pn-trace-element-practice-tool-2024",
+      "title": "PN Trace Element Practice Tool",
+      "year": 2024,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_PN_Trace_Element_Practice_Tool_2024.pdf",
+      "note": "추출본 보유. 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "scopeIds": [
+        "spec-components",
+        "spec-dz-liver",
+        "spec-products-stability"
+      ]
+    },
+    {
+      "id": "aspen-supplemental-pn-critically-ill-2026",
+      "title": "Supplemental PN in Critically Ill",
+      "year": 2026,
+      "url": "https://www.nutritioncare.org/clinical-resources/parenteral-nutrition/",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "supplementary-held-public",
+      "designatedByNotice": false,
+      "heldFile": "02_ASPEN_공개자료/ASPEN_Supplemental_PN_Critically_Ill_2026.pdf",
+      "note": "추출본 보유(SPN day 7 관련 대조). 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료. Task 3: 추출본 p.1–2의 수술·암 항목과 ARDS·췌장암 사례를 질환별 보강(8.x)·처방 검토 사례에 인용. 각주 인용 원 논문은 미확인.",
+      "scopeIds": [
+        "format-appropriateness",
+        "spec-cancer",
+        "spec-critical-care",
+        "spec-dz-lung",
+        "spec-surgery"
+      ]
+    },
+    {
+      "id": "ccn-summary-nestle-2022",
+      "title": "2016 & 2021 Critical Care Nutrition Guidelines: A summary for Adult Critically Ill Patients (Nestlé Medical Hub, 2022)",
+      "year": 2022,
+      "url": null,
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "secondary-summary",
+      "designatedByNotice": false,
+      "heldFile": "05_기타_요약_학습자료/Critical_Care_Nutrition_Guidelines_Summary.pdf",
+      "note": "제조사 요약본. 지침 원문이 아니며 지정 문헌도 아님. 추출본 보유. Task 3: 비만(ASPEN/SCCM 2016 요약 문구)·화상 단백 문구를 8.x 보강에 인용 — 요약본 문구이며 지침 원문 대조 아님.",
+      "scopeIds": [
+        "spec-burn",
+        "spec-critical-care",
+        "spec-dz-obesity"
+      ]
+    },
+    {
+      "id": "hoag-tpn-qa",
+      "title": "Hoag Healthcare TPN Frequently Asked Questions + Answers",
+      "year": null,
+      "url": "https://upload.cdn-hoag.org/wp-content/uploads/2022/04/07224148/TPN-QA.pdf",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-qa",
+      "designatedByNotice": false,
+      "heldFile": "05_기타_요약_학습자료/HOAG_TPN_Questions_Answers.pdf",
+      "note": "기관 FAQ. 지정 문헌 아님; 문항 출처 분류는 Task 2.",
+      "scopeIds": []
+    },
+    {
+      "id": "allaccess-enteral-parenteral-pqs",
+      "title": "AllAccessDietetics Enteral & Parenteral Nutrition practice questions",
+      "year": null,
+      "url": null,
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-qa",
+      "designatedByNotice": false,
+      "heldFile": "05_기타_요약_학습자료/AllAccessDietetics_Enteral_Parenteral_Nutrition_PQs.pdf",
+      "note": "해외 영양사 시험 대비 자료. 기존 노트에서 일일 포도당 상한 관련 비권고 판정 — Task 2 검토.",
+      "scopeIds": []
+    },
+    {
+      "id": "bcnsp-exam-specs-2025",
+      "title": "BPS BCNSP Examination Specifications 2025",
+      "year": 2025,
+      "url": "https://bpsweb.org/wp-content/uploads/BCNSP-Examination-Specifications-2025.pdf",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "overseas-exam-info",
+      "designatedByNotice": false,
+      "heldFile": "04_BCNSP_BPS_시험/BCNSP_Examination_Specifications_2025.pdf",
+      "note": "해외 자격시험 명세. 국내 출제범위·비중으로 해석 금지.",
+      "scopeIds": []
+    },
+    {
+      "id": "nbnsc-cnsc-handbook-2026",
+      "title": "NBNSC CNSC Candidate Handbook 2026 (+ PTCNY 사본)",
+      "year": 2026,
+      "url": null,
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "overseas-exam-info",
+      "designatedByNotice": false,
+      "heldFile": "04_BCNSP_BPS_시험/NBNSC_CNSC_Candidate_Handbook_2026.pdf",
+      "note": "해외 자격시험 안내. 국내 출제비중으로 해석 금지.",
+      "scopeIds": []
+    },
+    {
+      "id": "oa-neonatal-pn-treatment-problems-2024",
+      "title": "Treatment related problems of parenteral nutrition in neonates: prospective study (BMC Pediatrics 2024)",
+      "year": 2024,
+      "url": "https://doi.org/10.1186/s12887-023-04477-1",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-oa",
+      "designatedByNotice": false,
+      "heldFile": "03_CMAJ_EBM/Neonatal_PN_Treatment_Related_Problems_BMC_2024.pdf",
+      "note": "공지 지정 문헌 아님. 공통영역 논문 해석 사례 후보로만 검토 가능.",
+      "scopeIds": [
+        "common-appraisal-application"
+      ]
+    },
+    {
+      "id": "oa-bcnsp-pn-nicu",
+      "title": "The impact of BCNSP board certified nutrition support pharmacist on parenteral nutrition use in NICU",
+      "year": 2026,
+      "url": "https://doi.org/10.1186/s41043-026-01298-7",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-oa",
+      "designatedByNotice": false,
+      "heldFile": "03_CMAJ_EBM/BCNSP_PN_NICU_OpenAccess.pdf",
+      "note": "PMC_Impact_BCNSP_PN_NICU.pdf가 같은 폴더에 있으나 동일 논문인지 미확인. 지정 문헌 아님. Task 3 확인: 같은 폴더의 PMC_Impact_BCNSP_PN_NICU.pdf는 PDF가 아닌 PMC 대기 HTML(1.8 KB)이다. BCNSP_PN_NICU_OpenAccess.pdf(10쪽)만 실제 PDF.",
+      "scopeIds": []
+    },
+    {
+      "id": "oa-refeeding-anemia-prematurity-2026",
+      "title": "Refeeding Syndrome May Increase the Risk of Anemia of Prematurity (Nutrients 2026)",
+      "year": 2026,
+      "url": "https://doi.org/10.3390/nu18091380",
+      "accessStatus": "have-pdf",
+      "reviewedAt": null,
+      "reviewScope": "none",
+      "kind": "supplementary-held-oa",
+      "designatedByNotice": false,
+      "heldFile": "03_CMAJ_EBM/Refeeding_Syndrome_Anemia_Prematurity_Nutrients_2026.pdf",
+      "note": "지정 문헌 아님.",
+      "scopeIds": []
+    },
+    {
+      "id": "oa-en-intolerance-pancreatitis-2026",
+      "title": "Predictors of enteral nutrition intolerance in severe acute pancreatitis: a meta-analysis (BMC Nutrition 2026)",
+      "year": 2026,
+      "url": "https://doi.org/10.1186/s40795-026-01332-1",
+      "accessStatus": "have-pdf",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "partial-values",
+      "kind": "supplementary-held-oa",
+      "designatedByNotice": false,
+      "heldFile": "03_CMAJ_EBM/Enteral_Nutrition_Intolerance_Pancreatitis_BMCNutr_2026.pdf",
+      "note": "지정 문헌 아님. 메타분석 해석 사례 후보. Task 3: 추출 텍스트로 방법(p.3 Data synthesis)·결과(p.4–7 pooled OR·I²)·한계(p.8–9)를 읽고 공통영역 해석 사례에 사용. 그림·보충표(Table S1, Figure S1–S8)는 미확인.",
+      "scopeIds": [
+        "common-appraisal-application",
+        "common-clinical-statistics"
+      ]
+    },
+    {
+      "id": "imsangyoungyang-gilajabi",
+      "title": "임상영양길라잡이 (OCR 353쪽 + 사진 형광 전사)",
+      "year": null,
+      "url": null,
+      "accessStatus": "have-extract",
+      "reviewedAt": "2026-11-13",
+      "reviewScope": "partial-values",
+      "kind": "primary-source-of-current-core",
+      "designatedByNotice": false,
+      "heldFile": "06_학습_노트/PN_source_textbook_extract.md; PN_exam_highlights_*.md",
+      "note": "현 핵심표의 '표9-16' 같은 표 번호와 [EXAM] 분홍 형광 값의 실제 출처. 공지 지정 문헌 목록에 없음. 판본·출판 연도 미확정(저장소 밖 OCR PDF), OCR 품질 불량 구간 다수. 형광 표시는 공식 출제 중요도의 근거가 아니다.",
+      "scopeIds": [
+        "spec-components",
+        "spec-assessment",
+        "spec-requirements",
+        "spec-plan-calc",
+        "spec-dz-renal",
+        "spec-burn",
+        "spec-ddi-nutrient-drug"
+      ]
+    },
+    {
+      "id": "kshp-yeongyang-yakryo-lecture-answers",
+      "title": "병원약사회 영양약료 심화강의 시험 정답 및 선택지별 해설 (55문항, 검토 기준일 2026-08-14)",
+      "year": 2026,
+      "url": null,
+      "accessStatus": "have-extract",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "item-by-item-answers",
+      "kind": "training-material-qa",
+      "designatedByNotice": false,
+      "heldFile": "06_학습_노트/_kshp_extract.txt (+ _kshp_questions.json)",
+      "note": "전문약사 정맥영양 자격시험 공지와 별개인 '영양약료' 교육/시험 자료. 강의 PDF 11권 원본은 보유 폴더에 없음. 문항 originType·기출 여부 추정 금지(Task 2). Task 2에서 HTML 52문항을 해설집 정답·선택지 해설과 문항별 대조(정답 index·stem 복원·pending 5건 사유는 questions.json). 강의 PDF 쪽수는 해설집의 [강의 근거] 표기를 옮긴 것이며 강의 PDF 자체는 대조하지 않음.",
+      "scopeIds": []
+    }
+  ]
+}

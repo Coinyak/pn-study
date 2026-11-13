@@ -5,6 +5,9 @@ assets/_live_*.png
 assets/_mark_*.png
 assets/_src_*.png
 assets/_zoom_*.png
+__pycache__/
+# Personal study-progress backups exported from the quiz pane
+pn-study-backup-*.json
 
 node_modules/
 package-lock.json

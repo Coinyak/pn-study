@@ -1,0 +1,2953 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>영양불백 · PN</title>
+<style>
+:root { --navy:#1e3a5f; --label:#dce8d4; --label2:#e8f0e4; --zebra:#f7f9fc; --line:#b8c0cc; --bg:#f0f3f7; --panel:#fff; --text:#1a2332; --muted:#5b6575; --danger:#c62828; --chip-on:#1a5fb4; --quiz:#f5f7fa; --fn:#6b849e; --fn-hover:#1a5fb4; --base:15px; --lh:1.72;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;font-size:var(--base);line-height:var(--lh);color:var(--text);background:var(--bg);color-scheme:light;-webkit-text-size-adjust:100%}
+.app{display:grid;grid-template-rows:auto auto 1fr;height:100%;max-height:100dvh}
+.header{background:var(--navy);color:#fff;padding:10px 16px;font-weight:700;font-size:16px;letter-spacing:-.01em;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:nowrap}
+.header-title{flex:0 1 auto;min-width:0;white-space:nowrap}
+.header-title > span{font-weight:500;opacity:.85;font-size:13px;margin-left:8px}
+.hl-legend{margin-left:auto;flex:0 0 auto;display:flex;gap:12px;flex-wrap:nowrap;align-items:center;justify-content:flex-end;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.92);white-space:nowrap}
+.hl-legend .swatch{ display:inline-block;width:22px;height:16px;vertical-align:middle;margin-right:6px; border-radius:2px;border:1px solid rgba(255,255,255,.55);flex-shrink:0;
+}
+.hl-legend .swatch.hl-pink{background:#f8bbd0}
+.hl-legend .swatch.hl-yellow{background:#fff59d}
+.hl-legend .swatch.hl-both{ background:linear-gradient(#f8bbd0 0 50%, #fff59d 50% 100%);
+}
+.tabs{display:none;background:#fff;border-bottom:1px solid var(--line)}
+.tabs button{flex:1;border:0;background:transparent;padding:12px;font-size:15px;font-weight:600;color:var(--muted);min-height:44px;border-bottom:2px solid transparent;cursor:pointer}
+.tabs button.active{color:var(--chip-on);border-bottom-color:var(--chip-on)}
+.main{ --split-core:1fr; --split-quiz:1fr; --split-w:10px; display:grid; grid-template-columns:72px minmax(0,var(--split-core)) var(--split-w) minmax(0,var(--split-quiz)); min-height:0;overflow:hidden;
+}
+.nav{background:var(--label2);border-right:1px solid var(--line);overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
+.nav-item{border:0;border-bottom:1px solid #c5d0bc;background:transparent;padding:8px 3px;font-size:11px;font-weight:700;line-height:1.3;color:var(--text);cursor:pointer;text-align:center;min-height:40px}
+.nav-item.active{background:var(--navy);color:#fff}
+.pane{min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;background:var(--panel)}
+.pane-quiz{background:var(--quiz);display:flex;flex-direction:column;min-height:0}
+.pane-quiz #quizList{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch}
+/* Desktop split handle between core and quiz (50/50 default via --split-*) */
+.splitter{ position:relative;z-index:4;width:100%;min-width:0;cursor:col-resize; touch-action:none;user-select:none;-webkit-user-select:none; background:transparent;border:0;padding:0;margin:0; display:flex;align-items:center;justify-content:center;
+}
+.splitter::before{ content:"";position:absolute;inset:0 4px;background:var(--line);border-radius:1px;
+}
+.splitter .split-grip{ position:relative;z-index:1;width:6px;height:36px;border-radius:999px; background:#8a93a3;box-shadow:0 0 0 1px rgba(255,255,255,.55); pointer-events:none;
+}
+.splitter:hover .split-grip,.splitter:focus-visible .split-grip{background:var(--chip-on)}
+.splitter:focus-visible{outline:2px solid var(--chip-on);outline-offset:-2px}
+body.is-resizing{cursor:col-resize;user-select:none;-webkit-user-select:none}
+body.is-resizing .pane{pointer-events:none}
+/* Nest tables: dense spacing */
+table.jg.nest{width:100%;border-collapse:collapse;font-size:13px;line-height:1.3}
+table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:2px 5px;vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
+table.jg.nest .th{font-size:12px;line-height:1.25}
+table.jg.nest .l1{font-size:12.5px;line-height:1.28}
+table.jg.nest td.dose,
+table.jg.nest .dose{white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
+table.jg.nest td.dose-long{white-space:normal;font-size:12px;line-height:1.28;word-break:keep-all}
+table.jg.nest td.memo{font-size:12px;line-height:1.3;word-break:keep-all}
+table.jg.nest td.num{white-space:nowrap;text-align:center;font-variant-numeric:tabular-nums}
+.nowrap{white-space:nowrap}
+/* Dense multi-col dose tables: fixed layout + slightly tighter than base nest */
+table.jg.nest.dense{table-layout:fixed;font-size:12.5px;line-height:1.28}
+table.jg.nest.dense td, table.jg.nest.dense th{padding:3px 5px}
+table.jg.nest.dense .th{font-size:11.5px;line-height:1.22}
+table.jg.nest.dense .l1{font-size:12px}
+table.jg.nest.dense td.dose-long{font-size:11.5px;line-height:1.25}
+table.jg.nest.dense td.memo{font-size:11.5px;line-height:1.28}
+table.jg.nest.dense col.c-el{width:9%}
+table.jg.nest.dense col.c-dose{width:16%}
+table.jg.nest.dense col.c-memo{width:43%}
+table.jg.nest.dense.te-ped col.c-el{width:10%}
+table.jg.nest.dense.te-ped col.c-dose{width:22.5%}
+table.jg.nest.dense.conc col.c-el{width:12%}
+table.jg.nest.dense.conc col.c-num{width:12.5%}
+.sec{border-bottom:2px solid var(--navy);scroll-margin-top:0}
+.sec.active-sec > .sec-h{background:#cfe0c4;box-shadow:inset 4px 0 0 var(--chip-on)}
+.sec-h{background:var(--label);font-weight:800;font-size:15.5px;line-height:1.35;padding:10px 12px;border-bottom:1px solid var(--line);color:var(--navy);letter-spacing:-.02em;position:sticky;top:0;z-index:1}
+.cell{padding:9px 12px;border-bottom:1px solid #e2e8f0;line-height:var(--lh);font-size:14.5px}
+.cell br{display:block;content:"";margin-top:.55em}
+.cell.hub{background:#fafbfd;color:var(--text)}
+.cell.hub .hub-lead{margin:0 0 .4em;color:var(--muted);font-size:13px;font-weight:600}
+.cell.hub ul.hub-list{margin:0;padding-left:1.15em}
+.cell.hub ul.hub-list li{margin:.28em 0;line-height:1.5}
+.bl{margin:.15em 0 0;padding-left:1.15em;list-style:disc}
+.bl li{margin:.4em 0;padding-left:.15em;line-height:var(--lh)}
+.l1,.th{background:var(--zebra);font-weight:700}
+.l1{white-space:nowrap;font-size:13px}
+.th{background:#eef2f6;font-size:12.5px}
+.x{color:var(--danger);font-weight:700}
+.muted{color:var(--muted);font-size:13px}
+/* Calmer clickable superscript indices — less mid-line collision */
+button.fn{ border:0;background:transparent;color:var(--fn);cursor:pointer; font:inherit;font-size:.68em;font-weight:600;line-height:1; padding:0 .12em;margin:0 0 0 .06em; vertical-align:baseline;position:relative;top:-.42em; opacity:.78;letter-spacing:-.02em;
+}
+button.fn:hover,button.fn:focus-visible{color:var(--fn-hover);opacity:1;outline:none}
+button.fn:focus-visible{box-shadow:0 0 0 2px rgba(26,95,180,.25);border-radius:2px}
+button.fn:active{opacity:1}
+button.fn.active{color:var(--fn-hover);opacity:1;outline:2px solid var(--chip-on);outline-offset:1px;border-radius:2px}
+button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertical-align:baseline;line-height:1}
+.quiz-sticky{flex-shrink:0;background:var(--quiz);border-bottom:1px solid var(--line);z-index:3}
+.quiz-head{padding:8px 12px;font-size:13.5px;font-weight:700;line-height:1.4;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.quiz-head-title{min-width:0;flex:1}
+.cite-box{display:none;padding:0 12px 10px}
+.cite-box.show{display:block}
+.cite-box .cite-inner{background:#fff;border:1px solid #d0d7e2;padding:12px 14px;font-size:13.5px;line-height:1.55}
+.cite-box .cite-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.cite-box .cite-raw{font-size:15px;font-weight:700;color:var(--navy);word-break:break-word;line-height:1.4}
+.cite-box .cite-meta{margin-top:6px;font-size:12.5px;color:var(--muted);line-height:1.45}
+.cite-box .cite-close{border:0;background:#eef2f6;color:var(--muted);width:32px;height:32px;border-radius:4px;cursor:pointer;font-size:18px;line-height:1;flex-shrink:0}
+.qcard{background:#fff;border:1px solid #d8dee8;margin:8px 10px;padding:12px 14px}
+.qcard.hl{border-color:var(--chip-on);box-shadow:0 0 0 2px rgba(26,95,180,.15)}
+.qcard .src{font-size:12px;color:var(--muted);margin-bottom:8px}
+.qcard .stem{font-size:15px;line-height:1.65;margin-bottom:10px}
+.qcard ol{margin:0;padding-left:1.35em;font-size:14px;line-height:1.6}
+.qcard ol li{margin:.35em 0}
+.qcard details{margin-top:12px;font-size:13.5px;line-height:1.55}
+.qcard summary{cursor:pointer;color:var(--chip-on);font-weight:600;min-height:40px;display:flex;align-items:center}
+.empty{padding:20px 14px;color:var(--muted);font-size:14px;line-height:1.55}
+.callout{margin:0;padding:9px 12px;border-bottom:1px solid #e2e8f0;font-size:13.5px;line-height:1.6}
+.callout.gap{background:#fff8e1;border-left:4px solid #f0a500;color:#5a4300}
+@media (max-width:899px){ :root{--base:15.5px;--lh:1.75} .tabs{display:flex} .main{grid-template-columns:60px 1fr} .splitter{display:none!important} .pane-quiz{border-left:0;grid-column:2} body.mode-core .pane-quiz{display:none} body.mode-quiz .pane-core{display:none} body.mode-quiz .nav{display:none} body.mode-quiz .main{grid-template-columns:1fr} body.mode-quiz .pane-quiz{grid-column:1} .header{flex-wrap:wrap;row-gap:6px} .hl-legend{flex:1 1 100%;flex-wrap:wrap;white-space:normal;justify-content:flex-start;gap:8px 12px} table.jg.nest{font-size:13px} table.jg.nest.dense{font-size:12.5px} #sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE table{table-layout:fixed} #sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE .l1{white-space:normal;overflow-wrap:anywhere} .sec-h{font-size:15px;padding:11px 12px} .cell,.qcard .stem{font-size:15px}
+} .qcard{cursor:pointer}
+.qcard.no-core{cursor:default}
+.qcard .stem[role="button"]:focus-visible{outline:2px solid var(--chip-on);outline-offset:2px}
+.qcard:hover{border-color:#9eb6d4}
+.qcard:focus-visible{outline:2px solid var(--chip-on);outline-offset:2px}
+.qcard.hl{border-color:var(--chip-on);box-shadow:0 0 0 2px rgba(26,95,180,.15)}
+/* Question locator: left orange rail (row) + underline on matched keyword only */
+tr.core-hl > td, td.core-hl, .cell.core-hl, li.core-hl{ background:transparent !important;
+}
+tr.core-hl > td:first-child, li.core-hl{ box-shadow:inset 3px 0 0 #ef6c00;
+}
+mark.core-hl-exact, span.core-hl-exact, .core-hl-exact{ color: inherit !important; text-decoration: underline !important; text-decoration-color: #ef6c00 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important; box-shadow: none !important; border: none !important; border-radius: 0; background: transparent !important; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+/* plain wrap: keyword underline only — no wash / no full-row edges */
+span.core-hl-wrap.core-hl-exact{ background: transparent !important; color: inherit !important; padding: 0;
+}
+/* exam fluorescents keep fill; orange underline still marks the hit phrase */
+mark.hl-pink.core-hl-exact{ background: linear-gradient(transparent 8%, #f8bbd0 8%, #f8bbd0 92%, transparent 92%) !important; color: inherit !important;
+}
+mark.hl-yellow.core-hl-exact{ background: linear-gradient(transparent 8%, #fff59d 8%, #fff59d 92%, transparent 92%) !important; color: inherit !important;
+}
+mark.hl-both.core-hl-exact{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 46% no-repeat, linear-gradient(#fff59d,#fff59d) bottom / 100% 46% no-repeat !important; color: inherit !important; box-shadow: none !important;
+} /* Exam-origin fluorescent marks on 핵심본 */
+mark.hl-pink, .hl-pink{ background: linear-gradient(transparent 8%, #f8bbd0 8%, #f8bbd0 92%, transparent 92%); color: inherit; padding: 0 .05em; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+mark.hl-yellow, .hl-yellow{ background: linear-gradient(transparent 8%, #fff59d 8%, #fff59d 92%, transparent 92%); color: inherit; padding: 0 .05em; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+/* OVERLAP: stacked bars — TOP pink, BOTTOM yellow (no edge lines) */
+mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 46% no-repeat, linear-gradient(#fff59d,#fff59d) bottom / 100% 46% no-repeat; color: inherit; padding: 0 .06em; box-decoration-break: clone; -webkit-box-decoration-break: clone; border: none; text-decoration: none; box-shadow: none;
+}
+@media print{ mark.hl-pink, .hl-pink, mark.hl-yellow, .hl-yellow, mark.hl-both, .hl-both{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+} @media print{ .tabs, .nav, .pane-quiz, .splitter, .hl-legend, .header{display:none!important} .app, .main{display:block!important;height:auto!important;max-height:none!important;overflow:visible!important} .pane-core{display:block!important;overflow:visible!important;height:auto!important;max-height:none!important} body{overflow:visible!important;background:#fff} tr, .sec-h{break-inside:avoid} mark.hl-pink, .hl-pink, mark.hl-yellow, .hl-yellow, mark.hl-both, .hl-both{ -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important }
+}
+@page{ size:A4; margin:12mm 10mm; @top-left{content:none} @top-center{content:none} @top-right{content:none} @bottom-left{content:none} @bottom-center{content:none} @bottom-right{content:none}
+} </style>
+</head>
+<body class="mode-core">
+<div class="app"> <div class="header"> <div class="header-title">영양불백 <span>정맥영양(PN)</span></div> <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사(임상영양길라잡이 EXAM)</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회 영양약료</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div> </div> <div class="tabs" id="tabs"> <button type="button" class="active" data-pane="core">핵심</button> <button type="button" data-pane="quiz">문제</button> </div> <div class="main"> <nav class="nav" id="nav" aria-label="소단원"><!--@@NAV@@--></nav> <section class="pane pane-core" id="core">
+<!--@@CORE@@-->
+<p class="muted" style="padding:10px">문제의 「핵심 위치」 → 핵심본 형광</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
+</div>
+<script>
+const QUESTION_BANK = /*@@QUESTION_BANK@@*/[];
+const QUESTIONS = QUESTION_BANK.filter(q => q.includeInBasicSet === true);
+const CITATIONS = [{"id": 1, "raw": "[EXAM p142]", "kind": "EXAM", "pages": ["p142"]}, {"id": 2, "raw": "[NOTE]", "kind": "NOTE", "pages": []}, {"id": 3, "raw": "[TXT p143]", "kind": "TXT", "pages": ["p143"]}, {"id": 4, "raw": "[GL:ASPEN/SCCM]", "kind": "GL", "pages": []}, {"id": 5, "raw": "[EXAM p116·p120]", "kind": "EXAM", "pages": ["p116", "p120"]}, {"id": 6, "raw": "[TXT p120]", "kind": "TXT", "pages": ["p120"]}, {"id": 7, "raw": "[EXAM p119]", "kind": "EXAM", "pages": ["p119"]}, {"id": 8, "raw": "[TXT]", "kind": "TXT", "pages": []}, {"id": 9, "raw": "[EXAM p239]", "kind": "EXAM", "pages": ["p239"]}, {"id": 10, "raw": "[EXAM+ p110]", "kind": "EXAM+", "pages": ["p110"]}, {"id": 11, "raw": "[EXAM+ p122]", "kind": "EXAM+", "pages": ["p122"]}, {"id": 12, "raw": "[TXT p122]", "kind": "TXT", "pages": ["p122"]}, {"id": 13, "raw": "[EXAM p156]", "kind": "EXAM", "pages": ["p156"]}, {"id": 14, "raw": "[TXT p156]", "kind": "TXT", "pages": ["p156"]}, {"id": 15, "raw": "[EXAM p126]", "kind": "EXAM", "pages": ["p126"]}, {"id": 16, "raw": "[짜]", "kind": "짜", "pages": []}, {"id": 17, "raw": "[QB 3]", "kind": "QB", "pages": []}, {"id": 18, "raw": "[QB]", "kind": "QB", "pages": []}, {"id": 19, "raw": "[TXT p211]", "kind": "TXT", "pages": ["p211"]}, {"id": 20, "raw": "[GL:ASPEN Myths]", "kind": "GL", "pages": []}, {"id": 21, "raw": "[GL:ASPEN Factsheet·SPN 2026]", "kind": "GL", "pages": []}, {"id": 22, "raw": "[GL:ASPEN Factsheet]", "kind": "GL", "pages": []}, {"id": 23, "raw": "[GL:ESPEN]", "kind": "GL", "pages": []}, {"id": 24, "raw": "[QB 5]", "kind": "QB", "pages": []}, {"id": 25, "raw": "[TXT p033]", "kind": "TXT", "pages": ["p033"]}, {"id": 26, "raw": "[NOTE p033]", "kind": "NOTE", "pages": ["p033"]}, {"id": 27, "raw": "[EXAM p033]", "kind": "EXAM", "pages": ["p033"]}, {"id": 28, "raw": "[TXT p166]", "kind": "TXT", "pages": ["p166"]}, {"id": 29, "raw": "[QB 4]", "kind": "QB", "pages": []}, {"id": 30, "raw": "[EXAM p153]", "kind": "EXAM", "pages": ["p153"]}, {"id": 31, "raw": "[TXT p144]", "kind": "TXT", "pages": ["p144"]}, {"id": 32, "raw": "[EXAM p034]", "kind": "EXAM", "pages": ["p034"]}, {"id": 33, "raw": "[EXAM p143]", "kind": "EXAM", "pages": ["p143"]}, {"id": 34, "raw": "[EXAM p034·p143]", "kind": "EXAM", "pages": ["p034", "p143"]}, {"id": 35, "raw": "[EXAM p035]", "kind": "EXAM", "pages": ["p035"]}, {"id": 36, "raw": "[TXT p035]", "kind": "TXT", "pages": ["p035"]}, {"id": 37, "raw": "[TXT p034·p166]", "kind": "TXT", "pages": ["p034", "p166"]}, {"id": 38, "raw": "[TXT p170]", "kind": "TXT", "pages": ["p170"]}, {"id": 39, "raw": "[EXAM+ p170]", "kind": "EXAM+", "pages": ["p170"]}, {"id": 40, "raw": "[TXT p280]", "kind": "TXT", "pages": ["p280"]}, {"id": 41, "raw": "[GL:ESPEN HPN]", "kind": "GL", "pages": []}, {"id": 42, "raw": "[TXT p035–036]", "kind": "TXT", "pages": ["p035"]}, {"id": 43, "raw": "[NOTE p172]", "kind": "NOTE", "pages": ["p172"]}, {"id": 44, "raw": "[EXAM p172]", "kind": "EXAM", "pages": ["p172"]}, {"id": 45, "raw": "[TXT p179]", "kind": "TXT", "pages": ["p179"]}, {"id": 46, "raw": "[TXT p034]", "kind": "TXT", "pages": ["p034"]}, {"id": 47, "raw": "[GL:ESPEN carbs R5.8–5.11]", "kind": "GL", "pages": []}, {"id": 48, "raw": "[EXAM p144]", "kind": "EXAM", "pages": ["p144"]}, {"id": 49, "raw": "[EXAM p044]", "kind": "EXAM", "pages": ["p044"]}, {"id": 50, "raw": "[TXT p044]", "kind": "TXT", "pages": ["p044"]}, {"id": 51, "raw": "[EXAM+ p188]", "kind": "EXAM+", "pages": ["p188"]}, {"id": 52, "raw": "[TXT p188]", "kind": "TXT", "pages": ["p188"]}, {"id": 53, "raw": "[NOTE p044]", "kind": "NOTE", "pages": ["p044"]}, {"id": 54, "raw": "[EXAM p144·p243]", "kind": "EXAM", "pages": ["p144", "p243"]}, {"id": 55, "raw": "[EXAM p181]", "kind": "EXAM", "pages": ["p181"]}, {"id": 56, "raw": "[TXT p181]", "kind": "TXT", "pages": ["p181"]}, {"id": 57, "raw": "[EXAM]", "kind": "EXAM", "pages": []}, {"id": 58, "raw": "[EXAM p144·p176]", "kind": "EXAM", "pages": ["p144", "p176"]}, {"id": 59, "raw": "[TXT p170·p183]", "kind": "TXT", "pages": ["p170", "p183"]}, {"id": 60, "raw": "[TXT p182]", "kind": "TXT", "pages": ["p182"]}, {"id": 61, "raw": "[NOTE p144]", "kind": "NOTE", "pages": ["p144"]}, {"id": 62, "raw": "[EXAM p210·p218]", "kind": "EXAM", "pages": ["p210", "p218"]}, {"id": 63, "raw": "[TXT p182·p210]", "kind": "TXT", "pages": ["p182", "p210"]}, {"id": 64, "raw": "[GL:ESPEN lipids R4.21]", "kind": "GL", "pages": []}, {"id": 65, "raw": "[EXAM p061]", "kind": "EXAM", "pages": ["p061"]}, {"id": 66, "raw": "[TXT p061]", "kind": "TXT", "pages": ["p061"]}, {"id": 67, "raw": "[TXT p168–169]", "kind": "TXT", "pages": ["p168"]}, {"id": 68, "raw": "[TXT p266]", "kind": "TXT", "pages": ["p266"]}, {"id": 69, "raw": "[EXAM p063·p227]", "kind": "EXAM", "pages": ["p063", "p227"]}, {"id": 70, "raw": "[TXT p063–064]", "kind": "TXT", "pages": ["p063"]}, {"id": 71, "raw": "[EXAM p064]", "kind": "EXAM", "pages": ["p064"]}, {"id": 72, "raw": "[QB 2]", "kind": "QB", "pages": []}, {"id": 73, "raw": "[EXAM p243]", "kind": "EXAM", "pages": ["p243"]}, {"id": 74, "raw": "[TXT p064]", "kind": "TXT", "pages": ["p064"]}, {"id": 75, "raw": "[TXT p063]", "kind": "TXT", "pages": ["p063"]}, {"id": 76, "raw": "[EXAM p263]", "kind": "EXAM", "pages": ["p263"]}, {"id": 77, "raw": "[EXAM p152]", "kind": "EXAM", "pages": ["p152"]}, {"id": 78, "raw": "[TXT p152]", "kind": "TXT", "pages": ["p152"]}, {"id": 79, "raw": "[TXT p147]", "kind": "TXT", "pages": ["p147"]}, {"id": 80, "raw": "[EXAM p191·p193]", "kind": "EXAM", "pages": ["p191", "p193"]}, {"id": 81, "raw": "[GL:ASPEN Myths Na 1–2/kg, Ca 10–15]", "kind": "GL", "pages": []}, {"id": 82, "raw": "[EXAM p162]", "kind": "EXAM", "pages": ["p162"]}, {"id": 83, "raw": "[EXAM+ p078]", "kind": "EXAM+", "pages": ["p078"]}, {"id": 84, "raw": "[TXT p174]", "kind": "TXT", "pages": ["p174"]}, {"id": 85, "raw": "[EXAM+ p076]", "kind": "EXAM+", "pages": ["p076"]}, {"id": 86, "raw": "[TXT p078]", "kind": "TXT", "pages": ["p078"]}, {"id": 87, "raw": "[EXAM p228]", "kind": "EXAM", "pages": ["p228"]}, {"id": 88, "raw": "[TXT p228]", "kind": "TXT", "pages": ["p228"]}, {"id": 89, "raw": "[TXT p154]", "kind": "TXT", "pages": ["p154"]}, {"id": 90, "raw": "[TXT p173]", "kind": "TXT", "pages": ["p173"]}, {"id": 91, "raw": "[EXAM p171]", "kind": "EXAM", "pages": ["p171"]}, {"id": 92, "raw": "[TXT p149]", "kind": "TXT", "pages": ["p149"]}, {"id": 93, "raw": "[TXT p170·p184]", "kind": "TXT", "pages": ["p170", "p184"]}, {"id": 94, "raw": "[EXAM p070]", "kind": "EXAM", "pages": ["p070"]}, {"id": 95, "raw": "[EXAM p069 밑줄]", "kind": "EXAM", "pages": ["p069"]}, {"id": 96, "raw": "[EXAM p069]", "kind": "EXAM", "pages": ["p069"]}, {"id": 97, "raw": "[TXT p184]", "kind": "TXT", "pages": ["p184"]}, {"id": 98, "raw": "[EXAM p212]", "kind": "EXAM", "pages": ["p212"]}, {"id": 99, "raw": "[EXAM+ p071]", "kind": "EXAM+", "pages": ["p071"]}, {"id": 100, "raw": "[TXT p071]", "kind": "TXT", "pages": ["p071"]}, {"id": 101, "raw": "[EXAM p104·p150]", "kind": "EXAM", "pages": ["p104", "p150"]}, {"id": 102, "raw": "[TXT p150–151]", "kind": "TXT", "pages": ["p150"]}, {"id": 103, "raw": "[TXT p104]", "kind": "TXT", "pages": ["p104"]}, {"id": 104, "raw": "[TXT p150]", "kind": "TXT", "pages": ["p150"]}, {"id": 105, "raw": "[TXT p185]", "kind": "TXT", "pages": ["p185"]}, {"id": 106, "raw": "[GL:ASPEN TE tool]", "kind": "GL", "pages": []}, {"id": 107, "raw": "[EXAM p185]", "kind": "EXAM", "pages": ["p185"]}, {"id": 108, "raw": "[TXT p273]", "kind": "TXT", "pages": ["p273"]}, {"id": 109, "raw": "[EXAM+ p093·p094]", "kind": "EXAM+", "pages": ["p093", "p094"]}, {"id": 110, "raw": "[TXT p093]", "kind": "TXT", "pages": ["p093"]}, {"id": 111, "raw": "[EXAM+ p102]", "kind": "EXAM+", "pages": ["p102"]}, {"id": 112, "raw": "[EXAM p101]", "kind": "EXAM", "pages": ["p101"]}, {"id": 113, "raw": "[TXT p101]", "kind": "TXT", "pages": ["p101"]}, {"id": 114, "raw": "[GL:ESPEN R8.6]", "kind": "GL", "pages": []}, {"id": 115, "raw": "[QB 6]", "kind": "QB", "pages": []}, {"id": 116, "raw": "[GL:ASPEN SPN]", "kind": "GL", "pages": []}, {"id": 117, "raw": "[TXT p145·p176]", "kind": "TXT", "pages": ["p145", "p176"]}, {"id": 118, "raw": "[TXT p201]", "kind": "TXT", "pages": ["p201"]}, {"id": 119, "raw": "[TXT p141]", "kind": "TXT", "pages": ["p141"]}, {"id": 120, "raw": "[TXT p140]", "kind": "TXT", "pages": ["p140"]}, {"id": 121, "raw": "[TXT p209·p218]", "kind": "TXT", "pages": ["p209", "p218"]}, {"id": 122, "raw": "[TXT p157]", "kind": "TXT", "pages": ["p157"]}, {"id": 123, "raw": "[EXAM+ p157]", "kind": "EXAM+", "pages": ["p157"]}, {"id": 124, "raw": "[TXT p171]", "kind": "TXT", "pages": ["p171"]}, {"id": 125, "raw": "[TXT p153]", "kind": "TXT", "pages": ["p153"]}, {"id": 126, "raw": "[TXT p173–174]", "kind": "TXT", "pages": ["p173"]}, {"id": 127, "raw": "[GL:ASPEN Compounding]", "kind": "GL", "pages": []}, {"id": 128, "raw": "[GL:ESPEN R8.7]", "kind": "GL", "pages": []}, {"id": 129, "raw": "[EXAM p286]", "kind": "EXAM", "pages": ["p286"]}, {"id": 130, "raw": "[EXAM p201]", "kind": "EXAM", "pages": ["p201"]}, {"id": 131, "raw": "[EXAM p202]", "kind": "EXAM", "pages": ["p202"]}, {"id": 132, "raw": "[TXT p202]", "kind": "TXT", "pages": ["p202"]}, {"id": 133, "raw": "[NOTE p202]", "kind": "NOTE", "pages": ["p202"]}, {"id": 134, "raw": "[TXT p174·p201]", "kind": "TXT", "pages": ["p174", "p201"]}, {"id": 135, "raw": "[TXT p175]", "kind": "TXT", "pages": ["p175"]}, {"id": 136, "raw": "[GL:ASPEN Myths·Admin 2024]", "kind": "GL", "pages": []}, {"id": 137, "raw": "[EXAM p176]", "kind": "EXAM", "pages": ["p176"]}, {"id": 138, "raw": "[EXAM p174]", "kind": "EXAM", "pages": ["p174"]}, {"id": 139, "raw": "[TXT p172]", "kind": "TXT", "pages": ["p172"]}, {"id": 140, "raw": "[GL]", "kind": "GL", "pages": []}, {"id": 141, "raw": "[TXT p036·p181]", "kind": "TXT", "pages": ["p036", "p181"]}, {"id": 142, "raw": "[TXT p183]", "kind": "TXT", "pages": ["p183"]}, {"id": 143, "raw": "[TXT p186]", "kind": "TXT", "pages": ["p186"]}, {"id": 144, "raw": "[TXT p209]", "kind": "TXT", "pages": ["p209"]}, {"id": 145, "raw": "[PAPER:32115791]", "kind": "PAPER", "pages": []}, {"id": 146, "raw": "[EXAM p186]", "kind": "EXAM", "pages": ["p186"]}, {"id": 147, "raw": "[TXT p273·p284]", "kind": "TXT", "pages": ["p273", "p284"]}, {"id": 148, "raw": "[TXT p191]", "kind": "TXT", "pages": ["p191"]}, {"id": 149, "raw": "[EXAM p193]", "kind": "EXAM", "pages": ["p193"]}, {"id": 150, "raw": "[EXAM p182]", "kind": "EXAM", "pages": ["p182"]}, {"id": 151, "raw": "[EXAM p040]", "kind": "EXAM", "pages": ["p040"]}, {"id": 152, "raw": "[GL:ESPEN lipids]", "kind": "GL", "pages": []}, {"id": 153, "raw": "[EXAM p155]", "kind": "EXAM", "pages": ["p155"]}, {"id": 154, "raw": "[TXT p210]", "kind": "TXT", "pages": ["p210"]}, {"id": 155, "raw": "[TXT p036]", "kind": "TXT", "pages": ["p036"]}, {"id": 156, "raw": "[EXAM p273]", "kind": "EXAM", "pages": ["p273"]}, {"id": 157, "raw": "[EXAM p208]", "kind": "EXAM", "pages": ["p208"]}, {"id": 158, "raw": "[TXT p208]", "kind": "TXT", "pages": ["p208"]}, {"id": 159, "raw": "[TXT p218]", "kind": "TXT", "pages": ["p218"]}, {"id": 160, "raw": "[EXAM p209]", "kind": "EXAM", "pages": ["p209"]}, {"id": 161, "raw": "[EXAM p211]", "kind": "EXAM", "pages": ["p211"]}, {"id": 162, "raw": "[EXAM p215]", "kind": "EXAM", "pages": ["p215"]}, {"id": 163, "raw": "[NOTE ★밑줄 p215]", "kind": "NOTE", "pages": ["p215"]}, {"id": 164, "raw": "[TXT p215]", "kind": "TXT", "pages": ["p215"]}, {"id": 165, "raw": "[EXAM p225]", "kind": "EXAM", "pages": ["p225"]}, {"id": 166, "raw": "[TXT p225]", "kind": "TXT", "pages": ["p225"]}, {"id": 167, "raw": "[EXAM p227]", "kind": "EXAM", "pages": ["p227"]}, {"id": 168, "raw": "[TXT p227]", "kind": "TXT", "pages": ["p227"]}, {"id": 169, "raw": "[EXAM/TXT p228]", "kind": "EXAM", "pages": ["p228"]}, {"id": 170, "raw": "[EXAM+ p226]", "kind": "EXAM+", "pages": ["p226"]}, {"id": 171, "raw": "[TXT p226]", "kind": "TXT", "pages": ["p226"]}, {"id": 172, "raw": "[EXAM p234]", "kind": "EXAM", "pages": ["p234"]}, {"id": 173, "raw": "[EXAM p233]", "kind": "EXAM", "pages": ["p233"]}, {"id": 174, "raw": "[TXT p233]", "kind": "TXT", "pages": ["p233"]}, {"id": 175, "raw": "[EXAM+ p232]", "kind": "EXAM+", "pages": ["p232"]}, {"id": 176, "raw": "[TXT p232]", "kind": "TXT", "pages": ["p232"]}, {"id": 177, "raw": "[EXAM+ p235]", "kind": "EXAM+", "pages": ["p235"]}, {"id": 178, "raw": "[TXT p235]", "kind": "TXT", "pages": ["p235"]}, {"id": 179, "raw": "[TXT p243]", "kind": "TXT", "pages": ["p243"]}, {"id": 180, "raw": "[GL:ASPEN]", "kind": "GL", "pages": []}, {"id": 181, "raw": "[EXAM+ p199]", "kind": "EXAM+", "pages": ["p199"]}, {"id": 182, "raw": "[EXAM+ p198]", "kind": "EXAM+", "pages": ["p198"]}, {"id": 183, "raw": "[EXAM p247]", "kind": "EXAM", "pages": ["p247"]}, {"id": 184, "raw": "[EXAM p250]", "kind": "EXAM", "pages": ["p250"]}, {"id": 185, "raw": "[TXT p250]", "kind": "TXT", "pages": ["p250"]}, {"id": 186, "raw": "[TXT p146]", "kind": "TXT", "pages": ["p146"]}, {"id": 187, "raw": "[EXAM p266]", "kind": "EXAM", "pages": ["p266"]}, {"id": 188, "raw": "[GL:ESPEN AA]", "kind": "GL", "pages": []}, {"id": 189, "raw": "[GL:ESPEN R8.9·R8.12]", "kind": "GL", "pages": []}, {"id": 190, "raw": "[EXAM+ p106]", "kind": "EXAM+", "pages": ["p106"]}, {"id": 191, "raw": "[GL:ESPEN TE]", "kind": "GL", "pages": []}, {"id": 192, "raw": "[TXT p106]", "kind": "TXT", "pages": ["p106"]}, {"id": 193, "raw": "[TXT p278]", "kind": "TXT", "pages": ["p278"]}, {"id": 194, "raw": "[EXAM+ p280]", "kind": "EXAM+", "pages": ["p280"]}, {"id": 195, "raw": "[PAPER:30339287]", "kind": "PAPER", "pages": []}, {"id": 196, "raw": "[TXT p155]", "kind": "TXT", "pages": ["p155"]}, {"id": 197, "raw": "[EXAM p284]", "kind": "EXAM", "pages": ["p284"]}, {"id": 198, "raw": "[TXT p284]", "kind": "TXT", "pages": ["p284"]}, {"id": 199, "raw": "[TXT p286]", "kind": "TXT", "pages": ["p286"]}, {"id": 200, "raw": "[EXAM p033·p034·p035·p143]", "kind": "EXAM", "pages": ["p033", "p034", "p035", "p143"]}, {"id": 201, "raw": "[QB C1]", "kind": "QB", "pages": []}, {"id": 202, "raw": "[GL:ESPEN R4.21]", "kind": "GL", "pages": []}, {"id": 203, "raw": "[EXAM p144·p181]", "kind": "EXAM", "pages": ["p144", "p181"]}, {"id": 204, "raw": "[TXT p167]", "kind": "TXT", "pages": ["p167"]}, {"id": 205, "raw": "[TXT p168]", "kind": "TXT", "pages": ["p168"]}, {"id": 206, "raw": "[EXAM p104]", "kind": "EXAM", "pages": ["p104"]}, {"id": 207, "raw": "[PAPER]", "kind": "PAPER", "pages": []}, {"id": 208, "raw": "[GL:ESPEN R5.4]", "kind": "GL", "pages": []}, {"id": 209, "raw": "[GL:ESPEN R5.6]", "kind": "GL", "pages": []}];
+const TOPIC_LABEL = {"eval": "평가", "indications": "적응증", "cho_gir": "GIR·당", "lipid": "지질", "protein": "단백", "fluid_lytes": "수분·전해질", "vit_te": "비타민·TE", "route": "경로·제형", "calc_filter": "요구·계산", "stability": "조제·투여", "complications": "합병증", "monitor": "모니터", "disease": "질환별", "peds": "소아", "hpn": "HPN", "cheat": "치트", "case": "처방사례", "common": "공통영역"};
+const KIND_KO = {"EXAM": "교재 형광(기출)", "EXAM+": "신규 확인 형광", "TXT": "교재 본문(비형광)", "GL": "가이드라인", "QB": "문제은행", "짜": "요약원본", "NOTE": "필기·함정", "PAPER": "논문"};
+const CITE_BY_ID = Object.fromEntries(CITATIONS.map(c => [String(c.id), c]));
+let activeTopic = "eval";
+let activeSecId = null;
+let spyLock = false;
+let spyLastId = "";
+let spyTimer = null;
+const coreEl = () => document.getElementById("core");
+const navEl = () => document.getElementById("nav");
+
+function setPane(pane){
+  document.body.classList.toggle("mode-core", pane==="core");
+  document.body.classList.toggle("mode-quiz", pane==="quiz");
+  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("active", b.dataset.pane===pane));
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+function hideCite(){
+  const box = document.getElementById("citeBox");
+  if(!box) return;
+  box.classList.remove("show");
+  box.innerHTML = "";
+  document.querySelectorAll("button.fn").forEach(b=>b.classList.remove("active"));
+}
+function clearCoreHl(){
+  document.querySelectorAll(".core-hl, .core-hl-sec, .core-hl-exact").forEach(el=>{
+    el.classList.remove("core-hl");
+    el.classList.remove("core-hl-sec");
+    el.classList.remove("core-hl-exact");
+  });
+  // unwrap temporary phrase wraps; normalize so re-click can wrap again
+  document.querySelectorAll("span.core-hl-wrap").forEach(sp=>{
+    const parent = sp.parentNode;
+    if(!parent) return;
+    while(sp.firstChild) parent.insertBefore(sp.firstChild, sp);
+    parent.removeChild(sp);
+    parent.normalize();
+  });
+}
+/** Position normalize: fold ·/dashes/mu/spaces only — NO Korean aliases (avoids shifted wrap). */
+function normTxtPos(s){
+  return String(s||"")
+    .replace(/[₀₁₂₃₄₅₆₇₈₉]/g, m => "0123456789"["₀₁₂₃₄₅₆₇₈₉".indexOf(m)])
+    .replace(/[·•∙⋅]/g, " ")
+    .replace(/[–—−]/g, "-")
+    .replace(/~/g, "-")
+    .replace(/[²]/g, "2")
+    .replace(/[μµ]/g, "u")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+/** Map folded phrase back to exact [si,ei) in raw by testing slices. Prefer pos-fold; alias normTxt as fallback. */
+function findNormRangeInRaw(raw, phrase){
+  if(!raw || !phrase) return null;
+  const scan = (want, fold)=>{
+    if(!want || want.length < 2) return null;
+    if(!fold(raw).includes(want)) return null;
+    for(let si = 0; si < raw.length; si++){
+      if(/\s/.test(raw[si]) && si > 0) continue;
+      let lastLen = -1;
+      for(let ei = si + 1; ei <= raw.length; ei++){
+        const n = fold(raw.slice(si, ei));
+        if(n === want) return [si, ei];
+        if(n.length > want.length) break;
+        if(n.length === lastLen && ei - si > want.length * 4) break;
+        lastLen = n.length;
+      }
+    }
+    return null;
+  };
+  const tighten = (raw, pair, fold, want)=>{
+    if(!pair) return null;
+    let [si, ei] = pair;
+    // Drop leading/trailing chars that fold to empty (·→space then trim) so wrap isn't shifted.
+    while(si < ei && fold(raw.slice(si + 1, ei)) === want) si++;
+    while(si < ei && fold(raw.slice(si, ei - 1)) === want) ei--;
+    return ei > si ? [si, ei] : null;
+  };
+  const wantPos = normTxtPos(phrase);
+  const hitPos = tighten(raw, scan(wantPos, normTxtPos), normTxtPos, wantPos);
+  if(hitPos) return hitPos;
+  const wantFull = normTxt(phrase);
+  if(wantFull !== wantPos) return tighten(raw, scan(wantFull, normTxt), normTxt, wantFull);
+  return null;
+}
+function wrapPhraseInNode(root, phrase){
+  if(!root || !phrase) return null;
+  if(normTxtPos(phrase).length < 2 && normTxt(phrase).length < 2) return null;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+  let node;
+  while((node = walker.nextNode())){
+    const raw = node.nodeValue || "";
+    const rangeIdx = findNormRangeInRaw(raw, phrase);
+    if(!rangeIdx) continue;
+    const [si, ei] = rangeIdx;
+    if(ei <= si) continue;
+    try{
+      const range = document.createRange();
+      range.setStart(node, si);
+      range.setEnd(node, Math.min(ei, raw.length));
+      const span = document.createElement("span");
+      span.className = "core-hl-exact core-hl-wrap";
+      range.surroundContents(span);
+      return span;
+    }catch(_e){ /* cross-element — fall through */ }
+  }
+  return null;
+}
+/* q.id → exact core phrases (answer-aligned). Prefer these over fuzzy stem keywords. */
+/* Answer-aligned only. Skip CONTENT_GAP ids (no core row to land on). */
+const CORE_SKIP = new Set(["allaccess-012","hoag-faq-001","quizlet-home-ns-004","quizlet-home-ns-007","quizlet-pn-008","quizlet-pn-010","quizlet-pn-011","rxk-1_1-1","rxk-3_1-5","rxk-4_1-2"]);
+const CORE_HINTS = {
+  "rx-ppn-900": [
+    "900 mOsm/L",
+    "900"
+  ],
+  "oe-gir-adult": [
+    "4~5 mg/kg/min"
+  ],
+  "oe-filter": [
+    "필터 (현행)",
+    "단일 1.2 μm"
+  ],
+  "oe-hang": [
+    "Hang — TNA",
+    "Hang — ILE"
+  ],
+  "oe-tg400": [
+    "TG ≥400"
+  ],
+  "oe-refeed": [
+    "저인산혈증"
+  ],
+  "quizlet-pn-005": [
+    "기저-볼루스"
+  ],
+  "kshp-01": [
+    "140~180",
+    "140–180"
+  ],
+  "kshp-03": [
+    "50% dextrose 20 mL",
+    "50%DW",
+    "50% 포도당",
+    "대사-저혈당"
+  ],
+  "kshp-04": [
+    "스트레스 고혈당",
+    "glucose >180"
+  ],
+  "kshp-06": [
+    "Propofol",
+    "propofol"
+  ],
+  "kshp-07": [
+    "20% 선호",
+    "인지질:TG"
+  ],
+  "kshp-08": [
+    "EPA+DHA",
+    "resolvin",
+    "protectin"
+  ],
+  "kshp-09": [
+    "어유 0.1–0.2",
+    "0.1–0.2 g/kg"
+  ],
+  "kshp-11": [
+    "cysteine"
+  ],
+  "kshp-13": [
+    "출생 직후",
+    "초저체중 미숙아"
+  ],
+  "kshp-15": [
+    "HD/PD 1.2",
+    "1.2 –1.3"
+  ],
+  "kshp-17": [
+    "Zn 결핍 = 피부염",
+    "발진"
+  ],
+  "kshp-18": [
+    "Cu 결핍 = 호중구감소·빈혈"
+  ],
+  "kshp-19": [
+    "Cu·Mn 감량·제한",
+    "담즙울체"
+  ],
+  "kshp-20": [
+    "Cr 결핍 = 포도당불내성"
+  ],
+  "kshp-21": [
+    "저인산혈증"
+  ],
+  "kshp-22": [
+    "Na deficit",
+    "Na 결손",
+    "(목표 Na",
+    "135 mEq",
+    "TBW"
+  ],
+  "kshp-24": [
+    "regular insulin(+glucose)",
+    "세포내 이동",
+    "Na/K-ATPase"
+  ],
+  "kshp-23": [
+    "Wernicke",
+    "thiamine"
+  ],
+  "kshp-25": [
+    "Vit B6",
+    "isoniazid"
+  ],
+  "kshp-26": [
+    "NPC:N 150–250:1",
+    "150–250:1"
+  ],
+  "kshp-28": [
+    "0.22",
+    "1.2 μm",
+    "필터 (구)"
+  ],
+  "kshp-29": [
+    "간접열량측정",
+    "IC 가능하면",
+    "gold standard",
+    "Schofield"
+  ],
+  "kshp-30": [
+    "경구 자극",
+    "cyclic PN",
+    "PNALD"
+  ],
+  "kshp-32": [
+    "간경화·간성뇌증 1.0–1.5",
+    "간경화·간성뇌증"
+  ],
+  "kshp-33": [
+    "BCAA"
+  ],
+  "kshp-35": [
+    "초급성",
+    "급성 간질환"
+  ],
+  "kshp-36": [
+    "간접열량측정",
+    "IC 가능하면"
+  ],
+  "kshp-38": [
+    "재급식",
+    "P·K·Mg"
+  ],
+  "kshp-34": [
+    "(구) AMA 1979",
+    "AMA 1979"
+  ],
+  "kshp-40": [
+    "prealbumin",
+    "알부민"
+  ],
+  "kshp-41": [
+    "Loperamide"
+  ],
+  "kshp-42": [
+    "B12",
+    "회장"
+  ],
+  "kshp-43": [
+    "야간 10–12",
+    "cyclic PN"
+  ],
+  "kshp-44": [
+    "Omeprazole"
+  ],
+  "kshp-45": [
+    "Crohn ·IBD 단백 1~1.5",
+    "단백 1~1.5"
+  ],
+  "kshp-37": [
+    "SOFA coagulation",
+    "platelet",
+    "≠ INR"
+  ],
+  "kshp-39": [
+    "NRS-2002",
+    "영양위험",
+    "high risk ≥5",
+    "NUTRIC",
+    "원 NUTRIC"
+  ],
+  "kshp-46": [
+    "과잉독성",
+    "수용성(특히 Vit C)",
+    "Vit C"
+  ],
+  "kshp-52": [
+    "DNR ≠ HPN",
+    "DNR ≠ HPN 적응"
+  ],
+  "kshp-47": [
+    "재급식",
+    "P·K·Mg"
+  ],
+  "kshp-48": [
+    "140~180",
+    "140–180"
+  ],
+  "kshp-49": [
+    "EFAD",
+    "triene:tetraene"
+  ],
+  "kshp-51": [
+    "가장 흔한 대사 합병증",
+    "대사-고혈당"
+  ],
+  "kshp-54": [
+    "Cu·Mn",
+    "담즙울체",
+    "파킨슨"
+  ],
+  "quizlet-pn-001": [
+    "임신성 과다구토",
+    "EN 실패/불가"
+  ],
+  "quizlet-pn-002": [
+    "혈전정맥염"
+  ],
+  "quizlet-pn-003": [
+    "가장 흔한 대사 합병증"
+  ],
+  "quizlet-pn-004": [
+    "140~180"
+  ],
+  "quizlet-pn-006": [
+    "디펩티드 = PN 안정성↑",
+    "디펩티벤",
+    "glutamine"
+  ],
+  "quizlet-pn-007": [
+    "iron dextran"
+  ],
+  "quizlet-pn-009": [
+    "성인 g/day",
+    "단위"
+  ],
+  "quizlet-pn-012": [
+    "3.4 kcal/g"
+  ],
+  "quizlet-pn-013": [
+    "3.4 kcal/g"
+  ],
+  "quizlet-pn-014": [
+    "비만 IBW 기준",
+    "≥2.0"
+  ],
+  "quizlet-pn-022": [
+    "자가관리 제한",
+    "PICC = 제거 쉬움"
+  ],
+  "quizlet-pn-024": [
+    "감염원 의심·확인 시에만 제거",
+    "정기 교체 X"
+  ],
+  "quizlet-pn-015": [
+    "고배출 누공",
+    ">500"
+  ],
+  "quizlet-pn-016": [
+    "EN 금기",
+    "PN 적응"
+  ],
+  "quizlet-pn-017": [
+    "중증 영양불량"
+  ],
+  "quizlet-pn-018": [
+    "지속 소장폐색",
+    "장폐색"
+  ],
+  "quizlet-pn-019": [
+    "Crohn",
+    "EN 실패/불가"
+  ],
+  "quizlet-pn-020": [
+    "Hang — TNA"
+  ],
+  "quizlet-pn-021": [
+    "PICC tip SVC"
+  ],
+  "quizlet-pn-023": [
+    "CXR 확인",
+    "대퇴 회피"
+  ],
+  "quizlet-pn-025": [
+    "대퇴 카테터",
+    "대퇴 회피"
+  ],
+  "quizlet-pn-026": [
+    "D10 + AA 3%",
+    "AA 3%"
+  ],
+  "quizlet-pn-027": [
+    "Ca–P 침전",
+    "AA 농도↑",
+    "용해도↑"
+  ],
+  "quizlet-pn-028": [
+    "표준 AA",
+    "AKI"
+  ],
+  "quizlet-pn-030": [
+    "EFAD",
+    "필수지방산 결핍"
+  ],
+  "quizlet-pn-031": [
+    "TG ≥400"
+  ],
+  "quizlet-pn-033": [
+    "Cu·Mn",
+    "담즙울체"
+  ],
+  "quizlet-pn-034": [
+    "알루미늄",
+    "≤5 μg/kg"
+  ],
+  "quizlet-pn-035": [
+    "파킨슨양",
+    "파킨슨"
+  ],
+  "quizlet-pn-036": [
+    "지용성",
+    "같다"
+  ],
+  "quizlet-pn-037": [
+    "수용성",
+    "더 높다"
+  ],
+  "quizlet-pn-038": [
+    "중위험",
+    "USP 797"
+  ],
+  "quizlet-pn-040": [
+    "creaming",
+    "재분산"
+  ],
+  "quizlet-pn-041": [
+    "PN→EN 중복",
+    "중복공급",
+    "고혈당"
+  ],
+  "quizlet-pn-042": [
+    "테타니",
+    "저Ca·테타니"
+  ],
+  "quizlet-pn-043": [
+    "고K",
+    "대사성 산증"
+  ],
+  "quizlet-pn-045": [
+    "triene:tetraene"
+  ],
+  "quizlet-pn-046": [
+    "propofol",
+    "고TG"
+  ],
+  "quizlet-pn-047": [
+    "TG ≥400"
+  ],
+  "quizlet-pn-048": [
+    "간 위험",
+    "주기 12–18"
+  ],
+  "quizlet-pn-049": [
+    "warfarin",
+    "Vit K"
+  ],
+  "quizlet-pn-050": [
+    "6시간마다"
+  ],
+  "quizlet-pn-051": [
+    "저혈당",
+    "급중단",
+    "rebound"
+  ],
+  "quizlet-pn-052": [
+    "알루미늄",
+    "≤5 μg/kg"
+  ],
+  "kshp-12": [
+    "질소평형",
+    "UUN + 4",
+    "N ="
+  ],
+  "kshp-14": [
+    "질소평형",
+    "양(+)",
+    "임신·성장·회복"
+  ],
+  "kshp-16": [
+    "Furtman",
+    "Cr·Cu·Mn·Zn",
+    "Se 없음"
+  ],
+  "kshp-02": [
+    "고혈당 유발",
+    "steroid",
+    "thiazide"
+  ],
+  "kshp-05": [
+    "alanine",
+    "glucose-alanine"
+  ],
+  "kshp-10": [
+    "청소율 MCT",
+    "capric",
+    "C10"
+  ],
+  "kshp-27": [
+    "성장평가",
+    "wasting",
+    "stunting"
+  ],
+  "quizlet-pn-032": [
+    "구조지질",
+    "Structolipid",
+    "MCFA/LCFA"
+  ],
+  "quizlet-pn-039": [
+    "ACD",
+    "수동 조제"
+  ],
+  "quizlet-pn-044": [
+    "Ca×P >55",
+    "전이성 석회화",
+    "고인산혈증"
+  ],
+  "quizlet-pn-008": [
+    "정맥영양"
+  ],
+  "quizlet-pn-010": [
+    "처방서",
+    "필수"
+  ],
+  "quizlet-pn-011": [
+    "라벨",
+    "염"
+  ],
+  "quizlet-iib-004": [
+    "티아민",
+    "thiamine",
+    "재급식"
+  ],
+  "quizlet-iib-011": [
+    "쇄골하",
+    "대퇴 회피"
+  ],
+  "quizlet-iib-014": [
+    "대사성 골",
+    "아미노산",
+    "고칼슘뇨"
+  ],
+  "quizlet-iib-019": [
+    "PPN",
+    "수분"
+  ],
+  "quizlet-iib-023": [
+    "출구",
+    "고름"
+  ],
+  "quizlet-iib-034": [
+    "CRBSI",
+    "클로르헥시딘",
+    "교육"
+  ],
+  "quizlet-iib-039": [
+    "망간",
+    "뇌",
+    "파킨슨"
+  ],
+  "quizlet-iib-045": [
+    "혈류감염",
+    "CRBSI"
+  ],
+  "quizlet-iib-048": [
+    "CLABSI",
+    "CLABSI(=CRBSI)"
+  ],
+  "quizlet-iib-051": [
+    "혈전",
+    "PICC",
+    "부종"
+  ],
+  "nbnsc-cnsc-sample-01": [
+    "중성지방",
+    "TG"
+  ],
+  "quizlet-home-ns-005": [
+    "망간",
+    "독성"
+  ],
+  "quizlet-home-ns-009": [
+    "미드라인",
+    "HPN"
+  ],
+  "quizlet-home-ns-010": [
+    "시작 전",
+    "HPN"
+  ],
+  "oe-crystal-home": [
+    "침전",
+    "Ca–P",
+    "결정"
+  ],
+  "oe-hypergly-assess": [
+    "고혈당",
+    "GIR"
+  ],
+  "rx-pn-indication-enteral": [
+    "적응증",
+    "경장"
+  ],
+  "rx-electrolyte-daily": [
+    "매일",
+    "전해질",
+    "모니터"
+  ],
+  "rx-cyclic-pn-night": [
+    "주기",
+    "야간"
+  ],
+  "rx-biliary-sludge": [
+    "담즙",
+    "슬러지"
+  ],
+  "rx-pnald-prevent": [
+    "과잉 열량",
+    "PNALD"
+  ],
+  "quizlet-pn-029": [
+    "BCAA",
+    "간경변",
+    "뇌증"
+  ],
+  "kshp-31": [
+    "AKI",
+    "ARF",
+    "기저질환",
+    "열량"
+  ],
+  "oep-bcscp-q-034": [
+    "냉장",
+    "2–8"
+  ],
+  "oep-bcscp-q-060": [
+    "Ca–P",
+    "gluconate",
+    "침전"
+  ],
+  "oep-bcscp-q-064": [
+    "고혈당",
+    "140~180"
+  ],
+  "oep-bcscp-q-093": [
+    "Ca–P",
+    "침전",
+    "gluconate"
+  ],
+  "nbnsc-cnsc-sample-02": [
+    "난치성"
+  ],
+  "nbnsc-cnsc-sample-03": [
+    "피부염",
+    "EFAD",
+    "필수지방"
+  ],
+  "nbnsc-cnsc-sample-06": [
+    "24시간",
+    "흡기 O₂",
+    "간접열량측정"
+  ],
+  "nbnsc-cnsc-sample-07": [
+    "140~180"
+  ],
+  "nbnsc-cnsc-sample-08": [
+    "칼륨과 인"
+  ],
+  "nbnsc-cnsc-sample-09": [
+    "저인산혈증"
+  ],
+  "nbnsc-cnsc-sample-11": [
+    "요중 질소 손실 감소"
+  ],
+  "quizlet-home-ns-002": [
+    "50%"
+  ],
+  "quizlet-home-ns-003": [
+    "6개월마다"
+  ],
+  "quizlet-home-ns-004": [
+    "HPN"
+  ],
+  "quizlet-home-ns-007": [
+    "HPN"
+  ],
+  "quizlet-home-ns-008": [
+    "당뇨병 또는 신장질환 환자"
+  ],
+  "quizlet-cnsc-practice-002": [
+    "180 mg/dL"
+  ],
+  "quizlet-cnsc-practice-003": [
+    "포도당"
+  ],
+  "quizlet-cnsc-practice-004": [
+    "아르기닌"
+  ],
+  "quizlet-cnsc-practice-005": [
+    "EFAD",
+    "필수지방"
+  ],
+  "quizlet-cnsc-practice-007": [
+    "AKI",
+    "CRRT"
+  ],
+  "quizlet-cnsc-practice-008": [
+    "신부전"
+  ],
+  "aspen-cnsc-001": [
+    "MCT"
+  ],
+  "aspen-cnsc-005": [
+    "위장관"
+  ],
+  "quizlet-nsr-015": [
+    "고형식을 입으로 잘 먹을 때"
+  ],
+  "quizlet-ss2-005": [
+    "가능한 한 빨리"
+  ],
+  "quizlet-ss2-007": [
+    "중증 영양불량"
+  ],
+  "quizlet-ss2-015": [
+    "24시간"
+  ],
+  "bcnsp-002": [
+    "prealbumin",
+    "반감기 2–3일"
+  ],
+  "bcnsp-024": [
+    "NRS 2002",
+    "NRS-2002"
+  ],
+  "bcnsp-026": [
+    "중환자",
+    "흡기 O₂",
+    "간접열량측정"
+  ],
+  "bcnsp-032": [
+    "알부민",
+    "최소 2개",
+    "근육량 감소"
+  ],
+  "bcnsp-038": [
+    "흡기 O₂",
+    "간접열량측정"
+  ],
+  "bcnsp-046": [
+    "중환자"
+  ],
+  "bcnsp-048": [
+    "칼로리 목표 설정을 위한 안정시 대사율 추정"
+  ],
+  "bcnsp-050": [
+    "안와 지방 패드와 삼두 피부두겹 평가"
+  ],
+  "bcnsp-053": [
+    "24시간"
+  ],
+  "bcnsp-060": [
+    "5%"
+  ],
+  "bcnsp-081": [
+    "측두근(temporalis) 부피"
+  ],
+  "medex-015": [
+    "키(m)² × 22",
+    "IBW"
+  ],
+  "medex-016": [
+    "간접열량",
+    "흡기 O₂"
+  ],
+  "medex-017": [
+    "DNR ≠ HPN"
+  ],
+  "medex-019": [
+    "HPN",
+    "cyclic"
+  ],
+  "cnsc-nutrition-support-001": [
+    "최소 2개"
+  ],
+  "cnsc-nutrition-support-002": [
+    "알부민"
+  ],
+  "cnsc-nutrition-support-003": [
+    "15%"
+  ],
+  "cnsc-nutrition-support-004": [
+    "wasting"
+  ],
+  "cnsc-nutrition-support-005": [
+    "알부민",
+    "반감기 2–3일",
+    "prealbumin"
+  ],
+  "cnsc-nutrition-support-006": [
+    "27.8 kg/m2"
+  ],
+  "cnsc-nutrition-support-007": [
+    "중환자",
+    "NUTRIC",
+    "NRS 2002"
+  ],
+  "cnsc-nutrition-support-008": [
+    "145 mEq"
+  ],
+  "cnsc-nutrition-support-009": [
+    "10%"
+  ],
+  "cnsc-nutrition-support-010": [
+    "과잉 수분의 무게를 추정해 빼고 건조 체중을 구한다"
+  ],
+  "cnsc-nutrition-support-011": [
+    "내장 단백 수치에 영향을 주는 염증 정도를 가늠한다"
+  ],
+  "cnsc-nutrition-support-012": [
+    "삼두근과 안와 부위의 함몰과 헐거운 피부"
+  ],
+  "cnsc-nutrition-support-013": [
+    "표현형 기준 최소 하나와 원인 기준 최소 하나"
+  ],
+  "cnsc-nutrition-support-014": [
+    "24시간"
+  ],
+  "cnsc-nutrition-support-015": [
+    "5%"
+  ],
+  "cnsc-nutrition-support-016": [
+    "알부민",
+    "반감기 2–3일",
+    "prealbumin"
+  ],
+  "cnsc-nutrition-support-017": [
+    "만성질환"
+  ],
+  "cnsc-nutrition-support-018": [
+    "기능 상태 저하"
+  ],
+  "cnsc-nutrition-support-019": [
+    "24시간"
+  ],
+  "cnsc-nutrition-support-020": [
+    "영양불량"
+  ],
+  "cnsc-nutrition-support-101": [
+    "중증 영양불량"
+  ],
+  "cnsc-nutrition-support-102": [
+    "and"
+  ],
+  "cnsc-nutrition-support-103": [
+    "5~7일"
+  ],
+  "cnsc-nutrition-support-104": [
+    "근육량 감소"
+  ],
+  "cnsc-nutrition-support-105": [
+    "PES(Problem, Etiology, Signs/Symptoms) 진술"
+  ],
+  "cnsc-nutrition-support-106": [
+    "NRS 2002",
+    "NRS-2002"
+  ],
+  "cnsc-nutrition-support-107": [
+    "Short Physical Performance Battery (SPPB)"
+  ],
+  "cnsc-nutrition-support-108": [
+    "wasting",
+    "stunting"
+  ],
+  "cnsc-nutrition-support-109": [
+    "알부민"
+  ],
+  "cnsc-nutrition-support-111": [
+    "알부민",
+    "NRS 2002",
+    "NRS-2002"
+  ],
+  "cnsc-nutrition-support-021": [
+    "30 kcal/kg"
+  ],
+  "cnsc-nutrition-support-022": [
+    "1.2",
+    "2.5",
+    "중환자"
+  ],
+  "cnsc-nutrition-support-023": [
+    "3.4 kcal"
+  ],
+  "cnsc-nutrition-support-024": [
+    "2.0 kcal"
+  ],
+  "cnsc-nutrition-support-025": [
+    "15 mL",
+    "100 mL/kg"
+  ],
+  "cnsc-nutrition-support-026": [
+    "중환자",
+    "신부전"
+  ],
+  "cnsc-nutrition-support-027": [
+    "간접열량측정"
+  ],
+  "cnsc-nutrition-support-028": [
+    "IBW",
+    "중환자",
+    "키(m)² × 22"
+  ],
+  "cnsc-nutrition-support-029": [
+    "TG ≥400"
+  ],
+  "cnsc-nutrition-support-030": [
+    "4 kcal"
+  ],
+  "cnsc-nutrition-support-036": [
+    "탄수화물"
+  ],
+  "cnsc-nutrition-support-037": [
+    "3.4",
+    "6.2"
+  ],
+  "allaccess-011": [
+    "Glucose"
+  ],
+  "allaccess-012": [
+    "98%"
+  ],
+  "cnsc-nutrition-support-061": [
+    "중환자"
+  ],
+  "cnsc-nutrition-support-064": [
+    "반요소(펩타이드 기반) 또는 요소 제제"
+  ],
+  "cnsc-nutrition-support-068": [
+    "방사선"
+  ],
+  "cnsc-nutrition-support-069": [
+    "가능하면"
+  ],
+  "cnsc-nutrition-support-070": [
+    "2시간"
+  ],
+  "cnsc-nutrition-support-072": [
+    "1.2",
+    "24시간",
+    "필터 (현행)"
+  ],
+  "cnsc-nutrition-support-074": [
+    "볼루스"
+  ],
+  "cnsc-nutrition-support-076": [
+    "2.0 kcal"
+  ],
+  "cnsc-nutrition-support-079": [
+    "패혈증"
+  ],
+  "allaccess-001": [
+    "고유출 장피부 누공"
+  ],
+  "allaccess-003": [
+    "지속 주입으로 되돌리고 내성에 따라 속도를 서서히 올린다"
+  ],
+  "allaccess-006": [
+    "1.2",
+    "필터 (현행)",
+    "단일 1.2 μm"
+  ],
+  "bcnsp-004": [
+    "TG ≥400"
+  ],
+  "bcnsp-005": [
+    "4%"
+  ],
+  "bcnsp-009": [
+    "염화나트륨을 늘리고 아세트산나트륨을 줄인다"
+  ],
+  "bcnsp-012": [
+    "0.11 g/kg"
+  ],
+  "bcnsp-014": [
+    "10%"
+  ],
+  "bcnsp-017": [
+    "kcal"
+  ],
+  "bcnsp-030": [
+    "4~5 mg/kg/min",
+    "GIR"
+  ],
+  "bcnsp-036": [
+    "10%"
+  ],
+  "bcnsp-043": [
+    "TG ≥400"
+  ],
+  "bcnsp-057": [
+    "중환자",
+    "150:1"
+  ],
+  "bcnsp-066": [
+    "150"
+  ],
+  "bcnsp-088": [
+    "EPA"
+  ],
+  "bcnsp-090": [
+    "1.5 g/kg"
+  ],
+  "cnsc-nutrition-support-041": [
+    "900 mOsm/L"
+  ],
+  "cnsc-nutrition-support-042": [
+    "10%"
+  ],
+  "cnsc-nutrition-support-043": [
+    "900",
+    "900 mOsm/L"
+  ],
+  "cnsc-nutrition-support-044": [
+    "HPN",
+    "미드라인"
+  ],
+  "cnsc-nutrition-support-045": [
+    "1.2",
+    "필터"
+  ],
+  "cnsc-nutrition-support-046": [
+    "Ca–P",
+    "cysteine",
+    "gluconate"
+  ],
+  "cnsc-nutrition-support-047": [
+    "4~5 mg/kg/min",
+    "GIR"
+  ],
+  "cnsc-nutrition-support-048": [
+    "CLABSI"
+  ],
+  "cnsc-nutrition-support-049": [
+    "간질환",
+    "담즙울체",
+    "담즙정체"
+  ],
+  "cnsc-nutrition-support-050": [
+    "고혈당",
+    "140~180",
+    "야간 10–12"
+  ],
+  "cnsc-nutrition-support-052": [
+    "재급식",
+    "고혈당",
+    "저인산혈증"
+  ],
+  "cnsc-nutrition-support-053": [
+    "24시간"
+  ],
+  "cnsc-nutrition-support-055": [
+    "24시간"
+  ],
+  "cnsc-nutrition-support-059": [
+    "0.22",
+    "필터"
+  ],
+  "cnsc-nutrition-support-060": [
+    "Zn 결핍 = 피부염",
+    "Zn"
+  ],
+  "allaccess-005": [
+    "CLABSI",
+    "TG ≥400",
+    "CLABSI(=CRBSI)"
+  ],
+  "allaccess-007": [
+    "GIR",
+    "mg/kg/min"
+  ],
+  "allaccess-008": [
+    "0.08"
+  ],
+  "allaccess-009": [
+    "2.5 g/kg"
+  ],
+  "allaccess-010": [
+    "day"
+  ],
+  "hoag-faq-001": [
+    "위장관"
+  ],
+  "hoag-faq-002": [
+    "고배출"
+  ],
+  "bcnsp-041": [
+    "Glutamine"
+  ],
+  "bcnsp-051": [
+    "70%"
+  ],
+  "bcnsp-061": [
+    "아미노산"
+  ],
+  "bcnsp-070": [
+    "위장관"
+  ],
+  "bcnsp-075": [
+    "장쇄지방산이 미토콘드리아막을 지나 beta-oxidation에 들어가도록 운반을 돕는다"
+  ],
+  "bcnsp-083": [
+    "4–5",
+    "CRRT"
+  ],
+  "bcnsp-093": [
+    "140~180"
+  ],
+  "bcnsp-018": [
+    "Hypocalcemia"
+  ],
+  "bcnsp-054": [
+    "Sodium"
+  ],
+  "bcnsp-062": [
+    "Hypomagnesemia"
+  ],
+  "bcnsp-074": [
+    "10 mEq"
+  ],
+  "bcnsp-082": [
+    "24시간"
+  ],
+  "bcnsp-010": [
+    "피부염",
+    "Zn 결핍 = 피부염",
+    "Zn"
+  ],
+  "bcnsp-029": [
+    "알부민",
+    "EFAD",
+    "필수지방"
+  ],
+  "bcnsp-039": [
+    "Wernicke",
+    "thiamine"
+  ],
+  "bcnsp-052": [
+    "Vitamin B12"
+  ],
+  "bcnsp-076": [
+    "HPN",
+    "thiamine",
+    "Zn 결핍 = 피부염"
+  ],
+  "bcnsp-007": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "bcnsp-021": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "bcnsp-031": [
+    "CLABSI(=CRBSI)",
+    "CLABSI"
+  ],
+  "bcnsp-035": [
+    "2시간"
+  ],
+  "cnsc-nutrition-support-081": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "cnsc-nutrition-support-082": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "cnsc-nutrition-support-083": [
+    "20 kcal/kg"
+  ],
+  "cnsc-nutrition-support-084": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "cnsc-nutrition-support-085": [
+    "180 mg/dL"
+  ],
+  "cnsc-nutrition-support-086": [
+    "1.2 mg/dL"
+  ],
+  "cnsc-nutrition-support-087": [
+    "주 1회",
+    "140~180"
+  ],
+  "cnsc-nutrition-support-088": [
+    "저칼륨혈증과 저칼슘혈증"
+  ],
+  "cnsc-nutrition-support-089": [
+    "TG ≥400"
+  ],
+  "cnsc-nutrition-support-090": [
+    "140~180",
+    "TG ≥400"
+  ],
+  "bcnsp-003": [
+    "1.2",
+    "IBW",
+    "2.5"
+  ],
+  "bcnsp-011": [
+    "20 kcal/kg"
+  ],
+  "bcnsp-013": [
+    "고배출"
+  ],
+  "bcnsp-019": [
+    "1.2",
+    "0.5",
+    "필터 (현행)"
+  ],
+  "bcnsp-028": [
+    "75%"
+  ],
+  "bcnsp-034": [
+    "2.5",
+    "0.6",
+    "1.5~2.0"
+  ],
+  "bcnsp-037": [
+    "Zn 결핍 = 피부염",
+    "Zn",
+    "Cu"
+  ],
+  "bcnsp-044": [
+    "24시간"
+  ],
+  "bcnsp-056": [
+    "25 kcal/kg"
+  ],
+  "bcnsp-063": [
+    "14 kcal/kg"
+  ],
+  "bcnsp-067": [
+    "thiamine"
+  ],
+  "bcnsp-077": [
+    "15 mL",
+    "100 mL/kg"
+  ],
+  "bcnsp-091": [
+    "48시간"
+  ],
+  "bcnsp-027": [
+    "Methotrexate"
+  ],
+  "bcnsp-040": [
+    "경장영양"
+  ],
+  "bcnsp-049": [
+    "Cu 결핍",
+    "Omeprazole",
+    "Zn 결핍 = 피부염"
+  ],
+  "bcnsp-058": [
+    "Loperamide"
+  ],
+  "bcnsp-065": [
+    "무지방 또는 초저 장쇄지방 제제에 MCT를 보충한다"
+  ],
+  "bcnsp-071": [
+    "2시간"
+  ],
+  "bcnsp-073": [
+    "평생 엄격한 글루텐 프리 식이"
+  ],
+  "bcnsp-079": [
+    "EPA",
+    "DHA"
+  ],
+  "bcnsp-015": [
+    "180 mg/dL"
+  ],
+  "bcnsp-025": [
+    "24시간"
+  ],
+  "bcnsp-033": [
+    "칼륨(Potassium)"
+  ],
+  "bcnsp-047": [
+    "Mn"
+  ],
+  "bcnsp-069": [
+    "Loperamide"
+  ],
+  "bcnsp-085": [
+    "재급식",
+    "간질환",
+    "저인산혈증"
+  ],
+  "bcnsp-087": [
+    "24시간"
+  ],
+  "bcnsp-094": [
+    "2–3",
+    "주 1회"
+  ],
+  "bcnsp-099": [
+    "EFAD",
+    "필수지방"
+  ],
+  "cnsc-nutrition-support-091": [
+    "2.5 g/kg"
+  ],
+  "cnsc-nutrition-support-093": [
+    "1.5 g/kg"
+  ],
+  "cnsc-nutrition-support-094": [
+    "경장영양"
+  ],
+  "cnsc-nutrition-support-099": [
+    "Zn 결핍 = 피부염",
+    "Zn",
+    "Cu"
+  ],
+  "cnsc-nutrition-support-100": [
+    "탄수화물"
+  ],
+  "bcnsp-023": [
+    "Ca–P",
+    "gluconate",
+    "침전"
+  ],
+  "bcnsp-059": [
+    "인산염"
+  ],
+  "bcnsp-064": [
+    "철 덱스트란"
+  ],
+  "bcnsp-068": [
+    "1.2",
+    "0.22",
+    "Ca–P"
+  ],
+  "bcnsp-072": [
+    "0.22",
+    "Ca–P",
+    "필터 (구)"
+  ],
+  "bcnsp-086": [
+    "0.22",
+    "필터 (구)"
+  ],
+  "bcnsp-097": [
+    "Ca–P",
+    "더 높다",
+    "gluconate"
+  ],
+  "bcnsp-045": [
+    "CLABSI"
+  ],
+  "bcnsp-080": [
+    "경장영양의 안전한 처방·조제·투여를 표준화해 오류를 예방한다"
+  ],
+  "bcnsp-084": [
+    "2.7"
+  ],
+  "bcnsp-089": [
+    "60%"
+  ],
+  "bcnsp-092": [
+    "경장영양"
+  ],
+  "bcnsp-095": [
+    "ASPEN"
+  ],
+  "bcnsp-100": [
+    "경장·정맥영양을 다학제로 감독해 환자 결과와 안전을 최적화한다"
+  ],
+  "cnsc-nutrition-support-112": [
+    "무균조제"
+  ],
+  "cnsc-nutrition-support-114": [
+    "필요한"
+  ],
+  "cnsc-nutrition-support-116": [
+    "목표 영양 도달 시간이 줄고 급식 중단이 적어진다"
+  ],
+  "cnsc-nutrition-support-119": [
+    "잘 설계된 무작위 대조 시험"
+  ],
+  "cnsc-nutrition-support-121": [
+    "전문실무제공자"
+  ],
+  "cnsc-nutrition-support-122": [
+    "근거기반실무(EBP) 삼요소"
+  ],
+  "cnsc-nutrition-support-123": [
+    "USP"
+  ],
+  "medex-001": [
+    "6.1",
+    "PICC",
+    "24시간"
+  ],
+  "medex-002": [
+    "6.1",
+    "24시간"
+  ],
+  "medex-003": [
+    "Na"
+  ],
+  "medex-004": [
+    "dextrose"
+  ],
+  "medex-006": [
+    "고혈당",
+    "GIR"
+  ],
+  "medex-007": [
+    "영양 위험"
+  ],
+  "medex-008": [
+    "고령♀ 0.45"
+  ],
+  "medex-009": [
+    "dextrose"
+  ],
+  "medex-010": [
+    "acetate"
+  ],
+  "medex-011": [
+    "Cu·Mn",
+    "담즙울체"
+  ],
+  "medex-012": [
+    "Zn 결핍 = 피부염",
+    "Zn"
+  ],
+  "medex-013": [
+    "기아성",
+    "콰시오커"
+  ],
+  "rxk-1_1-2": [
+    "수주에서 수개월에 걸쳐 발생한다"
+  ],
+  "rxk-1_1-3": [
+    "알부민"
+  ],
+  "rxk-1_1-4": [
+    "야간 10–12",
+    "cyclic PN"
+  ],
+  "rxk-1_1-5": [
+    "야간 10–12",
+    "cyclic PN"
+  ],
+  "rxk-1_2-1": [
+    "알부민"
+  ],
+  "rxk-1_2-2": [
+    "알부민"
+  ],
+  "rxk-1_2-3": [
+    "패혈증"
+  ],
+  "rxk-1_2-4": [
+    "췌장염"
+  ],
+  "rxk-1_2-5": [
+    "kwashiorkor"
+  ],
+  "rxk-1_3-1": [
+    "삼두근 피부두겹 둘레"
+  ],
+  "rxk-1_3-2": [
+    "장기 변화"
+  ],
+  "rxk-1_3-3": [
+    "알부민",
+    "반감기 2–3일",
+    "prealbumin"
+  ],
+  "rxk-1_3-4": [
+    "6.2"
+  ],
+  "rxk-1_3-5": [
+    "질소평형"
+  ],
+  "rxk-1_3-6": [
+    "스트레스"
+  ],
+  "rxk-1_3-7": [
+    "1–2"
+  ],
+  "rxk-1_3-8": [
+    "스트레스"
+  ],
+  "rxk-1_4-1": [
+    "폐질환"
+  ],
+  "rxk-1_4-4": [
+    "영양소"
+  ],
+  "rxk-1_4-5": [
+    "모두 해당"
+  ],
+  "rxk-2_1-1": [
+    "MCT"
+  ],
+  "rxk-2_1-3": [
+    "1 kcal"
+  ],
+  "rxk-2_1-4": [
+    "삼투압"
+  ],
+  "rxk-2_1-5": [
+    "간질환"
+  ],
+  "rxk-2_2-1": [
+    "비위관"
+  ],
+  "rxk-2_2-2": [
+    "공장루"
+  ],
+  "rxk-2_2-3": [
+    "볼루스"
+  ],
+  "rxk-2_3-5": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "rxk-2_3-6": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "rxk-3_1-1": [
+    "모두 해당"
+  ],
+  "rxk-3_1-2": [
+    "모두 해당"
+  ],
+  "rxk-3_1-3": [
+    "신부전"
+  ],
+  "rxk-3_1-4": [
+    "30 kcal/kg"
+  ],
+  "rxk-3_1-6": [
+    "신장질환"
+  ],
+  "rxk-3_1-7": [
+    "간질환"
+  ],
+  "rxk-3_2-1": [
+    "1.2",
+    "필터 (현행)",
+    "단일 1.2 μm"
+  ],
+  "rxk-3_2-2": [
+    "포도당 농도"
+  ],
+  "rxk-3_2-3": [
+    "900 mOsm/L"
+  ],
+  "rxk-3_2-5": [
+    "1.2",
+    "24시간",
+    "1.2 μm"
+  ],
+  "rxk-3_2-6": [
+    "야간 10–12",
+    "cyclic PN"
+  ],
+  "rxk-3_3-1": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "rxk-3_3-2": [
+    "담즙정체"
+  ],
+  "rxk-3_3-3": [
+    "기저 원인"
+  ],
+  "rxk-3_3-4": [
+    "저칼슘혈증"
+  ],
+  "rxk-3_3-6": [
+    "나트륨"
+  ],
+  "rxk-3_3-7": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "rxk-4_1-1": [
+    "HPN"
+  ],
+  "rxk-4_1-2": [
+    "24시간"
+  ],
+  "rxk-4_1-3": [
+    "100%"
+  ],
+  "rxk-4_1-5": [
+    "1.2",
+    "필터 (현행)",
+    "단일 1.2 μm"
+  ],
+  "rxk-4_1-6": [
+    "Cu"
+  ],
+  "quizlet-iib-001": [
+    "알루미늄"
+  ],
+  "quizlet-iib-002": [
+    "야간 10–12",
+    "cyclic PN"
+  ],
+  "quizlet-iib-003": [
+    "EPA",
+    "간질환",
+    "담즙울체"
+  ],
+  "quizlet-iib-005": [
+    "고혈당",
+    "140~180"
+  ],
+  "quizlet-iib-006": [
+    "90%"
+  ],
+  "quizlet-iib-007": [
+    "2시간"
+  ],
+  "quizlet-iib-008": [
+    "TG ≥400"
+  ],
+  "quizlet-iib-009": [
+    "고혈당",
+    "140~180"
+  ],
+  "quizlet-iib-010": [
+    "신부전",
+    "140~180"
+  ],
+  "quizlet-iib-012": [
+    "벽재성 혈전(mural thrombus)"
+  ],
+  "quizlet-iib-013": [
+    "1 mEq"
+  ],
+  "quizlet-iib-015": [
+    "15 mg/kg"
+  ],
+  "quizlet-iib-016": [
+    "재급식",
+    "HPN",
+    "저인산혈증"
+  ],
+  "quizlet-iib-017": [
+    "아세트산염",
+    "acetate"
+  ],
+  "quizlet-iib-020": [
+    "중환자",
+    "7.3",
+    "신부전"
+  ],
+  "quizlet-iib-021": [
+    "PICC",
+    "PICC tip SVC"
+  ],
+  "quizlet-iib-022": [
+    "110%"
+  ],
+  "quizlet-iib-024": [
+    "100 mEq"
+  ],
+  "quizlet-iib-025": [
+    "70%"
+  ],
+  "quizlet-iib-026": [
+    "증후군"
+  ],
+  "quizlet-iib-027": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "quizlet-iib-028": [
+    "고혈당",
+    "140~180"
+  ],
+  "quizlet-iib-029": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "quizlet-iib-030": [
+    "중환자",
+    "7.3"
+  ],
+  "quizlet-iib-031": [
+    "Crohn"
+  ],
+  "quizlet-iib-032": [
+    "Ca–P",
+    "gluconate",
+    "침전"
+  ],
+  "quizlet-iib-033": [
+    "Ca–P",
+    "gluconate",
+    "침전"
+  ],
+  "quizlet-iib-035": [
+    "30 kcal/kg"
+  ],
+  "quizlet-iib-036": [
+    "2.5",
+    "중환자",
+    "Crohn"
+  ],
+  "quizlet-iib-037": [
+    "카테터"
+  ],
+  "quizlet-iib-038": [
+    "대사성 산증"
+  ],
+  "quizlet-iib-040": [
+    "골밀도"
+  ],
+  "quizlet-iib-041": [
+    "2 mg/dL"
+  ],
+  "quizlet-iib-042": [
+    "야간 10–12",
+    "cyclic PN"
+  ],
+  "quizlet-iib-043": [
+    "적신호 사건(sentinel event)"
+  ],
+  "quizlet-iib-044": [
+    "카테터"
+  ],
+  "quizlet-iib-046": [
+    "가이드와이어로 카테터를 교체한다"
+  ],
+  "quizlet-iib-047": [
+    "7 g/kg"
+  ],
+  "quizlet-iib-049": [
+    "EPA"
+  ],
+  "quizlet-iib-050": [
+    "6시간"
+  ],
+  "quizlet-a14pn-001": [
+    "5%"
+  ],
+  "quizlet-a14pn-002": [
+    "7 mmol"
+  ],
+  "quizlet-a14pn-003": [
+    "Hyperglycemia"
+  ],
+  "quizlet-a14pn-004": [
+    "Iron dextran"
+  ],
+  "quizlet-a14pn-005": [
+    "Calculation of PN dosages"
+  ],
+  "quizlet-a14pn-006": [
+    "50%"
+  ],
+  "quizlet-a14pn-007": [
+    "Hang — TNA",
+    "Hang — ILE"
+  ],
+  "quizlet-a14pn-008": [
+    "24 h"
+  ],
+  "quizlet-a14pn-009": [
+    "TG ≥400"
+  ],
+  "quizlet-a14pn-010": [
+    "5.3",
+    "6.5",
+    "0.22"
+  ],
+  "quizlet-a14pn-011": [
+    "25 kcal/kg"
+  ],
+  "quizlet-a14pn-012": [
+    "Crohn"
+  ],
+  "quizlet-a14pn-013": [
+    "Enteral"
+  ],
+  "quizlet-a14pn-014": [
+    "severely malnourished."
+  ],
+  "quizlet-a14pn-015": [
+    "for"
+  ],
+  "quizlet-ach-001": [
+    "Offering 6 small, low-fat meals daily"
+  ],
+  "quizlet-ach-002": [
+    "All of the above."
+  ],
+  "quizlet-ach-003": [
+    "Sodium"
+  ],
+  "quizlet-ach-004": [
+    "75%"
+  ],
+  "quizlet-ach-005": [
+    "흡기 O₂",
+    "간접열량측정"
+  ],
+  "quizlet-ach-006": [
+    "Hang — TNA",
+    "Hang — ILE"
+  ],
+  "quizlet-ach-007": [
+    "IBW",
+    "2.5",
+    "7.3"
+  ],
+  "quizlet-ach-008": [
+    "CO2"
+  ],
+  "quizlet-ach-009": [
+    "acid"
+  ],
+  "quizlet-ach-010": [
+    "Buildup of pyruvate."
+  ],
+  "quizlet-ach-011": [
+    "human"
+  ],
+  "quizlet-ach-012": [
+    "AKI"
+  ],
+  "quizlet-ach-013": [
+    "Ca–P",
+    "gluconate",
+    "침전"
+  ],
+  "quizlet-ach-014": [
+    "Cyclooxygenase"
+  ],
+  "quizlet-ach-015": [
+    "Propofol",
+    "propofol"
+  ],
+  "quizlet-m2b-001": [
+    "acetate"
+  ],
+  "quizlet-m2b-002": [
+    "ILE",
+    "야간 10–12",
+    "cyclic PN"
+  ],
+  "quizlet-m2b-003": [
+    "EPA",
+    "담즙울체",
+    "Cu·Mn"
+  ],
+  "quizlet-m2b-004": [
+    "Thiamin"
+  ],
+  "quizlet-m2b-005": [
+    "Hypertonic hyponatremia"
+  ],
+  "quizlet-m2b-006": [
+    "Mn"
+  ],
+  "quizlet-m2b-007": [
+    "2–3",
+    "3–4",
+    "1–2 h"
+  ],
+  "quizlet-m2b-008": [
+    "Pancreatitis"
+  ],
+  "quizlet-m2b-009": [
+    "GIR",
+    "4~5 mg/kg/min"
+  ],
+  "quizlet-m2b-010": [
+    "EPA"
+  ],
+  "quizlet-m2b-011": [
+    "쇄골하"
+  ],
+  "quizlet-m2b-012": [
+    "mural thrombus."
+  ],
+  "quizlet-m2b-013": [
+    "phenytoin"
+  ],
+  "quizlet-m2b-014": [
+    "Ca–P",
+    "야간 10–12",
+    "1 g/kg/d"
+  ],
+  "quizlet-m2b-015": [
+    "oral"
+  ],
+  "quizlet-m2b-016": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "quizlet-m2b-017": [
+    "acetate"
+  ],
+  "quizlet-m2b-018": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "quizlet-m2b-019": [
+    "900",
+    "ILE",
+    "900 mOsm/L"
+  ],
+  "quizlet-m2b-020": [
+    "7.3",
+    "acetate"
+  ],
+  "quizlet-m2b-021": [
+    "EPA"
+  ],
+  "quizlet-m2b-022": [
+    "EPA"
+  ],
+  "quizlet-m2b-023": [
+    "Hang — TNA",
+    "Hang — ILE"
+  ],
+  "quizlet-m2b-024": [
+    "ILE"
+  ],
+  "quizlet-m2b-025": [
+    "phenytoin"
+  ],
+  "quizlet-m2b-026": [
+    "catheter"
+  ],
+  "quizlet-m2b-027": [
+    "Pinch-off syndrome"
+  ],
+  "quizlet-m2b-028": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "quizlet-m2b-029": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "quizlet-m2b-030": [
+    "Hypomagnesemia"
+  ],
+  "quizlet-m2b-031": [
+    "Mn"
+  ],
+  "quizlet-m2b-032": [
+    "7.3",
+    "acetate"
+  ],
+  "quizlet-m2b-033": [
+    "bone mineral density."
+  ],
+  "quizlet-m2b-034": [
+    "Crohn"
+  ],
+  "quizlet-m2b-035": [
+    "담즙울체",
+    "Cu·Mn",
+    "cyclic PN"
+  ],
+  "quizlet-m2b-036": [
+    "EPA",
+    "ILE",
+    "야간 10–12"
+  ],
+  "quizlet-m2b-037": [
+    "ILE"
+  ],
+  "quizlet-m2b-038": [
+    "sentinel event."
+  ],
+  "quizlet-m2b-039": [
+    "fibrin sheath formation."
+  ],
+  "quizlet-m2b-040": [
+    "EPA"
+  ],
+  "quizlet-m2b-041": [
+    "EPA"
+  ],
+  "quizlet-m2b-042": [
+    "Catheter-related bloodstream infection"
+  ],
+  "quizlet-m2b-043": [
+    "Elevated phosphate."
+  ],
+  "quizlet-m2b-044": [
+    "Hang — TNA",
+    "Hang — ILE"
+  ],
+  "quizlet-m2b-045": [
+    "24 h",
+    "TG ≥400"
+  ],
+  "quizlet-m2b-046": [
+    "ILE"
+  ],
+  "quizlet-m2b-047": [
+    "EPA"
+  ],
+  "quizlet-m2b-048": [
+    "고혈당",
+    "CLABSI"
+  ],
+  "quizlet-m2b-049": [
+    "2.5",
+    "ILE",
+    "Crohn"
+  ],
+  "quizlet-m2b-050": [
+    "PICC",
+    "PICC tip SVC"
+  ],
+  "quizlet-m2b-051": [
+    "900",
+    "ILE",
+    "TG ≥400"
+  ],
+  "quizlet-m4-001": [
+    "140~180"
+  ],
+  "quizlet-m4-002": [
+    "insulin"
+  ],
+  "quizlet-m4-003": [
+    "respiratory acidosis."
+  ],
+  "quizlet-m4-004": [
+    "1.2 g/kg"
+  ],
+  "quizlet-m4-005": [
+    "EPA"
+  ],
+  "quizlet-m4-006": [
+    "근육"
+  ],
+  "quizlet-m4-007": [
+    "ILE"
+  ],
+  "quizlet-m4-008": [
+    "azotemia."
+  ],
+  "quizlet-m4-009": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ],
+  "quizlet-m4-010": [
+    "ILE",
+    "EFAD"
+  ],
+  "quizlet-m4-011": [
+    "Human"
+  ],
+  "quizlet-m4-012": [
+    "50%"
+  ],
+  "quizlet-m4-013": [
+    "ILE"
+  ],
+  "quizlet-m4-014": [
+    "difference"
+  ],
+  "quizlet-m4-015": [
+    "thiamine"
+  ],
+  "quizlet-ss2-009": [
+    "for"
+  ],
+  "quizlet-cna-001": [
+    "Cu"
+  ],
+  "quizlet-cna-002": [
+    "ILE",
+    "Hang — TNA",
+    "Hang — ILE"
+  ],
+  "quizlet-cna-003": [
+    "2%"
+  ],
+  "quizlet-cna-004": [
+    "80%"
+  ],
+  "quizlet-cna-005": [
+    "10%"
+  ],
+  "quizlet-cna-006": [
+    "Hollowing depression of the temporalis muscle"
+  ],
+  "quizlet-cna-007": [
+    "Lipolysis"
+  ],
+  "quizlet-cna-008": [
+    "NUTRIC",
+    "wasting",
+    "NRS 2002"
+  ],
+  "quizlet-cna-009": [
+    "Weight"
+  ],
+  "quizlet-cna-010": [
+    "Albumin"
+  ],
+  "quizlet-cna-011": [
+    "알부민",
+    "2.1",
+    "7.2"
+  ],
+  "quizlet-cna-012": [
+    "2.5",
+    "0.5"
+  ],
+  "quizlet-cna-013": [
+    "cysteine"
+  ],
+  "quizlet-cna-014": [
+    "day"
+  ],
+  "quizlet-cna-015": [
+    "Amylase"
+  ],
+  "quizlet-cp-005": [
+    "glutamine"
+  ],
+  "quizlet-cp-006": [
+    "Glucagon"
+  ],
+  "quizlet-cp-007": [
+    "단백"
+  ],
+  "quizlet-cp-011": [
+    "알부민",
+    "반감기 2–3일",
+    "prealbumin"
+  ],
+  "quizlet-cp-014": [
+    "15 mL"
+  ],
+  "quizlet-cp-015": [
+    "근육"
+  ],
+  "nbnsc-cnsc-sample-05": [
+    "Zn 결핍 = 피부염",
+    "Zn",
+    "Cu"
+  ],
+  "quizlet-cnsc-practice-006": [
+    "TG ≥400"
+  ],
+  "allaccess-002": [
+    "핵심"
+  ],
+  "bcnsp-008": [
+    "24시간"
+  ],
+  "rxk-1_1-1": [
+    "핵심"
+  ],
+  "rxk-3_1-5": [
+    "핵심"
+  ],
+  "rxk-3_2-4": [
+    "2–3"
+  ],
+  "rxk-4_1-4": [
+    "핵심"
+  ],
+  "rxk-4_1-7": [
+    "핵심"
+  ],
+  "quizlet-iib-018": [
+    "재급식",
+    "저인산혈증",
+    "thiamine"
+  ]
+};
+
+function normTxt(s){
+  let t = String(s||"")
+    .replace(/[₀₁₂₃₄₅₆₇₈₉]/g, m => "0123456789"["₀₁₂₃₄₅₆₇₈₉".indexOf(m)])
+    .replace(/[·•∙⋅]/g, " ")
+    .replace(/[–—−]/g, "-")
+    .replace(/~/g, "-")
+    .replace(/[²]/g, "2")
+    .replace(/[μµ]/g, "u")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+  // Korean ↔ core aliases so quiz stems match HTML marks
+  const aliases = [
+    [/크론병?/g, "crohn"],
+    [/불내성/g, "실패"],
+    [/경장영양/g, "en"],
+    [/정맥영양/g, "pn"],
+    [/티아민|vitamin b1|vit\.?\s*b1/g, "thiamine"],
+    [/시스테인/g, "cysteine"],
+    [/구리/g, "cu"],
+    [/망간/g, "mn"],
+    [/셀레늄/g, "se"],
+    [/아연/g, "zn"],
+  ];
+  aliases.forEach(([re, rep])=>{ t = t.replace(re, rep); });
+  return t;
+}
+function needlesFromQuestion(q){
+  const out = [];
+  const push = (t, w)=>{
+    const s = String(t||"").trim();
+    if(s.length < 2) return;
+    out.push({t:s, n:normTxt(s), w});
+  };
+  // CORE_HINTS beat generic q.needle (avoids GIR/1.2/고혈당 landing on wrong row)
+  const hints = CORE_HINTS[q.id] || [];
+  hints.forEach(t=>push(t, 240));
+  if(q.needle) push(q.needle, hints.length ? 100 : 200);
+  const ans = (q.choices && q.choices[q.answer] != null) ? String(q.choices[q.answer]) : "";
+  if(ans){
+    push(ans, 120);
+    const skipFrag = /^(kg|day|d|h|hr|g|mg|ml|l|um|μm|kcal|min|및|와|and|the|of)$/i;
+    ans.split(/[·,\/]| 와 | 및 | and |·/).forEach(p=>{
+      const t = p.trim();
+      if(t.length < 3 || skipFrag.test(t)) return;
+      push(t, 80);
+    });
+  }
+  const stem = String(q.stem||"");
+  const stemRules = [
+    [/간접열량|IC\b|흡기|호기/i, ["흡기 O₂","호기 CO₂","간접열량"]],
+    [/GIR|포도당 주입|mg\/kg\/min/i, ["GIR","mg/kg/min","5~7","≤4"]],
+    [/140\s*[–\-~]\s*180|혈당 조절|혈당 목표/i, ["140~180","140–180"]],
+    [/간담도|담즙|trace|미량원소.*줄/i, ["Cu·Mn","담즙울체","간담도"]],
+    [/파킨슨/i, ["파킨슨","Mn"]],
+    [/재급식|refeeding/i, ["재급식","thiamine","P·K·Mg"]],
+    [/EFAD|필수지방/i, ["EFAD","리놀레"]],
+    [/필터|0\.22|1\.2\s*μm/i, ["필터","단일 1.2","0.22"]],
+    [/hang time|12\s*시간|24\s*시간.*지질|지질.*24/i, ["Hang — TNA","Hang — ILE","12시간","24"]],
+    [/PICC|말초삽입 중심/i, ["PICC tip SVC","PICC"]],
+    [/900|말초정맥영양|PPN/i, ["900","말초"]],
+    [/IBW|표준체중|이상체중/i, ["키(m)² × 22","IBW"]],
+    [/Ca.?P|침전|gluconate/i, ["Ca–P","침전","gluconate"]],
+    [/\bTG\b|중성지방|≥\s*400|>\s*400|\b400\s*mg/i, ["TG ≥400","400","TG"]],
+    [/크론|Crohn/i, ["Crohn","EN 실패/불가","장휴식"]],
+    [/고혈당/i, ["고혈당"]],
+    [/저혈당/i, ["저혈당"]],
+    [/BCAA|분지쇄/i, ["BCAA"]],
+    [/Wernicke|티아민|thiamine|Vitamin B1/i, ["thiamine","티아민"]],
+    [/시스테인|cysteine/i, ["cysteine","시스테인"]],
+  ];
+  stemRules.forEach(([re, keys])=>{ if(re.test(stem)) keys.forEach(k=>push(k, 90)); });
+  const map = new Map();
+  out.forEach(o=>{
+    const prev = map.get(o.n);
+    if(!prev || o.w > prev.w) map.set(o.n, o);
+  });
+  return [...map.values()];
+}
+function needleHit(hay, needle){
+  if(!needle) return false;
+  // Short Latin tokens (ic, n, …) must be whole words — else "ic" hits NICU/PICU
+  if(needle.length <= 3 && /^[a-z0-9]+$/i.test(needle)){
+    const re = new RegExp('(?:^|[^a-z0-9])'+needle.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?:[^a-z0-9]|$)');
+    return re.test(hay);
+  }
+  return hay.includes(needle);
+}
+function scoreNode(node, needles, ansN){
+  const raw = (node.textContent||"").replace(/\s+/g," ").trim();
+  if(raw.length < 4) return null;
+  const t = normTxt(raw);
+  let score = 0;
+  needles.forEach(n=>{
+    if(!n.n) return;
+    if(needleHit(t, n.n)) score += n.w;
+  });
+  if(ansN && ansN.length >= 4 && needleHit(t, ansN)) score += 150;
+  // structural bonus only when content actually matched
+  if(score <= 0) return null;
+  if(node.tagName === "LI") score += 25;
+  else if(node.tagName === "TR") score += 15;
+  else if(node.tagName === "TD") score += 8;
+  if(node.classList && node.classList.contains("hub")) score -= 80;
+  if(raw.length > 500) score -= Math.min(60, Math.floor(raw.length/80));
+  return {node, score, raw};
+}
+function highlightFromQuestion(q){
+  clearCoreHl();
+  if(!q) return;
+  if(typeof CORE_SKIP !== "undefined" && CORE_SKIP.has(q.id)) return;
+  // Stay on the quiz topic the user is viewing — never switch 단원/quiz list on click
+  const topic = activeTopic || q.topic;
+  const topicSecs = [...document.querySelectorAll('#core .sec[data-topic="'+topic+'"]')];
+  const allSecs = [...document.querySelectorAll("#core .sec")];
+  const needles = needlesFromQuestion(q);
+  const ansN = (q.choices && q.choices[q.answer] != null) ? normTxt(q.choices[q.answer]) : "";
+  const minScore = 80;
+  const collect = (secs)=>{
+    const out=[];
+    secs.forEach(sec=>{
+      sec.querySelectorAll("li, tr, .cell, .sec-h").forEach(node=>{
+        const hit = scoreNode(node, needles, ansN);
+        if(hit) out.push({...hit, sec});
+      });
+    });
+    out.sort((a,b)=>b.score-a.score || a.raw.length-b.raw.length);
+    return out;
+  };
+  // Prefer current 단원; if CORE_HINTS exist, prefer a row that actually contains a hint (may widen).
+  const hints = CORE_HINTS[q.id] || [];
+  const hintNs = hints.map(h=>normTxt(h)).filter(h=>h.length>=2);
+  const hasHint = (c)=> hintNs.some(h=>normTxt(c.raw).includes(h));
+  const topHint = hintNs[0] || "";
+  const hasTop = (c)=> !!topHint && normTxt(c.raw).includes(topHint);
+  // Prefer leaf li/tr over parent .cell that aggregates children (pn-024 CDC vs catheter types).
+  const preferLeafHint = (list, pred)=>{
+    const hits = list.filter(pred);
+    if(!hits.length) return null;
+    hits.sort((a,b)=>{
+      const leaf = (c)=>{
+        const t = c.node && c.node.tagName;
+        if(t==="LI" || t==="TR") return 0;
+        if(t==="TD") return 1;
+        return 2;
+      };
+      return leaf(a)-leaf(b) || a.raw.length-b.raw.length || b.score-a.score;
+    });
+    return hits[0];
+  };
+  let candidates = collect(topicSecs.length ? topicSecs : allSecs);
+  let usedWider = false;
+  if(hintNs.length){
+    const wider = collect(allSecs);
+    const localTop = preferLeafHint(candidates, hasTop);
+    const wideTop = preferLeafHint(wider, hasTop);
+    const localHint = preferLeafHint(candidates, hasHint);
+    const wideHint = preferLeafHint(wider, hasHint);
+    // Top/specific hint outside topic beats in-topic generic needle hits (oe-filter, pn-003).
+    if(localTop){
+      candidates = [localTop, ...candidates.filter(c=>c!==localTop)];
+    } else if(wideTop){
+      candidates = [wideTop, ...wider.filter(c=>c!==wideTop)];
+      usedWider = true;
+    } else if(localHint){
+      candidates = [localHint, ...candidates.filter(c=>c!==localHint)];
+    } else if(wideHint){
+      candidates = [wideHint, ...wider.filter(c=>c!==wideHint)];
+      usedWider = true;
+    } else if((!candidates.length || candidates[0].score < minScore) && wider.length && wider[0].score >= minScore){
+      candidates = wider;
+      usedWider = true;
+    }
+  } else if((!candidates.length || candidates[0].score < minScore) && topicSecs.length){
+    const wider = collect(allSecs);
+    if(wider.length && wider[0].score >= minScore){
+      candidates = wider;
+      usedWider = true;
+    }
+  }
+  const best = candidates[0];
+  if(!best || best.score < minScore){
+    return;
+  }
+  let target = best.node;
+  if(target.tagName === "TD") target = target.closest("tr") || target;
+
+  // Phrase-only highlight — prefer CORE_HINTS / answer mark·wrap before generic needle marks
+  let exact = null;
+  const marks = [...target.querySelectorAll("mark")];
+  for(const mk of marks){
+    const mn = normTxt(mk.textContent);
+    // Avoid short marks (e.g. PICC) stealing compound hints like "PICC tip SVC".
+    if(hintNs.some(h=>mn.includes(h)||(mn.length>=4 && h.includes(mn) && mn.length>=h.length*0.5))){ exact = mk; break; }
+  }
+  if(!exact && ansN && ansN.length>=3){
+    for(const mk of marks){
+      const mn = normTxt(mk.textContent);
+      if(mn.includes(ansN) || ansN.includes(mn)){ exact = mk; break; }
+    }
+  }
+  const phrasePrefer = [
+    ...hints,
+    (q.choices && q.choices[q.answer]) || ""
+  ].filter(Boolean);
+  if(!exact){
+    for(const ph of phrasePrefer){
+      exact = wrapPhraseInNode(target, ph);
+      if(exact) break;
+    }
+  }
+  if(!exact){
+    for(const mk of marks){
+      const mn = normTxt(mk.textContent);
+      if(needles.some(n=>n.w>=80 && n.n.length>=2 && (mn.includes(n.n)||(mn.length>=4 && n.n.includes(mn) && mn.length>=n.n.length*0.5)))){ exact = mk; break; }
+    }
+  }
+  if(!exact){
+    for(const ph of needles.filter(n=>n.w>=80).map(n=>n.t)){
+      exact = wrapPhraseInNode(target, ph);
+      if(exact) break;
+    }
+  }
+  if(exact){
+    exact.classList.add("core-hl-exact");
+  }
+  if(target.tagName === "TR" || target.tagName === "LI") target.classList.add("core-hl");
+  else if(exact) (exact.closest("tr, li") || target).classList.add("core-hl");
+
+  // Scroll core to the hit, but do NOT change activeTopic / quiz list
+  spyLock = true;
+  const aim = exact || target;
+  const landedSec = aim.closest(".sec");
+  if(landedSec){
+    // Same-topic landing: keep quiz stable, still sync left-nav to the hit section
+    if(landedSec.dataset.topic === activeTopic){
+      activeSecId = landedSec.id;
+      spyLastId = landedSec.id;
+      syncNavHighlight(landedSec.id, activeTopic);
+    } else {
+      // Cross-topic (hint widen): freeze spy id so unlock does not flicker nav/topic
+      spyLastId = landedSec.id;
+    }
+  }
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const behavior = (usedWider && !reduceMotion) ? "smooth" : "auto";
+  // Show core pane first on mobile so scroll metrics are measured on the visible pane
+  if(window.matchMedia("(max-width:899px)").matches) setPane("core");
+  scrollCoreTo(aim, {center:true, behavior});
+  clearTimeout(spyTimer);
+  spyTimer = setTimeout(()=>{ spyLock = false; }, behavior === "smooth" ? 2000 : 450);
+}
+function isKoreanStem(stem){
+  const letters=String(stem||"").match(/[A-Za-z가-힣]/g)||[];
+  if(!letters.length) return true;
+  const latin=letters.filter(c=>c.charCodeAt(0)<128).length;
+  return latin/letters.length <= 0.9;
+}
+/* Read-only fallback. src/study-ui.js (inlined at STUDY_UI_HOOK) replaces renderQuiz with the
+   answerable quiz UI; progress lives only in src/study-state.js ("pn-study-progress-v1"). */
+function renderQuiz(force){
+  const list=document.getElementById("quizList");
+  const title=document.getElementById("quizHeadTitle") || document.getElementById("quizHead");
+  if(!force && list.dataset.topic === activeTopic) return;
+  list.dataset.topic = activeTopic;
+  const items=QUESTIONS.filter(q=>isKoreanStem(q.stem) && q.topic===activeTopic);
+  const label = TOPIC_LABEL[activeTopic]||activeTopic;
+  if(title) title.textContent = "관련 문제 · " + label + " (" + items.length + ")";
+  if(!items.length){
+    list.innerHTML = '<div class="empty">이 소단원에 검증 완료 문항이 아직 없습니다(검토 대기 문항은 기본 세트에서 제외). 왼쪽에서 다른 소단원을 고르세요.</div>';
+    return;
+  }
+  list.innerHTML=items.map(q=>{
+    const ans=q.choices[q.answer]||"";
+    const linked = !CORE_SKIP.has(q.id);
+    const cardHint = linked ? ' title="줄기 클릭 시 왼쪽 핵심본을 형광 표시"' : '';
+    const stemControl = linked ? ' role="button" tabindex="0" title="핵심본에서 위치 표시"' : '';
+    const linkNote = linked ? '' : ' · 핵심 연결 없음';
+    const choices=q.choices.map(c=>`<li>${escapeHtml(c)}</li>`).join("");
+    return `<article class="qcard${linked ? '' : ' no-core'}" data-qid="${escapeHtml(q.id)}"${cardHint}>
+      <div class="src">${escapeHtml(q.source)} · ${escapeHtml(q.id)}${linkNote}</div>
+      <div class="stem"${stemControl}>${escapeHtml(q.stem)}</div>
+      <ol>${choices}</ol>
+      <details><summary>정답·해설 보기</summary>
+      <p><b>정답:</b> ${q.answer+1}. ${escapeHtml(ans)}</p>
+      <p>${escapeHtml(q.explain||"")}</p></details></article>`;
+  }).join("");
+}
+
+function syncNavHighlight(secId, tid){
+  document.querySelectorAll(".nav-item").forEach(b=>{
+    b.classList.toggle("active", secId ? b.dataset.target===secId : b.dataset.topic===tid);
+  });
+  document.querySelectorAll(".sec").forEach(s=>{
+    s.classList.toggle("active-sec", secId ? s.id===secId : s.dataset.topic===tid);
+  });
+  const activeBtn = document.querySelector(".nav-item.active");
+  if(activeBtn){
+    const nav = navEl();
+    const nb = activeBtn.getBoundingClientRect();
+    const nr = nav.getBoundingClientRect();
+    if(nb.top < nr.top || nb.bottom > nr.bottom){
+      activeBtn.scrollIntoView({block:"nearest", inline:"nearest"});
+    }
+  }
+}
+function scrollCoreTo(el, {center=false, behavior="smooth"}={}){
+  const core = coreEl();
+  if(!core || !el) return;
+  const cRect = core.getBoundingClientRect();
+  const eRect = el.getBoundingClientRect();
+  // Keep navigation at the section heading, but center question matches.
+  const offset = center ? (core.clientHeight - eRect.height) / 2 : 56;
+  const next = core.scrollTop + (eRect.top - cRect.top) - offset;
+  core.scrollTo({top: Math.max(0, next), behavior});
+}
+function showCite(cid, topicFromBtn, secIdFromBtn){
+  const c = CITE_BY_ID[String(cid)];
+  const box = document.getElementById("citeBox");
+  document.querySelectorAll("button.fn").forEach(b=>b.classList.toggle("active", b.dataset.cite===String(cid)));
+  if(!c){ hideCite(); return; }
+  if(topicFromBtn) activeTopic = topicFromBtn;
+  if(secIdFromBtn) activeSecId = secIdFromBtn;
+  const kind = KIND_KO[c.kind] || c.kind;
+  const pages = (c.pages||[]).length ? " · "+c.pages.join(", ") : "";
+  const related = QUESTIONS.filter(q=>q.topic===activeTopic);
+  box.innerHTML = `<div class="cite-inner"><div class="cite-top"><div>
+      <div class="muted">색인 ${c.id} · ${escapeHtml(kind)}${escapeHtml(pages)}</div>
+      <div class="cite-raw">${escapeHtml(c.raw)}</div>
+      <div class="cite-meta">오른쪽 문제는 소단원「${escapeHtml(TOPIC_LABEL[activeTopic]||activeTopic)}」기준 · ${related.length}문항</div>
+    </div>
+    <button type="button" class="cite-close" aria-label="닫기" title="닫기">×</button>
+  </div></div>`;
+  box.classList.add("show");
+  syncNavHighlight(activeSecId, activeTopic);
+  renderQuiz();
+  if(window.matchMedia("(max-width:899px)").matches) setPane("quiz");
+}
+function setTopic(tid, {scroll=true, target=null, fromSpy=false}={}){
+  activeTopic = tid;
+  if(target) activeSecId = target;
+  if(!fromSpy){
+    hideCite();
+    clearCoreHl();
+    document.querySelectorAll(".qcard.hl").forEach(card=>card.classList.remove("hl"));
+  }
+  syncNavHighlight(target || activeSecId, tid);
+  if(scroll && !fromSpy){
+    spyLock = true;
+    const el = target ? document.getElementById(target) : document.querySelector('.sec[data-topic="'+tid+'"]');
+    if(el){
+      activeSecId = el.id;
+      spyLastId = el.id;
+      syncNavHighlight(el.id, tid);
+      // instant jump — smooth scroll races scroll-spy and leaves wrong nav active
+      scrollCoreTo(el, {behavior:"auto"});
+    }
+    clearTimeout(spyTimer);
+    spyTimer = setTimeout(()=>{ spyLock = false; }, 900);
+  }
+  renderQuiz();
+}
+function setupScrollSpy(){
+  const core = coreEl();
+  const secs = [...document.querySelectorAll("#core .sec")];
+  if(!core || !secs.length) return;
+  // Sticky sec-h sits ~52px; pick the last section whose top has crossed that line.
+  // (IntersectionObserver only sees *changed* entries → left nav flickered.)
+  const MARK = 56;
+  let ticking = false;
+  spyLastId = activeSecId || (secs[0] && secs[0].id) || "";
+
+  function pickActive(){
+    if(spyLock) return;
+    const marker = core.getBoundingClientRect().top + MARK;
+    let current = secs[0];
+    for(let i = 0; i < secs.length; i++){
+      if(secs[i].getBoundingClientRect().top <= marker) current = secs[i];
+      else break;
+    }
+    if(!current || current.id === spyLastId) return;
+    spyLastId = current.id;
+
+    // Question locator active → never flip quiz topic
+    if(document.querySelector(".core-hl, .core-hl-exact")){
+      if(current.dataset.topic === activeTopic){
+        activeSecId = current.id;
+        syncNavHighlight(current.id, activeTopic);
+      }
+      return;
+    }
+
+    const topicChanged = current.dataset.topic !== activeTopic;
+    activeSecId = current.id;
+    activeTopic = current.dataset.topic;
+    syncNavHighlight(current.id, activeTopic);
+    // Only rebuild quiz when topic actually changes (stops 왔다리갔다리 feel)
+    if(topicChanged){
+      renderQuiz();
+      hideCite();
+    }
+  }
+
+  core.addEventListener("scroll", ()=>{
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(()=>{ ticking = false; pickActive(); });
+  }, {passive:true});
+  pickActive();
+}
+document.getElementById("nav").addEventListener("click", e=>{
+  const b=e.target.closest(".nav-item"); if(!b) return;
+  if(window.matchMedia("(max-width:899px)").matches) setPane("core");
+  setTopic(b.dataset.topic, {scroll:true, target:b.dataset.target});
+});
+document.getElementById("tabs").addEventListener("click", e=>{
+  const b=e.target.closest("button[data-pane]"); if(!b) return; setPane(b.dataset.pane);
+});
+document.getElementById("core").addEventListener("click", e=>{
+  const fn=e.target.closest("button.fn");
+  if(fn){
+    e.preventDefault();
+    const sec = fn.closest(".sec");
+    showCite(fn.dataset.cite, fn.dataset.topic, sec && sec.id);
+    return;
+  }
+  const sec=e.target.closest(".sec"); if(!sec) return;
+  setTopic(sec.dataset.topic, {scroll:false, target:sec.id});
+});
+document.getElementById("citeBox").addEventListener("click", e=>{
+  if(e.target.closest(".cite-close")) hideCite();
+});
+const hashSec=(()=>{
+  try{ const el=document.getElementById(decodeURIComponent(location.hash.slice(1))); return el && el.classList.contains("sec") ? el : null; }
+  catch(e){ return null; }
+})();
+const firstNav=document.querySelector(".nav-item");
+if(hashSec) setTopic(hashSec.dataset.topic, {scroll:true, target:hashSec.id});
+else if(firstNav) setTopic(firstNav.dataset.topic, {scroll:false, target:firstNav.dataset.target});
+else renderQuiz();
+
+function activateQcard(card){
+  if(!card) return;
+  const q = QUESTIONS.find(x=>x.id===card.dataset.qid);
+  if(!q || CORE_SKIP.has(q.id)) return;
+  document.querySelectorAll(".qcard").forEach(c=>c.classList.toggle("hl", c===card));
+  highlightFromQuestion(q);
+}
+document.getElementById("quizList").addEventListener("click", e=>{
+  // Answering (radio/label/buttons in study-ui cards) must never jump the core pane.
+  const stem = e.target.closest('.stem[role="button"]'); if(!stem) return;
+  activateQcard(stem.closest(".qcard"));
+});
+document.getElementById("quizList").addEventListener("keydown", e=>{
+  if(!e.target.matches('.stem[role="button"]') || (e.key !== "Enter" && e.key !== " ")) return;
+  e.preventDefault();
+  activateQcard(e.target.closest(".qcard"));
+});
+
+setupScrollSpy();
+
+/* Desktop core↔quiz splitter: default 50/50 of space after left nav; drag + localStorage */
+(function setupSplitResize(){
+  const main = document.querySelector(".main");
+  const splitter = document.getElementById("splitter");
+  if(!main || !splitter) return;
+
+  const LS_KEY = "pn-study-split-core-pct";
+  const MIN_PCT = 22;
+  const MAX_PCT = 78;
+  const desktopMq = window.matchMedia("(min-width:900px)");
+  let corePct = 50;
+
+  function clampPct(n){
+    n = Number(n);
+    if(!Number.isFinite(n)) return 50;
+    return Math.min(MAX_PCT, Math.max(MIN_PCT, n));
+  }
+  function applySplit(pct){
+    corePct = clampPct(pct);
+    main.style.setProperty("--split-core", corePct + "fr");
+    main.style.setProperty("--split-quiz", (100 - corePct) + "fr");
+    splitter.setAttribute("aria-valuenow", String(Math.round(corePct)));
+  }
+  function loadStored(){
+    try{
+      const raw = localStorage.getItem(LS_KEY);
+      if(raw == null) return 50;
+      return clampPct(parseFloat(raw));
+    }catch(_){ return 50; }
+  }
+  function persist(){
+    try{ localStorage.setItem(LS_KEY, String(Math.round(corePct * 10) / 10)); }catch(_){}
+  }
+
+  splitter.setAttribute("role", "separator");
+  splitter.setAttribute("aria-valuemin", String(MIN_PCT));
+  splitter.setAttribute("aria-valuemax", String(MAX_PCT));
+  applySplit(loadStored());
+
+  let dragging = false;
+  function contentBounds(){
+    const rect = main.getBoundingClientRect();
+    const nav = document.getElementById("nav");
+    const navW = nav && desktopMq.matches ? nav.getBoundingClientRect().width : 0;
+    const splitW = splitter.getBoundingClientRect().width || 10;
+    const left = rect.left + navW;
+    const usable = Math.max(1, rect.width - navW - splitW);
+    return {left, usable};
+  }
+  function pctFromClientX(clientX){
+    const {left, usable} = contentBounds();
+    return clampPct(((clientX - left) / usable) * 100);
+  }
+  function onPointerMove(e){
+    if(!dragging) return;
+    applySplit(pctFromClientX(e.clientX));
+  }
+  function endDrag(e){
+    if(!dragging) return;
+    dragging = false;
+    document.body.classList.remove("is-resizing");
+    try{ splitter.releasePointerCapture(e.pointerId); }catch(_){}
+    window.removeEventListener("pointermove", onPointerMove);
+    window.removeEventListener("pointerup", endDrag);
+    window.removeEventListener("pointercancel", endDrag);
+    persist();
+  }
+  splitter.addEventListener("pointerdown", e=>{
+    if(!desktopMq.matches) return;
+    if(e.button != null && e.button !== 0) return;
+    e.preventDefault();
+    dragging = true;
+    document.body.classList.add("is-resizing");
+    try{ splitter.setPointerCapture(e.pointerId); }catch(_){}
+    applySplit(pctFromClientX(e.clientX));
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", endDrag);
+    window.addEventListener("pointercancel", endDrag);
+  });
+
+  // Keyboard nudge (desktop only)
+  splitter.addEventListener("keydown", e=>{
+    if(!desktopMq.matches) return;
+    let next = null;
+    if(e.key === "ArrowLeft") next = corePct - 2;
+    else if(e.key === "ArrowRight") next = corePct + 2;
+    else if(e.key === "Home") next = MIN_PCT;
+    else if(e.key === "End") next = MAX_PCT;
+    if(next == null) return;
+    e.preventDefault();
+    applySplit(next);
+    persist();
+  });
+})();
+</script>
+<!--@@STUDY_UI@@-->
+</body>
+</html>

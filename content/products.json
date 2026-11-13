@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "schemaVersion": 1,
+    "checkedAt": "2026-11-14",
+    "timezone": "Asia/Seoul",
+    "rule": "조성 수치(perLiter)는 국내 허가사항(식약처 의약품안전나라 등 공식 공개 자료 또는 보유 첨부문서)을 직접 확인한 제품만 채운다. 수치를 채우면 status=confirmed, confirmedAsOf(YYYY-MM-DD), source.url 또는 source.heldFile이 필수다(check_content.py가 검사).",
+    "compositionFields": [
+      "aminoAcidG",
+      "glucoseG",
+      "lipidG",
+      "totalKcal",
+      "osmolarityMOsmL",
+      "naMmol",
+      "kMmol"
+    ],
+    "comparisonTargets": {
+      "kcalPerDay": 2000,
+      "note": "같은 kcal 비교: kcalPerDay를 채우는 데 필요한 부피(mL) = kcalPerDay / totalKcal × 1,000. 같은 AA 비교: 목표량이 환자별(g/kg)이라 고정하지 않고 AA 1 g당 부피(1,000 / aminoAcidG)와 AA 1 g당 kcal(totalKcal / aminoAcidG)로 나타낸다. 값은 status=confirmed 제품만 계산한다."
+    },
+    "comparisonColumns": ["aminoAcidG", "glucoseG", "lipidG", "totalKcal", "osmolarityMOsmL", "sameKcalVolumeMl", "sameAaMlPerG", "sameAaKcalPerG"],
+    "comparisonBasis": "동일 부피(1,000 mL당)와 일일 공급량(같은 kcal 또는 같은 AA g을 맞출 때 필요한 부피) 두 기준으로 비교한다. 다챔버 백은 '모든 챔버 활성화 후' 값을 쓰고, 포장 규격별 수치를 섞지 않는다.",
+    "status": "Task 3 시점 국내 허가자료 원문을 하나도 확보하지 못했다. 아래 후보는 핵심본에 이름만 언급된 제품이며 조성 수치는 비워 둔다."
+  },
+  "products": [
+    {
+      "name": "Smoflipid 20%",
+      "kind": "ILE 단독",
+      "status": "unconfirmed",
+      "confirmedAsOf": null,
+      "mentionedIn": "sec-lipid-2-2-지방-ILE",
+      "perLiter": {},
+      "source": null,
+      "note": "핵심본 지질 단락에 제품명만 있음. 국내 허가 조성(오일 구성비·kcal/mL)은 허가자료로 미확인.",
+      "inBagTable": true
+    },
+    {
+      "name": "Nutriflex lipid (10% ILE 함유 다챔버 백)",
+      "kind": "3-in-1 MCB",
+      "status": "unconfirmed",
+      "confirmedAsOf": null,
+      "mentionedIn": "sec-route-3-3-MCB-다챔버-백-GL-ASPEN-Myths-ISMP-2025",
+      "perLiter": {},
+      "source": null,
+      "note": "제품명만 언급됨. 국내 허가 품목명·규격(peri/plus/special)·조성 미확인.",
+      "inBagTable": true
+    },
+    {
+      "name": "네프라민 5.4% (필수아미노산 EAA)",
+      "kind": "AA 단독",
+      "status": "unconfirmed",
+      "confirmedAsOf": null,
+      "mentionedIn": "sec-protein-2-3-단백질-아미노산-AA",
+      "perLiter": {},
+      "source": null,
+      "inBagTable": true,
+      "note": "핵심본 단백 단락에 'EAA(네프라민 5.4%, EAA 99.6%)'로만 언급. 국내 허가 조성 미확인."
+    },
+    {
+      "name": "Furtman (미량원소 4종)",
+      "kind": "미량원소 첨가제",
+      "status": "unconfirmed",
+      "confirmedAsOf": null,
+      "mentionedIn": "sec-vit_te-2-7-미량원소-TE",
+      "perLiter": {},
+      "source": null,
+      "note": "핵심본의 'Cr·Cu·Mn·Zn, Se 없음'은 병원약사회 강의 형광 문구다. 앰플당 함량은 허가자료로 미확인. PN 백이 아니므로 백 비교표에는 넣지 않는다.",
+      "inBagTable": false
+    }
+  ]
+}

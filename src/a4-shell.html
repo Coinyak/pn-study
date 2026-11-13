@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>영양불백 · PN 핵심 (A4)</title>
+<style>
+:root{ color-scheme:light; --navy:#1e3a5f; --label:#dce8d4; --label2:#e8f0e4; --zebra:#f7f9fc; --line:#b8c0cc; --text:#1a2332; --muted:#5b6575; --danger:#c62828;
+}
+*{box-sizing:border-box}
+html,body{overflow:visible!important}
+body{ margin:0 auto; max-width:210mm; padding:6mm 6mm; font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif; font-size:8.5pt; line-height:1.28; color:var(--text); background:#fff; overflow-wrap:anywhere; word-break:keep-all;
+}
+.toolbar{ position:sticky; top:0; z-index:5; background:#f4f6f8; border:1px solid var(--line); padding:6px 10px; margin:-4mm -3mm 5mm; display:flex; gap:8px; align-items:center; font-size:11px; flex-wrap:nowrap;
+}
+.toolbar button{ border:1px solid var(--navy); background:var(--navy); color:#fff; padding:6px 10px; font-size:12px; cursor:pointer; border-radius:3px; flex:0 0 auto;
+}
+.toolbar a{color:#1a5fb4; flex:0 0 auto}
+.note{color:var(--muted); font-size:8pt; font-weight:500}
+#corePrint{outline:none; overflow:visible!important; max-width:100%}
+#corePrint:focus{outline:none} /* Brand + hierarchy */
+h1{ font-size:13pt; margin:0 0 3mm; color:var(--navy); border-bottom:2.5px solid var(--navy); padding:0 0 1.5mm; letter-spacing:-.02em; font-weight:800;
+}
+h2{ font-size:9.5pt; margin:1.8mm 0 0.6mm; padding:1.2mm 2mm; background:var(--label); color:var(--navy); font-weight:800; border-left:3px solid var(--navy); letter-spacing:-.02em; break-after:avoid; page-break-after:avoid; break-inside:avoid; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+h3{ font-size:8.5pt; margin:1.3mm 0 0.5mm; padding:1mm 1.8mm; background:#eef2f6; color:var(--navy); font-weight:700; border-left:2.5px solid #7a9ab8; break-after:avoid; page-break-after:avoid; break-inside:avoid; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+} /* Nested tables — dense; keep dose units/arrows glued */
+table{ width:100%!important; max-width:100%!important; border-collapse:collapse; table-layout:fixed; margin:0 0 1.0mm; font-size:7.6pt; line-height:1.22;
+}
+th, td{ border:1px solid var(--line); padding:0.35mm 0.65mm; vertical-align:top; overflow-wrap:break-word; word-break:keep-all; white-space:normal;
+}
+th, .th{ background:#eef2f6; font-weight:700; font-size:7.5pt; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+.l1{ background:var(--zebra); font-weight:700; width:18%; font-size:7.5pt; white-space:normal; overflow-wrap:break-word; word-break:keep-all; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+.nowrap, td.dose, .dose, td.num{ white-space:nowrap!important; overflow-wrap:normal; word-break:keep-all;
+}
+td.dose-long{white-space:normal; font-size:7.2pt; line-height:1.22; word-break:keep-all}
+td.memo{font-size:7.2pt; line-height:1.22; word-break:keep-all}
+td.num{text-align:center; font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+#corePrint table th:first-child,
+#corePrint table .th:first-child,
+#corePrint table td.l1{width:18%}
+#corePrint table.dense.te-cmp col.c-el{width:8%}
+#corePrint table.dense.te-cmp col.c-dose{width:15%}
+#corePrint table.dense.te-cmp col.c-memo{width:47%}
+#corePrint table.dense.te-ped col.c-el{width:9%}
+#corePrint table.dense.te-ped col.c-dose{width:22.75%}
+#corePrint table.dense.conc col.c-el{width:12%}
+#corePrint table.dense.conc col.c-num{width:12.5%}
+tr:nth-child(even) td:not(.l1):not(.th){background:#fbfcfe}
+ul{margin:0 0 1.2mm; padding-left:3.5mm}
+li{margin:0.25mm 0; line-height:1.28}
+p{margin:0 0 1mm; line-height:1.28}
+.x{color:var(--danger); font-weight:700}
+/* Cite/footnote chrome hidden on 핵심본 print */
+sup.fn,.footnotes,.fnn{display:none!important}
+img,svg{max-width:100%; height:auto} /* Fluorescent exam marks */
+mark.hl-pink, .hl-pink{ background:linear-gradient(transparent 10%, #f8bbd0 10%, #f8bbd0 90%, transparent 90%); color:inherit; padding:0 .03em; box-decoration-break:clone; -webkit-box-decoration-break:clone; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+mark.hl-yellow, .hl-yellow{ background:linear-gradient(transparent 10%, #fff59d 10%, #fff59d 90%, transparent 90%); color:inherit; padding:0 .03em; box-decoration-break:clone; -webkit-box-decoration-break:clone; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 46% no-repeat, linear-gradient(#fff59d,#fff59d) bottom / 100% 46% no-repeat; color:inherit; padding:0 .04em; box-decoration-break:clone; -webkit-box-decoration-break:clone; box-shadow:none; border:none; text-decoration:none; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+} /* Section keep-together (JS wraps h2/h3 groups) */
+.print-sec, .print-sub{ break-inside:avoid; page-break-inside:avoid; -webkit-column-break-inside:avoid;
+}
+.print-sec{margin:0 0 0.8mm}
+.print-sec.allow-break,
+.print-sec.allow-break > .print-sub.allow-break{ break-inside:auto; page-break-inside:auto;
+}
+.print-sec.allow-break > h2,
+.print-sub > h3{ break-after:avoid; page-break-after:avoid;
+}
+.print-sec.allow-break > h2 + *,
+.print-sub > h3 + *{ break-before:avoid; page-break-before:avoid;
+}
+/* Prefer split between subsections; keep rows intact */
+tr, td, th{break-inside:avoid; page-break-inside:avoid}
+thead{display:table-header-group}
+tfoot{display:table-footer-group}
+h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL/date/page chrome in margin boxes. Chrome/Edge still honor the print-dialog "Headers and footers" checkbox separately; blanking document.title on print (below) reduces that leftover when the box is checked. */
+@page{ size:A4; margin:10mm 9mm 11mm 9mm; @top-left{content:none} @top-center{content:none} @top-right{content:none} @bottom-left{content:none} @bottom-center{content:none} @bottom-right{content:none} @left-top{content:none} @left-middle{content:none} @left-bottom{content:none} @right-top{content:none} @right-middle{content:none} @right-bottom{content:none}
+} @media print{ .toolbar{display:none!important} html,body,#corePrint{overflow:visible!important; height:auto!important; max-height:none!important} body{max-width:none; width:auto; padding:0; margin:0; font-size:8.2pt; line-height:1.26} table{font-size:7.4pt; page-break-inside:auto; width:100%!important; table-layout:fixed} th,td{padding:0.35mm 0.65mm} h2{margin:1.6mm 0 0.5mm; padding:1mm 1.6mm; font-size:9pt} h3{margin:1.2mm 0 0.4mm; padding:0.7mm 1.4mm; font-size:8pt} h1{font-size:12pt; margin:0 0 2mm} a{color:inherit; text-decoration:none} th,.th,.l1,h2,h3, mark.hl-pink,.hl-pink,mark.hl-yellow,.hl-yellow,mark.hl-both,.hl-both{ -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; } .print-sec:not(.allow-break), .print-sub:not(.allow-break){ break-inside:avoid!important; page-break-inside:avoid!important; }
+}
+.cell{margin:0 0 1mm; line-height:1.28}
+.callout{margin:0 0 1.2mm; padding:0.8mm 1.6mm; font-size:7.6pt; line-height:1.3}
+.callout.gap{background:#fff8e1; border-left:2.5px solid #f0a500; color:#5a4300; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+.cheat-table td{font-size:7.4pt}
+</style>
+</head>
+<body>
+<div class="toolbar"> <button type="button" id="btnPrint">인쇄 / PDF 저장</button> <a href="PN_study_split.html">영양불백 공부판으로</a> <span class="note">핵심본과 같은 원본(content/core.html)에서 생성</span>
+</div>
+<div id="corePrint" contenteditable="true" spellcheck="false">
+<h1>영양불백 · PN 핵심 <span class="note">(A4 인쇄/편집)</span></h1>
+<!--@@CORE@@-->
+</div>
+<script>
+document.getElementById("btnPrint").addEventListener("click", ()=>{
+  const t=document.title; document.title=" "; window.print(); document.title=t;
+});
+</script>
+</body>
+</html>
