@@ -11,7 +11,7 @@
  },
  {
   "topic": "cho_gir",
-  "target": "sec-cho_gir-2-구성요소",
+  "target": "sec-cho_gir-2-1-탄수화물-dextrose",
   "label": "구성"
  },
  {
@@ -51,7 +51,7 @@
  },
  {
   "topic": "route",
-  "target": "sec-route-3-투여경로-제형",
+  "target": "sec-route-3-1-말초-vs-중심",
   "label": "경로"
  },
  {
@@ -76,7 +76,7 @@
  },
  {
   "topic": "calc_filter",
-  "target": "sec-calc_filter-4-요구량-투여계획-계산",
+  "target": "sec-calc_filter-4-1-에너지",
   "label": "요구량"
  },
  {
@@ -101,7 +101,7 @@
  },
  {
   "topic": "stability",
-  "target": "sec-stability-5-조제-안정성-투여-주의사항",
+  "target": "sec-stability-5-1-혼합-순서",
   "label": "조제"
  },
  {
@@ -126,7 +126,7 @@
  },
  {
   "topic": "complications",
-  "target": "sec-complications-6-합병증",
+  "target": "sec-complications-6-1-3열-요약",
   "label": "합병증"
  },
  {
@@ -156,13 +156,8 @@
  },
  {
   "topic": "monitor",
-  "target": "sec-monitor-7-모니터링-Lab-중단",
-  "label": "중단"
- },
- {
-  "topic": "complications",
   "target": "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179",
-  "label": "모니터표"
+  "label": "모니터"
  },
  {
   "topic": "monitor",

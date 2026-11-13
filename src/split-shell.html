@@ -48,11 +48,16 @@ td.num.diff{color:#c2410c;font-weight:700;-webkit-print-color-adjust:exact;print
 .splitter:focus-visible{outline:2px solid var(--chip-on);outline-offset:-2px}
 body.is-resizing{cursor:col-resize;user-select:none;-webkit-user-select:none}
 body.is-resizing .pane{pointer-events:none}
-/* Nest tables: dense spacing */
-table.jg.nest{width:100%;border-collapse:collapse;font-size:13px;line-height:1.3}
-table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:2px 5px;vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
-table.jg.nest .th{font-size:12px;line-height:1.25}
-table.jg.nest .l1{font-size:12.5px;line-height:1.28}
+/* Nest tables: readable spacing (was 2px — unreadable) */
+table.jg.nest{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.45}
+table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:7px 9px;vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
+table.jg.nest .th{font-size:12.5px;line-height:1.35}
+table.jg.nest .l1{font-size:13px;line-height:1.4}
+table.jg.nest.formula-table td > div{margin:.15em 0}
+table.jg.nest.formula-table .ex{color:var(--muted);font-size:13px;margin-top:.35em}
+table.jg.nest.cheat-table td{line-height:1.55}
+table.jg.nest.cheat-table .cb{display:block;height:.35em}
+.sec[data-hub][hidden],.sec[data-hub]{display:none!important}
 table.jg.nest td.dose,
 table.jg.nest .dose{white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
 table.jg.nest td.dose-long{white-space:normal;font-size:12px;line-height:1.28;word-break:keep-all}
@@ -2749,7 +2754,16 @@ function setTopic(tid, {scroll=true, target=null, fromSpy=false}={}){
   syncNavHighlight(target || activeSecId, tid);
   if(scroll && !fromSpy){
     spyLock = true;
-    const el = target ? document.getElementById(target) : document.querySelector('.sec[data-topic="'+tid+'"]');
+    let el = target ? document.getElementById(target) : null;
+    if(!el){
+      el = document.querySelector('.sec[data-topic="'+tid+'"]:not([data-hub])')
+        || document.querySelector('.sec[data-topic="'+tid+'"]');
+    }
+    if(el && el.hasAttribute("data-hub")){
+      el = el.nextElementSibling && el.nextElementSibling.classList.contains("sec")
+        ? el.nextElementSibling
+        : document.querySelector('.sec[data-topic="'+tid+'"]:not([data-hub])');
+    }
     if(el){
       activeSecId = el.id;
       spyLastId = el.id;

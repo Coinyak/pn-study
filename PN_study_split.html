@@ -48,11 +48,16 @@ td.num.diff{color:#c2410c;font-weight:700;-webkit-print-color-adjust:exact;print
 .splitter:focus-visible{outline:2px solid var(--chip-on);outline-offset:-2px}
 body.is-resizing{cursor:col-resize;user-select:none;-webkit-user-select:none}
 body.is-resizing .pane{pointer-events:none}
-/* Nest tables: dense spacing */
-table.jg.nest{width:100%;border-collapse:collapse;font-size:13px;line-height:1.3}
-table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:2px 5px;vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
-table.jg.nest .th{font-size:12px;line-height:1.25}
-table.jg.nest .l1{font-size:12.5px;line-height:1.28}
+/* Nest tables: readable spacing (was 2px — unreadable) */
+table.jg.nest{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.45}
+table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:7px 9px;vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
+table.jg.nest .th{font-size:12.5px;line-height:1.35}
+table.jg.nest .l1{font-size:13px;line-height:1.4}
+table.jg.nest.formula-table td > div{margin:.15em 0}
+table.jg.nest.formula-table .ex{color:var(--muted);font-size:13px;margin-top:.35em}
+table.jg.nest.cheat-table td{line-height:1.55}
+table.jg.nest.cheat-table .cb{display:block;height:.35em}
+.sec[data-hub][hidden],.sec[data-hub]{display:none!important}
 table.jg.nest td.dose,
 table.jg.nest .dose{white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
 table.jg.nest td.dose-long{white-space:normal;font-size:12px;line-height:1.28;word-break:keep-all}
@@ -160,7 +165,7 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 } </style>
 </head>
 <body class="mode-core">
-<div class="app"> <div class="header"> <div class="header-title"><a class="home" href="index.html" title="홈으로">영양불백</a> <span>정맥영양(PN)</span></div> <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사(임상영양길라잡이 EXAM)</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회 영양약료</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div> </div> <div class="tabs" id="tabs"> <button type="button" class="active" data-pane="core">핵심</button> <button type="button" data-pane="quiz">문제</button> </div> <div class="main"> <nav class="nav" id="nav" aria-label="소단원"><button type="button" class="nav-item" data-topic="eval" data-target="sec-eval-0-영양평가-PN-직결만"><span class="nav-lab">평가</span></button><button type="button" class="nav-item" data-topic="indications" data-target="sec-indications-1-적응증-시작시점-지연"><span class="nav-lab">적응증</span></button><button type="button" class="nav-item" data-topic="cho_gir" data-target="sec-cho_gir-2-구성요소"><span class="nav-lab">구성</span></button><button type="button" class="nav-item" data-topic="cho_gir" data-target="sec-cho_gir-2-1-탄수화물-dextrose"><span class="nav-lab">GIR·당</span></button><button type="button" class="nav-item" data-topic="lipid" data-target="sec-lipid-2-2-지방-ILE"><span class="nav-lab">지질</span></button><button type="button" class="nav-item" data-topic="protein" data-target="sec-protein-2-3-단백질-아미노산-AA"><span class="nav-lab">단백</span></button><button type="button" class="nav-item" data-topic="fluid_lytes" data-target="sec-fluid_lytes-2-4-수분"><span class="nav-lab">수분</span></button><button type="button" class="nav-item" data-topic="fluid_lytes" data-target="sec-fluid_lytes-2-5-전해질"><span class="nav-lab">전해질</span></button><button type="button" class="nav-item" data-topic="vit_te" data-target="sec-vit_te-2-6-비타민"><span class="nav-lab">비타민</span></button><button type="button" class="nav-item" data-topic="vit_te" data-target="sec-vit_te-2-7-미량원소-TE"><span class="nav-lab">미량원소</span></button><button type="button" class="nav-item" data-topic="route" data-target="sec-route-3-투여경로-제형"><span class="nav-lab">경로</span></button><button type="button" class="nav-item" data-topic="route" data-target="sec-route-3-1-말초-vs-중심"><span class="nav-lab">말초·중심</span></button><button type="button" class="nav-item" data-topic="route" data-target="sec-route-3-2-2-in-1-vs-3-in-1-TNA"><span class="nav-lab">2·3-in-1</span></button><button type="button" class="nav-item" data-topic="route" data-target="sec-route-3-3-MCB-다챔버-백-GL-ASPEN-Myths-ISMP-2025"><span class="nav-lab">MCB</span></button><button type="button" class="nav-item" data-topic="route" data-target="sec-route-3-4-국내-PN-제품-비교"><span class="nav-lab">국내제품</span></button><button type="button" class="nav-item" data-topic="calc_filter" data-target="sec-calc_filter-4-요구량-투여계획-계산"><span class="nav-lab">요구량</span></button><button type="button" class="nav-item" data-topic="calc_filter" data-target="sec-calc_filter-4-1-에너지"><span class="nav-lab">에너지</span></button><button type="button" class="nav-item" data-topic="calc_filter" data-target="sec-calc_filter-4-2-계산-5단계-상한-체크"><span class="nav-lab">계산</span></button><button type="button" class="nav-item" data-topic="calc_filter" data-target="sec-calc_filter-4-3-삼투압-계산-표9-17-EXAM-p153"><span class="nav-lab">삼투</span></button><button type="button" class="nav-item" data-topic="calc_filter" data-target="sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE"><span class="nav-lab">교정</span></button><button type="button" class="nav-item" data-topic="stability" data-target="sec-stability-5-조제-안정성-투여-주의사항"><span class="nav-lab">조제</span></button><button type="button" class="nav-item" data-topic="stability" data-target="sec-stability-5-1-혼합-순서"><span class="nav-lab">혼합순서</span></button><button type="button" class="nav-item" data-topic="stability" data-target="sec-stability-5-2-Ca-P-침전"><span class="nav-lab">Ca–P</span></button><button type="button" class="nav-item" data-topic="stability" data-target="sec-stability-5-3-배합금기-Y-site"><span class="nav-lab">Y-site</span></button><button type="button" class="nav-item" data-topic="stability" data-target="sec-stability-5-4-필터-hang-time-세트-BUD"><span class="nav-lab">필터·hang</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-complications-6-합병증"><span class="nav-lab">합병증</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-complications-6-1-3열-요약"><span class="nav-lab">합병증요</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-complications-6-2-재급식-증후군-Refeeding"><span class="nav-lab">재급식</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-complications-6-3-간담도-합병증-PNALD"><span class="nav-lab">PNALD</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-complications-6-4-대사성-골질환-MBD"><span class="nav-lab">MBD</span></button><button type="button" class="nav-item" data-topic="lipid" data-target="sec-lipid-6-5-필수지방산-결핍-EFAD"><span class="nav-lab">EFAD</span></button><button type="button" class="nav-item" data-topic="monitor" data-target="sec-monitor-7-모니터링-Lab-중단"><span class="nav-lab">중단</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"><span class="nav-lab">모니터표</span></button><button type="button" class="nav-item" data-topic="monitor" data-target="sec-monitor-7-2-Lab-정상범위"><span class="nav-lab">Lab</span></button><button type="button" class="nav-item" data-topic="monitor" data-target="sec-monitor-7-3-PN-중단-이행"><span class="nav-lab">이행</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-질환별-PN"><span class="nav-lab">질환별</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-1-폐-심장-신경계"><span class="nav-lab">폐·심·신경</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-2-당뇨-비만"><span class="nav-lab">당뇨·비만</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-3-수술-암-화상"><span class="nav-lab">수술·암·화상</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-4-섭식장애-임부-노인"><span class="nav-lab">섭식·임부·노인</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-5-영양소-약물-상호작용"><span class="nav-lab">영양–약물</span></button><button type="button" class="nav-item" data-topic="peds" data-target="sec-peds-9-소아-신생아"><span class="nav-lab">소아</span></button><button type="button" class="nav-item" data-topic="hpn" data-target="sec-hpn-10-재택-PN-HPN"><span class="nav-lab">HPN</span></button><button type="button" class="nav-item" data-topic="hpn" data-target="sec-hpn-10-1-환자-교육"><span class="nav-lab">HPN교육</span></button><button type="button" class="nav-item" data-topic="cheat" data-target="sec-cheat-11-치트-암기-블록"><span class="nav-lab">치트</span></button><button type="button" class="nav-item" data-topic="case" data-target="sec-case-12-처방-검토-사례"><span class="nav-lab">처방사례</span></button><button type="button" class="nav-item" data-topic="common" data-target="sec-common-13-공통영역-의학통계-논문비평"><span class="nav-lab">공통영역</span></button><button type="button" class="nav-item" data-topic="common" data-target="sec-common-13-1-효과지표-정밀도"><span class="nav-lab">통계지표</span></button><button type="button" class="nav-item" data-topic="common" data-target="sec-common-13-2-논문-해석-사례-메타분석"><span class="nav-lab">논문해석</span></button></nav> <section class="pane pane-core" id="core">
+<div class="app"> <div class="header"> <div class="header-title"><a class="home" href="index.html" title="홈으로">영양불백</a> <span>정맥영양(PN)</span></div> <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사(임상영양길라잡이 EXAM)</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회 영양약료</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div> </div> <div class="tabs" id="tabs"> <button type="button" class="active" data-pane="core">핵심</button> <button type="button" data-pane="quiz">문제</button> </div> <div class="main"> <nav class="nav" id="nav" aria-label="소단원"><button type="button" class="nav-item" data-topic="eval" data-target="sec-eval-0-영양평가-PN-직결만"><span class="nav-lab">평가</span></button><button type="button" class="nav-item" data-topic="indications" data-target="sec-indications-1-적응증-시작시점-지연"><span class="nav-lab">적응증</span></button><button type="button" class="nav-item" data-topic="cho_gir" data-target="sec-cho_gir-2-1-탄수화물-dextrose"><span class="nav-lab">구성</span></button><button type="button" class="nav-item" data-topic="cho_gir" data-target="sec-cho_gir-2-1-탄수화물-dextrose"><span class="nav-lab">GIR·당</span></button><button type="button" class="nav-item" data-topic="lipid" data-target="sec-lipid-2-2-지방-ILE"><span class="nav-lab">지질</span></button><button type="button" class="nav-item" data-topic="protein" data-target="sec-protein-2-3-단백질-아미노산-AA"><span class="nav-lab">단백</span></button><button type="button" class="nav-item" data-topic="fluid_lytes" data-target="sec-fluid_lytes-2-4-수분"><span class="nav-lab">수분</span></button><button type="button" class="nav-item" data-topic="fluid_lytes" data-target="sec-fluid_lytes-2-5-전해질"><span class="nav-lab">전해질</span></button><button type="button" class="nav-item" data-topic="vit_te" data-target="sec-vit_te-2-6-비타민"><span class="nav-lab">비타민</span></button><button type="button" class="nav-item" data-topic="vit_te" data-target="sec-vit_te-2-7-미량원소-TE"><span class="nav-lab">미량원소</span></button><button type="button" class="nav-item" data-topic="route" data-target="sec-route-3-1-말초-vs-중심"><span class="nav-lab">경로</span></button><button type="button" class="nav-item" data-topic="route" data-target="sec-route-3-1-말초-vs-중심"><span class="nav-lab">말초·중심</span></button><button type="button" class="nav-item" data-topic="route" data-target="sec-route-3-2-2-in-1-vs-3-in-1-TNA"><span class="nav-lab">2·3-in-1</span></button><button type="button" class="nav-item" data-topic="route" data-target="sec-route-3-3-MCB-다챔버-백-GL-ASPEN-Myths-ISMP-2025"><span class="nav-lab">MCB</span></button><button type="button" class="nav-item" data-topic="route" data-target="sec-route-3-4-국내-PN-제품-비교"><span class="nav-lab">국내제품</span></button><button type="button" class="nav-item" data-topic="calc_filter" data-target="sec-calc_filter-4-1-에너지"><span class="nav-lab">요구량</span></button><button type="button" class="nav-item" data-topic="calc_filter" data-target="sec-calc_filter-4-1-에너지"><span class="nav-lab">에너지</span></button><button type="button" class="nav-item" data-topic="calc_filter" data-target="sec-calc_filter-4-2-계산-5단계-상한-체크"><span class="nav-lab">계산</span></button><button type="button" class="nav-item" data-topic="calc_filter" data-target="sec-calc_filter-4-3-삼투압-계산-표9-17-EXAM-p153"><span class="nav-lab">삼투</span></button><button type="button" class="nav-item" data-topic="calc_filter" data-target="sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE"><span class="nav-lab">교정</span></button><button type="button" class="nav-item" data-topic="stability" data-target="sec-stability-5-1-혼합-순서"><span class="nav-lab">조제</span></button><button type="button" class="nav-item" data-topic="stability" data-target="sec-stability-5-1-혼합-순서"><span class="nav-lab">혼합순서</span></button><button type="button" class="nav-item" data-topic="stability" data-target="sec-stability-5-2-Ca-P-침전"><span class="nav-lab">Ca–P</span></button><button type="button" class="nav-item" data-topic="stability" data-target="sec-stability-5-3-배합금기-Y-site"><span class="nav-lab">Y-site</span></button><button type="button" class="nav-item" data-topic="stability" data-target="sec-stability-5-4-필터-hang-time-세트-BUD"><span class="nav-lab">필터·hang</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-complications-6-1-3열-요약"><span class="nav-lab">합병증</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-complications-6-1-3열-요약"><span class="nav-lab">합병증요</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-complications-6-2-재급식-증후군-Refeeding"><span class="nav-lab">재급식</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-complications-6-3-간담도-합병증-PNALD"><span class="nav-lab">PNALD</span></button><button type="button" class="nav-item" data-topic="complications" data-target="sec-complications-6-4-대사성-골질환-MBD"><span class="nav-lab">MBD</span></button><button type="button" class="nav-item" data-topic="lipid" data-target="sec-lipid-6-5-필수지방산-결핍-EFAD"><span class="nav-lab">EFAD</span></button><button type="button" class="nav-item" data-topic="monitor" data-target="sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"><span class="nav-lab">모니터</span></button><button type="button" class="nav-item" data-topic="monitor" data-target="sec-monitor-7-2-Lab-정상범위"><span class="nav-lab">Lab</span></button><button type="button" class="nav-item" data-topic="monitor" data-target="sec-monitor-7-3-PN-중단-이행"><span class="nav-lab">이행</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-질환별-PN"><span class="nav-lab">질환별</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-1-폐-심장-신경계"><span class="nav-lab">폐·심·신경</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-2-당뇨-비만"><span class="nav-lab">당뇨·비만</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-3-수술-암-화상"><span class="nav-lab">수술·암·화상</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-4-섭식장애-임부-노인"><span class="nav-lab">섭식·임부·노인</span></button><button type="button" class="nav-item" data-topic="disease" data-target="sec-disease-8-5-영양소-약물-상호작용"><span class="nav-lab">영양–약물</span></button><button type="button" class="nav-item" data-topic="peds" data-target="sec-peds-9-소아-신생아"><span class="nav-lab">소아</span></button><button type="button" class="nav-item" data-topic="hpn" data-target="sec-hpn-10-재택-PN-HPN"><span class="nav-lab">HPN</span></button><button type="button" class="nav-item" data-topic="hpn" data-target="sec-hpn-10-1-환자-교육"><span class="nav-lab">HPN교육</span></button><button type="button" class="nav-item" data-topic="cheat" data-target="sec-cheat-11-치트-암기-블록"><span class="nav-lab">치트</span></button><button type="button" class="nav-item" data-topic="case" data-target="sec-case-12-처방-검토-사례"><span class="nav-lab">처방사례</span></button><button type="button" class="nav-item" data-topic="common" data-target="sec-common-13-공통영역-의학통계-논문비평"><span class="nav-lab">공통영역</span></button><button type="button" class="nav-item" data-topic="common" data-target="sec-common-13-1-효과지표-정밀도"><span class="nav-lab">통계지표</span></button><button type="button" class="nav-item" data-topic="common" data-target="sec-common-13-2-논문-해석-사례-메타분석"><span class="nav-lab">논문해석</span></button></nav> <section class="pane pane-core" id="core">
 <section class="sec" data-topic="eval" id="sec-eval-0-영양평가-PN-직결만">
 <div class="sec-h">0. 영양평가</div>
 <table class="jg nest"><tr>
@@ -324,18 +329,8 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 </tr>
 </table>
 </section>
-<section class="sec" data-topic="cho_gir" id="sec-cho_gir-2-구성요소">
+<section class="sec" data-topic="cho_gir" id="sec-cho_gir-2-구성요소" data-hub="1" hidden>
 <div class="sec-h">2. 구성요소</div>
-<div class="cell hub">
-<p class="hub-lead">PN 구성 소단원 — 왼쪽 목차 또는 아래 항목으로 이동</p>
-<ul class="hub-list">
-<li><b>2.1</b> 탄수화물 (dextrose) · GIR·당</li>
-<li><b>2.2</b> 지방 (ILE)</li>
-<li><b>2.3</b> 단백질 (아미노산, AA)</li>
-<li><b>2.4</b> 수분 · <b>2.5</b> 전해질</li>
-<li><b>2.6</b> 비타민 · <b>2.7</b> 미량원소 (TE)</li>
-</ul>
-</div>
 </section>
 <section class="sec" data-topic="cho_gir" id="sec-cho_gir-2-1-탄수화물-dextrose">
 <div class="sec-h">2.1 탄수화물 (dextrose)</div>
@@ -906,17 +901,8 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 </ul>
 </div>
 </section>
-<section class="sec" data-topic="route" id="sec-route-3-투여경로-제형">
+<section class="sec" data-topic="route" id="sec-route-3-투여경로-제형" data-hub="1" hidden>
 <div class="sec-h">3. 투여경로 · 제형</div>
-<div class="cell hub">
-<p class="hub-lead">투여경로·제형 소단원</p>
-<ul class="hub-list">
-<li><b>3.1</b> 말초 vs 중심 정맥</li>
-<li><b>3.2</b> 2-in-1 vs 3-in-1 (TNA)</li>
-<li><b>3.3</b> MCB (다챔버 백)</li>
-<li><b>3.4</b> 국내 PN 제품 비교</li>
-</ul>
-</div>
 </section>
 <section class="sec" data-topic="route" id="sec-route-3-1-말초-vs-중심">
 <div class="sec-h">3.1 말초 vs 중심</div>
@@ -1065,17 +1051,8 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 </tr>
 </table>
 </section>
-<section class="sec" data-topic="calc_filter" id="sec-calc_filter-4-요구량-투여계획-계산">
+<section class="sec" data-topic="calc_filter" id="sec-calc_filter-4-요구량-투여계획-계산" data-hub="1" hidden>
 <div class="sec-h">4. 요구량 · 투여계획 · 계산</div>
-<div class="cell hub">
-<p class="hub-lead">요구량·계산 소단원</p>
-<ul class="hub-list">
-<li><b>4.1</b> 에너지</li>
-<li><b>4.2</b> 계산 5단계 · 상한 체크</li>
-<li><b>4.3</b> 삼투압 계산</li>
-<li><b>4.4</b> 교정 공식</li>
-</ul>
-</div>
 </section>
 <section class="sec" data-topic="calc_filter" id="sec-calc_filter-4-1-에너지">
 <div class="sec-h">4.1 에너지</div>
@@ -1203,43 +1180,41 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 <td><b>1.4 / mEq</b></td>
 </tr>
 </table>
-<div class="cell"><b>예제</b>: D 100 g + AA 40 g + lipid 10 g + NaCl 10 mL (2 mEq/mL), 총 800 mL<br>
-500 + 400 + 7.1 + 40 = 947.1 mOsm<br>
-947.1 ÷ 0.8 L = <b>1,184 mOsm/L ⟶ 900 초과 ⟶ 중심정맥</b></div>
+<div class="cell">
+<p><b>예제</b> — D 100 g + AA 40 g + lipid 10 g + NaCl 10 mL(2 mEq/mL), 총 800 mL</p>
+<ul class="bl">
+<li>합: 500 + 400 + 7.1 + 40 = <b>947.1 mOsm</b></li>
+<li>농도: 947.1 ÷ 0.8 L = <b>1,184 mOsm/L</b></li>
+<li>판정: <b>900 초과 → 중심정맥</b></li>
+</ul>
+</div>
 </section>
 <section class="sec" data-topic="calc_filter" id="sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE">
-<div class="sec-h">4.4 교정 공식 (Ca · Na)</div>
-<table class="jg nest"><tr>
-<th class="th">공식</th>
-<th class="th">예제</th>
+<div class="sec-h">4.4 교정 공식</div>
+<table class="jg nest formula-table"><tr>
+<th class="th">항목</th>
+<th class="th">공식 · 예제</th>
 </tr>
 <tr>
-<td class="l1"><b>Corrected Ca (mg/dL) = 0.8 × (4.0 − 환자 Alb) + 측정 Ca</b></td>
-<td><ul class="bl">
-<li>예 1: Ca 8, Alb 2.6 ⟶ 0.8 × 1.4 + 8 = <b>9.12</b> (교재 정상범위 8.6–10.2)</li>
-<li>예 2: Ca 7.5, Alb 2.3 ⟶ 0.8 × 1.7 + 7.5 = <b>8.86</b></li>
-</ul></td>
+<td class="l1">Corrected Ca</td>
+<td>
+<div><b>0.8 × (4.0 − 환자 Alb) + 측정 Ca</b> (mg/dL)</div>
+<div class="ex">예) Ca 8, Alb 2.6 → 0.8 × 1.4 + 8 = <b>9.12</b> (교재 정상 8.6–10.2)</div>
+<div class="ex">예) Alb 2.3, Ca 7.5 → <b>8.86</b></div>
+</td>
 </tr>
 <tr>
-<td class="l1"><b>고혈당 Na 교정</b> = 측정 Na + <b>k × (Glu − 100)</b></td>
-<td><ul class="bl">
-<li>k = <b>0.016</b>(Katz) · <b>0.024</b>(Hillier) · 간이법: Glu 100↑마다 Na <b>+2</b></li>
-<li>예: Glu 300, Na 126 ⟶ <b>129.2</b>(0.016) / <b>130.8</b>(0.024) / <b>130</b>(간이)</li>
-</ul></td>
+<td class="l1">고혈당 Na</td>
+<td>
+<div>측정 Na + <b>0.016</b>(Katz) 또는 <b>0.024</b>(Hillier) × (Glu − 100)</div>
+<div>간이: Glu 100↑마다 Na <b>+2</b></div>
+<div class="ex">예) Glu 300, Na 126 → <b>129.2</b> / <b>130.8</b> / <b>130</b>(간이)</div>
+</td>
 </tr>
 </table>
 </section>
-<section class="sec" data-topic="stability" id="sec-stability-5-조제-안정성-투여-주의사항">
+<section class="sec" data-topic="stability" id="sec-stability-5-조제-안정성-투여-주의사항" data-hub="1" hidden>
 <div class="sec-h">5. 조제 · 안정성 · 투여 (주의사항)</div>
-<div class="cell hub">
-<p class="hub-lead">조제·안정성 소단원</p>
-<ul class="hub-list">
-<li><b>5.1</b> 혼합 순서</li>
-<li><b>5.2</b> Ca–P 침전</li>
-<li><b>5.3</b> 배합금기 · Y-site</li>
-<li><b>5.4</b> 필터 · hang time · 세트 · BUD</li>
-</ul>
-</div>
 </section>
 <section class="sec" data-topic="stability" id="sec-stability-5-1-혼합-순서">
 <div class="sec-h">5.1 혼합 순서</div>
@@ -1350,7 +1325,7 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 </tr>
 <tr>
 <td class="l1">투여세트 교환</td>
-<td><b><mark class="hl-pink" title="전문약사 EXAM">24시간</mark>마다</b> 또는 <b>새 PN bag마다</b> (필기: <b>48 h = 오답 등장</b>)</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">24시간</mark>마다</b> 또는 <b>새 PN bag마다</b> (<b>48 h = 오답</b>)</td>
 </tr>
 <tr>
 <td class="l1">BUD (사용기한)</td>
@@ -1362,18 +1337,8 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 </tr>
 </table>
 </section>
-<section class="sec" data-topic="complications" id="sec-complications-6-합병증">
+<section class="sec" data-topic="complications" id="sec-complications-6-합병증" data-hub="1" hidden>
 <div class="sec-h">6. 합병증</div>
-<div class="cell hub">
-<p class="hub-lead">합병증 소단원</p>
-<ul class="hub-list">
-<li><b>6.1</b> 3열 요약</li>
-<li><b>6.2</b> <mark class="hl-both" title="전문약사+병원약사회">재급식</mark> 증후군 (Refeeding)</li>
-<li><b>6.3</b> 간담도 합병증 (PNALD)</li>
-<li><b>6.4</b> 대사성 골질환 (MBD)</li>
-<li><b>6.5</b> <mark class="hl-yellow" title="병원약사회">필수지방</mark>산 결핍 (<mark class="hl-yellow" title="병원약사회">EFAD</mark>)</li>
-</ul>
-</div>
 </section>
 <section class="sec" data-topic="complications" id="sec-complications-6-1-3열-요약">
 <div class="sec-h">6.1 3열 요약</div>
@@ -1425,7 +1390,7 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 </table>
 </section>
 <section class="sec" data-topic="complications" id="sec-complications-6-2-재급식-증후군-Refeeding">
-<div class="sec-h">6.2 재급식 증후군 (Refeeding)</div>
+<div class="sec-h">6.2 <mark class="hl-both" title="전문약사+병원약사회">재급식</mark> 증후군 (Refeeding)</div>
 <table class="jg nest"><tr>
 <th class="th">L2</th>
 <th class="th">내용</th>
@@ -1500,7 +1465,7 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 </div>
 </section>
 <section class="sec" data-topic="lipid" id="sec-lipid-6-5-필수지방산-결핍-EFAD">
-<div class="sec-h">6.5 필수지방산 결핍 (EFAD)</div>
+<div class="sec-h">6.5 <mark class="hl-yellow" title="병원약사회">필수지방</mark>산 결핍 (<mark class="hl-yellow" title="병원약사회">EFAD</mark>)</div>
 <table class="jg nest"><tr>
 <th class="th">L2</th>
 <th class="th">내용</th>
@@ -1527,20 +1492,12 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 </tr>
 </table>
 </section>
-<section class="sec" data-topic="monitor" id="sec-monitor-7-모니터링-Lab-중단">
+<section class="sec" data-topic="monitor" id="sec-monitor-7-모니터링-Lab-중단" data-hub="1" hidden>
 <div class="sec-h">7. 모니터링 · Lab · 중단</div>
-<div class="cell hub">
-<p class="hub-lead">모니터링·중단 소단원</p>
-<ul class="hub-list">
-<li><b>7.1</b> PN 대사합병증 모니터</li>
-<li><b>7.2</b> Lab 정상범위</li>
-<li><b>7.3</b> PN 중단 · 이행</li>
-</ul>
-<p><mark class="hl-yellow" title="병원약사회">SOFA coagulation = platelet (≠ INR)</mark> · liver=bilirubin · CNS=GCS · CV=MAP/vaso · renal=Cr/UO · <mark class="hl-yellow" title="병원약사회">NRS-2002 ≥3 = 영양위험</mark> / high risk ≥5 · NUTRIC·mNUTRIC high ≥5 (원 NUTRIC high는 ≥6 주의)</p>
-</div>
 </section>
 <section class="sec" data-topic="monitor" id="sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179">
 <div class="sec-h">7.1 PN 대사합병증 모니터 (표11-1)</div>
+<div class="cell"><mark class="hl-yellow" title="병원약사회">SOFA coagulation = platelet (≠ INR)</mark> · liver=bilirubin · CNS=GCS · CV=MAP/vaso · renal=Cr/UO · <mark class="hl-yellow" title="병원약사회">NRS-2002 ≥3 = 영양위험</mark> / high risk ≥5 · NUTRIC·mNUTRIC high ≥5 (원 NUTRIC high는 ≥6 주의)</div>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
 <th class="th">개시(급성기)</th>
@@ -5033,7 +4990,16 @@ function setTopic(tid, {scroll=true, target=null, fromSpy=false}={}){
   syncNavHighlight(target || activeSecId, tid);
   if(scroll && !fromSpy){
     spyLock = true;
-    const el = target ? document.getElementById(target) : document.querySelector('.sec[data-topic="'+tid+'"]');
+    let el = target ? document.getElementById(target) : null;
+    if(!el){
+      el = document.querySelector('.sec[data-topic="'+tid+'"]:not([data-hub])')
+        || document.querySelector('.sec[data-topic="'+tid+'"]');
+    }
+    if(el && el.hasAttribute("data-hub")){
+      el = el.nextElementSibling && el.nextElementSibling.classList.contains("sec")
+        ? el.nextElementSibling
+        : document.querySelector('.sec[data-topic="'+tid+'"]:not([data-hub])');
+    }
     if(el){
       activeSecId = el.id;
       spyLastId = el.id;

@@ -34,7 +34,9 @@ BANK_FIELDS = ["id", "revision", "topic", "source", "stem", "choices", "answer",
                "choiceExplanations", "reviewStatus", "includeInBasicSet", "language", "originType",
                "coreSectionIds", "scopeIds", "referenceIds", "errataIds"]
 STUDY_UI_FILES = [("study.css", "style"), ("study-state.js", "script"), ("study-ui.js", "script")]
-SECTION_OPEN = re.compile(r'<section class="sec" data-topic="[^"]+" id="([^"]+)"(?: data-added="[^"]+")?>')
+SECTION_OPEN = re.compile(
+    r'<section class="sec" data-topic="[^"]+" id="([^"]+)"(?: data-added="[^"]+")?(?: data-hub="1")?(?: hidden)?>'
+)
 
 
 def read(path):
