@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>영양불백 · PN 핵심 (A4)</title>
+<style>
+:root{
+  color-scheme:light;
+  --navy:#1e3a5f; --label:#dce8d4; --label2:#e8f0e4; --zebra:#f7f9fc;
+  --line:#b8c0cc; --text:#1a2332; --muted:#5b6575; --danger:#c62828;
+}
+*{box-sizing:border-box}
+html,body{overflow:visible!important}
+body{
+  margin:0 auto; max-width:210mm; padding:8mm 7mm;
+  font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  font-size:8.5pt; line-height:1.28; color:var(--text); background:#fff;
+  overflow-wrap:anywhere; word-break:keep-all;
+}
+.toolbar{
+  position:sticky; top:0; z-index:5; background:#f4f6f8; border:1px solid var(--line);
+  padding:6px 10px; margin:-4mm -3mm 5mm; display:flex; gap:8px; align-items:center;
+  font-size:11px; flex-wrap:nowrap;
+}
+.toolbar button{
+  border:1px solid var(--navy); background:var(--navy); color:#fff; padding:6px 10px;
+  font-size:12px; cursor:pointer; border-radius:3px; flex:0 0 auto;
+}
+.toolbar a{color:#1a5fb4; flex:0 0 auto}
+.toolbar .hl-legend{
+  margin-left:auto; display:flex; gap:8px; align-items:center; justify-content:flex-end;
+  font-size:10px; color:var(--muted); white-space:nowrap; flex:0 0 auto;
+}
+.toolbar .hl-legend .swatch{
+  display:inline-block;width:22px;height:14px;vertical-align:middle;margin-right:4px;
+  border-radius:2px;border:1px solid #b8c0cc;flex-shrink:0;
+}
+.toolbar .hl-legend .swatch.hl-pink{background:#f8bbd0}
+.toolbar .hl-legend .swatch.hl-yellow{background:#fff59d}
+.toolbar .hl-legend .swatch.hl-both{background:linear-gradient(#f8bbd0 0 50%, #fff59d 50% 100%)}
+.note{color:var(--muted); font-size:8pt; font-weight:500}
+#corePrint{outline:none; overflow:visible!important; max-width:100%}
+#corePrint:focus{outline:none}
+
+/* Brand + 짜그리 hierarchy */
+h1{
+  font-size:13pt; margin:0 0 3mm; color:var(--navy);
+  border-bottom:2.5px solid var(--navy); padding:0 0 1.5mm;
+  letter-spacing:-.02em; font-weight:800;
+}
+h2{
+  font-size:9.5pt; margin:2.2mm 0 0.8mm; padding:1.2mm 2mm;
+  background:var(--label); color:var(--navy); font-weight:800;
+  border-left:3px solid var(--navy); letter-spacing:-.02em;
+  break-after:avoid; page-break-after:avoid; break-inside:avoid;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+h3{
+  font-size:8.5pt; margin:1.6mm 0 0.6mm; padding:1mm 1.8mm;
+  background:#eef2f6; color:var(--navy); font-weight:700;
+  border-left:2.5px solid #7a9ab8;
+  break-after:avoid; page-break-after:avoid; break-inside:avoid;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+
+/* Dense nested tables */
+table{
+  width:100%!important; max-width:100%!important;
+  border-collapse:collapse; table-layout:fixed;
+  margin:0 0 1.2mm; font-size:8pt; line-height:1.25;
+}
+th, td{
+  border:1px solid var(--line); padding:0.7mm 1.1mm; vertical-align:top;
+  overflow-wrap:anywhere; word-break:break-word; white-space:normal!important;
+}
+th, .th{
+  background:#eef2f6; font-weight:700; font-size:7.5pt;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+.l1{
+  background:var(--zebra); font-weight:700; width:18%; font-size:7.5pt;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+#corePrint table th:first-child,
+#corePrint table .th:first-child,
+#corePrint table td.l1{width:18%}
+tr:nth-child(even) td:not(.l1):not(.th){background:#fbfcfe}
+ul{margin:0 0 1.2mm; padding-left:3.5mm}
+li{margin:0.25mm 0; line-height:1.28}
+p{margin:0 0 1mm; line-height:1.28}
+.x{color:var(--danger); font-weight:700}
+sup.fn a{color:var(--muted); text-decoration:none; font-size:6.5pt}
+.footnotes{
+  margin-top:3mm; border-top:1px solid var(--line); padding-top:1.5mm;
+  font-size:7pt; color:#333; columns:2; column-gap:4mm;
+}
+.footnotes li{margin:0.4mm 0; break-inside:avoid; list-style:none}
+.fnn{color:var(--muted); font-weight:700; margin-right:0.8mm}
+img,svg{max-width:100%; height:auto}
+
+/* Fluorescent exam marks */
+mark.hl-pink, .hl-pink{
+  background:linear-gradient(transparent 10%, #f8bbd0 10%, #f8bbd0 90%, transparent 90%);
+  color:inherit; padding:0 .03em;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+mark.hl-yellow, .hl-yellow{
+  background:linear-gradient(transparent 10%, #fff59d 10%, #fff59d 90%, transparent 90%);
+  color:inherit; padding:0 .03em;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+mark.hl-both, .hl-both{
+  background:
+    linear-gradient(#f8bbd0,#f8bbd0) top / 100% 46% no-repeat,
+    linear-gradient(#fff59d,#fff59d) bottom / 100% 46% no-repeat;
+  color:inherit; padding:0 .04em;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  box-shadow:none; border:none; text-decoration:none;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+
+/* Section keep-together (JS wraps h2/h3 groups) */
+.print-sec, .print-sub{
+  break-inside:avoid; page-break-inside:avoid;
+  -webkit-column-break-inside:avoid;
+}
+.print-sec{margin:0 0 0.8mm}
+.print-sec.allow-break,
+.print-sec.allow-break > .print-sub.allow-break{
+  break-inside:auto; page-break-inside:auto;
+}
+.print-sec.allow-break > h2,
+.print-sub > h3{
+  break-after:avoid; page-break-after:avoid;
+}
+.print-sec.allow-break > h2 + *,
+.print-sub > h3 + *{
+  break-before:avoid; page-break-before:avoid;
+}
+/* Prefer split between subsections; keep rows intact */
+tr, td, th{break-inside:avoid; page-break-inside:avoid}
+thead{display:table-header-group}
+tfoot{display:table-footer-group}
+h1,h2,h3{orphans:3; widows:3}
+
+@page{size:A4; margin:10mm 9mm 11mm 9mm}
+
+@media print{
+  .toolbar{display:none!important}
+  html,body,#corePrint{overflow:visible!important; height:auto!important; max-height:none!important}
+  body{max-width:none; width:auto; padding:0; margin:0; font-size:8.2pt; line-height:1.26}
+  table{font-size:7.8pt; page-break-inside:auto; width:100%!important; table-layout:fixed}
+  th,td{padding:0.55mm 0.9mm}
+  h2{margin:1.6mm 0 0.5mm; padding:1mm 1.6mm; font-size:9pt}
+  h3{margin:1.2mm 0 0.4mm; padding:0.7mm 1.4mm; font-size:8pt}
+  h1{font-size:12pt; margin:0 0 2mm}
+  .footnotes{columns:1; column-count:1; font-size:6.5pt}
+  a{color:inherit; text-decoration:none}
+  th,.th,.l1,h2,h3,
+  mark.hl-pink,.hl-pink,mark.hl-yellow,.hl-yellow,mark.hl-both,.hl-both{
+    -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important;
+  }
+  .print-sec:not(.allow-break),
+  .print-sub:not(.allow-break){
+    break-inside:avoid!important; page-break-inside:avoid!important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button type="button" onclick="window.print()">인쇄 / PDF 저장</button>
+  <a href="PN_study_split.html">영양불백 공부판으로</a>
+  <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div>
+</div>
+<div id="corePrint" contenteditable="true" spellcheck="false">
+<h1>영양불백 · PN 핵심 <span class="note">(A4 인쇄/편집)</span></h1>
+<h2 id="s33">0. 영양평가 (PN 직결만)</h2><table>
+<tr>
+<th class="th">항목</th>
+<th class="th">핵심</th>
+</tr>
+<tr>
+<td class="l1">간접열량측정(IC)</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">흡기 O₂ · 호기 CO₂ 분압</mark></b> 측정 [EXAM p142] (오답선지: 질소배설·ScO₂·HCO₃⁻ <sup class="fn"><a href="#fn1">1</a></sup>) · Weir: REE = [(3.94×VO₂) + (1.11×VCO₂)] × 1440 [TXT p143] · IC 가능하면 IC 우선 <sup class="fn"><a href="#fn2">2</a></sup></td>
+</tr>
+<tr>
+<td class="l1">중증 영양불량 (급성질환·외상)</td>
+<td>체중↓ <b><mark class="hl-pink" title="전문약사 EXAM">&gt;2%/1주 · &gt;5%/1월 · &gt;7.5%/3월</mark></b> · 섭취 <b>&lt;50% for &gt;5일</b> · 수분축적 중등–심한 부종 [EXAM p116·p120] · (6월 &gt;10% [TXT p120])</td>
+</tr>
+<tr>
+<td class="l1">표준체중(IBW)</td>
+<td>♂ <b><mark class="hl-pink" title="전문약사 EXAM">키(m)² × 22</mark></b> [EXAM p119] · ♀ 키² × 21 <sup class="fn"><a href="#fn3">3</a></sup></td>
+</tr>
+<tr>
+<td class="l1">ICU 선별도구</td>
+<td><b><mark class="hl-both" title="전문약사+병원약사회">NRS 2002 · NUTRIC</mark></b> [EXAM p239]</td>
+</tr>
+<tr>
+<td class="l1">기아성 영양불량</td>
+<td>콰시오커 = 단백 결핍 ⟶ <b><mark class="hl-pink" title="전문약사 EXAM">혈청 알부민 &lt;3.0 g/dL</mark></b>, 부종 · 마라스무스 = 열량 결핍 ⟶ 알부민 &gt;3.0 유지, <b>체지방·근육 소모</b> [EXAM+ p110]</td>
+</tr>
+<tr>
+<td class="l1">내장단백</td>
+<td><b>prealbumin</b>(transthyretin, 반감기 2–3일) = <b>단기간 영양지원 효과·영양부족 모니터링</b> [EXAM+ p122] · 알부민 반감기 18–20일 = 만성 지표, &lt;2.5 g/dL ⟶ 부종 · 저알부민 ⟶ Ca·phenytoin·valproate 해석 주의 [TXT p122]</td>
+</tr>
+<tr>
+<td class="l1">총체수분(TBW)</td>
+<td>♂ 0.6 · ♀/고령♂ 0.5 · <b><mark class="hl-pink" title="전문약사 EXAM">고령♀ 0.45 × 체중</mark></b> [EXAM p156] · 소아 0.6 · Na 교정 ≤12 mmol/L/day [TXT p156]</td>
+</tr>
+<tr>
+<td class="l1">EN 금기 (⟶ PN 적응 근거)</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">확산형 복막염 · 심한 장폐색 · 장관 마비 · 난치성 구토·설사 · 심각한 GI 출혈</mark></b> [EXAM p126]</td>
+</tr>
+</table><h2 id="s48">1. 적응증 · 시작시점 · 지연</h2><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">① GI 흡수 불가</td>
+<td>위장관 흡수 불가로 <b>5~7일 이상</b> 섭취 곤란 · 운동이상 질환 – 소장절제, 비조절성 구토, 중증 설사, 장폐색, 위장관 누공, 미만성 복막염 <sup class="fn"><a href="#fn4">4</a></sup> · 고배출 누공(<b>&gt;500 mL/d</b>) <sup class="fn"><a href="#fn5">5</a></sup></td>
+</tr>
+<tr>
+<td class="l1">② EN 제한 필요 (장휴식)</td>
+<td>섭취 어려운 <b>중증 췌장염</b> · EN으로 복통·복수·누공 유출 악화 · 허혈성 장관 · 수술 전후 <sup class="fn"><a href="#fn4">4</a></sup></td>
+</tr>
+<tr>
+<td class="l1">③ EN 유지 곤란</td>
+<td>불안정한 혈역학 · GI 출혈 · 중증 호중구감소 발열 · 저체중출생아 <sup class="fn"><a href="#fn4">4</a></sup></td>
+</tr>
+<tr>
+<td class="l1">④ 소아</td>
+<td><b>초저체중 미숙아 = 출생 직후</b> · 일반 소아 = <b>5~7일 이내</b> EN만으로 부족 시 <sup class="fn"><a href="#fn4">4</a></sup></td>
+</tr>
+<tr>
+<td class="l1">cf.</td>
+<td>임신성 과다구토 · 식이장애(거식증·영양불량) <sup class="fn"><a href="#fn4">4</a></sup> · <mark class="hl-yellow" title="병원약사회">Crohn(크론)</mark> = <b>EN 실패/불가 후</b>(불내성 포함) PN (장휴식 목적 단독 PN X) <sup class="fn"><a href="#fn6">6</a></sup> [TXT p211]</td>
+</tr>
+<tr>
+<td class="l1">시작 시점 <sup class="fn"><a href="#fn7">7</a></sup></td>
+<td>영양위험 <b>3–5일</b> · 중등–중증 영양불량 <b>가능한 한 빨리</b> · 잘영양·안정 + oral/EN으로 <b>&gt;50% 미충족</b> → <b>7일</b> 대기 가능 · 중증 대사불안정 → 호전까지 <b>지연</b></td>
+</tr>
+<tr>
+<td class="l1">중환자 SPN <sup class="fn"><a href="#fn8">8</a></sup></td>
+<td>잘영양 ICU: <b>day 7 이전 SPN 시작 X</b> · 영양불량·근감소 = 개별판단 · 말초 PN(SPN/bridge) <b>≤10–14일</b></td>
+</tr>
+<tr>
+<td class="l1">1주 내 EN vs PN <sup class="fn"><a href="#fn9">9</a></sup></td>
+<td>유사 kcal면 EN·PN <b>동등 허용</b></td>
+</tr>
+<tr>
+<td class="l1">Home 개시 <sup class="fn"><a href="#fn7">7</a></sup></td>
+<td>병원 선행 <b>필수 아님</b> (정책·적격기준·교육·모니터 프로토콜 전제)</td>
+</tr>
+<tr>
+<td class="l1"><mark class="hl-yellow" title="병원약사회">고혈당</mark>·고TG 환자 개시 <sup class="fn"><a href="#fn7">7</a></sup></td>
+<td>금기 아님 — <b>glucose &gt;180</b> ⟶ dextrose↓ 시작·insulin · <b>TG &gt;200</b> ⟶ ILE 저용량 시작 · 둘 다 보수적 증량</td>
+</tr>
+</table><h2 id="s65">2. 구성요소</h2><h3 id="s67">2.1 탄수화물 (dextrose)</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">형태·열량</td>
+<td>일수화물(monohydrate) <b>3.4 kcal/g</b> = IV 계산 기본 [TXT p143] <sup class="fn"><a href="#fn10">10</a></sup> <sup class="fn"><a href="#fn11">11</a></sup> · 무수화물 4 [TXT p033] (p143 표기 3.85) · <sup class="fn"><a href="#fn4">4</a></sup> 3.4~3.75 · cf. glycerol 4.3 <sup class="fn"><a href="#fn12">12</a></sup></td>
+</tr>
+<tr>
+<td class="l1">비중</td>
+<td>PN 에너지의 <b>40~50%</b> [EXAM p033] · NPC 중 CHO 60–85% / 지질 15–40% [TXT p143] · ASPEN 표: dextrose = NPC <b>60–70%</b> [TXT p166]</td>
+</tr>
+<tr>
+<td class="l1">용액</td>
+<td>pH <b>3.5~6.5</b> [TXT p033] · 국내 최고 <b>50%</b> (해외 2.5–70%) [TXT p143] · <b>&gt;10% ⟶ 말초 혈전정맥염 ⟶ 중심정맥</b> [TXT p143] <sup class="fn"><a href="#fn13">13</a></sup></td>
+</tr>
+<tr>
+<td class="l1">삼투압</td>
+<td>≈ <b><mark class="hl-pink" title="전문약사 EXAM">당농도(%) × 50</mark></b> [EXAM p033] (= 5 mOsm/g [EXAM p153]) · 표2-3: D5 <b>253</b> / D10 <b>505</b> / D20 <b>1,010</b> / D50 <b>2,525</b> mOsm/L</td>
+</tr>
+<tr>
+<td class="l1">GIR 공식</td>
+<td>GIR (mg/kg/min) = <b>[Dex(%) × 속도(mL/h) × 0.167] ÷ 체중(kg)</b> = [Dex(%) × 수액(mL/kg/d)] ÷ 144 = mg dextrose ÷ (kg × 1440) [TXT p144] · 예: D10 40 mL/h, 10 kg ⟶ <b>6.67</b> · 환산 mg/kg/min × 1.44 ≈ g/kg/d <sup class="fn"><a href="#fn1">1</a></sup></td>
+</tr>
+</table><p><b>성인 GIR — 문맥별 (상세 충돌 → §11-1)</b></p><table>
+<tr>
+<th class="th">문맥</th>
+<th class="th">값</th>
+<th class="th">출처</th>
+</tr>
+<tr>
+<td class="l1">성인 <b>일반</b> (표2-6)</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">5~7 mg/kg/min</mark></b> (필기 &quot;고르기!&quot;)</td>
+<td>[EXAM p034]</td>
+</tr>
+<tr>
+<td class="l1">성인 <b>안정</b> (표9-4)</td>
+<td><b>4~5 mg/kg/min</b> (max 7 g/kg/d)</td>
+<td>[EXAM p143]</td>
+</tr>
+<tr>
+<td class="l1"><b>중환자</b></td>
+<td><b>&lt;4</b> (표2-6·9-4) / <mark class="hl-yellow" title="병원약사회">고혈당</mark> 위험 → <b>4 넘지 않도록</b></td>
+<td>[EXAM p034·p143]</td>
+</tr>
+<tr>
+<td class="l1"><b><mark class="hl-yellow" title="병원약사회">고혈당</mark> 위험</b> 일반 환자</td>
+<td><b>≤4</b></td>
+<td>[EXAM p033]</td>
+</tr>
+<tr>
+<td class="l1"><b>화상</b></td>
+<td><b>≤5</b></td>
+<td>[EXAM p033]</td>
+</tr>
+<tr>
+<td class="l1">성인 최대 당산화속도</td>
+<td><b>4 이하</b> 유지</td>
+<td>[EXAM p035]</td>
+</tr>
+<tr>
+<td class="l1">고혈당 고위험 <b>첫날</b></td>
+<td><b>2~3 mg/kg/min</b> (필기: ≈ glucose 100–150 g/d)</td>
+<td>[TXT p035]</td>
+</tr>
+<tr>
+<td class="l1">하루 총량 상한</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">≤7 g/kg/day</mark></b> <span class="x">초과X</span> · 최소 2–3 g/kg(100–200 g/d) · 일반 GIR <b>≤5</b></td>
+<td>[TXT p034·p166] [EXAM p143]</td>
+</tr>
+<tr>
+<td class="l1">중환자 표 (교재 표)</td>
+<td>ASPEN 2012: <b>Not &gt;4</b> (BG 140 또는 150–180) · <b>ESPEN 2019: GIR &lt;5</b></td>
+<td>[TXT p170] · [EXAM+ p170]</td>
+</tr>
+<tr>
+<td class="l1"><mark class="hl-yellow" title="병원약사회">HPN</mark> 주기주입 (교재)</td>
+<td>최대 포도당 투여속도 <b>4–7 mg/kg/min</b> 유지</td>
+<td>[TXT p280]</td>
+</tr>
+<tr>
+<td class="l1"><sup class="fn"><a href="#fn14">14</a></sup></td>
+<td>주기주입 <b>순간속도 max 5–7</b> (70 kg·12 h ≈ 350 g) 또는 <b>3–6 g/kg/d</b></td>
+<td>문맥 = cyclic</td>
+</tr>
+<tr>
+<td class="l1"><sup class="fn"><a href="#fn13">13</a></sup></td>
+<td>성인 max ≈ <b>4–5</b> (산화한계, 초과 ⟶ lipogenesis·CO₂↑)</td>
+<td>국제문항</td>
+</tr>
+</table><p><b>고혈당 예방·인슐린</b> [TXT p035–036]</p><ul><li>개시 후 혈당 안정까지 <b>6시간마다</b> 혈당 측정 · 성인 당산화 <b>≤4</b> 유지</li><li>PN 혼합 인슐린 = <b><mark class="hl-pink" title="전문약사 EXAM">regular human insulin(RI)만</mark></b> [EXAM p035] (NPH X <sup class="fn"><a href="#fn15">15</a></sup>) · 피하 = <mark class="hl-yellow" title="병원약사회">기저-볼루스</mark>(AACE/ADA; sliding scale만 X) · PN 인슐린 사용은 <b>병원 내 일관된 지침</b> 근거 [EXAM p172]</li><li>PN 혼합량: 첫 고혈당 = PN 당 <b>g당 0.05~0.1 U</b> · 고혈당 기왕력 = <b>g당 0.15~0.2 U</b></li><li>BG <b>&gt;300</b> 지속 ⟶ sliding scale 요구량의 <b>2/3</b>를 PN에 추가 · 당 <b>g당 0.3 U 초과</b> 필요 ⟶ PN 혼합X, <b>별도 IV insulin pump</b></li></ul><p><b>혈당 목표</b></p><table>
+<tr>
+<th class="th">집단</th>
+<th class="th">목표</th>
+<th class="th">출처</th>
+</tr>
+<tr>
+<td class="l1">PN 성인</td>
+<td><b><mark class="hl-both" title="전문약사+병원약사회">140~180 mg/dL</mark></b> (필기 &quot;TPN &lt;180&quot;)</td>
+<td>[EXAM p034] [TXT p179] <sup class="fn"><a href="#fn5">5</a></sup></td>
+</tr>
+<tr>
+<td class="l1">안정 성인</td>
+<td>식전 90–110 · 식후 &lt;180</td>
+<td>[TXT p034]</td>
+</tr>
+<tr>
+<td class="l1">신생아</td>
+<td>혈장 <b>&lt;150</b> · 전혈 <b>&lt;125</b></td>
+<td>[TXT p034]</td>
+</tr>
+<tr>
+<td class="l1">PICU/NICU</td>
+<td><b>&gt;145 회피</b> · 반복 <b>&gt;180 ⟶ insulin</b></td>
+<td><sup class="fn"><a href="#fn16">16</a></sup></td>
+</tr>
+</table><h3 id="s109">2.2 지방 (ILE)</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">열량</td>
+<td>10% <b>1.1 kcal/mL</b> · 20% <b>2.0 kcal/mL</b> · 3-in-1 계산 시 지방 <b>10 kcal/g</b>(대두유) [EXAM p144] · MCT 복합 10% 1.06 / 20% 1.91 kcal/mL, 3-in-1 <b>9.5 kcal/g</b> [TXT p144] · cf. 순수 지방 g × 9 (Atwater) <sup class="fn"><a href="#fn6">6</a></sup></td>
+</tr>
+<tr>
+<td class="l1">20% 선호</td>
+<td>인지질:TG 비 낮음(유리인지질↓ — 유리인지질은 LPL 억제 ⟶ 청소율↓) + 입자 큼 ⟶ <b>청소율↑</b> · 고열량·<b>부피 절약</b> [EXAM p044] <sup class="fn"><a href="#fn4">4</a></sup></td>
+</tr>
+<tr>
+<td class="l1">대두유(SO)</td>
+<td><mark class="hl-pink" title="전문약사 EXAM">LA ~50%</mark> · ALA ~7% ⟶ <b><mark class="hl-yellow" title="병원약사회">EFAD</mark> 예방</b>↑ [EXAM p044] · n-6:n-3 ≈ 5:1 이하 ⟶ 염증·<b>간 손상</b> [EXAM p044] · 고농도 <b>phytosterol</b> ⟶ 담즙분비↓ [EXAM p044] · cf. 홍화유 = n-3 없음, 염증 우려↑ [TXT p044]</td>
+</tr>
+<tr>
+<td class="l1">차세대 ILE</td>
+<td><b>대두유 + MCT + 어유</b> 복합(예 SMOF) ⟶ 대두유 단독 대비 <b>n-6:n-3 비율이 항염증 쪽으로</b> ⟶ <b><mark class="hl-yellow" title="병원약사회">PNALD</mark> 위험↓ · <mark class="hl-yellow" title="병원약사회">PNALD</mark> 치료 옵션</b> [EXAM+ p188] · 어유 = n-3·phytosterol 적음 [TXT p188]</td>
+</tr>
+<tr>
+<td class="l1">제품</td>
+<td>ILE 제품 <b>서로 비동등</b>(적응·지방산·<mark class="hl-yellow" title="병원약사회">EFAD</mark> 용량·배합성) — 한 제품 배합자료 타제품 외삽 X <sup class="fn"><a href="#fn7">7</a></sup> · 국내 Smoflipid 20% / Nutriflex lipid 10% <sup class="fn"><a href="#fn17">17</a></sup></td>
+</tr>
+<tr>
+<td class="l1">성인 용량</td>
+<td>요구량 ≈ <b>1 g/kg/d</b> [EXAM p144] · 하루 <b>≤2.5 g/kg</b> [EXAM p144] · <b>중환자 ≤1 g/kg/d</b> [EXAM p144·p243] · <b>총열량 ≤30%</b> [EXAM p144] <sup class="fn"><a href="#fn4">4</a></sup> · 고TG 예방: <b>1 g/kg/d 제한</b> [EXAM p181] · 총열량 30% 미만 · 단독이면 <b>8~10시간</b>에 걸쳐 [TXT p181] · <b>&gt;1 g/kg/d</b> 장기 ⟶ 만성 <mark class="hl-yellow" title="병원약사회">담즙정체</mark>·중증 <mark class="hl-yellow" title="병원약사회">PNALD</mark> 연관 [TXT p188]</td>
+</tr>
+<tr>
+<td class="l1">주입속도</td>
+<td>성인 <b><mark class="hl-both" title="전문약사+병원약사회">≤<mark class="hl-yellow" title="병원약사회">0.11 g/kg/h</mark></mark></b> [EXAM p144] (p044 권고 최대 <b>0.11~0.15</b> <sup class="fn"><a href="#fn18">18</a></sup> · <sup class="fn"><a href="#fn4">4</a></sup> 0.125) · mL 환산: 20% ≈ 0.55, 10% ≈ 1.1 mL/kg/h <sup class="fn"><a href="#fn1">1</a></sup></td>
+</tr>
+<tr>
+<td class="l1">단독 투여시간</td>
+<td>세균 번식 쉬움 ⟶ <b><mark class="hl-pink" title="전문약사 EXAM">12시간 이내</mark></b> 투여 권고 [EXAM p144·p176]</td>
+</tr>
+<tr>
+<td class="l1">ICU 첫주</td>
+<td>교재 표(ASPEN 2016): 첫주 SO-ILE <b>최대 100 g/주(주 2회 분할)</b>, <b>≤1.0 g/kg</b> · ESPEN 2019: <b>&lt;1.5 g/kg/d</b>, <mark class="hl-yellow" title="병원약사회">EPA</mark>+<mark class="hl-yellow" title="병원약사회">DHA</mark>(어유 0.1–0.2 g/kg/d) [TXT p170·p183] vs <b>ASPEN 2022: 첫주 mixed 또는 100% SO ILE 허용</b> <sup class="fn"><a href="#fn9">9</a></sup></td>
+</tr>
+<tr>
+<td class="l1">Propofol</td>
+<td>10% 지방유제 vehicle(1.1 kcal/mL) ⟶ <b>kcal·TG 합산</b>, PN 지질 감량/중단 고려 [TXT p182] <sup class="fn"><a href="#fn19">19</a></sup></td>
+</tr>
+<tr>
+<td class="l1">부작용</td>
+<td>달걀 인지질 알레르기 · 급속주입 ⟶ 호흡곤란·청색증·발한·홍조·어지러움·두통·흉통·구역·구토 [TXT p182]</td>
+</tr>
+</table><p><b>TG 컷 (상세 충돌 → §11-3)</b></p><table>
+<tr>
+<th class="th">상황</th>
+<th class="th">값</th>
+<th class="th">출처</th>
+</tr>
+<tr>
+<td class="l1">고지혈증 병력</td>
+<td>ILE <b>투여 전 TG 측정</b></td>
+<td>[EXAM p181]</td>
+</tr>
+<tr>
+<td class="l1">개시 주의</td>
+<td><b>TG &gt;200</b> ⟶ 저용량 ILE로 신중 개시</td>
+<td><sup class="fn"><a href="#fn7">7</a></sup></td>
+</tr>
+<tr>
+<td class="l1">감량·중단</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">TG ≥400</mark></b> ⟶ ILE 회피·감량·중단</td>
+<td>[EXAM p181] (ASPEN 인용) <sup class="fn"><a href="#fn5">5</a></sup></td>
+</tr>
+<tr>
+<td class="l1">췌장염 재개</td>
+<td><b>TG &lt;400</b> 이면 ILE 재개</td>
+<td>[EXAM p210·p218]</td>
+</tr>
+<tr>
+<td class="l1">췌장염 유발</td>
+<td>대개 <b>TG &gt;1,000</b></td>
+<td>[TXT p182·p210]</td>
+</tr>
+<tr>
+<td class="l1">소아 감량</td>
+<td>주입 중 영아 <b>&gt;265</b>(3 mmol/L) · 소아 <b>&gt;400</b>(4.5 mmol/L) ⟶ <b>감량(중단X)</b></td>
+<td><sup class="fn"><a href="#fn20">20</a></sup></td>
+</tr>
+</table><h3 id="s136">2.3 단백질 (아미노산, AA)</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">기본</td>
+<td>결정 AA 형태 · <b>4 kcal/g</b> · 삼투 ≈ <b>%당 100 mOsm</b> (= 10 mOsm/g [EXAM p153]) · <b>N = 단백(g) ÷ 6.25</b> [EXAM p061] · 단백의 25–30% = 필수AA 권장 [TXT p061]</td>
+</tr>
+<tr>
+<td class="l1">요구량 <sup class="fn"><a href="#fn4">4</a></sup></td>
+<td>일반 성인 <b>0.8~1.0</b> · 중증 스트레스 <b>1.5~2.0</b> · 미숙아 <b>3.0~4.0</b> g/kg/d</td>
+</tr>
+<tr>
+<td class="l1">표4-5 [TXT p061]</td>
+<td>정상 0.8–1.0 · 경–중등 스트레스 1.0–1.5 · 심한 스트레스(화상·다발골절) 1.5–2.0 · 중환자 1.3–2.5 · 신부전(비투석) 0.6–0.8 · HD/PD <mark class="hl-yellow" title="병원약사회">1.2</mark>–1.3 → 1.5–1.8 · <mark class="hl-pink" title="전문약사 EXAM">CRRT</mark> 2–2.5 · 간경화·간성뇌증 1.0–1.5</td>
+</tr>
+<tr>
+<td class="l1">상한</td>
+<td>max <b>2.5 g/kg/d</b> · BUN &gt;100 주의 [TXT p168–169] (cf. Safe Practices max 2 g/kg/d <sup class="fn"><a href="#fn6">6</a></sup>)</td>
+</tr>
+<tr>
+<td class="l1">중환자 <sup class="fn"><a href="#fn2">2</a></sup></td>
+<td>BMI &lt;30 <b><mark class="hl-yellow" title="병원약사회">1.2</mark>–2.0</b> · 비만 IBW 기준 <b>≥2.0</b>(BMI 30–40) ~ <b>2.5</b>(BMI ≥40) · 교재 표 동일(ASPEN 2016) [TXT p170]</td>
+</tr>
+<tr>
+<td class="l1">중환자 (ESPEN 2019)</td>
+<td><b>1.3 g/kg</b> · 비만 <b>1.3 g/kg 조정체중(ABW)</b> [EXAM+ p170] ≠ ASPEN IBW 2.0–2.5</td>
+</tr>
+<tr>
+<td class="l1">NPC:N</td>
+<td>무스트레스 <b><mark class="hl-pink" title="전문약사 EXAM">150:1</mark></b> · 스트레스 <b><mark class="hl-pink" title="전문약사 EXAM">80~100:1</mark></b> [EXAM p061] · 동화 목적 NPC:N 120–180:1 / 총열량:N 100–<mark class="hl-pink" title="전문약사 EXAM">150:1</mark> [TXT p061] · 소아 150–250:1 [TXT p266] · <sup class="fn"><a href="#fn6">6</a></sup> ≈ 100–<mark class="hl-pink" title="전문약사 EXAM">150:1</mark></td>
+</tr>
+<tr>
+<td class="l1">표준 vs 특수 AA</td>
+<td><b><mark class="hl-yellow" title="병원약사회">AKI</mark>/신부전 ⟶ <mark class="hl-both" title="전문약사+병원약사회">표준 AA</mark></b> 권고 (특수 EAA 근거 부족) [EXAM p063·p227] · EAA(네프라민 5.4%, EAA 99.6%) [TXT p063–064]</td>
+</tr>
+<tr>
+<td class="l1"><mark class="hl-both" title="전문약사+병원약사회">BCAA</mark></td>
+<td>헤파타민(<mark class="hl-both" title="전문약사+병원약사회">BCAA</mark> 36%, AAA 2.1%, <mark class="hl-both" title="전문약사+병원약사회">BCAA</mark>/AAA 17.1) = <b>만성 뇌증 <mark class="hl-pink" title="전문약사 EXAM">≥ stage II</mark></b>에서만 인정 [EXAM p064] · 표준 단백 불내성 HE에만 <sup class="fn"><a href="#fn21">21</a></sup></td>
+</tr>
+<tr>
+<td class="l1"><mark class="hl-yellow" title="병원약사회">조건부 필수</mark> AA</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">taurine · tyrosine · <mark class="hl-yellow" title="병원약사회">cysteine</mark></mark></b> (신생아/소아 AA 수액) [EXAM p064] · <sup class="fn"><a href="#fn4">4</a></sup> 신생아 carnitine·<mark class="hl-yellow" title="병원약사회">cysteine</mark>·taurine / 대사 스트레스 glutamine</td>
+</tr>
+<tr>
+<td class="l1">Glutamine</td>
+<td><b>중환자 일상 투여 권고 X</b> (REDOX 2013) [EXAM p243] · 디펩티벤 20% = 조혈모세포이식 등 조건부 급여 [TXT p064]</td>
+</tr>
+<tr>
+<td class="l1">고농도 AA</td>
+<td>15~20% = 수분제한 + 고단백 요구 [TXT p063]</td>
+</tr>
+</table><h3 id="s153">2.4 수분</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">Holliday-Segar (표9-16)</td>
+<td>≤10 kg <b><mark class="hl-pink" title="전문약사 EXAM">100 mL/kg</mark></b> [EXAM p263] · 11–20 kg <b>1,000 + 50 × (W−10)</b> · ≥20 kg <b>1,500 + 20 × (W−20)</b> [EXAM p152]</td>
+</tr>
+<tr>
+<td class="l1">예제</td>
+<td>50 kg ⟶ <b>2,100</b> mL/d [EXAM p152] · 18 kg ⟶ 1,400 · 80 kg ⟶ 2,700 <sup class="fn"><a href="#fn1">1</a></sup></td>
+</tr>
+<tr>
+<td class="l1">성인 대략</td>
+<td><b>30–40 mL/kg/d</b> [TXT p166] · 탈수 등 기존 손실 먼저, 진행 손실(설사·누공·위장관 흡인)은 추가 [TXT p152]</td>
+</tr>
+</table><h3 id="s161">2.5 전해질</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">성인 표준(표9-8)</td>
+<td>Na <b>1–2 mEq/kg</b> · K <b>1–2 mEq/kg</b> · <mark class="hl-pink" title="전문약사 EXAM">Ca <b><mark class="hl-pink" title="전문약사 EXAM">10–15 mEq</mark></b></mark> · P <b><mark class="hl-pink" title="전문약사 EXAM">20–40 mmol</mark></b> · Mg <b>8–20 mEq</b> /일 [TXT p147] · Ca 10–15 · P 20–40 = MBD 형광 [EXAM p191·p193] <sup class="fn"><a href="#fn22">22</a></sup></td>
+</tr>
+<tr>
+<td class="l1">단위</td>
+<td>성인 g/day·mEq/day · 소아 <b>g/kg/day · mEq/kg/day</b> · Na/K/Ca/Mg = mEq · <b>P = mmol</b> · GIR = mg/kg/min [EXAM p162]</td>
+</tr>
+<tr>
+<td class="l1">요구↑</td>
+<td>GI 손실 · <b><mark class="hl-yellow" title="병원약사회">refeeding</mark>(K·P·Mg)</b> · 고용량 dextrose(P) · 고단백(Ca 뇨배설↑) [TXT p147]</td>
+</tr>
+<tr>
+<td class="l1">함정 <sup class="fn"><a href="#fn7">7</a></sup></td>
+<td><b>저Na ≠ 항상 Na↑</b> — 원<mark class="hl-pink" title="전문약사 EXAM">인 먼저</mark> (volume overload면 Na 추가 ⟶ 악화) · 장루·설사·위액 손실 시 Na↑ · <b>정상 Ca라도 Ca 생략 X</b> (장기 생략 ⟶ MBD 진행)</td>
+</tr>
+<tr>
+<td class="l1">Na 결손 산정</td>
+<td><mark class="hl-yellow" title="병원약사회">Na deficit = (목표 Na − 현재 Na) × TBW</mark> · TBW ≈ ♂ <b>0.6</b> · ♀/고령♂ <b>0.5</b> · 고령♀ <b>0.45</b> × 체중 · 예: ♀ 54 kg, 115→120 ⟶ 5 × 27 = <b>135 mEq</b> (급속 전량 투여 X, 속도·재측정)</td>
+</tr>
+<tr>
+<td class="l1">고K → 세포내 이동</td>
+<td><mark class="hl-yellow" title="병원약사회">regular insulin(+glucose)</mark> → Na/K-ATPase로 K 세포내 이동 · Ca gluconate = 심막 안정(혈중 K↓ 아님) · SPS/furosemide = 제거</td>
+</tr>
+<tr>
+<td class="l1">Acetate ↔ Cl</td>
+<td>대사성 산증 ⟶ <b>acetate↑ · Cl↓</b> (acetate ⟶ HCO₃⁻) <sup class="fn"><a href="#fn5">5</a></sup> · 중탄산염은 PN 산성에서 CO₂ 생성·탄산Ca/Mg 침전 ⟶ <b>sodium acetate</b> 등 전구체 사용 [EXAM+ p078] · NaHCO₃ 대신 acetate <b>1 mEq : 1 mEq</b> [TXT p174]</td>
+</tr>
+<tr>
+<td class="l1">K 결손 추정</td>
+<td>혈청 K <b>1 mEq/L 감소 ≈ 체내 총 K 300 mEq 감소</b> [EXAM+ p076]</td>
+</tr>
+<tr>
+<td class="l1">저Ca 원인</td>
+<td>부갑상선저하 · 골연화 · 만성 신부전 · 수혈 · <b>비타민 D 부족</b> · 신증후군 [EXAM+ p076]</td>
+</tr>
+<tr>
+<td class="l1">혈청 정상 (교재)</td>
+<td><b>P 3.0–4.5 mg/dL</b> · <b>Mg 1.8–3.0 mg/dL</b> [EXAM+ p078] (짜그리 P 2.5–5.0 ⟶ §11-기타) · 소아·신생아 = 골성장으로 Ca·P 정상범위↑ + 혼합량 많음 ⟶ <b>Ca-P 침전 주의</b> [TXT p078]</td>
+</tr>
+<tr>
+<td class="l1">신기능↓</td>
+<td>Na·K·P·<b>Mg↑</b> 축적 [EXAM p228] · <mark class="hl-pink" title="전문약사 EXAM">CRRT</mark> ⟶ 제거↑, <b>저인산혈증</b> 흔함 [TXT p228]</td>
+</tr>
+<tr>
+<td class="l1">급속 인 보충</td>
+<td>⟶ 저Ca·테타니 · K-phos 말초 ⟶ 혈전정맥염 · 속도 ≤7 mmol/h <sup class="fn"><a href="#fn21">21</a></sup></td>
+</tr>
+</table><p><b>최대 농도 (표9-18)</b> [TXT p154] — OCR 추출값, p154 미리보기 없어 육안 미검증 (<b>uncertain</b>: NICU Mg 13 등 재확인 권장)</p><table>
+<tr>
+<td></td>
+<td>Na</td>
+<td>K</td>
+<td>Ca</td>
+<td>P (mmol/L)</td>
+<td>Mg</td>
+<td>Cl/Ac</td>
+<td>Zn (mg/L)</td>
+</tr>
+<tr>
+<td class="l1">성인</td>
+<td>180</td>
+<td>150</td>
+<td>30</td>
+<td>35</td>
+<td>24</td>
+<td>300</td>
+<td>10</td>
+</tr>
+<tr>
+<td class="l1">소아</td>
+<td>180</td>
+<td>150</td>
+<td>30</td>
+<td>30</td>
+<td>24</td>
+<td>250</td>
+<td>5</td>
+</tr>
+<tr>
+<td class="l1">NICU</td>
+<td>180</td>
+<td>150</td>
+<td>30</td>
+<td>30</td>
+<td><b>13</b></td>
+<td>250</td>
+<td>5</td>
+</tr>
+</table><p>(단위 mEq/L, 별도 표기 제외)</p><h3 id="s186">2.6 비타민</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">원칙</td>
+<td>PN <b>필수</b> 구성성분 <sup class="fn"><a href="#fn4">4</a></sup> · <b>투여 직전 첨가, 혼합 후 <mark class="hl-pink" title="전문약사 EXAM">24시간</mark> 이내 투여</b> <sup class="fn"><a href="#fn4">4</a></sup> [TXT p173] · 조제 시 맨 마지막 [EXAM p171]</td>
+</tr>
+<tr>
+<td class="l1">성인 MVI (표9-11)</td>
+<td>A 3,300 IU · D 200 IU · E 10 IU · <b>K 150 μg</b> · B1 6 mg · B2 3.6 · B3 40 · B5 15 · B6 6 · <mark class="hl-yellow" title="병원약사회">B12</mark> 5 μg · biotin 60 μg · C 200 mg · folate 600 μg [TXT p149]</td>
+</tr>
+<tr>
+<td class="l1">경구 DRI 대비</td>
+<td><b>지용성</b> 비경구 권장 ≈ 경구 DRI와 <mark class="hl-yellow" title="병원약사회">같다</mark> · <b>수용성</b> 비경구 권장 ≈ 경구 DRI보다 <mark class="hl-yellow" title="병원약사회">더 높다</mark></td>
+</tr>
+<tr>
+<td class="l1">Vit K</td>
+<td><b>국내 MVI에 Vit K 미포함 ⟶ 장기 PN 별도 공급(5–10 mg/주)</b> [TXT p170·p184] · 흡수 = <b><mark class="hl-pink" title="전문약사 EXAM">담즙산</mark></b> 의존 [EXAM p070] · warfarin: ILE + MVI(K)가 INR 영향 <sup class="fn"><a href="#fn6">6</a></sup></td>
+</tr>
+<tr>
+<td class="l1">Vit E</td>
+<td>고용량 ⟶ <b>warfarin 작용↑</b> [EXAM p069 밑줄]</td>
+</tr>
+<tr>
+<td class="l1">Vit D</td>
+<td>간 <b>25-OH</b> ⟶ 신 <b>1,25-(OH)₂</b> 활성 · phenytoin·barbiturate ⟶ 반감기↓ [EXAM p069]</td>
+</tr>
+<tr>
+<td class="l1">Vit B1</td>
+<td><b>만성 알코올 중독</b> ⟶ <mark class="hl-both" title="전문약사+병원약사회">thiamine</mark> 보충 (필기 &quot;고르기!&quot;) [EXAM p070] · 장기기아/알코올: PN 초기 <b>5–7일 <mark class="hl-both" title="전문약사+병원약사회">thiamine</mark> 50–100 mg/d + folate 1 mg/d</b> [TXT p184]</td>
+</tr>
+<tr>
+<td class="l1">Vit <mark class="hl-yellow" title="병원약사회">B12</mark></td>
+<td>말단회장 <b>≥20 cm 절제 ⟶ <mark class="hl-pink" title="전문약사 EXAM"><mark class="hl-yellow" title="병원약사회">B12</mark> 매달 1 mg</mark></b> (필기 &quot;1 mg임! 나머지 X&quot;) [EXAM p212]</td>
+</tr>
+<tr>
+<td class="l1">Vit B6</td>
+<td>결핍 유발 약물 = <b><mark class="hl-both" title="전문약사+병원약사회">isoniazid</mark></b> [EXAM+ p071] · hydralazine·penicillamine·cycloserine [TXT p071]</td>
+</tr>
+<tr>
+<td class="l1">엽산</td>
+<td>UC: <b>sulfasalazine ⟶ 엽산 결핍</b> [EXAM p212] [EXAM+ p071] · <b>임신 중 결핍 ⟶ 신생아 신경관 결손</b> [EXAM+ p071] · MTX·trimethoprim·항경련제도 결핍 유발 [TXT p071]</td>
+</tr>
+</table><h3 id="s200">2.7 미량원소 (TE)</h3><p><b>성인 1일 권장 (표6-8 / 표9-14)</b></p><table>
+<tr>
+<td>원소</td>
+<td><b>ASPEN 2012/2020</b> [EXAM p104·p150]</td>
+<td>ESPEN [TXT p150–151]</td>
+<td>(구) AMA 1979 [TXT p104]</td>
+<td>메모</td>
+</tr>
+<tr>
+<td class="l1">Zn</td>
+<td><b>3–5 mg</b></td>
+<td>2.5–5 mg</td>
+<td>2.5–4.0 mg</td>
+<td>설사·누공 ⟶ ↑</td>
+</tr>
+<tr>
+<td class="l1">Cu</td>
+<td><b>0.3–0.5 mg</b></td>
+<td>0.3–0.5 mg</td>
+<td>0.5–1.5 mg</td>
+<td>GI loss 500 μg/d · <mark class="hl-yellow" title="병원약사회">담즙정체</mark> ⟶ ↓</td>
+</tr>
+<tr>
+<td class="l1">Cr</td>
+<td><b>≤10 μg</b></td>
+<td>10–15 μg</td>
+<td>10–15 μg</td>
+<td>GI loss 20 μg/d · <b>6개월마다 A1C</b> · 신부전 ⟶ ↓</td>
+</tr>
+<tr>
+<td class="l1">Mn</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">55 μg</mark></b></td>
+<td>0.2–0.3 mg</td>
+<td>150–800 μg</td>
+<td><mark class="hl-yellow" title="병원약사회">담즙정체</mark> ⟶ ↓</td>
+</tr>
+<tr>
+<td class="l1">Se</td>
+<td><b>60–100 μg</b></td>
+<td>20–60 μg</td>
+<td>(없음)</td>
+<td>신부전 ⟶ ↓</td>
+</tr>
+<tr>
+<td class="l1">Fe</td>
+<td>미국 일상 비첨가 (필요시 별도, 월 25–50 mg) [TXT p150]</td>
+<td></td>
+<td></td>
+<td>배합성 제한 ⟶ <b>PN과 별도</b> 주입 [TXT p185]</td>
+</tr>
+</table><ul><li>시판 예 <sup class="fn"><a href="#fn23">23</a></sup>: 1 mL = Zn 3 mg + Cu 0.3 mg + Mn <mark class="hl-pink" title="전문약사 EXAM">55 μg</mark> + Se 60 μg (= ASPEN 성인용량과 정합)</li><li>질환 조정 <sup class="fn"><a href="#fn4">4</a></sup> [EXAM p185]: <b>설사 ⟶ Zn 보충</b> · <b>담즙울체/간담도 ⟶ <mark class="hl-both" title="전문약사+병원약사회">Cu·Mn</mark> 감량·제한</b> · <b>신부전 ⟶ <mark class="hl-both" title="전문약사+병원약사회">Cr·Se</mark> 제한</b></li><li>결핍/독성 [TXT p273]: Zn 결핍 = 피부염·설사·상처치유 지연 · Cu 결핍 = 호중구감소·빈혈 · <b>Cr 결핍 = <mark class="hl-yellow" title="병원약사회">포도당불내성</mark>·인슐린저항(⟶ 고혈당)</b> [EXAM p035] · Mn = 복합제 함량 높아 <b>독성</b>(신경계, 파킨슨양 <sup class="fn"><a href="#fn6">6</a></sup>) · Se 결핍 = 심근병증</li><li>Zn [EXAM+ p093·p094]: 결핍 = 발진·탈모·<b>야맹증</b>·미각변화·면역↓·설사 · 독성 = 위장장애·<b>HDL↓</b> · 보충 대상 = 열손상·외상성 뇌손상 등 대사항진, 설사·욕창·<b>누공 고배출</b>·<b>과다 GI 손실</b> · 혈장 Zn ≤70 μg/dL = low · 고용량 Zn(≥40 mg/d) ⟶ <b>Cu 결핍</b> [TXT p093]</li><li>Cr [EXAM+ p102]: 결핍 ⟶ <b>포도당·아미노산 사용 장애</b>, 혈장 지질↑, 말초신경병증</li><li>Se [EXAM p101]: <b>sodium <mark class="hl-pink" title="전문약사 EXAM">selenite</mark> pentahydrate</b> ⟶ pH &lt;7 또는 <b>Vit C</b>(환원제) 혼합 시 침전 ⟶ Vit C와 <b>1~4시간 간격</b> · <b>selenious acid</b> = Vit C 혼합 가능 [TXT p101] (필기 &quot;Mix 불가&quot; ⟶ <b>uncertain</b>, §11-기타) · 결핍 = Keshan 심근병증·T3↓ · 독성 = 탈모·손발톱·마늘냄새·말초신경증 · 상한 <b>200 μg/d 미만, 5 μg/kg/d <span class="x">초과X</span></b> [TXT p101] · eltrombopag ⟶ Se 흡수↓ [TXT p101]</li><li>장기 PN Se 무보충 ⟶ 심근병증 보고 [TXT p185] · 혈청 TE 농도 = 신뢰도 낮음, 급성 염증기 검사 연기·CRP 동시 [TXT p185] <sup class="fn"><a href="#fn23">23</a></sup></li><li>알루미늄: 비경구 <b>≤5 μg/kg/d</b> (오염원 Ca·PO₄ 염) <sup class="fn"><a href="#fn6">6</a></sup> · 유리병 Ca gluconate = Al 오염 주의 <sup class="fn"><a href="#fn24">24</a></sup></li></ul><h2 id="s224">3. 투여경로 · 제형</h2><h3 id="s226">3.1 말초 vs 중심 <sup class="fn"><a href="#fn4">4</a></sup> 골격</h3><table>
+<tr>
+<td>구분</td>
+<td>말초정맥 (Peripheral PN)</td>
+<td>중심정맥 (Central PN)</td>
+</tr>
+<tr>
+<td class="l1">대상</td>
+<td>중심정맥 불가 · GI 기능 <b>10~14일 이내</b> 회복 예상</td>
+<td>PN <b>14일 이상</b> 예상 · 대사적 스트레스↑</td>
+</tr>
+<tr>
+<td class="l1">농도</td>
+<td>최종 저농도 <b>AA 3~5% · 포도당 5~10%</b></td>
+<td>고장성 농축액 가능(혈류 빨라 즉시 희석 · 삼투 계산 X)</td>
+</tr>
+<tr>
+<td class="l1">삼투압</td>
+<td><b>최대 <mark class="hl-pink" title="전문약사 EXAM">900 mOsm/L</mark></b> <span class="x">초과X</span> [EXAM p152] <sup class="fn"><a href="#fn7">7</a></sup> <sup class="fn"><a href="#fn25">25</a></sup> · 예: D10 + AA 3% 수준 <sup class="fn"><a href="#fn21">21</a></sup></td>
+<td>제한 완화</td>
+</tr>
+<tr>
+<td class="l1">주의</td>
+<td><b>혈전정맥염</b> — 예방: ILE 추가 · 저용량 <b>heparin ± hydrocortisone</b> <sup class="fn"><a href="#fn4">4</a></sup></td>
+<td>감염 · 카테터 외상(동맥손상) · 기계적 합병증</td>
+</tr>
+<tr>
+<td class="l1">장점</td>
+<td>감염·대사·기계 합병증 위험 ↓</td>
+<td>완전 요구량 공급 가능</td>
+</tr>
+<tr>
+<td class="l1">GL 보강</td>
+<td>말초 PN(SPN/bridge) <b>≤10–14일</b> <sup class="fn"><a href="#fn26">26</a></sup> · ILE는 말초/중심 모두 가능 · &quot;TPN&quot; 용어 X ⟶ <b>Central / Peripheral PN</b> 명기, 라벨에 경로 표기 <sup class="fn"><a href="#fn7">7</a></sup></td>
+<td>중심이 선호경로 <sup class="fn"><a href="#fn7">7</a></sup></td>
+</tr>
+</table><ul><li>카테터 [TXT p152]: 비터널형(단기 1–2주) · 터널형(장기) · 삽입형 포트 · <b><mark class="hl-pink" title="전문약사 EXAM">PICC</mark></b>(중기, 6개월–1년)</li><li>CVC tip = <b>SVC 하단–RA 인접</b> · <b>대퇴 카테터 PN 회피</b> [TXT p174] · <mark class="hl-pink" title="전문약사 EXAM">PICC</mark> tip SVC, bedside 삽입 후 <b>CXR 확인 전 PN 시작 X</b> <sup class="fn"><a href="#fn21">21</a></sup></li></ul><h3 id="s240">3.2 2-in-1 vs 3-in-1 (TNA)</h3><table>
+<tr>
+<td>구분</td>
+<td>2-in-1 (± 별도 ILE)</td>
+<td>3-in-1 (TNA)</td>
+</tr>
+<tr>
+<td class="l1">장점</td>
+<td>안정성↑ · 침전 <b>육안 확인 쉬움</b> · 배합 자료 많음</td>
+<td><b>1 bag·1 line</b> 간편 · <b><mark class="hl-pink" title="전문약사 EXAM">24 h</mark></b> 주입 가능 · pH ≈6·삼투↓로 ILE 단독보다 미생물 번식 위험↓ [TXT p145·p176]</td>
+</tr>
+<tr>
+<td class="l1">단점</td>
+<td>별도 ILE 라인·hang 12 h 관리</td>
+<td>유화제 때문에 <b>불안정↑</b> · <b>다가양이온(Ca·Mg 2가, Fe 3가)</b> ⟶ 유화 파괴 · 불투명 ⟶ 침전 육안 확인 어려움 · 약물 배합 자료 부족 [TXT p201]</td>
+</tr>
+<tr>
+<td class="l1">금기·주의</td>
+<td>—</td>
+<td><b>신생아/영아 3-in-1 X ⟶ 2-in-1 + 별도 ILE</b> [EXAM p172] · <b>iron dextran 혼합 X</b> <sup class="fn"><a href="#fn21">21</a></sup> · creaming(재분산 가능) ≠ cracking/coalescence(<b>투여 금지</b>, <mark class="hl-yellow" title="병원약사회">1.2</mark> μm 필터로도 안전 X) <sup class="fn"><a href="#fn5">5</a></sup></td>
+</tr>
+<tr>
+<td class="l1">배합 자료</td>
+<td>2-in-1 데이터를 <b>3-in-1에 외삽 X</b> [TXT p174]</td>
+<td></td>
+</tr>
+</table><h3 id="s249">3.3 MCB (다챔버 백) <sup class="fn"><a href="#fn27">27</a></sup></h3><ul><li><b>완제품 아님</b>: 무균환경에서 <b>챔버 활성화(혼합)</b> 필수 · <b>MVI·TE 미첨가 = 불완전 PN</b></li><li>전해질 추가 = 제조사별 배합·안정성 자료 확인 (임의 조합 X) · 처방 시 osm·Ca-P 용해도·필수성분 누락 경고</li></ul><h2 id="s255">4. 요구량 · 투여계획 · 계산</h2><h3 id="s257">4.1 에너지</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">공식</td>
+<td><b>TEE = BEE × AF × SF</b> <sup class="fn"><a href="#fn4">4</a></sup> · BEE의 <b>1.3배 이상</b> ⟶ 과영양 주의 [TXT p141]</td>
+</tr>
+<tr>
+<td class="l1">Harris-Benedict</td>
+<td>♂ 66.42 + 13.75W + 5.00H − 6.78A · ♀ 655.1 + 9.65W + 1.85H − 4.68A (W kg · H cm · A 세) [TXT p140]</td>
+</tr>
+<tr>
+<td class="l1">AF</td>
+<td>침상 <b>1.2</b> · 보행 <b>1.3</b> · 건강 1.5–1.7 [TXT p141]</td>
+</tr>
+<tr>
+<td class="l1">SF</td>
+<td>경수술 1.2 · 골격외상 1.35 · 수술 1.44 · 감염 1.1–1.8 · 패혈증 1.6–1.8 · <b>화상 2.1–2.5</b> [TXT p141]</td>
+</tr>
+<tr>
+<td class="l1">kcal/kg</td>
+<td>성인 일반 <b>20–35</b> · 중환자 25–30 · 안정 30–35 [TXT p141] · <sup class="fn"><a href="#fn5">5</a></sup> ≈ 25–30</td>
+</tr>
+<tr>
+<td class="l1">ICU <sup class="fn"><a href="#fn2">2</a></sup></td>
+<td>IC 없으면 첫 <b>7–10일 12–25 kcal/kg/d</b> · 비만(BMI &gt;30): 목표 에너지의 <b>65–70% 이하</b> · 11–14 kcal/kg <b>실제체중</b>(BMI 30–50) / 22–25 kcal/kg <b>IBW</b>(BMI &gt;50)</td>
+</tr>
+<tr>
+<td class="l1">췌장염 PN</td>
+<td><b>25 non-protein kcal/kg/d</b>, 30 kcal/kg/d <span class="x">초과X</span> [TXT p209·p218]</td>
+</tr>
+<tr>
+<td class="l1">단백 kcal 포함?</td>
+<td>총열량 계산엔 <b>포함</b> · NPC:N 계산엔 <b>제외</b> <sup class="fn"><a href="#fn6">6</a></sup></td>
+</tr>
+</table><h3 id="s270">4.2 계산 5단계 <sup class="fn"><a href="#fn4">4</a></sup> + 상한 체크</h3><ul><li><b>ILE 열량·부피</b> — 총열량 <b>≤30%</b>, 1일 <b>~1 g/kg</b> 저용량, 12~<mark class="hl-pink" title="전문약사 EXAM">24 h</mark> 투여 (<mark class="hl-both" title="전문약사+병원약사회">≤<mark class="hl-yellow" title="병원약사회">0.11 g/kg/h</mark></mark> · ≤2.5 g/kg/d · ICU ≤1)</li><li><b>포도당 부피</b> — 포도당 kcal = 총열량 − ILE kcal − 단백 kcal (÷3.4 · <mark class="hl-pink" title="전문약사 EXAM">≤7 g/kg/d</mark> · GIR 문맥 상한)</li><li><b>AA 부피</b> — g/kg × 체중 (4 kcal/g · max 2.5)</li><li><b>2-in-1 / 3-in-1 부피·주입속도</b> — 수분 요구량 내 · <b>osm 계산 ⟶ &gt;900이면 중심</b></li><li><b>최종 제형 선택·영양소량 결정</b> — 전해질·MVI·TE 추가 · Ca-P 용해도 확인</li></ul><p><b>교재 예제</b> [TXT p157] (원료용액 = <b>50% 포도당 · 10% 결정성 AA · 20% ILE</b> [EXAM+ p157]) — 2,000 kcal/d, AA 100 g, 2-in-1 <mark class="hl-pink" title="전문약사 EXAM">24 h</mark> + ILE 별도</p><table>
+<tr>
+<td>단계</td>
+<td>계산</td>
+<td>결과</td>
+</tr>
+<tr>
+<td class="l1">1. ILE</td>
+<td>총열량 20–30% = 400–600 kcal ⟶ 20% 250 mL × 2 kcal/mL</td>
+<td><b>500 kcal/d</b> (12 h 투여)</td>
+</tr>
+<tr>
+<td class="l1">2. 포도당</td>
+<td>2,000 − 500 − (4 × 100 g AA) = 1,100 kcal ÷ <b>3.85</b> kcal/g</td>
+<td><b>286 g</b> ⟶ D50 <b>572 mL</b></td>
+</tr>
+<tr>
+<td class="l1">3. AA</td>
+<td>100 g ÷ 10%</td>
+<td><b>1,000 mL</b></td>
+</tr>
+<tr>
+<td class="l1">4. 부피·속도</td>
+<td>572 + 1,000 = 1,572 mL + 첨가제 100–200 mL</td>
+<td>1,700–1,800 mL ÷ 24 h ≈ <b>70–75 mL/h</b></td>
+</tr>
+<tr>
+<td class="l1">5. 최종</td>
+<td>AA 100 g · 포도당 286 g · 20% ILE 250 mL</td>
+<td>총 <b>2,001 kcal</b> · NPC <b>1,601 kcal</b></td>
+</tr>
+</table><ul><li>★ 교재 예제는 포도당을 <b>3.85 kcal/g</b>(무수 표기)로 나눔 ⟶ <b>3.4</b>로 하면 1,100 ÷ 3.4 = <b>324 g</b>(D50 647 mL) <sup class="fn"><a href="#fn1">1</a></sup> — 계산문항은 <b>보기/문제에 준 kcal/g</b>를 따른다 (§11-기타)</li><li>체크 <sup class="fn"><a href="#fn1">1</a></sup>: NPC:N = 1,601 ÷ (100/6.25 = 16 g) ≈ <b>100:1</b> (스트레스형) · ILE 500/2,001 = 25% (≤30 ✓) · 2-in-1부 osm ≈ (286 × 5 + 100 × 10) ÷ 1.572 L ≈ <b>1,546 mOsm/L ⟶ 중심</b></li></ul><h3 id="s291">4.3 삼투압 계산 (표9-17) [EXAM p153]</h3><table>
+<tr>
+<td>성분</td>
+<td>mOsm</td>
+</tr>
+<tr>
+<td class="l1">Dextrose</td>
+<td><b>5 / g</b></td>
+</tr>
+<tr>
+<td class="l1">AA</td>
+<td><b>10 / g</b></td>
+</tr>
+<tr>
+<td class="l1">Lipid</td>
+<td>0.71 / g <sup class="fn"><a href="#fn3">3</a></sup></td>
+</tr>
+<tr>
+<td class="l1">Na · K (acetate·chloride·phosphate)</td>
+<td><b>2 / mEq</b></td>
+</tr>
+<tr>
+<td class="l1">Mg (sulfate)</td>
+<td>1 / mEq <sup class="fn"><a href="#fn3">3</a></sup></td>
+</tr>
+<tr>
+<td class="l1">Ca (gluconate)</td>
+<td><b>1.4 / mEq</b></td>
+</tr>
+</table><ul><li>예제 [EXAM p153]: D 100 g + AA 40 g + lipid 10 g + NaCl 10 mL, 총 800 mL ⟶ 500 + 400 + 7.1 + 40 = 947.1 mOsm ÷ 0.8 L = <b>1,183 mOsm/L ⟶ 900 초과 ⟶ 중심정맥</b></li></ul><h3 id="s304">4.4 교정 공식 [EXAM p155] (&quot;여러 수치 주고 옳은 것 찾기&quot; <sup class="fn"><a href="#fn1">1</a></sup>)</h3><table>
+<tr>
+<td>공식</td>
+<td>예제</td>
+</tr>
+<tr>
+<td class="l1"><b>Corrected Ca (mg/dL) = 0.8 × (4.0 − 환자 Alb) + 측정 Ca</b></td>
+<td>Ca 8, Alb 2.6 ⟶ 0.8 × 1.4 + 8 = <b>9.12</b> (정상 8.6–10.2 ⟶ Ca gluconate 유지) · 필기 Alb 2.3/Ca 7.5 ⟶ 8.86</td>
+</tr>
+<tr>
+<td class="l1"><b>고혈당 Na 교정</b>: 측정 Na + <b>0.016</b>(Katz) 또는 <b>0.024</b>(Hillier) × (Glu − 100) · 간이법 Glu 100↑마다 Na <b>+2</b></td>
+<td>Glu 300, Na 126 ⟶ <b>129.2</b>(0.016) / <b>130.8</b>(0.024) / <b>130</b>(간이)</td>
+</tr>
+</table><h2 id="s313">5. 조제 · 안정성 · 투여 (주의사항)</h2><h3 id="s315">5.1 혼합 순서 [EXAM p171] <sup class="fn"><a href="#fn4">4</a></sup></h3><p><b>저농도→고농도 포도당 · AA · (멸균증류수)</b> ⟶ 전해질 중 <b>인(P) 제일 먼저</b> ⟶ <b>Na · K · Mg · 미량원소</b> ⟶ (육안 확인) ⟶ <b>칼슘</b> ⟶ (3-in-1이면 <b>ILE</b>) ⟶ <b>비타민 맨 마지막</b></p><ul><li>최종 산도 낮게 · 포도당·AA 최종농도 높게 · ILE 최종농도 낮게 <sup class="fn"><a href="#fn4">4</a></sup></li><li>조제는 <b>USP 797</b> 무균 지침 · 최종제품 검사 매일 [TXT p171]</li></ul><h3 id="s321">5.2 Ca–P 침전</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">용해도 식</td>
+<td><b>Ca(mEq/L) + 2 × P(mmol/L) ≤ 45~60</b> [EXAM p153] (본문: Ca·P 합산 L당 45–60 mEq <span class="x">초과X</span>)</td>
+</tr>
+<tr>
+<td class="l1">예제</td>
+<td>Ca gluconate 20 mL(0.49 mEq/mL = 9.8 mEq) + K-phos 5 mL(5 mmol) in 500 mL ⟶ (9.8 + 2 × 5) ÷ 0.5 = <b>39.6</b> ⟶ OK [EXAM p153]</td>
+</tr>
+<tr>
+<td class="l1">용해도↑</td>
+<td><b>AA 농도↑</b> · <b><mark class="hl-yellow" title="병원약사회">cysteine</mark> 포함</b>(산성화) [EXAM p153] · <b>Ca gluconate</b>(CaCl₂보다 해리↓) · pH↓ · 온도↓ [TXT p153] · <b>AA ≥2.5% · pH ≤6</b> [TXT p173–174]</td>
+</tr>
+<tr>
+<td class="l1">염</td>
+<td><b>Ca gluconate ≠ CaCl₂</b> (gluconate pH 6.0–8.2, 해리↓ ⟶ free Ca↓) <sup class="fn"><a href="#fn7">7</a></sup> · 무기 인산염엔 Ca gluconate 선호 <sup class="fn"><a href="#fn28">28</a></sup> · 유기 Ca·P 염 ⟶ 침전↓ <sup class="fn"><a href="#fn29">29</a></sup></td>
+</tr>
+<tr>
+<td class="l1">위험</td>
+<td>CaHPO₄ 침전 = <b>카테터 폐색·색전 ⟶ 사망 가능</b> · 낮은 온도 보관 · <mark class="hl-pink" title="전문약사 EXAM">P 먼저</mark> / Ca 마지막 [TXT p201] <sup class="fn"><a href="#fn1">1</a></sup></td>
+</tr>
+<tr>
+<td class="l1">장기 비율</td>
+<td><mark class="hl-yellow" title="병원약사회">HPN</mark> MBD 예방: <b><mark class="hl-pink" title="전문약사 EXAM">Ca:P</mark> = 1:2</b> (예 Ca 15 mEq ↔ P 30 mmol) [EXAM p286] — 일일 표준(Ca 10–15 / P 20–40)과 문맥 구분</td>
+</tr>
+</table><h3 id="s332">5.3 배합금기 · Y-site</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">NaHCO₃</td>
+<td>PN과 <b>배합금기</b> (CaCO₃ 침전) ⟶ <b>별도 투여</b> 또는 <b>acetate</b> 사용 [EXAM p201]</td>
+</tr>
+<tr>
+<td class="l1">원칙</td>
+<td>배합자료 없으면 <b>분리 투여</b> · 전용 lumen/port 권장 · heparin·RI·H₂ blocker는 혼합 가능하나 분리 권장, 혼합 시 24 h 안정성 확인 [TXT p174]</td>
+</tr>
+<tr>
+<td class="l1"><b>2-in-1 Y-site 금기</b> (표12-3)</td>
+<td><b>cisplatin · cytarabine · fluorouracil · methotrexate · sodium bicarbonate</b> [EXAM p202] + acyclovir · amphotericin B · ceftriaxone · doxorubicin [TXT p202]</td>
+</tr>
+<tr>
+<td class="l1"><b>3-in-1 Y-site 금기</b></td>
+<td><b>lorazepam</b> [EXAM p202] + acyclovir · amphotericin B · ceftriaxone · cyclosporine · doxorubicin · midazolam · phenobarbital · NaHCO₃ [TXT p202]</td>
+</tr>
+<tr>
+<td class="l1">함정</td>
+<td><b>lorazepam = 2-in-1 OK / 3-in-1 금기</b> [EXAM p202] · furosemide = 필기 &quot;?&quot; ⟶ <b>uncertain</b> · morphine PN 혼합 ≤1 mg/mL <sup class="fn"><a href="#fn30">30</a></sup></td>
+</tr>
+</table><h3 id="s342">5.4 필터 · hang time · 세트 · BUD</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">값</th>
+<th class="th">출처</th>
+</tr>
+<tr>
+<td class="l1">필터 (구)</td>
+<td>2-in-1 <b><mark class="hl-yellow" title="병원약사회">0.22</mark> μm</b> / 3-in-1·ILE <b>1.2 μm</b> (FDA 권고 인용)</td>
+<td>[TXT p174·p201] <sup class="fn"><a href="#fn4">4</a></sup> <sup class="fn"><a href="#fn5">5</a></sup></td>
+</tr>
+<tr>
+<td class="l1">필터 (현행)</td>
+<td><b>모든 PN에 단일 1.2 μm</b> (복수 크기 비권고) · <b>catheter hub 가까이</b> · &gt;2 μm 입자 차단</td>
+<td>[TXT p175] 2021 update · <sup class="fn"><a href="#fn31">31</a></sup></td>
+</tr>
+<tr>
+<td class="l1">Hang — TNA</td>
+<td><b>≤24 h</b></td>
+<td>[EXAM p176] <sup class="fn"><a href="#fn7">7</a></sup></td>
+</tr>
+<tr>
+<td class="l1">Hang — ILE 단독</td>
+<td><b>≤12 h</b> (등장성·pH 7.5·글리세롤 ⟶ 미생물 번식↑) · <b>2-in-1과 Y-site여도 12 h</b> · &gt;12 h 필요(신생아·소아) ⟶ 1일량 <b>2용기 분할</b></td>
+<td>[EXAM p176] <sup class="fn"><a href="#fn7">7</a></sup></td>
+</tr>
+<tr>
+<td class="l1">주입 완료</td>
+<td>주입펌프 · <b>24 h 이내 완료</b></td>
+<td>[TXT p175]</td>
+</tr>
+<tr>
+<td class="l1">소아 재포장</td>
+<td>시린지 재포장 ⟶ <b>오염↑</b></td>
+<td>[EXAM p176]</td>
+</tr>
+<tr>
+<td class="l1">투여세트 교환</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">24시간</mark>마다</b> 또는 <b>새 PN bag마다</b> (필기: <b>48 h = 오답 등장</b>)</td>
+<td>[EXAM p174]</td>
+</tr>
+<tr>
+<td class="l1">BUD (USP 797)</td>
+<td>PN = 중위험 · 상온 <b>30 h</b> / 냉장 <b>9일</b> · 국내(2019): 범주1 실온 12 h·냉장 24 h / 범주2 실온 24 h·냉장 3일</td>
+<td>[TXT p172]</td>
+</tr>
+<tr>
+<td class="l1">BUD [GL]</td>
+<td>PN BUD = <b>무균성 + 물리화학적 안정성·배합성</b> (USP Table 13 그대로 X) ⟶ 상온 30 h / 냉장 9일</td>
+<td><sup class="fn"><a href="#fn7">7</a></sup></td>
+</tr>
+<tr>
+<td class="l1">투여 전</td>
+<td>환자·라벨 확인 · 육안 검사</td>
+<td>[TXT p174]</td>
+</tr>
+</table><h2 id="s359">6. 합병증</h2><h3 id="s361">6.1 3열 요약</h3><table>
+<tr>
+<th class="th">유형</th>
+<td>핵심 소견</td>
+<td>조치·예방</td>
+</tr>
+<tr>
+<td class="l1">기계적</td>
+<td>기흉·동맥손상·위치이상·혈전·폐쇄(Ca-P 침전)</td>
+<td>tip 위치 확인(CXR) · 대퇴 회피 · 침전 예방 [TXT p174]</td>
+</tr>
+<tr>
+<td class="l1">감염</td>
+<td><b>CLABSI</b> (가장 심각) · 출입구/터널/포켓/혈류</td>
+<td><b>care bundle</b> · 무균조제 · line care · <b>혈당조절</b> <sup class="fn"><a href="#fn7">7</a></sup> · 소아 IF: <b>ethanol lock</b> [TXT p273]</td>
+</tr>
+<tr>
+<td class="l1">대사-고혈당</td>
+<td><b>가장 흔한 대사 합병증</b> <sup class="fn"><a href="#fn5">5</a></sup> · 원인 4: 과도 포도당 · 스트레스 · <b>Cr 결핍</b>(기출) · 인슐린 부족 [EXAM p035] · ⟶ HHS·비케톤성 탈수·혼수 [TXT p181]</td>
+<td>GIR↓ · RI(PN 혼합) · 140–180 · Cr 결핍 시 multi-TE로 Cr 보충 [TXT p181]</td>
+</tr>
+<tr>
+<td class="l1">대사-저혈당</td>
+<td>과도 인슐린(약물오류) · <b>급중단 ⟶ rebound</b></td>
+<td><b>50% 포도당</b> 투여 [EXAM p181] · 예방: 중단 전 <b>1~2 h 감량</b>(속도 절반) · 급중단 시 <b>10% 포도당 1~2 h</b> · 중단 후 <b>30분–1 h</b> 혈당 [TXT p036·p181]</td>
+</tr>
+<tr>
+<td class="l1">대사-고TG</td>
+<td>과도 포도당 · 빠른 ILE(&gt;<mark class="hl-yellow" title="병원약사회">0.11 g/kg/h</mark>) · 패혈증</td>
+<td>ILE ↓/중단(≥400) · propofol 합산 [EXAM p181]</td>
+</tr>
+<tr>
+<td class="l1">Azotemia</td>
+<td>과도 AA · 탈수 · NPC 부족</td>
+<td>AA 조정 · 수분 [TXT p183]</td>
+</tr>
+<tr>
+<td class="l1"><mark class="hl-both" title="전문약사+병원약사회">재급식</mark>(RS)</td>
+<td><b>P·K·Mg 급감</b> · 수분저류 · 미량영양소 결핍 <sup class="fn"><a href="#fn4">4</a></sup> · 2–5일 내</td>
+<td>§6.2</td>
+</tr>
+<tr>
+<td class="l1">장기</td>
+<td><mark class="hl-yellow" title="병원약사회">EFAD</mark> · 간담도(PNALD/IFALD) · MBD · TE·비타민 결핍/독성 <sup class="fn"><a href="#fn4">4</a></sup></td>
+<td>§6.3–6.5</td>
+</tr>
+</table><h3 id="s374">6.2 <mark class="hl-both" title="전문약사+병원약사회">재급식</mark> 증후군 (Refeeding)</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">정의·시기</td>
+<td>영양불량 환자에 적극 영양 ⟶ 수분·전해질·비타민·미네랄(P·Mg·K·<mark class="hl-both" title="전문약사+병원약사회">thiamine</mark>) 대사변화 · 시작 <b>2~5일</b> 내 [TXT p185]</td>
+</tr>
+<tr>
+<td class="l1">표지</td>
+<td><b>저인산혈증</b>(핵심) + ↓K · ↓Mg (+ <mark class="hl-both" title="전문약사+병원약사회">thiamine</mark> 결핍) <sup class="fn"><a href="#fn25">25</a></sup> ⟶ 신경근·심혈관·호흡 증상, 체액과부하·부종</td>
+</tr>
+<tr>
+<td class="l1">고위험</td>
+<td><b>알코올 중독 · 신경성 식욕부진 · 심한 영양결핍</b> [TXT p185]</td>
+</tr>
+<tr>
+<td class="l1">원칙</td>
+<td><b>열량·수액은 천천히</b> 시작·진행 · <b>전해질과 비타민은 필요한 만큼 적극 투여</b> [EXAM p185] · PN 전 K·Mg·P 교정, 매일 전해질·수분(I/O·체중) [TXT p186]</td>
+</tr>
+<tr>
+<td class="l1">시작열량</td>
+<td><b>10–20 kcal/kg</b> (또는 목표 25%) ⟶ 3–7일 증량 <sup class="fn"><a href="#fn21">21</a></sup> · 위험군 15–20 kcal/kg [TXT p209] · 정량 SSOT = <sup class="fn"><a href="#fn32">32</a></sup> ASPEN Consensus 2020</td>
+</tr>
+<tr>
+<td class="l1">Thiamine</td>
+<td>교재: <b>50–100 mg/d × 5–7일 + folate 1 mg</b> [TXT p184] · QB: <b>100–300 mg IV/d ≥3일</b>, 영양 시작 전/동시 <sup class="fn"><a href="#fn21">21</a></sup> (§11-기타)</td>
+</tr>
+</table><h3 id="s385">6.3 간담도 합병증 (PNALD)</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">지방증(steatosis)</td>
+<td>성인 흔함 · PN <b>2주 내</b> AST/ALT 경미 상승 · 대개 무증상·가역 · 원인 = 과도 공급 · 장기 ⟶ 섬유화·간경변 [TXT p186]</td>
+</tr>
+<tr>
+<td class="l1">담즙정체(PNAC)</td>
+<td>소아 흔함(성인도) · ALP·GGT·DB↑ · <b>conjugated(direct) bilirubin ≥2 mg/dL = 담즙정체 정의</b> [EXAM p186] · ⟶ 간경변·간부전</td>
+</tr>
+<tr>
+<td class="l1">담낭</td>
+<td>sludge·담석 (장 자극 부재) [TXT p186]</td>
+</tr>
+<tr>
+<td class="l1">TE 조정</td>
+<td>간담도 ⟶ <b><mark class="hl-pink" title="전문약사 EXAM">Mn·Cu</mark> 감량</b> [EXAM p185] <sup class="fn"><a href="#fn5">5</a></sup></td>
+</tr>
+<tr>
+<td class="l1">기여인자</td>
+<td>지방증 = 과다 열량·포도당 ⟶ 균형 NPC(<b>CHO 70–85% / 지방 15–30%</b>), CHO <b><mark class="hl-pink" title="전문약사 EXAM">≤7 g/kg/d</mark></b> · 대두유 <b>phytosterol</b>·n-6 · ILE <b>&gt;1 g/kg/d</b> 장기 [TXT p188]</td>
+</tr>
+<tr>
+<td class="l1">관리</td>
+<td>과도 포도당 피하기 · cyclic PN · SO-ILE 감량(소아 <b>≤1 g/kg/d</b>) · <b>SO+MCT+어유 복합 ILE / fish oil 기반</b> [EXAM+ p188] [TXT p273·p284] · UDCA · 경구 자극 · metronidazole(세균과증식) [TXT p273]</td>
+</tr>
+</table><h3 id="s396">6.4 대사성 골질환 (MBD)</h3><ul><li>위험: 장기 PN 대부분 · Ca 부족(배합 제한) · 고단백 ⟶ 뇨 Ca↑ · 대사성 산증(고칼슘뇨) [TXT p191]</li><li>표11-3 PN 조정 [EXAM p193]: <b>고용량 단백 피하기</b> · <b>과도한 Na 피하기</b> · Ca <b><mark class="hl-pink" title="전문약사 EXAM">10–15 mEq</mark>/d</b> · P <b><mark class="hl-pink" title="전문약사 EXAM">20–40 mmol</mark>/d</b> · 대사성 산증 치료 · <b>적절한 Mg 유지</b> · 적절한 Cu · Al 최소화 · <b>heparin 추가 피하기</b> · 경구 Vit D 보충 고려</li><li>진단: DEXA · T-score ≤ −2.5 골다공증 / −1 ~ −2.5 골감소 [TXT p191]</li><li>장기 <mark class="hl-yellow" title="병원약사회">HPN</mark> (표19-9) [EXAM p286]: Ca <b>최소 15 mEq/d</b> · <b><mark class="hl-pink" title="전문약사 EXAM">Ca:P</mark> = 1:2</b> · Mg 정상유지 · acetate로 산증 예방 · 단백 <b>0.8~1 g/kg/d</b> · Na 손실 보충</li></ul><h3 id="s403">6.5 <mark class="hl-yellow" title="병원약사회">필수지방</mark>산 결핍 (EFAD)</h3><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">발생</td>
+<td>ILE 없는 PN ⟶ 성인 <b>1~3주</b> 내 · 고장성 포도당 지속주입 ⟶ 인슐린↑ ⟶ 지방분해↓ 악화 [TXT p182]</td>
+</tr>
+<tr>
+<td class="l1">증상</td>
+<td><b>피부염</b>(기출) · 탈모 · 간비대 · 혈소판감소 · 빈혈 [EXAM p182]</td>
+</tr>
+<tr>
+<td class="l1">진단</td>
+<td><b>triene:tetraene ≥ 0.2</b> (본문 &quot;0.2 이상&quot;) [EXAM p182] · QB 표기 &quot;&gt;0.2&quot;</td>
+</tr>
+<tr>
+<td class="l1">예방 %kcal</td>
+<td><b>p040: LA <mark class="hl-pink" title="전문약사 EXAM">2~4%</mark> + ALA 0.25~0.5%</b> [EXAM p040] · <b>p182: LA 1~2% + ALA 0.5%</b> [EXAM p182] ⟶ 두 형광 상충 (§11-기타)</td>
+</tr>
+<tr>
+<td class="l1">예방 용량</td>
+<td>20% ILE 250 mL 또는 10% 500 mL를 8–10 h 주 2회 / 20% 500 mL 주 1회 [TXT p182] · 피부도포 = 효과 낮음 [TXT p182]</td>
+</tr>
+</table><h2 id="s415">7. 모니터링 · Lab · 중단</h2><h3 id="s417">7.1 PN 대사합병증 모니터 (표11-1) [TXT p179]</h3><table>
+<tr>
+<th class="th">항목</th>
+<th class="th">개시(급성기)</th>
+<th class="th">장기 PN</th>
+</tr>
+<tr>
+<td class="l1">모세혈 혈당</td>
+<td>PN 목표 도달까지 <b>q6h</b>, 이후 필요시 ⟶ <b>140–180</b> 유지</td>
+<td>일상X · 주입 주기 맞춰 필요시</td>
+</tr>
+<tr>
+<td class="l1">BMP + P + Mg</td>
+<td>목표·안정 전 <b>매일</b> ⟶ 이후 <b>주 1–2회</b></td>
+<td>주 1회 ⟶ 안정 시 감소</td>
+</tr>
+<tr>
+<td class="l1">CBC (diff)</td>
+<td>baseline ⟶ 주 1–2회</td>
+<td>월 1회 ⟶ 안정 시 감소</td>
+</tr>
+<tr>
+<td class="l1">LFT (AST·ALT·ALP·T-bil·INR)</td>
+<td>baseline ⟶ <b>주 1회</b></td>
+<td>월 1회 ⟶ 안정 시 감소</td>
+</tr>
+<tr>
+<td class="l1">TG</td>
+<td>고TG 위험이면 <b>baseline</b>(고지혈증 병력 = 투여 전 [EXAM p181]) ⟶ 필요시</td>
+<td>필요시</td>
+</tr>
+<tr>
+<td class="l1">체중·I/O</td>
+<td>매일 (<mark class="hl-both" title="전문약사+병원약사회">재급식</mark>·수분) [TXT p186]</td>
+<td></td>
+</tr>
+</table><ul><li>ESPEN 소아: ILE 개시/변경 후 <b>1–2일</b> TG ⟶ 이후 주–월 <sup class="fn"><a href="#fn33">33</a></sup></li><li>HPN 장기 = §10 표19-7</li></ul><h3 id="s431">7.2 Lab 정상범위 <sup class="fn"><a href="#fn4">4</a></sup> (PN 관련)</h3><table>
+<tr>
+<th class="th">항목</th>
+<th class="th">정상</th>
+<th class="th">항목</th>
+<th class="th">정상</th>
+</tr>
+<tr>
+<td class="l1">Na</td>
+<td>135–145 mEq/L</td>
+<td>BUN</td>
+<td>8–18 mg/dL</td>
+</tr>
+<tr>
+<td class="l1">K</td>
+<td>3.5–5.0 mEq/L</td>
+<td>Scr</td>
+<td>0.6–1.2 mg/dL</td>
+</tr>
+<tr>
+<td class="l1">Cl</td>
+<td>97–110 mEq/L</td>
+<td>CrCl</td>
+<td>85–135 mL/min</td>
+</tr>
+<tr>
+<td class="l1">HCO₃⁻</td>
+<td>22–26 mEq/L</td>
+<td>Ca (보정)</td>
+<td>8.8–10.2 mg/dL ([EXAM p155] 예제 8.6–10.2)</td>
+</tr>
+<tr>
+<td class="l1">pH</td>
+<td>7.35–7.45</td>
+<td>P</td>
+<td>2.5–5.0 mg/dL (교재 <b>3.0–4.5</b> [EXAM+ p078])</td>
+</tr>
+<tr>
+<td class="l1"></td>
+<td></td>
+<td>Mg</td>
+<td>짜그리 없음 · 교재 <b>1.8–3.0 mg/dL</b> [EXAM+ p078]</td>
+</tr>
+</table><p>(TG 정상범위는 짜그리·교재 형광 모두 없음)</p><h3 id="s444">7.3 PN 중단 · 이행</h3><ul><li>성인: 경구/EN으로 <b>목표열량의 ≥80%</b> 공급 가능하면 PN 중단 고려 [TXT p210] · 감량 <b>1–2 h</b> taper (rebound 방지) [TXT p036]</li><li>소아: 성인보다 <b>점진적</b> 이행 · 열량 요구의 <b>75–80%</b> 공급 가능할 때까지 PN 유지 [EXAM p273] · 너무 빠름/느림 = 결핍/과잉</li><li>초안의 &quot;EN 60–75% 도달 시 감량&quot;은 근거 파일 미확인 ⟶ <b>uncertain</b> (삭제)</li></ul><h2 id="s452">8. 질환별 PN (교재 장13–17)</h2><table>
+<tr>
+<th class="th">질환</th>
+<th class="th">핵심</th>
+<th class="th">출처</th>
+</tr>
+<tr>
+<td class="l1"><b>급성 췌장염</b></td>
+<td>경증(80–85%) <b>자연 회복</b> · 중증(10–15%) <b>수액소생</b> 최우선 [EXAM p208] · 스트레스 <b>고혈당·인슐린저항</b>(중증 40–90%) · LPL 억제 ⟶ <b>고TG</b> · 알코올 ⟶ <b>Zn</b>·Mg·<mark class="hl-both" title="전문약사+병원약사회">thiamine</mark>·엽산↓ [EXAM p208] · 저Ca(지방산 결합) [TXT p208] · EN 우선, 불가 시 PN [TXT p218] · <b>장점막 치밀이음부(tight junction)</b> 유지 = EN 이점 [EXAM p209] · PN <b>25 NPC kcal/kg</b>(≤30) · 단백 <b><mark class="hl-both" title="전문약사+병원약사회">1.2–1.5</mark> g/kg/d</b> · <b>TG &lt;400이면 ILE 재개</b> · 지질 <b>&lt;1 g/kg</b> + 혈당조절 ⟶ 고TG↓ [EXAM p210·p218]</td>
+<td>장13</td>
+</tr>
+<tr>
+<td class="l1"><b><mark class="hl-yellow" title="병원약사회">Crohn</mark>·IBD</b></td>
+<td>단백 <b>1~1.5 g/kg</b> [EXAM p211] (활동기 IBD <mark class="hl-both" title="전문약사+병원약사회">1.2–1.5</mark> · 관해기 ≈1.0 [TXT p211]) · 누공·빈번 설사 ⟶ <b>Zn 결핍 ⟶ Zn 모니터</b> [EXAM p211] · PN 적응 = SBS·지속 소장폐색·EN 불가 누공·고배출 장루 [TXT p211] · 회장 ≥20 cm 절제 ⟶ <b>B12 1 mg/월</b> · UC sulfasalazine ⟶ 엽산 [EXAM p212]</td>
+<td>장13</td>
+</tr>
+<tr>
+<td class="l1"><b>장부전·SBS</b></td>
+<td>장기 PN 필요: 회장·대장 소실 + <b>공장만 ≤1 m</b> · 대장 있으나 공장 ≤0.65 m · 회맹판 있으나 공장 ≤0.3 m [EXAM p215] · ★ <b>회장 절제 = 공장 절제보다 장적응력↓</b> <sup class="fn"><a href="#fn34">34</a></sup> · 회장 소실 ⟶ <mark class="hl-pink" title="전문약사 EXAM">담즙산</mark>·B12·지용성 비타민 흡수↓ [TXT p215] · 지사제 1차 <mark class="hl-yellow" title="병원약사회">Loperamide</mark>(장기 투여 시 효과↓) · 위산과분비 ⟶ <mark class="hl-yellow" title="병원약사회">Omeprazole</mark> 정맥(PPI)</td>
+<td>장13</td>
+</tr>
+<tr>
+<td class="l1"><b>신부전</b></td>
+<td>신장 이상(표14-4): 체액↑·Na 조절이상·<b>고K·고P·저Ca·대사성 산증</b> [EXAM p225] (필기: 고Mg도) · HD 1회 AA <b>10–13 g</b> 손실 [TXT p225] · 단백: 비투석 0.6–0.8 / <b>HD·PD 1.2–1.3 → 1.5–1.8</b> / <b><mark class="hl-pink" title="전문약사 EXAM">CRRT</mark> 1.2–1.3 → 최대 2.0–2.5</b> [EXAM p227] · <b><mark class="hl-both" title="전문약사+병원약사회">표준 AA</mark></b> [EXAM p227] · 지질 열량 20–30%, 0.8–1.2 g/kg/d [TXT p227] · <b>Mg↑</b> · CRRT 저인산 [EXAM/TXT p228] · Cr·Se↓ <sup class="fn"><a href="#fn4">4</a></sup></td>
+<td>장14</td>
+</tr>
+<tr>
+<td class="l1"><b>복막투석(PD)</b></td>
+<td>투석액으로 <b>단백질·AA 손실</b> + <b>지속적 포도당 흡수</b> ⟶ 고혈당·비만 위험 [EXAM+ p226] · PD 포도당 흡수 ≈ <b>500–1,000 kcal/d</b> ⟶ 열량에 산입 · CKD 열량 20–45 kcal/kg/d · CHO 50–60% [TXT p226] · 흡수열량 = 투석액 속도(L/h) × 시간 × 포도당 농도(g/L) × 흡수율 [TXT p227]</td>
+<td>장14</td>
+</tr>
+<tr>
+<td class="l1"><b>IDPN</b></td>
+<td>투석 중 보조 PN · 500–1,000 mL · 300–1,200 kcal · 단백 <b>1.2–1.4 g/kg</b> [EXAM p228] · 저혈당·고TG 위험 ⟶ <b>일상적 권고 X</b> [TXT p228]</td>
+<td>장14</td>
+</tr>
+<tr>
+<td class="l1"><b>간질환</b></td>
+<td><b>BCAA(leucine·valine·isoleucine)</b> [EXAM p234] · 열량 산출 체중 = <b>최근 최저체중 또는 IBW</b>(복수 ⟶ dry weight) [EXAM p234] · 단백 1.0–1.5 [TXT p061] · HE 등급(표15-4): 2단계 신경 = 자세고정불능·<b>구음장애</b>·저활동성반사 / 3단계 = <b>자세고정불능</b>·고활동성반사·근육경축 [EXAM p233] · MELD↑ ⟶ 3개월 생존↓ [TXT p233] · Child-Pugh 기준 = 빌리루빈·알부민·PT·<b>복수·뇌병증</b> [EXAM+ p232] (A 5–6 / B 7–9 / C 10–15 [TXT p232])</td>
+<td>장15</td>
+</tr>
+<tr>
+<td class="l1"><b>급성 간질환</b></td>
+<td>경구 5–7일 불가 ⟶ 영양치료 고려 · 열량 BMR × 1.2–1.3 · <b>포도당(2–3 g/kg/d) + 지질(0.8–1.2 g/kg/d) 함께</b> · 지질 = <b>인슐린 저항 시 유용</b> [EXAM+ p235] · AA = <b>초급성 간부전에선 필수 아님</b>, 급성·아급성 0.8–1.2 g/kg/d [EXAM+ p235] · BUN·암모니아 모니터 [TXT p235]</td>
+<td>장15</td>
+</tr>
+<tr>
+<td class="l1"><b>만성 간질환</b></td>
+<td>열량 BMR × 1.2–1.4 · 지질 유럽 40–50% / 미국 30–40% · 고혈당 지속 ⟶ GIR <b>2–3 mg/kg/min</b>으로 감속 · 단백 1.0–1.5 (결핍 없으면 1.0–1.2) [TXT p235]</td>
+<td>장15</td>
+</tr>
+<tr>
+<td class="l1"><b>중환자</b></td>
+<td>선별 NRS 2002·<mark class="hl-yellow" title="병원약사회">NUTRIC</mark> [EXAM p239] · 지질 <b>≤1.0 g/kg/d</b> · <b><mark class="hl-pink" title="전문약사 EXAM">Gln</mark> 일상 투여 X</b> [EXAM p243] · 패혈증 단백 1.5–2.0 (장기기능 따라 0.6–2.5) [TXT p243] · 아르기닌 ⟶ NO <sup class="fn"><a href="#fn1">1</a></sup> · GIR ≤4 · BG 140–180 · kcal 12–25(첫 7–10일) · 단백 1.2–2.0 · SPN ≥day 7 · ILE 첫주 허용 <sup class="fn"><a href="#fn35">35</a></sup></td>
+<td>장16</td>
+</tr>
+<tr>
+<td class="l1">cf. <b>EN–약물</b> (non_PN, 짧게)</td>
+<td><b>phenytoin</b> = EN 튜브 흡착 ⟶ 혈중농도↓ ⟶ 투여 전후 <b>1–2 h EN 중지</b> 또는 <b>IV 전환</b>, 농도 모니터 · <b>warfarin</b> = EN Vit K·단백결합(35–50%) ⟶ 전후 <b>1 h</b> EN 중지, INR 모니터 [EXAM+ p199] · 튜브 세척 = 물, 성인 최소 <b>15 mL</b> [EXAM+ p198]</td>
+<td>장12</td>
+</tr>
+<tr>
+<td class="l1"><b>암</b> (non_PN, 짧게)</td>
+<td>전신염증 ⟶ 단백대사 변화·<b>근육량↓</b> [EXAM p247] · 단백 <b>≥1 g/kg, 가능하면 1.5 g/kg/d</b> · 인슐린저항 ⟶ <b>지방 비율↑</b> [EXAM p250] (지방 0.5–1.5 g/kg/d, REE 30–60% [TXT p250])</td>
+<td>장17</td>
+</tr>
+</table><h2 id="s471">9. 소아 · 신생아</h2><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">적응</td>
+<td>초저체중 미숙아 = <b>출생 직후</b> · 소아 = 5–7일 내 EN 부족 <sup class="fn"><a href="#fn4">4</a></sup></td>
+</tr>
+<tr>
+<td class="l1">처방 단위</td>
+<td><b>g/kg/day · mEq/kg/day</b> (기출 &quot;단위 묻기&quot;) · GIR mg/kg/min [EXAM p162]</td>
+</tr>
+<tr>
+<td class="l1">수분</td>
+<td>&lt;10 kg <b><mark class="hl-pink" title="전문약사 EXAM">100 mL/kg</mark></b> (예: 960 g 신생아 계산) [EXAM p263] · Holliday-Segar</td>
+</tr>
+<tr>
+<td class="l1">GIR</td>
+<td>표 3종 + ESPEN ⟶ <b>§11-4</b> (교재 소아 최대 <b>5~13</b> [EXAM p034] · 영아 goal <b>10~14</b> [EXAM p143] · 신생아 <b>10~12 넘지 않게</b> [TXT p035])</td>
+</tr>
+<tr>
+<td class="l1">혈당</td>
+<td>신생아 혈장 &lt;150 / 전혈 &lt;125 [TXT p034] · PICU/NICU &gt;145 회피 · &gt;180 반복 ⟶ insulin <sup class="fn"><a href="#fn10">10</a></sup></td>
+</tr>
+<tr>
+<td class="l1">지질 (교재)</td>
+<td>신생아·영아 0.5–1 g/kg 시작 ⟶ 0.5–1씩 ⟶ <b>3–4 g/kg/d</b> · 소아 1 ⟶ 1씩 ⟶ <b>2–3</b> · 속도 영아 <b>0.13–0.17</b> / 소아 <b>0.08–0.13 g/kg/h</b> [TXT p144] (QB: 소아 0.15 / 신생아 0.17)</td>
+</tr>
+<tr>
+<td class="l1">지질 (ESPEN)</td>
+<td>일일 상한 preterm·term <b>≤4</b> / children <b>≤3 g/kg/d</b> · 최소 LA preterm <b>0.25</b> / term·소아 <b>0.1 g/kg/d</b> (SO-ILE 0.5 g/kg/d ≈ preterm 최소량) · TG 영아 &gt;265 / 소아 &gt;400 ⟶ <b>감량(중단X)</b> · FO-ILE 1 g/kg/d = IFALD rescue <sup class="fn"><a href="#fn33">33</a></sup></td>
+</tr>
+<tr>
+<td class="l1">단백 (교재 표9-7)</td>
+<td>신생아 <b>3–4</b> · 영아 2–3 · 소아 1–2 · 청소년 0.8–1.5 g/kg/d [TXT p146] · <sup class="fn"><a href="#fn4">4</a></sup> 미숙아 3.0–4.0</td>
+</tr>
+<tr>
+<td class="l1">단백 (표18-10 ESPEN)</td>
+<td><b>미숙아(37주 미만) 1일 1.5~2.5 / 2일 이후 2.5~3.5</b> [EXAM p266] · 만삭 1.5–3.0 · 2개월–3세 ~2.5 · 3–18세 ~2.0 [TXT p266] ≈ <sup class="fn"><a href="#fn36">36</a></sup> Day1 ≥1.5 · Day2+ 2.5–3.5</td>
+</tr>
+<tr>
+<td class="l1">투석 소아 (표18-11)</td>
+<td>신생아–1세 1.6–2.2 · 1–6세 1.0–1.2 · 7–14세 0.8–1.2 · ≥15세 0.8–1.0 g/kg/d (+투석손실 보정) [TXT p266]</td>
+</tr>
+<tr>
+<td class="l1">NPC:N</td>
+<td>150–250:1 [TXT p266]</td>
+</tr>
+<tr>
+<td class="l1">제형</td>
+<td><b>2-in-1 + 별도 ILE</b> (3-in-1 X) [EXAM p172] · ILE &gt;12 h 필요 ⟶ 2용기 분할 <sup class="fn"><a href="#fn7">7</a></sup> · 시린지 재포장 ⟶ 오염↑ [EXAM p176]</td>
+</tr>
+<tr>
+<td class="l1">Ca·P (ESPEN)</td>
+<td>조기 PN <mark class="hl-pink" title="전문약사 EXAM">Ca:P</mark> 몰비 <b>0.8–1.0</b> (저인산혈증 예방) · preterm 조기 Ca 0.8–2.0 / P 1.0–2.0 mmol/kg/d · 성장기 1.6–3.5 <sup class="fn"><a href="#fn37">37</a></sup></td>
+</tr>
+<tr>
+<td class="l1">TE (교재 표6-11, ASPEN 2019)</td>
+<td>아래 표 [EXAM+ p106] (제목·preterm 열 형광)</td>
+</tr>
+<tr>
+<td class="l1">TE (ESPEN, μg/kg/d)</td>
+<td>Zn preterm 400–500 · Cu preterm <b>40</b> / term 20 · Se preterm <b>7</b> · Mn ≤1 (max 50 μg/d) <sup class="fn"><a href="#fn38">38</a></sup> (PDF μ 기호 유실 ⟶ 단위 <b>μg로 해석, uncertain</b>) ⟶ ASPEN과 Cu·Se 다름 (§11-기타)</td>
+</tr>
+<tr>
+<td class="l1">Mg 최대농도</td>
+<td>NICU <b>13 mEq/L</b> (성인·소아 24) [TXT p154]</td>
+</tr>
+<tr>
+<td class="l1">PNALD</td>
+<td>장기 PN 영아 <b>40–60%</b> · 위험: 미숙아·장간순환 문제·장정체·세균과증식·반복 패혈증·과도 포도당·고단백·고지방·과열량 · 치료: 경구 자극·metronidazole·UDCA·과도 당 회피·taurine·<b>cyclic PN</b>·ILE 조정 · ASPEN 2014: <b>ethanol lock</b>(CLABSI 예방) · <b>SO-ILE ≤1 g/kg</b> [TXT p273]</td>
+</tr>
+<tr>
+<td class="l1">이행</td>
+<td><b>점진적</b>, 75–80%까지 PN 유지 · 급중단 ⟶ rebound 저혈당 [EXAM p273]</td>
+</tr>
+</table><p><b>소아 1일 미량원소 PN 요구량 (표6-11, ASPEN 2019)</b> [EXAM+ p106]</p><table>
+<tr>
+<td>원소</td>
+<td><b>Preterm 신생아</b></td>
+<td>Term 신생아 (3–10 kg)</td>
+<td>소아 10–40 kg</td>
+<td>청소년 &gt;40 kg</td>
+</tr>
+<tr>
+<td class="l1">Zn</td>
+<td><b>400 μg/kg</b></td>
+<td>250 μg/kg</td>
+<td>50 μg/kg (max 5,000 μg/d)</td>
+<td>2–5 mg</td>
+</tr>
+<tr>
+<td class="l1">Cu</td>
+<td><b>20 μg/kg</b></td>
+<td>20 μg/kg</td>
+<td>20 μg/kg (max 500 μg/d)</td>
+<td>200–500 μg</td>
+</tr>
+<tr>
+<td class="l1">Mn</td>
+<td><b>1 μg/kg</b></td>
+<td>1 μg/kg</td>
+<td>1 μg/kg (max <mark class="hl-pink" title="전문약사 EXAM">55 μg</mark>/d)</td>
+<td>40–100 μg</td>
+</tr>
+<tr>
+<td class="l1">Cr</td>
+<td><b>0.05–0.3 μg/kg</b></td>
+<td>0.2 μg/kg</td>
+<td>0.2 μg/kg (max 5 μg/d)</td>
+<td>5–15 μg</td>
+</tr>
+<tr>
+<td class="l1">Se</td>
+<td><b>2 μg/kg</b></td>
+<td>2 μg/kg</td>
+<td>2 μg/kg (max 100 μg/d)</td>
+<td>40–60 μg</td>
+</tr>
+</table><ul><li>주: 미국 시판 multi-TE 조성과 다름 [TXT p106] · 성인 IV: Fe 미국 일상 비첨가(필요시 월 25–50 mg 별도) · Mo 비첨가 · Mn 55 μg · Se 60–100 μg · <mark class="hl-pink" title="전문약사 EXAM">Zn 3–5</mark> mg [TXT p106]</li></ul><h2 id="s508">10. 재택 PN (HPN)</h2><table>
+<tr>
+<th class="th">L2</th>
+<th class="th">내용</th>
+</tr>
+<tr>
+<td class="l1">적응(표19-1)</td>
+<td>장부전/기능장애 · SBS · 흡수장애 · 장폐쇄 · <mark class="hl-yellow" title="병원약사회">Crohn</mark> · 방사선 장염 · 장·췌장 누공 · 췌장염 · 중증 영양불량 · 장허혈 [TXT p278]</td>
+</tr>
+<tr>
+<td class="l1">접근로</td>
+<td><b>단기(주로 수 주–3개월 미만) = <mark class="hl-pink" title="전문약사 EXAM">PICC</mark></b> · <b>수개월–수 년 = 터널형 중심정맥</b>(Hickman) [EXAM+ p280] · PICC = 제거 쉬움 but 독립성↓·드레싱 건조 유지·tip 이동·혈전↑ [TXT p280] · implanted port = 활동↑ but 천자·감염·수술, <b>Huber 바늘 주 단위 교체</b>, 미사용 시 생리식염수 매달 flush [EXAM+ p280] [TXT p280] <sup class="fn"><a href="#fn39">39</a></sup></td>
+</tr>
+<tr>
+<td class="l1">주기주입</td>
+<td>지속 24 h vs <b>주기 12–18 h</b>(간독성 예방·HPN) [TXT p154] · HPN 대부분 <b>야간 10–12 h</b> [TXT p210] · 시작·끝 <b>1 h씩 단계 증감</b>(그림 9-2) [TXT p155] · 장기 PN·간 위험 환자에서 선호 <sup class="fn"><a href="#fn13">13</a></sup> · 수액 내인성 = 뇨배설량·주기적 체중 [TXT p280]</td>
+</tr>
+<tr>
+<td class="l1">주입속도 상한</td>
+<td>교재: 최대 포도당 <b>4–7 mg/kg/min</b> [TXT p280] · <sup class="fn"><a href="#fn14">14</a></sup> <b>max 5–7</b> (70 kg·12 h ≈ 350 g) 또는 <b>3–6 g/kg/d</b></td>
+</tr>
+<tr>
+<td class="l1">주기주입 혈당</td>
+<td>고·저혈당 예방: 투여 시작 후 <b>2 h 이내</b> · 이후 <b>4–6 h</b> · <b>종료 1 h 후</b> 혈당 확인 [TXT p280]</td>
+</tr>
+<tr>
+<td class="l1">Home 개시</td>
+<td>병원 선행 필수 X (조건부) <sup class="fn"><a href="#fn7">7</a></sup></td>
+</tr>
+<tr>
+<td class="l1">모니터 (표19-7)</td>
+<td>외래: 초기 <b>4–6주</b> 간격 ⟶ 안정 후 <b>최소 월 1회</b> · 혈액: 첫 달 <b>매주(1·2·3주)</b> ⟶ 안정 <b>매달</b> = 혈당·BUN·Cr·전해질·Ca·Mg·P / CBC / 빌리루빈·AST·ALT·LDH·ALP·<b>TG</b> / 혈청단백 [EXAM p284] · <b>3–12개월</b>마다 = B12·엽산·iron·<b>미량원소(Cu·Cr·Se·Zn·Mn)</b>·비타민·25-OH D [EXAM p284]</td>
+</tr>
+<tr>
+<td class="l1">IFALD</td>
+<td><b>fish oil 기반 ILE 추천</b> · 간효소 급상승/지속 ⟶ 원인 탐색 [TXT p284]</td>
+</tr>
+<tr>
+<td class="l1">CVC 감염 치료</td>
+<td>출입구 = 온찜질·매일 국소치료·경구 항생제 · 터널 = <b>카테터 제거</b> · 포켓 = 포트 제거 + 항균제 · 혈류 = <b>antimicrobial lock + 전신 항균제 + 카테터 제거</b> [TXT p284]</td>
+</tr>
+<tr>
+<td class="l1">MBD</td>
+<td>Ca ≥15 mEq/d · <b>Ca:P = 1:2</b> · 단백 0.8–1 [EXAM p286]</td>
+</tr>
+<tr>
+<td class="l1">HPN 중단</td>
+<td>경구 증가 ⟶ 부피·열량 ↓ 또는 투여일수↓ · 주 3회 수준 ⟶ <b>1주 일시중단</b> 후 검사·체중·섭취 평가 ⟶ CVC 제거 (재삽입 대비 수주 유지하기도) [TXT p286]</td>
+</tr>
+</table><h2 id="s526">11. 숫자 충돌 — 문맥 분리 (시험 대응)</h2><p>&gt; 원칙: <b>문항 stem의 대상·단위·시대</b>를 먼저 본다. 국내 전문약사 = <sup class="fn"><a href="#fn18">18</a></sup> 우선, 국제(BCNSP)·GL 서술형 = [GL].</p><h3 id="s530">11-1. 성인 GIR: 5–7 vs ≤4 vs 일일 7</h3><table>
+<tr>
+<th class="th">stem 문맥</th>
+<th class="th">고를 값</th>
+<th class="th">근거</th>
+</tr>
+<tr>
+<td class="l1">&quot;성인 <b>일반</b> 당 투여속도&quot; (표2-6형)</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">5~7 mg/kg/min</mark></b></td>
+<td>[EXAM p034] &quot;고르기!&quot;</td>
+</tr>
+<tr>
+<td class="l1">&quot;<b>안정된</b> 성인 권고&quot; (표9-4형)</td>
+<td><b>4~5 mg/kg/min</b></td>
+<td>[EXAM p143]</td>
+</tr>
+<tr>
+<td class="l1"><b>중환자 / 고혈당 위험 / 최대 당산화</b></td>
+<td><b>&lt;4 (≤4)</b></td>
+<td>[EXAM p033·p034·p035·p143] · ASPEN 2012 &quot;Not &gt;4&quot; [TXT p170]</td>
+</tr>
+<tr>
+<td class="l1">중환자 + &quot;<b>ESPEN 2019</b>&quot; 명시</td>
+<td><b>&lt;5</b></td>
+<td>[EXAM+ p170]</td>
+</tr>
+<tr>
+<td class="l1"><b>화상</b></td>
+<td><b>≤5</b></td>
+<td>[EXAM p033] (성인 화상 전용 GL 문장은 폴더 PDF에 없음 ⟶ GL 근거 uncertain)</td>
+</tr>
+<tr>
+<td class="l1"><b>하루 총량</b> (g/kg/d 단위)</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">≤7 g/kg/d</mark></b> (24 h 연속 ≈ 4.9 mg/kg/min)</td>
+<td>[TXT p034] [EXAM p143]</td>
+</tr>
+<tr>
+<td class="l1"><b>HPN·cyclic</b> 순간속도</td>
+<td>교재 <b>4–7</b> [TXT p280] · ESPEN <b>max 5–7</b> (일일 3–6 g/kg/d)</td>
+<td><sup class="fn"><a href="#fn14">14</a></sup></td>
+</tr>
+<tr>
+<td class="l1">국제문항 &quot;성인 max GIR&quot;</td>
+<td><b>4–5</b></td>
+<td><sup class="fn"><a href="#fn13">13</a></sup></td>
+</tr>
+<tr>
+<td class="l1">짜그리 원본</td>
+<td>성인 <b>4~7</b> <span class="x">초과X</span></td>
+<td><sup class="fn"><a href="#fn4">4</a></sup> (위 범위 통합 표기)</td>
+</tr>
+</table><ul><li>함정: 24 h 연속 <mark class="hl-pink" title="전문약사 EXAM">5–7 mg/kg/min</mark> = <b>7.2–10 g/kg/d</b> ⟶ 일일 7 g/kg 초과 ⟶ &quot;성인 GIR = 5–7&quot;을 연속주입 실무 상한으로 쓰면 모순 <sup class="fn"><a href="#fn1">1</a></sup></li><li>AllAccess Q10 (0.36 g/kg/h ⟶ 72 kg 622 g/d) = 일일 7 g/kg(504 g) 초과 ⟶ <b>쓰지 말 것</b> <sup class="fn"><a href="#fn40">40</a></sup></li></ul><h3 id="s547">11-2. 필터: <mark class="hl-yellow" title="병원약사회">0.22</mark>/1.2 vs 1.2 단일</h3><table>
+<tr>
+<td>stem</td>
+<td>답</td>
+</tr>
+<tr>
+<td class="l1">&quot;2-in-1 필터 / 지질 포함 필터&quot; 이원 문항 (구권고·FDA·짜그리·교재 전통)</td>
+<td>2-in-1 <b><mark class="hl-yellow" title="병원약사회">0.22</mark> μm</b> · 3-in-1/ILE <b>1.2 μm</b></td>
+</tr>
+<tr>
+<td class="l1">&quot;현행 권고&quot; · &quot;모든 PN&quot; · 2021 ASPEN update · 2024 practice tool</td>
+<td><b>단일 1.2 μm</b> (hub 가까이)</td>
+</tr>
+<tr>
+<td class="l1">정리본 기본값</td>
+<td><b>1.2 μm</b> — 단, 선택지에 0.22/1.2 쌍만 있으면 구권고 문항</td>
+</tr>
+</table><h3 id="s555">11-3. TG: 200 vs 400 (+265 · 1,000)</h3><table>
+<tr>
+<th class="th">숫자</th>
+<th class="th">의미</th>
+<th class="th">출처</th>
+</tr>
+<tr>
+<td class="l1"><b>&gt;200</b></td>
+<td>성인 <b>PN 개시 시</b> 고TG ⟶ 저용량 ILE·신중 개시 (금기 아님)</td>
+<td><sup class="fn"><a href="#fn7">7</a></sup></td>
+</tr>
+<tr>
+<td class="l1"><b>≥400</b> (&gt;400)</td>
+<td>투여 중 ⟶ ILE <b>회피·감량·중단</b></td>
+<td>[EXAM p181] <sup class="fn"><a href="#fn5">5</a></sup></td>
+</tr>
+<tr>
+<td class="l1"><b>&lt;400</b></td>
+<td>췌장염에서 ILE <b>재개</b> 기준</td>
+<td>[EXAM p210·p218]</td>
+</tr>
+<tr>
+<td class="l1"><b>&gt;1,000</b></td>
+<td>고TG성 <b>췌장염 유발</b> 수준</td>
+<td>[TXT p182·p210]</td>
+</tr>
+<tr>
+<td class="l1"><b>&gt;265 / &gt;400</b></td>
+<td>ESPEN 소아: 영아 / 소아 ⟶ <b>감량</b> (중단 X)</td>
+<td><sup class="fn"><a href="#fn41">41</a></sup></td>
+</tr>
+<tr>
+<td class="l1">QB &quot;소아 &gt;200&quot;</td>
+<td>퀴즈 출처 단일 ⟶ ESPEN 265와 다름, <b>uncertain</b></td>
+<td><sup class="fn"><a href="#fn6">6</a></sup></td>
+</tr>
+</table><h3 id="s566">11-4. 소아 GIR: 교재 표 vs ESPEN 표</h3><table>
+<tr>
+<th class="th">출처</th>
+<th class="th">대상</th>
+<th class="th">초기</th>
+<th class="th">증량</th>
+<th class="th">목표/최대</th>
+</tr>
+<tr>
+<td class="l1">표2-4 [TXT p034]</td>
+<td>미숙아</td>
+<td>&lt;1 kg <b>6</b> / &gt;1 kg <b>8</b></td>
+<td>1–2</td>
+<td>최대 <b>12</b></td>
+</tr>
+<tr>
+<td class="l1"><b>표2-5</b> [EXAM p034]</td>
+<td>소아</td>
+<td>5–7</td>
+<td>2–4</td>
+<td><b>최대 5~13</b> (필기 14)</td>
+</tr>
+<tr>
+<td class="l1">표9-4 [EXAM p143]</td>
+<td>영아(&lt;1 y) preterm·term</td>
+<td>6–8</td>
+<td>1–2</td>
+<td>goal <b>10–14</b> (max 14–18)</td>
+</tr>
+<tr>
+<td class="l1">표9-4 [TXT p143]</td>
+<td>소아 1–10 y</td>
+<td>3–6</td>
+<td>1–2</td>
+<td>8–10</td>
+</tr>
+<tr>
+<td class="l1">표9-4 [TXT p143]</td>
+<td>청소년</td>
+<td>2.5–3</td>
+<td>1–2</td>
+<td>5–6</td>
+</tr>
+<tr>
+<td class="l1">p035 <sup class="fn"><a href="#fn3">3</a></sup></td>
+<td>신생아</td>
+<td>—</td>
+<td>—</td>
+<td><b>10~12 넘지 않게</b> (필기 14)</td>
+</tr>
+<tr>
+<td class="l1"><sup class="fn"><a href="#fn4">4</a></sup></td>
+<td>신생아 / 미숙아</td>
+<td>—</td>
+<td>—</td>
+<td><b>6~8 / 14~18 <span class="x">초과X</span></b> (&quot;성인의 약 2배&quot;)</td>
+</tr>
+<tr>
+<td class="l1"><sup class="fn"><a href="#fn42">42</a></sup></td>
+<td>preterm</td>
+<td>Day1 <b>4–8</b></td>
+<td>—</td>
+<td>target <b>8–10</b>, min 4, <b>max 12</b></td>
+</tr>
+<tr>
+<td class="l1"><sup class="fn"><a href="#fn42">42</a></sup></td>
+<td>term</td>
+<td>Day1 <b>2.5–5</b></td>
+<td>—</td>
+<td>target <b>5–10</b>, min 2.5, <b>max 12</b></td>
+</tr>
+<tr>
+<td class="l1"><sup class="fn"><a href="#fn43">43</a></sup></td>
+<td>28 d–10 kg (예)</td>
+<td>급성 2–4</td>
+<td>안정 4–6</td>
+<td>회복 <b>6–10</b> (≈ 8.6–14 g/kg/d)</td>
+</tr>
+</table><ul><li>국내 기출 &quot;소아 최대&quot; ⟶ <b>5~13</b> · &quot;영아 goal&quot; ⟶ <b>10~14</b> · GL 서술형 ⟶ <b>ESPEN 체중·병기표, 신생아 max 12 mg/kg/min (=17.3 g/kg/d)</b></li><li>필기 <b>14</b> = 단위 미상 ⟶ ESPEN 회복기 <b>14 g/kg/d</b>와 일치 가능 ⟶ <b>uncertain</b></li><li>짜그리 &quot;미숙아 14~18&quot;은 표9-4 영아 <b>max 14–18</b>과 일치, 표2-4 미숙아 <b>max 12</b>와는 불일치 ⟶ 표 이름(대상)으로 구분 <sup class="fn"><a href="#fn1">1</a></sup></li></ul><h3 id="s585">11-기타. 짧은 충돌 메모</h3><table>
+<tr>
+<th class="th">항목</th>
+<th class="th">값 A</th>
+<th class="th">값 B</th>
+<th class="th">대응</th>
+</tr>
+<tr>
+<td class="l1">ILE 성인 속도</td>
+<td><b>≤0.11</b> [EXAM p144·p181]</td>
+<td>0.11–0.15 [EXAM p044] · 0.125 <sup class="fn"><a href="#fn4">4</a></sup></td>
+<td>단일값 = <b>0.11</b></td>
+</tr>
+<tr>
+<td class="l1">EFAD 예방 %kcal</td>
+<td>LA <b><mark class="hl-pink" title="전문약사 EXAM">2–4%</mark></b> + ALA <b>0.25–0.5%</b> [EXAM p040] [TXT p167] <sup class="fn"><a href="#fn13">13</a></sup></td>
+<td>LA <b>1–2%</b> + ALA <b>0.5%</b> [EXAM p182]</td>
+<td>둘 다 형광 ⟶ 보기에 있는 쪽. 다수 출처 = <b>2–4 / 0.25–0.5</b></td>
+</tr>
+<tr>
+<td class="l1">T:T 비</td>
+<td><b>≥0.2</b> (&quot;0.2 이상&quot;) [EXAM p182]</td>
+<td>&gt;0.2 <sup class="fn"><a href="#fn6">6</a></sup></td>
+<td>동일 컷</td>
+</tr>
+<tr>
+<td class="l1">세트 교환</td>
+<td><b>24 h</b> 또는 새 bag (48 h = 오답) [EXAM p174]</td>
+<td><sup class="fn"><a href="#fn4">4</a></sup> 3-in-1·ILE <b>12 h</b> 교체</td>
+<td>교재 형광 = <b>24 h</b> · 12 h는 ILE <b>hang time</b>과 혼동 주의 · 짜그리 12 h 근거 <b>uncertain</b></td>
+</tr>
+<tr>
+<td class="l1">2-in-1 주입시간</td>
+<td>24 h 이내 완료 [TXT p175] <sup class="fn"><a href="#fn35">35</a></sup></td>
+<td><sup class="fn"><a href="#fn4">4</a></sup> &quot;2-in-1 12 h 넘지 않게&quot;</td>
+<td>짜그리 문구 <b>uncertain</b> ⟶ 교재·GL 24 h</td>
+</tr>
+<tr>
+<td class="l1">ICU 첫주 ILE</td>
+<td>교재: SO-ILE 보류/제한 [TXT p183]</td>
+<td>ASPEN 2022: <b>허용</b> [GL]</td>
+<td>현행 = <b>허용</b></td>
+</tr>
+<tr>
+<td class="l1">Thiamine</td>
+<td>50–100 mg/d × 5–7일 [TXT p184]</td>
+<td>100–300 mg IV ≥3일 <sup class="fn"><a href="#fn6">6</a></sup></td>
+<td>국내 = 교재 · 국제 = QB 범위</td>
+</tr>
+<tr>
+<td class="l1">포도당 kcal/g (계산)</td>
+<td>IV 일수화물 <b>3.4</b> [TXT p143] <sup class="fn"><a href="#fn10">10</a></sup> <sup class="fn"><a href="#fn11">11</a></sup></td>
+<td>교재 계산 예제 <b>3.85</b> [TXT p157] · 무수 4 [TXT p033] / 3.85 [TXT p143] · <sup class="fn"><a href="#fn4">4</a></sup> 3.4–3.75</td>
+<td>문제에 계수 주면 그대로 · 없으면 <b>3.4</b> (국제문항 3.4 고정)</td>
+</tr>
+<tr>
+<td class="l1">ICU 단백 (비만)</td>
+<td>ASPEN: IBW <b>2.0</b>(BMI 30–40) / <b>2.5</b>(&gt;40) [GL] [TXT p170]</td>
+<td>ESPEN 2019: <b>1.3 g/kg ABW</b> [EXAM+ p170]</td>
+<td>학회명 확인</td>
+</tr>
+<tr>
+<td class="l1">ICU ILE</td>
+<td>ASPEN 2016: 첫주 ≤100 g/주, ≤1.0 g/kg [TXT p170] · 교재 중환자 ≤1.0 [EXAM p243]</td>
+<td>ESPEN 2019: <b>&lt;1.5 g/kg/d</b> [TXT p170] · ASPEN 2022 첫주 허용 [GL]</td>
+<td>국내 형광 = <b>≤1.0</b></td>
+</tr>
+<tr>
+<td class="l1">혈청 P 정상</td>
+<td>교재 <b>3.0–4.5</b> [EXAM+ p078]</td>
+<td>짜그리 <b>2.5–5.0</b> <sup class="fn"><a href="#fn4">4</a></sup></td>
+<td>교재 형광 우선</td>
+</tr>
+<tr>
+<td class="l1">소아 TE (preterm)</td>
+<td>ASPEN 2019: Zn <b>400</b> · Cu <b>20</b> · Se <b>2</b> μg/kg [EXAM+ p106]</td>
+<td>ESPEN: Zn 400–500 · Cu <b>40</b> · Se <b>7</b> μg/kg <sup class="fn"><a href="#fn10">10</a></sup></td>
+<td>교재 표 = ASPEN 2019</td>
+</tr>
+<tr>
+<td class="l1">지질 kcal/g</td>
+<td>20% ILE <b>10 kcal/g</b></td>
+<td>순수 지방 9 kcal/g</td>
+<td>&quot;ILE g&quot; vs &quot;지방 g&quot; 구분</td>
+</tr>
+<tr>
+<td class="l1">NPC:N</td>
+<td>150:1 / <mark class="hl-pink" title="전문약사 EXAM">80–100:1</mark> [EXAM p061]</td>
+<td>QB 100–150:1 · 동화 120–180 · 소아 150–250</td>
+<td>국내 = 형광 쌍</td>
+</tr>
+<tr>
+<td class="l1">Crohn 단백</td>
+<td><b>1–1.5 g/kg</b> [EXAM p211]</td>
+<td>활동기 IBD <mark class="hl-both" title="전문약사+병원약사회">1.2–1.5</mark> [TXT p211]</td>
+<td>형광 = 1–1.5</td>
+</tr>
+<tr>
+<td class="l1">단백 상한</td>
+<td>2.5 g/kg/d [TXT p168]</td>
+<td>Safe Practices 2.0 <sup class="fn"><a href="#fn6">6</a></sup></td>
+<td>문항 출처 따라</td>
+</tr>
+<tr>
+<td class="l1">보정 Ca 정상</td>
+<td>8.6–10.2 [EXAM p155]</td>
+<td>8.8–10.2 <sup class="fn"><a href="#fn4">4</a></sup></td>
+<td>예제 9.12는 둘 다 정상</td>
+</tr>
+<tr>
+<td class="l1">Se + Vit C</td>
+<td><mark class="hl-pink" title="전문약사 EXAM">selenite</mark> = 1–4 h 간격 [EXAM p101] · selenious acid = 혼합 가능 [TXT p101]</td>
+<td>필기 &quot;Mix 불가&quot;</td>
+<td>본문 우선 · 필기 <b>uncertain</b></td>
+</tr>
+<tr>
+<td class="l1">TE 성인</td>
+<td>ASPEN Mn 55 μg · Se 60–100 · <mark class="hl-pink" title="전문약사 EXAM">Zn 3–5</mark> · Cr ≤10 [EXAM p104]</td>
+<td>ESPEN Mn 0.2–0.3 mg · Se 20–60 · Zn 2.5–5 · Cr 10–15</td>
+<td>&quot;ASPEN&quot; 명시 = 형광 열</td>
+</tr>
+<tr>
+<td class="l1">Ca:P</td>
+<td>일일 Ca <mark class="hl-pink" title="전문약사 EXAM">10–15 mEq</mark> · P <mark class="hl-pink" title="전문약사 EXAM">20–40 mmol</mark></td>
+<td>장기 HPN <b>1:2</b> [EXAM p286] · 신생아 몰비 0.8–1.0 <sup class="fn"><a href="#fn10">10</a></sup></td>
+<td>대상·기간 구분</td>
+</tr>
+<tr>
+<td class="l1">주기주입 시간</td>
+<td>12–18 h [TXT p154]</td>
+<td>HPN 야간 10–12 h [TXT p210]</td>
+<td>초안 &quot;10–14 h&quot;는 근거 없음 ⟶ 교체</td>
+</tr>
+<tr>
+<td class="l1">HPN GIR</td>
+<td>교재 4–7 [TXT p280]</td>
+<td>ESPEN 5–7 [GL]</td>
+<td>학회명 있으면 ESPEN 5–7</td>
+</tr>
+<tr>
+<td class="l1">PN 중단 기준</td>
+<td>성인 목표열량 ≥80% [TXT p210]</td>
+<td>소아 75–80% [EXAM p273]</td>
+<td>초안 60–75% = uncertain ⟶ 삭제</td>
+</tr>
+<tr>
+<td class="l1">BUD</td>
+<td>상온 30 h / 냉장 9일 [TXT p172] [GL]</td>
+<td>국내 범주1 12/24 h · 범주2 24 h/3일 [TXT p172]</td>
+<td>문항 기준(USP vs 국내 범주)</td>
+</tr>
+<tr>
+<td class="l1">가장 흔한 합병증</td>
+<td><b>대사</b> = 고혈당 <sup class="fn"><a href="#fn6">6</a></sup></td>
+<td>전체 = 감염·혈전 <sup class="fn"><a href="#fn6">6</a></sup></td>
+<td>stem &quot;대사&quot; 여부</td>
+</tr>
+<tr>
+<td class="l1">MVI Vit K</td>
+<td>국내 MVI K 미포함 [TXT p170]</td>
+<td>미국 성인 MVI K 150 μg [TXT p149]</td>
+<td>제품·국가 차</td>
+</tr>
+<tr>
+<td class="l1">말초 PN 기간</td>
+<td>GI 회복 10–14일 이내 <sup class="fn"><a href="#fn4">4</a></sup></td>
+<td>SPN/bridge ≤10–14일 [GL]</td>
+<td>일치</td>
+</tr>
+<tr>
+<td class="l1">인슐린 혼합</td>
+<td>g당 0.05–0.1 / 0.15–0.2 U [TXT p035]</td>
+<td>소스 추출본 &quot;uncertain&quot;(OCR)</td>
+<td>원본 이미지 판독으로 <b>해소</b></td>
+</tr>
+<tr>
+<td class="l1">고위험 첫날</td>
+<td><b>2–3 mg/kg/min</b>[TXT p035]</td>
+<td>추출본 &quot;2–3 g/kg/d?&quot;</td>
+<td>이미지 판독 = <b>mg/kg/min</b></td>
+</tr>
+</table><h2 id="s621">12. 치트 (암기 블록)</h2><p> [GIR] 일반5–7(표2-6) · 안정4–5(표9-4) · ICU/고혈당&lt;4 · ESPEN2019 ICU&lt;5 · 화상≤5 · 일일≤7g/kg · 고위험첫날2–3 공식 %×mL/h×0.167/kg · 소아max5–13 · 영아goal10–14 · 신생아≤10–12 · ESPEN신생아max12 [BG]  PN 140–180 · q6h · PN엔 RI만 · g당0.05–0.1U(재발0.15–0.2) · &gt;0.3U/g→별도펌프 · 저혈당 <mark class="hl-yellow" title="병원약사회">50%DW</mark> [CHO] 3.4kcal/g · 40–50%에너지 · osm %×50(5/g) · D5/10/20/50=253/505/1010/2525 · &gt;10%→중심 [ILE] 1.1/2.0kcal/mL · 10kcal/g · ≤0.11g/kg/h · ≤2.5g/kg/d · ICU≤1 · ≤30% · 단독12h/TNA24h TG: 개시&gt;200주의 · ≥400중단 · &lt;400재개(췌장염) · &gt;1000췌장염 · 소아265/400감량 20%선호(인지질↓) · 대두유=EFAD예방·간손상·phytosterol · SO+MCT+어유→PNALD↓ · propofol합산 [EFAD] 피부염 · T:T≥0.2 · LA2–4/ALA0.25–0.5(p040) vs LA1–2/ALA0.5(p182) · 1–3주 [AA]  4kcal/g · 10mOsm/g · N=÷6.25 · 0.8–1/1.5–2/미숙3–4 · NPC:N 150:1 vs <mark class="hl-pink" title="전문약사 EXAM">80–100:1</mark> <mark class="hl-yellow" title="병원약사회">AKI</mark>→표준AA · BCAA=HE≥stageII · 조건부 taurine·tyrosine·<mark class="hl-yellow" title="병원약사회">cysteine</mark> · ICU <mark class="hl-pink" title="전문약사 EXAM">Gln</mark> X [수분] ≤10kg 100/kg · 1000+50(W−10) · 1500+20(W−20) · 50kg=2100 [전해질] Na·K 1–2/kg · Ca10–15mEq · P20–40mmol · Mg8–20mEq · 신↓Mg↑ · 산증→acetate K 1mEq/L↓≈총300mEq↓ · 정상 P3.0–4.5 · Mg1.8–3.0 (교재) [계산] 교재예제 2000kcal: ILE20%250mL=500 · (2000−500−400)÷3.85=286g→D50 572mL · AA10% 1000mL · 70–75mL/h [교정] Ca=0.8×(4−Alb)+Ca(8/2.6→9.12) · Na+0.016/0.024×(Glu−100)(126/300→129.2/130.8) [TE]  ASPEN Zn3–5 · Cu0.3–0.5 · Cr≤10μg · Mn55μg · Se60–100μg 설사Zn↑ · 담즙<mark class="hl-pink" title="전문약사 EXAM">Cu·Mn</mark>↓ · 신Cr·Se↓ · Cr결핍→고혈당 · <mark class="hl-pink" title="전문약사 EXAM">selenite</mark>↔VitC 1–4h Zn결핍 야맹증 · Zn독성 HDL↓ · 누공고배출→Zn · 소아(ASPEN2019) preterm Zn400·Cu20·Mn1·Se2 μg/kg [Vit] 직전첨가·24h · 국내MVI K없음 · K=<mark class="hl-pink" title="전문약사 EXAM">담즙산</mark> · VitE↑→warfarin↑ · 알코올B1 · B12 1mg/월 [경로] PPN≤900 · AA3–5%·D5–10% · 혈전정맥염→ILE·heparin±hydrocortisone · CPN≥14일 [제형] 신생아 2-in-1(3-in-1X) · iron dextran TNA X · cracking 투여X · MCB=완제품X [조제] Dex·AA→P먼저→Na·K·Mg·TE→Ca→(ILE)→Vit끝 · Ca+2P≤45–60 · AA≥2.5%·pH≤6 · <mark class="hl-yellow" title="병원약사회">cysteine</mark>↑ NaHCO₃ 배합금기→acetate · Y-site 2in1금기 cisplatin·cytarabine·5FU·MTX·NaHCO₃ lorazepam 2in1○/3in1× · Ca glu≠CaCl₂ [투여] 필터 구0.22/1.2 → 현행1.2단일 · 세트24h(48h오답) · BUD 30h/9일 [합병증] 고혈당最多(대사) · RS=P·K·Mg↓→열량천천히·전해질/Vit적극 · PNAC DB≥2 MBD 고단백·과Na·heparin피함 · 간담도 <mark class="hl-pink" title="전문약사 EXAM">Mn·Cu</mark>↓ [질환] 췌장염 단백1.2–1.5·25NPCkcal·TG&lt;400재개·lipid&lt;1 · Crohn 1–1.5+Zn HD/PD1.2–1.3→1.5–1.8 · CRRT→2.0–2.5 · IDPN1.2–1.4 · 간=BCAA·최저/IBW SBS 공장만≤1m · 회장절제 적응↓ [소아] 단위g/kg/d · 미숙아단백 1일1.5–2.5→2.5–3.5 · 이행점진(75–80%) · SO-ILE≤1(IFALD) [HPN] PICC&lt;3개월 · 터널형=수년 · Huber주단위 · cyclic 12–18h(야간10–12) · 교재4–7/ESPEN5–7 혈당 시작2h·4–6h·종료1h · 안정 매달(+TG) · TE 3–12개월 · Ca:P1:2 [간]  급성: 포도당2–3g/kg+지질0.8–1.2 · 초급성 AA필수X · Child-Pugh 복수·뇌병증 · BCAA · 최저/IBW [평가] prealbumin=단기모니터 · 콰시오커 Alb&lt;3.0 · 마라스무스 체지방·근육↓ · PD=단백손실+포도당흡수 [GL]  시작 3–5일/불량asap/잘영양7일 · SPN≥d7 · ICU 12–25kcal · 단백1.2–2.0 · 비만IBW2.0–2.5 <sup class="fn"><a href="#fn44">44</a></sup> 재급식32115791 · 고혈당22753619 · ILE32460429 · 배합34788478 · CVAD30339287 · preterm37610837 </p><h2 id="s665">부록 A. 형광 confirmed 58p ⟶ 반영 섹션</h2><table>
+<tr>
+<td>PDF</td>
+<td>반영</td>
+<td>PDF</td>
+<td>반영</td>
+<td>PDF</td>
+<td>반영</td>
+</tr>
+<tr>
+<td class="l1">033</td>
+<td>2.1 · 11-1</td>
+<td>143</td>
+<td>2.1 · 11-1/4</td>
+<td>202</td>
+<td>5.3</td>
+</tr>
+<tr>
+<td class="l1">034</td>
+<td>2.1 · 9 · 11-1/4</td>
+<td>144</td>
+<td>2.2 · 11-기타</td>
+<td>208</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">035</td>
+<td>2.1 · 2.7 · 6.1</td>
+<td>150</td>
+<td>2.7</td>
+<td>209</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">040</td>
+<td>6.5 · 11-기타</td>
+<td>152</td>
+<td>2.4 · 3.1</td>
+<td>210</td>
+<td>2.2 · 8 · 11-3</td>
+</tr>
+<tr>
+<td class="l1">044</td>
+<td>2.2</td>
+<td>153</td>
+<td>4.3 · 5.2</td>
+<td>211</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">061</td>
+<td>2.3</td>
+<td>155</td>
+<td>4.4</td>
+<td>212</td>
+<td>2.6 · 8</td>
+</tr>
+<tr>
+<td class="l1">063</td>
+<td>2.3 · 8</td>
+<td>156</td>
+<td>0</td>
+<td>215</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">064</td>
+<td>2.3</td>
+<td>162</td>
+<td>2.5 · 9</td>
+<td>218</td>
+<td>2.2 · 8</td>
+</tr>
+<tr>
+<td class="l1">069</td>
+<td>2.6</td>
+<td>171</td>
+<td>5.1</td>
+<td>225</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">070</td>
+<td>2.6</td>
+<td>172</td>
+<td>2.1 · 3.2 · 9</td>
+<td>227</td>
+<td>2.3 · 8</td>
+</tr>
+<tr>
+<td class="l1">101</td>
+<td>2.7</td>
+<td>174</td>
+<td>5.4</td>
+<td>228</td>
+<td>2.5 · 8</td>
+</tr>
+<tr>
+<td class="l1">104</td>
+<td>2.7</td>
+<td>176</td>
+<td>2.2 · 5.4 · 9</td>
+<td>233</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">116</td>
+<td>0</td>
+<td>181</td>
+<td>2.2 · 6.1 · 11-3</td>
+<td>234</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">119</td>
+<td>0</td>
+<td>182</td>
+<td>6.5 · 11-기타</td>
+<td>239</td>
+<td>0 · 8</td>
+</tr>
+<tr>
+<td class="l1">120</td>
+<td>0</td>
+<td>185</td>
+<td>2.7 · 6.2 · 6.3</td>
+<td>243</td>
+<td>2.2 · 2.3 · 8</td>
+</tr>
+<tr>
+<td class="l1">126</td>
+<td>0 · 1</td>
+<td>186</td>
+<td>6.3</td>
+<td>247</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">142</td>
+<td>0</td>
+<td>191</td>
+<td>2.5 · 6.4</td>
+<td>250</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1"></td>
+<td></td>
+<td>193</td>
+<td>6.4</td>
+<td>263</td>
+<td>2.4 · 9</td>
+</tr>
+<tr>
+<td class="l1"></td>
+<td></td>
+<td>201</td>
+<td>5.3</td>
+<td>266</td>
+<td>9</td>
+</tr>
+<tr>
+<td class="l1"></td>
+<td></td>
+<td></td>
+<td></td>
+<td>273</td>
+<td>7.3 · 9</td>
+</tr>
+<tr>
+<td class="l1"></td>
+<td></td>
+<td></td>
+<td></td>
+<td>284</td>
+<td>10</td>
+</tr>
+<tr>
+<td class="l1"></td>
+<td></td>
+<td></td>
+<td></td>
+<td>286</td>
+<td>5.2 · 6.4 · 10</td>
+</tr>
+</table><p>(58/58 반영 · reject p068·p158 / false positive p041·p043 제외)</p><h2 id="s694">부록 B. 이번 작업에서 새로 확인한 형광 18p (<sup class="fn"><a href="#fn45">45</a></sup>, 인덱스 미등재)</h2><p>_highlight_previews/에 미리보기는 있었으나 confirmed·reject 어디에도 없던 페이지를 육안 판독. 형광 없음 = p036(필기만) · p166 · p179 · p240.</p><table>
+<tr>
+<td>PDF</td>
+<td>인쇄≈</td>
+<td>형광 핵심</td>
+<td>태그</td>
+<td>반영</td>
+</tr>
+<tr>
+<td class="l1">071</td>
+<td>63</td>
+<td>B6 결핍 <mark class="hl-both" title="전문약사+병원약사회">isoniazid</mark> · 임신 엽산결핍 ⟶ 신경관결손 · sulfasalazine</td>
+<td>non_PN(Vit)</td>
+<td>2.6</td>
+</tr>
+<tr>
+<td class="l1">076</td>
+<td>68</td>
+<td>혈청 K 1 mEq↓ ≈ 총 300 mEq↓ · 저Ca 원인 Vit D 부족</td>
+<td>PN</td>
+<td>2.5</td>
+</tr>
+<tr>
+<td class="l1">078</td>
+<td>70</td>
+<td><b>P 3.0–4.5 · Mg 1.8–3.0 mg/dL</b> · sodium acetate(중탄산 대체)</td>
+<td>PN</td>
+<td>2.5 · 7.2 · 11</td>
+</tr>
+<tr>
+<td class="l1">093</td>
+<td>85</td>
+<td>Zn 결핍 <b>야맹증</b> · Zn 독성 <b>HDL↓</b></td>
+<td>PN</td>
+<td>2.7</td>
+</tr>
+<tr>
+<td class="l1">094</td>
+<td>86</td>
+<td>Zn 보충 = 누공 고배출 · 과다 GI 손실</td>
+<td>PN</td>
+<td>2.7</td>
+</tr>
+<tr>
+<td class="l1">102</td>
+<td>94</td>
+<td>Cr 결핍 ⟶ 포도당·AA 사용 장애</td>
+<td>PN</td>
+<td>2.7</td>
+</tr>
+<tr>
+<td class="l1">106</td>
+<td>98</td>
+<td><b>표6-11 소아 PN 미량원소(ASPEN 2019)</b> preterm Zn 400 · Cu 20 · Mn 1 · Cr 0.05–0.3 · Se 2 μg/kg</td>
+<td>PN</td>
+<td>9 · 11</td>
+</tr>
+<tr>
+<td class="l1">110</td>
+<td>102</td>
+<td>콰시오커 Alb &lt;3.0 · 마라스무스 체지방·근육 소모</td>
+<td>non_PN</td>
+<td>0</td>
+</tr>
+<tr>
+<td class="l1">122</td>
+<td>114</td>
+<td>prealbumin = 단기 영양지원 모니터</td>
+<td>non_PN(평가)</td>
+<td>0</td>
+</tr>
+<tr>
+<td class="l1">157</td>
+<td>149</td>
+<td>PN 계산 예제 원료용액(50% 포도당 · 10% AA · 20% ILE)</td>
+<td>PN</td>
+<td>4.2</td>
+</tr>
+<tr>
+<td class="l1">170</td>
+<td>162</td>
+<td>ESPEN 2019 ICU: 비만 단백 <b>1.3 g/kg ABW</b> · <b>GIR &lt;5</b></td>
+<td>PN</td>
+<td>2.1 · 2.3 · 11</td>
+</tr>
+<tr>
+<td class="l1">188</td>
+<td>180</td>
+<td>SO+MCT+어유 ILE ⟶ n-6:n-3 항염 ⟶ PNALD↓</td>
+<td>PN</td>
+<td>2.2 · 6.3</td>
+</tr>
+<tr>
+<td class="l1">198</td>
+<td>190</td>
+<td>EN 튜브 세척(물, 성인 최소 15 mL)</td>
+<td>non_PN(EN)</td>
+<td>8 cf.</td>
+</tr>
+<tr>
+<td class="l1">199</td>
+<td>191</td>
+<td>EN–phenytoin(흡착·IV전환) · warfarin</td>
+<td>non_PN(EN)</td>
+<td>8 cf.</td>
+</tr>
+<tr>
+<td class="l1">226</td>
+<td>218</td>
+<td>PD: 단백·AA 손실 + 지속 포도당 흡수</td>
+<td>PN</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">232</td>
+<td>224</td>
+<td>Child-Pugh 기준(복수·뇌병증)</td>
+<td>non_PN</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">235</td>
+<td>227</td>
+<td>급성 간질환: 포도당+지질 0.8–1.2 · 인슐린저항 시 지질 · 초급성 간부전 AA 필수X</td>
+<td>PN</td>
+<td>8</td>
+</tr>
+<tr>
+<td class="l1">280</td>
+<td>272</td>
+<td>HPN: 단기 &lt;3개월 PICC · 수년 터널형 · Huber 바늘 주 단위</td>
+<td>PN</td>
+<td>10</td>
+</tr>
+</table><p>⟶ 형광 총계 <b>58 + 18 = 76p</b> (인덱스 파일은 미수정 — 필요 시 PN_exam_highlights_index.md에 승격 반영)</p><p>*확정본. 형광 판독은 _highlight_previews/pNNN.jpg 육안 재확인분 반영(2026-11-13). uncertain 표기 항목은 인쇄본·유료 원문 확인 전 단정 금지.*</p>
+<ol class="footnotes" start="1">
+<li id="fn1"><span class="fnn">1.</span> [NOTE]</li><li id="fn2"><span class="fnn">2.</span> [GL:ASPEN/SCCM]</li><li id="fn3"><span class="fnn">3.</span> [TXT]</li><li id="fn4"><span class="fnn">4.</span> [짜]</li><li id="fn5"><span class="fnn">5.</span> [QB 3]</li><li id="fn6"><span class="fnn">6.</span> [QB]</li><li id="fn7"><span class="fnn">7.</span> [GL:ASPEN Myths]</li><li id="fn8"><span class="fnn">8.</span> [GL:ASPEN Factsheet·SPN 2026]</li><li id="fn9"><span class="fnn">9.</span> [GL:ASPEN Factsheet]</li><li id="fn10"><span class="fnn">10.</span> [GL:ESPEN]</li><li id="fn11"><span class="fnn">11.</span> [QB 5]</li><li id="fn12"><span class="fnn">12.</span> [NOTE p033]</li><li id="fn13"><span class="fnn">13.</span> [QB 4]</li><li id="fn14"><span class="fnn">14.</span> [GL:ESPEN HPN]</li><li id="fn15"><span class="fnn">15.</span> [NOTE p172]</li><li id="fn16"><span class="fnn">16.</span> [GL:ESPEN carbs R5.8–5.11]</li><li id="fn17"><span class="fnn">17.</span> [NOTE p044]</li><li id="fn18"><span class="fnn">18.</span> [EXAM]</li><li id="fn19"><span class="fnn">19.</span> [NOTE p144]</li><li id="fn20"><span class="fnn">20.</span> [GL:ESPEN lipids R4.21]</li><li id="fn21"><span class="fnn">21.</span> [QB 2]</li><li id="fn22"><span class="fnn">22.</span> [GL:ASPEN Myths Na 1–2/kg, Ca 10–15]</li><li id="fn23"><span class="fnn">23.</span> [GL:ASPEN TE tool]</li><li id="fn24"><span class="fnn">24.</span> [GL:ESPEN R8.6]</li><li id="fn25"><span class="fnn">25.</span> [QB 6]</li><li id="fn26"><span class="fnn">26.</span> [GL:ASPEN SPN]</li><li id="fn27"><span class="fnn">27.</span> [GL:ASPEN Myths·ISMP 2025]</li><li id="fn28"><span class="fnn">28.</span> [GL:ASPEN Compounding]</li><li id="fn29"><span class="fnn">29.</span> [GL:ESPEN R8.7]</li><li id="fn30"><span class="fnn">30.</span> [NOTE p202]</li><li id="fn31"><span class="fnn">31.</span> [GL:ASPEN Myths·Admin 2024]</li><li id="fn32"><span class="fnn">32.</span> [PAPER:32115791]</li><li id="fn33"><span class="fnn">33.</span> [GL:ESPEN lipids]</li><li id="fn34"><span class="fnn">34.</span> [NOTE ★밑줄 p215]</li><li id="fn35"><span class="fnn">35.</span> [GL:ASPEN]</li><li id="fn36"><span class="fnn">36.</span> [GL:ESPEN AA]</li><li id="fn37"><span class="fnn">37.</span> [GL:ESPEN R8.9·R8.12]</li><li id="fn38"><span class="fnn">38.</span> [GL:ESPEN TE]</li><li id="fn39"><span class="fnn">39.</span> [PAPER:30339287]</li><li id="fn40"><span class="fnn">40.</span> [QB C1]</li><li id="fn41"><span class="fnn">41.</span> [GL:ESPEN R4.21]</li><li id="fn42"><span class="fnn">42.</span> [GL:ESPEN R5.4]</li><li id="fn43"><span class="fnn">43.</span> [GL:ESPEN R5.6]</li><li id="fn44"><span class="fnn">44.</span> [PAPER]</li><li id="fn45"><span class="fnn">45.</span> [EXAM+]</li>
+</ol>
+</div>
+<script>
+(function(){
+  const root = document.getElementById("corePrint");
+  if(!root || root.dataset.wrapped === "1") return;
+
+  function wrapRuns(parent, tagName, secClass){
+    const kids = [...parent.childNodes];
+    let i = 0;
+    while(i < kids.length){
+      const n = kids[i];
+      if(!(n.nodeType === 1 && n.tagName === tagName)){ i++; continue; }
+      const nodes = [n];
+      let j = i + 1;
+      while(j < kids.length){
+        const m = kids[j];
+        if(m.nodeType === 1 && (m.tagName === "H2" || (tagName === "H3" && m.tagName === "H3"))) break;
+        if(m.nodeType === 1 && m.tagName === "OL" && m.classList.contains("footnotes")) break;
+        nodes.push(m);
+        j++;
+      }
+      const sec = document.createElement("section");
+      sec.className = secClass;
+      parent.insertBefore(sec, n);
+      nodes.forEach(el => sec.appendChild(el));
+      // Long sections may exceed one A4 (~3200–3800 chars ≈ page); allow break, keep subs together
+      const len = (sec.textContent || "").replace(/\s+/g," ").length;
+      if(len > 3200) sec.classList.add("allow-break");
+      // refresh kids after DOM mutation
+      return true;
+    }
+    return false;
+  }
+
+  // Wrap h2 chapters repeatedly until done
+  let guard = 0;
+  while(wrapRuns(root, "H2", "print-sec") && guard++ < 80){ /* rebuild each pass */ }
+
+  // Inside each h2 section, wrap h3 subsections
+  root.querySelectorAll("section.print-sec").forEach(sec=>{
+    let g = 0;
+    while(wrapRuns(sec, "H3", "print-sub") && g++ < 40){ /* */ }
+    // If parent allows break, very long subs also allow break
+    sec.querySelectorAll("section.print-sub").forEach(sub=>{
+      const len = (sub.textContent || "").replace(/\s+/g," ").length;
+      if(len > 2800) sub.classList.add("allow-break");
+    });
+  });
+
+  root.dataset.wrapped = "1";
+})();
+</script>
+</body>
+</html>
