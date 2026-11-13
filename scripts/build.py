@@ -108,8 +108,8 @@ def question_bank(qdoc):
     return [{k: q.get(k, "" if k == "needle" else None) for k in BANK_FIELDS} for q in qdoc["questions"]]
 
 
-def study_ui_block():
-    parts = []
+def study_ui_block(content_version):
+    parts = [f"<script>const PN_CONTENT_VERSION = {script_json(content_version)};</script>"]
     for name, tag in STUDY_UI_FILES:
         path = SRC / name
         if path.is_file():
@@ -126,7 +126,7 @@ def render_split(core, nav, qdoc):
     out = shell.replace("<!--@@NAV@@-->", render_nav(nav))
     out = out.replace("<!--@@CORE@@-->\n", core.rstrip("\n") + " ")
     out = out.replace("/*@@QUESTION_BANK@@*/[]", script_json(question_bank(qdoc)))
-    return out.replace("<!--@@STUDY_UI@@-->", study_ui_block())
+    return out.replace("<!--@@STUDY_UI@@-->", study_ui_block(qdoc["meta"].get("contentVersion")))
 
 
 def a4_heading(m):

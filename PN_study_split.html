@@ -5037,7 +5037,7 @@ setupScrollSpy();
   table.jg.nest td.l1,table.jg.nest th.l1{white-space:normal;word-break:keep-all;overflow-wrap:anywhere;min-width:4.5em;max-width:8em}
   /* only wide comparison tables scroll sideways, inside their own box */
   .tbl-x{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
-  .tbl-x > table.jg{min-width:720px}
+  .tbl-x.wide > table.jg{min-width:720px}
   .q-choice{min-height:40px;padding:6px}
   .sb-btn,.sb-field select,.sb-search{min-height:36px}
   .sb-sum{margin-left:0;flex-basis:100%}
@@ -6159,9 +6159,10 @@ setupScrollSpy();
         for (const c of row.cells) n += c.colSpan || 1;
         cols = Math.max(cols, n);
       }
-      if (cols < 8) return;
+      // Every table gets a local scroll box so a long token never scrolls the whole pane;
+      // only wide comparison tables (8+ columns) keep a desktop-like min-width on mobile.
       const wrap = doc.createElement("div");
-      wrap.className = "tbl-x";
+      wrap.className = cols >= 8 ? "tbl-x wide" : "tbl-x";
       tbl.parentNode.insertBefore(wrap, tbl);
       wrap.appendChild(tbl);
     });

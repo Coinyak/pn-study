@@ -154,7 +154,7 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 <body class="mode-core">
 <div class="app"> <div class="header"> <div class="header-title">영양불백 <span>정맥영양(PN)</span></div> <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사(임상영양길라잡이 EXAM)</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회 영양약료</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div> </div> <div class="tabs" id="tabs"> <button type="button" class="active" data-pane="core">핵심</button> <button type="button" data-pane="quiz">문제</button> </div> <div class="main"> <nav class="nav" id="nav" aria-label="소단원"><!--@@NAV@@--></nav> <section class="pane pane-core" id="core">
 <!--@@CORE@@-->
-<p class="muted" style="padding:10px">문제 카드 클릭 → 핵심본 형광</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
+<p class="muted" style="padding:10px">문제의 「핵심 위치」 → 핵심본 형광</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
 </div>
 <script>
 const QUESTION_BANK = /*@@QUESTION_BANK@@*/[];
@@ -2650,10 +2650,8 @@ function isKoreanStem(stem){
   const latin=letters.filter(c=>c.charCodeAt(0)<128).length;
   return latin/letters.length <= 0.9;
 }
-/* Task 3: grading/favorites/progress persistence deliberately NOT here.
-   Task 4 owns localStorage key "pn-study-progress-v1" (schemaVersion, contentVersion,
-   attemptsByQuestionId, bookmarks, lastSession). Quiz cards are read-only until then.
-   Task 4 logic lives in src/study-state.js (pure state, store adapter, backup); UI wiring is Task 5. */
+/* Read-only fallback. src/study-ui.js (inlined at STUDY_UI_HOOK) replaces renderQuiz with the
+   answerable quiz UI; progress lives only in src/study-state.js ("pn-study-progress-v1"). */
 function renderQuiz(force){
   const list=document.getElementById("quizList");
   const title=document.getElementById("quizHeadTitle") || document.getElementById("quizHead");
@@ -2843,9 +2841,9 @@ function activateQcard(card){
   highlightFromQuestion(q);
 }
 document.getElementById("quizList").addEventListener("click", e=>{
-  if(e.target.closest("summary") || e.target.closest("a") || e.target.closest("button")) return;
-  const card = e.target.closest(".qcard"); if(!card) return;
-  activateQcard(card);
+  // Answering (radio/label/buttons in study-ui cards) must never jump the core pane.
+  const stem = e.target.closest('.stem[role="button"]'); if(!stem) return;
+  activateQcard(stem.closest(".qcard"));
 });
 document.getElementById("quizList").addEventListener("keydown", e=>{
   if(!e.target.matches('.stem[role="button"]') || (e.key !== "Enter" && e.key !== " ")) return;

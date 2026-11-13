@@ -691,9 +691,10 @@
         for (const c of row.cells) n += c.colSpan || 1;
         cols = Math.max(cols, n);
       }
-      if (cols < 8) return;
+      // Every table gets a local scroll box so a long token never scrolls the whole pane;
+      // only wide comparison tables (8+ columns) keep a desktop-like min-width on mobile.
       const wrap = doc.createElement("div");
-      wrap.className = "tbl-x";
+      wrap.className = cols >= 8 ? "tbl-x wide" : "tbl-x";
       tbl.parentNode.insertBefore(wrap, tbl);
       wrap.appendChild(tbl);
     });
