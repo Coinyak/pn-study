@@ -167,34 +167,61 @@
     animation: pulse 2.4s ease-in-out infinite;
   }
 
-  /* Atmospheric companion — soft bottom anchor under CTAs */
+  /* Companion art — always opaque; no wash/mask/blend/pseudo chip */
   .companions {
     position: relative;
     margin: 1.85rem auto 0;
     width: min(100%, 17.5rem);
     pointer-events: none;
-    opacity: 0;
+    opacity: 1;
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    filter: none;
+    mix-blend-mode: normal;
+    -webkit-mask-image: none;
+    mask-image: none;
     transform: translateY(12px);
-    animation: rise 1s var(--ease) 0.48s forwards;
+    animation: rise-y 1s var(--ease) 0.48s forwards;
+  }
+
+  .companions::before,
+  .companions::after {
+    content: none !important;
+    display: none !important;
   }
 
   .companions picture {
     display: block;
+    position: relative;
+    z-index: 1;
     width: 100%;
+    opacity: 1;
+    filter: none;
+    mix-blend-mode: normal;
     animation: float-soft 7.2s ease-in-out 1.5s infinite;
   }
 
-  /* Solid white bodies — opacity 1, no blend/mask/filter washout */
   .companions img {
     display: block;
     width: 100%;
     height: auto;
     opacity: 1;
     filter: none;
+    mix-blend-mode: normal;
+    -webkit-mask-image: none;
+    mask-image: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   @keyframes rise {
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes rise-y {
+    to { transform: translateY(0); }
   }
 
   @keyframes mist-sweep {
@@ -232,7 +259,7 @@
 </style>
 </head>
 <body>
-  <!-- deploy-stamp: 2026-11-13-opaque-bodies -->
+  <!-- deploy-stamp: 2026-11-13-opaque-no-chip -->
   <div class="page">
     <main class="hero">
       <p class="brand">영양불백</p>
