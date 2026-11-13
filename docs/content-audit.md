@@ -507,3 +507,44 @@ missing→partial 6행: `common-clinical-statistics`, `common-appraisal-applicat
 - 상태 변경(제출·즐겨찾기·복원)으로 선택한 출처 칩의 마지막 문항이 보기 조건에서 빠지면 칩이 「전체」로 풀리고 다른 출처 문항이 나타난다. 이때 이전 목록 카드가 하나도 남지 않아 `focusAfterRebuild()`가 null을 돌려주고, 빈 상태 요소도 없어 키보드 포커스가 사라졌다.
 - `focusAfterRebuild()`는 이제 살아남은 이전 카드가 없으면 새 목록의 첫 카드를 돌려주고, 목록이 비었을 때만 null을 돌려준다. DOM 쪽 대체 경로도 카드 → `.empty` → 목록 컨테이너 순으로 항상 `tabindex=-1` 포커스를 준다.
 - `tests/study-ui.test.cjs`에 회귀 테스트 추가. 검증: `node --test tests/*.cjs` 57 통과, `python3 -m unittest tests/test_check_content.py` 15 통과, `check_content.py` STRUCTURE OK, `build.py` 재생성.
+
+## 14. Task 6 통합 검증 기록 (2026-11-14)
+
+검증 대상은 커밋 `b3c3f36`이다. 작업 폴더에 다른 작업의 미커밋 변경(`src/study-state.js`)이 있어, 아래 결과는 `git archive HEAD`로 깨끗하게 푼 사본에서 다시 돌려 얻었다. 사본의 재생성 HTML은 커밋된 `PN_study_split.html`·`PN_core_A4_print.html`과 바이트 단위로 같다.
+
+### 14.1 실행 결과
+
+| 명령 | 결과 |
+|---|---|
+| `python3 scripts/check_content.py` | `STRUCTURE: OK` |
+| `python3 scripts/build.py` 2회 | 두 번 모두 같은 SHA-256, 커밋본과 동일 (split `669d8923…`, A4 `ad84364a…`; 전체값은 `.superpowers/sdd/task-6-report.md`) |
+| `node --test tests/*.cjs` | 57 통과 · 0 실패 |
+| `python3 -m unittest discover -s tests -p 'test_*.py'` | 15 통과 |
+
+### 14.2 문항 대조
+
+- `content/questions.json` 586건과 HTML에 내장된 `QUESTION_BANK` 586건을 필드 단위로 비교: 한국어 468건 전부 존재, 차이 0. 영어 118건도 내장돼 있다.
+- 화면에 나오는 기본 풀 = `includeInBasicSet` 54건. 모두 `reviewStatus=verified`·`language=ko`이며 보기·정답이 있다. pending 400·excluded 132는 내장만 되고 기본 퀴즈에는 나오지 않는다(검토 UI에서만 접근).
+- §12.4의 "QUESTION_BANK(한국어 468건)"는 부정확하다. 실제로는 한국어·영어 586건 전체를 내장한다(`scripts/build.py` `question_bank`).
+- 제외 문항의 사유는 각 문항의 `reviewNote`·`sourceNote`와 §1–§11에 있다. 이번 작업에서 판정을 바꾼 문항은 없다.
+
+### 14.3 근거값 교차 확인
+
+`check_content.py`의 FACTS가 핵심 절·치트 행·두 생성 HTML에 같은 값이 있는지 확인한다. 추가로 `content/core.html`·`PN_study_split.html`·`PN_core_A4_print.html`에서 직접 센 값: `647 mL`(3·4·3회), `냉장 9일`(1·2·1), `3.4 kcal/g`(2·5·2), `구 권고`(2·3·2), `출처 미확인`(4·4·4), GIR 치트 행의 '교재표2-6 "일반5–7"=조건 없음→단독정답X'. 분할본의 횟수가 더 큰 이유는 치트·퀴즈 영역 때문이다. A4는 핵심본과 같은 `core.html`에서 생성된다.
+
+### 14.4 배포 형태 정적 검사
+
+- 인라인 스크립트 4개가 모두 구문 분석을 통과한다. 생성 HTML과 `index.html`에는 루트(`/`) 절대 경로 링크가 없고, `index.html`은 상대 경로(`PN_study_split.html` 등)로 연결해 `/pn-study/` 하위 경로와 `file://` 모두에서 동작한다.
+- 외부 요청은 Google Fonts 스타일시트(와 preconnect)뿐이다. 오프라인에서는 시스템 글꼴로 대체되고 기능은 영향이 없다. `@import`·외부 이미지·외부 스크립트는 없다.
+- 인쇄: A4 셸과 분할 셸에 `@media print` 규칙이 있다(분할 셸은 탭·메뉴·퀴즈 창 숨김, 형광 색 유지). 실제 인쇄 미리보기는 열어 보지 않았다.
+- 저장 불가 환경: `study-state.js`가 저장소 없음·읽기 실패 시 `unavailable`, 저장 실패 시 `storage-error`를 돌려주고, UI가 안내 문구를 띄운 채 풀이를 계속하게 한다. 이 경로는 `tests/study-state.test.cjs`가 다룬다. 실제 브라우저의 사생활 보호 모드는 시험하지 않았다.
+- 저장 키는 `pn-study-progress-v1`, 분할 폭 설정은 `pn-study-split-core-pct`뿐이다. 커밋된 파일에 Supabase 관련 코드·설정은 없다(이전 시안은 `.superpowers/sdd/quarantine-supabase`에 격리, 추적 안 됨). 클라우드 동기화는 이번 릴리스에 없다.
+
+### 14.5 남은 항목 (완료로 표시하지 않음)
+
+- 임상·시험 기준 공식 검증은 하지 않았다. verified 54건은 보유 자료로 정답·보기를 되짚은 결과이며 사람의 임상 검토는 아직이다.
+- 범위: covered 0 · partial 31 · missing 7(`common-ebm-ebcp`, `common-literature-types`, `spec-dz-lung`, `spec-dz-heart`, `spec-dz-neuro`, `spec-pregnancy`, `spec-elderly`).
+- 국내 PN 제품 4종은 모두 `unconfirmed`(허가자료 없음, 조성 칸 비어 있음).
+- ASPEN Adult Nutrition Support Core Curriculum 4th ed.(`aspen-adult-core-4e-2025`)는 미보유 → 이 교재 기준으로 적은 값은 장·쪽 확인 대기. 지정 문헌 중 14건 미보유, 11건 유료·미검토.
+- 모의고사 20+80은 검증 문항 부족(공통 2/20 · PN 52/80)으로 비활성이다.
+- 실제 브라우저에서의 인쇄 미리보기·모바일 레이아웃·GitHub Pages 배포 경로 확인은 하지 않았다. 배포·푸시도 하지 않았다.
