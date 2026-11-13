@@ -24,8 +24,8 @@
 - `partial`: 핵심표에 전용 단락/행이 있으나 범위 일부이거나 임상 내용·문항·원문 대조가 끝나지 않음.
 - `missing`: 전용 핵심표·문항이 없음. 한 줄 언급·단편 수치는 충족으로 치지 않음.
 - 키워드가 HTML에 있다는 이유만으로 상태를 올리지 않았다. 핵심표(`sec-*`)를 읽고 판정했다.
-- 문항 단위 매핑(`questionMapping: pending-task2`)은 하지 않았다. `questionTopicKeys`는 기존 UI의 문항 주제 키(eval, route 등)이며 개별 문항의 범위 일치를 뜻하지 않는다.
-- 참고용 원시 `QUESTIONS` 배열(후처리 전 스냅샷) 건수: 총 583 — eval 75, route 72, monitor 65, fluid_lytes 44, lipid 40, cho_gir 38, calc_filter 37, complications 37, disease 37, indications 32, stability 28, vit_te 28, hpn 24, protein 22, peds 4. 표시용 최종 데이터와 다를 수 있고, 이 건수로 이관·충족을 판단하지 않는다.
+- 문항 단위 매핑은 §9의 키워드·주제 휴리스틱 v1(`questionMapping: keyword-heuristic-v1`)로만 수행했다. 문항 정답·내용 검증은 아니며, 매핑 건수가 있어도 `covered`로 올리지 않았다. `questionTopicKeys`는 기존 UI의 문항 주제 키(eval, route 등)다.
+- `PN_study_split.html`의 `const QUESTIONS` 배열: 총 583건(ID 583종, 중복 없음) — eval 75, route 72, monitor 65, fluid_lytes 44, lipid 40, cho_gir 38, calc_filter 37, complications 37, disease 37, indications 32, stability 28, vit_te 28, hpn 24, protein 22, peds 4. 배열은 `const`이며 파일 내 후처리(push/splice/재할당)가 없고, 화면 표시 목록은 `QUESTIONS.filter(q => q.topic === activeTopic)`이므로 최종 표시 ID = 이 583건이다(확인: 참조 4곳 = 정의 1 + filter 2 + find 1). `index.html`·`PN_core_A4_print.html`에는 문항 배열이 없다.
 
 ## 3. Coverage 요약
 
@@ -250,5 +250,110 @@
 ## 8. 이번 작업에서 하지 않은 것
 
 - `PN_study_split.html`, `PN_core_A4_print.html` 수정, `questions.json` 생성.
-- 임상 수치의 정답 판정 및 문항 단위 범위 매핑.
+- 임상 수치의 정답 판정 및 문항 내용 검증(문항 범위 매핑은 §9의 휴리스틱 v1만 수행).
 - 미확보 문헌의 쪽·장·권고문 기록(원문 확인 전에는 기록하지 않음).
+
+## 9. 기존 문항 ID → 범위 행 매핑 (Task 1 보정)
+
+### 방법
+
+1. **문항 모집단:** `PN_study_split.html`의 `const QUESTIONS` 583건(§2). ID를 새로 만들지 않았고 `questions.json`도 만들지 않았다. HTML은 수정하지 않았다.
+2. **기존 링크:** 데이터에 들어 있는 연결은 문항별 `topic` 키(15종)뿐이다. 이 키가 핵심표 `#core .sec[data-topic]` 및 퀴즈 패널 필터로 이어지며, 개별 문항→`sec-*` ID 고정 링크는 없다(런타임에 `needle`/`CORE_HINTS`로 점수화해 이동). 따라서 문항→소단원은 topic 단위까지만 추적 가능하다.
+3. **topic 연결 우선:** 범위 행이 좁게 한 주제에 대응하는 경우(`spec-components`=cho_gir·lipid·protein·fluid_lytes·vit_te, `spec-pediatric`=peds, `spec-hpn`=hpn, `spec-monitoring`=monitor·complications, `spec-compatibility`=stability)는 그 topic의 문항을 `topicOnly`로, 키워드까지 맞으면 `topicAndKeyword`로 분류했다. `spec-plan-personalized`는 topic=indications이면서 문항에 PN 용어(PN·TPN·정맥영양·비경구)가 있을 때만 topic 일치로 취급했다.
+4. **키워드 보충:** 나머지 행은 `stem`+`needle`(정답 선지·해설은 제외)에 대한 키워드 정규식 일치만 사용했다(`keywordOnly`, 최저 신뢰도). 질환·집단 행(신장, 간, GI, 폐, 심장, 신경, 당뇨, 비만, 수술, 암, 중환자, 화상, 섭식장애, 임신, 신생아·미숙아·소아, 노인)은 질환/집단명이 `stem`/`needle`에 있어야 한다. `format-appropriateness`는 `약사가…검토/확인` 형태의 처방 검토 사례형 stem, `format-monitoring`은 같은 사례형 중 '모니터' 언급, `format-patient-education`은 상담·교육 키워드다.
+5. **중복 허용:** 한 문항이 여러 행에 매핑될 수 있다(예: 중환자 GIR 문항 → components·plan-calc·critical-care). 행별 건수의 합은 문항 수(583)가 아니다.
+6. **JSON 필드:** `content/exam-scope.json`의 각 행에 `questionIds`(전체), `questionIdsByBasis`(`topicAndKeyword`/`topicOnly`/`keywordOnly`), `questionMapping`(`keyword-heuristic-v1` 또는 `none-found`)을 추가했고, `meta.questionMapping`에 총계와 미매핑 ID를 기록했다. 행의 `gapNote` 끝에 매핑 불확실성을 덧붙였다.
+
+### 결과 요약
+
+- 583건 중 **550건이 1개 이상 행에 매핑**, **33건은 미매핑**.
+- 문항이 0건인 행(6): `common-literature-types`, `common-clinical-statistics`, `common-appraisal-application`, `format-drp`, `format-selection-plan`, `format-monitoring`.
+- 행 `coverage`는 바꾸지 않았다. 매핑 건수는 문항 존재 여부 참고치이며 문항 검증·지정 문헌 장·쪽 대조가 없으므로 `covered` 조건을 충족하지 못한다.
+
+| scope id | coverage | questionIds | topic+keyword | topic only | keyword only |
+|---|---|---|---|---|---|
+| `common-ebm-ebcp` | missing | 3 | 0 | 0 | 3 |
+| `common-literature-types` | missing | 0 | 0 | 0 | 0 |
+| `common-clinical-statistics` | missing | 0 | 0 | 0 | 0 |
+| `common-appraisal-application` | missing | 0 | 0 | 0 | 0 |
+| `spec-components` | partial | 230 | 76 | 96 | 58 |
+| `spec-assessment` | partial | 73 | 0 | 0 | 73 |
+| `spec-requirements` | partial | 39 | 0 | 0 | 39 |
+| `spec-plan-personalized` | partial | 27 | 4 | 3 | 20 |
+| `spec-plan-calc` | partial | 31 | 0 | 0 | 31 |
+| `spec-plan-route` | partial | 89 | 0 | 0 | 89 |
+| `spec-dz-renal` | partial | 22 | 0 | 0 | 22 |
+| `spec-dz-liver` | partial | 29 | 0 | 0 | 29 |
+| `spec-dz-gi` | partial | 28 | 0 | 0 | 28 |
+| `spec-dz-lung` | missing | 3 | 0 | 0 | 3 |
+| `spec-dz-heart` | missing | 2 | 0 | 0 | 2 |
+| `spec-dz-neuro` | missing | 1 | 0 | 0 | 1 |
+| `spec-dz-diabetes` | partial | 33 | 0 | 0 | 33 |
+| `spec-dz-obesity` | partial | 6 | 0 | 0 | 6 |
+| `spec-surgery` | missing | 14 | 0 | 0 | 14 |
+| `spec-cancer` | partial | 5 | 0 | 0 | 5 |
+| `spec-critical-care` | partial | 57 | 0 | 0 | 57 |
+| `spec-burn` | partial | 7 | 0 | 0 | 7 |
+| `spec-eating-disorder` | partial | 2 | 0 | 0 | 2 |
+| `spec-pregnancy` | missing | 2 | 0 | 0 | 2 |
+| `spec-neonate` | partial | 5 | 0 | 0 | 5 |
+| `spec-preterm` | partial | 3 | 0 | 0 | 3 |
+| `spec-pediatric` | partial | 7 | 3 | 1 | 3 |
+| `spec-elderly` | missing | 3 | 0 | 0 | 3 |
+| `spec-hpn` | partial | 33 | 13 | 11 | 9 |
+| `spec-monitoring` | partial | 145 | 41 | 61 | 43 |
+| `spec-ddi-nutrient-drug` | partial | 6 | 0 | 0 | 6 |
+| `spec-compatibility` | partial | 35 | 5 | 23 | 7 |
+| `spec-products-stability` | partial | 7 | 0 | 0 | 7 |
+| `format-appropriateness` | missing | 5 | 0 | 0 | 5 |
+| `format-drp` | missing | 0 | 0 | 0 | 0 |
+| `format-selection-plan` | partial | 0 | 0 | 0 | 0 |
+| `format-monitoring` | partial | 0 | 0 | 0 | 0 |
+| `format-patient-education` | missing | 3 | 0 | 0 | 3 |
+
+### 한계·불확실성
+
+- 문항 상당수가 PN이 아닌 **경장영양(EN)·일반 영양** 문항이다(`indications`·`eval`·`calc_filter` topic에 특히 많음). 키워드·topic 매핑은 이를 완전히 걸러내지 못한다. 예: 비위관 위치 확인 문항이 `spec-plan-route`에, 흡수 변화 문항이 `spec-ddi-nutrient-drug`에 걸릴 수 있다.
+- `spec-components`·`spec-monitoring`의 `topicOnly` 건은 topic만 일치하고 키워드는 확인하지 않았다. topic 라벨이 실제 문항 내용과 어긋난 경우(예: topic=`disease`인데 HPN 문항)도 있어 `keywordOnly`로 재분류된다.
+- 공통영역(`common-*`): 키워드 일치는 `common-ebm-ebcp` 3건(`kshp-09` 메타분석 언급, `cnsc-nutrition-support-119`·`122` 근거 계층·EBM 틀)뿐이며 이 중 의미상 EBM 문항은 119·122다. 임상통계·문헌 종류·논문 비평 문항은 0건 — 핵심표도 없으므로 `missing` 유지.
+- 질환 행의 1~7건 규모 매핑(폐 3, 심장 2, 신경 1 등)은 대부분 EN 문항이거나 한 줄 사례이며 해당 행이 `missing`인 근거를 바꾸지 않는다. `spec-dz-diabetes`는 PN 고혈당 문항이 다수 포함돼 있어 '당뇨 환자 영양지원' 문항 수로 읽으면 안 된다.
+- `format-drp`·`format-selection-plan`은 DRP/선택·계획 사례를 키워드로 구분할 수 없어 0건으로 두었다(사례형 5건은 `format-appropriateness`에만 연결).
+- 이 휴리스틱은 정답·해설의 임상 정확성을 판단하지 않는다(§7 충돌 후보 검증은 Task 2).
+
+### 미매핑 문항 (33건)
+
+어떤 행에도 키워드/topic 규칙이 맞지 않은 문항이다. 대부분 EN 급식관·접근, 비영양 주제(식량 불안정, 영양관리과정), 또는 PN 일반 서술이다. Task 2에서 개별 판정한다.
+
+- `quizlet-pn-008` (calc_filter): 정맥영양(PN) 처방 오류 증가와 관련된 요인은?
+- `quizlet-home-ns-003` (disease): 장기 정맥영양(PN) 환자의 미량영양소 관리에서 가장 현실적인 방법은?
+- `bcnsp-081` (eval): 영양 중심 신체진찰에서 골격근량을 가장 잘 반영하는 평가 항목은?
+- `cnsc-nutrition-support-008` (eval): 자유수가 부족한 환자에서 혈청 나트륨 165 mEq/L이면 어떤 상태를 가장 잘 반영하는가?
+- `cnsc-nutrition-support-105` (eval): Academy of Nutrition and Dietetics 영양관리과정(Nutrition Care Process)에서 영양
+- `cnsc-nutrition-support-106` (eval): 임상에서 가구 식량 불안정(food insecurity)을 확인하는 데 흔히 쓰는 두 문항 선별 도구는?
+- `cnsc-nutrition-support-024` (calc_filter): 20% 정맥 지질 유제는 1 mL당 몇 kcal를 공급하는가?
+- `allaccess-011` (calc_filter): 유당(lactose)은 어떤 두 단당류로 분해되는가?
+- `cnsc-nutrition-support-068` (indications): 대부분 상황에서 급식을 시작하기 전 비위관 위치 확인에 가장 적절한 방법은?
+- `cnsc-nutrition-support-070` (indications): 보통 위·근위 소장에서 흡수되고 관급식에 결합하므로, 흡수 변화를 고려하지 않고 공장 급식관으로 주면 안 되는 약물은?
+- `cnsc-nutrition-support-072` (indications): 1.2 kcal/mL 제제로 하루 1,800 kcal를 24시간 지속 주입할 때, 처방할 시간당 속도(반올림)는?
+- `cnsc-nutrition-support-074` (indications): 급식관 선단이 공장에 있을 때 볼루스 급식이 일반적으로 금기인 이유는?
+- `allaccess-002` (indications): 선단이 위에 끝나는 경장 접근 환자에서 위험할 수 있는 문제 중 해당하지 않는 것은?
+- `allaccess-003` (indications): 경장 급식 환자가 지난 1주간 볼루스 급식 30분 후 복부 경련성 통증을 호소한다. 적절한 조치는?
+- `allaccess-006` (indications): 좌식 생활 남성 환자, 키 5 ft 9 in, 체중 80 kg, 41세이다. 1.5 kcal/mL 제제로 12시간 주기 급식을
+- `bcnsp-009` (route): 정맥영양 중 대사성 알칼리증이 생겼다. PN 처방에서 조절해야 할 성분은?
+- `hoag-faq-001` (route): 정맥영양(PN)이란 무엇인가?
+- `hoag-faq-002` (route): 정맥영양을 쓰는 일반적인 이유로 가장 적절한 것은?
+- `bcnsp-028` (indications): PN에서 EN으로 전환 중인 환자에서, 목표 EN 섭취의 몇 %에 도달하면 PN을 중단하는가?
+- `bcnsp-077` (indications): 입원 성인에서 체중 기반 방법으로 적절한 수분 요구 추정은?
+- `medex-007` (eval): oxycodone 5 mg 경구 6시간마다, ondansetron 4 mg IV 필요 시 8시간마다 투여 중인 68세 성인의
+- `rxk-1_3-2` (eval): 신체계측(anthropometry)이 유용한 평가는?
+- `rxk-1_3-5` (eval): 가장 반응성이 빠른 영양지표는?
+- `rxk-2_2-1` (route): 폐흡인 위험이 가장 높은 EN 경로는?
+- `rxk-2_2-2` (route): 폐흡인 위험이 가장 낮은 EN 경로는?
+- `rxk-3_1-2` (disease): TPN이 흔히 도움이 되는 상황은?
+- `quizlet-iib-049` (disease): 정맥영양(PN)에서 탄수화물을 과다 투여하면 무엇과 연관되는가?
+- `quizlet-a14pn-008` (route): According to the A.S.P.E.N. Safe Practices Guidelines, the following a
+- `quizlet-ach-001` (calc_filter): Which of the following practices is most likely to succeed in improvin
+- `quizlet-ach-002` (calc_filter): Which of the following statements explains why fermentable fiber is a
+- `quizlet-ach-004` (calc_filter): Which of the following is the largest component of total energy expend
+- `quizlet-ach-005` (calc_filter): Which of the following is the most commonly used method for assessing
+- `quizlet-m4-003` (calc_filter): In pulmonary insufficiency, excessive calorie administration may cause
