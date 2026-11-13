@@ -488,9 +488,11 @@ def main():
         elif status == "pending" and len(explain_body) < 15:
             status, priority = "excluded", "low"
             notes.append("해설이 정답 문구 반복뿐이라 불완전 — 기본 세트 제외.")
-        elif status == "pending" and english:
-            priority = "low"
-            notes.append("영문 미번역 — 번역·검토 대기.")
+        elif english and status != "verified":
+            # 학습 세트는 한국어 문항만. 영문 원문은 번역·검토 전까지 제외(보관만).
+            status, priority = "excluded", "low"
+            if not any("영문" in n for n in notes):
+                notes.append("영문 미번역 — 한국어 학습 세트에서 제외. 번역·검토 후 재편입.")
         elif status == "pending" and not notes:
             notes.append("자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.")
 
@@ -523,7 +525,8 @@ def main():
             "explain": explain,
             "choiceExplanations": choice_ex,
             "coreSectionIds": core_ids,
-            "includeInBasicSet": status == "verified",
+            "language": "en" if english else "ko",
+            "includeInBasicSet": status == "verified" and not english,
             "sourceNote": origin_note,
             "evidence": evidence,
             "errataIds": errata,
@@ -554,7 +557,9 @@ def main():
         "verifiedCount": st["verified"],
         "pendingCount": st["pending"],
         "excludedCount": st["excluded"],
-        "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified'). pending·excluded는 기본 세트에 넣지 않는다.",
+        "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
+        "displayLanguage": "ko-only",
+        "displayLanguageRule": "학습 HTML의 QUESTIONS는 한국어 stem 문항만 유지. 영문 원문은 questions.json에 excluded로 보관하고 번역·검토 후 재편입.",
         "upstream": {
             "kshpLectureExam": {"heldItems": len(kshp_src), "inHtml": sum(1 for q in raw if q["id"].startswith("kshp-")),
                                 "notInHtml": sorted(set(kshp_src) - ids),
