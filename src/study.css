@@ -35,7 +35,7 @@
 .q-bm[aria-pressed="false"]{color:#9aa3b0}
 .q-details{margin-top:8px;font-size:13.5px;line-height:1.5}
 .q-details summary{cursor:pointer;color:var(--chip-on);font-weight:600;min-height:32px;display:flex;align-items:center}
-.q-details p{margin:.3em 0}
+.q-details p{margin:.3em 0;white-space:pre-line}
 .qcard .src-meta{font-weight:700}
 .qcard .src-meta.src-kshp{color:#0b5cab}
 .qcard .src-meta.src-practice{color:#2f6f4e}
