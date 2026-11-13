@@ -40,19 +40,24 @@ body{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif
 .pane{min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;background:var(--panel)}
 .pane-quiz{background:var(--quiz);border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
 .pane-quiz #quizList{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch}
-table.jg.nest{width:100%;border-collapse:collapse;font-size:14.5px;line-height:var(--lh)}
-table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:10px 12px;vertical-align:top}
-/* Dense multi-col dose tables: keep units/arrows glued, stay dense */
+/* Nest tables: 짜그리 density (all nest, not only .dense) */
+table.jg.nest{width:100%;border-collapse:collapse;font-size:13px;line-height:1.3}
+table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:3px 5px;vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
+table.jg.nest .th{font-size:12px;line-height:1.25}
+table.jg.nest .l1{font-size:12.5px;line-height:1.28}
+table.jg.nest td.dose,
+table.jg.nest .dose{white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
+table.jg.nest td.dose-long{white-space:normal;font-size:12px;line-height:1.28;word-break:keep-all}
+table.jg.nest td.memo{font-size:12px;line-height:1.3;word-break:keep-all}
+table.jg.nest td.num{white-space:nowrap;text-align:center;font-variant-numeric:tabular-nums}
 .nowrap{white-space:nowrap}
-table.jg.nest.dense{table-layout:fixed;font-size:13.5px;line-height:1.42}
-table.jg.nest.dense td, table.jg.nest.dense th{padding:6px 7px;word-break:keep-all;overflow-wrap:break-word}
-table.jg.nest.dense .th{font-size:12.5px;line-height:1.3}
-table.jg.nest.dense .l1{font-size:13px}
-table.jg.nest.dense td.dose,
-table.jg.nest.dense .dose{white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
-table.jg.nest.dense td.dose-long{white-space:normal;font-size:12.5px;line-height:1.35;word-break:keep-all}
-table.jg.nest.dense td.memo{font-size:12.5px;line-height:1.38;word-break:keep-all}
-table.jg.nest.dense td.num{white-space:nowrap;text-align:center;font-variant-numeric:tabular-nums}
+/* Dense multi-col dose tables: fixed layout + slightly tighter than base nest */
+table.jg.nest.dense{table-layout:fixed;font-size:12.5px;line-height:1.28}
+table.jg.nest.dense td, table.jg.nest.dense th{padding:3px 5px}
+table.jg.nest.dense .th{font-size:11.5px;line-height:1.22}
+table.jg.nest.dense .l1{font-size:12px}
+table.jg.nest.dense td.dose-long{font-size:11.5px;line-height:1.25}
+table.jg.nest.dense td.memo{font-size:11.5px;line-height:1.28}
 table.jg.nest.dense col.c-el{width:9%}
 table.jg.nest.dense col.c-dose{width:16%}
 table.jg.nest.dense col.c-memo{width:43%}
@@ -119,7 +124,8 @@ button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertica
   body.mode-quiz .pane-quiz{grid-column:1}
   .header{flex-wrap:wrap;row-gap:6px}
   .hl-legend{flex:1 1 100%;flex-wrap:wrap;white-space:normal;justify-content:flex-start;gap:8px 12px}
-  table.jg.nest{font-size:14.5px}
+  table.jg.nest{font-size:13px}
+  table.jg.nest.dense{font-size:12.5px}
   .sec-h{font-size:15.5px;padding:13px 14px}
   .cell,.qcard .stem{font-size:15px}
 }
@@ -912,7 +918,7 @@ mark.hl-both, .hl-both{
 <div class="cell">
 <ul class="bl">
 <li>카테터 <button type="button" class="fn" data-cite="78" data-topic="route" title="색인 78" aria-label="색인 78"><sup>78</sup></button>: 비터널형(단기 1–2주) · 터널형(장기) · 삽입형 포트 · <b><mark class="hl-pink" title="전문약사 EXAM">PICC</mark></b>(중기, 6개월–1년)</li>
-<li>CVC tip = <b>SVC 하단–RA 인접</b> · <b>대퇴 카테터 PN 회피</b> <button type="button" class="fn" data-cite="84" data-topic="route" title="색인 84" aria-label="색인 84"><sup>84</sup></button> · <mark class="hl-pink" title="전문약사 EXAM">PICC</mark> tip SVC, bedside 삽입 후 <b>CXR 확인 전 PN 시작 X</b> <button type="button" class="fn" data-cite="72" data-topic="route" title="색인 72" aria-label="색인 72"><sup>72</sup></button></li>
+<li>CVC tip = <b>SVC 하단–RA 인접</b> · <b>대퇴 카테터 PN 회피</b> <button type="button" class="fn" data-cite="84" data-topic="route" title="색인 84" aria-label="색인 84"><sup>84</sup></button> · <mark class="hl-pink" title="전문약사 EXAM">PICC tip SVC</mark>, bedside 삽입 후 <b>CXR 확인 전 PN 시작 X</b> <button type="button" class="fn" data-cite="72" data-topic="route" title="색인 72" aria-label="색인 72"><sup>72</sup></button></li>
 <li>CDC: PICC·CVC <b>정기 교체 X</b> · <b>감염원 의심·확인 시에만 제거</b></li>
 </ul>
 </div>
@@ -2563,11 +2569,19 @@ function findNormRangeInRaw(raw, phrase){
     }
     return null;
   };
+  const tighten = (raw, pair, fold, want)=>{
+    if(!pair) return null;
+    let [si, ei] = pair;
+    // Drop leading/trailing chars that fold to empty (·→space then trim) so wrap isn't shifted.
+    while(si < ei && fold(raw.slice(si + 1, ei)) === want) si++;
+    while(si < ei && fold(raw.slice(si, ei - 1)) === want) ei--;
+    return ei > si ? [si, ei] : null;
+  };
   const wantPos = normTxtPos(phrase);
-  const hitPos = scan(wantPos, normTxtPos);
+  const hitPos = tighten(raw, scan(wantPos, normTxtPos), normTxtPos, wantPos);
   if(hitPos) return hitPos;
   const wantFull = normTxt(phrase);
-  if(wantFull !== wantPos) return scan(wantFull, normTxt);
+  if(wantFull !== wantPos) return tighten(raw, scan(wantFull, normTxt), normTxt, wantFull);
   return null;
 }
 function wrapPhraseInNode(root, phrase){
@@ -2666,7 +2680,7 @@ const CORE_HINTS = {
   "quizlet-pn-009": ["성인 g/day", "단위"],
   "quizlet-pn-012": ["3.4 kcal/g"],
   "quizlet-pn-013": ["3.4 kcal/g"],
-  "quizlet-pn-014": ["비만 IBW 기준 ≥2.0"],
+  "quizlet-pn-014": ["비만 IBW 기준", "≥2.0"],
   "quizlet-pn-022": ["자가관리 제한", "PICC = 제거 쉬움"],
   "quizlet-pn-024": ["감염원 의심·확인 시에만 제거", "정기 교체 X"],
   "quizlet-pn-015": ["고배출 누공", ">500"],
@@ -2848,14 +2862,29 @@ function highlightFromQuestion(q){
   const hasHint = (c)=> hintNs.some(h=>normTxt(c.raw).includes(h));
   const topHint = hintNs[0] || "";
   const hasTop = (c)=> !!topHint && normTxt(c.raw).includes(topHint);
+  // Prefer leaf li/tr over parent .cell that aggregates children (pn-024 CDC vs catheter types).
+  const preferLeafHint = (list, pred)=>{
+    const hits = list.filter(pred);
+    if(!hits.length) return null;
+    hits.sort((a,b)=>{
+      const leaf = (c)=>{
+        const t = c.node && c.node.tagName;
+        if(t==="LI" || t==="TR") return 0;
+        if(t==="TD") return 1;
+        return 2;
+      };
+      return leaf(a)-leaf(b) || a.raw.length-b.raw.length || b.score-a.score;
+    });
+    return hits[0];
+  };
   let candidates = collect(topicSecs.length ? topicSecs : allSecs);
   let usedWider = false;
   if(hintNs.length){
     const wider = collect(allSecs);
-    const localTop = candidates.find(hasTop);
-    const wideTop = wider.find(hasTop);
-    const localHint = candidates.find(hasHint);
-    const wideHint = wider.find(hasHint);
+    const localTop = preferLeafHint(candidates, hasTop);
+    const wideTop = preferLeafHint(wider, hasTop);
+    const localHint = preferLeafHint(candidates, hasHint);
+    const wideHint = preferLeafHint(wider, hasHint);
     // Top/specific hint outside topic beats in-topic generic needle hits (oe-filter, pn-003).
     if(localTop){
       candidates = [localTop, ...candidates.filter(c=>c!==localTop)];
@@ -2890,7 +2919,8 @@ function highlightFromQuestion(q){
   const marks = [...target.querySelectorAll("mark")];
   for(const mk of marks){
     const mn = normTxt(mk.textContent);
-    if(hintNs.some(h=>mn.includes(h)||h.includes(mn))){ exact = mk; break; }
+    // Avoid short marks (e.g. PICC) stealing compound hints like "PICC tip SVC".
+    if(hintNs.some(h=>mn.includes(h)||(mn.length>=4 && h.includes(mn) && mn.length>=h.length*0.5))){ exact = mk; break; }
   }
   if(!exact && ansN && ansN.length>=3){
     for(const mk of marks){
@@ -2911,7 +2941,7 @@ function highlightFromQuestion(q){
   if(!exact){
     for(const mk of marks){
       const mn = normTxt(mk.textContent);
-      if(needles.some(n=>n.w>=80 && n.n.length>=2 && (mn.includes(n.n)||n.n.includes(mn)))){ exact = mk; break; }
+      if(needles.some(n=>n.w>=80 && n.n.length>=2 && (mn.includes(n.n)||(mn.length>=4 && n.n.includes(mn) && mn.length>=n.n.length*0.5)))){ exact = mk; break; }
     }
   }
   if(!exact){
