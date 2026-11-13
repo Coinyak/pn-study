@@ -319,6 +319,42 @@ test("store never touches other keys (pn-study-split-core-pct)", () => {
   assert.deepEqual([...st.m.keys()].sort(), ["pn-study-progress-v1", "pn-study-split-core-pct"]);
 });
 
+test("store: save re-reads storage, so data written by another tab after load is not clobbered", () => {
+  const st = fakeStorage();
+  const store = S.createStore({ storage: st, contentVersion: CV });
+  assert.equal(store.load().status, "empty"); // stale lastStatus would be "empty"
+  const future = JSON.stringify({ schemaVersion: 99, whatever: true });
+  st.setItem("pn-study-progress-v1", future); // another tab upgrades the schema
+  assert.deepEqual(store.save(S.createEmptyState(CV)), { ok: false, reason: "blocked-unknown-schema" });
+  assert.equal(st.getItem("pn-study-progress-v1"), future);
+  const trunc = '{"schemaVersion":1,"attempts'; // another tab leaves corrupt data
+  st.setItem("pn-study-progress-v1", trunc);
+  assert.deepEqual(store.save(S.createEmptyState(CV)), { ok: false, reason: "blocked-corrupt" });
+  assert.equal(st.getItem("pn-study-progress-v1"), trunc);
+  assert.deepEqual(store.save(S.createEmptyState(CV), { overwrite: true }), { ok: true });
+  assert.equal(JSON.parse(st.getItem("pn-study-progress-v1")).schemaVersion, 1);
+});
+
+test("store: save after load of ok data still works (re-read does not over-block)", () => {
+  const st = fakeStorage();
+  const store = S.createStore({ storage: st, contentVersion: CV });
+  store.load();
+  assert.deepEqual(store.save(S.createEmptyState(CV)), { ok: true });
+  assert.deepEqual(store.save(S.createEmptyState(CV)), { ok: true });
+});
+
+test("createStore refuses any key other than pn-study-progress-v1", () => {
+  const st = fakeStorage({ "pn-study-split-core-pct": "55" });
+  for (const key of ["pn-study-split-core-pct", "other", "pn-study-progress-v2"]) {
+    assert.throws(() => S.createStore({ storage: st, key, contentVersion: CV }), /pn-study-progress-v1/, key);
+  }
+  assert.equal(st.getItem("pn-study-split-core-pct"), "55");
+  assert.deepEqual([...st.m.keys()], ["pn-study-split-core-pct"]);
+  // omitted or the fixed key are accepted
+  assert.equal(S.createStore({ storage: st, contentVersion: CV }).key, "pn-study-progress-v1");
+  assert.equal(S.createStore({ storage: st, key: "pn-study-progress-v1", contentVersion: CV }).key, "pn-study-progress-v1");
+});
+
 // ---------- backup ----------
 test("exportBackup -> parseBackup round trip", () => {
   let s = build([[QUESTIONS[0], 0, "sure"], [QUESTIONS[1], 0, "unsure"]]);

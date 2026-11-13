@@ -5224,9 +5224,13 @@ setupScrollSpy();
   function createStore(opts) {
     const o = opts || {};
     const storage = o.storage === undefined ? defaultStorage() : o.storage;
-    const key = o.key || STORAGE_KEY;
+    // Fixed key only: a caller must never be able to point the store at another key
+    // (e.g. "pn-study-split-core-pct").
+    if (o.key !== undefined && o.key !== null && o.key !== STORAGE_KEY) {
+      throw new Error('createStore: only the fixed key "' + STORAGE_KEY + '" is allowed');
+    }
+    const key = STORAGE_KEY;
     const contentVersion = o.contentVersion === undefined ? null : o.contentVersion;
-    let lastStatus = null;
 
     function read() {
       if (!storage) return { status: "unavailable", state: createEmptyState(contentVersion) };
@@ -5242,15 +5246,12 @@ setupScrollSpy();
       return { status: "ok", state: sanitizePayload(raw).payload };
     }
 
-    function load() {
-      const r = read();
-      lastStatus = r.status;
-      return r;
-    }
+    function load() { return read(); }
 
     function save(state, saveOpts) {
       if (!storage) return { ok: false, reason: "no-storage" };
-      const status = lastStatus || read().status; // never clobber data we could not understand
+      // Re-read at save time: another tab may have written unknown-schema/corrupt data since load().
+      const status = read().status; // never clobber data we could not understand
       if ((status === "corrupt" || status === "unknown-schema") && !(saveOpts && saveOpts.overwrite)) {
         return { ok: false, reason: "blocked-" + status };
       }
@@ -5258,7 +5259,6 @@ setupScrollSpy();
       if (contentVersion !== null) payload.contentVersion = contentVersion;
       try { storage.setItem(key, JSON.stringify(payload)); }
       catch (e) { return { ok: false, reason: "storage-error", error: String(e && e.message || e) }; }
-      lastStatus = "ok";
       return { ok: true };
     }
 
