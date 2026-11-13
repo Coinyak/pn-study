@@ -1,0 +1,91 @@
+/* study.css — quiz pane controls (study-ui.js) and mobile readability. Light theme, dense. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.study-bar{padding:0 12px 8px;font-size:12.5px;line-height:1.4}
+.study-bar .sb-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:6px}
+.sb-field{display:inline-flex;align-items:center;gap:4px;color:var(--muted);font-weight:600}
+.sb-field select,.sb-search{font:inherit;font-size:13px;color:var(--text);background:#fff;border:1px solid #c5d0e0;border-radius:4px;padding:4px 6px;min-height:32px}
+.sb-search{flex:1 1 140px;min-width:120px}
+.sb-chk{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.sb-btn{font:inherit;font-size:12.5px;font-weight:600;color:var(--text);background:#fff;border:1px solid #c5d0e0;border-radius:4px;padding:4px 10px;min-height:32px;cursor:pointer}
+.sb-btn:hover:not(:disabled){border-color:var(--chip-on);color:var(--chip-on)}
+.sb-btn.primary{background:var(--chip-on);border-color:var(--chip-on);color:#fff}
+.sb-btn.primary:hover:not(:disabled){color:#fff;filter:brightness(1.08)}
+.sb-btn:disabled,.study-bar select:disabled,.study-bar input:disabled{opacity:.5;cursor:not-allowed}
+.sb-btn:focus-visible,.study-bar select:focus-visible,.sb-search:focus-visible,.q-bm:focus-visible{outline:2px solid var(--chip-on);outline-offset:1px}
+.sb-sum{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sb-panel{margin-top:6px;padding:6px 8px;background:#fff;border:1px solid #d0d7e2}
+.sb-panel .muted{margin-top:4px;font-size:12px}
+.sb-panel table.sb-prev{margin:6px 0;width:auto}
+.sb-panel ul{margin:4px 0;padding-left:1.2em}
+.sb-notice{margin-top:6px;padding:5px 8px;background:#fff8e1;border-left:3px solid #f0a500;color:#5a4300}
+.ok{color:#1b7a3a;font-weight:700}
+.ng{color:var(--danger);font-weight:700}
+
+/* question cards: same dense card as before, now answerable */
+.qcard.sq{cursor:default}
+.qcard.sq .q-top{display:flex;align-items:flex-start;gap:8px}
+.qcard.sq .q-top .src{flex:1;min-width:0;margin-bottom:6px}
+.qcard .src-meta{font-weight:700}
+.qcard .src-meta.src-kshp,.sb-src.src-kshp{color:#0b5cab}
+.qcard .src-meta.src-practice,.sb-src.src-practice{color:#2f6f4e}
+.qcard .src-meta.src-rx,.sb-src.src-rx{color:#a15c00}
+.qcard .src-meta.src-bcnsp,.sb-src.src-bcnsp{color:#9a3412}
+.qcard .src-meta.src-cnsc,.sb-src.src-cnsc{color:#1d4ed8}
+.qcard .src-meta.src-aspen,.sb-src.src-aspen{color:#0f766e}
+.qcard .src-meta.src-allaccess,.sb-src.src-allaccess{color:#0e7490}
+.qcard .src-meta.src-medex,.sb-src.src-medex{color:#b45309}
+.qcard .src-meta.src-hoag,.sb-src.src-hoag{color:#7c2d12}
+.qcard .src-meta.src-other,.sb-src.src-other{color:#64748b}
+.sb-sources{gap:6px}
+.sb-src{
+  font:inherit;font-size:12px;font-weight:700;background:#fff;border:1px solid #c5d0e0;
+  border-radius:999px;padding:4px 10px;min-height:30px;cursor:pointer;color:#475569;
+}
+.sb-src.on{box-shadow:inset 0 0 0 1px currentColor;background:#f8fafc}
+.sb-src:hover{border-color:#9eb6d4}
+.q-pending{color:#8a5a00;font-weight:600}
+.q-last.ok,.q-last.ng{font-weight:600}
+.q-bm{border:0;background:transparent;font-size:18px;line-height:1;color:#b08a00;cursor:pointer;min-width:32px;min-height:32px;padding:0}
+.q-bm[aria-pressed="false"]{color:#9aa3b0}
+.q-choices{border:0;margin:0;padding:0;min-width:0}
+.q-choice{display:flex;align-items:flex-start;gap:6px;padding:4px 6px;margin:2px 0;font-size:14px;line-height:1.55;border:1px solid transparent;border-radius:3px;cursor:pointer}
+.q-choice input{margin:.3em 0 0;flex-shrink:0}
+.q-choice .q-n{flex-shrink:0;font-variant-numeric:tabular-nums;color:var(--muted)}
+.q-choice:hover{background:#f3f6fa}
+.q-choice:focus-within{outline:2px solid var(--chip-on);outline-offset:-1px}
+.q-choice:has(input:checked){background:#eaf2fc;border-color:#b9d0ee}
+.q-choice.is-answer{background:#e8f5ec;border-color:#9fd1ae}
+.q-choice.is-wrong{background:#fdecec;border-color:#efb0b0}
+.q-choices[disabled] .q-choice,.q-choice:has(input:disabled){cursor:default}
+.q-actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:8px;font-size:13px}
+.q-unsure{display:inline-flex;align-items:center;gap:4px;cursor:pointer;color:var(--muted)}
+.q-result{font-size:13.5px}
+.q-result:focus{outline:none}
+.q-explain{margin-top:8px;padding-top:8px;border-top:1px dashed #d8dee8;font-size:13.5px;line-height:1.55}
+.q-explain p{margin:.3em 0}
+.q-no{color:var(--navy)}
+
+.toc-toggle{display:none}
+.tbl-x{max-width:100%}
+
+@media (max-width:899px){
+  .tabs .toc-toggle{display:block;flex:0 0 auto;padding:12px 10px;font-size:13px;color:var(--muted);border-right:1px solid var(--line)}
+  body.toc-collapsed .nav{display:none}
+  body.toc-collapsed .main{grid-template-columns:1fr}
+  body.toc-collapsed .pane-quiz{grid-column:1}
+  /* 항목명 column: wrap instead of forcing the table wide */
+  table.jg.nest td.l1,table.jg.nest th.l1{white-space:normal;word-break:keep-all;overflow-wrap:anywhere;min-width:4.5em;max-width:8em}
+  /* only wide comparison tables scroll sideways, inside their own box */
+  .tbl-x{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .tbl-x > table.jg{min-width:720px}
+  .q-choice{min-height:40px;padding:6px}
+  .sb-btn,.sb-field select,.sb-search{min-height:36px}
+  .sb-sum{margin-left:0;flex-basis:100%}
+}
+@media (max-width:420px){
+  .study-bar{padding:0 8px 6px}
+  .qcard{margin:6px 6px;padding:10px 10px}
+  .sb-field{flex:1 1 45%}
+  .sb-field select{flex:1;min-width:0}
+}
+@media print{.study-bar,.toc-toggle{display:none!important}}
