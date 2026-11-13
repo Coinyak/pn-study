@@ -4,35 +4,194 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
+<meta name="description" content="영양불백 · 정맥영양(PN) 학습 — 핵심본과 핵심+문제">
 <title>영양불백 · PN 학습</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root { color-scheme: light; --navy:#1e3a5f; --text:#1a2332; --muted:#5b6575; --bg:#f0f3f7; --panel:#fff; --line:#b8c0cc; }
+  :root {
+    color-scheme: light;
+    --ink: #14202e;
+    --ink-soft: #3a4656;
+    --muted: #6a7585;
+    --brand: #0f3d4c;
+    --accent: #2a6f7a;
+    --accent-soft: rgba(42, 111, 122, 0.12);
+    --line: rgba(20, 32, 46, 0.12);
+    --line-strong: rgba(15, 61, 76, 0.28);
+    --surface: rgba(255, 255, 255, 0.72);
+    --surface-hover: rgba(255, 255, 255, 0.9);
+    --bg-1: #e8eef2;
+    --bg-2: #d5e4e8;
+    --bg-3: #f4f6f8;
+    --radius: 12px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   * { box-sizing: border-box; }
-  body { margin:0; font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
-  main { max-width: 42rem; margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
-  h1 { font-size: 1.55rem; color: var(--navy); margin: 0 0 .35rem; }
-  p.lead { color: var(--muted); margin: 0 0 1.5rem; }
-  .links { display: grid; gap: .85rem; }
-  a.card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:1rem 1.1rem; text-decoration:none; color:inherit; }
-  a.card:hover { border-color: var(--navy); }
-  a.card strong { display:block; color:var(--navy); font-size:1.05rem; margin-bottom:.2rem; }
-  a.card span { color:var(--muted); font-size:.92rem; }
+
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    min-height: 100%;
+    color: var(--ink);
+    font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    background:
+      radial-gradient(1100px 520px at 12% -8%, rgba(42, 111, 122, 0.16), transparent 55%),
+      radial-gradient(900px 480px at 96% 8%, rgba(15, 61, 76, 0.1), transparent 50%),
+      linear-gradient(165deg, var(--bg-3) 0%, var(--bg-1) 48%, var(--bg-2) 100%);
+    background-attachment: fixed;
+  }
+
+  .page {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1.5rem, 4vw, 3rem) 1.25rem;
+  }
+
+  .hero {
+    width: min(100%, 34rem);
+    text-align: center;
+  }
+
+  .brand {
+    margin: 0 0 1.1rem;
+    font-family: "Noto Serif KR", "Apple SD Gothic Neo", serif;
+    font-weight: 700;
+    font-size: clamp(2.35rem, 7vw, 3.25rem);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--brand);
+    opacity: 0;
+    transform: translateY(12px);
+    animation: rise 0.75s var(--ease) 0.08s forwards;
+  }
+
+  .headline {
+    margin: 0 0 0.55rem;
+    font-size: clamp(1.15rem, 3.2vw, 1.35rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    opacity: 0;
+    transform: translateY(12px);
+    animation: rise 0.75s var(--ease) 0.18s forwards;
+  }
+
+  .support {
+    margin: 0 auto 1.85rem;
+    max-width: 26rem;
+    font-size: 0.98rem;
+    color: var(--muted);
+    opacity: 0;
+    transform: translateY(12px);
+    animation: rise 0.75s var(--ease) 0.28s forwards;
+  }
+
+  .entries {
+    display: grid;
+    gap: 0.7rem;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.8s var(--ease) 0.4s forwards;
+  }
+
+  .entry {
+    display: block;
+    padding: 1rem 1.15rem;
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition:
+      border-color 0.25s var(--ease),
+      background 0.25s var(--ease),
+      transform 0.25s var(--ease),
+      box-shadow 0.25s var(--ease);
+  }
+
+  .entry:hover,
+  .entry:focus-visible {
+    background: var(--surface-hover);
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(20, 32, 46, 0.08);
+    outline: none;
+  }
+
+  .entry:focus-visible {
+    box-shadow:
+      0 0 0 3px var(--accent-soft),
+      0 10px 28px rgba(20, 32, 46, 0.08);
+  }
+
+  .entry strong {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--brand);
+  }
+
+  .entry span {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+
+  .entry .hint {
+    margin-top: 0.15rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  @keyframes rise {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand, .headline, .support, .entries {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .entry:hover,
+    .entry:focus-visible {
+      transform: none;
+    }
+  }
 </style>
 </head>
 <body>
-<main>
-  <h1>영양불백 · PN 학습</h1>
-  <p class="lead">정맥영양 핵심표 · 문제 연계 학습 페이지</p>
-  <div class="links">
-    <a class="card" href="PN_study_split.html">
-      <strong>핵심 + 문제</strong>
-      <span>좌측 짜그리 핵심표 · 우측 연계 퀴즈 (대화형)</span>
-    </a>
-    <a class="card" href="PN_core_A4_print.html">
-      <strong>핵심만 (A4 인쇄)</strong>
-      <span>인쇄·PDF용 핵심본 · 문제 패널 없음</span>
-    </a>
+  <div class="page">
+    <main class="hero">
+      <p class="brand">영양불백</p>
+      <h1 class="headline">정맥영양(PN) 학습</h1>
+      <p class="support">시험 대비용 핵심 정리와 연계 문제를 한곳에서 이어 봅니다.</p>
+      <div class="entries" role="navigation" aria-label="학습 진입">
+        <a class="entry" href="PN_study_split.html">
+          <strong>핵심 + 문제</strong>
+          <span>핵심 정리와 연계 퀴즈를 나란히 학습</span>
+        </a>
+        <a class="entry" href="PN_core_A4_print.html">
+          <strong>핵심본</strong>
+          <span>핵심만 모아 보기 · 인쇄·PDF</span>
+        </a>
+      </div>
+    </main>
   </div>
-</main>
 </body>
 </html>
