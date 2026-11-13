@@ -242,6 +242,22 @@ def check_products(prod, ref_ids, errors):
                 errors.append(f"products.json: {p['name']} referenceId {src['referenceId']} unknown")
 
 
+def check_products_table(prod, errors):
+    """The rendered products table must have as many cells per row as headers."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import build  # noqa: E402
+    table = build.render_products(prod).split("</table>")[0]
+    rows = re.findall(r"<tr>(.*?)</tr>", table, flags=re.S)
+    if not rows:
+        errors.append("products table: no rows rendered")
+        return
+    heads = len(re.findall(r"<th\b", rows[0]))
+    for i, row in enumerate(rows[1:], 1):
+        cells = len(re.findall(r"<td\b", row))
+        if cells != heads:
+            errors.append(f"products table: row {i} has {cells} cells but header has {heads} columns")
+
+
 def check_facts(sections, label, text_by_section, cheat_rows, errors):
     for f in FACTS:
         body = text_by_section.get(f["section"])
@@ -315,6 +331,7 @@ def run(no_build=False, notes_root=DEFAULT_NOTES_ROOT):
     check_refs(refs, scope_ids, notes_root, errors, notes)
     st = check_questions(qdoc, ids_core, scope_ids, ref_ids, {n["topic"] for n in nav}, errors)
     check_products(prod, ref_ids, errors)
+    check_products_table(prod, errors)
 
     core_secs = {s["id"]: squash(s["html"]) for s in sections}
     core_cheat = {}

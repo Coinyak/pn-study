@@ -75,6 +75,8 @@ def render_products(prod):
             f"<td>{esc(p['confirmedAsOf']) if confirmed else '미확인'}</td>\n"
             + "".join(f'<td class="num">{c}</td>\n' for c in cells)
             + f'<td class="num">{vol}</td>\n'
+            f'<td class="num">{aa_vol}</td>\n'
+            f'<td class="num">{aa_kcal}</td>\n'
             f"<td>{src_txt} · {esc(p.get('note', ''))}</td>\n"
             "</tr>")
     head = ("<table class=\"jg nest\"><tr>\n<th class=\"th\">제품</th>\n<th class=\"th\">형태</th>\n"

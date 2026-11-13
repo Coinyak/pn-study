@@ -103,6 +103,16 @@ class CheckContentTest(unittest.TestCase):
         self.edit_json("products.json", lambda d: d["products"][0]["perLiter"].update(totalKcal=2000))
         self.assertFails("without confirmedAsOf")
 
+    def test_products_table_cell_count_mismatch(self):
+        import build
+        original = build.render_products
+        build.render_products = lambda prod: original(prod).replace(
+            '<td class="num">—</td>\n<td class="num">—</td>\n<td>', '<td class="num">—</td>\n<td>')
+        try:
+            self.assertFails("products table: row")
+        finally:
+            build.render_products = original
+
     def test_scope_topic_unknown(self):
         self.edit_json("exam-scope.json", lambda d: d["scopes"][0]["topicIds"].append("sec-ghost"))
         self.assertFails("topicId sec-ghost not in core.html")

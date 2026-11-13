@@ -496,3 +496,8 @@
 ### 12.6 coverage 변경
 
 missing→partial 6행: `common-clinical-statistics`, `common-appraisal-application`, `spec-surgery`, `format-appropriateness`, `format-drp`, `format-patient-education`. 보유 근거로 쓴 전용 단락이 생긴 행만 올렸다. 나머지 missing 7행(`common-ebm-ebcp`, `common-literature-types`, 폐·심장·신경계, 임부, 노인)은 단원 틀만 있어 그대로 두었다. covered는 여전히 0이다.
+
+### 12.7 제품표 열 수 정정
+
+- `scripts/build.py`가 `aa_vol`·`aa_kcal`을 계산만 하고 행에 넣지 않아 제품표 행이 12열 머리글 아래 10칸이었다. 두 칸(AA 1 g당 부피·kcal)을 같은 순서로 행에 추가했다.
+- `check_content.py`에 `check_products_table`을 추가해 렌더링된 표의 머리글 수와 행별 셀 수가 다르면 실패시킨다(`tests/test_check_content.py`에 회귀 테스트).
