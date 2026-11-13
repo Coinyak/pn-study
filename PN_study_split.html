@@ -106,6 +106,7 @@ button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertica
 
 .qcard{cursor:pointer}
 .qcard:hover{border-color:#9eb6d4}
+.qcard:focus-visible{outline:2px solid var(--chip-on);outline-offset:2px}
 .qcard.hl{border-color:var(--chip-on);box-shadow:0 0 0 2px rgba(26,95,180,.15)}
 /* Question locator: left orange rail (row) + underline on matched keyword only */
 tr.core-hl > td, td.core-hl, .cell.core-hl, li.core-hl{
@@ -2470,6 +2471,7 @@ function escapeHtml(s){
 }
 function hideCite(){
   const box = document.getElementById("citeBox");
+  if(!box) return;
   box.classList.remove("show");
   box.innerHTML = "";
   document.querySelectorAll("button.fn").forEach(b=>b.classList.remove("active"));
@@ -2763,7 +2765,7 @@ function highlightFromQuestion(q){
   const collect = (secs)=>{
     const out=[];
     secs.forEach(sec=>{
-      sec.querySelectorAll("li, tr, td, .cell, .sec-h").forEach(node=>{
+      sec.querySelectorAll("li, tr, .cell, .sec-h").forEach(node=>{
         const hit = scoreNode(node, needles, ansN);
         if(hit) out.push({...hit, sec});
       });
@@ -2845,12 +2847,26 @@ function highlightFromQuestion(q){
   if(target.tagName === "TR" || target.tagName === "LI") target.classList.add("core-hl");
   else if(exact) (exact.closest("tr, li") || target).classList.add("core-hl");
 
-  // Scroll core to the hit, but do NOT change activeTopic / nav / quiz list
+  // Scroll core to the hit, but do NOT change activeTopic / quiz list
   spyLock = true;
   const aim = exact || target;
-  scrollCoreTo(aim, {align:0.12, behavior: usedWider ? "smooth" : "auto"});
+  const landedSec = aim.closest(".sec");
+  if(landedSec){
+    // Same-topic landing: keep quiz stable, still sync left-nav to the hit section
+    if(landedSec.dataset.topic === activeTopic){
+      activeSecId = landedSec.id;
+      spyLastId = landedSec.id;
+      syncNavHighlight(landedSec.id, activeTopic);
+    } else {
+      // Cross-topic (hint widen): freeze spy id so unlock does not flicker nav/topic
+      spyLastId = landedSec.id;
+    }
+  }
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const behavior = (usedWider && !reduceMotion) ? "smooth" : "auto";
+  scrollCoreTo(aim, {align:0.12, behavior});
   clearTimeout(spyTimer);
-  spyTimer = setTimeout(()=>{ spyLock = false; }, 2000);
+  spyTimer = setTimeout(()=>{ spyLock = false; }, behavior === "smooth" ? 2000 : 450);
   if(window.matchMedia("(max-width:899px)").matches) setPane("core");
 }
 function renderQuiz(){
@@ -2865,7 +2881,7 @@ function renderQuiz(){
   list.innerHTML=items.map(q=>{
     const choices=q.choices.map(c=>`<li>${escapeHtml(c)}</li>`).join("");
     const ans=q.choices[q.answer]||"";
-    return `<article class="qcard" data-qid="${escapeHtml(q.id)}" tabindex="0" title="클릭하면 왼쪽 핵심본을 형광 표시"><div class="src">${escapeHtml(q.source)} · ${escapeHtml(q.id)}</div>
+    return `<article class="qcard" data-qid="${escapeHtml(q.id)}" tabindex="0" role="button" aria-label="핵심본에서 이 문항 위치 표시" title="클릭하면 왼쪽 핵심본을 형광 표시"><div class="src">${escapeHtml(q.source)} · ${escapeHtml(q.id)}</div>
       <div class="stem">${escapeHtml(q.stem)}</div><ol>${choices}</ol>
       <details><summary>정답·해설 보기</summary>
       <p><b>정답:</b> ${q.answer+1}. ${escapeHtml(ans)}</p>
@@ -2918,7 +2934,6 @@ function showCite(cid, topicFromBtn){
   box.classList.add("show");
   syncNavHighlight(activeSecId, activeTopic);
   renderQuiz();
-  const first=document.querySelector(".qcard"); if(first){ first.classList.add("hl"); first.scrollIntoView({block:"nearest"}); }
   if(window.matchMedia("(max-width:899px)").matches) setPane("quiz");
 }
 function setTopic(tid, {scroll=true, target=null, fromSpy=false}={}){
@@ -3010,12 +3025,24 @@ const firstNav=document.querySelector(".nav-item");
 if(firstNav) setTopic(firstNav.dataset.topic, {scroll:false, target:firstNav.dataset.target});
 else renderQuiz();
 
+function activateQcard(card){
+  if(!card) return;
+  const q = QUESTIONS.find(x=>x.id===card.dataset.qid);
+  if(!q) return;
+  document.querySelectorAll(".qcard").forEach(c=>c.classList.toggle("hl", c===card));
+  highlightFromQuestion(q);
+}
 document.getElementById("quizList").addEventListener("click", e=>{
   if(e.target.closest("details") || e.target.closest("summary") || e.target.closest("a")) return;
   const card = e.target.closest(".qcard"); if(!card) return;
-  const q = QUESTIONS.find(x=>x.id===card.dataset.qid);
-  document.querySelectorAll(".qcard").forEach(c=>c.classList.toggle("hl", c===card));
-  highlightFromQuestion(q);
+  activateQcard(card);
+});
+document.getElementById("quizList").addEventListener("keydown", e=>{
+  if(e.key !== "Enter" && e.key !== " ") return;
+  if(e.target.closest("details") || e.target.closest("summary") || e.target.closest("a")) return;
+  const card = e.target.closest(".qcard"); if(!card) return;
+  e.preventDefault();
+  activateQcard(card);
 });
 
 setupScrollSpy();
