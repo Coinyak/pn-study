@@ -3,7 +3,7 @@
     "schemaVersion": 1,
     "checkedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
-    "rule": "조성 수치(perLiter)는 국내 허가사항(식약처 의약품안전나라 등 공식 공개 자료 또는 보유 첨부문서)을 직접 확인한 제품만 채운다. 수치를 채우면 status=confirmed, confirmedAsOf(YYYY-MM-DD), source.url 또는 source.heldFile이 필수다(check_content.py가 검사).",
+    "rule": "조성 수치(perLiter)는 국내 허가사항(식약처 의약품안전나라 등 공식 공개 자료 또는 보유 첨부문서)을 직접 확인한 제품만 채운다. 수치를 채우면 status=confirmed, confirmedAsOf(YYYY-MM-DD), source.url 또는 source.heldFile이 필수다(check_content.py가 검사). 학습 HTML에는 confirmed + inComparisonTable 제품만 표로 나가고, 미확인·작업 메모 문구는 렌더하지 않는다.",
     "compositionFields": [
       "aminoAcidG",
       "glucoseG",
@@ -28,7 +28,7 @@
       "sameAaKcalPerG"
     ],
     "comparisonBasis": "동일 부피(1,000 mL당)와 일일 공급량(같은 kcal 또는 같은 AA g을 맞출 때 필요한 부피) 두 기준으로 비교한다. 다챔버 백은 '모든 챔버 활성화 후' 값을 쓰고, 포장 규격별 수치를 섞지 않는다.",
-    "status": "스모프카비벤주는 식약처 허가사항(공개 동기화본)으로 확인. 비교 수치는 허가 용량비(35 mL/kg = AA 1.8·포도당 4.5·지방 1.33·39 kcal/kg)로 환산한 혼합 후 추정값. 삼투압은 허가 문구에 없어 비움."
+    "status": "학습 표: 스모프카비벤주·스모프리피드20%·네프라민주 confirmed. Nutriflex는 규격(페리/플러스/스페셜)별 조성이 달라 혼합 후 L당 값을 한 줄로 확정하지 않아 표 제외. Furtman은 PN 백이 아니라 표 제외."
   },
   "products": [
     {
@@ -47,44 +47,66 @@
         "kMmol": null
       },
       "source": {
-        "url": "https://nedrug.mfds.go.kr/",
-        "note": "품목기준코드 200811793 · 허가 용량비로 L당 환산 · Fresenius Kabi KR 제품 안내와 동일 적응증"
+        "url": "https://www.comedi.kr/drug/article/200811793",
+        "note": "품목기준코드 200811793 · 허가 용량비(35 mL/kg = AA 1.8·포도당 4.5·지방 1.33·39 kcal/kg)로 L당 환산 · 삼투압은 허가 문구 없음"
       },
-      "note": "2세 이상 · 중심정맥 · 성인 주입속도 ≤2.0 mL/kg/h · 권장 1일 최대 35 mL/kg · 챔버 혼합 후 사용 · TG≥4 mmol/L면 중단·감량 · 세프트리악손과 동일 주입선 동시 투여 금기",
-      "inBagTable": true
+      "note": "2세 이상 · 중심정맥 · 성인 주입속도 ≤2.0 mL/kg/h · 권장 1일 최대 35 mL/kg · 챔버 혼합 후 사용 · TG≥4 mmol/L면 중단·감량",
+      "inComparisonTable": true
     },
     {
-      "name": "Smoflipid 20%",
+      "name": "스모프리피드20%주 (Smoflipid)",
       "kind": "ILE 단독",
-      "status": "unconfirmed",
-      "confirmedAsOf": null,
+      "status": "confirmed",
+      "confirmedAsOf": "2026-11-14",
       "mentionedIn": "sec-lipid-2-2-지방-ILE",
-      "perLiter": {},
-      "source": null,
-      "note": "핵심본 지질 단락에 제품명만 있음. 국내 허가 조성(오일 구성비·kcal/mL)은 허가자료로 미확인.",
-      "inBagTable": true
+      "perLiter": {
+        "aminoAcidG": null,
+        "glucoseG": null,
+        "lipidG": 200,
+        "totalKcal": null,
+        "osmolarityMOsmL": null,
+        "naMmol": null,
+        "kMmol": null
+      },
+      "source": {
+        "url": "https://www.comedi.kr/drug/article/200604122",
+        "note": "품목기준코드 200604122 · 100 mL 중 대두유 6·MCT 6·올리브유 5·어유 3 g (= 지질 20 g/100 mL). 허가문에 L당 kcal·삼투압 수치 없음 → null"
+      },
+      "note": "오일비 30:30:25:15 · 성인 지방 1.0–2.0 g/kg/d (5–10 mL/kg/d) · 주입속도 지방 ≤0.15 g/kg/h · 말초·중심 모두 가능",
+      "inComparisonTable": true
     },
     {
-      "name": "Nutriflex lipid (10% ILE 함유 다챔버 백)",
+      "name": "네프라민주 (EAA)",
+      "kind": "AA 단독",
+      "status": "confirmed",
+      "confirmedAsOf": "2026-11-14",
+      "mentionedIn": "sec-protein-2-3-단백질-아미노산-AA",
+      "perLiter": {
+        "aminoAcidG": 53.6,
+        "glucoseG": null,
+        "lipidG": null,
+        "totalKcal": null,
+        "osmolarityMOsmL": null,
+        "naMmol": null,
+        "kMmol": null
+      },
+      "source": {
+        "url": "https://www.comedi.kr/drug/article/198501824",
+        "note": "품목기준코드 198501824 · 용법 250–500 mL = 필수아미노산 13.4–26.8 g → 53.6 g/L (≈5.4%). 성분표 합(리신 유리형 기준) ≈53.3 g/L"
+      },
+      "note": "급·만성 신부전 EAA · 성인 1일 250–500 mL · 포도당 병용 권고(케톤혈증 예방) · 간성혼수·고암모니아 금기",
+      "inComparisonTable": true
+    },
+    {
+      "name": "뉴트리플렉스리피드 (Nutriflex lipid)",
       "kind": "3-in-1 MCB",
       "status": "unconfirmed",
       "confirmedAsOf": null,
       "mentionedIn": "sec-route-3-3-MCB-다챔버-백-GL-ASPEN-Myths-ISMP-2025",
       "perLiter": {},
       "source": null,
-      "note": "제품명만 언급됨. 국내 허가 품목명·규격(peri/plus/special)·조성 미확인.",
-      "inBagTable": true
-    },
-    {
-      "name": "네프라민 5.4% (필수아미노산 EAA)",
-      "kind": "AA 단독",
-      "status": "unconfirmed",
-      "confirmedAsOf": null,
-      "mentionedIn": "sec-protein-2-3-단백질-아미노산-AA",
-      "perLiter": {},
-      "source": null,
-      "inBagTable": true,
-      "note": "핵심본 단백 단락에 'EAA(네프라민 5.4%, EAA 99.6%)'로만 언급. 국내 허가 조성 미확인."
+      "note": "국내 허가: 페리·플러스·스페셜 등 규격별 조성. 혼합 후 L당 단일 비교행을 확정하지 않아 학습 표에서 제외.",
+      "inComparisonTable": false
     },
     {
       "name": "Furtman (미량원소 4종)",
@@ -94,8 +116,8 @@
       "mentionedIn": "sec-vit_te-2-7-미량원소-TE",
       "perLiter": {},
       "source": null,
-      "note": "핵심본의 'Cr·Cu·Mn·Zn, Se 없음'은 병원약사회 강의 형광 문구다. 앰플당 함량은 허가자료로 미확인. PN 백이 아니므로 백 비교표에는 넣지 않는다.",
-      "inBagTable": false
+      "note": "PN 백이 아님. 앰플당 함량은 허가자료 확인 전이라 학습 비교표에 넣지 않음.",
+      "inComparisonTable": false
     }
   ]
 }

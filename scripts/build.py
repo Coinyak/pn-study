@@ -51,82 +51,54 @@ def script_json(obj):
 
 
 def render_products(prod):
-    """Render domestic PN product comparison.
+    """Render domestic PN product comparison for the learning view.
 
-    Unconfirmed / empty products never get a dash-filled multi-column grid.
-    Until at least one product is status=confirmed with held 허가 수치, show a
-    compact name list + honest callout instead.
+    Only confirmed products with held 허가 수치 appear. Unconfirmed / out-of-table
+    entries stay in products.json for authors but must never emit work-queue copy
+    (미확인, 허가자료 확인 후, 후보, 표 밖 후보, 확인 전) into HTML.
     """
-    table_products = [p for p in prod["products"] if p.get("inBagTable", True)]
-    others = [p for p in prod["products"] if not p.get("inBagTable", True)]
+    table_products = [p for p in prod["products"] if p.get("inComparisonTable", True)]
     confirmed = [p for p in table_products if p.get("status") == "confirmed"]
-    pending = [p for p in table_products if p.get("status") != "confirmed"]
-
-    parts = []
     if not confirmed:
-        names = " · ".join(
-            f"{esc(p['name'])}" + (f" <span class=\"muted\">({esc(p.get('kind', ''))})</span>" if p.get("kind") else "")
-            for p in pending
-        )
-        parts.append(
-            '<div class="cell callout gap">'
-            "<b>허가자료 확인 전</b> — 수치 비교표는 식약처·첨부문서 확인 후 표시합니다. "
-            "미확인 상태에서 빈 칸·대시 표는 두지 않습니다."
-            "</div>"
-        )
-        if pending:
-            parts.append(f'<div class="cell">후보: {names}</div>')
-    else:
-        fields = prod["meta"]["compositionFields"]
-        rows = []
-        for p in confirmed:
-            per = p.get("perLiter") or {}
-            cells = [esc(per[f]) if per.get(f) is not None else "—" for f in fields[:5]]
-            kcal = per.get("totalKcal")
-            kcal_target = prod["meta"]["comparisonTargets"]["kcalPerDay"]
-            vol = f"{round(kcal_target / kcal * 1000):,} mL" if kcal else "—"
-            aa = per.get("aminoAcidG")
-            aa_vol = f"{1000 / aa:.1f} mL" if aa else "—"
-            aa_kcal = f"{kcal / aa:.1f} kcal" if aa and kcal else "—"
-            src = p.get("source") or {}
-            src_txt = esc(src.get("url") or src.get("heldFile") or "")
-            rows.append(
-                "<tr>\n"
-                f'<td class="l1">{esc(p["name"])}</td>\n'
-                f"<td>{esc(p.get('kind', ''))}</td>\n"
-                f"<td>{esc(p['confirmedAsOf'])}</td>\n"
-                + "".join(f'<td class="num">{c}</td>\n' for c in cells)
-                + f'<td class="num">{vol}</td>\n'
-                f'<td class="num">{aa_vol}</td>\n'
-                f'<td class="num">{aa_kcal}</td>\n'
-                f"<td>{src_txt} · {esc(p.get('note', ''))}</td>\n"
-                "</tr>"
-            )
-        head = (
-            '<table class="jg nest compare"><tr>\n'
-            '<th class="th">제품</th>\n<th class="th">형태</th>\n'
-            '<th class="th">허가 확인일</th>\n<th class="th">AA g/L</th>\n<th class="th">포도당 g/L</th>\n'
-            '<th class="th">지질 g/L</th>\n<th class="th">kcal/L</th>\n<th class="th">mOsm/L</th>\n'
-            '<th class="th">같은 kcal(2,000 kcal) 공급 부피</th>\n'
-            '<th class="th">같은 AA · 1 g당 부피</th>\n'
-            '<th class="th">같은 AA · 1 g당 kcal</th>\n'
-            '<th class="th">출처 · 비고</th>\n</tr>\n'
-        )
-        parts.append(head + "\n".join(rows) + "\n</table>")
-        if pending:
-            parts.append(
-                '<div class="cell">미확인(표 제외): '
-                + " · ".join(esc(p["name"]) for p in pending)
-                + " — 허가자료 확인 후 표에 올립니다.</div>"
-            )
+        return ""
 
-    if others:
-        parts.append(
-            '<div class="cell">표 밖 후보(PN 백이 아닌 첨가제): '
-            + " · ".join(f"{esc(p['name'])} — {esc(p.get('note', ''))}" for p in others)
-            + "</div>"
+    fields = prod["meta"]["compositionFields"]
+    rows = []
+    for p in confirmed:
+        per = p.get("perLiter") or {}
+        cells = [esc(per[f]) if per.get(f) is not None else "—" for f in fields[:5]]
+        kcal = per.get("totalKcal")
+        kcal_target = prod["meta"]["comparisonTargets"]["kcalPerDay"]
+        vol = f"{round(kcal_target / kcal * 1000):,} mL" if kcal else "—"
+        aa = per.get("aminoAcidG")
+        aa_vol = f"{1000 / aa:.1f} mL" if aa else "—"
+        aa_kcal = f"{kcal / aa:.1f} kcal" if aa and kcal else "—"
+        src = p.get("source") or {}
+        src_txt = esc(src.get("url") or src.get("heldFile") or "")
+        rows.append(
+            "<tr>\n"
+            f'<td class="l1">{esc(p["name"])}</td>\n'
+            f"<td>{esc(p.get('kind', ''))}</td>\n"
+            f"<td>{esc(p['confirmedAsOf'])}</td>\n"
+            + "".join(f'<td class="num">{c}</td>\n' for c in cells)
+            + f'<td class="num">{vol}</td>\n'
+            f'<td class="num">{aa_vol}</td>\n'
+            f'<td class="num">{aa_kcal}</td>\n'
+            f"<td>{src_txt} · {esc(p.get('note', ''))}</td>\n"
+            "</tr>"
         )
-    return "\n".join(parts)
+    head = (
+        '<table class="jg nest compare"><tr>\n'
+        '<th class="th">제품</th>\n<th class="th">형태</th>\n'
+        '<th class="th">허가 확인일</th>\n<th class="th">AA g/L</th>\n<th class="th">포도당 g/L</th>\n'
+        '<th class="th">지질 g/L</th>\n<th class="th">kcal/L</th>\n<th class="th">mOsm/L</th>\n'
+        '<th class="th">같은 kcal(2,000 kcal) 공급 부피</th>\n'
+        '<th class="th">같은 AA · 1 g당 부피</th>\n'
+        '<th class="th">같은 AA · 1 g당 kcal</th>\n'
+        '<th class="th">출처 · 비고</th>\n</tr>\n'
+    )
+    return head + "\n".join(rows) + "\n</table>"
+
 
 
 def core_with_products(core, prod):

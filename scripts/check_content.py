@@ -245,13 +245,16 @@ def check_products(prod, ref_ids, errors):
 def check_products_table(prod, errors):
     """When a numeric comparison table is rendered, each row must match the header width.
 
-    Unconfirmed-only catalogs intentionally render a compact callout (no <table>); that is OK.
+    Unconfirmed-only catalogs intentionally render empty string (no learning-view work notes).
     """
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import build  # noqa: E402
     html = build.render_products(prod)
+    for bad in ("미확인", "허가자료 확인 후", "표 밖 후보", "허가자료 확인 전", "후보:"):
+        if bad in html:
+            errors.append(f"products table: learning HTML must not contain work-note '{bad}'")
     if "</table>" not in html:
-        # No confirmed products → callout only; do not require a grid.
+        # No confirmed products → empty render; do not require a grid.
         return
     table = html.split("</table>")[0]
     rows = re.findall(r"<tr>(.*?)</tr>", table, flags=re.S)
