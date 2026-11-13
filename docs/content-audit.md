@@ -357,3 +357,75 @@
 - `quizlet-ach-004` (calc_filter): Which of the following is the largest component of total energy expend
 - `quizlet-ach-005` (calc_filter): Which of the following is the most commonly used method for assessing
 - `quizlet-m4-003` (calc_filter): In pulmonary insufficiency, excessive calorie administration may cause
+
+## 10. Task 2 정오표 (임상 정오표와 문항 선별)
+
+확인일: 2026-11-14. 산출물: `content/questions.json`(`{meta, questions}`), 재생성 스크립트 `scripts/export_questions.py`. HTML은 수정하지 않았다. 아래의 핵심표 정정 권고는 Task 3에서 HTML에 반영할 대상이다.
+
+### 10.1 추출 기준과 건수
+
+- **표시 데이터 = 배열 그대로.** `renderQuiz()`는 `QUESTIONS.filter(q=>q.topic===activeTopic)`만 그리고 런타임에 배열을 고치는 후처리(번역·필터·재분류)가 없다. 번역·재분류는 HTML 생성 단계에서 이미 반영돼 있다. 모든 문항의 topic이 내비게이션 topic(15종) 안에 있어 그려지지 않는 문항은 없다.
+- **rawCount 583 = finalCount 583.** 작업 폴더 원본(`06_학습_노트/PN_study_split.html`)과 저장소 HTML은 바이트 단위로 같다.
+- **상류 단계 손실:** 영양약료 해설집 55문항 중 52문항만 HTML에 있다. 빠진 `kshp-50`·`kshp-53`·`kshp-55`는 경장영양 합병증·HPN 삶의 질·HEN 튜브 문항이다. 해설집 원문과 비교하면 `kshp-15` stem에서 '강의자료 기준'이 빠졌고(복원, revision 2), 5건(`kshp-28`·`36`·`40`·`43`·`46`)은 HTML에서 topic이 재분류돼 있다(HTML 값 유지).
+- **결과:** verified 51 · pending 461 · excluded 71. 기본 세트(`includeInBasicSet=true`)는 verified 51건뿐이다.
+
+| originType | verified | pending | excluded |
+|---|---|---|---|
+| reportedExam (영양약료 강의시험 해설집) | 47 | 5 | 0 |
+| thirdParty (BCNSP·CNSC·Quizlet·RxKinetics·OpenExamPrep·MedEx·AllAccess·HOAG) | 4 | 456 | 71 |
+| officialSample / originalPractice | 0 | 0 | 0 |
+
+### 10.2 출처 구분 (기출 추정 금지)
+
+- 국내 전문약사 정맥영양 시험의 기출·공식 샘플로 표시한 문항은 **0건**이다.
+- `kshp-*`: 영양약료 심화강의 시험 해설집 추출본(검토 기준일 2026-08-14)에서 왔으므로 `reportedExam`으로 분류했다. 전문약사 자격시험 문항이 아니다.
+- `oe-*`(source OE-B/OE-C)·`rx-*`(RX): 자체 창작이 아니라 OpenExamPrep·RxKinetics 문항의 재게시·축약본이다(`oe-gir-adult`=`bcnsp-030`, `rx-ppn-900`=`rxk-3_2-3` 등). 그래서 `thirdParty`로 분류했다.
+- `nbnsc-cnsc-sample-*`: 'CNSC 샘플'이라는 표기가 있지만 NBNSC 공식 샘플 원문과 대조하지 않았으므로 `officialSample`로 올리지 않았다.
+- source 문자열의 `VERIFIED/...` 접두는 예전 수집 단계 표기일 뿐이고 reviewStatus와 무관하다.
+
+### 10.3 우선 임상 정오표 (판정과 근거)
+
+| ID | 항목 | 판정 | 근거(보유 자료) | 핵심표 정정 권고 (Task 3) | 영향 문항 |
+|---|---|---|---|---|---|
+| E1 | prealbumin | 진단·영양상태 단독 지표 아님(음성 급성기 반응). 염증·중증도 해석 보조. 다만 ESPEN HPN은 안정기 정기 모니터 항목에 albumin·prealbumin을 둠 | 영양약료 해설집 kshp-40; ESPEN HPN 2020 모니터 표(추출본) | 평가 단락의 'prealbumin = 염증 지표·**영양위험 평가**'에서 '영양위험 평가'를 삭제하고, '진단·효과 모니터 단독 지표로 쓰지 않음, HPN 정기 모니터는 ESPEN 표 기준'으로 바꾼다 | `bcnsp-002` excluded(정답이 반대); `kshp-40` verified; `cnsc-002`·`005`·`011`·`016`·`bcnsp-032`·`087`·`rxk-1_3-3`·`1_3-5` pending |
+| E2 | GIR 조건 | 단일 '성인 GIR' 정답 금지. 안정 성인 산화 상한 ~4–5 / 중환자·고혈당 ≤4 / HPN 주기주입 **순간** 5–7 / 일일 ≤7 g/kg/day / 소아는 ESPEN 표 | ESPEN HPN 2020 p.13, ESPEN pediatric carbs R5.4·R5.6(기존 `PN_number_crosscheck.md`). Safe Practices 2004 원문은 미보유(퀴즈렛 경유) | 치트 '[GIR] 일반5–7(표2-6)'을 조건별로 나누고 '소아 max 5–13'은 ESPEN 표로 교체 | `bcnsp-030`(대표)·`cnsc-047`·`allaccess-007` pending; `allaccess-010` excluded(622 g/day는 7 g/kg 상한 초과, 504 g 보기 없음); `oe-gir-adult` 중복 excluded |
+| E3 | 포도당 계수 | IV dextrose = 일수화물 **3.4 kcal/g** | ESPEN pediatric carbs(PN dextrose는 monohydrate). 3.4라는 수치는 2차 자료(Quizlet/Flashcards) | 계산 예제(2000 kcal)를 3.4 기준 **324 g(D50 647 mL)**으로 바꾸고, 3.85(286 g)는 '교재 표기'로만 남긴다. 치트 '[계산] … ÷3.85=286g'도 같이 고친다 | 3.85를 쓴 문항 없음. `cnsc-023`·`quizlet-pn-012`·`013` pending(일치). 지질 계수가 9 kcal/g(`cnsc-029`)와 20% ILE 10 kcal/g(`bcnsp-017`)로 갈려 있어 통일 필요 |
+| E4 | BUD 수치 | PN BUD는 USP<797> Table 13을 그대로 쓰지 않고, 안정성을 포함해 **실온 30 h / 냉장 9일** | ASPEN Myths 2024 p.3(추출본 원문 확인) | 핵심표의 숫자 누락 '범주1 실온 12 h·냉 h / 범주2 실온 24 h·냉일'을 **범주1 실온 12 h·냉장 24 h / 범주2 실온 24 h·냉장 3일**로 복원한다(출처는 `PN_jjageuri_summary.md` 교재값 [TXT p172]이며 OCR 원본과 다시 대조하지는 않음). '구 USP 상온 30 h / 냉일'은 '냉장 9일'로 고친다 | `quizlet-pn-020` verified; `bcnsp-008` pending(일반 CSP 문항이라 PN 오인 주석 필요) |
+| E5 | 필터 | 현행: **모든 PN에 단일 1.2 μm**. 2-in-1 0.22 / 3-in-1·ILE 1.2 이원 체계는 구 권고 | ASPEN Myths 2024 p.3, ASPEN Administration checklist 2024(추출본) | 소아 단락 '소아도 동일: 0.22 μm(2-in-1) / 1.2 μm(3-in-1·ILE)'에 '구 권고' 표시를 붙이고 현행 단일 1.2를 병기한다 | `oe-filter`·`quizlet-pn-020` verified(구·현행 모두 맞는 답); `kshp-28`·`cnsc-059`·`bcnsp-086`(시대에 따라 정답이 바뀜), `cnsc-045`·`bcnsp-068`·`quizlet-pn-011`·`rxk-3_2-5` pending; `quizlet-ss2-015` excluded(해설 불완전·혼동) |
+| E6 | PN 적응증·개시 시점 | 영양위험 3–5일 / 중등–중증 영양불량은 가능한 빨리 / 잘영양·안정은 7일 대기 가능 / 중증 대사불안정은 지연. 잘영양 ICU SPN은 day 7 이전 비시작 | ASPEN Myths 2024 p.1–2, ASPEN SPN 2026, CCN 요약 2022(추출본) | 적응증 단락의 해당 값은 근거와 일치함. '말초 PN(SPN/bridge) ≤10–14일'은 보유 근거를 찾지 못했으므로 출처 표시 또는 보류가 필요하다 | `bcnsp-044` pending(위험 조건 없어 '7일 후'가 단일 정답이 아님); `cnsc-103`·`rx-pn-indication-enteral`·`quizlet-pn-001`·`015`·`016`·`018`·`bcnsp-013`·`hoag-faq-001` pending |
+
+추가로 처리한 Task 1 §7 후보:
+
+- **AKI 단백(E7):** `kshp-15` pending. 강의자료 84 g과 ESPEN 2024 91–105 g이 다르며, ESPEN 원문은 보유하지 않았다.
+- **미량원소 용량(E8):** `kshp-34` pending. AMA 1979 값은 현행 ASPEN TE 권고와 다르다.
+- **소아 NPC:N:** `kshp-26` verified. stem이 '소아'로 집단을 명시하고 있어 강의자료 기준 150–250:1로 정답이 하나로 정해진다.
+- **TG·ICU 지질 첫 주:** 이번 우선 6항목 밖이다. `oe-tg400`은 pending으로 남겼다.
+
+### 10.4 검증 완료(verified) 기준과 목록
+
+판정 기준은 네 가지다. ① 한국어 stem·선지를 그대로 쓸 수 있다. ② answer index가 유효하다. ③ 정답 근거가 `references.json`의 보유 문헌 ID와 위치(`evidence.locator`)로 추적된다. ④ 모든 선택지에 해설이 있다. 그리고 위 정오표와 충돌하지 않아야 한다.
+
+- **영양약료 해설집 47건:** `kshp-01`–`14`, `16`–`27`, `29`–`33`, `35`–`38`, `40`–`45`, `47`–`49`, `51`, `52`, `54`. 근거는 해설집의 `[강의 근거]` 강의 PDF 쪽수와 ①–⑤ 판정이다. 아래 5건은 해설이 완비돼 있지만 pending으로 두었다.
+  - `kshp-15`: E7(AKI 단백) 충돌.
+  - `kshp-28`: E5(필터) 충돌.
+  - `kshp-34`: E8(미량원소 용량) 충돌.
+  - `kshp-39`: NUTRIC ≥5와 ≥6이 섞여 정답이 둘일 수 있다.
+  - `kshp-46`: 해설 스스로 Vitamin K도 답이 될 수 있다고 적고 있다.
+- **ASPEN Myths 2024 원문 대조 4건:** `rx-ppn-900`, `oe-filter`, `oe-hang`, `quizlet-pn-020`. 선택지 해설은 Task 2에서 새로 작성했다.
+- **한계:** 해설집 정답은 '강의자료 기준'이다. 지정 교재(ASPEN Adult Core 4판)와 쪽 단위로 대조하지 않았고, 4판 쪽수는 기록하지 않았다. `references.json`의 `kshp-yeongyang-yakryo-lecture-answers`는 아직 `reviewedAt: null`이지만, 이번 작업에서 52문항을 문항별로 대조했다. 파일 범위 밖이라 `references.json`은 갱신하지 않았다(Task 3 후속).
+
+### 10.5 중복·제외·단원 교정
+
+- **중복 61건(excluded, `duplicateOf`로 대표 문항에 연결):** 영문 미번역 원본 53건(`quizlet-m2b-*` 38, `quizlet-a14pn-*` 11, `quizlet-m4-*` 3, `quizlet-ss2-009`)과 같은 언어 재게시 8건(`oe-gir-adult`, `oe-crystal-home`, `rxk-1_4-5`·`3_2-3`·`3_2-4`·`4_1-3`·`4_1-6`, `quizlet-ss2-005`)이다. 대표 문항은 모두 pending 또는 verified이며, 대표 문항이 excluded인 경우는 없다.
+- **유사 문항(`relatedIds`, 둘 다 유지):** `bcnsp-030`↔`cnsc-047`, `kshp-21`↔`oe-refeed`, `quizlet-pn-020`↔`ss2-015`·`oe-hang`, `quizlet-a14pn-014`↔`ss2-007`(한국어판은 해설이 한 단어뿐이라 영문판을 대표로 둠) 등.
+- **정답이 서로 다른 변형:** `quizlet-pn-002`(혈전정맥염)와 `quizlet-pn-042`(테타니)는 둘 다 pending이며 `answerEvidence=conflict`로 표시했다.
+- **해설 불완전으로 제외 8건:** `quizlet-cp-005`·`006`·`011`·`014`, `quizlet-cnsc-practice-008`, `quizlet-ss2-007`, `quizlet-ss2-015`, `oe-refeed`. 해설이 정답 문구 반복뿐이다.
+- **임상 충돌로 제외 2건:** `bcnsp-002`(E1), `allaccess-010`(E2).
+- **단원 교정 22건(`htmlTopic`에 원래 값 보존):** 필터 문항 `calc_filter`→`stability` 5건, 라벨·처방서 문항 →`stability`, 인산 급속주입 →`fluid_lytes`, 임신오조 PN 적응증 →`indications`, 비만 단백 →`protein` 등. 사람이 확인한 건만 고쳤고 전수 재분류는 하지 않았다. HTML 퀴즈 패널은 아직 옛 topic으로 묶여 있다(Task 3에서 반영).
+
+### 10.6 pending의 의미와 남은 일
+
+- pending 461건은 기본값으로 이관된 문항이다. 정답 근거(보유 문헌)·선택지 해설·번역 검토가 끝나지 않았으며, 문항마다 `checks`(`translation`/`answerEvidence`/`choiceExplanations`/`coreLink`)에 상태를 남겼다.
+- 그중 41건(priority `high`)은 정오표와 연결된 문항이고, 61건은 영문 미번역 문항이다.
+- 선택지별 해설이 있는 문항은 56건뿐이다(영양약료 52 + 이번에 작성한 4). 나머지 thirdParty 문항을 verified로 올리려면 선택지 해설 작성과 보유 문헌 연결이 필요하다.
+- `scopeIds`는 Task 1 키워드 휴리스틱 v1을 그대로 상속했다(33건은 비어 있음). `coreSectionIds`는 CORE_HINTS 문구가 들어 있는 `sec-*`이다(487건). CORE_SKIP 10건은 핵심표 연결이 없다.

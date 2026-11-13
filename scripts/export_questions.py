@@ -1,0 +1,515 @@
+#!/usr/bin/env python3
+"""Export the rendered quiz set of PN_study_split.html to content/questions.json.
+
+Reads the HTML (never writes it), the held KSHP lecture-exam extract, and
+content/exam-scope.json. Review decisions (errata, duplicates, topic fixes,
+verified seed) are declared in this file so the export is reproducible.
+
+Usage: python3 scripts/export_questions.py [--notes-dir PATH]
+"""
+import argparse
+import html as htmllib
+import json
+import re
+import sys
+from collections import Counter
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+HTML = ROOT / "PN_study_split.html"
+SCOPE = ROOT / "content" / "exam-scope.json"
+REFS = ROOT / "content" / "references.json"
+OUT = ROOT / "content" / "questions.json"
+DEFAULT_NOTES = ROOT.parent.parent.parent / "참고문헌_정리" / "06_학습_노트"
+
+EXTRACTED_AT = "2026-11-14"
+CONTENT_VERSION = "2026-11-14.1"
+
+KSHP_REF = "kshp-yeongyang-yakryo-lecture-answers"
+MYTHS_REF = "aspen-pn-myths-practice-tool-2024"
+ADMIN_REF = "aspen-pn-checklist-04-administration-2024"
+
+ERRATA = {
+    "E1-prealbumin": "prealbumin·albumin은 영양불량 진단·영양상태 단독 지표가 아님(음성 급성기 반응). 염증·중증도 해석 보조. ESPEN HPN 2020은 안정기 정기 모니터 항목에 albumin·prealbumin을 둠.",
+    "E2-gir": "GIR은 조건(안정 성인 산화 상한 ~4–5, 중환자·고혈당 ≤4, HPN 주기주입 순간 5–7, 일일 ≤7 g/kg/day, 소아는 ESPEN 표)별로 다르다. 조건 없는 단일 정답 금지.",
+    "E3-dextrose-factor": "IV dextrose는 일수화물 3.4 kcal/g. 교재 예제의 3.85 kcal/g 계산(286 g)은 3.4 기준(324 g)과 다르다.",
+    "E4-bud": "PN BUD는 USP<797> Table 13을 그대로 쓰지 않고 안정성 포함 실온 30 h / 냉장 9일(ASPEN Myths 2024). 핵심표 국내(2019) 범주 수치 누락은 교재값(범주1 냉장 24 h, 범주2 냉장 3일)으로 복원 대상.",
+    "E5-filter": "현행 ASPEN(Myths 2024·Administration checklist): 모든 PN에 단일 1.2 μm. 2-in-1 0.22 / 3-in-1·ILE 1.2 이원 체계는 구 권고(강의자료·해외 문제은행).",
+    "E6-pn-indication-timing": "PN 개시: 영양위험 3–5일, 중등–중증 영양불량은 가능한 빨리, 잘영양·안정은 7일 대기 가능, 중증 대사불안정은 호전까지 지연(ASPEN Myths 2024). 잘영양 ICU SPN은 day 7 이전 비시작(ASPEN SPN 2026·CCN 요약).",
+    "E7-aki-protein": "AKI+간헐적 투석 단백: 강의자료 1.2 g/kg(84 g) vs ESPEN 2024 1.3–1.5 g/kg(91–105 g). ESPEN 원문 미보유.",
+    "E8-trace-element-dose": "AMA 1979 미량원소 용량(Cu 1 mg·Mn 500 μg)은 현행 ASPEN TE 권고(Cu 0.3–0.5 mg·Mn 55 μg)와 다르다.",
+}
+
+# Untranslated English originals whose Korean translation is the representative.
+EN_DUPLICATE_OF = {
+    "quizlet-a14pn-001": "quizlet-pn-001", "quizlet-a14pn-002": "quizlet-pn-002",
+    "quizlet-a14pn-003": "quizlet-pn-003", "quizlet-a14pn-004": "quizlet-pn-007",
+    "quizlet-a14pn-005": "quizlet-pn-008", "quizlet-a14pn-006": "quizlet-pn-009",
+    "quizlet-a14pn-009": "quizlet-pn-012", "quizlet-a14pn-010": "quizlet-pn-013",
+    "quizlet-a14pn-012": "quizlet-pn-015", "quizlet-a14pn-013": "quizlet-pn-016",
+    "quizlet-a14pn-015": "quizlet-pn-018",
+    "quizlet-ss2-009": "quizlet-pn-018",
+    "quizlet-m4-001": "quizlet-cnsc-practice-002", "quizlet-m4-010": "quizlet-cnsc-practice-005",
+    "quizlet-m4-011": "quizlet-cnsc-practice-006",
+    "quizlet-m2b-026": "quizlet-iib-037", "quizlet-m2b-027": "quizlet-iib-026",
+    "quizlet-m2b-028": "quizlet-iib-029", "quizlet-m2b-029": "quizlet-iib-027",
+    "quizlet-m2b-030": "quizlet-iib-028", "quizlet-m2b-031": "quizlet-iib-039",
+    "quizlet-m2b-035": "quizlet-iib-041", "quizlet-m2b-036": "quizlet-iib-042",
+    "quizlet-m2b-038": "quizlet-iib-043", "quizlet-m2b-040": "quizlet-iib-044",
+    "quizlet-m2b-042": "quizlet-iib-045", "quizlet-m2b-046": "quizlet-iib-048",
+    "quizlet-m2b-047": "quizlet-iib-049", "quizlet-m2b-050": "quizlet-iib-051",
+}
+for _n in list(range(1, 23)) + [24, 25]:
+    EN_DUPLICATE_OF.setdefault(f"quizlet-m2b-{_n:03d}", f"quizlet-iib-{_n:03d}")
+
+# Same-language re-posts: duplicate -> representative.
+KO_DUPLICATE_OF = {
+    "oe-gir-adult": "bcnsp-030",
+    "rxk-3_2-3": "rx-ppn-900",
+    "oe-crystal-home": "oep-bcscp-q-060",
+    "rxk-1_4-5": "rx-pn-indication-enteral",
+    "rxk-3_2-4": "rx-electrolyte-daily",
+    "rxk-4_1-3": "rx-biliary-sludge",
+    "rxk-4_1-6": "rx-pnald-prevent",
+    "quizlet-ss2-005": "quizlet-pn-016",
+}
+
+# Same concept, different wording/options: linked but both kept.
+RELATED = [
+    ("bcnsp-030", "cnsc-nutrition-support-047"),
+    ("kshp-21", "oe-refeed"),
+    ("quizlet-pn-020", "quizlet-ss2-015"),
+    ("quizlet-pn-020", "oe-hang"),
+    ("quizlet-pn-002", "quizlet-pn-042"),
+    ("quizlet-m4-006", "quizlet-cp-015"),
+    ("cnsc-nutrition-support-022", "bcnsp-003"),
+    ("rx-ppn-900", "cnsc-nutrition-support-041"),
+    ("kshp-01", "kshp-48"),
+    ("kshp-19", "kshp-54"),
+    ("kshp-38", "kshp-47"),
+    ("quizlet-a14pn-014", "quizlet-ss2-007"),
+]
+
+# Topic (단원) corrections: id -> corrected topic. Only items checked by hand.
+TOPIC_FIX = {
+    "kshp-28": "stability",
+    "oe-filter": "stability",
+    "cnsc-nutrition-support-045": "stability",
+    "cnsc-nutrition-support-059": "stability",
+    "bcnsp-086": "stability",
+    "quizlet-pn-001": "indications",
+    "quizlet-pn-011": "stability",
+    "quizlet-pn-009": "stability",
+    "quizlet-pn-010": "stability",
+    "quizlet-pn-002": "fluid_lytes",
+    "quizlet-pn-042": "fluid_lytes",
+    "quizlet-pn-014": "protein",
+    "bcnsp-017": "calc_filter",
+    "allaccess-008": "lipid",
+    "allaccess-009": "lipid",
+    "allaccess-010": "cho_gir",
+    "quizlet-iib-003": "complications",
+    "rxk-1_4-5": "indications",
+    "quizlet-cp-015": "disease",
+    "quizlet-m4-006": "disease",
+    "oep-bcscp-q-060": "stability",
+    "quizlet-ach-014": "lipid",
+}
+
+# Stem restorations from the held source (revision bumps to 2).
+STEM_FIX = {
+    "kshp-15": ("중환자실에 입원 중인 55세 70 kg 남자에게 PN으로 단백질 63 g/day가 공급되고 있다. "
+                "AKI가 발생하여 간헐적 혈액투석을 시행할 예정이다. 강의자료 기준 적절한 1일 단백질 투여량(g)은?",
+                "원 해설집 문구 '강의자료 기준' 복원(HTML 표시본에서 누락)."),
+}
+
+# KSHP items held back from verified despite full per-choice explanations.
+KSHP_PENDING = {
+    "kshp-15": (["E7-aki-protein"], "강의자료 정답(84 g)과 ESPEN 2024(91–105 g) 불일치. 최신 지침만 쓰면 보기 중 정답 없음. ESPEN 원문 미보유."),
+    "kshp-28": (["E5-filter"], "정답(0.22/1.2 이원)이 보유 현행 ASPEN Myths 2024·Administration checklist의 단일 1.2 μm 권고와 충돌. 구 권고 기준임을 stem에 명시할지 결정 필요."),
+    "kshp-34": (["E8-trace-element-dose"], "정답 선지가 AMA 1979 용량으로 현행 ASPEN TE 권고와 다름. 현행 기준이면 '옳은 것'이 없음."),
+    "kshp-39": ([], "①'NUTRIC ≥5 high'는 원 NUTRIC(IL-6 포함) 기준 ≥6이라 함께 틀릴 수 있음(해설도 인정). 단일 정답 불확정."),
+    "kshp-46": ([], "해설 자체가 ⑤ Vitamin K도 독성이 낮아 '유일 정답 단정 어려움'으로 기록. 단일 정답 불확정."),
+}
+
+# Non-KSHP items verified against held ASPEN Myths 2024 text (p.3).
+OWN_VERIFIED = {
+    "rx-ppn-900": {
+        "referenceIds": [MYTHS_REF],
+        "evidence": [{"referenceId": MYTHS_REF, "locator": "p.3 'PN must always be infused through a central line' 항목",
+                      "quote": "For peripheral PN, do not exceed 900 mOsm/L."}],
+        "choiceExplanations": [
+            "오답. 1500 mOsm/L는 말초 상한 900을 크게 넘어 중심정맥 투여 대상이다.",
+            "오답. 1200 mOsm/L도 900을 넘으므로 말초로 주지 않는다.",
+            "정답. ASPEN Myths 2024: 말초 PN은 900 mOsm/L를 넘지 않는다.",
+            "오답. 600 mOsm/L 미만으로 제한하라는 권고는 없다. 상한 기준값은 900이다.",
+        ],
+        "errataIds": [],
+    },
+    "oe-filter": {
+        "referenceIds": [MYTHS_REF, ADMIN_REF, KSHP_REF],
+        "evidence": [{"referenceId": MYTHS_REF, "locator": "p.3 'Filters are not required' 항목",
+                      "quote": "A single 1.2 micron filter is recommended for use when infusing all types of PN admixtures and formulations."},
+                     {"referenceId": ADMIN_REF, "locator": "1.2 Micron Filter 항목", "quote": "Use 1.2 micron filter on distal end of tubing"}],
+        "choiceExplanations": [
+            "오답. 0.22 μm는 지질 입자를 통과시키지 못해 3-in-1에 쓰지 않는다(구 권고에서도 2-in-1 전용).",
+            "오답. 0.45 μm는 PN 표준 필터 크기가 아니다.",
+            "정답. 3-in-1은 구 권고·현행(모든 PN 단일 1.2 μm) 모두 1.2 μm.",
+            "오답. 5 μm는 PN 인라인 필터 권고 크기가 아니다.",
+        ],
+        "errataIds": ["E5-filter"],
+    },
+    "oe-hang": {
+        "referenceIds": [MYTHS_REF],
+        "evidence": [{"referenceId": MYTHS_REF, "locator": "p.3 'ILE has a hang time of 24 hours when y-sited' 항목",
+                      "quote": "TNA can be infused for up to 24 hours ... ILE infused separately ... maximum hang time should be limited to 12 hours."}],
+        "choiceExplanations": [
+            "오답. 단독 ILE와 TNA의 시간이 뒤바뀌었다.",
+            "정답. 단독 ILE ≤12 h(등장성이라 미생물 증식 위험), TNA ≤24 h.",
+            "오답. TNA는 24시간까지 주입할 수 있다.",
+            "오답. 두 경우 모두 48시간은 권고 범위를 넘는다.",
+        ],
+        "errataIds": [],
+    },
+    "quizlet-pn-020": {
+        "referenceIds": [MYTHS_REF],
+        "evidence": [{"referenceId": MYTHS_REF, "locator": "p.3 hang time·filter·BUD 항목",
+                      "quote": "TNA can be infused for up to 24 hours; separate ILE limited to 12 hours; single 1.2 micron filter; BUD room temperature 30 hours / refrigerated 9 days."}],
+        "choiceExplanations": [
+            "정답. ILE가 TNA에 들어 있으면 TNA는 24시간까지 주입할 수 있다.",
+            "오답. 2-in-1과 따로 주는 ILE는 12시간으로 제한한다.",
+            "오답. PN BUD는 실온 30시간·냉장 9일이며 실온 1주일 안정은 근거가 없다.",
+            "오답. 지질은 0.22 μm를 통과하지 못한다. 현행 권고는 단일 1.2 μm.",
+        ],
+        "errataIds": ["E4-bud", "E5-filter"],
+    },
+}
+
+# Non-KSHP review decisions: id -> (status, errataIds, note).
+REVIEW = {
+    # E1 prealbumin
+    "bcnsp-002": ("excluded", ["E1-prealbumin"], "정답(프리알부민=내장단백 최선 지표)이 현행 합의(진단 지표 제외, 염증 영향)와 반대. kshp-40·cnsc-005·cnsc-016과 충돌."),
+    "rxk-1_3-3": ("pending", ["E1-prealbumin"], "해설이 알부민·프리알부민을 영양지표로 서술. 정답(헤모글로빈)은 유지 가능하나 해설 교정 필요."),
+    "rxk-1_3-5": ("pending", ["E1-prealbumin"], "원 퀴즈 정답(질소평형)과 프리알부민 '빠른 반응' 서술 병존. 출제 의도 확인 필요."),
+    "bcnsp-087": ("pending", ["E1-prealbumin"], "정답 방향은 E1과 일치. 보유 근거 연결·선택지 해설 미작성."),
+    "cnsc-nutrition-support-002": ("pending", ["E1-prealbumin"], "E1과 일치. ASPEN/AND 2012 합의 원문 미보유."),
+    "cnsc-nutrition-support-005": ("pending", ["E1-prealbumin"], "E1과 일치. 합의 원문 미보유."),
+    "cnsc-nutrition-support-011": ("pending", ["E1-prealbumin"], "E1과 일치. 합의 원문 미보유."),
+    "cnsc-nutrition-support-016": ("pending", ["E1-prealbumin"], "E1과 일치. 합의 원문 미보유."),
+    "bcnsp-032": ("pending", ["E1-prealbumin"], "E1과 일치. 합의 원문 미보유."),
+    # E2 GIR
+    "bcnsp-030": ("pending", ["E2-gir"], "stem에 조건(안정 성인·연속주입·산화 상한) 없음. 보기상 4–5가 유일하나 HPN 주기주입 5–7과 혼동 소지. 조건 보완 후 검증."),
+    "cnsc-nutrition-support-047": ("pending", ["E2-gir"], "산화 상한 맥락은 명시됨. 일일 ≤7 g/kg·ICU ≤4와 병기 필요, 보유 원문 수치 근거 없음(Safe Practices 2004 미보유)."),
+    "allaccess-007": ("pending", ["E2-gir"], "계산(2.98) 자체는 맞음. 선택지 해설 미작성."),
+    "allaccess-010": ("excluded", ["E2-gir"], "정답 622 g/day(0.36 g/kg/h=6 mg/kg/min 기준)가 성인 일일 ≤7 g/kg(72 kg→504 g)과 충돌하고 504 g 보기가 없음. 해설 단위 오타('0.36 g per day')."),
+    # E3 dextrose factor
+    "cnsc-nutrition-support-023": ("pending", ["E3-dextrose-factor"], "3.4 kcal/g 정답은 E3와 일치. 보유 ESPEN carbs는 '일수화물' 서술만 있고 3.4 수치는 2차 자료."),
+    "cnsc-nutrition-support-029": ("pending", ["E3-dextrose-factor"], "지질을 9 kcal/g로 계산(1,700). bcnsp-017은 20% ILE 기준 10 kcal/g 사용 — 계수 통일 필요."),
+    "bcnsp-017": ("pending", ["E3-dextrose-factor"], "지질 10 kcal/g(20% ILE) 사용. cnsc-029(9 kcal/g)와 계수 불일치."),
+    "quizlet-pn-012": ("pending", ["E3-dextrose-factor"], "3.4 kcal/g 사용, E3와 일치. 선택지 해설 미작성."),
+    "quizlet-pn-013": ("pending", ["E3-dextrose-factor"], "3.4 kcal/g 사용, E3와 일치. 선택지 해설 미작성."),
+    # E4 BUD
+    "bcnsp-008": ("pending", ["E4-bud"], "USP<797>(2023) Category 2 일반 CSP 실온 4일. PN에는 Table 13을 그대로 쓰지 않는다(ASPEN Myths) — PN 문항으로 오인 방지 주석 필요."),
+    "bcnsp-068": ("pending", ["E5-filter"], "정답은 단순화(1백). 해설의 0.22/1.2 서술이 구 권고."),
+    # E5 filter
+    "cnsc-nutrition-support-045": ("pending", ["E5-filter"], "해설이 2-in-1 0.22 μm를 현행처럼 서술. 현행 단일 1.2 μm와 충돌."),
+    "cnsc-nutrition-support-059": ("pending", ["E5-filter"], "정답 0.22 μm는 구 권고. 현행(모든 PN 단일 1.2 μm)이면 1.2가 정답 — 답이 시대에 따라 바뀜."),
+    "bcnsp-086": ("pending", ["E5-filter"], "정답 0.22 μm는 구 권고. 현행이면 1.2 — 답이 시대에 따라 바뀜."),
+    "quizlet-ss2-015": ("pending", ["E5-filter"], "④ '1.2 μm로 미생물 여과'는 목적 서술이 틀려 오답이지만 1.2 μm 사용 자체는 현행 권고 — 학습자 혼동 소지."),
+    "quizlet-pn-011": ("pending", ["E5-filter"], "라벨 항목 '필터 크기(1.2 또는 0.22)'는 2014 합의 시대 표기."),
+    "rxk-3_2-5": ("pending", ["E5-filter"], "정답 방향 일치. 선택지 해설 미작성."),
+    # E6 indication / timing
+    "bcnsp-044": ("pending", ["E6-pn-indication-timing"], "영양위험·영양불량 조건이 stem에 없어 '7일 후' 단일 정답 불확정(고위험·중증 영양불량은 가능한 빨리)."),
+    "cnsc-nutrition-support-103": ("pending", ["E6-pn-indication-timing"], "'5~7일'은 ASPEN Myths의 잘영양·안정 7일 대기와 대체로 일치. 영양지원 일반(EN 포함) 문항."),
+    "rx-pn-indication-enteral": ("pending", ["E6-pn-indication-timing"], "'모두 충족' 정답의 근거(혈역학 안정·수액 내성이 PN 조건인지) 보유 자료로 확인 불가."),
+    "quizlet-pn-015": ("pending", ["E6-pn-indication-timing"], "고배출 누공 적응증. 보유 근거 연결·선택지 해설 미작성."),
+    "quizlet-pn-016": ("pending", ["E6-pn-indication-timing"], "선택지 해설 미작성."),
+    "quizlet-pn-018": ("pending", ["E6-pn-indication-timing"], "선택지 해설 미작성."),
+    "quizlet-pn-001": ("pending", ["E6-pn-indication-timing"], "선택지 해설 미작성. 단원 교정(수분·전해질→적응증)."),
+    "bcnsp-013": ("pending", ["E6-pn-indication-timing"], "선택지 해설 미작성."),
+    "hoag-faq-001": ("pending", ["E6-pn-indication-timing"], "해설의 '7–10일 치료 후 이득' 근거 확인 필요."),
+    # Conflicting variants
+    "quizlet-pn-002": ("pending", [], "같은 원문 변형 quizlet-pn-042는 정답이 '테타니'. 인산 급속주입의 대표 결과(저칼슘혈증·테타니 vs 혈전정맥염) 확인 필요."),
+    "quizlet-pn-042": ("pending", [], "quizlet-pn-002와 정답 불일치(혈전정맥염 vs 테타니)."),
+    "oe-refeed": ("pending", [], "kshp-21과 같은 개념(대표: kshp-21). 선택지 해설 미작성 — 추가 연습."),
+    "oe-tg400": ("pending", [], "TG 기준(개시 >200 주의 vs ≥400 감량·중단 vs 소아)은 Task 1 §7 후보. 보유 원문 수치 근거 미연결."),
+    "oe-hypergly-assess": ("pending", [], "선택지 해설 미작성."),
+}
+
+# Answer contradicted by held evidence, or more than one defensible answer.
+ANSWER_CONFLICT = {"bcnsp-002", "allaccess-010", "kshp-15", "kshp-28", "kshp-34",
+                   "cnsc-nutrition-support-059", "bcnsp-086", "quizlet-pn-002", "quizlet-pn-042"}
+ANSWER_AMBIGUOUS = {"kshp-39", "kshp-46", "bcnsp-044", "bcnsp-030"}
+
+ORIGIN_RULES = [
+    (r"^kshp-", "reportedExam",
+     "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님."),
+    (r"^bcnsp-", "thirdParty", "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님."),
+    (r"^cnsc-nutrition-support-", "thirdParty", "해외 CNSC 대비 문제은행(번역). 국내 기출 아님."),
+    (r"^nbnsc-cnsc-sample-", "thirdParty", "NBNSC CNSC 표본으로 표기된 문항. 공식 샘플 원문과 대조하지 않아 officialSample로 표시하지 않음."),
+    (r"^oep-bcscp-q-", "thirdParty", "OpenExamPrep BCSCP 문항(번역)."),
+    (r"^oe-", "thirdParty", "OpenExamPrep BCNSP/CNSC 빈출 주제의 재게시·축약본(원 문항과 중복 가능). 자체 창작 아님."),
+    (r"^rxk-", "thirdParty", "RxKinetics 주제 퀴즈(번역)."),
+    (r"^rx-", "thirdParty", "RxKinetics 퀴즈 재게시·축약본(rxk-* 원문과 중복)."),
+    (r"^medex-", "thirdParty", "MedExPrep 사례형 문항(번역·재작성)."),
+    (r"^allaccess-", "thirdParty", "AllAccessDietetics 경장·정맥영양 연습문제."),
+    (r"^hoag-faq-", "thirdParty", "Hoag Healthcare TPN FAQ를 문항화."),
+    (r"^aspen-cnsc-", "thirdParty", "ASPEN Self-Study CNSC(Quizlet 색인) 문항."),
+    (r"^quizlet-", "thirdParty", "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함."),
+]
+BANK_REFS = {r"^allaccess-": ["allaccess-enteral-parenteral-pqs"], r"^hoag-faq-": ["hoag-tpn-qa"]}
+
+CIRCLED = "①②③④⑤⑥⑦⑧⑨"
+
+
+def load_questions(text):
+    line = next(l for l in text.split("\n") if l.startswith("const QUESTIONS = "))
+    return json.loads(line[len("const QUESTIONS = "):].rstrip().rstrip(";"))
+
+
+def load_core_skip(text):
+    m = re.search(r"const CORE_SKIP = new Set\((\[.*?\])\);", text)
+    return set(json.loads(m.group(1)))
+
+
+def load_core_hints(text):
+    m = re.search(r"const CORE_HINTS = (\{.*?\n\});", text, re.S)
+    return json.loads(m.group(1))
+
+
+def load_sections(text):
+    secs = []
+    for m in re.finditer(r'<section class="sec" data-topic="([^"]+)" id="([^"]+)">(.*?)</section>', text, re.S):
+        body = htmllib.unescape(re.sub(r"<[^>]+>", " ", m.group(3)))
+        secs.append((m.group(2), m.group(1), norm(body)))
+    return secs
+
+
+def norm(s):
+    s = re.sub(r"[·•∙⋅]", " ", str(s))
+    s = re.sub(r"[–—−~]", "-", s)
+    s = re.sub(r"[μµ]", "u", s)
+    return re.sub(r"\s+", " ", s).strip().lower()
+
+
+def is_english(s):
+    letters = re.findall(r"[A-Za-z가-힣]", s)
+    return bool(letters) and sum(c.isascii() for c in letters) / len(letters) > 0.9
+
+
+def parse_choice_explanations(explain, n):
+    out = [""] * n
+    for line in explain.split("\n"):
+        line = line.strip()
+        if line and line[0] in CIRCLED:
+            i = CIRCLED.index(line[0])
+            if i < n:
+                out[i] = line[1:].strip()
+    return out
+
+
+def lecture_locator(explain):
+    m = re.search(r"\[강의 근거\]\s*(.+)", explain)
+    if not m:
+        return None
+    loc = m.group(1).strip()
+    return re.sub(r"\s+\d+\.\s*\S+문항.*$", "", loc)
+
+
+def origin_for(qid):
+    for pat, origin, note in ORIGIN_RULES:
+        if re.match(pat, qid):
+            return origin, note
+    return "thirdParty", "출처 미분류"
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--notes-dir", type=Path, default=DEFAULT_NOTES,
+                    help="held 06_학습_노트 folder containing _kshp_questions.json")
+    args = ap.parse_args()
+
+    text = HTML.read_text(encoding="utf-8")
+    raw = load_questions(text)
+    core_skip = load_core_skip(text)
+    hints = load_core_hints(text)
+    sections = load_sections(text)
+    nav_topics = set(re.findall(r'class="nav-item[^"]*"[^>]*data-topic="([^"]+)"', text)) | \
+        set(re.findall(r'data-topic="([^"]+)"[^>]*class="nav-item', text))
+    rendered = [q for q in raw if q["topic"] in nav_topics]
+
+    kshp_src = {k["id"]: k for k in json.loads((args.notes_dir / "_kshp_questions.json").read_text(encoding="utf-8"))}
+    ref_ids = {r["id"] for r in json.loads(REFS.read_text(encoding="utf-8"))["references"]}
+    scope = json.loads(SCOPE.read_text(encoding="utf-8"))
+    scope_by_q = {}
+    for s in scope["scopes"]:
+        for qid in s.get("questionIds", []):
+            scope_by_q.setdefault(qid, []).append(s["id"])
+
+    ids = {q["id"] for q in rendered}
+    for d, r in list(EN_DUPLICATE_OF.items()) + list(KO_DUPLICATE_OF.items()):
+        assert d in ids and r in ids, (d, r)
+    related = {}
+    for a, b in RELATED:
+        assert a in ids and b in ids, (a, b)
+        related.setdefault(a, []).append(b)
+        related.setdefault(b, []).append(a)
+
+    out = []
+    for q in rendered:
+        qid = q["id"]
+        origin, origin_note = origin_for(qid)
+        topic = TOPIC_FIX.get(qid, q["topic"])
+        stem = q["stem"]
+        revision = 1
+        notes = []
+        if qid in STEM_FIX:
+            stem, why = STEM_FIX[qid]
+            revision = 2
+            notes.append(why)
+        choices = list(q["choices"])
+        n = len(choices)
+        explain = q["explain"]
+        choice_ex = parse_choice_explanations(explain, n)
+        english = is_english(q["stem"])
+        ans_text = choices[q["answer"]]
+        explain_body = explain.replace(ans_text, "").strip()
+
+        q_hints = hints.get(qid, [])
+        core_ids = []
+        if qid not in core_skip:
+            for h in q_hints:
+                nh = norm(h)
+                hit = next((sid for sid, _t, body in sections if nh and nh in body), None)
+                if hit and hit not in core_ids:
+                    core_ids.append(hit)
+        core_link = "none" if qid in core_skip else ("hint" if core_ids else "topicOnly")
+
+        ref_list, evidence, errata = [], [], []
+        status, priority = "pending", "medium"
+        duplicate_of = EN_DUPLICATE_OF.get(qid) or KO_DUPLICATE_OF.get(qid)
+
+        if qid.startswith("kshp-"):
+            ref_list = [KSHP_REF]
+            loc = lecture_locator(explain)
+            evidence.append({"referenceId": KSHP_REF, "locator": loc,
+                             "quote": "시험 정답(강의자료 기준) 및 선택지별 해설"})
+            src = kshp_src.get(qid)
+            if src and src["answer"] != q["answer"]:
+                notes.append("해설집 정답 index와 HTML 불일치")
+            if qid in KSHP_PENDING:
+                errata, why = KSHP_PENDING[qid]
+                status, priority = "pending", "high"
+                notes.append(why)
+            elif all(choice_ex) and src and src["answer"] == q["answer"]:
+                status, priority = "verified", "high"
+        if qid in OWN_VERIFIED:
+            spec = OWN_VERIFIED[qid]
+            ref_list, evidence = spec["referenceIds"], spec["evidence"]
+            choice_ex, errata = spec["choiceExplanations"], spec["errataIds"]
+            status, priority = "verified", "high"
+            notes.append("선택지 해설은 보유 ASPEN Myths 2024 본문 대조로 Task 2에서 작성.")
+        if qid in REVIEW:
+            status, errata, why = REVIEW[qid]
+            priority = "high"
+            notes.append(why)
+        for pat, refs in BANK_REFS.items():
+            if re.match(pat, qid):
+                ref_list = ref_list or refs
+        if duplicate_of:
+            status, priority = "excluded", "low"
+            kind = "영문 원문(번역본이 대표)" if qid in EN_DUPLICATE_OF else "재게시 중복"
+            notes.append(f"{kind}: 대표 문항 {duplicate_of}. 추가 연습으로만 연결.")
+        elif status == "pending" and len(explain_body) < 15:
+            status, priority = "excluded", "low"
+            notes.append("해설이 정답 문구 반복뿐이라 불완전 — 기본 세트 제외.")
+        elif status == "pending" and english:
+            priority = "low"
+            notes.append("영문 미번역 — 번역·검토 대기.")
+        elif status == "pending" and not notes:
+            notes.append("자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.")
+
+        checks = {
+            "translation": "en-untranslated" if english else ("ok" if status == "verified" else "unchecked"),
+            "answerEvidence": ("ok" if status == "verified" else "conflict" if qid in ANSWER_CONFLICT
+                               else "ambiguous" if qid in ANSWER_AMBIGUOUS else "unchecked"),
+            "choiceExplanations": "complete" if all(choice_ex) else ("partial" if any(choice_ex) else "missing"),
+            "coreLink": core_link,
+        }
+        if status == "verified":
+            assert 0 <= q["answer"] < n and all(choice_ex) and ref_list and evidence, qid
+            assert set(ref_list) <= ref_ids, (qid, ref_list)
+
+        rec = {
+            "id": qid,
+            "revision": revision,
+            "topic": topic,
+            "scopeIds": scope_by_q.get(qid, []),
+            "source": q["source"],
+            "sourceUrl": None,
+            "sourceYear": 2026 if qid.startswith("kshp-") else None,
+            "originType": origin,
+            "reviewStatus": status,
+            "priority": priority,
+            "referenceIds": ref_list,
+            "stem": stem,
+            "choices": choices,
+            "answer": q["answer"],
+            "explain": explain,
+            "choiceExplanations": choice_ex,
+            "coreSectionIds": core_ids,
+            "includeInBasicSet": status == "verified",
+            "sourceNote": origin_note,
+            "evidence": evidence,
+            "errataIds": errata,
+            "checks": checks,
+            "reviewNote": " ".join(notes),
+        }
+        if topic != q["topic"]:
+            rec["htmlTopic"] = q["topic"]
+        if duplicate_of:
+            rec["duplicateOf"] = duplicate_of
+        if qid in related:
+            rec["relatedIds"] = sorted(related[qid])
+        out.append(rec)
+
+    st = Counter(r["reviewStatus"] for r in out)
+    meta = {
+        "schemaVersion": 1,
+        "contentVersion": CONTENT_VERSION,
+        "extractedAt": EXTRACTED_AT,
+        "timezone": "Asia/Seoul",
+        "source": {
+            "file": "PN_study_split.html",
+            "array": "const QUESTIONS",
+            "renderRule": "renderQuiz()는 QUESTIONS.filter(q=>q.topic===activeTopic)만 그린다. 런타임에 배열을 바꾸는 후처리 없음. 번역·재분류는 HTML 생성 단계에서 이미 반영된 상태.",
+        },
+        "rawCount": len(raw),
+        "finalCount": len(out),
+        "verifiedCount": st["verified"],
+        "pendingCount": st["pending"],
+        "excludedCount": st["excluded"],
+        "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified'). pending·excluded는 기본 세트에 넣지 않는다.",
+        "upstream": {
+            "kshpLectureExam": {"heldItems": len(kshp_src), "inHtml": sum(1 for q in raw if q["id"].startswith("kshp-")),
+                                "notInHtml": sorted(set(kshp_src) - ids),
+                                "note": "빠진 3건(kshp-50·53·55)은 경장영양·HPN 삶의 질 문항으로 HTML 생성 시 제외됨."},
+        },
+        "fieldNotes": {
+            "originType": "officialSample(공식 공개 샘플)·reportedExam(시험 복원·재구성)·thirdParty(해외·상업 문제은행)·originalPractice(자체 연습문항). 이번 이관본에는 officialSample·originalPractice가 없다.",
+            "priority": "high=검증 시드 또는 임상 정오표 관련, medium=일반 대기, low=중복·영문·해설 불완전",
+            "scopeIds": "exam-scope.json의 keyword-heuristic-v1 매핑을 그대로 상속(근거 매핑 아님).",
+            "coreSectionIds": "CORE_HINTS 문구가 들어 있는 sec-* ID. 비어 있으면 topic 단위 연결만 있다(checks.coreLink).",
+            "revision": "1=HTML 표시본 그대로, 2=Task 2에서 stem/choices/answer를 원문 근거로 수정.",
+            "evidence": "정답 근거 위치. 보유 추출본·PDF 기준이며 지정 교재(ASPEN Adult Core 4판) 쪽수는 기록하지 않음.",
+        },
+        "errata": ERRATA,
+    }
+    OUT.write_text(json.dumps({"meta": meta, "questions": out}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"raw={len(raw)} final={len(out)} verified={st['verified']} pending={st['pending']} excluded={st['excluded']}")
+    print("origin", dict(Counter(r["originType"] for r in out)))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
