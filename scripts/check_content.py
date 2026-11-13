@@ -23,7 +23,9 @@ CONTENT = ROOT / "content"
 SRC = ROOT / "src"
 DEFAULT_NOTES_ROOT = ROOT.parent.parent.parent / "참고문헌_정리"
 
-SECTION_OPEN = re.compile(r'<section class="sec" data-topic="([^"]+)" id="([^"]+)"( data-added="[^"]+")?>')
+SECTION_OPEN = re.compile(
+    r'<section class="sec" data-topic="([^"]+)" id="([^"]+)"( data-added="[^"]+")?(?: data-hub="1")?(?: hidden)?>'
+)
 CHEAT_ROW = re.compile(r'<tr><th class="l1" scope="row">\[([^\]]+)\]\s*</th><td>(.*?)</td></tr>', re.S)
 MARK = re.compile(r'<mark class="(hl-[a-z]+)" title="([^"]*)">(.*?)</mark>', re.S)
 CHEAT_ID = "sec-cheat-11-치트-암기-블록"
