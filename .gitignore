@@ -5,3 +5,4 @@ assets/_live_*.png
 assets/_mark_*.png
 assets/_src_*.png
 assets/_zoom_*.png
+__pycache__/

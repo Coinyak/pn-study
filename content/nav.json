@@ -1,0 +1,247 @@
+[
+ {
+  "topic": "eval",
+  "target": "sec-eval-0-영양평가-PN-직결만",
+  "label": "평가"
+ },
+ {
+  "topic": "indications",
+  "target": "sec-indications-1-적응증-시작시점-지연",
+  "label": "적응증"
+ },
+ {
+  "topic": "cho_gir",
+  "target": "sec-cho_gir-2-구성요소",
+  "label": "구성"
+ },
+ {
+  "topic": "cho_gir",
+  "target": "sec-cho_gir-2-1-탄수화물-dextrose",
+  "label": "GIR·당"
+ },
+ {
+  "topic": "lipid",
+  "target": "sec-lipid-2-2-지방-ILE",
+  "label": "지질"
+ },
+ {
+  "topic": "protein",
+  "target": "sec-protein-2-3-단백질-아미노산-AA",
+  "label": "단백"
+ },
+ {
+  "topic": "fluid_lytes",
+  "target": "sec-fluid_lytes-2-4-수분",
+  "label": "수분"
+ },
+ {
+  "topic": "fluid_lytes",
+  "target": "sec-fluid_lytes-2-5-전해질",
+  "label": "전해질"
+ },
+ {
+  "topic": "vit_te",
+  "target": "sec-vit_te-2-6-비타민",
+  "label": "비타민"
+ },
+ {
+  "topic": "vit_te",
+  "target": "sec-vit_te-2-7-미량원소-TE",
+  "label": "미량원소"
+ },
+ {
+  "topic": "route",
+  "target": "sec-route-3-투여경로-제형",
+  "label": "경로"
+ },
+ {
+  "topic": "route",
+  "target": "sec-route-3-1-말초-vs-중심",
+  "label": "말초·중심"
+ },
+ {
+  "topic": "route",
+  "target": "sec-route-3-2-2-in-1-vs-3-in-1-TNA",
+  "label": "2·3-in-1"
+ },
+ {
+  "topic": "route",
+  "target": "sec-route-3-3-MCB-다챔버-백-GL-ASPEN-Myths-ISMP-2025",
+  "label": "MCB"
+ },
+ {
+  "topic": "route",
+  "target": "sec-route-3-4-국내-PN-제품-비교",
+  "label": "국내제품"
+ },
+ {
+  "topic": "calc_filter",
+  "target": "sec-calc_filter-4-요구량-투여계획-계산",
+  "label": "요구량"
+ },
+ {
+  "topic": "calc_filter",
+  "target": "sec-calc_filter-4-1-에너지",
+  "label": "에너지"
+ },
+ {
+  "topic": "calc_filter",
+  "target": "sec-calc_filter-4-2-계산-5단계-상한-체크",
+  "label": "계산"
+ },
+ {
+  "topic": "calc_filter",
+  "target": "sec-calc_filter-4-3-삼투압-계산-표9-17-EXAM-p153",
+  "label": "삼투"
+ },
+ {
+  "topic": "calc_filter",
+  "target": "sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE",
+  "label": "교정"
+ },
+ {
+  "topic": "stability",
+  "target": "sec-stability-5-조제-안정성-투여-주의사항",
+  "label": "조제"
+ },
+ {
+  "topic": "stability",
+  "target": "sec-stability-5-1-혼합-순서",
+  "label": "혼합순서"
+ },
+ {
+  "topic": "stability",
+  "target": "sec-stability-5-2-Ca-P-침전",
+  "label": "Ca–P"
+ },
+ {
+  "topic": "stability",
+  "target": "sec-stability-5-3-배합금기-Y-site",
+  "label": "Y-site"
+ },
+ {
+  "topic": "stability",
+  "target": "sec-stability-5-4-필터-hang-time-세트-BUD",
+  "label": "필터·hang"
+ },
+ {
+  "topic": "complications",
+  "target": "sec-complications-6-합병증",
+  "label": "합병증"
+ },
+ {
+  "topic": "complications",
+  "target": "sec-complications-6-1-3열-요약",
+  "label": "합병증요"
+ },
+ {
+  "topic": "complications",
+  "target": "sec-complications-6-2-재급식-증후군-Refeeding",
+  "label": "재급식"
+ },
+ {
+  "topic": "complications",
+  "target": "sec-complications-6-3-간담도-합병증-PNALD",
+  "label": "PNALD"
+ },
+ {
+  "topic": "complications",
+  "target": "sec-complications-6-4-대사성-골질환-MBD",
+  "label": "MBD"
+ },
+ {
+  "topic": "lipid",
+  "target": "sec-lipid-6-5-필수지방산-결핍-EFAD",
+  "label": "EFAD"
+ },
+ {
+  "topic": "monitor",
+  "target": "sec-monitor-7-모니터링-Lab-중단",
+  "label": "중단"
+ },
+ {
+  "topic": "complications",
+  "target": "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179",
+  "label": "모니터표"
+ },
+ {
+  "topic": "monitor",
+  "target": "sec-monitor-7-2-Lab-정상범위",
+  "label": "Lab"
+ },
+ {
+  "topic": "monitor",
+  "target": "sec-monitor-7-3-PN-중단-이행",
+  "label": "이행"
+ },
+ {
+  "topic": "disease",
+  "target": "sec-disease-8-질환별-PN",
+  "label": "질환별"
+ },
+ {
+  "topic": "disease",
+  "target": "sec-disease-8-1-폐-심장-신경계",
+  "label": "폐·심·신경"
+ },
+ {
+  "topic": "disease",
+  "target": "sec-disease-8-2-당뇨-비만",
+  "label": "당뇨·비만"
+ },
+ {
+  "topic": "disease",
+  "target": "sec-disease-8-3-수술-암-화상",
+  "label": "수술·암·화상"
+ },
+ {
+  "topic": "disease",
+  "target": "sec-disease-8-4-섭식장애-임부-노인",
+  "label": "섭식·임부·노인"
+ },
+ {
+  "topic": "disease",
+  "target": "sec-disease-8-5-영양소-약물-상호작용",
+  "label": "영양–약물"
+ },
+ {
+  "topic": "peds",
+  "target": "sec-peds-9-소아-신생아",
+  "label": "소아"
+ },
+ {
+  "topic": "hpn",
+  "target": "sec-hpn-10-재택-PN-HPN",
+  "label": "HPN"
+ },
+ {
+  "topic": "hpn",
+  "target": "sec-hpn-10-1-환자-교육",
+  "label": "HPN교육"
+ },
+ {
+  "topic": "cheat",
+  "target": "sec-cheat-11-치트-암기-블록",
+  "label": "치트"
+ },
+ {
+  "topic": "case",
+  "target": "sec-case-12-처방-검토-사례",
+  "label": "처방사례"
+ },
+ {
+  "topic": "common",
+  "target": "sec-common-13-공통영역-의학통계-논문비평",
+  "label": "공통영역"
+ },
+ {
+  "topic": "common",
+  "target": "sec-common-13-1-효과지표-정밀도",
+  "label": "통계지표"
+ },
+ {
+  "topic": "common",
+  "target": "sec-common-13-2-논문-해석-사례-메타분석",
+  "label": "논문해석"
+ }
+]

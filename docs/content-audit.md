@@ -449,3 +449,50 @@
 - 약어·약물명·단위가 섞인 한국어 문항은 유지(예: kshp 선지의 영어 약물명)
 - 이전 감사의 “영문판을 대표로 둠”(`quizlet-a14pn-014`) 예외는 폐기. 해당 영문은 제외, 한국어 대응 문항이 있으면 그쪽을 사용
 
+
+## 12. Task 3 범위 보강과 HTML 생성 (2026-11-14)
+
+### 12.1 원본 분리
+
+- `PN_study_split.html`은 이제 생성물이다. `python3 scripts/build.py`가 `content/core.html`(핵심본) · `content/nav.json`(메뉴) · `content/questions.json` · `content/products.json` · `src/split-shell.html`(레이아웃·CSS·퀴즈 JS) · `src/a4-shell.html`로 두 HTML을 만든다. HTML을 직접 고치지 않는다.
+- 분리 직후(내용 수정 전) 재조립 결과는 `ad5b8fd`의 HTML과 바이트 단위로 같았다. 기존 `sec-*` 38개와 형광 `mark` 149개(102종)는 `src/legacy/core-baseline.json`에 기준선으로 남겼고, `check_content.py`가 하나라도 빠지면 실패시킨다.
+- `scripts/export_questions.py`는 HTML 대신 `src/legacy/quiz-raw.json`(8309229의 583문항 배열 동결 사본)을 읽는다. 바꾼 직후 출력은 기존 `questions.json`과 바이트 단위로 같았다.
+- 작업 중 HTML을 직접 고친 커밋 2개(`ad5b8fd` 한국어 전용 guard, `64419b8` 카드별 채점·즐겨찾기)가 들어왔다. 둘 다 `src/split-shell.html`에 옮겼다(셸을 `64419b8` HTML에서 다시 뽑고 Task 3 셸 수정만 재적용). 앞으로 레이아웃·JS 수정은 `src/split-shell.html`에서 해야 하며, 생성된 HTML을 직접 고치면 다음 빌드에서 사라진다.
+- A4는 같은 `core.html`에서 생성하므로 핵심·A4·치트 수치가 갈라질 수 없다. 이전 A4는 끝이 `</table>`에서 잘려 있었고(인쇄 버튼 스크립트·닫는 태그 없음) 본문 구분자도 핵심본과 달랐다.
+
+### 12.2 정오표 반영 (§10.3 → 핵심본)
+
+| ID | 핵심본 변경 |
+|---|---|
+| E1 | 평가 '내장단백' 행에서 '영양위험 평가' 삭제 → '진단·효과 단독 X, 염증·중증도 보조, HPN 정기 모니터 항목에는 포함'. 치트 [평가]도 같은 문구 |
+| E2 | 2.1에 'GIR 조건별 비교' 표(출처·환자군·조건·값) 추가. 표2-6 '일반 5–7'에 '조건 없음 → 단독 정답 X' 주석. 소아 GIR 행에 ESPEN 표와 불일치 경고. 치트 [GIR]을 조건별로 재작성 |
+| E3 | 4.2 예제를 3.4 kcal/g 기준으로 재계산: 포도당 324 g · D50 647 mL · 1,647 mL · 73–77 mL/h · osm ≈1,591. 3.85(286 g)는 교재 표기로만 남김. 지질 계수 9 vs 10 kcal/g 주석 추가 |
+| E4 | 5.4 BUD 숫자 누락 복원(범주1 냉장 24 h, 범주2 냉장 3일, 교재 요약 TXT p172) · '냉일'→'냉장 9일'. 치트 [투여] 동일 |
+| E5 | 소아 필터 행을 '현행 단일 1.2 μm / 0.22·1.2 이원 = 구 권고'로 교체 |
+| E6 | '말초 PN ≤10–14일' 두 곳에 '출처 미확인 · 보류' 표시 |
+| E7 | 8 질환별에 AKI 단백 비교 행(강의자료 84 g vs ESPEN 2024 91–105 g, 원문 미보유) |
+
+`check_content.py`의 FACTS 표가 위 수치를 핵심 절·치트 행·생성된 두 HTML에서 모두 찾고, 옛 문구('냉일', '÷3.85=286g→D50 572mL', '영양위험 평가' 등)가 다시 들어오면 실패시킨다.
+
+### 12.3 새 단원 (data-added="task3", 11개)
+
+- 3.4 국내 PN 제품 비교: 표 틀만 있다. **국내 허가자료를 하나도 확보하지 못해** 조성 칸은 비어 있고, 후보 4종(핵심본에 이름만 나오는 제품)은 모두 `unconfirmed`다(`content/products.json`). 수치를 채우려면 `confirmedAsOf`와 출처가 필수(검사 규칙).
+- 8.1–8.5 질환별 보강(폐·심장·신경계 / 당뇨·비만 / 수술·암·화상 / 섭식장애·임부·노인 / 영양소–약물): 보유 공개자료(ASPEN SPN 2026, ASPEN Factsheet 2024, CCN 요약 2022)와 핵심본에 흩어진 값만 모았다. 각 단원 끝에 '원문 미확보 · 추가 검토' 상자.
+- 10.1 HPN 환자 교육: ESPEN HPN 2020 Statement 3·4, R6·R57·R58.
+- 12 처방 검토·DRP 사례 5건: 보유 ASPEN Myths·Checklists·SPN, ESPEN HPN 문구로만 판단.
+- 13 공통영역(메뉴 신설) · 13.1 효과지표 정의식(지정 교재 대조 전) · 13.2 Liao 2026 메타분석 비평 사례.
+
+### 12.4 문항
+
+- 기본 퀴즈 = `includeInBasicSet`(verified ∧ 한국어) 54건. pending·excluded는 HTML의 `QUESTION_BANK`(한국어 468건)에만 넣고 화면에는 내지 않는다(Task 5 검토 UI용).
+- 새 verified 3건은 모두 `originalPractice`이며 보유 원문 인용으로 정답·선택지를 되짚을 수 있다: `op-case-ppn-osm`(ASPEN Myths p.3), `op-ebm-model-rule`·`op-ebm-incidence-measure`(Liao 2026 p.1·3·4·6·8). 사람의 임상 검토는 아직이다.
+- `questions.json`에 `needle`(구 퀴즈의 위치 찾기 문구)을 추가했다. 핵심본 문구가 바뀌어 자동 연결이 생긴 4건 중 3건(`medex-019`·`bcnsp-095`·`quizlet-m2b-045`)은 우연한 일반어 일치라 Task 2 값으로 되돌렸고, `cnsc-024`(20% ILE 2.0 kcal/mL → 4.2)만 맞는 연결이라 유지했다.
+
+### 12.5 문헌 정정
+
+- CMAJ EBM 3편의 보유 파일은 PDF가 아니라 PMC 다운로드 대기 HTML(약 1.8 KB)이었다 → `accessStatus=not-held`. `PMC_Impact_BCNSP_PN_NICU.pdf`도 같은 상태(비고에 기록).
+- `kshp-yeongyang-yakryo-lecture-answers` reviewedAt 2026-11-14(Task 2 문항별 대조), `oa-en-intolerance-pancreatitis-2026` reviewedAt 2026-11-14(partial-values).
+
+### 12.6 coverage 변경
+
+missing→partial 6행: `common-clinical-statistics`, `common-appraisal-application`, `spec-surgery`, `format-appropriateness`, `format-drp`, `format-patient-education`. 보유 근거로 쓴 전용 단락이 생긴 행만 올렸다. 나머지 missing 7행(`common-ebm-ebcp`, `common-literature-types`, 폐·심장·신경계, 임부, 노인)은 단원 틀만 있어 그대로 두었다. covered는 여전히 0이다.

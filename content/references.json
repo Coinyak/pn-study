@@ -960,13 +960,13 @@
       "title": "Tips for learning and teaching evidence-based medicine: introduction to the series (Wyer PC et al., CMAJ 2004)",
       "year": 2004,
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC509048/",
-      "accessStatus": "have-pdf",
+      "accessStatus": "not-held",
       "reviewedAt": null,
       "reviewScope": "none",
       "kind": "supplementary-held",
       "designatedByNotice": false,
       "heldFile": "03_CMAJ_EBM/CMAJ_EBM_intro_Wyer_2004.pdf",
-      "note": "공지 지정 문헌이 아님(공통영역 보조 자료 후보). 핵심표·문항에 미반영.",
+      "note": "공지 지정 문헌이 아님(공통영역 보조 자료 후보). 핵심표·문항에 미반영. Task 3(2026-11-14) 확인: heldFile은 PDF가 아니라 PMC 'Preparing to download' 대기 HTML(약 1.8 KB)이다. 원문 미보유로 정정. URL에서 다시 받아야 한다.",
       "scopeIds": [
         "common-ebm-ebcp"
       ]
@@ -976,13 +976,13 @@
       "title": "Tips for learners of evidence-based medicine: 1. Relative risk reduction, absolute risk reduction and number needed to treat (Barratt A et al., CMAJ 2004)",
       "year": 2004,
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC509050/",
-      "accessStatus": "have-pdf",
+      "accessStatus": "not-held",
       "reviewedAt": null,
       "reviewScope": "none",
       "kind": "supplementary-held",
       "designatedByNotice": false,
       "heldFile": "03_CMAJ_EBM/CMAJ_EBM_RRR_ARR_NNT_Barratt_2004.pdf",
-      "note": "공지 지정 문헌이 아님. 핵심표·문항에 미반영.",
+      "note": "공지 지정 문헌이 아님. 핵심표·문항에 미반영. Task 3(2026-11-14) 확인: heldFile은 PDF가 아니라 PMC 'Preparing to download' 대기 HTML(약 1.8 KB)이다. 원문 미보유로 정정. URL에서 다시 받아야 한다.",
       "scopeIds": [
         "common-clinical-statistics"
       ]
@@ -992,13 +992,13 @@
       "title": "Tips for learners of evidence-based medicine: 2. Measures of precision (confidence intervals) (Montori VM et al., CMAJ 2004)",
       "year": 2004,
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC516199/",
-      "accessStatus": "have-pdf",
+      "accessStatus": "not-held",
       "reviewedAt": null,
       "reviewScope": "none",
       "kind": "supplementary-held",
       "designatedByNotice": false,
       "heldFile": "03_CMAJ_EBM/CMAJ_EBM_confidence_intervals_Montori_2004.pdf",
-      "note": "공지 지정 문헌이 아님. 핵심표·문항에 미반영.",
+      "note": "공지 지정 문헌이 아님. 핵심표·문항에 미반영. Task 3(2026-11-14) 확인: heldFile은 PDF가 아니라 PMC 'Preparing to download' 대기 HTML(약 1.8 KB)이다. 원문 미보유로 정정. URL에서 다시 받아야 한다.",
       "scopeIds": [
         "common-clinical-statistics"
       ]
@@ -1031,9 +1031,11 @@
       "kind": "supplementary-held-public",
       "designatedByNotice": false,
       "heldFile": "02_ASPEN_공개자료/ASPEN_Adult_Critically_Ill_Factsheet_2024.pdf",
-      "note": "추출본 보유. GIR 수치는 이 자료에 없음(기존 노트). 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "note": "추출본 보유. GIR 수치는 이 자료에 없음(기존 노트). 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료. Task 3: Question 1 해설(호흡성 산증·고TG 시 감량 검토, lipid-based sedation 열량 산입)을 8.x 보강에 인용.",
       "scopeIds": [
-        "spec-critical-care"
+        "spec-critical-care",
+        "spec-ddi-nutrient-drug",
+        "spec-dz-lung"
       ]
     },
     {
@@ -1242,9 +1244,13 @@
       "kind": "supplementary-held-public",
       "designatedByNotice": false,
       "heldFile": "02_ASPEN_공개자료/ASPEN_Supplemental_PN_Critically_Ill_2026.pdf",
-      "note": "추출본 보유(SPN day 7 관련 대조). 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료.",
+      "note": "추출본 보유(SPN day 7 관련 대조). 공지 지정 문헌의 원문이 아니라 ASPEN 공개 보조자료. Task 3: 추출본 p.1–2의 수술·암 항목과 ARDS·췌장암 사례를 질환별 보강(8.x)·처방 검토 사례에 인용. 각주 인용 원 논문은 미확인.",
       "scopeIds": [
-        "spec-critical-care"
+        "format-appropriateness",
+        "spec-cancer",
+        "spec-critical-care",
+        "spec-dz-lung",
+        "spec-surgery"
       ]
     },
     {
@@ -1258,9 +1264,11 @@
       "kind": "secondary-summary",
       "designatedByNotice": false,
       "heldFile": "05_기타_요약_학습자료/Critical_Care_Nutrition_Guidelines_Summary.pdf",
-      "note": "제조사 요약본. 지침 원문이 아니며 지정 문헌도 아님. 추출본 보유.",
+      "note": "제조사 요약본. 지침 원문이 아니며 지정 문헌도 아님. 추출본 보유. Task 3: 비만(ASPEN/SCCM 2016 요약 문구)·화상 단백 문구를 8.x 보강에 인용 — 요약본 문구이며 지침 원문 대조 아님.",
       "scopeIds": [
-        "spec-critical-care"
+        "spec-burn",
+        "spec-critical-care",
+        "spec-dz-obesity"
       ]
     },
     {
@@ -1346,7 +1354,7 @@
       "kind": "supplementary-held-oa",
       "designatedByNotice": false,
       "heldFile": "03_CMAJ_EBM/BCNSP_PN_NICU_OpenAccess.pdf",
-      "note": "PMC_Impact_BCNSP_PN_NICU.pdf가 같은 폴더에 있으나 동일 논문인지 미확인. 지정 문헌 아님.",
+      "note": "PMC_Impact_BCNSP_PN_NICU.pdf가 같은 폴더에 있으나 동일 논문인지 미확인. 지정 문헌 아님. Task 3 확인: 같은 폴더의 PMC_Impact_BCNSP_PN_NICU.pdf는 PDF가 아닌 PMC 대기 HTML(1.8 KB)이다. BCNSP_PN_NICU_OpenAccess.pdf(10쪽)만 실제 PDF.",
       "scopeIds": []
     },
     {
@@ -1369,13 +1377,16 @@
       "year": 2026,
       "url": "https://doi.org/10.1186/s40795-026-01332-1",
       "accessStatus": "have-pdf",
-      "reviewedAt": null,
-      "reviewScope": "none",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "partial-values",
       "kind": "supplementary-held-oa",
       "designatedByNotice": false,
       "heldFile": "03_CMAJ_EBM/Enteral_Nutrition_Intolerance_Pancreatitis_BMCNutr_2026.pdf",
-      "note": "지정 문헌 아님. 메타분석 해석 사례 후보.",
-      "scopeIds": []
+      "note": "지정 문헌 아님. 메타분석 해석 사례 후보. Task 3: 추출 텍스트로 방법(p.3 Data synthesis)·결과(p.4–7 pooled OR·I²)·한계(p.8–9)를 읽고 공통영역 해석 사례에 사용. 그림·보충표(Table S1, Figure S1–S8)는 미확인.",
+      "scopeIds": [
+        "common-appraisal-application",
+        "common-clinical-statistics"
+      ]
     },
     {
       "id": "imsangyoungyang-gilajabi",
@@ -1405,12 +1416,12 @@
       "year": 2026,
       "url": null,
       "accessStatus": "have-extract",
-      "reviewedAt": null,
-      "reviewScope": "none",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "item-by-item-answers",
       "kind": "training-material-qa",
       "designatedByNotice": false,
       "heldFile": "06_학습_노트/_kshp_extract.txt (+ _kshp_questions.json)",
-      "note": "전문약사 정맥영양 자격시험 공지와 별개인 '영양약료' 교육/시험 자료. 강의 PDF 11권 원본은 보유 폴더에 없음. 문항 originType·기출 여부 추정 금지(Task 2).",
+      "note": "전문약사 정맥영양 자격시험 공지와 별개인 '영양약료' 교육/시험 자료. 강의 PDF 11권 원본은 보유 폴더에 없음. 문항 originType·기출 여부 추정 금지(Task 2). Task 2에서 HTML 52문항을 해설집 정답·선택지 해설과 문항별 대조(정답 index·stem 복원·pending 5건 사유는 questions.json). 강의 PDF 쪽수는 해설집의 [강의 근거] 표기를 옮긴 것이며 강의 PDF 자체는 대조하지 않음.",
       "scopeIds": []
     }
   ]

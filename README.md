@@ -10,4 +10,12 @@ Static GitHub Pages site for PN core notes and linked quiz study HTML.
 
 ## Source
 
-Files are synced from `참고문헌_정리/06_학습_노트/`.
+`PN_study_split.html` and `PN_core_A4_print.html` are generated. Edit `content/` (core sections, menu, questions, products) or `src/` (layout shells), then:
+
+```sh
+python3 scripts/build.py          # validates, then writes both HTML files
+python3 scripts/check_content.py  # structural checks + clinical review summary
+python3 -m unittest tests/test_check_content.py
+```
+
+`scripts/export_questions.py` regenerates `content/questions.json` from the frozen legacy quiz array (`src/legacy/quiz-raw.json`).

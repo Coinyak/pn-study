@@ -1,0 +1,657 @@
+{
+ "note": "Task 3 시작 시점(8309229) PN_study_split.html 핵심본에서 추출한 기준선. check_content.py가 기존 sec-* ID와 형광(mark) 출처가 모두 남아 있는지 대조한다.",
+ "sectionIds": [
+  "sec-eval-0-영양평가-PN-직결만",
+  "sec-indications-1-적응증-시작시점-지연",
+  "sec-cho_gir-2-구성요소",
+  "sec-cho_gir-2-1-탄수화물-dextrose",
+  "sec-lipid-2-2-지방-ILE",
+  "sec-protein-2-3-단백질-아미노산-AA",
+  "sec-fluid_lytes-2-4-수분",
+  "sec-fluid_lytes-2-5-전해질",
+  "sec-vit_te-2-6-비타민",
+  "sec-vit_te-2-7-미량원소-TE",
+  "sec-route-3-투여경로-제형",
+  "sec-route-3-1-말초-vs-중심",
+  "sec-route-3-2-2-in-1-vs-3-in-1-TNA",
+  "sec-route-3-3-MCB-다챔버-백-GL-ASPEN-Myths-ISMP-2025",
+  "sec-calc_filter-4-요구량-투여계획-계산",
+  "sec-calc_filter-4-1-에너지",
+  "sec-calc_filter-4-2-계산-5단계-상한-체크",
+  "sec-calc_filter-4-3-삼투압-계산-표9-17-EXAM-p153",
+  "sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE",
+  "sec-stability-5-조제-안정성-투여-주의사항",
+  "sec-stability-5-1-혼합-순서",
+  "sec-stability-5-2-Ca-P-침전",
+  "sec-stability-5-3-배합금기-Y-site",
+  "sec-stability-5-4-필터-hang-time-세트-BUD",
+  "sec-complications-6-합병증",
+  "sec-complications-6-1-3열-요약",
+  "sec-complications-6-2-재급식-증후군-Refeeding",
+  "sec-complications-6-3-간담도-합병증-PNALD",
+  "sec-complications-6-4-대사성-골질환-MBD",
+  "sec-lipid-6-5-필수지방산-결핍-EFAD",
+  "sec-monitor-7-모니터링-Lab-중단",
+  "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179",
+  "sec-monitor-7-2-Lab-정상범위",
+  "sec-monitor-7-3-PN-중단-이행",
+  "sec-disease-8-질환별-PN",
+  "sec-peds-9-소아-신생아",
+  "sec-hpn-10-재택-PN-HPN",
+  "sec-cheat-11-치트-암기-블록"
+ ],
+ "marks": [
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "1.2–1.5",
+   "count": 2
+  },
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "140~180 mg/dL",
+   "count": 1
+  },
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "BCAA",
+   "count": 3
+  },
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "Cr·Se",
+   "count": 1
+  },
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "Cu·Mn",
+   "count": 1
+  },
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "NRS 2002 · NUTRIC",
+   "count": 1
+  },
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "isoniazid",
+   "count": 1
+  },
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "thiamine",
+   "count": 5
+  },
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "≤<mark class=\"hl-yellow\" title=\"병원약사회\">0.11 g/kg/h",
+   "count": 2
+  },
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "재급식",
+   "count": 2
+  },
+  {
+   "class": "hl-both",
+   "title": "전문약사+병원약사회",
+   "html": "표준 AA",
+   "count": 2
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "&gt;2%/1주 · &gt;5%/1월 · &gt;7.5%/3월",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "100 mL/kg",
+   "count": 2
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "10–15 mEq",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "12시간 이내",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "150:1",
+   "count": 3
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "20–40 mmol",
+   "count": 2
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "24 h",
+   "count": 3
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "24시간",
+   "count": 2
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "2~4%",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "55 μg",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "55&nbsp;μg",
+   "count": 2
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "5~7 mg/kg/min",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "80~100:1",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "80–100:1",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "900 mOsm/L",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "<mark class=\"hl-yellow\" title=\"병원약사회\">B12",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "CRRT",
+   "count": 3
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "Ca <b><mark class=\"hl-pink\" title=\"전문약사 EXAM\">10–15 mEq",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "Ca:P",
+   "count": 3
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "Cu·Mn",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "Gln",
+   "count": 2
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "LA ~50%",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "Mn·Cu",
+   "count": 2
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "P 먼저",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "PICC",
+   "count": 2
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "PICC tip SVC",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "TG ≥400",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "Zn 3–5",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "regular human insulin(RI)만",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "selenite",
+   "count": 2
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "taurine · tyrosine · <mark class=\"hl-yellow\" title=\"병원약사회\">cysteine",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "≤7 g/kg/d",
+   "count": 2
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "≤7 g/kg/day",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "≥ stage II",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "고령♀ 0.45 × 체중",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "담즙산",
+   "count": 3
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "당농도(%) × 50",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "인 먼저",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "키(m)² × 22",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "혈청 알부민 &lt;3.0 g/dL",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "확산형 복막염 · 심한 장폐색 · 장관 마비 · 난치성 구토·설사 · 심각한 GI 출혈",
+   "count": 1
+  },
+  {
+   "class": "hl-pink",
+   "title": "전문약사 EXAM",
+   "html": "흡기 O₂ · 호기 CO₂ 분압",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "0.11 g/kg/h",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "0.22",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "1.2",
+   "count": 3
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "50%DW",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "ACD",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "AKI",
+   "count": 2
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "B12",
+   "count": 2
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "Ca×P &gt;55",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "Crohn",
+   "count": 2
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "Crohn(크론)",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "DHA",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "DNR ≠ HPN 적응/금기",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "EFAD",
+   "count": 3
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "EPA",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "EPA→E-resolvin",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "Furtman®(초기 4종) = Cr·Cu·Mn·Zn",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "HEN 기계합병증: 이탈·폐쇄·육아조직·누출",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "HPN",
+   "count": 3
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "HPN QOL↓: 피로·수면장애·야뇨·주당 infusion 횟수",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "Loperamide",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "NPC:N 150–250:1",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "NRS-2002 ≥3 = 영양위험",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "NUTRIC",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "Na deficit = (목표 Na − 현재 Na) × TBW",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "Omeprazole",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "PNALD",
+   "count": 3
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "PN→EN 중복공급",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "SOFA coagulation = platelet (≠ INR)",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "cysteine",
+   "count": 4
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "refeeding",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "regular insulin(+glucose)",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "같다",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "고혈당",
+   "count": 3
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "과잉독성: 지용성 A·D·E 주의 · 수용성 C 상대↓",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "구조지질(Structolipid)",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "기저-볼루스",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "담즙정체",
+   "count": 3
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "더 높다",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "성장평가",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "스트레스 고혈당 = 입원 중 &gt;140 mg/dL",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "저인산혈증",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "저혈당 &lt;70",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "조건부 필수",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "질소평형 = 섭취 N − (UUN + 4)",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "청소율 MCT(capric C10) &gt; LCT",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "포도당불내성",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "포도당신생 선호 AA = alanine",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "필수지방",
+   "count": 1
+  },
+  {
+   "class": "hl-yellow",
+   "title": "병원약사회",
+   "html": "회장 ≥20 cm 절제 ⟶ B12",
+   "count": 1
+  }
+ ]
+}

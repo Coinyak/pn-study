@@ -178,15 +178,23 @@
         "keywordOnly": "quiz topic과 무관하게 stem/needle 키워드만 일치(최저 신뢰도)"
       },
       "note": "한 문항이 여러 행에 중복 매핑될 수 있음. quiz topic→핵심표 연결은 #core .sec[data-topic] 속성이며 개별 문항–sec ID 고정 링크는 데이터에 없음(런타임 needle 점수화)."
+    },
+    "task3Update": {
+      "checkedAt": "2026-11-14",
+      "coreSource": "content/core.html (Task 3부터 HTML 2종은 scripts/build.py 생성물)",
+      "rule": "Task 3에서 coverage를 올린 행은 보유 근거로 쓴 전용 단락이 생긴 경우(missing→partial)뿐이다. covered는 여전히 0 — 지정 문헌 장·쪽 대조가 없기 때문이다.",
+      "questionIdsByBasis.manual": "Task 3 자체 연습문항(op-*)을 손으로 연결한 것."
     }
   },
   "scopes": [
     {
       "id": "common-ebm-ebcp",
       "label": "EBM·EBCP 이해",
-      "topicIds": [],
+      "topicIds": [
+        "sec-common-13-공통영역-의학통계-논문비평"
+      ],
       "coverage": "missing",
-      "gapNote": "핵심표·문항 모두 없음(핵심표 본문에 EBM/NNT/RRR/신뢰구간 용어 0건). 지정 교재(Users' Guides 3판 등)는 미확보. 보유 CMAJ EBM 시리즈 3편은 공지 지정 문헌이 아니므로 보조 자료로만 사용. 단원 신설은 Task 3. [문항 매핑 v1: 3건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "핵심표·문항 모두 없음(핵심표 본문에 EBM/NNT/RRR/신뢰구간 용어 0건). 지정 교재(Users' Guides 3판 등)는 미확보. 보유 CMAJ EBM 시리즈 3편은 공지 지정 문헌이 아니므로 보조 자료로만 사용. 단원 신설은 Task 3. [문항 매핑 v1: 3건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 공통영역 메뉴·단원(13)을 신설했으나 EBM·EBCP 개념 서술은 지정 교재 미보유로 비어 있다. missing 유지.]",
       "officialLineId": "C1",
       "group": "common",
       "officialText": "근거기반의학(Evidence-Based Medicine) 및 근거기반임상실무(Evidence-Based Clinical Practice, EBCP)의 이해",
@@ -216,9 +224,11 @@
     {
       "id": "common-literature-types",
       "label": "의약문헌의 종류·특징",
-      "topicIds": [],
+      "topicIds": [
+        "sec-common-13-공통영역-의학통계-논문비평"
+      ],
       "coverage": "missing",
-      "gapNote": "전용 단원·문항 없음. 지정 교재(Malone Drug Information 7판, 약료정보학 Section III 제9–13·16장)는 미확보라 장·쪽 확인 대기. [문항 매핑 v1: 해당 문항 0건.]",
+      "gapNote": "전용 단원·문항 없음. 지정 교재(Malone Drug Information 7판, 약료정보학 Section III 제9–13·16장)는 미확보라 장·쪽 확인 대기. [문항 매핑 v1: 해당 문항 0건.] [Task 3: 13단원에 범위만 표시. 문헌 종류 서술·문항 없음. missing 유지.]",
       "officialLineId": "C2",
       "group": "common",
       "officialText": "의약문헌의 종류 및 특징",
@@ -238,9 +248,12 @@
     {
       "id": "common-clinical-statistics",
       "label": "임상통계 기본 개념",
-      "topicIds": [],
-      "coverage": "missing",
-      "gapNote": "전용 단원·문항 없음. 효과지표(RRR/ARR/NNT)·신뢰구간은 보유 CMAJ 2편이 있으나 아직 어떤 핵심표에도 반영되지 않음. 교재 장·쪽(DiCenzo 2판, Browner 5판, 임상실무약학 27·29장 등) 확인 대기. [문항 매핑 v1: 해당 문항 0건.]",
+      "topicIds": [
+        "sec-common-13-1-효과지표-정밀도",
+        "sec-common-13-2-논문-해석-사례-메타분석"
+      ],
+      "coverage": "partial",
+      "gapNote": "전용 단원·문항 없음. 효과지표(RRR/ARR/NNT)·신뢰구간은 보유 CMAJ 2편이 있으나 아직 어떤 핵심표에도 반영되지 않음. 교재 장·쪽(DiCenzo 2판, Browner 5판, 임상실무약학 27·29장 등) 확인 대기. [문항 매핑 v1: 해당 문항 0건.] [Task 3: 13.1 효과지표 정의표(표준 정의식, 지정 교재 장·쪽 대조 전) + 13.2 보유 OA 메타분석의 OR·CI·I² 해석. 검증 문항 2건(op-ebm-*)은 보유 논문 본문 대조. 지정 교재 미보유라 covered 불가.]",
       "officialLineId": "C3",
       "group": "common",
       "officialText": "임상통계의 기본 개념",
@@ -252,20 +265,29 @@
         "cmaj-ebm-rrr-arr-nnt-barratt-2004",
         "cmaj-ebm-ci-montori-2004"
       ],
-      "questionMapping": "none-found",
-      "questionIds": [],
+      "questionMapping": "manual-task3",
+      "questionIds": [
+        "op-ebm-model-rule",
+        "op-ebm-incidence-measure"
+      ],
       "questionIdsByBasis": {
         "topicAndKeyword": [],
         "topicOnly": [],
-        "keywordOnly": []
+        "keywordOnly": [],
+        "manual": [
+          "op-ebm-model-rule",
+          "op-ebm-incidence-measure"
+        ]
       }
     },
     {
       "id": "common-appraisal-application",
       "label": "논문 해석·비평·임상적용",
-      "topicIds": [],
-      "coverage": "missing",
-      "gapNote": "전용 단원·문항 없음. 영양지원 논문(보유 OA 논문 4편 등)을 이용한 해석 사례는 아직 없음. 공통영역 문항은 검증 가능한 원문 확보 전 작성하지 않는다. [문항 매핑 v1: 해당 문항 0건.]",
+      "topicIds": [
+        "sec-common-13-2-논문-해석-사례-메타분석"
+      ],
+      "coverage": "partial",
+      "gapNote": "전용 단원·문항 없음. 영양지원 논문(보유 OA 논문 4편 등)을 이용한 해석 사례는 아직 없음. 공통영역 문항은 검증 가능한 원문 확보 전 작성하지 않는다. [문항 매핑 v1: 해당 문항 0건.] [Task 3: 13.2 영양지원 메타분석(Liao 2026, 보유 OA PDF) 비평 사례 + 검증 문항 2건. 그림·보충표 미확인, 지정 교재 미보유.]",
       "officialLineId": "C4",
       "group": "common",
       "officialText": "논문해석과 비평, 임상적용",
@@ -275,12 +297,19 @@
         "dicenzo-biostat-2e-2015",
         "oa-neonatal-pn-treatment-problems-2024"
       ],
-      "questionMapping": "none-found",
-      "questionIds": [],
+      "questionMapping": "manual-task3",
+      "questionIds": [
+        "op-ebm-model-rule",
+        "op-ebm-incidence-measure"
+      ],
       "questionIdsByBasis": {
         "topicAndKeyword": [],
         "topicOnly": [],
-        "keywordOnly": []
+        "keywordOnly": [],
+        "manual": [
+          "op-ebm-model-rule",
+          "op-ebm-incidence-measure"
+        ]
       }
     },
     {
@@ -1178,10 +1207,11 @@
         "sec-calc_filter-4-2-계산-5단계-상한-체크",
         "sec-calc_filter-4-3-삼투압-계산-표9-17-EXAM-p153",
         "sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE",
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-cho_gir-2-1-탄수화물-dextrose",
+        "sec-case-12-처방-검토-사례"
       ],
       "coverage": "partial",
-      "gapNote": "계산 5단계·삼투압·교정 공식 예제 있음. 예제 내부에서 dextrose를 3.85 kcal/g(교재 예제)와 3.4 kcal/g(본문 기본)로 혼용해 결과가 달라지는 점이 명시돼 있어 Task 2에서 근거 확정 필요. 문항 단위 계산 검증 미실시. [문항 매핑 v1: 31건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "계산 5단계·삼투압·교정 공식 예제 있음. 예제 내부에서 dextrose를 3.85 kcal/g(교재 예제)와 3.4 kcal/g(본문 기본)로 혼용해 결과가 달라지는 점이 명시돼 있어 Task 2에서 근거 확정 필요. 문항 단위 계산 검증 미실시. [문항 매핑 v1: 31건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 4.2 예제를 3.4 kcal/g 기준(324 g)으로 정정(E3). 사례 A 추가.]",
       "officialLineId": "S2c1",
       "group": "specialty",
       "officialText": "영양지원계획 및 조성 선택 > 환자맞춤형 영양지원계획 > 영양공급량 계산",
@@ -1226,7 +1256,8 @@
         "quizlet-m2b-003",
         "quizlet-m2b-009",
         "quizlet-m2b-051",
-        "quizlet-cna-012"
+        "quizlet-cna-012",
+        "op-case-ppn-osm"
       ],
       "questionIdsByBasis": {
         "topicAndKeyword": [],
@@ -1263,6 +1294,9 @@
           "quizlet-m2b-009",
           "quizlet-m2b-051",
           "quizlet-cna-012"
+        ],
+        "manual": [
+          "op-case-ppn-osm"
         ]
       }
     },
@@ -1275,10 +1309,11 @@
         "sec-route-3-2-2-in-1-vs-3-in-1-TNA",
         "sec-route-3-3-MCB-다챔버-백-GL-ASPEN-Myths-ISMP-2025",
         "sec-stability-5-4-필터-hang-time-세트-BUD",
-        "sec-hpn-10-재택-PN-HPN"
+        "sec-hpn-10-재택-PN-HPN",
+        "sec-case-12-처방-검토-사례"
       ],
       "coverage": "partial",
-      "gapNote": "말초 vs 중심, 2-in-1 vs 3-in-1, MCB, 필터, 주입 시간은 있음. 접근기구(CVC/PICC/port) 선택·관리는 HPN 단락에 일부만, ASPEN CVAD 2019는 미확보. 필터 구/현행 서술 충돌과 BUD 숫자 누락은 Task 2. [문항 매핑 v1: 89건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "말초 vs 중심, 2-in-1 vs 3-in-1, MCB, 필터, 주입 시간은 있음. 접근기구(CVC/PICC/port) 선택·관리는 HPN 단락에 일부만, ASPEN CVAD 2019는 미확보. 필터 구/현행 서술 충돌과 BUD 숫자 누락은 Task 2. [문항 매핑 v1: 89건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 사례 A(말초 삼투압)·B(필터)·C(ILE hang time) 추가.]",
       "officialLineId": "S2c2",
       "group": "specialty",
       "officialText": "영양지원계획 및 조성 선택 > 환자맞춤형 영양지원계획 > 투여경로선택 및 주입",
@@ -1385,7 +1420,8 @@
         "quizlet-m2b-046",
         "quizlet-m2b-050",
         "quizlet-m2b-051",
-        "quizlet-cna-002"
+        "quizlet-cna-002",
+        "op-case-ppn-osm"
       ],
       "questionIdsByBasis": {
         "topicAndKeyword": [],
@@ -1480,6 +1516,9 @@
           "quizlet-m2b-050",
           "quizlet-m2b-051",
           "quizlet-cna-002"
+        ],
+        "manual": [
+          "op-case-ppn-osm"
         ]
       }
     },
@@ -1737,9 +1776,11 @@
     {
       "id": "spec-dz-lung",
       "label": "폐질환",
-      "topicIds": [],
+      "topicIds": [
+        "sec-disease-8-1-폐-심장-신경계"
+      ],
       "coverage": "missing",
-      "gapNote": "전용 내용 없음(COPD·호흡부전 용어 0건; 재급식의 '호흡 증상', 지질/CO2 언급 정도). 호흡계수·과다 열량 CO2 생성·ARDS 영양 등은 성인 Core 4판 해당 장 확인 후 작성. [문항 매핑 v1: 3건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "전용 내용 없음(COPD·호흡부전 용어 0건; 재급식의 '호흡 증상', 지질/CO2 언급 정도). 호흡계수·과다 열량 CO2 생성·ARDS 영양 등은 성인 Core 4판 해당 장 확인 후 작성. [문항 매핑 v1: 3건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.1에 보유 근거(ASPEN Factsheet Q1 호흡성 산증 문구, SPN 2026 ARDS 사례)만 모으고 원문 미확보를 명시. 전용 권고가 없어 missing 유지.]",
       "officialLineId": "S3a",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 신부전, 간질환, 위장관질환, 폐질환, 심장질환, 신경계질환, 당뇨 및 비만 시 영양지원",
@@ -1766,9 +1807,11 @@
     {
       "id": "spec-dz-heart",
       "label": "심장질환",
-      "topicIds": [],
+      "topicIds": [
+        "sec-disease-8-1-폐-심장-신경계"
+      ],
       "coverage": "missing",
-      "gapNote": "전용 내용 없음(심부전·심장 용어 0건). 수분·나트륨 제한, 심장악액질 등은 원문 확인 후 작성. [문항 매핑 v1: 2건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "전용 내용 없음(심부전·심장 용어 0건). 수분·나트륨 제한, 심장악액질 등은 원문 확인 후 작성. [문항 매핑 v1: 2건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.1에 행만 두고 보유 근거 없음을 명시. missing 유지.]",
       "officialLineId": "S3a",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 신부전, 간질환, 위장관질환, 폐질환, 심장질환, 신경계질환, 당뇨 및 비만 시 영양지원",
@@ -1793,9 +1836,11 @@
     {
       "id": "spec-dz-neuro",
       "label": "신경계질환",
-      "topicIds": [],
+      "topicIds": [
+        "sec-disease-8-1-폐-심장-신경계"
+      ],
       "coverage": "missing",
-      "gapNote": "전용 내용 없음(뇌졸중·삼킴장애·TBI 등 0건). 간성뇌증(HE)은 간질환 행, thiamine/Wernicke는 재급식·비타민 일부로만 존재. [문항 매핑 v1: 1건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "전용 내용 없음(뇌졸중·삼킴장애·TBI 등 0건). 간성뇌증(HE)은 간질환 행, thiamine/Wernicke는 재급식·비타민 일부로만 존재. [문항 매핑 v1: 1건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.1에 관련 단편(HE·Wernicke) 위치만 연결. missing 유지.]",
       "officialLineId": "S3a",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 신부전, 간질환, 위장관질환, 폐질환, 심장질환, 신경계질환, 당뇨 및 비만 시 영양지원",
@@ -1820,10 +1865,11 @@
       "label": "당뇨",
       "topicIds": [
         "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179",
+        "sec-disease-8-2-당뇨-비만"
       ],
       "coverage": "partial",
-      "gapNote": "PN 중 고혈당 관리(BG 140–180, 인슐린, GIR)만 있고 당뇨 환자 영양지원 전반(당뇨 특화 제형·경구 혈당강하제 조정·저혈당 관리)은 없음. ASPEN 고혈당 2013 지침은 미확보. [문항 매핑 v1: 33건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "PN 중 고혈당 관리(BG 140–180, 인슐린, GIR)만 있고 당뇨 환자 영양지원 전반(당뇨 특화 제형·경구 혈당강하제 조정·저혈당 관리)은 없음. ASPEN 고혈당 2013 지침은 미확보. [문항 매핑 v1: 33건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.2에 PN 고혈당·GIR 값과 출처를 모음. 당뇨 영양지원 전반은 ASPEN 고혈당 2013 미보유로 미작성.]",
       "officialLineId": "S3a",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 신부전, 간질환, 위장관질환, 폐질환, 심장질환, 신경계질환, 당뇨 및 비만 시 영양지원",
@@ -1917,10 +1963,11 @@
       "label": "비만",
       "topicIds": [
         "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-calc_filter-4-1-에너지"
+        "sec-calc_filter-4-1-에너지",
+        "sec-disease-8-2-당뇨-비만"
       ],
       "coverage": "partial",
-      "gapNote": "중환자 비만 단백·에너지 값(ASPEN 2016/ESPEN 2019 비교) 한두 줄만 있음. 비만 일반·대사수술 후 영양은 없음. [문항 매핑 v1: 6건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "중환자 비만 단백·에너지 값(ASPEN 2016/ESPEN 2019 비교) 한두 줄만 있음. 비만 일반·대사수술 후 영양은 없음. [문항 매핑 v1: 6건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.2에 ICU 비만 에너지·단백(ASPEN/SCCM 2016 요약 vs ESPEN 2019 교재 인용) 기관 비교. 비만 일반·대사수술 미작성.]",
       "officialLineId": "S3a",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 신부전, 간질환, 위장관질환, 폐질환, 심장질환, 신경계질환, 당뇨 및 비만 시 영양지원",
@@ -1960,10 +2007,11 @@
       "label": "수술",
       "topicIds": [
         "sec-indications-1-적응증-시작시점-지연",
-        "sec-calc_filter-4-1-에너지"
+        "sec-calc_filter-4-1-에너지",
+        "sec-disease-8-3-수술-암-화상"
       ],
-      "coverage": "missing",
-      "gapNote": "'수술 전후' 적응증 한 줄과 스트레스계수(수술 1.44)뿐. 수술 전후 영양·ERAS·면역영양은 없음. ESPEN 수술 2017 미확보. [문항 매핑 v1: 14건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "coverage": "partial",
+      "gapNote": "'수술 전후' 적응증 한 줄과 스트레스계수(수술 1.44)뿐. 수술 전후 영양·ERAS·면역영양은 없음. ESPEN 수술 2017 미확보. [문항 매핑 v1: 14건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.3에 ASPEN SPN 2026(보유 공개자료)의 복부수술 SPN 근거·사례를 정리. ESPEN 수술 2017·Core 4판 미보유, ERAS·면역영양 미작성.]",
       "officialLineId": "S3b",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 수술, 암, 중환자/화상환자에서의 영양지원",
@@ -2017,10 +2065,11 @@
       "id": "spec-cancer",
       "label": "암",
       "topicIds": [
-        "sec-disease-8-질환별-PN"
+        "sec-disease-8-질환별-PN",
+        "sec-disease-8-3-수술-암-화상"
       ],
       "coverage": "partial",
-      "gapNote": "질환별 PN 소단원에 '암(non_PN, 짧게)' 요약 행(단백·지방 비율)만 있음. 악액질·방사선·항암 관련 합병증·말기 영양은 없음. ESPEN 암 2021 미확보. [문항 매핑 v1: 5건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "질환별 PN 소단원에 '암(non_PN, 짧게)' 요약 행(단백·지방 비율)만 있음. 악액질·방사선·항암 관련 합병증·말기 영양은 없음. ESPEN 암 2021 미확보. [문항 매핑 v1: 5건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.3에 ASPEN SPN 2026 암 항목(ESPEN 암 2021 인용)을 추가. 악액질·말기 영양 미작성.]",
       "officialLineId": "S3b",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 수술, 암, 중환자/화상환자에서의 영양지원",
@@ -2057,10 +2106,11 @@
       "topicIds": [
         "sec-disease-8-질환별-PN",
         "sec-indications-1-적응증-시작시점-지연",
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-protein-2-3-단백질-아미노산-AA",
+        "sec-disease-8-2-당뇨-비만"
       ],
       "coverage": "partial",
-      "gapNote": "중환자 블록(NUTRIC, GIR≤4, 단백 1.2–2.0, SPN day 7, ILE 첫주)이 있음. ASPEN 2022 원문은 유료 미확보(공개 Factsheet·요약본만 보유). SCCM/ASPEN 소아 중환자 2017 미확보. [문항 매핑 v1: 57건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "중환자 블록(NUTRIC, GIR≤4, 단백 1.2–2.0, SPN day 7, ILE 첫주)이 있음. ASPEN 2022 원문은 유료 미확보(공개 Factsheet·요약본만 보유). SCCM/ASPEN 소아 중환자 2017 미확보. [문항 매핑 v1: 57건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.2에 ICU 비만 값 추가.]",
       "officialLineId": "S3b",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 수술, 암, 중환자/화상환자에서의 영양지원",
@@ -2207,10 +2257,11 @@
       "topicIds": [
         "sec-cho_gir-2-1-탄수화물-dextrose",
         "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-calc_filter-4-1-에너지"
+        "sec-calc_filter-4-1-에너지",
+        "sec-disease-8-3-수술-암-화상"
       ],
       "coverage": "partial",
-      "gapNote": "독립 단원 없이 GIR ≤5, 스트레스 계수(화상 2.1–2.5), 단백 1.5–2.0 등 단편 값만 흩어져 있음. 화상 에너지식·미량원소·글루타민 등은 없음. [문항 매핑 v1: 7건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "독립 단원 없이 GIR ≤5, 스트레스 계수(화상 2.1–2.5), 단백 1.5–2.0 등 단편 값만 흩어져 있음. 화상 에너지식·미량원소·글루타민 등은 없음. [문항 매핑 v1: 7건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.3에 흩어진 화상 값(스트레스계수·단백·GIR)을 모음. 화상 GIR ≤5는 출처 미확인으로 표시.]",
       "officialLineId": "S3b",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 수술, 암, 중환자/화상환자에서의 영양지원",
@@ -2252,10 +2303,11 @@
       "label": "섭식장애",
       "topicIds": [
         "sec-complications-6-2-재급식-증후군-Refeeding",
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-indications-1-적응증-시작시점-지연",
+        "sec-disease-8-4-섭식장애-임부-노인"
       ],
       "coverage": "partial",
-      "gapNote": "신경성 식욕부진은 재급식 고위험군·적응증 한 줄로만 등장. 재급식 소단원(P·K·Mg↓, thiamine, 천천히 증량)은 있으나 섭식장애 전용 영양지원은 없음. ASPEN Refeeding 2020 유료 미확보. [문항 매핑 v1: 2건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "신경성 식욕부진은 재급식 고위험군·적응증 한 줄로만 등장. 재급식 소단원(P·K·Mg↓, thiamine, 천천히 증량)은 있으나 섭식장애 전용 영양지원은 없음. ASPEN Refeeding 2020 유료 미확보. [문항 매핑 v1: 2건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.4에 재급식·적응증 연결만. ASPEN Refeeding 2020 미보유.]",
       "officialLineId": "S3c",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 섭식장애, 임부, 신생아, 미숙아, 소아, 노인환자의 영양지원",
@@ -2285,10 +2337,11 @@
       "id": "spec-pregnancy",
       "label": "임부",
       "topicIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-indications-1-적응증-시작시점-지연",
+        "sec-disease-8-4-섭식장애-임부-노인"
       ],
       "coverage": "missing",
-      "gapNote": "임신성 과다구토 적응증 한 줄, 양의 질소평형, 임신 중 엽산 결핍 언급 정도. 임부 영양요구량·임신성 당뇨·임신 중 PN은 없음. [문항 매핑 v1: 2건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "임신성 과다구토 적응증 한 줄, 양의 질소평형, 임신 중 엽산 결핍 언급 정도. 임부 영양요구량·임신성 당뇨·임신 중 PN은 없음. [문항 매핑 v1: 2건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.4에 기존 단편 위치만 연결. missing 유지.]",
       "officialLineId": "S3c",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 섭식장애, 임부, 신생아, 미숙아, 소아, 노인환자의 영양지원",
@@ -2442,9 +2495,11 @@
     {
       "id": "spec-elderly",
       "label": "노인",
-      "topicIds": [],
+      "topicIds": [
+        "sec-disease-8-4-섭식장애-임부-노인"
+      ],
       "coverage": "missing",
-      "gapNote": "노인 전용 내용 없음(TBW 계수 '고령' 구분만). 노인 영양요구량·삼킴·약물 동반·재급식 위험 등 없음. ESPEN 노인 2019 미확보. [문항 매핑 v1: 3건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "노인 전용 내용 없음(TBW 계수 '고령' 구분만). 노인 영양요구량·삼킴·약물 동반·재급식 위험 등 없음. ESPEN 노인 2019 미확보. [문항 매핑 v1: 3건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.4에 TBW 계수만. missing 유지.]",
       "officialLineId": "S3c",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 섭식장애, 임부, 신생아, 미숙아, 소아, 노인환자의 영양지원",
@@ -2473,10 +2528,11 @@
       "id": "spec-hpn",
       "label": "재택영양",
       "topicIds": [
-        "sec-hpn-10-재택-PN-HPN"
+        "sec-hpn-10-재택-PN-HPN",
+        "sec-hpn-10-1-환자-교육"
       ],
       "coverage": "partial",
-      "gapNote": "적응·접근로·주기주입·모니터(표19-7)·CVC 감염 치료·MBD·IFALD가 있고 보유 ESPEN HPN 2020과 일부 대조됨(값 단위 중심). 환자 교육(보관·주입·무균·이상 징후)·재택 EN은 부족. ASPEN CVAD 2019 미확보. [문항 매핑 v1: 33건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "적응·접근로·주기주입·모니터(표19-7)·CVC 감염 치료·MBD·IFALD가 있고 보유 ESPEN HPN 2020과 일부 대조됨(값 단위 중심). 환자 교육(보관·주입·무균·이상 징후)·재택 EN은 부족. ASPEN CVAD 2019 미확보. [문항 매핑 v1: 33건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 10.1 HPN 환자 교육(ESPEN HPN 2020 Statement 3·4, R6·R57·R58) 추가.]",
       "officialLineId": "S3d",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 재택영양",
@@ -2905,10 +2961,11 @@
       "label": "영양소–약물 상호작용(일반 포함)",
       "topicIds": [
         "sec-disease-8-질환별-PN",
-        "sec-vit_te-2-6-비타민"
+        "sec-vit_te-2-6-비타민",
+        "sec-disease-8-5-영양소-약물-상호작용"
       ],
       "coverage": "partial",
-      "gapNote": "EN–약물(phenytoin·warfarin·튜브 세척) 짧은 블록과 약물 유발 엽산 결핍 등 일부만 있고, '정맥영양 이외의 일반 상호작용'(식품·경장 포함)은 핵심표에서 사실상 비어 있음. 공식 범위가 일반 상호작용을 포함한다고 명시. [문항 매핑 v1: 6건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "EN–약물(phenytoin·warfarin·튜브 세척) 짧은 블록과 약물 유발 엽산 결핍 등 일부만 있고, '정맥영양 이외의 일반 상호작용'(식품·경장 포함)은 핵심표에서 사실상 비어 있음. 공식 범위가 일반 상호작용을 포함한다고 명시. [문항 매핑 v1: 6건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.5에 핵심본에 흩어진 EN·PN–약물 상호작용을 한 표로 모음. 식품–약물 일반 상호작용은 지정 교재 미보유로 미작성.]",
       "officialLineId": "S5",
       "group": "specialty",
       "officialText": "영양소-약물 상호작용 및 compatibility (정맥영양 이외의 일반적인 영양소-약물 상호작용이 포함됨)",
@@ -3058,10 +3115,11 @@
         "sec-stability-5-조제-안정성-투여-주의사항",
         "sec-lipid-2-2-지방-ILE",
         "sec-vit_te-2-7-미량원소-TE",
-        "sec-vit_te-2-6-비타민"
+        "sec-vit_te-2-6-비타민",
+        "sec-route-3-4-국내-PN-제품-비교"
       ],
       "coverage": "partial",
-      "gapNote": "제품명은 Furtman·Smoflipid 20%·Nutriflex lipid 10% 등 단편 언급뿐이고, 국내 허가 제품별 조성·용량 규격·확인일 표는 없음(Task 3에서 허가자료 확인 후 작성). 안정성 규칙(필터·hang time·BUD)은 있으나 BUD 일부 숫자 누락이 확인돼 있음. [문항 매핑 v1: 7건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "제품명은 Furtman·Smoflipid 20%·Nutriflex lipid 10% 등 단편 언급뿐이고, 국내 허가 제품별 조성·용량 규격·확인일 표는 없음(Task 3에서 허가자료 확인 후 작성). 안정성 규칙(필터·hang time·BUD)은 있으나 BUD 일부 숫자 누락이 확인돼 있음. [문항 매핑 v1: 7건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 3.4 국내 제품 비교표를 만들었으나 국내 허가자료를 확보하지 못해 조성 칸은 비어 있다(content/products.json, 후보 4종 모두 unconfirmed).]",
       "officialLineId": "S6",
       "group": "specialty",
       "officialText": "정맥영양 공급 제품의 특징 및 안정성 이슈 (상품형 정맥영양수액, 포도당수액, 아미노산수액, 지방유제, 미량원소, 비타민 등)",
@@ -3105,9 +3163,11 @@
     {
       "id": "format-appropriateness",
       "label": "약물요법 적절성 검토(처방 검토)",
-      "topicIds": [],
-      "coverage": "missing",
-      "gapNote": "처방 검토 사례형 콘텐츠 없음(치트 블록은 수치 암기). 출제유형이므로 Task 3에서 처방 검토 사례를 추가. [문항 매핑 v1: 5건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "topicIds": [
+        "sec-case-12-처방-검토-사례"
+      ],
+      "coverage": "partial",
+      "gapNote": "처방 검토 사례형 콘텐츠 없음(치트 블록은 수치 암기). 출제유형이므로 Task 3에서 처방 검토 사례를 추가. [문항 매핑 v1: 5건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 12단원 처방 검토 사례 5건(보유 ASPEN·ESPEN 공개자료 근거) + 검증 문항 1건(op-case-ppn-osm). ASPEN Safety/Ordering 2014 미보유.]",
       "officialLineId": "F1",
       "group": "format",
       "officialText": "약물요법의 적절성 검토",
@@ -3122,7 +3182,8 @@
         "medex-015",
         "medex-016",
         "medex-017",
-        "medex-019"
+        "medex-019",
+        "op-case-ppn-osm"
       ],
       "questionIdsByBasis": {
         "topicAndKeyword": [],
@@ -3133,15 +3194,20 @@
           "medex-016",
           "medex-017",
           "medex-019"
+        ],
+        "manual": [
+          "op-case-ppn-osm"
         ]
       }
     },
     {
       "id": "format-drp",
       "label": "DRP 파악·해결",
-      "topicIds": [],
-      "coverage": "missing",
-      "gapNote": "DRP 사례 없음. PN 안전 체크리스트(보유 ASPEN 4종)를 사례 설계 근거 후보로만 확인. [문항 매핑 v1: 해당 문항 0건.]",
+      "topicIds": [
+        "sec-case-12-처방-검토-사례"
+      ],
+      "coverage": "partial",
+      "gapNote": "DRP 사례 없음. PN 안전 체크리스트(보유 ASPEN 4종)를 사례 설계 근거 후보로만 확인. [문항 매핑 v1: 해당 문항 0건.] [Task 3: 12단원 사례별 DRP·해결 열. 체계적 DRP 분류 틀은 지정 교재 미보유.]",
       "officialLineId": "F2",
       "group": "format",
       "officialText": "약물요법 관련 문제(drug-related problems) 파악 및 해결방안 제시",
@@ -3152,22 +3218,28 @@
         "aspen-pn-checklist-03-compounding-2024",
         "aspen-pn-checklist-04-administration-2024"
       ],
-      "questionMapping": "none-found",
-      "questionIds": [],
+      "questionMapping": "manual-task3",
+      "questionIds": [
+        "op-case-ppn-osm"
+      ],
       "questionIdsByBasis": {
         "topicAndKeyword": [],
         "topicOnly": [],
-        "keywordOnly": []
+        "keywordOnly": [],
+        "manual": [
+          "op-case-ppn-osm"
+        ]
       }
     },
     {
       "id": "format-selection-plan",
       "label": "환자 맞춤형 약물 선택·약물요법 계획",
       "topicIds": [
-        "sec-calc_filter-4-요구량-투여계획-계산"
+        "sec-calc_filter-4-요구량-투여계획-계산",
+        "sec-case-12-처방-검토-사례"
       ],
       "coverage": "partial",
-      "gapNote": "계산·조성 선택 표는 있으나 환자 사례형 선택·계획 훈련은 없음(S2c와 동일 한계). [문항 매핑 v1: 해당 문항 0건.]",
+      "gapNote": "계산·조성 선택 표는 있으나 환자 사례형 선택·계획 훈련은 없음(S2c와 동일 한계). [문항 매핑 v1: 해당 문항 0건.] [Task 3: 사례 D(SPN 시기) 추가.]",
       "officialLineId": "F3",
       "group": "format",
       "officialText": "환자 맞춤형 약물 선택 및 약물요법 계획 수립",
@@ -3216,10 +3288,12 @@
       "id": "format-patient-education",
       "label": "환자 교육",
       "topicIds": [
-        "sec-hpn-10-재택-PN-HPN"
+        "sec-hpn-10-재택-PN-HPN",
+        "sec-hpn-10-1-환자-교육",
+        "sec-case-12-처방-검토-사례"
       ],
-      "coverage": "missing",
-      "gapNote": "환자 교육 전용 내용 없음. HPN 단락에 접근기구·flush 등 실무 사실은 있으나 교육 시나리오·설명 포인트는 아님. [문항 매핑 v1: 3건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "coverage": "partial",
+      "gapNote": "환자 교육 전용 내용 없음. HPN 단락에 접근기구·flush 등 실무 사실은 있으나 교육 시나리오·설명 포인트는 아님. [문항 매핑 v1: 3건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 10.1 HPN 교육(ESPEN HPN R58 등)과 사례 E. PN 외 일반 환자 교육은 없음.]",
       "officialLineId": "F5",
       "group": "format",
       "officialText": "환자 교육",
