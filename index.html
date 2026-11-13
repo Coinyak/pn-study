@@ -42,18 +42,6 @@
     overflow-x: hidden;
   }
 
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.22) 50%, transparent 60%);
-    background-size: 220% 100%;
-    animation: mist-sweep 14s ease-in-out infinite;
-    opacity: 0.65;
-  }
-
   .page {
     position: relative;
     z-index: 1;
@@ -167,11 +155,11 @@
     animation: pulse 2.4s ease-in-out infinite;
   }
 
-  /* Companion art under CTAs — tight, opaque, no plate/mask/blend */
+  /* Companion art under CTAs — large, opaque, no wash/plate */
   .companions {
     position: relative;
     margin: 1.85rem auto 0;
-    width: min(100%, 15.5rem);
+    width: min(92vw, 26rem);
     pointer-events: none;
     opacity: 0;
     background: transparent;
@@ -197,11 +185,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes mist-sweep {
-    0%, 100% { background-position: 100% 0; }
-    50% { background-position: 0% 0; }
-  }
-
   @keyframes pulse {
     0%, 100% { opacity: 0.55; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.15); }
@@ -214,13 +197,12 @@
 
   @media (max-width: 420px) {
     .companions {
-      width: min(100%, 13.5rem);
+      width: min(92vw, 26rem);
       margin-top: 1.4rem;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    body::before { animation: none; }
     .brand, .line, .ctas, .companions {
       opacity: 1;
       transform: none;
@@ -232,7 +214,7 @@
 </style>
 </head>
 <body>
-  <!-- deploy-stamp: 2026-11-13-alpha-crop -->
+  <!-- deploy-stamp: 2026-11-13-cream-redraw -->
   <div class="page">
     <main class="hero">
       <p class="brand">영양불백</p>
@@ -249,8 +231,8 @@
       </nav>
       <div class="companions" aria-hidden="true">
         <picture>
-          <source srcset="assets/chiikawa.webp?v=alpha1" type="image/webp">
-          <img src="assets/chiikawa.png?v=alpha1" alt="" width="534" height="277" decoding="async">
+          <source srcset="assets/chiikawa.webp?v=cream1" type="image/webp">
+          <img src="assets/chiikawa.png?v=cream1" alt="" width="1028" height="569" decoding="async">
         </picture>
       </div>
     </main>
