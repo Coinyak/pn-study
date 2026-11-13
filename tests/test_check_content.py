@@ -96,7 +96,7 @@ class CheckContentTest(unittest.TestCase):
         self.assertFails("E4-bud")
 
     def test_cheat_disagrees_with_core(self):
-        self.edit_core("÷3.4=324g→D50 647mL", "÷3.4=330g→D50 660mL")
+        self.edit_core("(2000 − 500 − 400) ÷ 3.4 = 324 g → D50 647 mL", "(2000 − 500 − 400) ÷ 3.4 = 330 g → D50 660 mL")
         self.assertFails("missing in cheat[계산]")
 
     def test_product_without_confirmation(self):
