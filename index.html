@@ -13,15 +13,15 @@
 <style>
   :root {
     color-scheme: light;
-    --ink: #0e1a24;
-    --ink-soft: #3d4f5c;
-    --mist: #6f8490;
-    --brand: #0a3d48;
-    --teal: #1f6b74;
-    --foam: rgba(248, 252, 253, 0.78);
-    --foam-strong: rgba(255, 255, 255, 0.92);
-    --line: rgba(14, 26, 36, 0.1);
-    --line-hot: rgba(31, 107, 116, 0.45);
+    --ink: #2a1520;
+    --ink-soft: #5c3a48;
+    --mist: #8a6572;
+    --brand: #6b2440;
+    --accent: #c45a7a;
+    --foam: rgba(255, 248, 250, 0.82);
+    --foam-strong: rgba(255, 255, 255, 0.94);
+    --line: rgba(42, 21, 32, 0.1);
+    --line-hot: rgba(196, 90, 122, 0.42);
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -34,10 +34,10 @@
     color: var(--ink);
     font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", sans-serif;
     background:
-      radial-gradient(ellipse 900px 520px at 18% -10%, rgba(31, 107, 116, 0.18), transparent 58%),
-      radial-gradient(ellipse 700px 480px at 92% 12%, rgba(10, 61, 72, 0.12), transparent 52%),
-      radial-gradient(ellipse 600px 400px at 50% 110%, rgba(154, 173, 184, 0.35), transparent 55%),
-      linear-gradient(168deg, #f3f7f9 0%, #e4eef1 46%, #d7e6ea 100%);
+      radial-gradient(ellipse 900px 520px at 18% -10%, rgba(232, 160, 180, 0.28), transparent 58%),
+      radial-gradient(ellipse 700px 480px at 92% 12%, rgba(244, 190, 200, 0.22), transparent 52%),
+      radial-gradient(ellipse 600px 400px at 50% 110%, rgba(255, 220, 228, 0.45), transparent 55%),
+      linear-gradient(168deg, #fff5f7 0%, #f8e4ea 46%, #f0d4de 100%);
     background-attachment: fixed;
     overflow-x: hidden;
   }
@@ -48,10 +48,10 @@
     inset: 0;
     pointer-events: none;
     background:
-      linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.18) 50%, transparent 60%);
+      linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.22) 50%, transparent 60%);
     background-size: 220% 100%;
     animation: mist-sweep 14s ease-in-out infinite;
-    opacity: 0.7;
+    opacity: 0.65;
   }
 
   .page {
@@ -126,14 +126,14 @@
     transform: translateY(-3px);
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.7) inset,
-      0 14px 32px rgba(14, 26, 36, 0.1);
+      0 14px 32px rgba(42, 21, 32, 0.1);
     outline: none;
   }
 
   .cta:focus-visible {
     box-shadow:
-      0 0 0 3px rgba(31, 107, 116, 0.22),
-      0 14px 32px rgba(14, 26, 36, 0.1);
+      0 0 0 3px rgba(196, 90, 122, 0.25),
+      0 14px 32px rgba(42, 21, 32, 0.1);
   }
 
   .cta strong {
@@ -152,7 +152,7 @@
   }
 
   .cta-primary {
-    border-color: rgba(31, 107, 116, 0.28);
+    border-color: rgba(196, 90, 122, 0.32);
   }
 
   .cta-primary strong::after {
@@ -162,7 +162,7 @@
     height: 0.45rem;
     margin-left: 0.45rem;
     border-radius: 50%;
-    background: var(--teal);
+    background: var(--accent);
     vertical-align: 0.12em;
     animation: pulse 2.4s ease-in-out infinite;
   }
@@ -187,7 +187,7 @@
     height: 55%;
     background: radial-gradient(
       ellipse 70% 80% at 50% 80%,
-      rgba(31, 107, 116, 0.11),
+      rgba(232, 160, 180, 0.22),
       transparent 72%
     );
     filter: blur(10px);
@@ -202,29 +202,21 @@
     animation: float-soft 7.2s ease-in-out 1.5s infinite;
   }
 
+  /* Vivid source art — soft edge fade into pink only, no teal wash */
   .companions img {
     display: block;
     width: 100%;
     height: auto;
-  }
-
-  /* Neon white-on-black trio: screen lifts the plate into mist */
-  .companions img {
-    opacity: 0.58;
-    mix-blend-mode: screen;
-    filter:
-      brightness(1.08)
-      contrast(1.05)
-      sepia(0.18)
-      hue-rotate(148deg)
-      saturate(0.55);
+    opacity: 0.96;
+    mix-blend-mode: normal;
+    filter: none;
     -webkit-mask-image:
-      radial-gradient(ellipse 78% 82% at 50% 48%, #000 42%, transparent 78%),
-      linear-gradient(to top, transparent 0%, #000 22%, #000 100%);
+      radial-gradient(ellipse 82% 86% at 50% 48%, #000 48%, transparent 82%),
+      linear-gradient(to top, transparent 0%, #000 18%, #000 100%);
     -webkit-mask-composite: source-in;
     mask-image:
-      radial-gradient(ellipse 78% 82% at 50% 48%, #000 42%, transparent 78%),
-      linear-gradient(to top, transparent 0%, #000 22%, #000 100%);
+      radial-gradient(ellipse 82% 86% at 50% 48%, #000 48%, transparent 82%),
+      linear-gradient(to top, transparent 0%, #000 18%, #000 100%);
     mask-composite: intersect;
   }
 
@@ -254,7 +246,7 @@
     }
 
     .companions img {
-      opacity: 0.48;
+      opacity: 0.94;
     }
   }
 
@@ -271,7 +263,7 @@
 </style>
 </head>
 <body>
-  <!-- deploy-stamp: 2026-11-13-index-chiikawa-v2 -->
+  <!-- deploy-stamp: 2026-11-13-index-pink-vivid -->
   <div class="page">
     <main class="hero">
       <p class="brand">영양불백</p>
