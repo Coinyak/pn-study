@@ -31,7 +31,7 @@
       "originType": "officialSample(공식 공개 샘플)·reportedExam(시험 복원·재구성)·thirdParty(해외·상업 문제은행)·originalPractice(자체 연습문항). 이번 이관본에는 officialSample·originalPractice가 없다.",
       "priority": "high=검증 시드 또는 임상 정오표 관련, medium=일반 대기, low=중복·영문·해설 불완전",
       "scopeIds": "exam-scope.json의 keyword-heuristic-v1 매핑을 그대로 상속(근거 매핑 아님).",
-      "coreSectionIds": "CORE_HINTS 문구가 들어 있는 sec-* ID. 비어 있으면 topic 단위 연결만 있다(checks.coreLink).",
+      "coreSectionIds": "CORE_HINTS 문구가 들어 있고 문항 단원에 허용된 sec-* ID(CORE_ALLOW)만. 검증·정오표 문항은 CORE_OVERRIDE로 수기 확인. 맞는 절이 없으면 빈 배열(topic 단위 연결만, checks.coreLink).",
       "revision": "1=HTML 표시본 그대로, 2=Task 2에서 stem/choices/answer를 원문 근거로 수정.",
       "evidence": "정답 근거 위치. 보유 추출본·PDF 기준이며 지정 교재(ASPEN Adult Core 4판) 쪽수는 기록하지 않음."
     },
@@ -343,7 +343,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "OpenExamPrep BCNSP/CNSC 빈출 주제의 재게시·축약본(원 문항과 중복 가능). 자체 창작 아님.",
@@ -439,7 +439,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-fluid_lytes-2-5-전해질"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -666,9 +666,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -677,7 +675,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -750,9 +748,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -761,7 +757,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.",
       "htmlTopic": "cho_gir"
@@ -1075,9 +1071,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -1088,7 +1082,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "선택지 해설 미작성."
     },
@@ -1125,7 +1119,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-indications-1-적응증-시작시점-지연"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -1171,8 +1165,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-disease-8-질환별-PN",
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-indications-1-적응증-시작시점-지연"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -1366,9 +1359,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-hpn-10-재택-PN-HPN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -1377,7 +1368,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -1412,8 +1403,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심",
-        "sec-complications-6-1-3열-요약"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -1501,8 +1491,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심",
-        "sec-complications-6-1-3열-요약"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -1546,9 +1535,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -1557,7 +1544,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -1591,7 +1578,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질",
         "sec-stability-5-2-Ca-P-침전"
       ],
       "includeInBasicSet": false,
@@ -1682,8 +1668,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-complications-6-3-간담도-합병증-PNALD"
+        "sec-protein-2-3-단백질-아미노산-AA"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -2172,9 +2157,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -2183,7 +2166,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -2218,8 +2201,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-complications-6-1-3열-요약"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -2447,8 +2429,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE",
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-lipid-2-2-지방-ILE"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -2675,8 +2656,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-complications-6-1-3열-요약"
+        "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -2719,9 +2699,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -2730,7 +2708,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -2881,10 +2859,7 @@
         "[오답] 경구 치료량은 통상 15–20 g이므로 10 g은 부족하다."
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-cheat-11-치트-암기-블록",
-        "sec-calc_filter-4-2-계산-5단계-상한-체크",
-        "sec-complications-6-1-3열-요약"
+        "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -2939,8 +2914,7 @@
         "[오답] 염증성 cytokine은 인슐린 신호와 대사를 교란하므로 옳다."
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -3433,7 +3407,7 @@
         "[오답] 신기능 저하 중환자에게 glutamine 강화 제제를 routine 투여하지 않는다."
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-peds-9-소아-신생아"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -3877,7 +3851,7 @@
         "[정답] 정답. 탄수화물 재공급 후 ATP 합성에 인이 소비되고 세포 내 이동이 증가해 저인산혈증이 대표적으로 나타난다."
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -3934,8 +3908,7 @@
         "[오답] 계산값보다 5 mEq 많다."
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-fluid_lytes-2-5-전해질"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -4151,8 +4124,7 @@
         "[오답] 단독 지방유제는 12시간 내 완료가 원칙이다. 다만 3-in-1 lipid-containing admixture는 24시간 기준이므로 제형 구분이 필요하다."
       ],
       "coreSectionIds": [
-        "sec-peds-9-소아-신생아",
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-peds-9-소아-신생아"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -4320,9 +4292,7 @@
         "[오답] REE와 BMR은 측정 조건이 다르지만 차이는 보통 약 10% 이내라는 설명으로 옳다.",
         "[오답] 체표면적/체중 비가 크고 불감성 손실·대사율이 높아 옳다."
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
       "evidence": [
@@ -4337,7 +4307,7 @@
         "translation": "ok",
         "answerEvidence": "ok",
         "choiceExplanations": "complete",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": ""
     },
@@ -4377,8 +4347,7 @@
         "[오답] 어유 기반 ILE는 소아 PNAC에서 승인·사용 근거가 있어 고려할 수 있다."
       ],
       "coreSectionIds": [
-        "sec-complications-6-3-간담도-합병증-PNALD",
-        "sec-lipid-2-2-지방-ILE"
+        "sec-peds-9-소아-신생아"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -4432,9 +4401,7 @@
         "[오답] 단백질 이화와 투석 손실이 증가할 수 있어 요구량이 감소한다고 볼 수 없다."
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-vit_te-2-6-비타민",
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -4487,9 +4454,7 @@
         "[오답] 결핍 위험이 있어 비타민·미네랄을 평가하고 필요 시 보충해야 한다.",
         "[오답] 장관을 사용할 수 있으면 oral/EN이 우선이며 EN을 회피할 이유가 없다."
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
       "evidence": [
@@ -4504,7 +4469,7 @@
         "translation": "ok",
         "answerEvidence": "ok",
         "choiceExplanations": "complete",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": ""
     },
@@ -4543,7 +4508,7 @@
         "[오답] 질문은 아미노산 조성에 관한 것이며 미네랄·비타민 증량이 답이 아니다."
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -4596,9 +4561,7 @@
         "[오답] A·D 상태를 평가하고 과잉을 피해야 하지만 모든 지용성 비타민을 일괄 중단하지 않는다.",
         "[오답] CAPD는 단백질·아미노산 손실이 있고 투석액 glucose 흡수 열량도 반드시 계산해야 한다."
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
       "evidence": [
@@ -4615,7 +4578,7 @@
         "translation": "unchecked",
         "answerEvidence": "conflict",
         "choiceExplanations": "complete",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "정답 선지가 AMA 1979 용량으로 현행 ASPEN TE 권고와 다름. 현행 기준이면 '옳은 것'이 없음."
     },
@@ -4816,8 +4779,7 @@
         "[오답] 대표적인 생화학·비타민 이상이므로 옳다."
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-complications-6-1-3열-요약"
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -4876,7 +4838,6 @@
         "[오답] 강의자료가 사용한 mNUTRIC high-risk 절단값으로 옳다."
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
         "sec-monitor-7-모니터링-Lab-중단"
       ],
       "includeInBasicSet": false,
@@ -5041,7 +5002,7 @@
         "[오답] 지용성 비타민 결핍이 가능하지만 회장 절제의 가장 직접적·특이적인 답은 B12이다."
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -5096,8 +5057,7 @@
         "[정답] 정답. 안정된 HPN은 야간 10–12시간 cyclic infusion으로 낮 시간 활동성과 삶의 질을 높일 수 있다."
       ],
       "coreSectionIds": [
-        "sec-hpn-10-재택-PN-HPN",
-        "sec-complications-6-3-간담도-합병증-PNALD"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -5315,8 +5275,7 @@
         "[정답] 정답. Selenium은 장기 영양지원에서 평가할 미량원소지만 refeeding 초기의 핵심 P/K/Mg/thiamine 감시 항목은 아니다."
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-complications-6-1-3열-요약"
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -5431,7 +5390,7 @@
         "[오답] PN의 광분해·약물 부작용과 관련될 수 있으나 필수지방산 무공급의 대표 결과가 아니다."
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE",
+        "sec-complications-6-1-3열-요약",
         "sec-lipid-6-5-필수지방산-결핍-EFAD"
       ],
       "includeInBasicSet": true,
@@ -5487,9 +5446,7 @@
         "[오답] 간기능 이상·요소회로장애 등 특정 상황의 합병증이다.",
         "[오답] 염증·기저질환·단백 손실을 반영할 수 있으나 HPN 자체의 가장 흔한 대사 합병증은 아니다."
       ],
-      "coreSectionIds": [
-        "sec-complications-6-1-3열-요약"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
       "evidence": [
@@ -5504,7 +5461,7 @@
         "translation": "ok",
         "answerEvidence": "ok",
         "choiceExplanations": "complete",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": ""
     },
@@ -5652,8 +5609,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-6-비타민",
-        "sec-complications-6-합병증"
+        "sec-complications-6-2-재급식-증후군-Refeeding",
+        "sec-complications-6-1-3열-요약"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -5697,8 +5654,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심",
-        "sec-complications-6-1-3열-요약"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -5744,8 +5700,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-cho_gir-2-구성요소",
         "sec-complications-6-4-대사성-골질환-MBD"
       ],
       "includeInBasicSet": false,
@@ -5793,10 +5747,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cheat-11-치트-암기-블록",
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -5805,7 +5756,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -5884,10 +5835,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-1-3열-요약",
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -5896,7 +5844,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -5930,7 +5878,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
+        "sec-vit_te-2-6-비타민",
         "sec-vit_te-2-7-미량원소-TE"
       ],
       "includeInBasicSet": false,
@@ -6020,9 +5968,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-1-3열-요약"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -6031,7 +5977,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -6066,9 +6012,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-route-3-1-말초-vs-중심",
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -6113,7 +6057,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
       ],
       "includeInBasicSet": false,
       "sourceNote": "NBNSC CNSC 표본으로 표기된 문항. 공식 샘플 원문과 대조하지 않아 officialSample로 표시하지 않음.",
@@ -6203,8 +6147,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심",
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -6249,8 +6192,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-2-재급식-증후군-Refeeding",
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -6295,8 +6237,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-route-3-2-2-in-1-vs-3-in-1-TNA",
+        "sec-stability-5-2-Ca-P-침전"
       ],
       "includeInBasicSet": false,
       "sourceNote": "OpenExamPrep BCNSP/CNSC 빈출 주제의 재게시·축약본(원 문항과 중복 가능). 자체 창작 아님.",
@@ -6342,8 +6284,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-cho_gir-2-구성요소"
+        "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
       "sourceNote": "OpenExamPrep BCNSP/CNSC 빈출 주제의 재게시·축약본(원 문항과 중복 가능). 자체 창작 아님.",
@@ -6434,9 +6375,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-stability-5-1-혼합-순서",
-        "sec-cho_gir-2-구성요소",
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179",
+        "sec-monitor-7-모니터링-Lab-중단"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 퀴즈 재게시·축약본(rxk-* 원문과 중복).",
@@ -6481,7 +6421,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
         "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": false,
@@ -6527,7 +6466,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-complications-6-3-간담도-합병증-PNALD"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 퀴즈 재게시·축약본(rxk-* 원문과 중복).",
@@ -6572,7 +6511,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-complications-6-1-3열-요약"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 퀴즈 재게시·축약본(rxk-* 원문과 중복).",
@@ -6616,9 +6555,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "OpenExamPrep BCSCP 문항(번역).",
       "evidence": [],
@@ -6627,7 +6564,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -6662,7 +6599,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-stability-5-2-Ca-P-침전",
+        "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
       ],
       "includeInBasicSet": false,
       "sourceNote": "OpenExamPrep BCSCP 문항(번역).",
@@ -6708,10 +6646,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "OpenExamPrep BCSCP 문항(번역).",
       "evidence": [],
@@ -6720,7 +6655,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -6754,7 +6689,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-stability-5-2-Ca-P-침전",
+        "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
       ],
       "includeInBasicSet": false,
       "sourceNote": "OpenExamPrep BCSCP 문항(번역).",
@@ -6797,9 +6733,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "NBNSC CNSC 표본으로 표기된 문항. 공식 샘플 원문과 대조하지 않아 officialSample로 표시하지 않음.",
       "evidence": [],
@@ -6808,7 +6742,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -6841,11 +6775,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE",
-        "sec-lipid-2-2-지방-ILE",
-        "sec-complications-6-합병증"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "NBNSC CNSC 표본으로 표기된 문항. 공식 샘플 원문과 대조하지 않아 officialSample로 표시하지 않음.",
       "evidence": [],
@@ -6854,7 +6784,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -6888,9 +6818,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-vit_te-2-7-미량원소-TE"
       ],
       "includeInBasicSet": false,
       "sourceNote": "NBNSC CNSC 표본으로 표기된 문항. 공식 샘플 원문과 대조하지 않아 officialSample로 표시하지 않음.",
@@ -6933,10 +6861,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-6-비타민",
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "NBNSC CNSC 표본으로 표기된 문항. 공식 샘플 원문과 대조하지 않아 officialSample로 표시하지 않음.",
       "evidence": [],
@@ -6945,7 +6870,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -6978,9 +6903,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "NBNSC CNSC 표본으로 표기된 문항. 공식 샘플 원문과 대조하지 않아 officialSample로 표시하지 않음.",
       "evidence": [],
@@ -6989,7 +6912,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -7066,7 +6989,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "NBNSC CNSC 표본으로 표기된 문항. 공식 샘플 원문과 대조하지 않아 officialSample로 표시하지 않음.",
@@ -7152,7 +7075,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-complications-6-1-3열-요약"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -7193,9 +7116,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -7204,7 +7125,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -7457,9 +7378,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -7468,7 +7387,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -7505,7 +7424,7 @@
       ],
       "coreSectionIds": [
         "sec-lipid-2-2-지방-ILE",
-        "sec-complications-6-합병증"
+        "sec-lipid-6-5-필수지방산-결핍-EFAD"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -7549,9 +7468,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -7560,7 +7477,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -7594,7 +7511,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -7682,9 +7599,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "ASPEN Self-Study CNSC(Quizlet 색인) 문항.",
       "evidence": [],
@@ -7693,7 +7608,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -7726,9 +7641,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "ASPEN Self-Study CNSC(Quizlet 색인) 문항.",
       "evidence": [],
@@ -7737,7 +7650,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -7814,9 +7727,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -7825,7 +7736,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "재게시 중복: 대표 문항 quizlet-pn-016. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-pn-016"
@@ -7909,7 +7820,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
+        "sec-stability-5-4-필터-hang-time-세트-BUD"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -8049,7 +7960,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
         "sec-eval-0-영양평가-PN-직결만"
       ],
       "includeInBasicSet": false,
@@ -8183,9 +8093,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -8194,7 +8102,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -8312,9 +8220,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -8323,7 +8229,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -8543,9 +8449,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-hpn-10-재택-PN-HPN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [],
@@ -8554,7 +8458,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -8590,9 +8494,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [],
@@ -8601,7 +8503,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -8724,9 +8626,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -8735,7 +8635,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -8768,9 +8668,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-peds-9-소아-신생아"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -8779,7 +8677,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -8902,7 +8800,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
         "sec-eval-0-영양평가-PN-직결만"
       ],
       "includeInBasicSet": false,
@@ -8944,9 +8841,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-monitor-7-2-Lab-정상범위"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -8955,7 +8850,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -9203,9 +9098,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -9214,7 +9107,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -9424,9 +9317,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -9435,7 +9326,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -9819,9 +9710,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-peds-9-소아-신생아"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -9830,7 +9719,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -9997,9 +9886,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-calc_filter-4-1-에너지"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -10089,9 +9976,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10100,7 +9985,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10133,10 +10018,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN",
-        "sec-fluid_lytes-2-4-수분"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10145,7 +10027,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10180,8 +10062,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-calc_filter-4-1-에너지"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -10224,9 +10105,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10235,7 +10114,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10271,8 +10150,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-calc_filter-4-1-에너지"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -10317,7 +10195,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-calc_filter-4-2-계산-5단계-상한-체크"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -10363,7 +10241,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-calc_filter-4-1-에너지"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -10406,9 +10284,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-구성요소"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10417,7 +10293,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10451,8 +10327,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-calc_filter-4-2-계산-5단계-상한-체크"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -10495,9 +10370,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "AllAccessDietetics 경장·정맥영양 연습문제.",
       "evidence": [],
@@ -10506,7 +10379,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10667,9 +10540,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-hpn-10-재택-PN-HPN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10678,7 +10549,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10711,9 +10582,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10722,7 +10591,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10753,9 +10622,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10764,7 +10631,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10795,11 +10662,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-vit_te-2-6-비타민",
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10808,7 +10671,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10839,9 +10702,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10850,7 +10711,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10883,9 +10744,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10894,7 +10753,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -10927,9 +10786,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-calc_filter-4-1-에너지"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -10938,7 +10795,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -11015,9 +10872,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "AllAccessDietetics 경장·정맥영양 연습문제.",
       "evidence": [],
@@ -11026,7 +10881,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -11101,10 +10956,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "AllAccessDietetics 경장·정맥영양 연습문제.",
       "evidence": [],
@@ -11113,7 +10965,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -11146,9 +10998,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -11157,7 +11007,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -11191,9 +11041,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -11202,7 +11050,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -11277,9 +11125,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -11288,7 +11134,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -11323,7 +11169,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -11368,7 +11214,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-calc_filter-4-2-계산-5단계-상한-체크"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -11417,8 +11263,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-cho_gir-2-구성요소"
+        "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -11470,7 +11315,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -11514,9 +11359,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -11525,7 +11368,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -11558,10 +11401,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -11570,7 +11410,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -11603,9 +11443,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -11614,7 +11452,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -11649,7 +11487,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -11693,9 +11531,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -11704,7 +11540,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -11786,7 +11622,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -11876,7 +11712,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
         "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
@@ -11922,7 +11757,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
         "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
       ],
       "includeInBasicSet": false,
@@ -11969,10 +11803,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -11981,7 +11812,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12018,8 +11849,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-cho_gir-2-구성요소"
+        "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -12069,9 +11899,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-1-3열-요약"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12080,7 +11908,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12114,11 +11942,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-vit_te-2-7-미량원소-TE",
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12127,7 +11951,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12162,8 +11986,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-cho_gir-2-1-탄수화물-dextrose",
         "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": false,
@@ -12207,11 +12029,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12220,7 +12038,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12253,9 +12071,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12264,7 +12080,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12297,9 +12113,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12308,7 +12122,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12390,10 +12204,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE",
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12402,7 +12213,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12437,10 +12248,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-1-3열-요약",
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "AllAccessDietetics 경장·정맥영양 연습문제.",
       "evidence": [],
@@ -12449,7 +12257,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12486,7 +12294,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-구성요소",
         "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
@@ -12535,9 +12342,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-peds-9-소아-신생아"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "AllAccessDietetics 경장·정맥영양 연습문제.",
       "evidence": [],
@@ -12546,7 +12351,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.",
       "htmlTopic": "route"
@@ -12630,7 +12435,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
       "sourceNote": "AllAccessDietetics 경장·정맥영양 연습문제.",
@@ -12720,9 +12525,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Hoag Healthcare TPN FAQ를 문항화.",
       "evidence": [],
@@ -12731,7 +12534,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12765,9 +12568,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12776,7 +12577,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12809,9 +12610,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12820,7 +12619,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12854,9 +12653,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-구성요소"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12865,7 +12662,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12898,9 +12695,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12909,7 +12704,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -12985,10 +12780,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -12997,7 +12789,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -13031,9 +12823,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -13042,7 +12832,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -13204,9 +12994,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-monitor-7-2-Lab-정상범위"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -13215,7 +13003,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -13248,9 +13036,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -13259,7 +13045,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -13293,8 +13079,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE",
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-vit_te-2-7-미량원소-TE"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -13339,11 +13124,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-lipid-2-2-지방-ILE",
-        "sec-complications-6-합병증"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -13352,7 +13133,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -13475,7 +13256,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
         "sec-vit_te-2-6-비타민",
         "sec-vit_te-2-7-미량원소-TE"
       ],
@@ -13521,9 +13301,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-1-3열-요약",
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -13567,9 +13346,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-1-3열-요약",
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -13658,9 +13436,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -13669,7 +13445,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -13703,9 +13479,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -13750,9 +13524,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -13796,9 +13568,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-2-재급식-증후군-Refeeding"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -13807,7 +13577,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -13841,9 +13611,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -13888,9 +13656,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -13899,7 +13665,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -13978,8 +13744,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-6-5-필수지방산-결핍-EFAD",
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -14066,9 +13831,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14077,7 +13840,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14111,8 +13874,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-lipid-2-2-지방-ILE"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -14156,10 +13918,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14168,7 +13927,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.",
       "relatedIds": [
@@ -14207,9 +13966,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-2-재급식-증후군-Refeeding"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14218,7 +13975,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14298,11 +14055,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14311,7 +14064,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14384,10 +14137,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14396,7 +14146,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14432,9 +14182,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-indications-1-적응증-시작시점-지연"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -14478,7 +14226,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
+        "sec-indications-1-적응증-시작시점-지연"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -14524,9 +14272,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-calc_filter-4-1-에너지"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14535,7 +14281,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14571,9 +14317,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-calc_filter-4-1-에너지"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14582,7 +14326,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14615,9 +14359,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14626,7 +14368,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14657,10 +14399,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN",
-        "sec-fluid_lytes-2-4-수분"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14669,7 +14408,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14746,9 +14485,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-stability-5-3-배합금기-Y-site"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14757,7 +14494,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14835,10 +14572,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE",
-        "sec-disease-8-질환별-PN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14847,7 +14581,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14880,9 +14614,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14891,7 +14623,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -14967,9 +14699,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -14978,7 +14708,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -15055,9 +14785,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -15066,7 +14794,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -15100,9 +14828,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -15111,7 +14837,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -15145,9 +14871,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -15156,7 +14880,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -15234,7 +14958,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE"
+        "sec-monitor-7-모니터링-Lab-중단"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -15277,9 +15001,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -15288,7 +15010,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -15323,9 +15045,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -15369,7 +15089,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
+        "sec-protein-2-3-단백질-아미노산-AA"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -15417,8 +15137,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-lipid-6-5-필수지방산-결핍-EFAD"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -15462,10 +15181,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE",
-        "sec-complications-6-합병증"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -15474,7 +15190,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -15508,9 +15224,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -15519,7 +15233,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -15554,7 +15268,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -15641,9 +15355,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
@@ -15686,9 +15398,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-구성요소"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -15697,7 +15407,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -15731,7 +15441,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
+        "sec-stability-5-4-필터-hang-time-세트-BUD"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -15777,7 +15487,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-stability-5-2-Ca-P-침전",
+        "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -15908,9 +15619,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-stability-5-4-필터-hang-time-세트-BUD",
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -15957,7 +15666,7 @@
       ],
       "coreSectionIds": [
         "sec-stability-5-4-필터-hang-time-세트-BUD",
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-stability-5-2-Ca-P-침전"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -16049,8 +15758,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-stability-5-2-Ca-P-침전"
       ],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
@@ -16093,9 +15801,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-1-3열-요약"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -16104,7 +15810,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -16179,9 +15885,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-구성요소"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -16190,7 +15894,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -16223,9 +15927,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -16234,7 +15936,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -16310,9 +16012,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -16321,7 +16021,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -16396,9 +16096,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-1-3열-요약"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -16407,7 +16105,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -16441,9 +16139,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-2-재급식-증후군-Refeeding"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -16452,7 +16148,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -16655,9 +16351,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-stability-5-1-혼합-순서"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [],
@@ -16666,7 +16360,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -16702,11 +16396,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-route-3-1-말초-vs-중심",
-        "sec-vit_te-2-6-비타민"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [],
@@ -16715,7 +16405,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -16750,10 +16440,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-vit_te-2-6-비타민"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [],
@@ -16762,7 +16449,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -16796,7 +16483,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-monitor-7-모니터링-Lab-중단"
       ],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
@@ -16842,9 +16529,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [],
@@ -16853,7 +16538,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -16888,10 +16573,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-cho_gir-2-구성요소"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [],
@@ -16900,7 +16582,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17022,9 +16704,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [],
@@ -17033,7 +16713,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17066,9 +16746,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [],
@@ -17077,7 +16755,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17113,9 +16791,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [],
@@ -17124,7 +16800,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17157,10 +16833,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE",
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [],
@@ -17169,7 +16842,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17329,9 +17002,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -17340,7 +17011,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17373,10 +17044,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-hpn-10-재택-PN-HPN",
-        "sec-complications-6-3-간담도-합병증-PNALD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -17385,7 +17053,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17420,8 +17088,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-hpn-10-재택-PN-HPN",
-        "sec-complications-6-3-간담도-합병증-PNALD"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -17553,9 +17220,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-calc_filter-4-1-에너지"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -17564,7 +17229,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17599,9 +17264,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -17610,7 +17273,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17813,9 +17476,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -17824,7 +17485,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17855,9 +17516,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -17868,7 +17527,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "원 퀴즈 정답(질소평형)과 프리알부민 '빠른 반응' 서술 병존. 출제 의도 확인 필요."
     },
@@ -17901,9 +17560,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -17912,7 +17569,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17945,9 +17602,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-4-수분"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -17956,7 +17611,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -17990,7 +17645,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -18076,7 +17731,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-calc_filter-4-2-계산-5단계-상한-체크"
+        "sec-complications-6-1-3열-요약"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -18207,9 +17862,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -18218,7 +17871,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -18252,9 +17905,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -18263,7 +17914,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -18297,9 +17948,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -18308,7 +17957,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -18421,9 +18070,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -18432,7 +18079,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -18466,9 +18113,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-1-3열-요약",
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -18512,9 +18158,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-1-3열-요약",
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -18641,7 +18286,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -18810,9 +18455,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -18821,7 +18464,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -18856,7 +18499,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
         "sec-stability-5-4-필터-hang-time-세트-BUD"
       ],
       "includeInBasicSet": false,
@@ -18901,9 +18543,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -18912,7 +18552,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -18992,9 +18632,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -19003,7 +18641,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "재게시 중복: 대표 문항 rx-electrolyte-daily. 추가 연습으로만 연결.",
       "duplicateOf": "rx-electrolyte-daily"
@@ -19038,8 +18676,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-vit_te-2-6-비타민",
         "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
       ],
       "includeInBasicSet": false,
@@ -19087,8 +18723,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-hpn-10-재택-PN-HPN",
-        "sec-complications-6-3-간담도-합병증-PNALD"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -19132,9 +18767,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-1-3열-요약",
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -19179,7 +18813,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-complications-6-3-간담도-합병증-PNALD"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -19351,9 +18985,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-1-3열-요약",
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -19397,7 +19030,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -19479,9 +19112,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -19490,7 +19121,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "재게시 중복: 대표 문항 rx-biliary-sludge. 추가 연습으로만 연결.",
       "duplicateOf": "rx-biliary-sludge"
@@ -19525,9 +19156,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -19536,7 +19165,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -19569,10 +19198,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -19581,7 +19207,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -19617,7 +19243,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -19662,9 +19288,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
       "evidence": [],
@@ -19673,7 +19297,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -19752,7 +19376,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-hpn-10-재택-PN-HPN",
         "sec-complications-6-3-간담도-합병증-PNALD"
       ],
       "includeInBasicSet": false,
@@ -19799,9 +19422,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE",
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-vit_te-2-7-미량원소-TE"
+        "sec-complications-6-4-대사성-골질환-MBD"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -19847,7 +19468,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
         "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
@@ -19891,9 +19511,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -19902,7 +19520,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -19938,9 +19556,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -19949,7 +19565,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -19982,9 +19598,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -19993,7 +19607,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -20027,8 +19641,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -20075,7 +19688,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA",
         "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
@@ -20252,9 +19864,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -20297,9 +19907,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -20308,7 +19916,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -20343,9 +19951,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-fluid_lytes-2-5-전해질"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -20392,9 +19998,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-monitor-7-모니터링-Lab-중단",
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-fluid_lytes-2-5-전해질"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -20567,9 +20171,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -20578,7 +20180,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -20611,9 +20213,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -20622,7 +20222,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -20657,9 +20257,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-fluid_lytes-2-5-전해질"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -20703,10 +20301,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -20715,7 +20310,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -20749,9 +20344,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-1-3열-요약",
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -20796,8 +20390,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-monitor-7-모니터링-Lab-중단"
+        "sec-protein-2-3-단백질-아미노산-AA"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -20842,7 +20435,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -20931,9 +20524,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -20942,7 +20533,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -20977,9 +20568,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-calc_filter-4-1-에너지"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -20988,7 +20577,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -21024,8 +20613,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -21199,9 +20787,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-complications-6-3-간담도-합병증-PNALD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -21210,7 +20796,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -21245,10 +20831,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-hpn-10-재택-PN-HPN",
-        "sec-complications-6-3-간담도-합병증-PNALD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -21257,7 +20840,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -21420,9 +21003,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -21431,7 +21012,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -21462,9 +21043,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -21473,7 +21052,7 @@
         "translation": "unchecked",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
     },
@@ -21553,9 +21132,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -21564,7 +21141,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-pn-001. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-pn-001"
@@ -21690,9 +21267,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -21701,7 +21276,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-pn-007. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-pn-007"
@@ -21779,7 +21354,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -21823,9 +21398,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -21834,7 +21407,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -21909,9 +21482,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -21920,7 +21491,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-pn-012. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-pn-012"
@@ -21956,8 +21527,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-stability-5-조제-안정성-투여-주의사항",
-        "sec-cho_gir-2-1-탄수화물-dextrose",
         "sec-stability-5-4-필터-hang-time-세트-BUD"
       ],
       "includeInBasicSet": false,
@@ -22050,7 +21619,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -22186,9 +21755,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -22197,7 +21764,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-pn-018. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-pn-018"
@@ -22311,9 +21878,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -22322,7 +21887,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -22393,9 +21958,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -22404,7 +21967,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -22485,8 +22048,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-monitor-7-모니터링-Lab-중단"
+        "sec-calc_filter-4-1-에너지"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -22575,9 +22137,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -22586,7 +22146,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -22663,9 +22223,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -22674,7 +22232,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -22708,9 +22266,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -22719,7 +22275,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -22752,9 +22308,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -22763,7 +22317,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -22883,9 +22437,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -22894,7 +22446,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-001. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-001"
@@ -22931,8 +22483,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-hpn-10-재택-PN-HPN",
+        "sec-complications-6-1-3열-요약",
         "sec-complications-6-3-간담도-합병증-PNALD"
       ],
       "includeInBasicSet": false,
@@ -22980,10 +22531,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE",
-        "sec-vit_te-2-7-미량원소-TE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -22992,7 +22540,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-003. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-003"
@@ -23028,7 +22576,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -23117,7 +22665,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE"
+        "sec-monitor-7-모니터링-Lab-중단"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -23161,11 +22709,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-peds-9-소아-신생아",
-        "sec-complications-6-1-3열-요약"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -23174,7 +22718,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-007. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-007"
@@ -23256,7 +22800,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-구성요소",
         "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
@@ -23301,9 +22844,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -23312,7 +22853,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-010. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-010"
@@ -23436,9 +22977,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -23447,7 +22986,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-013. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-013"
@@ -23484,11 +23023,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-hpn-10-재택-PN-HPN",
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -23497,7 +23032,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-014. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-014"
@@ -23531,9 +23066,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -23542,7 +23075,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-015. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-015"
@@ -23578,9 +23111,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-1-3열-요약",
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -23624,9 +23156,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -23635,7 +23165,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-017. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-017"
@@ -23670,9 +23200,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-1-3열-요약",
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -23719,8 +23248,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심",
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -23767,8 +23295,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-monitor-7-모니터링-Lab-중단",
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-monitor-7-모니터링-Lab-중단"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -23813,7 +23340,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -23858,7 +23385,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -23902,9 +23429,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -23913,7 +23438,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -23947,7 +23472,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-lipid-2-2-지방-ILE"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -23993,9 +23518,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -24004,7 +23527,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-025. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-025"
@@ -24038,9 +23561,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -24049,7 +23570,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-037. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-037"
@@ -24127,9 +23648,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-complications-6-1-3열-요약",
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -24175,9 +23695,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-fluid_lytes-2-5-전해질"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -24310,10 +23828,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-monitor-7-모니터링-Lab-중단",
-        "sec-fluid_lytes-2-5-전해질"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -24322,7 +23837,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -24398,9 +23913,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -24409,7 +23922,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -24443,10 +23956,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE",
-        "sec-complications-6-3-간담도-합병증-PNALD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -24455,7 +23965,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-041. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-041"
@@ -24491,9 +24001,8 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE",
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-hpn-10-재택-PN-HPN"
+        "sec-complications-6-4-대사성-골질환-MBD",
+        "sec-complications-6-1-3열-요약"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -24540,7 +24049,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -24669,7 +24178,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -24714,7 +24223,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -24842,9 +24351,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -24853,7 +24360,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -24888,10 +24395,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-route-3-2-2-in-1-vs-3-in-1-TNA",
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -24900,7 +24404,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -24935,7 +24439,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-lipid-2-2-지방-ILE"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -24979,9 +24483,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -24990,7 +24492,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-iib-049. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-iib-049"
@@ -25025,10 +24527,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-complications-6-1-3열-요약"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -25037,7 +24536,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -25074,8 +24573,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-lipid-2-2-지방-ILE"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -25168,9 +24666,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심",
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-lipid-2-2-지방-ILE"
+        "sec-route-3-1-말초-vs-중심"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -25262,7 +24758,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -25347,9 +24843,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -25358,7 +24852,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -25392,9 +24886,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -25403,7 +24895,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -25437,7 +24929,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -25485,9 +24977,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -25496,7 +24986,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -25575,9 +25065,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-complications-6-합병증",
-        "sec-fluid_lytes-2-5-전해질",
-        "sec-vit_te-2-6-비타민"
+        "sec-fluid_lytes-2-5-전해질"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -25622,7 +25110,6 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
         "sec-lipid-2-2-지방-ILE"
       ],
       "includeInBasicSet": false,
@@ -25668,9 +25155,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -25679,7 +25164,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-cnsc-practice-006. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-cnsc-practice-006"
@@ -25715,7 +25200,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -25760,9 +25245,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -25771,7 +25254,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -25892,9 +25375,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -25903,7 +25384,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 원문(번역본이 대표): 대표 문항 quizlet-pn-018. 추가 연습으로만 연결.",
       "duplicateOf": "quizlet-pn-018"
@@ -25938,7 +25419,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-vit_te-2-7-미량원소-TE"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -25982,10 +25463,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -25994,7 +25472,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -26071,9 +25549,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-monitor-7-3-PN-중단-이행"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -26082,7 +25558,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -26116,9 +25592,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -26127,7 +25601,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -26247,8 +25721,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-peds-9-소아-신생아"
+        "sec-eval-0-영양평가-PN-직결만"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -26291,9 +25764,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-disease-8-질환별-PN"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -26302,7 +25773,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -26337,9 +25808,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -26348,7 +25817,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -26383,9 +25852,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만",
-        "sec-cho_gir-2-구성요소",
-        "sec-monitor-7-모니터링-Lab-중단"
+        "sec-protein-2-3-단백질-아미노산-AA"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -26430,9 +25897,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -26441,7 +25906,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -26474,9 +25939,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -26485,7 +25948,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -26519,9 +25982,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -26530,7 +25991,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "영문 미번역 — 번역·검토 대기."
     },
@@ -26651,9 +26112,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -26662,7 +26121,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "해설이 정답 문구 반복뿐이라 불완전 — 기본 세트 제외."
     },
@@ -26696,7 +26155,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -26741,9 +26200,7 @@
         "",
         ""
       ],
-      "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
-      ],
+      "coreSectionIds": [],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
       "evidence": [],
@@ -26752,7 +26209,7 @@
         "translation": "en-untranslated",
         "answerEvidence": "unchecked",
         "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "coreLink": "topicOnly"
       },
       "reviewNote": "해설이 정답 문구 반복뿐이라 불완전 — 기본 세트 제외."
     },
@@ -26830,7 +26287,7 @@
         ""
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-disease-8-질환별-PN"
       ],
       "includeInBasicSet": false,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",

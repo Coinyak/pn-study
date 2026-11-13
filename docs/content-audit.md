@@ -428,4 +428,13 @@
 - pending 461건은 기본값으로 이관된 문항이다. 정답 근거(보유 문헌)·선택지 해설·번역 검토가 끝나지 않았으며, 문항마다 `checks`(`translation`/`answerEvidence`/`choiceExplanations`/`coreLink`)에 상태를 남겼다.
 - 그중 41건(priority `high`)은 정오표와 연결된 문항이고, 61건은 영문 미번역 문항이다.
 - 선택지별 해설이 있는 문항은 56건뿐이다(영양약료 52 + 이번에 작성한 4). 나머지 thirdParty 문항을 verified로 올리려면 선택지 해설 작성과 보유 문헌 연결이 필요하다.
-- `scopeIds`는 Task 1 키워드 휴리스틱 v1을 그대로 상속했다(33건은 비어 있음). `coreSectionIds`는 CORE_HINTS 문구가 들어 있는 `sec-*`이다(487건). CORE_SKIP 10건은 핵심표 연결이 없다.
+- `scopeIds`는 Task 1 키워드 휴리스틱 v1을 그대로 상속했다(33건은 비어 있음). `coreSectionIds`는 아래 10.7 방식으로 재산출했다(296건). CORE_SKIP 10건은 핵심표 연결이 없다.
+
+### 10.7 `coreSectionIds` 정정 (리뷰 지적 반영)
+
+최초 export는 CORE_HINTS 문구가 처음 들어 있는 `sec-*`를 단원·의미 검증 없이 연결했다. 그 결과 487건 중 468건이 문항 단원과 다른 단원의 절로 이어졌고, 그중 `bcnsp-008`(USP BUD)→비타민 절, `allaccess-010`(일일 포도당 최대량)→영양평가 절 같은 오연결이 있었다('24시간'·'day' 같은 일반 문구가 원인). 방법을 바꿨다.
+
+1. **단원 허용 목록(`CORE_ALLOW`):** 문항의 (교정된) `topic`마다 연결 가능한 `sec-*` 접두어를 정했다. 예외는 `calc_filter`→5.4 필터·BUD 절, `stability`→3.2 2-in-1/3-in-1 절, `complications`→6.5 EFAD 절뿐이다. 치트 블록(`sec-cheat`)과 소제목만 있는 목차 절(150자 미만)은 연결 대상에서 뺐다.
+2. **일반 문구 제외(`GENERIC_HINTS`):** `day`·`24시간`·`1.2`·`2.5`는 단독으로 절을 식별하지 못하므로 매칭에 쓰지 않는다.
+3. **수기 확인(`CORE_OVERRIDE`):** verified 51건과 정오표(E1–E8) 연결 문항 전부를 문항·절 본문과 대조했다. 맞는 절로 고친 것(예: `bcnsp-008`→5.4 BUD, `allaccess-010`→2.1 일일 ≤7 g/kg, `kshp-38`·`47`→6.2 재급식, `oe-hang`·`quizlet-pn-020`→5.4, `bcnsp-068`→3.2, `bcnsp-044`→1 적응증·시작시점)과, 맞는 절이 없어 일부러 비운 것(`quizlet-pn-011`·`016`, `hoag-faq-001`, `kshp-29`·`32`·`34`·`51` 등)이 있다. 맞는 절이 불확실하면 틀린 절 대신 빈 배열을 택했다.
+4. **결과:** 487건→296건(나머지는 topic 단위 연결만, `checks.coreLink=topicOnly`). 단원 밖 연결 21건은 모두 위 예외 또는 수기 확인 건이다. 모든 ID가 HTML의 `sec-*`에 존재한다. 비검증(pending) 문항의 자동 연결은 문구·단원 일치까지만 확인했고 의미 전수 검증은 하지 않았다. HTML과 `CORE_HINTS`는 수정하지 않았다.

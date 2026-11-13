@@ -261,6 +261,62 @@ BANK_REFS = {r"^allaccess-": ["allaccess-enteral-parenteral-pqs"], r"^hoag-faq-"
 
 CIRCLED = "①②③④⑤⑥⑦⑧⑨"
 
+# coreSectionIds guard: a CORE_HINTS phrase only links to a core section whose
+# id starts with one of the prefixes allowed for the question's (corrected)
+# topic. Anything outside the map is dropped; empty beats a wrong section.
+# The cheat block and heading-only index sections are never link targets.
+CORE_ALLOW = {
+    "eval": ["sec-eval-"],
+    "indications": ["sec-indications-"],
+    "cho_gir": ["sec-cho_gir-"],
+    "lipid": ["sec-lipid-"],
+    "protein": ["sec-protein-"],
+    "fluid_lytes": ["sec-fluid_lytes-"],
+    "vit_te": ["sec-vit_te-"],
+    "route": ["sec-route-"],
+    "calc_filter": ["sec-calc_filter-", "sec-stability-5-4-"],
+    "stability": ["sec-stability-", "sec-route-3-2-"],
+    "complications": ["sec-complications-", "sec-lipid-6-5-"],
+    "monitor": ["sec-monitor-"],
+    "disease": ["sec-disease-"],
+    "peds": ["sec-peds-"],
+    "hpn": ["sec-hpn-"],
+}
+MIN_SECTION_CHARS = 150  # shorter sections are heading-only indexes
+# Hints too generic to identify a section by themselves.
+GENERIC_HINTS = {"day", "days", "24시간", "1.2", "2.5"}
+
+# Hand-checked coreSectionIds (id -> list, [] = no matching section). These
+# override the guarded automatic match. Every id is checked against the HTML.
+_S54 = "sec-stability-5-4-필터-hang-time-세트-BUD"
+_G21 = "sec-cho_gir-2-1-탄수화물-dextrose"
+_IND = "sec-indications-1-적응증-시작시점-지연"
+_RT32 = "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
+_C42 = "sec-calc_filter-4-2-계산-5단계-상한-체크"
+CORE_OVERRIDE = {
+    # Task 2 review examples: BUD -> 5.4 (USP<797>/PN BUD), daily dextrose max -> 2.1 (≤7 g/kg/day).
+    "bcnsp-008": [_S54],
+    "allaccess-010": [_G21],
+    # hang time / filter / BUD questions filed under lipid or without a hint hit
+    "oe-hang": [_S54], "quizlet-pn-020": [_S54], "quizlet-ss2-015": [_S54],
+    # refeeding monitoring: the refeeding subsection, not the 3-row summary
+    "kshp-38": ["sec-complications-6-2-재급식-증후군-Refeeding"],
+    "kshp-47": ["sec-complications-6-2-재급식-증후군-Refeeding"],
+    "kshp-48": [_G21],            # PN glucose target 140-180 lives in 2.1
+    "kshp-05": ["sec-protein-2-3-단백질-아미노산-AA"],  # glucose-alanine cycle
+    "kshp-13": ["sec-peds-9-소아-신생아"],               # neonate/ELBW protein start
+    "kshp-54": ["sec-vit_te-2-7-미량원소-TE"],           # cholestasis Cu/Mn
+    "bcnsp-068": [_RT32],         # 3-in-1 vs 2-in-1 advantage
+    "rxk-3_2-5": [_RT32],         # coalescence/cracking: do not infuse
+    "bcnsp-044": [_IND], "cnsc-nutrition-support-103": [_IND],  # PN start timing
+    "bcnsp-087": ["sec-protein-2-3-단백질-아미노산-AA"],  # nitrogen balance
+    "cnsc-nutrition-support-023": [_G21],  # 3.4 kcal/g
+    "cnsc-nutrition-support-029": [_C42], "bcnsp-017": [_C42],  # kcal totals
+    # No core section covers these; empty on purpose (hint hit was a wrong section).
+    "quizlet-pn-011": [], "quizlet-pn-016": [], "hoag-faq-001": [], "rxk-1_3-5": [],
+    "kshp-29": [], "kshp-32": [], "kshp-51": [], "kshp-34": [], "cnsc-nutrition-support-011": [],
+}
+
 
 def load_questions(text):
     line = next(l for l in text.split("\n") if l.startswith("const QUESTIONS = "))
@@ -334,6 +390,7 @@ def main():
     core_skip = load_core_skip(text)
     hints = load_core_hints(text)
     sections = load_sections(text)
+    section_ids = {sid for sid, _t, _b in sections}
     nav_topics = set(re.findall(r'class="nav-item[^"]*"[^>]*data-topic="([^"]+)"', text)) | \
         set(re.findall(r'data-topic="([^"]+)"[^>]*class="nav-item', text))
     rendered = [q for q in raw if q["topic"] in nav_topics]
@@ -378,11 +435,19 @@ def main():
         q_hints = hints.get(qid, [])
         core_ids = []
         if qid not in core_skip:
-            for h in q_hints:
-                nh = norm(h)
-                hit = next((sid for sid, _t, body in sections if nh and nh in body), None)
-                if hit and hit not in core_ids:
-                    core_ids.append(hit)
+            if qid in CORE_OVERRIDE:
+                core_ids = list(CORE_OVERRIDE[qid])
+                assert all(c in section_ids for c in core_ids), qid
+            else:
+                prefixes = tuple(CORE_ALLOW.get(topic, []))
+                for h in q_hints:
+                    nh = norm(h)
+                    if not nh or nh in GENERIC_HINTS:
+                        continue
+                    hit = next((sid for sid, _t, body in sections
+                                if sid.startswith(prefixes) and len(body) >= MIN_SECTION_CHARS and nh in body), None)
+                    if hit and hit not in core_ids:
+                        core_ids.append(hit)
         core_link = "none" if qid in core_skip else ("hint" if core_ids else "topicOnly")
 
         ref_list, evidence, errata = [], [], []
@@ -499,7 +564,7 @@ def main():
             "originType": "officialSample(공식 공개 샘플)·reportedExam(시험 복원·재구성)·thirdParty(해외·상업 문제은행)·originalPractice(자체 연습문항). 이번 이관본에는 officialSample·originalPractice가 없다.",
             "priority": "high=검증 시드 또는 임상 정오표 관련, medium=일반 대기, low=중복·영문·해설 불완전",
             "scopeIds": "exam-scope.json의 keyword-heuristic-v1 매핑을 그대로 상속(근거 매핑 아님).",
-            "coreSectionIds": "CORE_HINTS 문구가 들어 있는 sec-* ID. 비어 있으면 topic 단위 연결만 있다(checks.coreLink).",
+            "coreSectionIds": "CORE_HINTS 문구가 들어 있고 문항 단원에 허용된 sec-* ID(CORE_ALLOW)만. 검증·정오표 문항은 CORE_OVERRIDE로 수기 확인. 맞는 절이 없으면 빈 배열(topic 단위 연결만, checks.coreLink).",
             "revision": "1=HTML 표시본 그대로, 2=Task 2에서 stem/choices/answer를 원문 근거로 수정.",
             "evidence": "정답 근거 위치. 보유 추출본·PDF 기준이며 지정 교재(ASPEN Adult Core 4판) 쪽수는 기록하지 않음.",
         },
