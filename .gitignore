@@ -5,3 +5,8 @@ assets/_live_*.png
 assets/_mark_*.png
 assets/_src_*.png
 assets/_zoom_*.png
+
+node_modules/
+package-lock.json
+package.json
+scripts-validate-jumps.mjs
