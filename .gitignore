@@ -8,3 +8,8 @@ assets/_zoom_*.png
 __pycache__/
 # Personal study-progress backups exported from the quiz pane
 pn-study-backup-*.json
+
+node_modules/
+package-lock.json
+package.json
+scripts-validate-jumps.mjs
