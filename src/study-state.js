@@ -290,7 +290,13 @@
     function save(state, saveOpts) {
       if (!storage) return { ok: false, reason: "no-storage" };
       // Re-read at save time: another tab may have written unknown-schema/corrupt data since load().
-      const status = read().status; // never clobber data we could not understand
+      const check = read();
+      const status = check.status; // never clobber data we could not understand
+      // If the safety re-read itself failed (getItem threw), we cannot tell what is stored:
+      // refuse to write, even with overwrite.
+      if (status === "unavailable") {
+        return { ok: false, reason: "storage-error", error: check.error || "storage unavailable during pre-save read" };
+      }
       if ((status === "corrupt" || status === "unknown-schema") && !(saveOpts && saveOpts.overwrite)) {
         return { ok: false, reason: "blocked-" + status };
       }

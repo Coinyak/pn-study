@@ -255,6 +255,21 @@ test("store: load swallows getItem exceptions", () => {
   assert.deepEqual(r.state, S.createEmptyState(CV));
 });
 
+test("store: save does NOT write and reports storage-error when pre-save getItem throws", () => {
+  for (const saveOpts of [undefined, { overwrite: true }]) {
+    const st = fakeStorage({ "pn-study-progress-v1": "{not json" });
+    let writes = 0;
+    st.getItem = () => { throw new Error("SecurityError"); };
+    st.setItem = () => { writes++; };
+    const res = S.createStore({ storage: st, contentVersion: CV }).save(S.createEmptyState(CV), saveOpts);
+    assert.equal(res.ok, false);
+    assert.equal(res.reason, "storage-error");
+    assert.match(res.error, /SecurityError/);
+    assert.equal(writes, 0);
+    assert.equal(st.m.get("pn-study-progress-v1"), "{not json");
+  }
+});
+
 test("store: no storage available -> unavailable, save reports it", () => {
   const store = S.createStore({ storage: null, contentVersion: CV });
   assert.equal(store.load().status, "unavailable");
