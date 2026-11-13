@@ -5631,7 +5631,9 @@ setupScrollSpy();
   /**
    * After a state mutation rebuilt the list: which question gets focus?
    * The mutated card if it is still listed; otherwise the next previously-listed card that
-   * survived (then the nearest earlier one); null when the list is now empty.
+   * survived (then the nearest earlier one); otherwise (e.g. a cleared source chip swapped in cards
+   * from other sources, so nothing from the old list survived) the first card of the new list;
+   * null only when the list is now empty.
    */
   function focusAfterRebuild(oldIds, mutatedId, newIds) {
     if (newIds.indexOf(mutatedId) >= 0) return mutatedId;
@@ -5639,7 +5641,7 @@ setupScrollSpy();
     if (at < 0) return newIds.length ? newIds[0] : null;
     for (let i = at + 1; i < oldIds.length; i++) if (newIds.indexOf(oldIds[i]) >= 0) return oldIds[i];
     for (let i = at - 1; i >= 0; i--) if (newIds.indexOf(oldIds[i]) >= 0) return oldIds[i];
-    return null;
+    return newIds.length ? newIds[0] : null;
   }
 
   const api = {
@@ -5939,8 +5941,10 @@ setupScrollSpy();
         const f = t ? (t.querySelector('input[type="radio"]:not(:disabled)') || t.querySelector("button:not(:disabled)")) : null;
         if (f) f.focus({ preventScroll: true });
         else {
-          const e = list.querySelector(".empty");
-          if (e) { e.tabIndex = -1; e.focus({ preventScroll: true }); }
+          // Never leave focus detached: the card itself, then the empty state, then the list.
+          const e = t || list.querySelector(".empty") || list;
+          e.tabIndex = -1;
+          e.focus({ preventScroll: true });
         }
       }
     }

@@ -501,3 +501,9 @@ missing→partial 6행: `common-clinical-statistics`, `common-appraisal-applicat
 
 - `scripts/build.py`가 `aa_vol`·`aa_kcal`을 계산만 하고 행에 넣지 않아 제품표 행이 12열 머리글 아래 10칸이었다. 두 칸(AA 1 g당 부피·kcal)을 같은 순서로 행에 추가했다.
 - `check_content.py`에 `check_products_table`을 추가해 렌더링된 표의 머리글 수와 행별 셀 수가 다르면 실패시킨다(`tests/test_check_content.py`에 회귀 테스트).
+
+## 13. Task 5 후속: 출처 칩 해제 후 포커스 (2026-11-14)
+
+- 상태 변경(제출·즐겨찾기·복원)으로 선택한 출처 칩의 마지막 문항이 보기 조건에서 빠지면 칩이 「전체」로 풀리고 다른 출처 문항이 나타난다. 이때 이전 목록 카드가 하나도 남지 않아 `focusAfterRebuild()`가 null을 돌려주고, 빈 상태 요소도 없어 키보드 포커스가 사라졌다.
+- `focusAfterRebuild()`는 이제 살아남은 이전 카드가 없으면 새 목록의 첫 카드를 돌려주고, 목록이 비었을 때만 null을 돌려준다. DOM 쪽 대체 경로도 카드 → `.empty` → 목록 컨테이너 순으로 항상 `tabindex=-1` 포커스를 준다.
+- `tests/study-ui.test.cjs`에 회귀 테스트 추가. 검증: `node --test tests/*.cjs` 57 통과, `python3 -m unittest tests/test_check_content.py` 15 통과, `check_content.py` STRUCTURE OK, `build.py` 재생성.

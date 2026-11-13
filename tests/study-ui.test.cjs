@@ -95,3 +95,12 @@ test("state-derived filters need a revision; focus moves to the next remaining c
   assert.equal(UI.focusAfterRebuild(["a"], "a", []), null);
   assert.equal(UI.focusAfterRebuild(["a", "b"], "a", ["a", "b"]), "a");
 });
+
+test("focus falls back to the first new card when no old card survives (cleared source chip)", () => {
+  // selected source's last question left the filter; chip reset shows only other-source cards
+  assert.equal(UI.focusAfterRebuild(["a"], "a", ["x", "y"]), "x");
+  assert.equal(UI.focusAfterRebuild(["a", "b"], "b", ["x", "y"]), "x");
+  // mutated id unknown to the old list still lands on the first card
+  assert.equal(UI.focusAfterRebuild([], "a", ["x"]), "x");
+  assert.equal(UI.focusAfterRebuild(["a"], "a", []), null);
+});
