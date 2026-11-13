@@ -33,13 +33,37 @@ body{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif
 .tabs{display:none;background:#fff;border-bottom:1px solid var(--line)}
 .tabs button{flex:1;border:0;background:transparent;padding:12px;font-size:15px;font-weight:600;color:var(--muted);min-height:44px;border-bottom:2px solid transparent;cursor:pointer}
 .tabs button.active{color:var(--chip-on);border-bottom-color:var(--chip-on)}
-.main{display:grid;grid-template-columns:92px minmax(0,1.2fr) minmax(0,.9fr);min-height:0;overflow:hidden}
+.main{
+  --split-core:1fr; --split-quiz:1fr; --split-w:10px;
+  display:grid;
+  grid-template-columns:92px minmax(0,var(--split-core)) var(--split-w) minmax(0,var(--split-quiz));
+  min-height:0;overflow:hidden;
+}
 .nav{background:var(--label2);border-right:1px solid var(--line);overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
 .nav-item{border:0;border-bottom:1px solid #c5d0bc;background:transparent;padding:10px 6px;font-size:12px;font-weight:700;line-height:1.35;color:var(--text);cursor:pointer;text-align:center;min-height:44px}
 .nav-item.active{background:var(--navy);color:#fff}
 .pane{min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;background:var(--panel)}
-.pane-quiz{background:var(--quiz);border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.pane-quiz{background:var(--quiz);display:flex;flex-direction:column;min-height:0}
 .pane-quiz #quizList{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch}
+/* Desktop split handle between core and quiz (50/50 default via --split-*) */
+.splitter{
+  position:relative;z-index:4;width:100%;min-width:0;cursor:col-resize;
+  touch-action:none;user-select:none;-webkit-user-select:none;
+  background:transparent;border:0;padding:0;margin:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.splitter::before{
+  content:"";position:absolute;inset:0 4px;background:var(--line);border-radius:1px;
+}
+.splitter .split-grip{
+  position:relative;z-index:1;width:6px;height:36px;border-radius:999px;
+  background:#8a93a3;box-shadow:0 0 0 1px rgba(255,255,255,.55);
+  pointer-events:none;
+}
+.splitter:hover .split-grip,.splitter:focus-visible .split-grip{background:var(--chip-on)}
+.splitter:focus-visible{outline:2px solid var(--chip-on);outline-offset:-2px}
+body.is-resizing{cursor:col-resize;user-select:none;-webkit-user-select:none}
+body.is-resizing .pane{pointer-events:none}
 /* Nest tables: 짜그리 density (all nest, not only .dense) */
 table.jg.nest{width:100%;border-collapse:collapse;font-size:13px;line-height:1.3}
 table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:3px 5px;vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
@@ -122,6 +146,7 @@ button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertica
   :root{--base:15.5px;--lh:1.75}
   .tabs{display:flex}
   .main{grid-template-columns:72px 1fr}
+  .splitter{display:none!important}
   .pane-quiz{border-left:0;grid-column:2}
   body.mode-core .pane-quiz{display:none}
   body.mode-quiz .pane-core{display:none}
@@ -211,7 +236,7 @@ mark.hl-both, .hl-both{
 
 
 @media print{
-  .tabs, .nav, .pane-quiz, .hl-legend, .header{display:none!important}
+  .tabs, .nav, .pane-quiz, .splitter, .hl-legend, .header{display:none!important}
   .app, .main{display:block!important;height:auto!important;max-height:none!important;overflow:visible!important}
   .pane-core{display:block!important;overflow:visible!important;height:auto!important;max-height:none!important}
   body{overflow:visible!important;background:#fff}
@@ -2490,6 +2515,7 @@ mark.hl-both, .hl-both{
 </section>
       <p class="muted" style="padding:10px">위첨자 클릭 → 출처 · 문제 카드 클릭 → 핵심 형광 · SSOT: PN_jjageuri_summary.md</p>
     </section>
+    <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button>
     <section class="pane pane-quiz" id="quiz">
       <div class="quiz-sticky">
         <div class="quiz-head" id="quizHead">관련 문제</div>
@@ -3163,6 +3189,101 @@ document.getElementById("quizList").addEventListener("click", e=>{
 });
 
 setupScrollSpy();
+
+/* Desktop core↔quiz splitter: default 50/50 of space after left nav; drag + localStorage */
+(function setupSplitResize(){
+  const main = document.querySelector(".main");
+  const splitter = document.getElementById("splitter");
+  if(!main || !splitter) return;
+
+  const LS_KEY = "pn-study-split-core-pct";
+  const MIN_PCT = 22;
+  const MAX_PCT = 78;
+  const desktopMq = window.matchMedia("(min-width:900px)");
+  let corePct = 50;
+
+  function clampPct(n){
+    n = Number(n);
+    if(!Number.isFinite(n)) return 50;
+    return Math.min(MAX_PCT, Math.max(MIN_PCT, n));
+  }
+  function applySplit(pct){
+    corePct = clampPct(pct);
+    main.style.setProperty("--split-core", corePct + "fr");
+    main.style.setProperty("--split-quiz", (100 - corePct) + "fr");
+    splitter.setAttribute("aria-valuenow", String(Math.round(corePct)));
+  }
+  function loadStored(){
+    try{
+      const raw = localStorage.getItem(LS_KEY);
+      if(raw == null) return 50;
+      return clampPct(parseFloat(raw));
+    }catch(_){ return 50; }
+  }
+  function persist(){
+    try{ localStorage.setItem(LS_KEY, String(Math.round(corePct * 10) / 10)); }catch(_){}
+  }
+
+  splitter.setAttribute("role", "separator");
+  splitter.setAttribute("aria-valuemin", String(MIN_PCT));
+  splitter.setAttribute("aria-valuemax", String(MAX_PCT));
+  applySplit(loadStored());
+
+  let dragging = false;
+  function contentBounds(){
+    const rect = main.getBoundingClientRect();
+    const nav = document.getElementById("nav");
+    const navW = nav && desktopMq.matches ? nav.getBoundingClientRect().width : 0;
+    const splitW = splitter.getBoundingClientRect().width || 10;
+    const left = rect.left + navW;
+    const usable = Math.max(1, rect.width - navW - splitW);
+    return {left, usable};
+  }
+  function pctFromClientX(clientX){
+    const {left, usable} = contentBounds();
+    return clampPct(((clientX - left) / usable) * 100);
+  }
+  function onPointerMove(e){
+    if(!dragging) return;
+    applySplit(pctFromClientX(e.clientX));
+  }
+  function endDrag(e){
+    if(!dragging) return;
+    dragging = false;
+    document.body.classList.remove("is-resizing");
+    try{ splitter.releasePointerCapture(e.pointerId); }catch(_){}
+    window.removeEventListener("pointermove", onPointerMove);
+    window.removeEventListener("pointerup", endDrag);
+    window.removeEventListener("pointercancel", endDrag);
+    persist();
+  }
+  splitter.addEventListener("pointerdown", e=>{
+    if(!desktopMq.matches) return;
+    if(e.button != null && e.button !== 0) return;
+    e.preventDefault();
+    dragging = true;
+    document.body.classList.add("is-resizing");
+    try{ splitter.setPointerCapture(e.pointerId); }catch(_){}
+    applySplit(pctFromClientX(e.clientX));
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", endDrag);
+    window.addEventListener("pointercancel", endDrag);
+  });
+
+  // Keyboard nudge (desktop only)
+  splitter.addEventListener("keydown", e=>{
+    if(!desktopMq.matches) return;
+    let next = null;
+    if(e.key === "ArrowLeft") next = corePct - 2;
+    else if(e.key === "ArrowRight") next = corePct + 2;
+    else if(e.key === "Home") next = MIN_PCT;
+    else if(e.key === "End") next = MAX_PCT;
+    if(next == null) return;
+    e.preventDefault();
+    applySplit(next);
+    persist();
+  });
+})();
 </script>
 </body>
 </html>
