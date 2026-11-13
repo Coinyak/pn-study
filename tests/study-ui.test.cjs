@@ -1,4 +1,4 @@
-// Pure helpers of src/study-ui.js (list building, search, fixed sessions, mock availability).
+// Pure helpers of src/study-ui.js (list building, search, mark filters).
 // Run: node --test tests/study-ui.test.cjs
 const test = require("node:test");
 const assert = require("node:assert/strict");
@@ -47,41 +47,15 @@ test("buildList reacts to state: unseen/marked/bookmarked (mark-based)", () => {
 test("review filters still surface a marked pending item with the toggle off; excluded stays hidden", () => {
   let st = SS.createEmptyState();
   st = SS.setMark(st, "p1", 1, true);
-  st = SS.setMark(st, "x1", 0, true); // excluded — never listed
+  st = SS.setMark(st, "x1", 0, true);
   const list = UI.buildList(BANK, st, { filter: "marked", scope: "all", includePending: false }, SS);
   assert.deepEqual(ids(list), ["p1"]);
   assert.deepEqual(ids(UI.buildList(BANK, st, { filter: "unseen", scope: "all", includePending: false }, SS)), ["v1", "v2", "v3"]);
 });
 
-test("createSession freezes order; shuffle uses the given rng once", () => {
-  const pool = UI.basePool(BANK, false);
-  const s = UI.createSession(pool, { now: 5 });
-  assert.equal(s.id, "s5");
-  assert.deepEqual(s.ids, ["v1", "v2", "v3"]);
-  pool.reverse();
-  assert.deepEqual(s.ids, ["v1", "v2", "v3"], "later changes to the source list do not leak into the session");
-  const sh = UI.createSession(UI.basePool(BANK, false), { shuffle: true, rng: () => 0, now: 6 });
-  assert.deepEqual(sh.ids, ["v2", "v3", "v1"]);
-});
-
-test("mock 20+80 is unavailable with the current small verified pool", () => {
-  const m = UI.mockAvailability(BANK);
-  assert.equal(m.ok, false);
-  assert.deepEqual([m.common, m.pn], [0, 3]);
-  const big = [];
-  for (let i = 0; i < 20; i++) big.push(q("c" + i, "common"));
-  for (let i = 0; i < 80; i++) big.push(q("n" + i, "lipid"));
-  assert.equal(UI.mockAvailability(big).ok, true);
-  const s = UI.createMockSession(big, { rng: () => 0.5, now: 1 });
-  assert.equal(s.ids.length, 100);
-  assert.equal(s.kind, "mock");
-  assert.ok(s.ids.slice(0, 20).every((id) => id.startsWith("c")));
-});
-
 test("state-derived filters need a revision; focus moves to the next remaining card", () => {
   assert.equal(UI.filterUsesState("all"), false);
   ["unseen", "marked", "bookmarked"].forEach((f) => assert.equal(UI.filterUsesState(f), true, f));
-  // marking under 미표시 removes the card from membership
   let st = SS.createEmptyState();
   const opts = { filter: "unseen", topic: "lipid", scope: "topic" };
   assert.deepEqual(ids(UI.buildList(BANK, st, opts, SS)), ["v1", "v2"]);
@@ -89,23 +63,26 @@ test("state-derived filters need a revision; focus moves to the next remaining c
   const after = ids(UI.buildList(BANK, st, opts, SS));
   assert.deepEqual(after, ["v2"]);
   assert.equal(UI.focusAfterRebuild(["v1", "v2"], "v1", after), "v2");
-  // bookmark toggle off under 즐겨찾기 removes the card; falls back to the previous one at the end
   assert.equal(UI.focusAfterRebuild(["a", "b", "c"], "c", ["a", "b"]), "b");
   assert.equal(UI.focusAfterRebuild(["a", "b", "c"], "b", ["a", "c"]), "c");
   assert.equal(UI.focusAfterRebuild(["a"], "a", []), null);
   assert.equal(UI.focusAfterRebuild(["a", "b"], "a", ["a", "b"]), "a");
 });
 
-test("FILTERS expose mark-based views only (no 오답/헷갈림 in learn bar)", () => {
+test("FILTERS expose mark-based views only", () => {
   assert.deepEqual(UI.FILTERS.map((f) => f[0]), ["all", "unseen", "marked", "bookmarked"]);
   assert.deepEqual(UI.FILTERS.map((f) => f[1]), ["전체", "미표시", "표시 있음", "즐겨찾기"]);
 });
 
-test("focus falls back to the first new card when no old card survives (cleared source chip)", () => {
-  // selected source's last question left the filter; chip reset shows only other-source cards
+test("focus falls back to the first new card when no old card survives", () => {
   assert.equal(UI.focusAfterRebuild(["a"], "a", ["x", "y"]), "x");
   assert.equal(UI.focusAfterRebuild(["a", "b"], "b", ["x", "y"]), "x");
-  // mutated id unknown to the old list still lands on the first card
   assert.equal(UI.focusAfterRebuild([], "a", ["x"]), "x");
   assert.equal(UI.focusAfterRebuild(["a"], "a", []), null);
+});
+
+test("learn UI has no session/mock/resume helpers exported", () => {
+  assert.equal(UI.createSession, undefined);
+  assert.equal(UI.createMockSession, undefined);
+  assert.equal(UI.mockAvailability, undefined);
 });

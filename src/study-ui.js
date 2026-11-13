@@ -1,11 +1,7 @@
-/* study-ui.js — quiz pane UI (answer, grade, review filters, search, resume, backup/restore,
- * practice session) on top of StudyState (src/study-state.js). All progress mutation goes
- * through StudyState; this file never touches localStorage directly.
+/* study-ui.js — learn quiz pane (marks, favorites, filters, search, backup/restore)
+ * on top of StudyState. No resume button, no drill/mock session UI.
  *
- * Inlined after the split shell's script, so it can use the shell's globals (QUESTION_BANK,
- * QUESTIONS, activeTopic, TOPIC_LABEL, CORE_SKIP, escapeHtml, setTopic, setPane,
- * highlightFromQuestion, clearCoreHl). It replaces the shell's read-only renderQuiz().
- *
+ * Inlined after the split shell's script. Replaces the shell's read-only renderQuiz().
  * Node: require("./study-ui.js") returns the pure helpers only (no DOM).
  */
 (function (root, factory) {
@@ -20,16 +16,9 @@
 
   const FILTERS = [["all", "전체"], ["unseen", "미표시"], ["marked", "표시 있음"], ["bookmarked", "즐겨찾기"]];
   const REVIEW_FILTERS = ["marked", "bookmarked"];
-  const MOCK_PLAN = { common: 20, pn: 80 };
-  const COMMON_TOPIC = "common";
 
-  // ---------- pure helpers ----------
   const isKo = (q) => q.language === undefined || q.language === null || q.language === "ko";
 
-  /**
-   * Core origin label for display/filter. Hides intermediary tags (OpenExamPrep, QZ, VERIFIED/,
-   * "Quizlet indexed") and shows the underlying bank/module (BCNSP, CNSC, ASPEN PN, …).
-   */
   function coreSourceLabel(q) {
     const id = String((q && q.id) || "");
     const s = String((q && q.source) || "");
@@ -80,12 +69,10 @@
     return "src-other";
   }
 
-  /** Questions that may be shown at all (never excluded, Korean only). */
   function isDisplayable(q) {
     return !!q && q.reviewStatus !== "excluded" && isKo(q);
   }
 
-  /** Default pool = includeInBasicSet; pending only when the user opts in. */
   function basePool(bank, includePending) {
     return bank.filter((q) => q.includeInBasicSet === true || (includePending && q.reviewStatus === "pending" && isKo(q)));
   }
@@ -101,13 +88,6 @@
     return terms.every((t) => hay.indexOf(t) >= 0);
   }
 
-  /**
-   * Questions for the list view.
-   * opts: { filter, search, topic, scope: "topic"|"all", includePending }
-   * Review filters (marked/bookmarked) look at every displayable question, so a marked pending
-   * item still shows up after the 검토 대기 toggle is turned off again.
-   * A non-empty search always spans every topic.
-   */
   function buildList(bank, state, opts, SS) {
     const o = opts || {};
     const filter = SS.normalizeFilter(o.filter || "all");
@@ -118,51 +98,10 @@
     return SS.selectReviewQuestions(pool, state, filter);
   }
 
-  function shuffled(list, rng) {
-    const a = list.slice();
-    const r = rng || Math.random;
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(r() * (i + 1));
-      const t = a[i]; a[i] = a[j]; a[j] = t;
-    }
-    return a;
-  }
-
-  /** Fixed-order session. The id list is frozen at creation; topic changes never alter it. */
-  function createSession(questions, opts) {
-    const o = opts || {};
-    const list = o.shuffle ? shuffled(questions, o.rng) : questions.slice();
-    return { id: "s" + (o.now === undefined ? Date.now() : o.now), kind: o.kind || "drill", label: o.label || "", ids: list.map((q) => q.id) };
-  }
-
-  /** 20+80 mock exam needs enough verified items in both parts. */
-  function mockAvailability(bank) {
-    const pool = basePool(bank, false);
-    const common = pool.filter((q) => q.topic === COMMON_TOPIC).length;
-    const pn = pool.length - common;
-    return { ok: common >= MOCK_PLAN.common && pn >= MOCK_PLAN.pn, common, pn, need: MOCK_PLAN };
-  }
-
-  function createMockSession(bank, opts) {
-    const pool = basePool(bank, false);
-    const rng = opts && opts.rng;
-    const common = shuffled(pool.filter((q) => q.topic === COMMON_TOPIC), rng).slice(0, MOCK_PLAN.common);
-    const pn = shuffled(pool.filter((q) => q.topic !== COMMON_TOPIC), rng).slice(0, MOCK_PLAN.pn);
-    return createSession(common.concat(pn), Object.assign({}, opts, { shuffle: false, kind: "mock", label: "모의고사 20+80" }));
-  }
-
-  /** Every view except 전체 (all) derives membership from study state (unseen/marked/bookmarked). */
   function filterUsesState(filter) {
     return !!filter && filter !== "all";
   }
 
-  /**
-   * After a state mutation rebuilt the list: which question gets focus?
-   * The mutated card if it is still listed; otherwise the next previously-listed card that
-   * survived (then the nearest earlier one); otherwise (e.g. a cleared source chip swapped in cards
-   * from other sources, so nothing from the old list survived) the first card of the new list;
-   * null only when the list is now empty.
-   */
   function focusAfterRebuild(oldIds, mutatedId, newIds) {
     if (newIds.indexOf(mutatedId) >= 0) return mutatedId;
     const at = oldIds.indexOf(mutatedId);
@@ -173,11 +112,10 @@
   }
 
   const api = {
-    FILTERS, MOCK_PLAN, filterUsesState, focusAfterRebuild, isDisplayable, basePool, matchesSearch, buildList, createSession,
-    mockAvailability, createMockSession, coreSourceLabel, sourceToneClass, mount,
+    FILTERS, filterUsesState, focusAfterRebuild, isDisplayable, basePool, matchesSearch, buildList,
+    coreSourceLabel, sourceToneClass, mount,
   };
 
-  // ---------- DOM ----------
   function mount() {
     const doc = root.document;
     const SS = root.StudyState;
@@ -193,7 +131,6 @@
     const topicNow = () => (typeof activeTopic !== "undefined" ? activeTopic : null);
     const topicLabel = (t) => (typeof TOPIC_LABEL !== "undefined" && TOPIC_LABEL[t]) || t || "";
     const coreLinked = (q) => !(typeof CORE_SKIP !== "undefined" && CORE_SKIP.has(q.id));
-    const isMobile = () => root.matchMedia && root.matchMedia("(max-width:899px)").matches;
 
     const store = SS.createStore({ contentVersion: CV });
     const loaded = store.load();
@@ -201,48 +138,38 @@
     const loadStatus = loaded.status;
 
     const ui = {
-      mode: "learn", filter: "all", scope: "topic", search: "", includePending: false, sourceLabel: "",
-      session: null, sessionCards: new Map(), learnCards: new Map(), listVersion: 0, stateRev: 0, lastKey: null, lastSaveReason: null,
+      filter: "all", scope: "topic", search: "", includePending: false, sourceLabel: "",
+      learnCards: new Map(), listVersion: 0, stateRev: 0, lastKey: null, lastSaveReason: null,
     };
 
-    // ----- toolbar -----
     const bar = doc.createElement("div");
     bar.className = "study-bar";
     bar.id = "studyBar";
-    const mock = mockAvailability(BANK);
     bar.innerHTML =
       '<div class="sb-row">' +
-        '<label class="sb-field"><span class="sb-lab">모드</span> <select id="sbMode">' +
-          '<option value="learn">학습(핵심 연계)</option>' +
-          '<option value="drill">연습 세션(순서 고정)</option>' +
-          '<option value="mock"' + (mock.ok ? "" : " disabled") + ">모의고사 20+80" + (mock.ok ? "" : " · 검증 문항 부족") + "</option>" +
-        "</select></label>" +
         '<label class="sb-field"><span class="sb-lab">보기</span> <select id="sbFilter">' + FILTERS.map((f) => '<option value="' + f[0] + '">' + f[1] + "</option>").join("") + "</select></label>" +
         '<label class="sb-field"><span class="sb-lab">범위</span> <select id="sbScope"><option value="topic">현재 소단원</option><option value="all">전체 단원</option></select></label>' +
         '<input type="search" id="sbSearch" class="sb-search" placeholder="문항 검색" aria-label="문항 검색(전체 단원)" enterkeyhint="search">' +
       "</div>" +
       '<div class="sb-row">' +
         '<label class="sb-chk" title="검토가 끝나지 않은 문항. 정답·해설이 바뀔 수 있습니다."><input type="checkbox" id="sbPending"> 검토 대기 포함</label>' +
-        '<button type="button" class="sb-btn" id="sbResume" hidden>이어하기</button>' +
         '<button type="button" class="sb-btn" id="sbExport" title="학습 기록을 JSON 파일로 저장">백업</button>' +
         '<button type="button" class="sb-btn" id="sbImport" title="백업 파일에서 학습 기록 불러오기">복원</button>' +
         '<input type="file" id="sbFile" accept=".json,application/json" hidden>' +
         '<span class="sb-sum" id="sbSum"></span>' +
       "</div>" +
       '<div class="sb-row sb-sources" id="sbSources" aria-label="출처 필터"></div>' +
-      '<div class="sb-panel" id="sbSession" hidden></div>' +
       '<div class="sb-panel" id="sbRestore" hidden></div>' +
       '<div class="sb-notice" id="sbNotice" role="status" aria-live="polite" hidden></div>';
     head.insertAdjacentElement("afterend", bar);
     const $ = (id) => doc.getElementById(id);
     const el = {
-      mode: $("sbMode"), filter: $("sbFilter"), scope: $("sbScope"), search: $("sbSearch"), pending: $("sbPending"),
-      resume: $("sbResume"), exp: $("sbExport"), imp: $("sbImport"), file: $("sbFile"), sum: $("sbSum"),
-      session: $("sbSession"), restore: $("sbRestore"), notice: $("sbNotice"), title: $("quizHeadTitle") || head,
+      filter: $("sbFilter"), scope: $("sbScope"), search: $("sbSearch"), pending: $("sbPending"),
+      exp: $("sbExport"), imp: $("sbImport"), file: $("sbFile"), sum: $("sbSum"),
+      restore: $("sbRestore"), notice: $("sbNotice"), title: $("quizHeadTitle") || head,
       sources: $("sbSources"),
     };
 
-    // ----- notices / persistence -----
     let noticeTimer = null;
     function notice(msg, sticky) {
       clearTimeout(noticeTimer);
@@ -267,34 +194,27 @@
     else if (loadStatus === "corrupt") notice("저장된 학습 기록이 손상돼 읽지 못했습니다. 기존 데이터는 그대로 두며, 복원(교체)으로 정리할 수 있습니다.", true);
     else if (loadStatus === "unknown-schema") notice("다른 버전의 학습 기록이 있어 읽지 못했습니다. 기존 데이터는 그대로 둡니다.", true);
 
-    // ----- list -----
     function listKey() {
-      const s = ui.session;
-      // stateRev counts study-state mutations (submit, bookmark, restore); state-derived filters
-      // (미표시/표시 있음/즐겨찾기) must rebuild when it moves. A frozen session never depends on it.
-      return JSON.stringify(s ? ["s", s.id, ui.listVersion]
-        : [ui.mode, ui.filter, ui.scope, ui.search, ui.includePending, ui.sourceLabel, ui.scope === "all" || ui.search ? "" : topicNow(), ui.listVersion,
-          filterUsesState(ui.filter) ? ui.stateRev : 0]);
+      return JSON.stringify([
+        ui.filter, ui.scope, ui.search, ui.includePending, ui.sourceLabel,
+        ui.scope === "all" || ui.search ? "" : topicNow(), ui.listVersion,
+        filterUsesState(ui.filter) ? ui.stateRev : 0,
+      ]);
     }
     function currentItems() {
-      if (ui.session) return ui.session.ids.map((id) => BY_ID.get(id)).filter(Boolean);
       return buildList(BANK, state, {
         filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
         includePending: ui.includePending, sourceLabel: ui.sourceLabel || "",
       }, SS);
     }
     function poolForSourceChips() {
-      // Chips reflect the current view before source filter (so counts stay honest).
       return buildList(BANK, state, {
         filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
         includePending: ui.includePending, sourceLabel: "",
       }, SS);
     }
     function renderSourceChips() {
-      if (!el.sources || ui.session) {
-        if (el.sources) el.sources.innerHTML = "";
-        return;
-      }
+      if (!el.sources) return;
       const pool = poolForSourceChips();
       const counts = new Map();
       pool.forEach((q) => {
@@ -311,25 +231,17 @@
             esc(lab) + " (" + counts.get(lab) + ")</button>";
         }).join("");
     }
-    const cards = () => (ui.session ? ui.sessionCards : ui.learnCards);
-    function cardState(id) {
-      const m = cards();
-      if (!m.has(id)) m.set(id, { selected: null, unsure: false, result: null, explain: false });
-      return m.get(id);
-    }
 
-    function cardTop(q, idx, extra) {
+    function cardTop(q, idx) {
       const linked = coreLinked(q);
       const bm = state.bookmarks.indexOf(q.id) >= 0;
       const pending = q.reviewStatus === "pending" ? ' · <span class="q-pending">검토 대기</span>' : "";
-      const num = ui.session ? '<b class="q-no">' + (idx + 1) + ".</b> " : "";
-      return '<div class="q-top"><div class="src">' + num +
+      return '<div class="q-top"><div class="src">' +
         '<span class="src-meta ' + sourceToneClass(coreSourceLabel(q)) + '">' + esc(coreSourceLabel(q)) + "</span>" +
-        " · " + esc(q.id) + (linked ? "" : " · 핵심 연결 없음") + pending + (extra || "") + "</div>" +
+        " · " + esc(q.id) + (linked ? "" : " · 핵심 연결 없음") + pending + "</div>" +
         '<button type="button" class="q-bm" data-act="bookmark" aria-pressed="' + bm + '" aria-label="즐겨찾기" title="즐겨찾기">' + (bm ? "★" : "☆") + "</button></div>";
     }
 
-    /** Learn mode: quiet original-style card (no radio grading). */
     function learnCardHtml(q, idx) {
       const linked = coreLinked(q);
       const marks = SS.getMarks(state, q.id);
@@ -345,7 +257,7 @@
         (q.explain ? "<p>" + esc(q.explain) + "</p>" : "") +
         "</details>";
       return '<article class="qcard sq" data-qid="' + esc(q.id) + '" data-idx="' + idx + '">' +
-        cardTop(q, idx, "") +
+        cardTop(q, idx) +
         '<div class="stem" id="stem-' + idx + '">' + esc(q.stem) + "</div>" +
         choices +
         '<div class="q-actions">' +
@@ -354,60 +266,7 @@
         "</div>" + explain + "</article>";
     }
 
-    /** Drill/mock session: keep answerable grading UI. */
-    function sessionCardHtml(q, idx) {
-      const cs = cardState(q.id);
-      const done = !!cs.result;
-      const linked = coreLinked(q);
-      const name = "ans-" + idx;
-      const choices = q.choices.map((c, i) => {
-        let cls = "q-choice";
-        if (done && i === cs.result.answer) cls += " is-answer";
-        if (done && i === cs.result.selected && !cs.result.correct) cls += " is-wrong";
-        return '<label class="' + cls + '"><input type="radio" name="' + name + '" value="' + i + '"' +
-          (cs.selected === i ? " checked" : "") + (done ? " disabled" : "") + '><span class="q-n">' + (i + 1) + '.</span><span class="q-t">' + esc(c) + "</span></label>";
-      }).join("");
-      let result = "";
-      if (done) {
-        const r = cs.result;
-        result = r.correct ? '<span class="ok">정답</span>' : '<span class="ng">오답</span> · 정답 ' + (r.answer + 1) + "번";
-        if (cs.unsure) result += " · 헷갈림 표시";
-      }
-      let explain = "";
-      if (cs.explain && done) {
-        const ce = Array.isArray(q.choiceExplanations) ? q.choiceExplanations : [];
-        const sel = cs.result.selected;
-        explain = '<div class="q-explain"><p><b>정답:</b> ' + (q.answer + 1) + ". " + esc(q.choices[q.answer] || "") + "</p>" +
-          (q.explain ? "<p>" + esc(q.explain) + "</p>" : "") +
-          (sel !== q.answer && ce[sel] ? '<p class="muted">내 선택 ' + (sel + 1) + "번: " + esc(ce[sel]) + "</p>" : "") +
-          "</div>";
-      }
-      return '<article class="qcard sq" data-qid="' + esc(q.id) + '" data-idx="' + idx + '">' +
-        cardTop(q, idx, "") +
-        '<div class="stem" id="stem-' + idx + '">' + esc(q.stem) + "</div>" +
-        '<fieldset class="q-choices" aria-labelledby="stem-' + idx + '"><legend class="sr-only">선택지</legend>' + choices + "</fieldset>" +
-        '<div class="q-actions">' +
-          '<label class="q-unsure"><input type="checkbox" data-act="unsure"' + (cs.unsure ? " checked" : "") + (done ? " disabled" : "") + "> 헷갈림</label>" +
-          (done
-            ? ""
-            : '<button type="button" class="sb-btn primary" data-act="submit"' + (cs.selected === null ? " disabled" : "") + ">제출</button>") +
-          (done ? '<button type="button" class="sb-btn" data-act="explain" aria-expanded="' + !!cs.explain + '">' + (cs.explain ? "해설 닫기" : "해설 보기") + "</button>" : "") +
-          (linked && done ? '<button type="button" class="sb-btn" data-act="core" title="왼쪽 핵심본에서 관련 위치 표시">핵심 위치</button>' : "") +
-          '<span class="q-result" tabindex="-1">' + result + "</span>" +
-        "</div>" + explain + "</article>";
-    }
-
-    function cardHtml(q, idx) {
-      return ui.session ? sessionCardHtml(q, idx) : learnCardHtml(q, idx);
-    }
-
     function headTitle(items) {
-      if (ui.session) {
-        const m = ui.sessionCards;
-        const doneN = ui.session.ids.filter((id) => m.has(id) && m.get(id).result).length;
-        const ok = ui.session.ids.filter((id) => m.has(id) && m.get(id).result && m.get(id).result.correct).length;
-        return (ui.session.label || "연습 세션") + " · " + doneN + "/" + ui.session.ids.length + " 제출 · 정답 " + ok;
-      }
       const f = FILTERS.find((x) => x[0] === ui.filter)[1];
       const where = ui.search ? "검색「" + ui.search + "」" : ui.scope === "all" ? "전체 단원" : topicLabel(topicNow());
       const src = ui.sourceLabel ? " · " + ui.sourceLabel : "";
@@ -423,10 +282,6 @@
     function updateSummary() {
       const s = SS.summarizeProgress(basePool(BANK, ui.includePending), state);
       el.sum.textContent = "표시 " + s.marked + "/" + s.total + " · ★" + s.bookmarked;
-      const ls = state.lastSession;
-      const q = ls && BY_ID.get(ls.questionId);
-      el.resume.hidden = !q || !isDisplayable(q) || !!ui.session;
-      if (q) el.resume.textContent = "이어하기 · " + topicLabel(ls.topic || q.topic);
     }
 
     function renderQuiz(force) {
@@ -438,13 +293,13 @@
       if (!force && key === ui.lastKey) return;
       ui.lastKey = key;
       list.dataset.topic = topicNow() || "";
-      list.innerHTML = items.length ? items.map(cardHtml).join("") : '<div class="empty">' + emptyText() + "</div>";
+      list.innerHTML = items.length ? items.map(learnCardHtml).join("") : '<div class="empty">' + emptyText() + "</div>";
     }
 
     function rerenderCard(card, focusSel) {
       const q = BY_ID.get(card.dataset.qid);
       const idx = Number(card.dataset.idx);
-      card.insertAdjacentHTML("afterend", cardHtml(q, idx));
+      card.insertAdjacentHTML("afterend", learnCardHtml(q, idx));
       const next = card.nextElementSibling;
       card.remove();
       el.title.textContent = headTitle(currentItems());
@@ -464,14 +319,9 @@
       return list;
     }
 
-    /**
-     * A study-state change (submit, bookmark, restore) may change which questions belong to the
-     * current filter. Bump stateRev so listKey() moves, rebuild, and keep focus/scroll: the card
-     * stays if it still qualifies, otherwise focus goes to the next remaining card.
-     */
     function afterStateChange(card, focusSel) {
       ui.stateRev++;
-      if (ui.session || !filterUsesState(ui.filter)) {
+      if (!filterUsesState(ui.filter)) {
         const next = rerenderCard(card, focusSel);
         ui.lastKey = listKey();
         return next;
@@ -486,15 +336,14 @@
       const target = focusAfterRebuild(oldIds, id, newIds);
       const find = (qid) => list.querySelector('.qcard[data-qid="' + (root.CSS && CSS.escape ? CSS.escape(qid) : qid) + '"]');
       if (target === id) {
-        const f = focusSel && find(id).querySelector(focusSel);
+        const f = focusSel && find(id) && find(id).querySelector(focusSel);
         if (f) f.focus({ preventScroll: true });
       } else {
         notice("현재 보기(" + FILTERS.find((x) => x[0] === ui.filter)[1] + ") 조건에서 벗어나 목록에서 제외했습니다.", false);
         const t = target && find(target);
-        const f = t ? (t.querySelector('input[data-act="mark"]') || t.querySelector('input[type="radio"]:not(:disabled)') || t.querySelector("button:not(:disabled)")) : null;
+        const f = t ? (t.querySelector('input[data-act="mark"]') || t.querySelector("button:not(:disabled)")) : null;
         if (f) f.focus({ preventScroll: true });
         else {
-          // Never leave focus detached: the card itself, then the empty state, then the list.
           const e = t || list.querySelector(".empty") || list;
           e.tabIndex = -1;
           e.focus({ preventScroll: true });
@@ -502,81 +351,38 @@
       }
     }
 
-    // ----- answer actions -----
-    function submit(card) {
-      const q = BY_ID.get(card.dataset.qid);
-      if (!q) return;
-      const cs = cardState(q.id);
-      if (cs.selected === null || cs.result) return;
-      const g = SS.gradeAttempt(q, cs.selected);
-      cs.result = { correct: g.correct, answer: g.answer, selected: cs.selected };
-      state = SS.recordAttempt(state, q, cs.selected, cs.unsure ? "unsure" : "sure");
-      const ls = { questionId: q.id, at: state.lastSession.at, topic: q.topic };
-      if (!ui.session) ls.filter = ui.filter;
-      state = SS.setLastSession(state, ls);
-      persist();
-      afterStateChange(card, ".q-result");
-      if (ui.session && ui.session.ids.every((id) => ui.sessionCards.has(id) && ui.sessionCards.get(id).result)) renderSessionPanel();
-    }
-
     function showCore(card) {
       const q = BY_ID.get(card.dataset.qid);
       if (!q || !coreLinked(q) || typeof highlightFromQuestion !== "function") return;
       list.querySelectorAll(".qcard.hl").forEach((c) => c.classList.toggle("hl", c === card));
       card.classList.add("hl");
-      // Outside topic-scoped learn view the list does not depend on activeTopic, so aim at the
-      // question's own topic; in topic view they already match.
-      if (typeof activeTopic !== "undefined" && (ui.session || ui.scope === "all" || ui.search)) activeTopic = q.topic; // eslint-disable-line no-global-assign
+      if (typeof activeTopic !== "undefined" && (ui.scope === "all" || ui.search)) activeTopic = q.topic; // eslint-disable-line no-global-assign
       highlightFromQuestion(q);
       if (!doc.querySelector(".core-hl, .core-hl-exact")) notice("핵심본에서 이 문항의 위치를 찾지 못했습니다.", false);
     }
 
     list.addEventListener("change", (e) => {
       const card = e.target.closest(".qcard.sq");
-      if (!card) return;
-      if (e.target.dataset.act === "mark") {
-        const mi = Number(e.target.dataset.mi);
-        if (!Number.isInteger(mi)) return;
-        state = SS.setMark(state, card.dataset.qid, mi, e.target.checked);
-        persist();
-        afterStateChange(card, 'input[data-act="mark"][data-mi="' + mi + '"]');
-        return;
-      }
-      const cs = cardState(card.dataset.qid);
-      if (e.target.type === "radio") {
-        cs.selected = Number(e.target.value);
-        const b = card.querySelector('[data-act="submit"]');
-        if (b) b.disabled = false;
-      } else if (e.target.dataset.act === "unsure") {
-        cs.unsure = e.target.checked;
-      }
-    });
-    list.addEventListener("keydown", (e) => {
-      if (e.key !== "Enter" || !e.target.matches('.qcard.sq input[type="radio"]')) return;
-      e.preventDefault();
-      const card = e.target.closest(".qcard");
-      cardState(card.dataset.qid).selected = Number(e.target.value);
-      submit(card);
+      if (!card || e.target.dataset.act !== "mark") return;
+      const mi = Number(e.target.dataset.mi);
+      if (!Number.isInteger(mi)) return;
+      state = SS.setMark(state, card.dataset.qid, mi, e.target.checked);
+      persist();
+      afterStateChange(card, 'input[data-act="mark"][data-mi="' + mi + '"]');
     });
     list.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-act]");
       const card = btn && btn.closest(".qcard.sq");
       if (!card) return;
-      const id = card.dataset.qid;
-      const cs = cardState(id);
       const act = btn.dataset.act;
-      if (act === "submit") submit(card);
-      else if (act === "retry") { cs.selected = null; cs.result = null; cs.unsure = false; cs.explain = false; rerenderCard(card, 'input[type="radio"]'); }
-      else if (act === "explain") { cs.explain = !cs.explain; rerenderCard(card, '[data-act="explain"]'); }
-      else if (act === "core") showCore(card);
+      if (act === "core") showCore(card);
       else if (act === "bookmark") {
-        state = SS.toggleBookmark(state, id);
+        state = SS.toggleBookmark(state, card.dataset.qid);
         persist();
         afterStateChange(card, '[data-act="bookmark"]');
       }
     });
 
-    // ----- toolbar actions -----
     function readControls() {
       ui.filter = el.filter.value;
       ui.scope = el.scope.value;
@@ -586,7 +392,7 @@
     [el.filter, el.scope, el.pending].forEach((c) => c.addEventListener("change", () => { readControls(); renderQuiz(); }));
     el.sources.addEventListener("click", (e) => {
       const b = e.target.closest("button.sb-src");
-      if (!b || ui.session) return;
+      if (!b) return;
       ui.sourceLabel = b.dataset.src || "";
       ui.listVersion++;
       renderQuiz(true);
@@ -597,108 +403,6 @@
       searchTimer = setTimeout(() => { readControls(); renderQuiz(); }, 200);
     });
 
-    function setControlsLocked(locked) {
-      [el.filter, el.scope, el.search, el.pending].forEach((c) => { c.disabled = locked; });
-    }
-
-    function renderSessionPanel() {
-      const p = el.session;
-      if (ui.mode === "learn" && !ui.session) { p.hidden = true; p.innerHTML = ""; return; }
-      p.hidden = false;
-      if (ui.session) {
-        const m = ui.sessionCards;
-        const doneN = ui.session.ids.filter((id) => m.has(id) && m.get(id).result).length;
-        const ok = ui.session.ids.filter((id) => m.has(id) && m.get(id).result && m.get(id).result.correct).length;
-        const finished = doneN === ui.session.ids.length;
-        p.innerHTML = "<span>" + esc(ui.session.label || "연습 세션") + " " + ui.session.ids.length + "문항 · 순서 고정(스크롤·소단원 이동과 무관)" +
-          (finished ? " · <b>완료: " + ok + "/" + doneN + " 정답</b>" : "") + "</span> " +
-          '<button type="button" class="sb-btn" data-sact="end">' + (finished ? "세션 닫기" : "세션 종료") + "</button>";
-        return;
-      }
-      const n = currentItems().length;
-      const m = mockAvailability(BANK);
-      p.innerHTML = "<span>현재 목록 " + n + "문항으로 세션을 만듭니다. 시작하면 문제 순서가 고정됩니다.</span> " +
-        '<label class="sb-chk"><input type="checkbox" id="sbShuffle"> 순서 섞기</label> ' +
-        '<button type="button" class="sb-btn primary" data-sact="start"' + (n ? "" : " disabled") + ">시작</button> " +
-        '<button type="button" class="sb-btn" data-sact="cancel">취소</button>' +
-        (m.ok ? "" : '<div class="muted">모의고사 20+80: 검증 문항 부족(공통 ' + m.common + "/" + m.need.common + " · PN " + m.pn + "/" + m.need.pn + "). 검토가 끝나면 열립니다.</div>");
-    }
-
-    function startSession(session) {
-      ui.session = session;
-      ui.sessionCards = new Map();
-      setControlsLocked(true);
-      el.mode.value = session.kind;
-      renderSessionPanel();
-      renderQuiz(true);
-      list.scrollTop = 0;
-    }
-    function endSession() {
-      ui.session = null;
-      ui.mode = "learn";
-      el.mode.value = "learn";
-      setControlsLocked(false);
-      ui.listVersion++;
-      renderSessionPanel();
-      renderQuiz(true);
-    }
-
-    el.mode.addEventListener("change", () => {
-      const v = el.mode.value;
-      if (ui.session) {
-        el.mode.value = ui.session.kind;
-        notice("진행 중인 세션을 먼저 종료하세요.", false);
-        return;
-      }
-      ui.mode = v;
-      if (v === "mock") {
-        const m = mockAvailability(BANK);
-        if (!m.ok) { el.mode.value = ui.mode = "learn"; notice("모의고사 20+80: 검증 문항 부족", false); renderSessionPanel(); return; }
-        startSession(createMockSession(BANK));
-        return;
-      }
-      renderSessionPanel();
-    });
-    el.session.addEventListener("click", (e) => {
-      const b = e.target.closest("button[data-sact]");
-      if (!b) return;
-      const a = b.dataset.sact;
-      if (a === "start") {
-        const sh = doc.getElementById("sbShuffle");
-        startSession(createSession(currentItems(), { shuffle: !!(sh && sh.checked), kind: "drill", label: "연습 세션" }));
-      } else if (a === "cancel") {
-        ui.mode = "learn"; el.mode.value = "learn"; renderSessionPanel();
-      } else if (a === "end") endSession();
-    });
-
-    el.resume.addEventListener("click", () => {
-      const ls = state.lastSession;
-      const q = ls && BY_ID.get(ls.questionId);
-      if (!q) return;
-      el.search.value = "";
-      el.scope.value = "topic";
-      el.filter.value = ls.filter && FILTERS.some((f) => f[0] === ls.filter) ? ls.filter : "all";
-      if (q.includeInBasicSet !== true) el.pending.checked = true;
-      readControls();
-      const target = (q.coreSectionIds || []).find((id) => doc.getElementById(id)) || null;
-      if (typeof setTopic === "function") setTopic(q.topic, { scroll: true, target });
-      renderQuiz(true);
-      let card = list.querySelector('.qcard[data-qid="' + (root.CSS && CSS.escape ? CSS.escape(q.id) : q.id) + '"]');
-      if (!card && ui.filter !== "all") {
-        el.filter.value = "all"; readControls(); renderQuiz(true);
-        card = list.querySelector('.qcard[data-qid="' + (root.CSS && CSS.escape ? CSS.escape(q.id) : q.id) + '"]');
-      }
-      if (isMobile() && typeof setPane === "function") setPane("quiz");
-      if (card) {
-        list.querySelectorAll(".qcard.hl").forEach((c) => c.classList.remove("hl"));
-        card.classList.add("hl");
-        card.scrollIntoView({ block: "start" });
-        const r = card.querySelector('input[type="radio"]:not(:disabled)') || card.querySelector("button");
-        if (r) r.focus({ preventScroll: true });
-      }
-    });
-
-    // ----- backup / restore -----
     el.exp.addEventListener("click", () => {
       const text = SS.exportBackup(state);
       const blob = new Blob([text], { type: "application/json" });
@@ -770,7 +474,6 @@
       if (saved) notice("복원했습니다.", false);
     });
 
-    // ----- mobile: collapsible TOC, wide tables -----
     const tabs = doc.getElementById("tabs");
     const nav = doc.getElementById("nav");
     if (tabs && nav) {
@@ -796,8 +499,6 @@
         for (const c of row.cells) n += c.colSpan || 1;
         cols = Math.max(cols, n);
       }
-      // Every table gets a local scroll box so a long token never scrolls the whole pane;
-      // only wide comparison tables (8+ columns) keep a desktop-like min-width on mobile.
       const wrap = doc.createElement("div");
       wrap.className = cols >= 8 ? "tbl-x wide" : "tbl-x";
       tbl.parentNode.insertBefore(wrap, tbl);
