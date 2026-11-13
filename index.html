@@ -202,22 +202,13 @@
     animation: float-soft 7.2s ease-in-out 1.5s infinite;
   }
 
-  /* Vivid source art — soft edge fade into pink only, no teal wash */
+  /* Solid white bodies on pink — no fade/blend/filter on the characters */
   .companions img {
     display: block;
     width: 100%;
     height: auto;
-    opacity: 0.96;
-    mix-blend-mode: normal;
+    opacity: 1;
     filter: none;
-    -webkit-mask-image:
-      radial-gradient(ellipse 82% 86% at 50% 48%, #000 48%, transparent 82%),
-      linear-gradient(to top, transparent 0%, #000 18%, #000 100%);
-    -webkit-mask-composite: source-in;
-    mask-image:
-      radial-gradient(ellipse 82% 86% at 50% 48%, #000 48%, transparent 82%),
-      linear-gradient(to top, transparent 0%, #000 18%, #000 100%);
-    mask-composite: intersect;
   }
 
   @keyframes rise {
@@ -243,10 +234,6 @@
     .companions {
       width: min(100%, 13.5rem);
       margin-top: 1.4rem;
-    }
-
-    .companions img {
-      opacity: 0.94;
     }
   }
 
