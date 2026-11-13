@@ -484,7 +484,7 @@
 
 ### 12.4 문항
 
-- 기본 퀴즈 = `includeInBasicSet`(verified ∧ 한국어) 54건. pending·excluded는 HTML의 `QUESTION_BANK`(한국어 468건)에만 넣고 화면에는 내지 않는다(Task 5 검토 UI용).
+- 기본 퀴즈 = `includeInBasicSet`(verified ∧ 한국어) 54건. pending·excluded도 HTML의 `QUESTION_BANK`에 내장한다(§14.2 참조). 화면에서는 pending 한국어 문항만 「검토 대기 포함」을 켰을 때(기본 꺼짐) 나오고, excluded는 UI가 표시하지 않는다.
 - 새 verified 3건은 모두 `originalPractice`이며 보유 원문 인용으로 정답·선택지를 되짚을 수 있다: `op-case-ppn-osm`(ASPEN Myths p.3), `op-ebm-model-rule`·`op-ebm-incidence-measure`(Liao 2026 p.1·3·4·6·8). 사람의 임상 검토는 아직이다.
 - `questions.json`에 `needle`(구 퀴즈의 위치 찾기 문구)을 추가했다. 핵심본 문구가 바뀌어 자동 연결이 생긴 4건 중 3건(`medex-019`·`bcnsp-095`·`quizlet-m2b-045`)은 우연한 일반어 일치라 Task 2 값으로 되돌렸고, `cnsc-024`(20% ILE 2.0 kcal/mL → 4.2)만 맞는 연결이라 유지했다.
 
@@ -524,7 +524,7 @@ missing→partial 6행: `common-clinical-statistics`, `common-appraisal-applicat
 ### 14.2 문항 대조
 
 - `content/questions.json` 586건과 HTML에 내장된 `QUESTION_BANK` 586건을 필드 단위로 비교: 한국어 468건 전부 존재, 차이 0. 영어 118건도 내장돼 있다.
-- 화면에 나오는 기본 풀 = `includeInBasicSet` 54건. 모두 `reviewStatus=verified`·`language=ko`이며 보기·정답이 있다. pending 400·excluded 132는 내장만 되고 기본 퀴즈에는 나오지 않는다(검토 UI에서만 접근).
+- 화면에 나오는 기본 풀 = `includeInBasicSet` 54건. 모두 `reviewStatus=verified`·`language=ko`이며 보기·정답이 있다. pending 400·excluded 132는 내장만 되고 기본 퀴즈에는 나오지 않는다. pending 한국어 문항은 「검토 대기 포함」 체크 시에만 보이며(검토 대기 배지 표시), excluded는 `study-ui.js`의 `isDisplayable`이 `reviewStatus==='excluded'`를 막아 어떤 보기·검색에서도 표시되지 않는다. 내장은 데이터 보존·대조용이다.
 - §12.4의 "QUESTION_BANK(한국어 468건)"는 부정확하다. 실제로는 한국어·영어 586건 전체를 내장한다(`scripts/build.py` `question_bank`).
 - 제외 문항의 사유는 각 문항의 `reviewNote`·`sourceNote`와 §1–§11에 있다. 이번 작업에서 판정을 바꾼 문항은 없다.
 
@@ -548,3 +548,11 @@ missing→partial 6행: `common-clinical-statistics`, `common-appraisal-applicat
 - ASPEN Adult Nutrition Support Core Curriculum 4th ed.(`aspen-adult-core-4e-2025`)는 미보유 → 이 교재 기준으로 적은 값은 장·쪽 확인 대기. 지정 문헌 중 14건 미보유, 11건 유료·미검토.
 - 모의고사 20+80은 검증 문항 부족(공통 2/20 · PN 52/80)으로 비활성이다.
 - 실제 브라우저에서의 인쇄 미리보기·모바일 레이아웃·GitHub Pages 배포 경로 확인은 하지 않았다. 배포·푸시도 하지 않았다.
+
+### 14.6 화면 흐름 예시 (커밋 `b3c3f36`의 `src/study-ui.js` 기준)
+
+1. `PN_study_split.html`을 열고 메뉴에서 소단원을 고른다. 퀴즈 창에는 해당 소단원의 verified 문항이 나온다(보기 「전체」, 「검토 대기 포함」 꺼짐).
+2. 보기를 고르고 「제출」을 누르면 채점되고 해설·연결된 핵심 단원이 열린다. 필요하면 확신/헷갈림을 표시한다.
+3. 보기 드롭다운을 「오답」(또는 헷갈림·즐겨찾기·미풀이)으로 바꾸면 해당 문항만 모인다. 검색어는 전 단원에서 찾는다.
+4. 「검토 대기 포함」을 켜면 pending 한국어 문항이 「검토 대기」 배지와 함께 섞인다. excluded 문항은 이 상태에서도 나오지 않는다.
+5. 「백업」으로 `pn-study-backup-YYYYMMDD.json`을 내려받고, 「복원」에서 파일을 고르면 미리보기(중복 제거·손상 제외·재채점 수)가 뜨며 병합 또는 교체로 적용한다.

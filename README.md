@@ -27,6 +27,11 @@ python3 -m unittest discover -s tests -p 'test_*.py'   # check_content tests
 
 - Answer a question, then grade it; mark confidence (sure / unsure). Explanation and linked core section appear after submission.
 - Review filters: wrong, unsure, unseen, bookmarked. Plus search, source chips, topic scoping, resume at the last question.
+- Example flow (as implemented in `src/study-ui.js`):
+  1. Open `PN_study_split.html`, pick a sub-section in the menu; the quiz pane lists its verified questions (view 전체, 검토 대기 포함 off).
+  2. Select a choice, then press 제출; the answer is graded and the explanation and linked core section appear. Optionally mark 확신/헷갈림.
+  3. Set 보기 to 오답 (or 헷갈림 / 즐겨찾기) to list only those questions; search spans all topics.
+  4. Press 백업 to download `pn-study-backup-YYYYMMDD.json`; later press 복원, check the preview, and apply with merge or replace.
 - Fixed practice session: freezes the current list (optional shuffle) so scrolling or moving between sub-sections does not change it.
 - Backup / restore: export progress as JSON (`pn-study-backup-*.json`, git-ignored), preview the file, then restore with merge or replace.
 - Progress is stored only in this browser's `localStorage` under the key `pn-study-progress-v1`. Clearing site data or switching browser/device loses it; use backup to move it. If storage is blocked (private mode, quota), the quiz still works but shows a notice that progress will not persist.
@@ -36,7 +41,7 @@ python3 -m unittest discover -s tests -p 'test_*.py'   # check_content tests
 ## Content version and verification status
 
 - `contentVersion`: `2026-11-14.1` (`content/questions.json` `meta.contentVersion`). Backups record it; restoring a backup from another version shows a warning.
-- Question bank: 586 questions embedded in the HTML (verified 54 · pending 400 · excluded 132). **The default quiz shows only the 54 verified Korean questions.** Pending and excluded questions are embedded but reachable only through the review UI.
+- Question bank: 586 questions embedded in the HTML (verified 54 · pending 400 · excluded 132). **The default quiz shows only the 54 verified Korean questions.** Pending Korean questions appear only if you tick "검토 대기 포함" (off by default; they carry a "검토 대기" badge). Excluded questions are embedded in the bank but never displayed by the UI (`study-ui.js` `isDisplayable` blocks them, including in review filters and search).
 - "Verified" means the ID, stem, choices, answer, and explanation were re-checked against the reference material the author holds. It is **not** official clinical certification and has not been reviewed by a licensed clinician or exam body. Do not treat any content here as authoritative for patient care or as an official answer key.
 - Scope coverage: 31 partial, 7 missing, 0 fully covered. Missing: common EBM/EBCP, literature types, lung/heart/neuro disease, pregnancy, elderly.
 - Domestic PN product table: shell only; the 4 candidate products are all `unconfirmed` and have no composition values.
