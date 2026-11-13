@@ -179,17 +179,25 @@ mark.hl-both, .hl-both{
 
 
 @media print{
-  .tabs, .nav, .pane-quiz, .hl-legend{display:none!important}
+  .tabs, .nav, .pane-quiz, .hl-legend, .header{display:none!important}
   .app, .main{display:block!important;height:auto!important;max-height:none!important;overflow:visible!important}
   .pane-core{display:block!important;overflow:visible!important;height:auto!important;max-height:none!important}
   body{overflow:visible!important;background:#fff}
-  .header{break-after:avoid}
   tr, .sec-h{break-inside:avoid}
   mark.hl-pink, .hl-pink, mark.hl-yellow, .hl-yellow, mark.hl-both, .hl-both{
     -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important
   }
 }
-@page{size:A4;margin:14mm 12mm}
+@page{
+  size:A4;
+  margin:12mm 10mm;
+  @top-left{content:none}
+  @top-center{content:none}
+  @top-right{content:none}
+  @bottom-left{content:none}
+  @bottom-center{content:none}
+  @bottom-right{content:none}
+}
 
 </style>
 </head>

@@ -65,15 +65,15 @@ h3{
   -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
 
-/* Dense nested tables */
+/* Dense nested tables — keep dose units/arrows glued (짜그리) */
 table{
   width:100%!important; max-width:100%!important;
   border-collapse:collapse; table-layout:fixed;
   margin:0 0 1.2mm; font-size:8pt; line-height:1.25;
 }
 th, td{
-  border:1px solid var(--line); padding:0.7mm 1.1mm; vertical-align:top;
-  overflow-wrap:anywhere; word-break:break-word; white-space:normal!important;
+  border:1px solid var(--line); padding:0.55mm 0.9mm; vertical-align:top;
+  overflow-wrap:break-word; word-break:keep-all; white-space:normal;
 }
 th, .th{
   background:#eef2f6; font-weight:700; font-size:7.5pt;
@@ -81,11 +81,26 @@ th, .th{
 }
 .l1{
   background:var(--zebra); font-weight:700; width:18%; font-size:7.5pt;
+  white-space:nowrap;
   -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
+.nowrap, td.dose, .dose, td.num{
+  white-space:nowrap!important; overflow-wrap:normal; word-break:keep-all;
+}
+td.dose-long{white-space:normal; font-size:7.2pt; line-height:1.22; word-break:keep-all}
+td.memo{font-size:7.2pt; line-height:1.22; word-break:keep-all}
+td.num{text-align:center; font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
 #corePrint table th:first-child,
 #corePrint table .th:first-child,
 #corePrint table td.l1{width:18%}
+#corePrint table.dense.te-cmp col.c-el{width:8%}
+#corePrint table.dense.te-cmp col.c-dose{width:15%}
+#corePrint table.dense.te-cmp col.c-memo{width:47%}
+#corePrint table.dense.te-ped col.c-el{width:9%}
+#corePrint table.dense.te-ped col.c-dose{width:22.75%}
+#corePrint table.dense.conc col.c-el{width:12%}
+#corePrint table.dense.conc col.c-num{width:12.5%}
 tr:nth-child(even) td:not(.l1):not(.th){background:#fbfcfe}
 ul{margin:0 0 1.2mm; padding-left:3.5mm}
 li{margin:0.25mm 0; line-height:1.28}
@@ -147,7 +162,25 @@ thead{display:table-header-group}
 tfoot{display:table-footer-group}
 h1,h2,h3{orphans:3; widows:3}
 
-@page{size:A4; margin:10mm 9mm 11mm 9mm}
+/* Printable margins only — no running title/URL/date/page chrome in margin boxes.
+   Chrome/Edge still honor the print-dialog "Headers and footers" checkbox separately;
+   blanking document.title on print (below) reduces that leftover when the box is checked. */
+@page{
+  size:A4;
+  margin:10mm 9mm 11mm 9mm;
+  @top-left{content:none}
+  @top-center{content:none}
+  @top-right{content:none}
+  @bottom-left{content:none}
+  @bottom-center{content:none}
+  @bottom-right{content:none}
+  @left-top{content:none}
+  @left-middle{content:none}
+  @left-bottom{content:none}
+  @right-top{content:none}
+  @right-middle{content:none}
+  @right-bottom{content:none}
+}
 
 @media print{
   .toolbar{display:none!important}
@@ -173,7 +206,7 @@ h1,h2,h3{orphans:3; widows:3}
 </head>
 <body>
 <div class="toolbar">
-  <button type="button" onclick="window.print()">인쇄 / PDF 저장</button>
+  <button type="button" id="btnPrint">인쇄 / PDF 저장</button>
   <a href="PN_study_split.html">영양불백 공부판으로</a>
   <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div>
 </div>
@@ -586,46 +619,46 @@ h1,h2,h3{orphans:3; widows:3}
 <td class="l1">급속 인 보충</td>
 <td>⟶ 저Ca·테타니 · K-phos 말초 ⟶ 혈전정맥염 · 속도 ≤7 mmol/h <sup class="fn"><a href="#fn21">21</a></sup></td>
 </tr>
-</table><p><b>최대 농도 (표9-18)</b> [TXT p154] — OCR 추출값, p154 미리보기 없어 육안 미검증 (<b>uncertain</b>: NICU Mg 13 등 재확인 권장)</p><table>
+</table><p><b>최대 농도 (표9-18)</b> [TXT p154] — OCR 추출값, p154 미리보기 없어 육안 미검증 (<b>uncertain</b>: NICU Mg 13 등 재확인 권장)</p><table class="dense conc"><colgroup><col class="c-el"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup>
 <tr>
-<td></td>
-<td>Na</td>
-<td>K</td>
-<td>Ca</td>
-<td>P (mmol/L)</td>
-<td>Mg</td>
-<td>Cl/Ac</td>
-<td>Zn (mg/L)</td>
+<td class="th"></td>
+<td class="th">Na</td>
+<td class="th">K</td>
+<td class="th">Ca</td>
+<td class="th">P&nbsp;(mmol/L)</td>
+<td class="th">Mg</td>
+<td class="th">Cl/Ac</td>
+<td class="th">Zn&nbsp;(mg/L)</td>
 </tr>
 <tr>
 <td class="l1">성인</td>
-<td>180</td>
-<td>150</td>
-<td>30</td>
-<td>35</td>
-<td>24</td>
-<td>300</td>
-<td>10</td>
+<td class="num">180</td>
+<td class="num">150</td>
+<td class="num">30</td>
+<td class="num">35</td>
+<td class="num">24</td>
+<td class="num">300</td>
+<td class="num">10</td>
 </tr>
 <tr>
 <td class="l1">소아</td>
-<td>180</td>
-<td>150</td>
-<td>30</td>
-<td>30</td>
-<td>24</td>
-<td>250</td>
-<td>5</td>
+<td class="num">180</td>
+<td class="num">150</td>
+<td class="num">30</td>
+<td class="num">30</td>
+<td class="num">24</td>
+<td class="num">250</td>
+<td class="num">5</td>
 </tr>
 <tr>
 <td class="l1">NICU</td>
-<td>180</td>
-<td>150</td>
-<td>30</td>
-<td>30</td>
-<td><b>13</b></td>
-<td>250</td>
-<td>5</td>
+<td class="num">180</td>
+<td class="num">150</td>
+<td class="num">30</td>
+<td class="num">30</td>
+<td class="num"><b>13</b></td>
+<td class="num">250</td>
+<td class="num">5</td>
 </tr>
 </table><p>(단위 mEq/L, 별도 표기 제외)</p><h3 id="s186">2.6 비타민</h3><table>
 <tr>
@@ -672,55 +705,55 @@ h1,h2,h3{orphans:3; widows:3}
 <td class="l1">엽산</td>
 <td>UC: <b>sulfasalazine ⟶ 엽산 결핍</b> [EXAM p212] [EXAM+ p071] · <b>임신 중 결핍 ⟶ 신생아 신경관 결손</b> [EXAM+ p071] · MTX·trimethoprim·항경련제도 결핍 유발 [TXT p071]</td>
 </tr>
-</table><h3 id="s200">2.7 미량원소 (TE)</h3><p><b>성인 1일 권장 (표6-8 / 표9-14)</b></p><table>
+</table><h3 id="s200">2.7 미량원소 (TE)</h3><p><b>성인 1일 권장 (표6-8 / 표9-14)</b></p><table class="dense te-cmp"><colgroup><col class="c-el"><col class="c-dose"><col class="c-dose"><col class="c-dose"><col class="c-memo"></colgroup>
 <tr>
-<td>원소</td>
-<td><b>ASPEN 2012/2020</b> [EXAM p104·p150]</td>
-<td>ESPEN [TXT p150–151]</td>
-<td>(구) AMA 1979 [TXT p104]</td>
-<td>메모</td>
+<td class="th">원소</td>
+<td class="th"><b>ASPEN 2012/2020</b> [EXAM p104·p150]</td>
+<td class="th">ESPEN [TXT p150–151]</td>
+<td class="th">(구) AMA 1979 [TXT p104]</td>
+<td class="th">메모</td>
 </tr>
 <tr>
 <td class="l1">Zn</td>
-<td><b>3–5 mg</b></td>
-<td>2.5–5 mg</td>
-<td>2.5–4.0 mg</td>
-<td>설사·누공 ⟶ ↑</td>
+<td class="dose"><b>3–5&nbsp;mg</b></td>
+<td class="dose">2.5–5&nbsp;mg</td>
+<td class="dose">2.5–4.0&nbsp;mg</td>
+<td class="memo">설사·누공 <span class="nowrap">⟶&nbsp;↑</span></td>
 </tr>
 <tr>
 <td class="l1">Cu</td>
-<td><b>0.3–0.5 mg</b></td>
-<td>0.3–0.5 mg</td>
-<td>0.5–1.5 mg</td>
-<td>GI loss 500 μg/d · <mark class="hl-yellow" title="병원약사회">담즙정체</mark> ⟶ ↓</td>
+<td class="dose"><b>0.3–0.5&nbsp;mg</b></td>
+<td class="dose">0.3–0.5&nbsp;mg</td>
+<td class="dose">0.5–1.5&nbsp;mg</td>
+<td class="memo">GI loss 500&nbsp;μg/d · <mark class="hl-yellow" title="병원약사회">담즙정체</mark> <span class="nowrap">⟶&nbsp;↓</span></td>
 </tr>
 <tr>
 <td class="l1">Cr</td>
-<td><b>≤10 μg</b></td>
-<td>10–15 μg</td>
-<td>10–15 μg</td>
-<td>GI loss 20 μg/d · <b>6개월마다 A1C</b> · 신부전 ⟶ ↓</td>
+<td class="dose"><b>≤10&nbsp;μg</b></td>
+<td class="dose">10–15&nbsp;μg</td>
+<td class="dose">10–15&nbsp;μg</td>
+<td class="memo">GI loss 20&nbsp;μg/d · <b>6개월마다 A1C</b> · 신부전 <span class="nowrap">⟶&nbsp;↓</span></td>
 </tr>
 <tr>
 <td class="l1">Mn</td>
-<td><b><mark class="hl-pink" title="전문약사 EXAM">55 μg</mark></b></td>
-<td>0.2–0.3 mg</td>
-<td>150–800 μg</td>
-<td><mark class="hl-yellow" title="병원약사회">담즙정체</mark> ⟶ ↓</td>
+<td class="dose"><b><mark class="hl-pink" title="전문약사 EXAM">55&nbsp;μg</mark></b></td>
+<td class="dose">0.2–0.3&nbsp;mg</td>
+<td class="dose">150–800&nbsp;μg</td>
+<td class="memo"><mark class="hl-yellow" title="병원약사회">담즙정체</mark> <span class="nowrap">⟶&nbsp;↓</span></td>
 </tr>
 <tr>
 <td class="l1">Se</td>
-<td><b>60–100 μg</b></td>
-<td>20–60 μg</td>
-<td>(없음)</td>
-<td>신부전 ⟶ ↓</td>
+<td class="dose"><b>60–100&nbsp;μg</b></td>
+<td class="dose">20–60&nbsp;μg</td>
+<td class="dose">(없음)</td>
+<td class="memo">신부전 <span class="nowrap">⟶&nbsp;↓</span></td>
 </tr>
 <tr>
 <td class="l1">Fe</td>
-<td>미국 일상 비첨가 (필요시 별도, 월 25–50 mg) [TXT p150]</td>
-<td></td>
-<td></td>
-<td>배합성 제한 ⟶ <b>PN과 별도</b> 주입 [TXT p185]</td>
+<td class="dose-long">미국 일상 비첨가 (필요시 별도, 월&nbsp;25–50&nbsp;mg) [TXT p150]</td>
+<td class="dose muted">—</td>
+<td class="dose muted">—</td>
+<td class="memo">배합성 제한 <span class="nowrap">⟶</span> <b>PN과 별도</b> 주입 [TXT p185]</td>
 </tr>
 </table><ul><li>시판 예 <sup class="fn"><a href="#fn23">23</a></sup>: 1 mL = Zn 3 mg + Cu 0.3 mg + Mn <mark class="hl-pink" title="전문약사 EXAM">55 μg</mark> + Se 60 μg (= ASPEN 성인용량과 정합)</li><li>질환 조정 <sup class="fn"><a href="#fn4">4</a></sup> [EXAM p185]: <b>설사 ⟶ Zn 보충</b> · <b>담즙울체/간담도 ⟶ <mark class="hl-both" title="전문약사+병원약사회">Cu·Mn</mark> 감량·제한</b> · <b>신부전 ⟶ <mark class="hl-both" title="전문약사+병원약사회">Cr·Se</mark> 제한</b></li><li>결핍/독성 [TXT p273]: Zn 결핍 = 피부염·설사·상처치유 지연 · Cu 결핍 = 호중구감소·빈혈 · <b>Cr 결핍 = <mark class="hl-yellow" title="병원약사회">포도당불내성</mark>·인슐린저항(⟶ 고혈당)</b> [EXAM p035] · Mn = 복합제 함량 높아 <b>독성</b>(신경계, 파킨슨양 <sup class="fn"><a href="#fn6">6</a></sup>) · Se 결핍 = 심근병증</li><li>Zn [EXAM+ p093·p094]: 결핍 = 발진·탈모·<b>야맹증</b>·미각변화·면역↓·설사 · 독성 = 위장장애·<b>HDL↓</b> · 보충 대상 = 열손상·외상성 뇌손상 등 대사항진, 설사·욕창·<b>누공 고배출</b>·<b>과다 GI 손실</b> · 혈장 Zn ≤70 μg/dL = low · 고용량 Zn(≥40 mg/d) ⟶ <b>Cu 결핍</b> [TXT p093]</li><li>Cr [EXAM+ p102]: 결핍 ⟶ <b>포도당·아미노산 사용 장애</b>, 혈장 지질↑, 말초신경병증</li><li>Se [EXAM p101]: <b>sodium <mark class="hl-pink" title="전문약사 EXAM">selenite</mark> pentahydrate</b> ⟶ pH &lt;7 또는 <b>Vit C</b>(환원제) 혼합 시 침전 ⟶ Vit C와 <b>1~4시간 간격</b> · <b>selenious acid</b> = Vit C 혼합 가능 [TXT p101] (필기 &quot;Mix 불가&quot; ⟶ <b>uncertain</b>, §11-기타) · 결핍 = Keshan 심근병증·T3↓ · 독성 = 탈모·손발톱·마늘냄새·말초신경증 · 상한 <b>200 μg/d 미만, 5 μg/kg/d <span class="x">초과X</span></b> [TXT p101] · eltrombopag ⟶ Se 흡수↓ [TXT p101]</li><li>장기 PN Se 무보충 ⟶ 심근병증 보고 [TXT p185] · 혈청 TE 농도 = 신뢰도 낮음, 급성 염증기 검사 연기·CRP 동시 [TXT p185] <sup class="fn"><a href="#fn23">23</a></sup></li><li>알루미늄: 비경구 <b>≤5 μg/kg/d</b> (오염원 Ca·PO₄ 염) <sup class="fn"><a href="#fn6">6</a></sup> · 유리병 Ca gluconate = Al 오염 주의 <sup class="fn"><a href="#fn24">24</a></sup></li></ul><h2 id="s224">3. 투여경로 · 제형</h2><h3 id="s226">3.1 말초 vs 중심 <sup class="fn"><a href="#fn4">4</a></sup> 골격</h3><table>
 <tr>
@@ -1355,48 +1388,48 @@ h1,h2,h3{orphans:3; widows:3}
 <td class="l1">이행</td>
 <td><b>점진적</b>, 75–80%까지 PN 유지 · 급중단 ⟶ rebound 저혈당 [EXAM p273]</td>
 </tr>
-</table><p><b>소아 1일 미량원소 PN 요구량 (표6-11, ASPEN 2019)</b> [EXAM+ p106]</p><table>
+</table><p><b>소아 1일 미량원소 PN 요구량 (표6-11, ASPEN 2019)</b> [EXAM+ p106]</p><table class="dense te-ped"><colgroup><col class="c-el"><col class="c-dose"><col class="c-dose"><col class="c-dose"><col class="c-dose"></colgroup>
 <tr>
-<td>원소</td>
-<td><b>Preterm 신생아</b></td>
-<td>Term 신생아 (3–10 kg)</td>
-<td>소아 10–40 kg</td>
-<td>청소년 &gt;40 kg</td>
+<td class="th">원소</td>
+<td class="th"><b>Preterm 신생아</b></td>
+<td class="th">Term 신생아 (3–10&nbsp;kg)</td>
+<td class="th">소아 10–40&nbsp;kg</td>
+<td class="th">청소년 &gt;40&nbsp;kg</td>
 </tr>
 <tr>
 <td class="l1">Zn</td>
-<td><b>400 μg/kg</b></td>
-<td>250 μg/kg</td>
-<td>50 μg/kg (max 5,000 μg/d)</td>
-<td>2–5 mg</td>
+<td class="dose"><b>400&nbsp;μg/kg</b></td>
+<td class="dose">250&nbsp;μg/kg</td>
+<td class="dose-long">50&nbsp;μg/kg (max 5,000&nbsp;μg/d)</td>
+<td class="dose">2–5&nbsp;mg</td>
 </tr>
 <tr>
 <td class="l1">Cu</td>
-<td><b>20 μg/kg</b></td>
-<td>20 μg/kg</td>
-<td>20 μg/kg (max 500 μg/d)</td>
-<td>200–500 μg</td>
+<td class="dose"><b>20&nbsp;μg/kg</b></td>
+<td class="dose">20&nbsp;μg/kg</td>
+<td class="dose-long">20&nbsp;μg/kg (max 500&nbsp;μg/d)</td>
+<td class="dose">200–500&nbsp;μg</td>
 </tr>
 <tr>
 <td class="l1">Mn</td>
-<td><b>1 μg/kg</b></td>
-<td>1 μg/kg</td>
-<td>1 μg/kg (max <mark class="hl-pink" title="전문약사 EXAM">55 μg</mark>/d)</td>
-<td>40–100 μg</td>
+<td class="dose"><b>1&nbsp;μg/kg</b></td>
+<td class="dose">1&nbsp;μg/kg</td>
+<td class="dose-long">1&nbsp;μg/kg (max <mark class="hl-pink" title="전문약사 EXAM">55&nbsp;μg</mark>/d)</td>
+<td class="dose">40–100&nbsp;μg</td>
 </tr>
 <tr>
 <td class="l1">Cr</td>
-<td><b>0.05–0.3 μg/kg</b></td>
-<td>0.2 μg/kg</td>
-<td>0.2 μg/kg (max 5 μg/d)</td>
-<td>5–15 μg</td>
+<td class="dose"><b>0.05–0.3&nbsp;μg/kg</b></td>
+<td class="dose">0.2&nbsp;μg/kg</td>
+<td class="dose-long">0.2&nbsp;μg/kg (max 5&nbsp;μg/d)</td>
+<td class="dose">5–15&nbsp;μg</td>
 </tr>
 <tr>
 <td class="l1">Se</td>
-<td><b>2 μg/kg</b></td>
-<td>2 μg/kg</td>
-<td>2 μg/kg (max 100 μg/d)</td>
-<td>40–60 μg</td>
+<td class="dose"><b>2&nbsp;μg/kg</b></td>
+<td class="dose">2&nbsp;μg/kg</td>
+<td class="dose-long">2&nbsp;μg/kg (max 100&nbsp;μg/d)</td>
+<td class="dose">40–60&nbsp;μg</td>
 </tr>
 </table><ul><li>주: 미국 시판 multi-TE 조성과 다름 [TXT p106] · 성인 IV: Fe 미국 일상 비첨가(필요시 월 25–50 mg 별도) · Mo 비첨가 · Mn 55 μg · Se 60–100 μg · <mark class="hl-pink" title="전문약사 EXAM">Zn 3–5</mark> mg [TXT p106]</li></ul><h2 id="s508">10. 재택 PN (HPN)</h2><table>
 <tr>
@@ -2136,6 +2169,23 @@ h1,h2,h3{orphans:3; widows:3}
 </div>
 <script>
 (function(){
+  // Strip browser print chrome we can influence (title → header text).
+  // Does not force-uncheck Chrome "Headers and footers"; user must uncheck for URL/date.
+  const savedTitle = document.title;
+  function blankTitleForPrint(){ document.title = " "; }
+  function restoreTitle(){ document.title = savedTitle; }
+  window.addEventListener("beforeprint", blankTitleForPrint);
+  window.addEventListener("afterprint", restoreTitle);
+  const btn = document.getElementById("btnPrint");
+  if(btn){
+    btn.addEventListener("click", function(){
+      blankTitleForPrint();
+      window.print();
+      // afterprint may not fire in all engines; restore on next tick as fallback
+      setTimeout(restoreTitle, 500);
+    });
+  }
+
   const root = document.getElementById("corePrint");
   if(!root || root.dataset.wrapped === "1") return;
 
