@@ -2652,7 +2652,8 @@ function isKoreanStem(stem){
 }
 /* Task 3: grading/favorites/progress persistence deliberately NOT here.
    Task 4 owns localStorage key "pn-study-progress-v1" (schemaVersion, contentVersion,
-   attemptsByQuestionId, bookmarks, lastSession). Quiz cards are read-only until then. */
+   attemptsByQuestionId, bookmarks, lastSession). Quiz cards are read-only until then.
+   Task 4 logic lives in src/study-state.js (pure state, store adapter, backup); UI wiring is Task 5. */
 function renderQuiz(force){
   const list=document.getElementById("quizList");
   const title=document.getElementById("quizHeadTitle") || document.getElementById("quizHead");
