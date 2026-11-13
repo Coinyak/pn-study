@@ -42,6 +42,24 @@ body{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif
 .pane-quiz #quizList{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch}
 table.jg.nest{width:100%;border-collapse:collapse;font-size:14.5px;line-height:var(--lh)}
 table.jg.nest td, table.jg.nest th{border:1px solid var(--line);padding:10px 12px;vertical-align:top}
+/* Dense multi-col dose tables: keep units/arrows glued, stay 짜그리 */
+.nowrap{white-space:nowrap}
+table.jg.nest.dense{table-layout:fixed;font-size:13.5px;line-height:1.42}
+table.jg.nest.dense td, table.jg.nest.dense th{padding:6px 7px;word-break:keep-all;overflow-wrap:break-word}
+table.jg.nest.dense .th{font-size:12.5px;line-height:1.3}
+table.jg.nest.dense .l1{font-size:13px}
+table.jg.nest.dense td.dose,
+table.jg.nest.dense .dose{white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
+table.jg.nest.dense td.dose-long{white-space:normal;font-size:12.5px;line-height:1.35;word-break:keep-all}
+table.jg.nest.dense td.memo{font-size:12.5px;line-height:1.38;word-break:keep-all}
+table.jg.nest.dense td.num{white-space:nowrap;text-align:center;font-variant-numeric:tabular-nums}
+table.jg.nest.dense col.c-el{width:9%}
+table.jg.nest.dense col.c-dose{width:16%}
+table.jg.nest.dense col.c-memo{width:43%}
+table.jg.nest.dense.te-ped col.c-el{width:10%}
+table.jg.nest.dense.te-ped col.c-dose{width:22.5%}
+table.jg.nest.dense.conc col.c-el{width:12%}
+table.jg.nest.dense.conc col.c-num{width:12.5%}
 .sec{border-bottom:2px solid var(--navy);scroll-margin-top:0}
 .sec.active-sec > .sec-h{background:#cfe0c4;box-shadow:inset 4px 0 0 var(--chip-on)}
 .sec-h{background:var(--label);font-weight:800;font-size:16px;line-height:1.4;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--navy);letter-spacing:-.02em;position:sticky;top:0;z-index:1}
@@ -99,6 +117,8 @@ button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertica
   body.mode-quiz .nav{display:none}
   body.mode-quiz .main{grid-template-columns:1fr}
   body.mode-quiz .pane-quiz{grid-column:1}
+  .header{flex-wrap:wrap;row-gap:6px}
+  .hl-legend{flex:1 1 100%;flex-wrap:wrap;white-space:normal;justify-content:flex-start;gap:8px 12px}
   table.jg.nest{font-size:14.5px}
   .sec-h{font-size:15.5px;padding:13px 14px}
   .cell,.qcard .stem{font-size:15px}
@@ -242,7 +262,7 @@ mark.hl-both, .hl-both{
 </tr>
 <tr>
 <td class="l1">내장단백</td>
-<td><b>prealbumin</b>(transthyretin, 반감기 2–3일) = <b>단기간 영양지원 효과·영양부족 모니터링</b> <button type="button" class="fn" data-cite="11" data-topic="eval" title="색인 11" aria-label="색인 11"><sup>11</sup></button> · 알부민 반감기 18–20일 = 만성 지표, &lt;2.5 g/dL ⟶ 부종 · 저알부민 ⟶ Ca·phenytoin·valproate 해석 주의 <button type="button" class="fn" data-cite="12" data-topic="eval" title="색인 12" aria-label="색인 12"><sup>12</sup></button></td>
+<td><b>prealbumin</b>(transthyretin, 반감기 2–3일) = <b>염증 지표·영양위험 평가</b>(영양지원 효과 모니터링 지표로는 근거 미확립 [ASPEN]) <button type="button" class="fn" data-cite="11" data-topic="eval" title="색인 11" aria-label="색인 11"><sup>11</sup></button> · 알부민 반감기 18–20일 = 만성 지표, &lt;2.5 g/dL ⟶ 부종 · 저알부민 ⟶ Ca·phenytoin·valproate 해석 주의 <button type="button" class="fn" data-cite="12" data-topic="eval" title="색인 12" aria-label="색인 12"><sup>12</sup></button></td>
 </tr>
 <tr>
 <td class="l1">총체수분(TBW)</td>
@@ -678,45 +698,45 @@ mark.hl-both, .hl-both{
 </tr>
 </table>
 <div class="cell"><b>최대 농도 (표9-18)</b> <button type="button" class="fn" data-cite="89" data-topic="fluid_lytes" title="색인 89" aria-label="색인 89"><sup>89</sup></button> — OCR 추출값, p154 미리보기 없어 육안 미검증 (<b>uncertain</b>: NICU Mg 13 등 재확인 권장)</div>
-<table class="jg nest"><tr>
+<table class="jg nest dense conc"><colgroup><col class="c-el"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup><tr>
 <th class="th"></th>
 <th class="th">Na</th>
 <th class="th">K</th>
 <th class="th">Ca</th>
-<th class="th">P (mmol/L)</th>
+<th class="th">P&nbsp;(mmol/L)</th>
 <th class="th">Mg</th>
 <th class="th">Cl/Ac</th>
-<th class="th">Zn (mg/L)</th>
+<th class="th">Zn&nbsp;(mg/L)</th>
 </tr>
 <tr>
 <td class="l1">성인</td>
-<td>180</td>
-<td>150</td>
-<td>30</td>
-<td>35</td>
-<td>24</td>
-<td>300</td>
-<td>10</td>
+<td class="num">180</td>
+<td class="num">150</td>
+<td class="num">30</td>
+<td class="num">35</td>
+<td class="num">24</td>
+<td class="num">300</td>
+<td class="num">10</td>
 </tr>
 <tr>
 <td class="l1">소아</td>
-<td>180</td>
-<td>150</td>
-<td>30</td>
-<td>30</td>
-<td>24</td>
-<td>250</td>
-<td>5</td>
+<td class="num">180</td>
+<td class="num">150</td>
+<td class="num">30</td>
+<td class="num">30</td>
+<td class="num">24</td>
+<td class="num">250</td>
+<td class="num">5</td>
 </tr>
 <tr>
 <td class="l1">NICU</td>
-<td>180</td>
-<td>150</td>
-<td>30</td>
-<td>30</td>
-<td><b>13</b></td>
-<td>250</td>
-<td>5</td>
+<td class="num">180</td>
+<td class="num">150</td>
+<td class="num">30</td>
+<td class="num">30</td>
+<td class="num"><b>13</b></td>
+<td class="num">250</td>
+<td class="num">5</td>
 </tr>
 </table>
 <div class="cell">(단위 mEq/L, 별도 표기 제외)</div>
@@ -777,7 +797,7 @@ mark.hl-both, .hl-both{
 <div class="sec-h">2.7 미량원소 (TE)</div>
 <div class="cell"><b>성인 1일 권장 (표6-8 / 표9-14)</b></div>
 <div class="cell"><mark class="hl-yellow" title="병원약사회">Furtman®(초기 4종) = Cr·Cu·Mn·Zn</mark>, Se 없음</div>
-<table class="jg nest"><tr>
+<table class="jg nest dense te-cmp"><colgroup><col class="c-el"><col class="c-dose"><col class="c-dose"><col class="c-dose"><col class="c-memo"></colgroup><tr>
 <th class="th">원소</th>
 <th class="th"><b>ASPEN 2012/2020</b> <button type="button" class="fn" data-cite="101" data-topic="vit_te" title="색인 101" aria-label="색인 101"><sup>101</sup></button></th>
 <th class="th">ESPEN <button type="button" class="fn" data-cite="102" data-topic="vit_te" title="색인 102" aria-label="색인 102"><sup>102</sup></button></th>
@@ -786,45 +806,45 @@ mark.hl-both, .hl-both{
 </tr>
 <tr>
 <td class="l1">Zn</td>
-<td><b>3–5 mg</b></td>
-<td>2.5–5 mg</td>
-<td>2.5–4.0 mg</td>
-<td>설사·누공 ⟶ ↑</td>
+<td class="dose"><b>3–5&nbsp;mg</b></td>
+<td class="dose">2.5–5&nbsp;mg</td>
+<td class="dose">2.5–4.0&nbsp;mg</td>
+<td class="memo">설사·누공 <span class="nowrap">⟶&nbsp;↑</span></td>
 </tr>
 <tr>
 <td class="l1">Cu</td>
-<td><b>0.3–0.5 mg</b></td>
-<td>0.3–0.5 mg</td>
-<td>0.5–1.5 mg</td>
-<td>GI loss 500 μg/d · <mark class="hl-yellow" title="병원약사회">담즙정체</mark> ⟶ ↓</td>
+<td class="dose"><b>0.3–0.5&nbsp;mg</b></td>
+<td class="dose">0.3–0.5&nbsp;mg</td>
+<td class="dose">0.5–1.5&nbsp;mg</td>
+<td class="memo">GI loss 500&nbsp;μg/d · <mark class="hl-yellow" title="병원약사회">담즙정체</mark> <span class="nowrap">⟶&nbsp;↓</span></td>
 </tr>
 <tr>
 <td class="l1">Cr</td>
-<td><b>≤10 μg</b></td>
-<td>10–15 μg</td>
-<td>10–15 μg</td>
-<td>GI loss 20 μg/d · <b>6개월마다 A1C</b> · 신부전 ⟶ ↓</td>
+<td class="dose"><b>≤10&nbsp;μg</b></td>
+<td class="dose">10–15&nbsp;μg</td>
+<td class="dose">10–15&nbsp;μg</td>
+<td class="memo">GI loss 20&nbsp;μg/d · <b>6개월마다 A1C</b> · 신부전 <span class="nowrap">⟶&nbsp;↓</span></td>
 </tr>
 <tr>
 <td class="l1">Mn</td>
-<td><b><mark class="hl-pink" title="전문약사 EXAM">55 μg</mark></b></td>
-<td>0.2–0.3 mg</td>
-<td>150–800 μg</td>
-<td><mark class="hl-yellow" title="병원약사회">담즙정체</mark> ⟶ ↓</td>
+<td class="dose"><b><mark class="hl-pink" title="전문약사 EXAM">55&nbsp;μg</mark></b></td>
+<td class="dose">0.2–0.3&nbsp;mg</td>
+<td class="dose">150–800&nbsp;μg</td>
+<td class="memo"><mark class="hl-yellow" title="병원약사회">담즙정체</mark> <span class="nowrap">⟶&nbsp;↓</span></td>
 </tr>
 <tr>
 <td class="l1">Se</td>
-<td><b>60–100 μg</b></td>
-<td>20–60 μg</td>
-<td>(없음)</td>
-<td>신부전 ⟶ ↓</td>
+<td class="dose"><b>60–100&nbsp;μg</b></td>
+<td class="dose">20–60&nbsp;μg</td>
+<td class="dose">(없음)</td>
+<td class="memo">신부전 <span class="nowrap">⟶&nbsp;↓</span></td>
 </tr>
 <tr>
 <td class="l1">Fe</td>
-<td>미국 일상 비첨가 (필요시 별도, 월 25–50 mg) <button type="button" class="fn" data-cite="104" data-topic="vit_te" title="색인 104" aria-label="색인 104"><sup>104</sup></button></td>
-<td></td>
-<td></td>
-<td>배합성 제한 ⟶ <b>PN과 별도</b> 주입 <button type="button" class="fn" data-cite="105" data-topic="vit_te" title="색인 105" aria-label="색인 105"><sup>105</sup></button></td>
+<td class="dose-long">미국 일상 비첨가 (필요시 별도, 월&nbsp;25–50&nbsp;mg) <button type="button" class="fn" data-cite="104" data-topic="vit_te" title="색인 104" aria-label="색인 104"><sup>104</sup></button></td>
+<td class="dose muted">—</td>
+<td class="dose muted">—</td>
+<td class="memo">배합성 제한 <span class="nowrap">⟶</span> <b>PN과 별도</b> 주입 <button type="button" class="fn" data-cite="105" data-topic="vit_te" title="색인 105" aria-label="색인 105"><sup>105</sup></button></td>
 </tr>
 </table>
 <div class="cell">
@@ -1519,7 +1539,7 @@ mark.hl-both, .hl-both{
 </tr>
 <tr>
 <td class="l1"><b>복막투석(PD)</b></td>
-<td>투석액으로 <b>단백질·AA 손실</b> + <b>지속적 포도당 흡수</b> ⟶ 고혈당·비만 위험 <button type="button" class="fn" data-cite="170" data-topic="disease" title="색인 170" aria-label="색인 170"><sup>170</sup></button> · PD 포도당 흡수 ≈ <b>500–1,000 kcal/d</b> ⟶ 열량에 산입 · CKD 열량 20–45 kcal/kg/d · CHO 50–60% <button type="button" class="fn" data-cite="171" data-topic="disease" title="색인 171" aria-label="색인 171"><sup>171</sup></button> · 흡수열량 = 투석액 속도(L/h) × 시간 × 포도당 농도(g/L) × 흡수율 <button type="button" class="fn" data-cite="168" data-topic="disease" title="색인 168" aria-label="색인 168"><sup>168</sup></button> 장14</td>
+<td>투석액으로 <b>단백질·AA 손실</b> + <b>지속적 포도당 흡수</b> ⟶ 고혈당·비만 위험 <button type="button" class="fn" data-cite="170" data-topic="disease" title="색인 170" aria-label="색인 170"><sup>170</sup></button> · PD 포도당 흡수 ≈ <b>500–1,000 kcal/d</b> ⟶ 열량에 산입 · CKD 열량 20–45 kcal/kg/d · CHO 50–60% <button type="button" class="fn" data-cite="171" data-topic="disease" title="색인 171" aria-label="색인 171"><sup>171</sup></button> · 흡수열량 = 투석액 속도(L/h) × 시간 × 포도당 농도(g/L) × 흡수율 × kcal/g(제형, 통상 3.4) <button type="button" class="fn" data-cite="168" data-topic="disease" title="색인 168" aria-label="색인 168"><sup>168</sup></button> 장14</td>
 </tr>
 <tr>
 <td class="l1"><b>IDPN</b></td>
@@ -1639,47 +1659,47 @@ mark.hl-both, .hl-both{
 </tr>
 </table>
 <div class="cell"><b>소아 1일 미량원소 PN 요구량 (표6-11, ASPEN 2019)</b> <button type="button" class="fn" data-cite="190" data-topic="peds" title="색인 190" aria-label="색인 190"><sup>190</sup></button></div>
-<table class="jg nest"><tr>
+<table class="jg nest dense te-ped"><colgroup><col class="c-el"><col class="c-dose"><col class="c-dose"><col class="c-dose"><col class="c-dose"></colgroup><tr>
 <th class="th">원소</th>
 <th class="th"><b>Preterm 신생아</b></th>
-<th class="th">Term 신생아 (3–10 kg)</th>
-<th class="th">소아 10–40 kg</th>
-<th class="th">청소년 &gt;40 kg</th>
+<th class="th">Term 신생아 (3–10&nbsp;kg)</th>
+<th class="th">소아 10–40&nbsp;kg</th>
+<th class="th">청소년 &gt;40&nbsp;kg</th>
 </tr>
 <tr>
 <td class="l1">Zn</td>
-<td><b>400 μg/kg</b></td>
-<td>250 μg/kg</td>
-<td>50 μg/kg (max 5,000 μg/d)</td>
-<td>2–5 mg</td>
+<td class="dose"><b>400&nbsp;μg/kg</b></td>
+<td class="dose">250&nbsp;μg/kg</td>
+<td class="dose-long">50&nbsp;μg/kg (max 5,000&nbsp;μg/d)</td>
+<td class="dose">2–5&nbsp;mg</td>
 </tr>
 <tr>
 <td class="l1">Cu</td>
-<td><b>20 μg/kg</b></td>
-<td>20 μg/kg</td>
-<td>20 μg/kg (max 500 μg/d)</td>
-<td>200–500 μg</td>
+<td class="dose"><b>20&nbsp;μg/kg</b></td>
+<td class="dose">20&nbsp;μg/kg</td>
+<td class="dose-long">20&nbsp;μg/kg (max 500&nbsp;μg/d)</td>
+<td class="dose">200–500&nbsp;μg</td>
 </tr>
 <tr>
 <td class="l1">Mn</td>
-<td><b>1 μg/kg</b></td>
-<td>1 μg/kg</td>
-<td>1 μg/kg (max <mark class="hl-pink" title="전문약사 EXAM">55 μg</mark>/d)</td>
-<td>40–100 μg</td>
+<td class="dose"><b>1&nbsp;μg/kg</b></td>
+<td class="dose">1&nbsp;μg/kg</td>
+<td class="dose-long">1&nbsp;μg/kg (max <mark class="hl-pink" title="전문약사 EXAM">55&nbsp;μg</mark>/d)</td>
+<td class="dose">40–100&nbsp;μg</td>
 </tr>
 <tr>
 <td class="l1">Cr</td>
-<td><b>0.05–0.3 μg/kg</b></td>
-<td>0.2 μg/kg</td>
-<td>0.2 μg/kg (max 5 μg/d)</td>
-<td>5–15 μg</td>
+<td class="dose"><b>0.05–0.3&nbsp;μg/kg</b></td>
+<td class="dose">0.2&nbsp;μg/kg</td>
+<td class="dose-long">0.2&nbsp;μg/kg (max 5&nbsp;μg/d)</td>
+<td class="dose">5–15&nbsp;μg</td>
 </tr>
 <tr>
 <td class="l1">Se</td>
-<td><b>2 μg/kg</b></td>
-<td>2 μg/kg</td>
-<td>2 μg/kg (max 100 μg/d)</td>
-<td>40–60 μg</td>
+<td class="dose"><b>2&nbsp;μg/kg</b></td>
+<td class="dose">2&nbsp;μg/kg</td>
+<td class="dose-long">2&nbsp;μg/kg (max 100&nbsp;μg/d)</td>
+<td class="dose">40–60&nbsp;μg</td>
 </tr>
 </table>
 <div class="cell">• 주: 미국 시판 multi-TE 조성과 다름 <button type="button" class="fn" data-cite="192" data-topic="peds" title="색인 192" aria-label="색인 192"><sup>192</sup></button> · 성인 IV: Fe 미국 일상 비첨가(필요시 월 25–50 mg 별도) · Mo 비첨가 · Mn 55 μg · Se 60–100 μg · <mark class="hl-pink" title="전문약사 EXAM">Zn 3–5</mark> mg <button type="button" class="fn" data-cite="192" data-topic="peds" title="색인 192" aria-label="색인 192"><sup>192</sup></button></div>
@@ -1853,66 +1873,77 @@ mark.hl-both, .hl-both{
 <section class="sec" data-topic="peds" id="sec-peds-11-4-소아-GIR-교재-표-vs-ESPEN-표">
 <div class="sec-h">11-4. 소아 GIR: 교재 표 vs ESPEN 표</div>
 <table class="jg nest"><tr>
+<th class="th">출처</th>
 <th class="th">대상</th>
 <th class="th">초기</th>
 <th class="th">증량</th>
 <th class="th">목표/최대</th>
 </tr>
 <tr>
+<td class="l1">표2-4</td>
 <td>미숙아</td>
 <td>&lt;1 kg <b>6</b> / &gt;1 kg <b>8</b></td>
 <td>1–2</td>
 <td>최대 <b>12</b></td>
 </tr>
 <tr>
+<td class="l1">표2-5</td>
 <td>소아</td>
 <td>5–7</td>
 <td>2–4</td>
 <td><b>최대 5~13</b> (필기 14)</td>
 </tr>
 <tr>
+<td class="l1">표9-4</td>
 <td>영아(&lt;1 y) preterm·term</td>
 <td>6–8</td>
 <td>1–2</td>
 <td>goal <b>10–14</b> (max 14–18)</td>
 </tr>
 <tr>
+<td class="l1">표9-4</td>
 <td>소아 1–10 y</td>
 <td>3–6</td>
 <td>1–2</td>
 <td>8–10</td>
 </tr>
 <tr>
+<td class="l1">표9-4</td>
 <td>청소년</td>
 <td>2.5–3</td>
 <td>1–2</td>
 <td>5–6</td>
 </tr>
 <tr>
+<td class="l1">p035 <button type="button" class="fn" data-cite="3" data-topic="peds" title="색인 3" aria-label="색인 3"><sup>3</sup></button></td>
 <td>신생아</td>
 <td>—</td>
 <td>—</td>
 <td><b>10~12 넘지 않게</b> (필기 14)</td>
 </tr>
 <tr>
+<td class="l1"><button type="button" class="fn" data-cite="4" data-topic="peds" title="색인 4" aria-label="색인 4"><sup>4</sup></button></td>
 <td>신생아 / 미숙아</td>
 <td>—</td>
 <td>—</td>
 <td><b>6~8 / 14~18 <span class="x">초과X</span></b> (&quot;성인의 약 2배&quot;)</td>
 </tr>
 <tr>
+<td class="l1">ESPEN <button type="button" class="fn" data-cite="42" data-topic="peds" title="색인 42" aria-label="색인 42"><sup>42</sup></button></td>
 <td>preterm</td>
 <td>Day1 <b>4–8</b></td>
 <td>—</td>
 <td>target <b>8–10</b>, min 4, <b>max 12</b></td>
 </tr>
 <tr>
+<td class="l1">ESPEN <button type="button" class="fn" data-cite="42" data-topic="peds" title="색인 42" aria-label="색인 42"><sup>42</sup></button></td>
 <td>term</td>
 <td>Day1 <b>2.5–5</b></td>
 <td>—</td>
 <td>target <b>5–10</b>, min 2.5, <b>max 12</b></td>
 </tr>
 <tr>
+<td class="l1">ESPEN <button type="button" class="fn" data-cite="43" data-topic="peds" title="색인 43" aria-label="색인 43"><sup>43</sup></button></td>
 <td>28 d–10 kg (예)</td>
 <td>급성 2–4</td>
 <td>안정 4–6</td>
@@ -2373,7 +2404,7 @@ mark.hl-both, .hl-both{
 <tr>
 <td class="l1">122</td>
 <td>114</td>
-<td>prealbumin = 단기 영양지원 모니터</td>
+<td>prealbumin = 염증·영양위험 지표(효과 모니터 근거 미확립)</td>
 <td>non_PN(평가)</td>
 <td>0</td>
 </tr>
@@ -2872,10 +2903,11 @@ function highlightFromQuestion(q){
   }
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const behavior = (usedWider && !reduceMotion) ? "smooth" : "auto";
+  // Show core pane first on mobile so scroll metrics are measured on the visible pane
+  if(window.matchMedia("(max-width:899px)").matches) setPane("core");
   scrollCoreTo(aim, {align:0.12, behavior});
   clearTimeout(spyTimer);
   spyTimer = setTimeout(()=>{ spyLock = false; }, behavior === "smooth" ? 2000 : 450);
-  if(window.matchMedia("(max-width:899px)").matches) setPane("core");
 }
 function renderQuiz(){
   const list=document.getElementById("quizList");
@@ -2918,9 +2950,10 @@ function scrollCoreTo(el, {align=0.18, behavior="smooth"}={}){
   if(!core || !el) return;
   const cRect = core.getBoundingClientRect();
   const eRect = el.getBoundingClientRect();
-  // sticky .sec-h (~44px) + small pad — keep target in upper third of pane
-  const stickyPad = 52;
-  const next = core.scrollTop + (eRect.top - cRect.top) - stickyPad - (cRect.height * align);
+  // Land target top at pickActive MARK (56px). Pane-height×align left spy on the wrong section.
+  // `align` kept for call-site compat; MARK is the spy-stable offset.
+  const MARK = 56;
+  const next = core.scrollTop + (eRect.top - cRect.top) - MARK;
   core.scrollTo({top: Math.max(0, next), behavior});
 }
 function showCite(cid, topicFromBtn){
@@ -3014,8 +3047,8 @@ function setupScrollSpy(){
 }
 document.getElementById("nav").addEventListener("click", e=>{
   const b=e.target.closest(".nav-item"); if(!b) return;
-  setTopic(b.dataset.topic, {scroll:true, target:b.dataset.target});
   if(window.matchMedia("(max-width:899px)").matches) setPane("core");
+  setTopic(b.dataset.topic, {scroll:true, target:b.dataset.target});
 });
 document.getElementById("tabs").addEventListener("click", e=>{
   const b=e.target.closest("button[data-pane]"); if(!b) return; setPane(b.dataset.pane);
