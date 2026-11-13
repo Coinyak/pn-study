@@ -149,7 +149,7 @@
       '<div class="sb-row sb-one">' +
         '<select id="sbFilter" aria-label="보기">' + FILTERS.map((f) => '<option value="' + f[0] + '">' + f[1] + "</option>").join("") + "</select>" +
         '<select id="sbScope" aria-label="범위"><option value="all">전체</option><option value="topic">소단원</option></select>' +
-        '<select id="sbSource" aria-label="출처"><option value="">출처 전체</option></select>' +
+        '<div class="sb-srcs" id="sbSources" role="group" aria-label="출처"></div>' +
         '<input type="search" id="sbSearch" class="sb-search" placeholder="검색" aria-label="문항 검색" enterkeyhint="search">' +
         '<label class="sb-chk" title="검토 대기 문항 포함"><input type="checkbox" id="sbPending"> 대기</label>' +
         '<button type="button" class="sb-btn" id="sbExport" title="학습 기록 파일로 저장">저장</button>' +
@@ -161,7 +161,7 @@
     head.insertAdjacentElement("afterend", bar);
     const $ = (id) => doc.getElementById(id);
     const el = {
-      filter: $("sbFilter"), scope: $("sbScope"), source: $("sbSource"), search: $("sbSearch"), pending: $("sbPending"),
+      filter: $("sbFilter"), scope: $("sbScope"), source: $("sbSources"), search: $("sbSearch"), pending: $("sbPending"),
       exp: $("sbExport"), imp: $("sbImport"), file: $("sbFile"), sum: $("sbSum"),
       notice: $("sbNotice"), title: $("quizHeadTitle") || head,
     };
@@ -217,15 +217,15 @@
         counts.set(lab, (counts.get(lab) || 0) + 1);
       });
       if (ui.sourceLabel && !counts.has(ui.sourceLabel)) ui.sourceLabel = "";
-      const labels = Array.from(counts.keys()).sort((a, b) => a.localeCompare(b, "ko"));
+      const labels = Array.from(counts.keys()).sort((a, b) => counts.get(b) - counts.get(a) || a.localeCompare(b, "ko"));
       const cur = ui.sourceLabel || "";
-      el.source.innerHTML =
-        '<option value="">출처 전체 (' + pool.length + ")</option>" +
-        labels.map((lab) =>
-          '<option value="' + esc(lab) + '"' + (lab === cur ? " selected" : "") + ">" +
-          esc(lab) + " (" + counts.get(lab) + ")</option>"
-        ).join("");
-      el.source.value = cur;
+      const btn = (lab, text, n) =>
+        '<button type="button" class="sb-src' + (lab === cur ? " on" : "") + '" data-src="' + esc(lab) +
+        '" aria-pressed="' + (lab === cur) + '" title="' + esc(text) + " " + n + '문항">' +
+        esc(text) + ' <span class="sb-n">' + n + "</span></button>";
+      const keep = el.source.scrollLeft;
+      el.source.innerHTML = btn("", "전체", pool.length) + labels.map((lab) => btn(lab, lab, counts.get(lab))).join("");
+      el.source.scrollLeft = keep;
     }
 
     function learnCardHtml(q, idx) {
@@ -386,9 +386,16 @@
       ui.scope = el.scope.value;
       ui.search = el.search.value.trim();
       ui.includePending = el.pending.checked;
-      ui.sourceLabel = el.source.value || "";
     }
-    [el.filter, el.scope, el.pending, el.source].forEach((c) => c.addEventListener("change", () => {
+    el.source.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-src]");
+      if (!b) return;
+      const lab = b.getAttribute("data-src") || "";
+      ui.sourceLabel = lab && lab === ui.sourceLabel ? "" : lab; // 다시 누르면 해제
+      ui.listVersion++;
+      renderQuiz(true);
+    });
+    [el.filter, el.scope, el.pending].forEach((c) => c.addEventListener("change", () => {
       readControls();
       ui.listVersion++;
       renderQuiz(true);
