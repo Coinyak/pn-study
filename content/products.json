@@ -17,11 +17,42 @@
       "kcalPerDay": 2000,
       "note": "같은 kcal 비교: kcalPerDay를 채우는 데 필요한 부피(mL) = kcalPerDay / totalKcal × 1,000. 같은 AA 비교: 목표량이 환자별(g/kg)이라 고정하지 않고 AA 1 g당 부피(1,000 / aminoAcidG)와 AA 1 g당 kcal(totalKcal / aminoAcidG)로 나타낸다. 값은 status=confirmed 제품만 계산한다."
     },
-    "comparisonColumns": ["aminoAcidG", "glucoseG", "lipidG", "totalKcal", "osmolarityMOsmL", "sameKcalVolumeMl", "sameAaMlPerG", "sameAaKcalPerG"],
+    "comparisonColumns": [
+      "aminoAcidG",
+      "glucoseG",
+      "lipidG",
+      "totalKcal",
+      "osmolarityMOsmL",
+      "sameKcalVolumeMl",
+      "sameAaMlPerG",
+      "sameAaKcalPerG"
+    ],
     "comparisonBasis": "동일 부피(1,000 mL당)와 일일 공급량(같은 kcal 또는 같은 AA g을 맞출 때 필요한 부피) 두 기준으로 비교한다. 다챔버 백은 '모든 챔버 활성화 후' 값을 쓰고, 포장 규격별 수치를 섞지 않는다.",
-    "status": "Task 3 시점 국내 허가자료 원문을 하나도 확보하지 못했다. 아래 후보는 핵심본에 이름만 언급된 제품이며 조성 수치는 비워 둔다."
+    "status": "스모프카비벤주는 식약처 허가사항(공개 동기화본)으로 확인. 비교 수치는 허가 용량비(35 mL/kg = AA 1.8·포도당 4.5·지방 1.33·39 kcal/kg)로 환산한 혼합 후 추정값. 삼투압은 허가 문구에 없어 비움."
   },
   "products": [
+    {
+      "name": "스모프카비벤주 (SmofKabiven)",
+      "kind": "3-in-1 MCB (중심)",
+      "status": "confirmed",
+      "confirmedAsOf": "2026-11-14",
+      "mentionedIn": "sec-route-3-4-국내-PN-제품-비교",
+      "perLiter": {
+        "aminoAcidG": 51,
+        "glucoseG": 129,
+        "lipidG": 38,
+        "totalKcal": 1114,
+        "osmolarityMOsmL": null,
+        "naMmol": null,
+        "kMmol": null
+      },
+      "source": {
+        "url": "https://nedrug.mfds.go.kr/",
+        "note": "품목기준코드 200811793 · 허가 용량비로 L당 환산 · Fresenius Kabi KR 제품 안내와 동일 적응증"
+      },
+      "note": "2세 이상 · 중심정맥 · 성인 주입속도 ≤2.0 mL/kg/h · 권장 1일 최대 35 mL/kg · 챔버 혼합 후 사용 · TG≥4 mmol/L면 중단·감량 · 세프트리악손과 동일 주입선 동시 투여 금기",
+      "inBagTable": true
+    },
     {
       "name": "Smoflipid 20%",
       "kind": "ILE 단독",
