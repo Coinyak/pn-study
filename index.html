@@ -202,12 +202,13 @@
     animation: float-soft 7.2s ease-in-out 1.5s infinite;
   }
 
-  /* Solid white bodies on pink — no fade/blend/filter on the characters */
+  /* New pink-plate art — full strength; page pink matches plate, no keyout */
   .companions img {
     display: block;
     width: 100%;
     height: auto;
     opacity: 1;
+    mix-blend-mode: normal;
     filter: none;
   }
 
@@ -250,7 +251,7 @@
 </style>
 </head>
 <body>
-  <!-- deploy-stamp: 2026-11-13-index-pink-vivid -->
+  <!-- deploy-stamp: 2026-11-13-chiikawa-holding-hands -->
   <div class="page">
     <main class="hero">
       <p class="brand">영양불백</p>
@@ -268,7 +269,7 @@
       <div class="companions" aria-hidden="true">
         <picture>
           <source srcset="assets/chiikawa.webp" type="image/webp">
-          <img src="assets/chiikawa.png" alt="" width="891" height="497" decoding="async">
+          <img src="assets/chiikawa.png" alt="" width="802" height="358" decoding="async">
         </picture>
       </div>
     </main>
