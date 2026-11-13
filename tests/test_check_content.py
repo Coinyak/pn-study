@@ -100,7 +100,12 @@ class CheckContentTest(unittest.TestCase):
         self.assertFails("missing in cheat[계산]")
 
     def test_product_without_confirmation(self):
-        self.edit_json("products.json", lambda d: d["products"][0]["perLiter"].update(totalKcal=2000))
+        def fn(d):
+            p = next(x for x in d["products"] if x.get("status") != "confirmed")
+            p["perLiter"] = dict(p.get("perLiter") or {}, totalKcal=2000)
+            p["confirmedAsOf"] = None
+            p["status"] = "unconfirmed"
+        self.edit_json("products.json", fn)
         self.assertFails("without confirmedAsOf")
 
     def test_products_table_cell_count_mismatch(self):
