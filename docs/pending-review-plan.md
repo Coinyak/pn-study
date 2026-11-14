@@ -1,6 +1,6 @@
 # Pending review plan
 
-확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 5 적용 후 verified 187 · pending 267 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
+확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 6 적용 후 verified 204 · pending 250 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
 
 verified의 뜻은 README와 같다. 보유한 자료로 stem·선지·정답 인덱스·해설을 되짚은 상태이며, 공식 임상 인증이 아니다.
 
@@ -67,7 +67,7 @@ stem·선지·정답 인덱스는 유지한다. 채우는 것은 referenceIds, e
 - `python3 scripts/build.py`, `python3 scripts/check_content.py`, `node --test tests/*.cjs`, `python3 -m unittest discover -s tests -p 'test_*.py'`가 통과한다.
 - `main`으로 PR을 열어 GitHub Pages에 반영한다.
 
-재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`, `scripts/review_batch2.py`, `scripts/review_batch3.py`, `scripts/review_batch4.py`, `scripts/review_batch5.py`를 적용하므로 배치 1–5 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`, `python3 scripts/review_batch2.py`, `python3 scripts/review_batch3.py`, `python3 scripts/review_batch4.py`, `python3 scripts/review_batch5.py` 순서이다.
+재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`부터 `scripts/review_batch6.py`까지 적용하므로 배치 1–6 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`부터 `python3 scripts/review_batch6.py`까지 순서대로이다.
 
 ## 7. 배치 1 — 승격 26건
 
@@ -378,7 +378,9 @@ pending 288. 영문 번역은 그다음이다.
 
 `bcnsp-052`의 '침범', 0.22 μm 정답, 질소 '+4 g', Omegaven, 파킨슨양, 비타민 K 국내/150 μg, 주기 주입 시작 증속, CRRT 2.0–2.5, 주 2–3회는 그대로다. 나트륨 보정 식은 보유이고, 129.2·130.8·130을 고르는 pending 문항은 없었다.
 
-## 20. 남은 일 · 다음 배치
+## 20. 배치 6 전에 잡아 둔 후보
+
+배치 6에서 이 목록을 대조했다. 결과는 §21이다.
 
 pending 267. 영문 번역은 그다음이다.
 
@@ -388,3 +390,73 @@ pending 267. 영문 번역은 그다음이다.
 2. 결핍의 이름이 답인 문항. 크롬 = 포도당불내성, 셀레늄 = 심근병증, 달걀 인지질 알레르기. 파킨슨양 망간은 그대로 둔다.
 3. 혼합 순서(인 먼저·칼슘 마지막·비타민 맨 마지막)와 중탄산염 대신 acetate 1:1. 산증에서 염소·acetate를 반대로 움직이는 문제은행 문항은 그대로 둔다.
 4. 구조지질, 0.22 μm, 질소 '+4 g', Omegaven, 회장 '침범', 비타민 K 이원, CRRT 상한, 60–75% 중단, 알루미늄 5 μg/kg/일, Curreri, 28–30 kcal/kg는 보유 문장이 갈라져 있는 동안 둔다.
+
+## 21. 배치 6 — 승격 17건
+
+Holliday-Segar 2,100 mL, 교정 칼슘 9.12, 삼투압 1,183 mOsm/L, 나트륨 129.2/130.8을 고르는 pending 문항은 없었다. `(80−68)/80 = 15%`인 `cnsc-nutrition-support-003`은 그 예제가 아니라 올리지 않았다. 크롬 = 포도당불내성, 셀레늄 = 심근병증은 이미 verified다. 달걀 인지질 알레르기, 혼합 순서, 중탄산염 대신 acetate 1:1을 정답으로 둔 pending 문항은 없었다. 산증·알칼리증에서 염소와 acetate를 반대로 움직이는 문항은 그대로다.
+
+핵심표에 새 숫자는 넣지 않았다. 보유 문장만 칸으로 올렸다.
+
+- 1장 EN 내성: CCN 요약 2022. 볼루스 불내성은 지속 주입. 설사로 EN을 바로 끊지 않음. 섬유 10–20 g/24 h. 지속 설사·흡수장애는 소펩타이드
+- 9장 특수 AA: 교재 PDF147. 소아용 Primene · Trophamine · Aminoven infant
+
+| ID | 보유 근거 | 핵심표 |
+|---|---|---|
+| `quizlet-pn-019` | 크론은 EN 실패/불가 후. 장휴식 단독 PN은 아님. 적응은 단장·지속 소장폐색·EN 불가 누공·고배출 장루 | 1·8 |
+| `quizlet-pn-018` | 흡수 불가로 5~7일 이상, 장폐색·지속 소장폐색 | 1·8 |
+| `bcnsp-088` | 소아용 아미노산 예는 Primene·Trophamine·Aminoven infant. Premasol은 그 문장에 없음 | 9·2.3 |
+| `rxk-4_1-5` | 철은 PN과 별도. 필요 시 월 25–50 mg. TNA 혼합·piggyback·주 3회 피하 25 mg은 아님 | 2.7 |
+| `rxk-3_1-3` | 진행 손실(설사·누공·위장관 흡인)은 수분에 추가 | 2.4 |
+| `rxk-3_1-5` | 아미노산 4 kcal/g. 총열량에서 단백을 절대 빼지 않음 | 2.3 |
+| `rxk-1_3-8` | 중증 스트레스 단백 1.5~2.0. 비투석 신부전은 0.6–0.8. 간성뇌증 1.0–1.5는 그 증량 칸이 아님 | 2.3·8 |
+| `rxk-1_1-3`, `rxk-1_2-1` | 콰시오커 = 단백 결핍·알부민 <3.0. 마라스무스 = 열량 결핍·알부민 >3.0·체지방·근육 소모 | 0 |
+| `medex-011` | 담즙정체에서 Cu·Mn 감량 | 2.7·6.3 |
+| `quizlet-iib-045` | 감염은 출입구·터널·포켓·혈류. 출구는 국소, 혈류는 전신 항균제 | 6.1·10 |
+| `quizlet-pn-009` | 성인 단위는 g/day. 소아는 g/kg/day. 2014 합의 PDF는 인용하지 않음 | 2.5·9 |
+| `cnsc-nutrition-support-015` | 급성 질환 중증 체중 감소는 1주 >2% · 1개월 >5% · 3개월 >7.5%. 6특징 합의 원문은 인용하지 않음 | 0 |
+| `cnsc-nutrition-support-010` | 복수는 최근 최저체중 또는 IBW(dry weight). 수분 무게를 더하지 않음 | 8·0 |
+| `cnsc-nutrition-support-064` | CCN: 지속 설사·흡수장애 의심이면 소펩타이드 | 1 |
+| `bcnsp-069` | CCN: 설사로 EN을 바로 끊지 않음. 섬유 10–20 g/24 h. 지속되면 소펩타이드. 속도 감량 숫자는 없음 | 1 |
+| `allaccess-003` | CCN: 위 볼루스 불내성이면 지속 주입 | 1 |
+
+## 22. 배치 6에서 pending으로 남긴 것
+
+| ID | 이유 |
+|---|---|
+| `quizlet-pn-001` | 임신성 과다구토는 적응 후보. EN·보존치료 불내성 뒤에만이라는 조건 문장 없음 |
+| `quizlet-pn-006` | 디펩티벤은 조건부 급여. 디펩티드가 더 안정하다는 문장 없음 |
+| `quizlet-pn-023` | 병상 삽입 후 CXR 전 PN 시작 금지는 문제은행. 교재는 SVC–우심방과 대퇴 회피 |
+| `quizlet-pn-039` | ACD 전달량 미만이면 수동 조제라는 문장을 추출에서 확인하지 못함 |
+| `quizlet-pn-044` | Ca×P >55 연조직·혈관 석회화를 추출에서 확인하지 못함 |
+| `quizlet-pn-002`, `quizlet-pn-042`, `rxk-3_3-4` | 급속 인 보충의 테타니·혈전정맥염·저칼슘은 문제은행 |
+| `quizlet-iib-011` | 쇄골하 선호 문장 없음. 교재는 대퇴 회피 |
+| `quizlet-iib-023` | 출구 감염은 국소·경구 항생제. 정답은 전신 항균제 |
+| `quizlet-iib-036` | 알칼리증에서 염화물:acetate 비를 올리는 방향은 문제은행. 확정 문장은 acetate 1:1 |
+| `quizlet-home-ns-003` | 미량원소는 3–12개월. 6개월과 매년이 둘 다 해당 |
+| `quizlet-home-ns-009` | 미드라인 부적합 문장을 추출에서 확인하지 못함 |
+| `cnsc-nutrition-support-003` | 15% 계산은 보유 예제 네 가지가 아님 |
+| `cnsc-nutrition-support-007` | ICU 선별은 NRS 2002와 NUTRIC 둘 |
+| `cnsc-nutrition-support-052` | 공기색전 문장 없음 |
+| `cnsc-nutrition-support-074` | 공장 볼루스 덤핑 문장 없음 |
+| `bcnsp-019` | 시작 1.5–2.0과 증량 3.5–4.0이 미숙아 3–4 또는 ESPEN 1.5–2.5/2.5–3.5와 한 칸이 아님 |
+| `bcnsp-033` | 고용량 포도당의 요구 증가는 인 |
+| `bcnsp-076` | 비타민 E 결핍 = 운동실조 문장 없음 |
+| `bcnsp-082` | 나트륨 교정은 ≤12 mmol/L/일. 10–12와 자유수 알고리즘은 아님 |
+| `kshp-46` | 수용성 C와 자연형 K가 둘 다 독성이 낮음 |
+| `rxk-1_4-1` | 폐질환도, 중증 급성췌장염(EN 우선)도 금기 목록 밖 |
+| `rxk-2_3-6`, `quizlet-iib-029` | 재급식 고위험 세 항목으로 '아닌 것'이 하나로 닫히지 않음 |
+| `rxk-3_1-7` | BCAA stage II와 근거 부족 비권고가 갈림 |
+| `rxk-4_1-4` | 골질환 조정에 운동 문장 없음 |
+
+구조지질, 0.22 μm, 질소 '+4 g', Omegaven, 회장 '침범', 비타민 K 이원, CRRT 상한, 60–75% 중단, 알루미늄 5 μg/kg/일, Curreri, 28–30 kcal/kg, 주기 주입 시작 증속, 주 2–3회, 파킨슨양 망간은 그대로다.
+
+## 23. 남은 일 · 다음 배치
+
+pending 250. 영문 번역은 그다음이다.
+
+다음 배치(배치 7, 15–30건) 후보:
+
+1. 비타민을 투여 직전에 넣고 24시간 안에 쓴다는 문장, 셀레나이트와 비타민 C는 1–4시간 간격, 저혈당에는 50% 포도당. 그 문장을 정답으로 둔 문항만.
+2. 재급식 고위험이 알코올·신경성 식욕부진·심한 영양결핍으로 보기가 닫히는 문항. '아닌 것'이 두 개 남으면 올리지 않는다.
+3. 출구 감염의 국소·경구 치료와 혈류 감염의 전신 치료가 정답 인덱스와 같을 때만. `quizlet-iib-023`은 전신 항균제라 그대로 둔다.
+4. 구조지질, 0.22 μm, 질소 '+4 g', Omegaven, 회장 '침범', 비타민 K 이원, CRRT 상한, 알루미늄 5 μg/kg/일, Curreri, 28–30 kcal/kg, 혼합 순서·acetate 1:1을 정답으로 둔 문항이 새로 생기기 전에는 그대로 둔다. 계산은 보유 예제 네 가지와 숫자가 같을 때만.
