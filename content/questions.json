@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "contentVersion": "2026-11-14.9",
+    "contentVersion": "2026-11-14.10",
     "extractedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
     "source": {
@@ -12,8 +12,8 @@
     },
     "rawCount": 583,
     "finalCount": 586,
-    "verifiedCount": 219,
-    "pendingCount": 235,
+    "verifiedCount": 232,
+    "pendingCount": 222,
     "excludedCount": 132,
     "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
     "displayLanguage": "ko-only",
@@ -655,7 +655,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 피하 인슐린의 기저-볼루스 문장은 퀴즈 재게시에만 있다. 보유 지침 추출에는 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-006",
@@ -1729,7 +1729,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: PICC를 감염원으로 의심·확인될 때만 제거한다는 CDC 문장을 보유 지침 추출에서 확인하지 못했다. 핵심표의 그 한 줄은 출처가 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-025",
@@ -2387,7 +2387,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 지용성 비경구 권장이 경구 DRI와 같다는 칸은 핵심표에만 있고 요약·강의 추출·지침 문장에는 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-037",
@@ -2433,7 +2433,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 수용성 비경구 권장이 경구보다 높다는 칸은 핵심표에만 있고 요약·강의 추출·지침 문장에는 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-038",
@@ -2447,9 +2447,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "구 미국약전(USP) 797장의 저·중·고 위험 분류에 따르면, 전해질(electrolytes) 함유 8.5% 아미노산(amino acids)과 70% 포도당으로 만들고 종합비타민, 미량원소(trace elements), 파모티딘을 넣은 정맥영양(PN) 용액의 위험 등급은?",
       "choices": [
         "위험 없음",
@@ -2458,30 +2460,35 @@
         "고위험"
       ],
       "answer": 2,
-      "explain": "구 USP 797 위험 등급 문항이다. 현행 USP는 Category 1–3 체계를 사용한다. 위험 등급(저·중·고)은 무균 조제 제제가 (1) 미생물 오염, (2) 화학적·물리적 오염을 입을 확률에 따라 정한다. 저위험 조제는 밀폐 포장 상태에서 옮기기, 계량, 혼합만 신속하고 주의 깊게 하는 경우다(예: 동결건조 분말 단회용 바이알을 멸균 희석액으로 재구성해 다른 용기로 옮김). 수동 또는 자동 기구로 여러 번 주입하고 영양 원료를 기구에 붙였다 떼며 최종 멸균 용기에 모든 성분을 담는 정맥영양(PN) 조제는 중위험이다(이 문제의 경우). 고위험 조제는 최종 멸균 전에 비멸균 원료나 비멸균 기구를 쓴다는 점이 다르다(예: PN 보충용 L-글루타민을 즉석 조제).",
+      "explain": "구 USP에서 PN은 중위험으로 적혀 있다. 그 칸이 위험 없음, 저위험, 고위험은 아니다.",
       "needle": "중위험",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 구 USP의 PN 칸은 위험 없음이 아니다.",
+        "오답. 저위험은 그 PN 칸이 아니다.",
+        "정답. 구 USP에서 PN은 중위험이다.",
+        "오답. 고위험은 그 PN 칸이 아니다."
       ],
       "coreSectionIds": [
-        "sec-stability-5-4-필터-hang-time-세트-BUD",
-        "sec-stability-5-1-혼합-순서"
+        "sec-stability-5-4-필터-hang-time-세트-BUD"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 5.4 BUD",
+          "quote": "PN = 구 USP(pre-2023 중위험)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지. 현행 Category 1–3과 ISO Class 5는 이 문장에 없어 넣지 않았다."
     },
     {
       "id": "quizlet-pn-039",
@@ -2572,7 +2579,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 크리밍이 재분산되고 크래킹은 투여하지 않는다는 문장은 있다. 표면에 반투명한 띠로 보인다는 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-041",
@@ -2716,7 +2723,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 산증의 보유 조치는 acetate다. 칼륨을 나트륨·염소·마그네슘보다 더 면밀히 본다는 문장은 없고, pH 0.1당 0.6 mEq도 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-044",
@@ -6489,7 +6496,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 출구 감염은 온찜질·매일 국소치료·경구 항생제다. 정답 보기는 전신 항균제다. 인덱스는 유지한다. BLOCKER 배치7: 출구 감염은 온찜질·매일 국소치료·경구 항생제다. 정답 보기는 전신 항균제다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 출구 감염은 온찜질·매일 국소치료·경구 항생제다. 정답 보기는 전신 항균제다. 인덱스는 유지한다. BLOCKER 배치7: 출구 감염은 온찜질·매일 국소치료·경구 항생제다. 정답 보기는 전신 항균제다. 인덱스는 유지한다. BLOCKER 배치8: 고름이 없으면 출구 감염은 국소 항균제다. 전신 항생제와 카테터 제거는 터널·포트 감염 문장이다. 출구 고름의 정답이 전신 항균제 하나로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-034",
@@ -6503,9 +6510,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-14-complications"
+      ],
       "stem": "중심정맥관 관련 감염 위험을 줄이는 근거 기반 중재는?",
       "choices": [
         "카테터 삽입 전 항생제 투여",
@@ -6514,27 +6523,36 @@
         "간호사에게 중심정맥관 유지 관리 교육"
       ],
       "answer": 3,
-      "explain": "CDC에 따르면 연구로 뒷받침되는 중심정맥관 관련 감염 감소의 1차 중재는 (1) 삽입 시 최대 차단 기법, (2) 2% 클로르헥시딘 제제로 삽입 부위 소독, (3) 의료진 교육·훈련이다. 중심정맥관 삽입 전 항생제 투여는 감염률을 줄이지 못했다.",
+      "explain": "카테터를 고정하고, 사용자에게 올바른 유지와 안전을 교육하라고 한다. 이 보기에서 그 교육은 중심정맥관 유지 관리 교육이다.",
       "needle": "CRBSI",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 삽입 전 항생제는 그 교육 문장이 아니다.",
+        "오답. 최소 차단 기법은 그 문장에 없다.",
+        "오답. 2% 알코올 소독은 그 문장에 없다.",
+        "정답. 사용자에게 카테터 유지와 안전을 교육한다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-route-3-1-말초-vs-중심",
+        "sec-complications-6-1-3열-요약"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt R14.11",
+          "quote": "education for users on correct maintenance and safety of the catheter are strongly recommended"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지. 최대 차단·클로르헥시딘은 이 문장에 없어 넣지 않았다."
     },
     {
       "id": "quizlet-iib-039",
@@ -7133,7 +7151,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "'모두 충족' 정답의 근거(혈역학 안정·수액 내성이 PN 조건인지) 보유 자료로 확인 불가."
+      "reviewNote": "'모두 충족' 정답의 근거(혈역학 안정·수액 내성이 PN 조건인지) 보유 자료로 확인 불가. BLOCKER 배치8: EN이 목표를 못 채우면 PN이다. 수액 용량을 견딜 수 있어야 한다는 조건은 그 문장에 없다. 모두 해당으로 올리지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "rx-electrolyte-daily",
@@ -7550,9 +7568,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-14-complications"
+      ],
       "stem": "약사가 칼슘-인산 용해도가 우려되는 완전정맥영양(TPN)을 조제한다. 배합 적합성을 평가하는 가장 좋은 첫 단계는?",
       "choices": [
         "섞은 뒤 1시간 동안 관찰한다",
@@ -7561,30 +7581,40 @@
         "주입 속도를 높여 침전을 가린다"
       ],
       "answer": 1,
-      "explain": "칼슘-인산 배합 적합성은 아미노산 농도(AA가 높을수록 Ca/P를 완충), pH, 온도, 이온 강도, 첨가 순서(인산을 먼저, 칼슘은 마지막에 넣고 사이사이 충분히 혼합)에 좌우된다. 검증된 용해도 곡선과 TPN 배합 적합성 소프트웨어(제조사 자료, 동료심사 논문 등)를 활용한다. 미세침전은 눈에 보이지 않으므로 육안 관찰만으로는 부족하다.",
+      "explain": "무기 인산염을 쓰면 안정성 표와 혼합 순서를 지켜야 한다. 그 표는 공급자에게 받아, 전해질과 다른 첨가의 허용 한도를 본다. 섞은 뒤 눈으로만 보거나 속도를 올려 침전을 가리는 방법은 그 문장이 아니다.",
       "needle": "Ca–P",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 한 시간 관찰만으로 배합 자료를 대신하지 않는다.",
+        "정답. 공급자의 허용 한도 표로 칼슘·인산 첨가가 되는지 본다.",
+        "오답. 조건과 관계없이 칼슘만 마지막에 넣는 문장은 없다. 표와 순서를 함께 지킨다.",
+        "오답. 주입 속도를 올려 침전을 가리라는 문장은 없다."
       ],
       "coreSectionIds": [
-        "sec-stability-5-2-Ca-P-침전",
-        "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
+        "sec-stability-5-2-Ca-P-침전"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "OpenExamPrep BCSCP 문항(번역).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt R14.13",
+          "quote": "matrix table should be sought from the supplier of the formulation detailing permissible limits for additions of electrolytes"
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt R14.16",
+          "quote": "stability matrices and order of mixing must be strictly adhered to"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지."
     },
     {
       "id": "nbnsc-cnsc-sample-02",
@@ -9142,7 +9172,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "E1과 일치. 합의 원문 미보유."
+      "reviewNote": "E1과 일치. 합의 원문 미보유. BLOCKER 배치8: 6특징 중 최소 2개라는 합의 원문은 미보유다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-038",
@@ -9412,7 +9442,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 6특징의 중증 기준을 닫는 합의 원문은 미보유다. 1개월 5% 초과 체중 감소만으로 그 문항을 올리지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-081",
@@ -9685,7 +9715,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 집에서 PN을 시작할 수 있다는 조건은 정책·적격·프로토콜·평가다. 표준 제형과 주 1회 방문이 그 문장으로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-001",
@@ -9960,7 +9990,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: BMI 27.8은 보유 계산 예제 네 가지가 아니다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-007",
@@ -10105,7 +10135,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 여성 이상체중은 키(m)²×21이다. Hamwi 5 feet 100 lb 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-010",
@@ -10961,9 +10991,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "kshp-yeongyang-yakryo-lecture-answers"
+      ],
       "stem": "WHO 성장 표준을 쓰는 소아 영양평가에서 weight-for-height z-score가 -2 미만인 소아는 어떤 상태로 분류되는가?",
       "choices": [
         "과체중",
@@ -10972,27 +11004,40 @@
         "정상 변이"
       ],
       "answer": 2,
-      "explain": "WHO 성장 표준에서 weight-for-height(또는 weight-for-length) z-score -2 미만은 소모(급성 영양불량)이다. 성장지연(stunting)은 height-for-age z-score -2 미만(만성 영양불량)이다. z-score -2~-3은 중등도 급성 영양불량, -3 미만은 중증 급성 영양불량이다.",
+      "explain": "Weight-for-height가 낮으면 현재 체중 소모, 곧 급성 영양불량이다. 만성 영양불량은 height-for-age가 낮을 때이고, 그것을 성장지연이라고 한다.",
       "needle": "wasting",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 과체중은 weight-for-height 저하 문장이 아니다.",
+        "오답. 성장지연은 height-for-age 저하, 곧 만성 쪽이다.",
+        "정답. weight-for-height 저하는 소모, 곧 급성 영양불량이다.",
+        "오답. 정상 변이는 그 저하 문장이 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-eval-0-영양평가-PN-직결만"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
+          "locator": "_kshp_extract.txt 소아 성장",
+          "quote": "Weight-for-height 저하는 현재 체중 소모(wasting), 즉 급성 영양불량"
+        },
+        {
+          "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
+          "locator": "_kshp_extract.txt 소아 성장",
+          "quote": "만성 영양불량은 height-for-age 저하(stunting)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지. z-score −2·−3 절단은 이 문장에 없어 인용하지 않았다."
     },
     {
       "id": "cnsc-nutrition-support-109",
@@ -12176,7 +12221,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 1,800 kcal를 1.2 kcal/mL로 24시간에 나누는 63 mL/h는 보유 계산 예제가 아니다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-074",
@@ -12416,7 +12461,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 구역·구토·팽만·설사는 경장영양 합병증으로 적혀 있다. 위 끝이어서 설사가 해당 없다는 정답과 그 문장이 충돌한다. 인덱스는 유지한다."
     },
     {
       "id": "allaccess-003",
@@ -12512,7 +12557,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: Harris-Benedict로 1.4 L를 고르는 계산은 보유 예제 네 가지가 아니다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-004",
@@ -14718,9 +14763,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "kshp-yeongyang-yakryo-lecture-answers",
+        "espen-ped-pn-2018-03-lipids"
+      ],
       "stem": "영양지원에서 carnitine의 역할을 가장 잘 설명한 것은?",
       "choices": [
         "세포막을 보호하는 항산화제로 작용한다",
@@ -14729,27 +14777,40 @@
         "DNA 합성의 보조인자로 작용한다"
       ],
       "answer": 1,
-      "explain": "Carnitine은 carnitine shuttle(carnitine palmitoyltransferase I·II)로 장쇄지방산(LCFA)을 미토콘드리아 내막을 넘어 운반하는 데 필수다. Carnitine이 부족하면 LCFA가 beta-oxidation을 위해 미토콘드리아로 들어가지 못해 지방 이용이 떨어진다. 표준 PN 제형에는 carnitine이 없어 장기 PN 환자에서 결핍이 생길 수 있고, 신생아가 특히 위험하다.",
+      "explain": "카르니틴은 지방산 운반에 관여한다. MCT는 LCT보다 카르니틴 의존이 적은 beta-oxidation을 한다. 항산화, 콜라겐, DNA 보조인자는 그 역할이 아니다.",
       "needle": "장쇄지방산이 미토콘드리아막을 지나 beta-oxidation에 들어가도록 운반을 돕는다",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 세포막 항산화는 카르니틴 문장이 아니다.",
+        "정답. 카르니틴은 지방산 운반에 관여하고, beta-oxidation과 연결된다.",
+        "오답. 콜라겐·상처 치유는 그 문장이 아니다.",
+        "오답. DNA 합성 보조인자는 그 문장이 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-lipid-2-2-지방-ILE"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
+          "locator": "_kshp_extract.txt carnitine",
+          "quote": "Carnitine은 지방산 운반에 관여"
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-03-lipids",
+          "locator": "ESPEN_lipids_full.txt MCT vs LCT",
+          "quote": "less dependency on carnitine for beta-oxidation"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지. 미토콘드리아 내막·CPT 이름은 인용하지 않았다."
     },
     {
       "id": "bcnsp-083",
@@ -14904,7 +14965,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 만성 마그네슘 결핍이 저칼슘과 같이 온다는 문장은 보유 추출에 없다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-054",
@@ -15007,7 +15068,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: QTc 연장의 원인이 저마그네슘이라는 문장은 보유 추출에 없다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-074",
@@ -15476,9 +15537,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-14-complications"
+      ],
       "stem": "중심정맥관으로 PN을 받는 환자가 발열, 오한, coagulase-negative staphylococci 양성 혈액배양 소견을 보였다. 가장 가능성 큰 감염원은?",
       "choices": [
         "요로감염",
@@ -15487,29 +15550,41 @@
         "자발성 세균성 복막염"
       ],
       "answer": 1,
-      "explain": "CRBSI는 PN용 중심정맥 접근의 가장 심각한 합병증 중 하나다. Coagulase-negative staphylococci(예: S. epidermidis)는 카테터 hub와 피부 삽입부를 집락화해 CRBSI의 가장 흔한 원인균이다. 관리는 보통 카테터 제거와 감수성에 맞춘 항생제 치료다.",
+      "explain": "중심정맥관이 있는 환자의 혈류감염은 다른 원인이 확인되기 전에는 CLABSI로 분류한다. 분리되는 주요 균에 응고효소 음성 포도알균이 들어 있다. 발열·오한과 그 균의 혈액배양은 카테터 관련 혈류감염 쪽이다.",
       "needle": "CLABSI(=CRBSI)",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 요로감염은 그 혈류감염·응고효소 음성 포도알균 문장이 아니다.",
+        "정답. 중심정맥관이 있는 혈류감염은 다른 원인이 없으면 CLABSI이고, 그 주요 균에 응고효소 음성 포도알균이 있다.",
+        "오답. 지역사회 폐렴은 그 문장이 아니다.",
+        "오답. 자발성 세균성 복막염은 그 문장이 아니다."
       ],
       "coreSectionIds": [
-        "sec-complications-6-1-3열-요약"
+        "sec-complications-6-1-3열-요약",
+        "sec-route-3-1-말초-vs-중심"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt CLABSI definition",
+          "quote": "all bloodstream infections in patients with a CVC are classified as CLABSI"
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt pathogens",
+          "quote": "The major pathogens isolated are Gram-positive coagulase-negative"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지. 소아 장부전 문장을 성인 증례에 옮겼다. 균 이름만으로 카테터가 확정 원인이라고 쓰지 않았다."
     },
     {
       "id": "bcnsp-035",
@@ -16040,7 +16115,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 저마그네슘이 저칼륨·저칼슘 교정을 막는다는 문장은 보유 추출에 없다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-089",
@@ -17036,9 +17111,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "ccn-summary-nestle-2022",
+        "kshp-yeongyang-yakryo-lecture-answers"
+      ],
       "stem": "위 배출을 촉진하고 경장급식 내성을 개선하는 위장관운동촉진제(prokinetic)로 흔히 쓰는 약은?",
       "choices": [
         "Ondansetron",
@@ -17047,27 +17125,40 @@
         "Diphenhydramine"
       ],
       "answer": 1,
-      "explain": "Metoclopramide는 도파민 D2 수용체 길항제로 전정부 수축을 늘리고 유문을 이완시켜 위 배출을 가속한다. ICU에서 경장급식 내성 개선에 흔히 쓴다. 다만 지연성 운동이상, QTc 연장, 추체외로 증상 등 부작용이 있어 사용이 제한되며, 특히 12주 초과 장기 사용 시 주의가 필요하다.",
+      "explain": "흡인 위험이 높으면 prokinetic을 시작한다. 그 예로 metoclopramide와 erythromycin이 적혀 있다. 이 보기에서 그 약물은 metoclopramide다.",
       "needle": "Loperamide",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. ondansetron은 그 prokinetic 예가 아니다.",
+        "정답. 흡인 고위험의 prokinetic 예로 metoclopramide가 적혀 있다.",
+        "오답. loperamide는 그 문장의 위 배출 촉진제가 아니다.",
+        "오답. diphenhydramine은 그 문장에 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-indications-1-적응증-시작시점-지연"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN_Summary_full.txt aspiration",
+          "quote": "Suggest prokinetic agents be initiated in patients at high risk of aspiration"
+        },
+        {
+          "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
+          "locator": "_kshp_extract.txt 중환자 prokinetic",
+          "quote": "metoclopramide/erythromycin 등 prokinetic을 고려할 수 있다"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지. QTc·12주 제한은 이 문장에 없어 넣지 않았다."
     },
     {
       "id": "bcnsp-065",
@@ -19114,7 +19205,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 혈청 칼륨 정상은 3.5–5.0 mEq/L다. 6.1에서 조제 보류 후 처방자와 확인하라는 절차 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "medex-002",
@@ -19160,7 +19251,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 고칼륨에서 potassium phosphate를 빼고 확인하라는 절차 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "medex-003",
@@ -19206,7 +19297,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 0.9% 식염 1 L의 9 g은 보유 계산 예제가 아니다. 인덱스는 유지한다."
     },
     {
       "id": "medex-004",
@@ -19905,9 +19996,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-hpn-2020"
+      ],
       "stem": "중심정맥영양(TPN)의 정의로 가장 적절한 것은?",
       "choices": [
         "중심정맥 영양이 불가능할 때 쓰는 보조 영양중재다",
@@ -19916,27 +20009,36 @@
         "야간에만 비경구영양을 투여하는 것이다"
       ],
       "answer": 1,
-      "explain": "TPN은 정맥으로 영양소를 직접 주입하는 방법이다. 보조적 말초정맥영양·경장영양·야간 주기투여와는 구분한다.",
+      "explain": "PN은 영양소를 정맥으로 주는 치료다. 비위관·비십이지장관·비공장관은 그 정맥 투여가 아니고, 야간만 주는 것도 정의가 아니다.",
       "needle": "야간 10–12",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 중심정맥을 못 쓸 때의 보조는 PN의 정의가 아니다.",
+        "정답. PN은 영양소를 정맥으로 투여한다.",
+        "오답. 관으로 장에 공급하는 것은 경장영양이다.",
+        "오답. 야간에만 주는 것은 정의가 아니라 주입 시간이다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-indications-1-적응증-시작시점-지연",
+        "sec-route-3-1-말초-vs-중심"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-hpn-2020",
+          "locator": "ESPEN_HPN_full.txt introduction",
+          "quote": "provided through the intravenous administration of nutrients"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지. TPN이라는 말은 경로를 숨긴다. 정답 보기는 정맥 투여라 인덱스는 유지한다."
     },
     {
       "id": "rxk-1_1-5",
@@ -20146,7 +20248,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 패혈증은 이화·영양불량 위험 쪽이다. 위험인자가 아니라는 정답과 충돌한다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-1_2-4",
@@ -20280,7 +20382,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 삼두 피부두겹은 피하지방 평가에 들어간다. 영양평가에서 뺀다는 정답과 충돌한다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-1_3-2",
@@ -20556,7 +20658,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 성인 수액은 30–40 mL/kg/일이다. 1–2 mL/kcal 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-1_3-8",
@@ -20808,7 +20910,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: MCT가 LCT보다 혈장에서 빨리 빠지고 산화된다는 문장은 정맥 지질유제다. 경장 기름의 소화·흡수 순서를 닫지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-2_1-3",
@@ -22160,7 +22262,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 안전한 재택 PN에는 동의와 보호자의 수행 능력이 있다. 보험 보장까지 모두 해당으로 닫는 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-4_1-2",
@@ -23055,7 +23157,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 낮은 pH 약물 결정에는 염산, 높은 pH 약물에는 중탄산염, 지질 폐색에는 70% 에탄올이다. 0.1N 염산의 대상이 인산칼슘이라는 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-015",
@@ -23383,9 +23485,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-14-complications"
+      ],
       "stem": "장기 정맥영양(PN) 환자의 중심정맥 접근 기구에 내강 내 혈전이 생겼다. 기구를 뚫는 가장 적절한 약물 중재는?",
       "choices": [
         "헤파린 100 units/mL",
@@ -23394,27 +23498,41 @@
         "스트렙토키나제 10,000 units"
       ],
       "answer": 1,
-      "explain": "내강 내 혈전이나 덮개로 막힌 중심정맥 접근 기구(CVAD)의 표준 치료는 저용량 혈전용해제를 단회 또는 반복 볼루스로 넣는 국소 혈전용해 요법이다. 알테플라제는 CVAD 폐색에 FDA가 승인한 유일한 혈전용해제다. 2 mL, 또는 내강 부피가 2 mL 미만이면 그 부피의 110%(최대 2 mg)를 카테터 내강에 채운다. 알테플라제는 혈전에 결합한 플라스미노겐을 플라스민으로 바꿔 섬유소 용해를 시작한다. 임상시험에서 알테플라제 2 mg/2 mL 1회 투여로 막힌 CVAD의 67–74%가 기능을 회복했고, 유로키나제 500 IU보다 효과적이었다. 헤파린 100 units/mL는 카테터 세척용이지 폐색 치료용이 아니다. 아르가트로반은 헤파린 유발 혈소판감소증(HIT) 환자의 혈전 예방·치료용 항응고제이며 CVAD 폐색 치료 적응증은 없다(원문 문장이 어긋나 있어 실제 적응증 기준으로 옮겼다). 스트렙토키나제는 CVAD 폐색 치료에 승인된 혈전용해제가 아니다. 참고문헌: Krzywda E",
+      "explain": "혈전으로 막힌 카테터에는 섬유소 용해제를 쓴다. 현재 권하는 약은 alteplase다. 보유 문장에 alteplase 2 mg/2 mL가 있다.",
       "needle": "110%",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 헤파린 100 units/mL는 그 권고 약물이 아니다.",
+        "정답. 혈전 폐색의 권고 약물은 alteplase이고, 2 mg/2 mL가 적혀 있다.",
+        "오답. 아르가트로반은 그 문장에 없다.",
+        "오답. 스트렙토키나제는 현재 권고 약물로 적혀 있지 않다. 권고 약물은 alteplase다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-route-3-1-말초-vs-중심",
+        "sec-complications-6-1-3열-요약"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt R14.8",
+          "quote": "Tissue plasminogen activator (tPA, alteplase) is currently the recommended agent"
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt Cochrane",
+          "quote": "alteplase 2 mg/2 ml vs placebo"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지. FDA 승인 문구와 67–74% 회복률은 인용하지 않았다."
     },
     {
       "id": "quizlet-iib-024",
@@ -23495,9 +23613,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-14-complications"
+      ],
       "stem": "70% 에틸알코올이 카테터 폐색 해소에 가장 효과적인 침전 원인은?",
       "choices": [
         "인산칼슘",
@@ -23506,27 +23626,36 @@
         "토브라마이신"
       ],
       "answer": 1,
-      "explain": "지질 침착물·복합체는 2가·3가 양이온이 지질 입자를 응집시켜 생긴다. 3-in-1 정맥영양(PN)에서 가장 흔하고, 완전 폐색까지 며칠에 걸쳐 서서히 진행한다. 지질은 알코올에 녹으므로 70% 에틸알코올이 효과적이다. 인산칼슘이나 다른 약물 침전에 의한 폐색은 그 화합물의 산·염기 성질에 따라 치료한다. 결정성 폐색(인산칼슘 침전)과 산성 약물에는 0.1N HCl이 효과적이다. 염기성 약물(페니토인, 토브라마이신 등)에는 0.1N NaOH나 8.4% 탄산수소나트륨이 효과적이다. 참고문헌: Hardy G, Ball P. Clogbusting: time for a concerted approach to catheter occlusions? Curr Opin Clin Nutr Metab Care. 2005;8:277-283. Baskin JL, Pui C, et al. Lancet 2009;374:159-169.",
+      "explain": "70% 에틸알코올은 지질 폐색을 녹이는 데 쓴다. 높은 pH 약물 결정은 중탄산염, 낮은 pH 약물 결정은 염산 쪽이다. 인산칼슘은 그 알코올 문장이 아니다.",
       "needle": "70%",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 인산칼슘은 70% 에탄올 문장이 아니다.",
+        "정답. 70% 에틸알코올은 지질 폐색에 쓴다.",
+        "오답. 페니토인은 높은 pH 약물 예다. 에탄올 대상이 아니다.",
+        "오답. 토브라마이신은 그 지질 폐색 문장에 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-route-3-1-말초-vs-중심",
+        "sec-stability-5-2-Ca-P-침전"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt lipid occlusion",
+          "quote": "Ethyl alcohol at a 70% solution may be used to dissolve lipid occlusions"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지."
     },
     {
       "id": "quizlet-iib-026",
@@ -23539,9 +23668,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-14-complications"
+      ],
       "stem": "환자가 카테터가 간헐적으로 작동하지 않는다며 외래에 왔다. 카테터가 있는 쪽 팔을 들면 작동 이상이 풀린다. 의심해야 할 상태는?",
       "choices": [
         "섬유소 덮개",
@@ -23550,27 +23681,45 @@
         "카테터 이동"
       ],
       "answer": 1,
-      "explain": "핀치오프 증후군은 카테터가 첫째 갈비뼈와 쇄골 사이에 눌려 간헐적으로 압박되고 끼일 때 생긴다. 주입과 흡인이 간헐적으로 막히고 카테터 파열 위험이 커진다. 대개 팔을 들거나 내리면 갈비뼈와 쇄골 사이 각도가 넓어지거나 좁아져 폐색이 풀린다. 이것이 이 증후군의 특징적 징후다. 눌린 카테터를 뚫으려고 압력을 높이다 보면 카테터 바깥 부분이 자주 찢어져 수리가 필요해진다. 치료는 카테터를 제거하고 쇄골하정맥의 더 바깥쪽에 다시 넣거나 내경정맥에 넣는 것이다.",
+      "explain": "핀치오프는 카테터가 쇄골과 첫 갈비뼈 사이에서 눌리는 것이다. 어깨와 팔의 움직임이 그 압박을 반복하고, 그 결과 기계적 폐쇄가 생긴다. 팔을 들면 풀리는 간헐 이상은 그 팔 움직임 문장에 해당한다.",
       "needle": "증후군",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 섬유소 덮개가 팔을 들면 풀린다는 문장은 없다.",
+        "정답. 팔·어깨 움직임으로 쇄골과 첫 갈비뼈 사이가 눌려 기계적 폐쇄가 생긴다.",
+        "오답. 상대정맥 증후군은 그 압박 문장이 아니다.",
+        "오답. 카테터 이동은 그 팔 움직임 압박과 다른 문장이다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-route-3-1-말초-vs-중심"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt pinch-off",
+          "quote": "pinch-off syndrome"
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt pinch-off",
+          "quote": "compression of a CVC between the clavicle and first rib"
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt pinch-off",
+          "quote": "repeated compression (caused by shoulder and arm movement)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지."
     },
     {
       "id": "quizlet-iib-027",
@@ -23675,7 +23824,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 난치성 저칼륨에서 마그네슘을 본다는 문장은 보유 추출에 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-029",
@@ -23883,7 +24032,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 주입은 되고 흡인이 안 되는 섬유소 덮개 문장은 보유 추출에 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-033",
@@ -24068,7 +24217,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 필터를 카테터 허브에 가깝게 둔다는 문장과, 터널형 카테터의 감염 경로가 허브 오염이라는 문장은 다르다. 후자의 CDC 문장은 보유 추출에 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-038",
@@ -24081,9 +24230,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "고칼륨혈증과 가장 관련이 깊은 것은?",
       "choices": [
         "임신",
@@ -24092,29 +24243,41 @@
         "대사성 산증"
       ],
       "answer": 3,
-      "explain": "고칼륨혈증은 칼륨의 세포외 이동, 칼륨 섭취 증가, 칼륨 배설 장애로 생긴다. 대사성 산증에서는 총 체내 칼륨량은 그대로인 채 칼륨이 세포 밖으로 이동한다. 원인인 대사성 산증을 교정하면 칼륨이 세포 안으로 재분포되면서 고칼륨혈증도 교정된다. 고인슐린혈증은 오히려 저칼륨혈증을 일으키기 쉽다. 임신이나 호흡부전만으로는 고칼륨혈증이 생기지 않는다. 참고문헌: Langley G, Tajchman S. Fluids, Electrolytes, and Acid-Base Disorders. In: Mueller CM, ed. The A.S.P.E.N. Adult Nutrition Support Core Curriculum, 2nd ed. Silver Spring, MD: A.S.P.E.N.; 2012: 98-120. Kraft MD, Btaiche IF, Sacks GS, et al. Treatment of electrolyte disorders in adult patients in the in",
+      "explain": "신부전의 이상으로 고칼륨과 대사성 산증이 함께 적혀 있다. 인슐린은 칼륨을 세포 안으로 옮기므로 고인슐린은 그 고칼륨 방향이 아니다.",
       "needle": "대사성 산증",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 임신은 그 고칼륨 목록이 아니다.",
+        "오답. 인슐린은 칼륨을 세포 안으로 옮긴다.",
+        "오답. 호흡부전은 그 고칼륨 목록이 아니다.",
+        "정답. 고칼륨과 대사성 산증이 신부전 이상에 함께 있다."
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-fluid_lytes-2-5-전해질",
+        "sec-disease-8-질환별-PN"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 신부전",
+          "quote": "고K·고P·저Ca·대사성 산증"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.5 고K",
+          "quote": "regular insulin(+glucose) → Na/K-ATPase로 K 세포내 이동"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지. pH 0.1당 0.6 mEq는 인용하지 않았다."
     },
     {
       "id": "quizlet-iib-040",
@@ -24564,9 +24727,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-adult-critically-ill-factsheet-2024",
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "정맥영양(PN)을 받는 당뇨병 환자에 대한 설명으로 옳은 것은?",
       "choices": [
         "혈당을 2시간마다 확인해야 한다",
@@ -24575,29 +24741,41 @@
         "종종 미량영양소 결핍이 생긴다"
       ],
       "answer": 1,
-      "explain": "정맥영양(PN)을 받는 당뇨병 환자의 혈당 확인 표준은 6시간마다다. 조절이 나쁘거나 인슐린 점적 중일 때만 더 자주 본다. 당뇨 진단만으로 단백을 더 올리거나 미량영양소 결핍이 늘지는 않는다. 당뇨·중환자에서 혈당이 오르면 감염 빈도가 높아지고, 카테터 관련 감염도 많아질 수 있다.",
+      "explain": "혈당 조절과 카테터 관리가 PN의 감염 합병증을 줄이는 요인이다. 보기 중 그 문장에 닿는 것은 카테터 관련 감염이 늘어난다는 항목이다. 혈당은 안정될 때까지 6시간마다 본다.",
       "needle": "6시간",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 당뇨 PN 전부를 2시간마다 본다는 문장은 없다. 안정 전까지는 6시간마다다.",
+        "정답. 혈당 조절과 카테터 관리가 감염 합병증을 줄이는 요인이다.",
+        "오답. 당뇨라는 이유만으로 고단백이 필요하다는 문장은 없다.",
+        "오답. 당뇨라는 이유만으로 미량영양소 결핍이 늘다는 문장은 없다."
       ],
       "coreSectionIds": [
+        "sec-complications-6-1-3열-요약",
         "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "aspen-adult-critically-ill-factsheet-2024",
+          "locator": "ASPEN_Fact_full.txt Question 3",
+          "quote": "Optimal glycemic control and catheter care are also important factors in the provision of PN to reduce infectious complications"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.1 혈당",
+          "quote": "개시 후 혈당 안정까지 6시간마다"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치8 verified. 정답 인덱스 유지. 당뇨 진단이 감염을 직접 늘린다는 별도 문장은 없다. 혈당·카테터 문장으로 보기를 닫았다."
     },
     {
       "id": "quizlet-a14pn-001",
