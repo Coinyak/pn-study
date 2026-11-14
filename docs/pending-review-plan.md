@@ -1,6 +1,6 @@
 # Pending review plan
 
-확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 3 적용 후 verified 139 · pending 315 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
+확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 4 적용 후 verified 166 · pending 288 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
 
 verified의 뜻은 README와 같다. 보유한 자료로 stem·선지·정답 인덱스·해설을 되짚은 상태이며, 공식 임상 인증이 아니다.
 
@@ -67,7 +67,7 @@ stem·선지·정답 인덱스는 유지한다. 채우는 것은 referenceIds, e
 - `python3 scripts/build.py`, `python3 scripts/check_content.py`, `node --test tests/*.cjs`, `python3 -m unittest discover -s tests -p 'test_*.py'`가 통과한다.
 - `main`으로 PR을 열어 GitHub Pages에 반영한다.
 
-재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`, `scripts/review_batch2.py`, `scripts/review_batch3.py`를 적용하므로 배치 1–3 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`, `python3 scripts/review_batch2.py`, `python3 scripts/review_batch3.py` 순서이다.
+재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`, `scripts/review_batch2.py`, `scripts/review_batch3.py`, `scripts/review_batch4.py`를 적용하므로 배치 1–4 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`, `python3 scripts/review_batch2.py`, `python3 scripts/review_batch3.py`, `python3 scripts/review_batch4.py` 순서이다.
 
 ## 7. 배치 1 — 승격 26건
 
@@ -244,7 +244,9 @@ MCB를 정답으로 둔 한국어 문항은 없었다. 필터 0.22를 정답으�
 | `rxk-3_2-2` | 포도당 농도의 영향이 가장 작다는 보기는, 최종 포도당 농도를 높게 유지하라는 문장과 함께 닫히지 않음 |
 | `quizlet-pn-011` | 2014 라벨 합의 원문 미보유. 필터 1.2 또는 0.22는 구 표기 |
 
-## 14. 남은 일 · 다음 배치
+## 14. 배치 4 전에 잡아 둔 후보
+
+배치 4에서 이 목록을 대조했다. 결과는 §15이다.
 
 pending 315. 영문 번역은 그다음이다.
 
@@ -255,3 +257,71 @@ pending 315. 영문 번역은 그다음이다.
 3. EFAD 피부염·탈모(`nbnsc-cnsc-sample-03`), 탄수화물 과다 = 지방증(`quizlet-iib-049`), 고배출 장루의 아연 피부염(`medex-012`).
 4. 시판 복합 미량원소의 망간(`quizlet-home-ns-002`). 파킨슨양 문항은 §13대로 둔다.
 5. `bcnsp-052`의 '침범', 0.22 μm 정답, 질소 '+4 g', Omegaven 상품명은 보유 문장이 생기기 전에는 올리지 않는다.
+
+## 15. 배치 4 — 승격 27건
+
+핵심표에 새 숫자는 넣지 않았다. 이미 있던 칸에 출처를 붙이거나, 보유 문장에 있던 사실을 칸으로 올렸다.
+
+- 2.1 `>10%` 말초 혈전정맥염 옆에 교재 PDF143
+- 1장에 중환자 조기 EN 24–48시간. CCN 요약 2022
+- 4.1·8.2 비만 열량 옆에 CCN 요약 2022. 11–14는 BMI 30–50 실제체중, 22–25는 BMI >50의 IBW. EN 목표
+- 10장 주기주입: '선호'는 문제은행으로 표시. 시작·끝 1시간은 p155 인용을 교정 칼슘·나트륨과 구분. ESPEN HPN R48은 종료 시 감속(예: 마지막 30분 절반 속도)으로 반동 저혈당을 피함
+
+| ID | 보유 근거 | 핵심표 |
+|---|---|---|
+| `bcnsp-063` | CCN, IC 없으면 11–14 kcal/kg 실제체중(BMI 30–50) · 22–25 kcal/kg IBW(BMI >50) · IC 있으면 65–70% 이하 | 8.2·4.1 |
+| `quizlet-pn-048` | 교재, 주기 12–18시간은 간독성 예방 | 10·6.3 |
+| `rx-cyclic-pn-night`, `rxk-1_1-5` | HPN 대부분 야간 10–12시간. '야간에만'은 대부분으로 해설 | 10 |
+| `nbnsc-cnsc-sample-03` | 교재, EFAD 증상 피부염·탈모 | 6.5 |
+| `quizlet-iib-049` | 지방증 = 과다 열량·포도당. CO₂ 감소 보기는 호흡성 산증과 방향이 반대 | 6.3·2.1 |
+| `medex-012` | 아연 결핍 = 피부염·상처치유 지연. 과다 GI 손실·누공 고배출은 보충 대상 | 2.7 |
+| `quizlet-home-ns-002`, `quizlet-home-ns-005` | 시판 복합 미량원소 망간 55 μg. 복합제 함량이 높아 독성. 파킨슨양은 쓰지 않음 | 2.7 |
+| `bcnsp-014` | 교재 PDF143, >10% 포도당은 말초 혈전정맥염 → 중심 | 2.1·3.1 |
+| `quizlet-pn-022` | PICC는 독립성↓ | 10 |
+| `cnsc-nutrition-support-044` | 수개월–수년 = 터널형. 이식형 포트도 장기 접근 | 10 |
+| `quizlet-iib-015` | 담낭 슬러지·담석 = 장 자극 부재. 경구 자극 | 6.3 |
+| `quizlet-iib-040` | DEXA로 골밀도 | 6.4 |
+| `nbnsc-cnsc-sample-05` | 아연 결핍의 미각 변화. 후각은 그 문장에 없음 | 2.7 |
+| `quizlet-iib-008` | TG >1,000 = 췌장염 유발 | 2.2 |
+| `quizlet-pn-028` | AKI·신부전은 표준 AA | 2.3·8 |
+| `bcnsp-034` | 비투석 단백 0.6–0.8 g/kg/일 | 8 |
+| `rx-electrolyte-daily` | 안정 전 BMP+P+Mg 매일 | 7.1 |
+| `cnsc-nutrition-support-061` | CCN, 조기 EN 24–48시간 | 1 |
+| `bcnsp-090` | 1.5 g/kg × 60 kg = 90 g | 4.2 |
+| `quizlet-iib-030` | 호흡성 산증이면 공급량 감량 검토. 2,800÷63 ≈ 44 kcal/kg | 8.1·4.1 |
+| `quizlet-iib-047` | 400 g ÷ 45 kg ≈ 8.9 g/kg > 일일 ≤7 g/kg. 과도 포도당 = 고혈당 | 2.1 |
+| `quizlet-iib-005` | 고혈당 Na 보정은 측정값에 0.016×(포도당−100)을 더함 | 4.4 |
+| `quizlet-iib-001` | 골질환 조정에 알루미늄 최소화. 순위 문장은 없고 보기 중 그 항목만 해당 | 6.4 |
+| `bcnsp-013` | EN 불가 누공. >500 mL/d는 문제은행이라 쓰지 않음 | 1·8 |
+| `quizlet-iib-016` | 대사성 골질환은 장기 PN | 6.4·10 |
+
+## 16. 배치 4에서 pending으로 남긴 것
+
+| ID | 이유 |
+|---|---|
+| `cnsc-nutrition-support-050` | ESPEN HPN R48은 종료 시 감속(마지막 30분 절반)으로 반동 저혈당만 말한다. 시작 시 고혈당은 그 문장에 없다. 요약의 1시간은 p155가 아니다 |
+| `rxk-3_2-6` | '장기 PN에서 선호'는 문제은행. 간독성 예방 문장으로 바꾸지 않음 |
+| `bcnsp-094` | 안정 후는 주 1–2회. 정답 보기는 주 2–3회 |
+| `quizlet-pn-029` | BCAA는 stage II 인정과 '근거 낮음'이 갈리고, 표준 단백 불내성은 문제은행 |
+| `rxk-4_1-7` | 국내 제품은 비타민 K가 없고, 성인 MVI 표는 K 150 μg. 문항이 어느 쪽인지 가리지 않음 |
+| `cnsc-nutrition-support-021` | 25–30 kcal/kg는 중환자. stem은 중증이 아닌 성인(20–35 또는 안정 30–35) |
+| `bcnsp-091` | 24–48시간은 일반 중환자 조기 EN. TBI의 Brain Trauma Foundation 원문은 없음 |
+| `cnsc-nutrition-support-091` | CRRT 2.0–2.5는 교재 구상한. 기본 암기는 ESPEN 1.5–1.7 |
+| `quizlet-pn-034` | 인산염을 알루미늄 오염원으로 묶는 문장이 문제은행. 유리병 글루콘산칼슘만 ESPEN |
+| `quizlet-iib-009` | 고혈당 원인 목록에 간경변·비만·췌장염이 없어 '아닌 것'이 닫히지 않음 |
+| `quizlet-iib-017` | acetate를 올려 산증을 푸는 방향은 문제은행. 확정 문장은 중탄산염 대신 1:1 |
+| `quizlet-iib-035` | 이탈 실패는 호흡성 산증 문장에 없고, '아닌 것'이 인 상승 하나로 닫히지 않음 |
+
+`bcnsp-052`의 '침범', 0.22 μm 정답, 질소 '+4 g', Omegaven 상품명, 파킨슨양 망간은 그대로다.
+
+## 17. 남은 일 · 다음 배치
+
+pending 288. 영문 번역은 그다음이다.
+
+다음 배치(배치 5, 15–30건) 후보:
+
+1. 구조지질 `quizlet-pn-032`. 핵심표에는 있으나 요약 추출에 문장이 없다. 형광 원문을 확인한 뒤에만 올릴 것.
+2. 고혈당의 나트륨 보정 계산 문항. Katz 0.016·Hillier 0.024는 보유. `quizlet-iib-005`는 유형만 닫았고, 수치를 고르는 문항이 있으면 그 식과 맞을 때만.
+3. 반동 저혈당의 1–2시간 감속(지속 PN 중단). 주기 주입의 시작 증속(`cnsc-nutrition-support-050`)은 §16대로 둔다.
+4. 재급식·인슐린 경로처럼 이미 있는 문장으로 보기가 닫히는 모니터 문항. 주 2–3회(`bcnsp-094`)와 CRRT 2.0–2.5(`cnsc-nutrition-support-091`)는 숫자 충돌이라 올리지 않는다.
+5. `bcnsp-052`, 0.22 μm, 질소 '+4 g', Omegaven, 파킨슨양, 비타민 K 국내/150 μg 이원(`rxk-4_1-7`)은 보유 문장이 갈라져 있는 동안 둔다.
