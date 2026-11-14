@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "contentVersion": "2026-11-14.6",
+    "contentVersion": "2026-11-14.7",
     "extractedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
     "source": {
@@ -12,8 +12,8 @@
     },
     "rawCount": 583,
     "finalCount": 586,
-    "verifiedCount": 166,
-    "pendingCount": 288,
+    "verifiedCount": 187,
+    "pendingCount": 267,
     "excludedCount": 132,
     "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
     "displayLanguage": "ko-only",
@@ -1139,9 +1139,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
-      "referenceIds": [],
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "aspen-pn-myths-practice-tool-2024"
+      ],
       "stem": "다음 중 정맥영양(PN) 적응증은?",
       "choices": [
         "고배출 누공",
@@ -1150,31 +1153,51 @@
         "임신오조(hyperemesis gravidarum, HG)"
       ],
       "answer": 0,
-      "explain": "PN은 위장관이 기능하지 않거나 쓸 수 없을 때 적응증이 된다. 고배출 누공(>500 mL/day) 환자는 정맥영양(PN) 적응증이다. 크론병에서는 영양지원으로 PN을 일상적으로 쓰지 않는다. 급성 췌장염(pancreatitis)의 영양중재 경로는 경장영양(EN)을 우선한다. 임신오조(hyperemesis gravidarum, HG)는 EN과 약물치료에 반응하지 않는 중증일 때만 PN이 필요하다.",
+      "explain": "위장관을 쓸 수 없으면 PN을 본다. 위장관 누공과 EN이 불가한 누공이 그 적응이다. 크론병 자체는 적응이 아니고, 급성췌장염은 경장영양을 먼저 본다.",
       "needle": "고배출 누공",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 위장관 누공, 그중 EN이 불가한 누공이 PN 적응으로 적혀 있다.",
+        "오답. 크론병 자체의 일상 PN은 없고, 적응은 단장·지속 소장폐색·EN 불가 누공·고배출 장루이다.",
+        "오답. 급성췌장염은 경장영양을 우선하고, 불가할 때 PN이다.",
+        "오답. 임신오조는 이 적응 목록에 이름이 없다."
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-indications-1-적응증-시작시점-지연",
+        "sec-disease-8-질환별-PN"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
-      "errataIds": [
-        "E6-pn-indication-timing"
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 1 GI 흡수 불가",
+          "quote": "위장관 누공"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 Crohn",
+          "quote": "EN 불가 누공"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 급성췌장염",
+          "quote": "EN 우선, 불가 시 PN"
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "ASPEN Myths 2024 p.1",
+          "quote": "a contraindication to Enteral Nutrition (EN) exists, inadequate EN tolerance is"
+        }
       ],
+      "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "고배출 누공 적응증. 보유 근거 연결·선택지 해설 미작성."
+      "reviewNote": "고배출 누공 적응증. 보유 근거 연결·선택지 해설 미작성. 배치5 verified. 정답 인덱스 유지. >500 mL/d는 문제은행이라 쓰지 않았다. E6의 개시 시점과는 다른 문항이라 정오 id는 떼었다."
     },
     {
       "id": "quizlet-pn-016",
@@ -2098,7 +2121,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: 핵심표 2.2에 구조지질(Structolipid) 행이 있으나, 형광 전사·교재 추출·요약에는 그 문장이 없다. 문제은행 해설은 '연구용뿐'이고 핵심표 행은 '미국 연구용 / EU 시판'이라 한 문장으로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-033",
@@ -2529,7 +2552,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: 경장과 겹치면 과다 공급·고혈당이 될 수 있고, 급중단이면 반동 저혈당이다. 전환 때 어느 쪽이 더 생기기 쉬운지 가리는 문장이 없다. 해설의 4 mg/kg/min은 고혈당 위험 GIR이지 전환 규칙이 아니다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-042",
@@ -3118,7 +3141,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: 주사 알루미늄 5 μg/kg/일은 요약에서 문제은행 표기이다. 셀레늄 상한 5 μg/kg/일은 다른 칸이다. 유리병 글루콘산칼슘의 알루미늄은 ESPEN이고 하루 상한 숫자가 아니다. 인덱스는 유지한다."
     },
     {
       "id": "kshp-01",
@@ -6287,9 +6310,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "근치적 방광절제술과 회장도관 요로전환술을 받은 75세 여성이다. 체중 50 kg이고 정맥 접근이 어렵다. 포도당 210 g, 아미노산(amino acids) 75 g, 정맥 지방유제(IVFE) 45 g이 든 말초정맥영양(PPN)을 하루 3 L로 시작했다. 가장 생기기 쉬운 합병증은?",
       "choices": [
         "수분 과부하",
@@ -6298,27 +6323,59 @@
         "고혈당(hyperglycemia)"
       ],
       "answer": 0,
-      "explain": "현재 성인 지침의 정맥영양(PN) 성분 최대량은 수분 30–40 mL/kg/day, 탄수화물 7 g/kg/day, 지방 2.5 g/kg/day, 단백질 2 g/kg/day다. PPN은 정맥 손상(혈전정맥염, 말초정맥 침윤) 없이 의미 있는 열량을 주려면 부피가 커질 수밖에 없다. 이 처방은 60 mL/kg/day로 권장 최대 수분량을 넘는다.",
+      "explain": "3 L ÷ 50 kg = 60 mL/kg/일이다. 성인 수액은 30–40 mL/kg/일이다. 포도당 210 g은 4.2 g/kg/일로 하루 상한 7 g/kg/일 안이고, 지질 45 g은 0.9 g/kg/일로 하루 상한 2.5 g/kg 안이며, 아미노산 75 g은 1.5 g/kg/일로 상한 2.5 g/kg/일 안이다. 넘은 상한은 수분이다.",
       "needle": "PPN",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 60 mL/kg/일은 성인 30–40 mL/kg/일을 넘는다.",
+        "오답. 지질 0.9 g/kg/일은 하루 상한 2.5 g/kg 안이다.",
+        "오답. 아미노산 1.5 g/kg/일은 상한 2.5 g/kg/일 안이다. 고질소혈증으로 적힌 것은 과도한 아미노산이다.",
+        "오답. 포도당 4.2 g/kg/일은 하루 상한 7 g/kg/일 안이다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-fluid_lytes-2-4-수분",
+        "sec-cho_gir-2-1-탄수화물-dextrose",
+        "sec-lipid-2-2-지방-ILE",
+        "sec-protein-2-3-단백질-아미노산-AA",
+        "sec-complications-6-1-3열-요약"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.4 성인 수액",
+          "quote": "30–40 mL/kg/d"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.1 하루 총량",
+          "quote": "≤7 g/kg/day"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.2 성인 용량",
+          "quote": "≤2.5 g/kg"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.3 상한",
+          "quote": "max 2.5 g/kg/d"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 6.1 Azotemia",
+          "quote": "과도 AA"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 처방 숫자로 상한만 비교했다. 말초 혈전정맥염은 보기에 없다."
     },
     {
       "id": "quizlet-iib-023",
@@ -7146,7 +7203,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: 담낭 슬러지는 장 자극이 없을 때 생긴다고 적혀 있다. '거의 100%'는 보유 문장에 없다. 인덱스는 유지한다."
     },
     {
       "id": "rx-pnald-prevent",
@@ -7615,9 +7672,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "간접열량측정법(indirect calorimetry)으로 측정하는 것은?",
       "choices": [
         "기초대사율",
@@ -7626,27 +7685,40 @@
         "체중 증가에 필요한 칼로리"
       ],
       "answer": 2,
-      "explain": "간접열량측정은 흡기 O₂·호기 CO₂로 에너지 소비량(REE)을 잰다.",
+      "explain": "간접열량측정은 들이쉬는 산소와 내쉬는 이산화탄소로 안정시 에너지 소비를 낸다. 지난 섭취량이나 체중 증가에 필요한 열량을 재는 검사가 아니다.",
       "needle": "24시간",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 기초대사율이라는 이름과, 산소·이산화탄소로 내는 안정시 에너지 소비는 같은 칸이 아니다.",
+        "오답. 지난 24시간 섭취량은 간접열량측정이 재는 값이 아니다.",
+        "정답. 들이쉬는 산소와 내쉬는 이산화탄소로 에너지 소비를 낸다.",
+        "오답. 체중 증가에 필요한 열량을 재는 검사가 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-eval-0-영양평가-PN-직결만"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "NBNSC CNSC 표본으로 표기된 문항. 공식 샘플 원문과 대조하지 않아 officialSample로 표시하지 않음.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "quote": "흡기 O₂ · 호기 CO₂"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "quote": "IC 가능하면 IC 우선"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 요약의 측정값은 흡기 산소·호기 이산화탄소이고, 산출은 REE이다."
     },
     {
       "id": "nbnsc-cnsc-sample-07",
@@ -7659,9 +7731,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "중심정맥영양(PN)에서 경장영양(EN)으로 전환할 때 가장 적절한 것은?",
       "choices": [
         "저혈당을 막기 위해 덱스트로스를 말초정맥으로 주입한다",
@@ -7670,27 +7744,56 @@
         "환자의 영양 요구량이 충족되는 즉시 중심정맥관을 제거한다"
       ],
       "answer": 2,
-      "explain": "EN으로 전환할 때 내성이 확인될 때까지 PN을 일부 유지해 열량 공백을 막는다.",
+      "explain": "성인은 경구·경장으로 목표열량의 80% 이상을 공급할 수 있으면 PN 중단을 고려하고, 끊기 전에 1–2시간 감속한다. 소아는 75–80%가 될 때까지 PN을 유지한다. 급중단은 반동 저혈당이다. 경장 내성이 생기기 전에 PN을 일부 남기는 보기가 그 이행이다.",
       "needle": "140~180",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 이행의 기본이 말초 포도당 주입으로 적혀 있지 않다. 10% 포도당은 이미 급중단한 뒤의 조치이다.",
+        "오답. 설사가 나면 전환을 그만둔다는 문장은 없다.",
+        "정답. 목표에 못 미치면 PN을 유지한다. 성인 기준은 목표열량 80% 이상, 소아는 75–80%이고, 중단은 1–2시간 감속이다.",
+        "오답. 요구량이 채워지자마자 중심정맥관을 빼라는 문장은 없다. 급중단은 반동 저혈당이다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-monitor-7-3-PN-중단-이행",
+        "sec-complications-6-1-3열-요약"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "NBNSC CNSC 표본으로 표기된 문항. 공식 샘플 원문과 대조하지 않아 officialSample로 표시하지 않음.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 7.3 성인 중단",
+          "quote": "목표열량의 ≥80%"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 7.3 감량",
+          "quote": "1–2 h"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 7.3 감량",
+          "quote": "taper (rebound 방지)"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 9 이행",
+          "quote": "75–80%까지 PN 유지"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 9 이행",
+          "quote": "급중단 ⟶ rebound 저혈당"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 보기는 '내성'이고 보유 기준은 목표열량 비율이다. 60–75%는 초안에서 뺀 숫자라 쓰지 않았다."
     },
     {
       "id": "nbnsc-cnsc-sample-08",
@@ -8532,9 +8635,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "정맥영양(PN)을 중단하는 기준은?",
       "choices": [
         "맑은 유동식(clear liquid diet) 처방이 나왔을 때",
@@ -8543,27 +8648,45 @@
         "일반식으로 올렸으나 잘 견디지 못할 때"
       ],
       "answer": 2,
-      "explain": "고형식을 입으로 잘 먹는다.",
+      "explain": "경구 또는 경장으로 목표열량의 80% 이상을 공급할 수 있으면 PN 중단을 고려하고, 1–2시간 감속한다. 맑은 유동식 처방이나 목표 속도의 25%는 그 기준에 못 미친다. 일반식을 견디지 못하는 것도 공급이 된 상태가 아니다.",
       "needle": "고형식을 입으로 잘 먹을 때",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 맑은 유동식 처방이 목표열량 80%는 아니다.",
+        "오답. 목표 속도의 25%는 80%에 못 미친다.",
+        "정답. 입으로 충분히 먹는 보기가, 경구로 목표열량을 채운 뒤에 중단한다는 문장에 가깝다. 중단은 1–2시간 감속이다.",
+        "오답. 일반식을 견디지 못하면 목표 공급이 된 것이 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-monitor-7-3-PN-중단-이행"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 7.3 성인 중단",
+          "quote": "목표열량의 ≥80%"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 7.3 감량",
+          "quote": "1–2 h"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 9 이행",
+          "quote": "급중단 ⟶ rebound 저혈당"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 보유 문장은 경구 또는 경장으로 80% 이상이다. 보기는 고형식만 말한다. 25%와 유동식은 그 기준 밖이다."
     },
     {
       "id": "quizlet-ss2-005",
@@ -8819,9 +8942,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "ccn-summary-nestle-2022"
+      ],
       "stem": "중환자 에너지 요구량을 정할 때 예측 공식 대신 간접열량측정(indirect calorimetry)을 쓰는 주된 이점은?",
       "choices": [
         "비용이 적고 더 쉽게 이용할 수 있다",
@@ -8830,29 +8956,45 @@
         "다량영양소 구성 비율을 권장해 준다"
       ],
       "answer": 1,
-      "explain": "간접열량측정은 실제 산소 소모(VO2)와 이산화탄소 생성(VCO2)을 측정하고 Weir 공식으로 안정시 에너지 소모량을 산출한다. 중증 질환, 체조성, 약물, 임상 상태 등 개인 대사 변이를 반영하며, Harris-Benedict나 Mifflin-St Jeor 같은 예측 공식으로는 잡기 어렵다. 가능하면 ASPEN도 간접열량측정을 권장한다.",
+      "explain": "간접열량측정은 그 환자의 산소 소비와 이산화탄소 생성으로 안정시 에너지 소비를 낸다. 예측식은 IC가 없을 때 쓴다.",
       "needle": "중환자",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 비용이 적고 더 쉽다는 문장은 없다.",
+        "정답. 그 환자의 가스 교환으로 안정시 에너지 소비를 측정한다.",
+        "오답. 높은 FiO2에서도 제한 없이 쓴다는 문장은 없다. CCN은 정확도를 흔드는 변수가 없을 때를 말한다.",
+        "오답. 다량영양소 비율을 권한다는 문장은 없다."
       ],
       "coreSectionIds": [
         "sec-eval-0-영양평가-PN-직결만"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "quote": "흡기 O₂ · 호기 CO₂"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "quote": "IC 가능하면 IC 우선"
+        },
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN Summary 2022 Calories",
+          "quote": "Suggest indirect calorimetry (IC) be used to determine energy requirements when available and in the absence of variables that affect accuracy."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 개인 대사 변이라는 표현은 가스 교환으로 그 환자의 REE를 낸다는 문장으로 좁혔다."
     },
     {
       "id": "bcnsp-032",
@@ -9281,9 +9423,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "ccn-summary-nestle-2022",
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "약사가 dextrose 250 g/day, amino acids 90 g/day, SMOFlipid 20% 250 mL IV 1일 투여 PN 처방을 검토 중이다. 환자는 42세 인공호흡기 유지 중증 화상으로 승압제 요구가 변동한다. ICU팀이 오늘 에너지 요구량 추정 방법을 묻는다. 가장 적절한 약사 권고는?",
       "choices": [
         "PN이 이미 처방되었으므로 간접열량측정은 불필요하고 20 kcal/kg/day 단순 체중 기반 추정을 쓴다.",
@@ -9292,29 +9437,51 @@
         "Harris-Benedict에 스트레스 계수를 쓰고, 체중이 크게 변하지 않으면 재평가는 피한다."
       ],
       "answer": 1,
-      "explain": "간접열량측정은 산소 소모와 이산화탄소 생성을 측정해 에너지 소모를 추정하며, 중증 화상 같은 복잡한 중환자에서 선호된다. 예측 공식은 이런 환자에서 요구량을 잘못 잡기 쉬워 과급식·저급식 위험이 커진다. 핵심: 대사 변이가 큰 복합 중증 질환 → 에너지 공급을 다듬기 위해 간접열량측정 권고 → 칼로리 전달, 혈당, 중성지방, 내성을 매일 모니터링 → 대사 불안정이 큰데도 대리 공식만 쓰고 있으면 확인한다. A: 체중 기반은 빠르지만 대리 추정치이며 중증 화상에서 신뢰도가 낮다. D: Harris-Benedict는 익숙하지만 스트레스 계수식은 요구량을 크게 빗나갈 수 있다. C: 현재 PN 칼로리는 측정 소모량이 아니며 불일치를 고착시킬 수 있다.",
+      "explain": "가능하고 정확도를 흔드는 변수가 없으면 간접열량측정으로 에너지 요구를 정한다. 없으면 예측식 또는 중환자 첫 7–10일의 12–25 kcal/kg이다. 이미 들어간 PN 열량을 측정값으로 보지 않는다.",
       "needle": "간접열량",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. PN이 이미 처방되었다고 IC가 불필요해지지는 않는다. IC가 없으면 12–25 kcal/kg는 첫 7–10일의 체중 식이다.",
+        "정답. 가능하면 간접열량측정을 쓴다. 승압제가 변동하는 환자에서는 정확도를 흔드는 변수가 있는지도 같이 본다.",
+        "오답. 처방된 비단백 열량은 측정된 안정시 에너지 소비가 아니다.",
+        "오답. IC가 없을 때 예측식을 쓰더라도, 체중이 그대로면 재평가를 피하라는 문장은 없다."
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-eval-0-영양평가-PN-직결만",
+        "sec-disease-8-1-폐-심장-신경계"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN Summary 2022 Calories",
+          "quote": "Suggest indirect calorimetry (IC) be used to determine energy requirements when available and in the absence of variables that affect accuracy."
+        },
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN Summary 2022 Calories",
+          "quote": "12–25 kcal/kg/d"
+        },
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN Summary 2022 Calories",
+          "quote": "first 7-10 days of ICU stay"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "quote": "IC 가능하면 IC 우선"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 화상 전용 Curreri 식은 없다. 12–25 kcal/kg는 BMI 30 미만 중환자의 IC가 없을 때, 첫 7–10일이다."
     },
     {
       "id": "medex-017",
@@ -11116,9 +11283,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "ccn-summary-nestle-2022"
+      ],
       "stem": "영양지원에서 에너지 소비량을 구하는 표준(gold standard) 방법은?",
       "choices": [
         "Harris-Benedict 공식",
@@ -11127,27 +11297,45 @@
         "간접열량측정"
       ],
       "answer": 3,
-      "explain": "간접열량측정은 산소 소비와 이산화탄소 생성을 측정해 에너지 소비량을 계산한다. 임상 표준이며 가능하면 예측식보다 우선한다. SCCM/ASPEN은 에너지 공급을 맞추고 과·저급식을 피하려고 사용을 권한다.",
+      "explain": "간접열량측정이 가능하고 정확도를 흔드는 변수가 없으면 그것으로 에너지 요구를 정한다. 없으면 예측식이나 체중 식을 쓴다. Harris-Benedict나 체중×활동계수가 그 우선 문장은 아니다.",
       "needle": "간접열량측정",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. Harris-Benedict는 IC가 없을 때의 예측식 쪽이다. 우선 문장은 IC이다.",
+        "오답. 이중표지수분법이 임상 에너지 소비의 우선 방법으로 적혀 있지 않다.",
+        "오답. 체중×활동계수는 IC가 없을 때의 추정이다.",
+        "정답. 가능하면 간접열량측정으로 에너지 요구를 정한다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-eval-0-영양평가-PN-직결만"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "quote": "IC 가능하면 IC 우선"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "quote": "흡기 O₂ · 호기 CO₂"
+        },
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN Summary 2022 Calories",
+          "quote": "Suggest indirect calorimetry (IC) be used to determine energy requirements when available and in the absence of variables that affect accuracy."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 'gold standard'라는 단어는 보유 문장에 없다. 문장은 IC가 가능하면 IC를 쓴다는 것이다."
     },
     {
       "id": "cnsc-nutrition-support-028",
@@ -11341,9 +11529,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "PN에서 비단백 열량 대 질소 비(NPC:N)를 쓰는 주된 이유는?",
       "choices": [
         "탄수화물·지방으로 충분한 에너지를 주어 단백을 동화(합성)에 쓰도록 보존하기 위해",
@@ -11352,27 +11542,40 @@
         "포도당 공급을 최대화하기 위해"
       ],
       "answer": 0,
-      "explain": "NPC:N 비는 포도당·지질에서 에너지를 충분히 공급해, 투여 아미노산이 연료로 타지 않고 단백 합성과 제지방 유지에 쓰이게 한다. 통상 목표는 약 80:1 to 150:1이며, 스트레스가 높을수록 비는 낮아진다(단백 비중↑).",
+      "explain": "NPC:N은 동화 목적의 비다. 단백 열량은 총열량에는 넣고 NPC:N에서는 빼서, 포도당과 지질이 에너지를 담당하게 한다.",
       "needle": "탄수화물",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 비단백 열량으로 에너지를 대어 아미노산을 동화에 쓰게 하는 비가 NPC:N이다.",
+        "오답. 단백을 에너지로 쓰게 하려고 이 비를 두지 않는다. 단백 열량은 NPC:N에서 뺀다.",
+        "오답. 지질을 최소화하라는 비가 아니다.",
+        "오답. 포도당을 최대화하라는 비가 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-protein-2-3-단백질-아미노산-AA"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.3 NPC:N",
+          "quote": "동화 목적 NPC:N 120–180:1"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 4.1 단백 kcal",
+          "quote": "NPC:N 계산엔 제외"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 무스트레스 150:1, 스트레스 80–100:1, 동화 목적 120–180:1."
     },
     {
       "id": "cnsc-nutrition-support-037",
@@ -11674,9 +11877,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "관 막힘 위험을 줄이려면 어떤 방법이 권장되는가?",
       "choices": [
         "장용정 정제를 부숴 관으로 밀어 넣는다",
@@ -11685,27 +11890,35 @@
         "탄산음료로 일상적으로 관을 씻는다"
       ],
       "answer": 2,
-      "explain": "급식과 각 약물 투여 전후 물 세척, 약물은 따로 주고 사이마다 세척, 가능하면 액상 제제 사용이 폐색 예방의 기본이다. 막혔을 때는 따뜻한 물이 우선이며, 소다·주스 일상 세척은 권장되지 않고 막힘을 악화할 수 있다.",
+      "explain": "튜브는 물로 씻는다. 성인은 최소 15 mL이다. 탄산음료로 일상 세척하라는 문장은 없다.",
       "needle": "약물·급식 전후에 물로 관을 씻고, 가능하면 액상 약을 쓴다",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 장용정을 부숴 넣으라는 세척 문장은 없다.",
+        "오답. 모든 약물을 섞어 한 번에 주라는 문장은 없다.",
+        "정답. 약물·급식 전후에 물로 씻는 것이 보유 세척이다. 성인 최소 15 mL.",
+        "오답. 탄산음료로 일상 세척하라는 문장은 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-disease-8-5-영양소-약물-상호작용"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8.5 튜브 세척",
+          "quote": "튜브 세척 = 물, 성인 최소 15 mL"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. '가능하면 액상 약'은 보유 문장에 없다. 물 세척이 정답 보기를 고르는 문장이다."
     },
     {
       "id": "cnsc-nutrition-support-070",
@@ -11716,9 +11929,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "보통 위·근위 소장에서 흡수되고 관급식에 결합하므로, 흡수 변화를 고려하지 않고 공장 급식관으로 주면 안 되는 약물은?",
       "choices": [
         "Phenytoin",
@@ -11727,27 +11942,45 @@
         "Lactulose"
       ],
       "answer": 0,
-      "explain": "Phenytoin은 경장 급식과 함께 주면 흡수가 크게 줄고, 관 위치에 따라 흡수 양상도 달라진다. 표준적으로 투여 전후 약 1–2시간 급식을 중단하고 혈중 농도를 감시한다. 위를 우회하면 흡수가 더 달라질 수 있다.",
+      "explain": "Phenytoin은 경장 튜브에 흡착된다. 투여 전후 1–2시간 경장을 멈추거나 정맥으로 바꾼다. 공장 급식관으로 흡수 부위를 건너뛰면 흡수가 달라지는 약도 따로 보지만, 이름이 있는 약은 phenytoin이다.",
       "needle": "2시간",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 경장과 함께 문제가 된다고 이름이 있는 약은 phenytoin이다. 흡착되면 농도가 떨어지고, 정맥 전환이 선택이다.",
+        "오답. Acetaminophen이 그 문장에 없다.",
+        "오답. Famotidine이 그 문장에 없다.",
+        "오답. Lactulose가 그 문장에 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-disease-8-5-영양소-약물-상호작용"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "quote": "phenytoin = EN 튜브 흡착"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "quote": "1–2 h EN 중지"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "quote": "IV 전환"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 위·근위 소장 흡수를 phenytoin에만 묶는 문장은 없다. 공장관에서 흡수가 달라지는 약은 별도 칸이고, 약물 이름이 있는 상호작용은 phenytoin이다."
     },
     {
       "id": "cnsc-nutrition-support-072",
@@ -11932,10 +12165,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
+      "reviewStatus": "verified",
+      "priority": "high",
       "referenceIds": [
-        "allaccess-enteral-parenteral-pqs"
+        "imsangyoungyang-gilajabi",
+        "aspen-pn-myths-practice-tool-2024"
       ],
       "stem": "다음 중 경장영양의 적응증이 아닌 것은?",
       "choices": [
@@ -11945,27 +12179,46 @@
         "중증 연하장애"
       ],
       "answer": 1,
-      "explain": "저유출 장피부 누공은 경장영양 적응이 될 수 있으나, 고유출 장피부 누공은 정맥영양 적응이자 경장영양 금기에 가깝다.",
+      "explain": "EN이 금기이거나 장이 영양을 유지하지 못하면 PN이다. EN이 불가한 누공이 그 경우다. 섭취가 부족한 것, 혼수, 삼킴장애만으로는 그 금기 문장에 해당하지 않는다.",
       "needle": "고유출 장피부 누공",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 섭취 부족만으로 EN이 금기라고 적혀 있지 않다.",
+        "정답. EN이 불가한 누공은 PN 쪽이다. 고유출 장피부 누공이 그 보기다.",
+        "오답. 혼수가 EN 금기 목록에 없다.",
+        "오답. 삼킴장애가 EN 금기 목록에 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-indications-1-적응증-시작시점-지연",
+        "sec-disease-8-질환별-PN"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "AllAccessDietetics 경장·정맥영양 연습문제.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 EN 금기",
+          "quote": "확산형 복막염 · 심한 장폐색 · 장관 마비 · 난치성 구토·설사 · 심각한 GI 출혈"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 Crohn",
+          "quote": "EN 불가 누공"
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "ASPEN Myths 2024 p.1",
+          "quote": "a contraindication to Enteral Nutrition (EN) exists, inadequate EN tolerance is"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. >500 mL/d는 쓰지 않았다. 금기 문장은 확산형 복막염·심한 장폐색·장관 마비·난치성 구토·설사·심각한 GI 출혈이다."
     },
     {
       "id": "allaccess-002",
@@ -12587,9 +12840,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "중환자가 아닌 환자의 표준 정맥영양에서 권장 열량-질소 비는?",
       "choices": [
         "50:1",
@@ -12598,27 +12853,45 @@
         "300:1"
       ],
       "answer": 1,
-      "explain": "대부분 PN 환자의 표준 비단백 열량-질소 비는 약 100–150:1이다. 이 비는 동화에 단백을 쓰고, 아미노산을 에너지원으로 쓰지 않도록 비단백 열량을 충분히 준다. 중환자·고이화 환자는 단백 요구가 높아 80–100:1 정도로 낮추는 편이 나을 수 있다.",
+      "explain": "무스트레스 NPC:N은 150:1이고 스트레스는 80–100:1이다. 총열량 대 질소는 100–150:1이다. 중환자가 아닌 표준으로 100–150:1이 그 총열량 칸이고, 150:1도 그 안에 있다.",
       "needle": "중환자",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 50:1은 무스트레스 150:1도, 총열량:N 100–150:1도 아니다.",
+        "정답. 총열량:N은 100–150:1이다. 무스트레스 NPC:N 150:1은 그 범위에 들어간다.",
+        "오답. 200:1은 총열량:N 100–150:1 밖이다. 소아는 150–250:1로 따로 적혀 있다.",
+        "오답. 300:1은 보유 비 밖이다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-protein-2-3-단백질-아미노산-AA"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.3 NPC:N",
+          "quote": "무스트레스 150:1"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.3 NPC:N",
+          "quote": "스트레스 80~100:1"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.3 NPC:N",
+          "quote": "총열량:N 100–150:1"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 문항은 '열량-질소'이고 보유 문장은 총열량:N 100–150:1과 무스트레스 NPC:N 150:1을 구분한다. 문제은행의 대략 100–150:1은 인용하지 않았다."
     },
     {
       "id": "bcnsp-066",
@@ -13220,9 +13493,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "중심정맥 PN의 가장 흔한 중증 감염 합병증이며 카테터 제거의 주요 사유가 되는 것은?",
       "choices": [
         "카테터 관련 혈류감염(CLABSI)",
@@ -13231,27 +13506,35 @@
         "카테터 폐쇄"
       ],
       "answer": 0,
-      "explain": "카테터 관련 혈류감염(CLABSI)은 중심정맥 PN의 가장 흔한 중증 감염 합병증이다. 엄격한 무균 라인 관리, PN 전용 루멘, 허브 소독이 위험을 줄인다. PN 환자에서 새로 발열이 나면 CLABSI를 평가해야 하며, 혈액배양과 카테터 제거가 필요할 수 있다.",
+      "explain": "감염 합병증으로 적힌 것은 CLABSI이고, 가장 심각한 감염으로 적혀 있다. 공기색전·기흉·카테터 폐쇄는 그 감염 항목이 아니다.",
       "needle": "CLABSI",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 감염 합병증으로 이름이 있는 것은 CLABSI이고, 가장 심각하다고 적혀 있다.",
+        "오답. 공기색전은 감염 항목이 아니다.",
+        "오답. 기흉은 기계적 합병증이다.",
+        "오답. 카테터 폐쇄는 기계적 합병증 쪽이다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-complications-6-1-3열-요약"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 6.1 감염",
+          "quote": "CLABSI (가장 심각)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. '가장 흔함'과 '카테터 제거의 주요 사유'는 그 문장에 없어 해설에서 뺐다."
     },
     {
       "id": "cnsc-nutrition-support-049",
@@ -13529,7 +13812,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: PN에 넣는 인슐린은 regular insulin뿐이다. 직전 24시간 교정량의 얼마를 넣는지, 슬라이딩 스케일 전량과 어떻게 다른지는 OCR이 불확실한 용량이라 닫지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-059",
@@ -13593,9 +13876,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "고배액 GI 손실이 있는 PN 환자에서 가장 예상되는 전해질 이상과 조치는?",
       "choices": [
         "고나트륨혈증 → 나트륨 제한",
@@ -13604,27 +13889,52 @@
         "전해질 요구량 변화 없음"
       ],
       "answer": 2,
-      "explain": "고배액 GI 손실(설사, 누공, 장루, NG 흡인)은 나트륨, 칼륨, 마그네슘, 중탄산염, 아연을 소모시킨다. PN에서 나트륨·칼륨·마그네슘·아연을 늘려야 하는 경우가 많고, 이에 따른 산-염기 장애도 감시한다. 배액량을 추적하며 보충량을 정한다.",
+      "explain": "위장관 손실은 요구량을 올린다. 장루·설사·위액 손실이면 나트륨을 늘린다. 과다 위장관 손실과 누공 고배출은 아연 보충 대상이다. 나트륨을 제한하거나 인을 빼는 방향이 아니다.",
       "needle": "Zn 결핍 = 피부염",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 장루·설사·위액 손실이면 나트륨을 늘린다. 고나트륨으로 제한하는 방향이 아니다.",
+        "오답. 고인산혈증으로 인산염을 빼라는 문장은 이 손실 칸에 없다.",
+        "정답. 위장관 손실은 요구량을 올리고, 이름이 있는 보충은 나트륨과 아연이다.",
+        "오답. 요구량이 변하지 않는다는 문장과 반대다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-fluid_lytes-2-5-전해질",
+        "sec-vit_te-2-7-미량원소-TE",
+        "sec-fluid_lytes-2-4-수분"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.5 요구 증가",
+          "quote": "GI 손실"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.5 나트륨",
+          "quote": "장루·설사·위액 손실 시 Na↑"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.7 아연",
+          "quote": "과다 GI 손실"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.7 아연",
+          "quote": "누공 고배출"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 칼륨·마그네슘을 고배액 손실의 이름으로 적는 문장은 없다. 같은 요구 증가 칸의 재급식이 K·P·Mg이다. 보충을 늘리는 보기는 이 하나다."
     },
     {
       "id": "allaccess-005",
@@ -13908,10 +14218,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
       "referenceIds": [
-        "hoag-tpn-qa"
+        "aspen-pn-myths-practice-tool-2024",
+        "imsangyoungyang-gilajabi"
       ],
       "stem": "정맥영양(PN)이란 무엇인가?",
       "choices": [
@@ -13921,29 +14232,46 @@
         "근육 주사 비타민만 해당"
       ],
       "answer": 0,
-      "explain": "PN은 위장관이 기능하지 않거나 경구·관급식으로 요구량을 채우지 못할 때 쓰는 정맥 영양지원이다. 정상 소화·흡수를 거치지 않는다. 적절한 환자에서는 보통 약 7–10일 정도 치료 후 이득을 기대한다.",
+      "explain": "EN이 금기이거나 내성이 없거나 장 기능이 영양을 유지·회복하지 못하면 PN을 쓴다. 경구 보충제, 위관 급식, 근육 주사는 그 문장이 아니다.",
       "needle": "위장관",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 장을 충분히 쓸 수 없을 때 정맥으로 영양을 공급하는 것이 그 적응 문장이다.",
+        "오답. 경구 보충제는 정맥영양이 아니다.",
+        "오답. 위로 넣는 관급식은 경장영양이다.",
+        "오답. 근육 주사 비타민은 정맥영양이 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-indications-1-적응증-시작시점-지연",
+        "sec-eval-0-영양평가-PN-직결만"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Hoag Healthcare TPN FAQ를 문항화.",
-      "evidence": [],
-      "errataIds": [
-        "E6-pn-indication-timing"
+      "evidence": [
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "ASPEN Myths 2024 p.1",
+          "quote": "a contraindication to Enteral Nutrition (EN) exists, inadequate EN tolerance is"
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "ASPEN Myths 2024 p.1",
+          "quote": "insufficient bowel function to maintain or restore nutrition"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 EN 금기",
+          "quote": "확산형 복막염 · 심한 장폐색 · 장관 마비 · 난치성 구토·설사 · 심각한 GI 출혈"
+        }
       ],
+      "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "none"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "해설의 '7–10일 치료 후 이득' 근거 확인 필요."
+      "reviewNote": "해설의 '7–10일 치료 후 이득' 근거 확인 필요. 배치5 verified. 정답 인덱스 유지. 해설의 '7–10일 치료 후 이득'은 Myths의 개시 시점과 달라 뺐다. E6 개시 시점 문항이 아니라 정오 id는 떼었다."
     },
     {
       "id": "hoag-faq-002",
@@ -13954,10 +14282,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
+      "reviewStatus": "verified",
+      "priority": "high",
       "referenceIds": [
-        "hoag-tpn-qa"
+        "imsangyoungyang-gilajabi",
+        "aspen-pn-myths-practice-tool-2024"
       ],
       "stem": "정맥영양을 쓰는 일반적인 이유로 가장 적절한 것은?",
       "choices": [
@@ -13967,27 +14296,52 @@
         "경구 식이로 요구량의 100%를 충족 가능"
       ],
       "answer": 0,
-      "explain": "장을 안전하게 또는 충분히 쓸 수 없을 때 PN을 고려한다. 폐쇄, 출혈, 감염, 누출, 장마비, 심한 지속 구토·설사, 누공, 단장 등이 해당한다. 장이 작동하면 경구 또는 경장영양을 우선한다.",
+      "explain": "PN은 EN이 금기이거나 장 기능이 부족할 때다. 보유 금기는 확산형 복막염, 심한 장폐색, 장관 마비, 난치성 구토·설사, 심각한 위장관 출혈이다. 누공과 단장도 장을 쓸 수 없는 쪽에 있다.",
       "needle": "고배출",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 장폐색·장마비·출혈·누공·단장처럼 장을 쓸 수 없는 경우가 PN을 고려하는 쪽이다.",
+        "오답. 먹지 않으려는 모든 입원 환자가 적응은 아니다.",
+        "오답. 다른 위험이 없는 경미한 변비는 금기 목록에 없다.",
+        "오답. 경구로 요구량을 채우면 PN 적응이 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-indications-1-적응증-시작시점-지연",
+        "sec-eval-0-영양평가-PN-직결만",
+        "sec-disease-8-질환별-PN"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Hoag Healthcare TPN FAQ를 문항화.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 EN 금기",
+          "quote": "확산형 복막염 · 심한 장폐색 · 장관 마비 · 난치성 구토·설사 · 심각한 GI 출혈"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 1 GI 흡수 불가",
+          "quote": "위장관 누공"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 SBS",
+          "quote": "장부전·SBS"
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "ASPEN Myths 2024 p.1",
+          "quote": "insufficient bowel function to maintain or restore nutrition"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 보기의 '감염'은 보유 단어가 아니고, 감염 쪽에 가까운 보유 단어는 확산형 복막염이다. >500 mL/d는 쓰지 않았다."
     },
     {
       "id": "bcnsp-041",
@@ -15546,9 +15900,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "aspen-adult-critically-ill-factsheet-2024"
+      ],
       "stem": "영양지원 중인 환자에서 과영양(overfeeding)을 시사하는 임상 소견은?",
       "choices": [
         "체중 감소와 저혈당",
@@ -15557,29 +15914,47 @@
         "저체온"
       ],
       "answer": 1,
-      "explain": "과영양은 고혈당, CO2 생성 증가와 호흡 부담, 체액 과부하, 고중성지방혈증, 간효소 상승/간지방증으로 나타난다. 이런 징후가 보이면 총 열량, 특히 덱스트로스를 측정 또는 적절히 추정한 요구량 쪽으로 줄인다.",
+      "explain": "과다 열량·포도당은 지방증과 간효소 상승으로 이어진다. 고혈당의 원인에도 과도 포도당이 있다. 호흡성 산증이나 높은 중성지방이면 공급량 감량을 검토한다.",
       "needle": "140~180",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 체중 감소와 저혈당은 과다 공급의 방향이 아니다.",
+        "정답. 혈당 상승, CO2·호흡 부담, 간효소 상승이 과다 열량·포도당과 호흡성 산증 문장에 해당한다.",
+        "오답. 과다 공급에서 중성지방이 감소한다고 적혀 있지 않다. 높은 중성지방이면 감량을 검토한다.",
+        "오답. 저체온이 과다 공급의 소견으로 적혀 있지 않다."
       ],
       "coreSectionIds": [
-        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
+        "sec-complications-6-3-간담도-합병증-PNALD",
+        "sec-complications-6-1-3열-요약",
+        "sec-disease-8-1-폐-심장-신경계"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 6.3 지방증",
+          "quote": "지방증 = 과다 열량·포도당"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 6.1 고혈당 원인",
+          "quote": "과도 포도당"
+        },
+        {
+          "referenceId": "aspen-adult-critically-ill-factsheet-2024",
+          "locator": "ASPEN Critically Ill Factsheet 2024 Question 1",
+          "quote": "respiratory acidosis or high serum triglyceride concentrations, consider whether feedings should be reduced"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 체액 과부하는 재급식 칸의 수분 저류이고, 과다 공급 문장으로 닫지 않았다. 정답 보기의 혈당·CO2·간효소가 보유 방향이다."
     },
     {
       "id": "bcnsp-003",
@@ -15846,7 +16221,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: 성인 중단 기준은 목표열량 80% 이상이고, 소아는 75–80%까지 PN을 유지한다. 정답 보기의 60–75%는 요약 초안에서 불확실로 뺀 숫자이다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-034",
@@ -16054,7 +16429,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: Curreri 공식은 보유 문장에 없다. 화상 스트레스계수는 2.1–2.5이고, IC가 가능하면 IC를 쓴다. 'Curreri 또는 IC'를 한 정답으로 닫지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-063",
@@ -16543,9 +16918,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "영양관으로 경장영양과 함께 투여할 때 의미 있는 약물-영양소 상호작용이 알려진 약은?",
       "choices": [
         "Acetaminophen",
@@ -16554,27 +16931,45 @@
         "Famotidine"
       ],
       "answer": 1,
-      "explain": "Phenytoin은 경장영양 제제의 칼슘 카제이네이트와 단백 성분에 결합해 동시 투여 시 흡수가 크게 떨어진다. 권장 관리는 투여 전후 1-2시간 경장급식을 중단하고 관을 물로 세척한다. EN 환자에서는 혈중 농도를 면밀히 모니터한다. 이 상호작용으로 치료 이하 농도와 돌발 발작이 생길 수 있다.",
+      "explain": "Phenytoin은 경장 튜브에 흡착되어 혈중 농도가 떨어진다. 투여 전후 1–2시간 경장을 멈추거나 정맥으로 바꾸고, 농도를 본다.",
       "needle": "2시간",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. Acetaminophen이 그 흡착 문장에 없다.",
+        "정답. Phenytoin은 경장 튜브 흡착으로 혈중 농도가 떨어진다.",
+        "오답. Metoprolol이 그 문장에 없다.",
+        "오답. Famotidine이 그 문장에 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-disease-8-5-영양소-약물-상호작용"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "quote": "phenytoin = EN 튜브 흡착"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "quote": "1–2 h EN 중지"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "quote": "IV 전환"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 칼슘 카제이네이트 결합이라는 기전 이름은 보유 문장에 없어 뺐다. 보유 문장은 튜브 흡착이다."
     },
     {
       "id": "bcnsp-073",
@@ -16709,7 +17104,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: 고혈당이면 GIR을 낮추고 PN에는 regular insulin을 섞는다고 적혀 있다. 처음부터 별도 insulin 점적을 추가한다는 정답은, 혈당 300 초과의 펌프 분리라는 불확실 문장에 기대야 한다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-025",
@@ -17209,7 +17604,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: 간경화·간성뇌증 단백은 표4-5에서 1.0–1.5이고, 만성 간질환에서 결핍이 없으면 1.0–1.2이다. 정답 보기의 1.2–1.5만으로 닫지 않는다. 난치 뇌증의 BCAA 이득은 근거가 낮다는 서술과 갈린다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-094",
@@ -17323,9 +17718,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-adult-critically-ill-factsheet-2024",
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "만성폐쇄성폐질환(COPD)과 CO2 정체 환자에게 급식 중이다. 가장 중요한 영양 원칙은?",
       "choices": [
         "에너지를 높이려고 매우 높은 탄수화물 부하를 준다",
@@ -17334,27 +17732,46 @@
         "단백을 심하게 제한한다"
       ],
       "answer": 1,
-      "explain": "환기 예비능이 제한된 환자에서는 탄수화물 대 지방 비율 조작보다 총 열량 과급식을 피하는 것이 더 중요하다. 과급식(특히 과잉 탄수화물)은 호흡지수를 올리고 CO2 생성을 늘린다. 측정 또는 적절히 추정한 요구에 열량을 맞추면 CO2 정체를 막고 인공호흡기 이탈에 도움이 된다.",
+      "explain": "PN에서 에너지 과급식을 피하는 것이 가장 중요한 결정일 수 있다. 호흡성 산증이나 높은 중성지방이면 공급량 감량을 검토한다. 탄수화물 과다는 CO2 생성을 올리지만, 먼저 보는 것은 총 열량 과다이다.",
       "needle": "탄수화물",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 열량을 올리려고 탄수화물을 매우 높이는 것은 과급식을 피하는 문장과 반대다.",
+        "정답. 에너지 과급식을 피하는 것이 PN에서 가장 중요한 결정으로 적혀 있다. 호흡성 산증이면 공급량을 줄일지를 본다.",
+        "오답. 지방을 모두 빼라는 문장은 없다.",
+        "오답. CO2 정체에서 단백을 심하게 제한하라는 문장은 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-disease-8-1-폐-심장-신경계",
+        "sec-complications-6-3-간담도-합병증-PNALD"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "aspen-adult-critically-ill-factsheet-2024",
+          "locator": "ASPEN Critically Ill Factsheet 2024 Question 3",
+          "quote": "Avoidance of energy overfeeding may be the most important decision to make regarding PN use."
+        },
+        {
+          "referenceId": "aspen-adult-critically-ill-factsheet-2024",
+          "locator": "ASPEN Critically Ill Factsheet 2024 Question 1",
+          "quote": "respiratory acidosis or high serum triglyceride concentrations, consider whether feedings should be reduced"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 6.3 지방증",
+          "quote": "지방증 = 과다 열량·포도당"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. Factsheet는 탄수화물 비율보다 총열량이 크다고 숫자로 비교하지는 않는다. '과급식을 피하는 것이 가장 중요할 수 있다'는 문장으로 닫았다."
     },
     {
       "id": "bcnsp-008",
@@ -20577,7 +20994,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: 성인 열량은 일반 20–35, 중환자 25–30, 안정 30–35 kcal/kg이다. 28–30이라는 칸은 없다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-3_1-5",
@@ -21082,7 +21499,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: 지방증은 PN 2주 내로 적혀 있다. 담즙정체가 조기 합병증이 아니라는 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-3_3-3",
@@ -21659,9 +22076,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "정맥영양(PN) 의존 환자에서 PN 관련 간 합병증의 위험 요인은?",
       "choices": [
         "단장증후군",
@@ -21670,29 +22089,61 @@
         "우르소디올(ursodiol) 약물치료"
       ],
       "answer": 0,
-      "explain": "단장증후군 환자는 정맥영양(PN) 관련 간 합병증 위험이 크다. 간기능 장애로 이어지는 위험 요인은 다음과 같다. 장 길이와 흡수가 줄어 PN을 오래 쓰게 된다. 회장 절제 후 담즙산 장간 순환이 끊겨 담즙이 정체된다. 장내 세균 전위가 생기면 세균과 독소가 간을 직접 손상시킬 수 있다. 소장 길이의 75% 넘게 절제했거나 남은 소장이 80–100 cm 미만이면 장기간 PN 의존을 예상한다. 남은 소장이 50 cm 미만이면 만성 담즙정체(cholestasis)와 관련이 있다. 참고문헌: Kumpf VJ. Parenteral Nutrition-Associated Liver Disease in Adult and Pediatric Patients. NCP. 2006;21:279-290.",
+      "explain": "회장 소실은 담즙산의 장간 순환을 끊는다. 장간 순환 문제는 PN 관련 간 합병증의 위험으로 적혀 있다. 주기 주입, 경구 자극, UDCA는 그 관리이다.",
       "needle": "야간 10–12",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 단장, 그중 회장 소실은 담즙산 장간 순환을 끊고, 그게 간 합병증 위험으로 적혀 있다.",
+        "오답. 주기 주입은 간 합병증의 위험이 아니라 관리이다.",
+        "오답. 경구·경장 자극은 관리이다. 위험이 아니다.",
+        "오답. UDCA는 치료로 적혀 있다. 위험 요인이 아니다."
       ],
       "coreSectionIds": [
-        "sec-complications-6-3-간담도-합병증-PNALD"
+        "sec-complications-6-3-간담도-합병증-PNALD",
+        "sec-disease-8-질환별-PN"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 SBS",
+          "quote": "장부전·SBS"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 회장",
+          "quote": "회장 소실"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 9 PNALD 위험",
+          "quote": "장간순환 문제"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 9 PNALD 치료",
+          "quote": "cyclic PN"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 9 PNALD 치료",
+          "quote": "경구 자극"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 9 PNALD 치료",
+          "quote": "UDCA"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치5 verified. 정답 인덱스 유지. 남은 소장 50 cm, 75% 절제는 보유 길이가 아니라 뺐다. 보유 길이는 공장만 1 m 이하 등이다."
     },
     {
       "id": "quizlet-iib-003",
@@ -22075,7 +22526,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치5: 반동 저혈당의 보유 문장은 과도 인슐린, 급중단, 중단 전 1–2시간 감속, 급중단 시 10% 포도당, 50% 포도당이다. 영양불량·간질환·신부전을 위험으로, 고혈압을 예외로 닫는 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-012",
