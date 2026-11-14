@@ -19,30 +19,35 @@ body{ margin:0 auto; max-width:210mm; padding:6mm 6mm; font-family:"Apple SD Got
 .toolbar a{color:#1a5fb4; flex:0 0 auto}
 .note{color:var(--muted); font-size:8pt; font-weight:500}
 #corePrint{outline:none; overflow:visible!important; max-width:100%}
-#corePrint:focus{outline:none} /* Brand + hierarchy */
+#corePrint:focus{outline:none}
 h1{ font-size:13pt; margin:0 0 3mm; color:var(--navy); border-bottom:2.5px solid var(--navy); padding:0 0 1.5mm; letter-spacing:-.02em; font-weight:800;
 }
 h2{ font-size:9.5pt; margin:1.8mm 0 0.6mm; padding:1.2mm 2mm; background:var(--label); color:var(--navy); font-weight:800; border-left:3px solid var(--navy); letter-spacing:-.02em; break-after:avoid; page-break-after:avoid; break-inside:avoid; -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
 h3{ font-size:8.5pt; margin:1.3mm 0 0.5mm; padding:1mm 1.8mm; background:#eef2f6; color:var(--navy); font-weight:700; border-left:2.5px solid #7a9ab8; break-after:avoid; page-break-after:avoid; break-inside:avoid; -webkit-print-color-adjust:exact; print-color-adjust:exact;
-} /* Nested tables — dense; keep dose units/arrows glued */
-table{ width:100%!important; max-width:100%!important; border-collapse:collapse; table-layout:fixed; margin:0 0 1.0mm; font-size:7.6pt; line-height:1.22;
 }
-th, td{ border:1px solid var(--line); padding:0.35mm 0.65mm; vertical-align:top; overflow-wrap:break-word; word-break:keep-all; white-space:normal;
+/* Tables — readable padding; keep whole table on one page when it fits */
+table{ width:100%!important; max-width:100%!important; border-collapse:collapse; table-layout:auto; margin:0 0 1.2mm; font-size:7.8pt; line-height:1.28;
+  break-inside:avoid; page-break-inside:avoid;
+}
+th, td{ border:1px solid var(--line); padding:0.55mm 0.85mm; vertical-align:top; overflow-wrap:break-word; word-break:keep-all; white-space:normal;
 }
 th, .th{ background:#eef2f6; font-weight:700; font-size:7.5pt; -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
-.l1{ background:var(--zebra); font-weight:700; width:18%; font-size:7.5pt; white-space:normal; overflow-wrap:break-word; word-break:keep-all; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+.l1{ background:var(--zebra); font-weight:700; font-size:7.5pt; white-space:normal; overflow-wrap:break-word; word-break:keep-all; -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
+/* 2~3열 표만 첫 열 폭 고정 — 다열 compare에는 적용하지 않음 */
+#corePrint table:not(.compare):not(.dense):not(.cheat-table) td.l1,
+#corePrint table:not(.compare):not(.dense):not(.cheat-table) th.th:first-child{width:18%}
 .nowrap, td.dose, .dose, td.num{ white-space:nowrap!important; overflow-wrap:normal; word-break:keep-all;
 }
-td.dose-long{white-space:normal; font-size:7.2pt; line-height:1.22; word-break:keep-all}
-td.memo{font-size:7.2pt; line-height:1.22; word-break:keep-all}
+td.dose-long{white-space:normal; font-size:7.2pt; line-height:1.25; word-break:keep-all}
+td.memo{font-size:7.2pt; line-height:1.25; word-break:keep-all}
 td.num{text-align:center; font-variant-numeric:tabular-nums}
+td.num.diff{color:#c2410c; font-weight:700; -webkit-print-color-adjust:exact; print-color-adjust:exact}
 .muted{color:var(--muted)}
-#corePrint table th:first-child,
-#corePrint table .th:first-child,
-#corePrint table td.l1{width:18%}
+#corePrint table.dense{table-layout:fixed; font-size:7.2pt; line-height:1.22}
+#corePrint table.dense td, #corePrint table.dense th{padding:0.4mm 0.55mm}
 #corePrint table.dense.te-cmp col.c-el{width:8%}
 #corePrint table.dense.te-cmp col.c-dose{width:15%}
 #corePrint table.dense.te-cmp col.c-memo{width:47%}
@@ -50,44 +55,101 @@ td.num{text-align:center; font-variant-numeric:tabular-nums}
 #corePrint table.dense.te-ped col.c-dose{width:22.75%}
 #corePrint table.dense.conc col.c-el{width:12%}
 #corePrint table.dense.conc col.c-num{width:12.5%}
+/* 제품 비교: 수치 열은 고정, 비고는 별행 */
+#corePrint table.compare{table-layout:fixed; font-size:7.6pt; line-height:1.28}
+#corePrint table.compare col.c-name{width:28%}
+#corePrint table.compare col.c-kind{width:16%}
+#corePrint table.compare col.c-num{width:11.2%}
+#corePrint table.compare td.l1{white-space:normal}
+#corePrint table.compare td.num{font-size:7.4pt}
+#corePrint table.compare tr.compare-note td{
+  background:#f7f9fc; font-size:6.9pt; line-height:1.3; color:var(--text);
+  padding:0.45mm 0.85mm 0.7mm; border-top:0;
+  white-space:normal; word-break:break-all;
+}
+#corePrint table.compare tr.compare-note td a{color:inherit; word-break:break-all}
 tr:nth-child(even) td:not(.l1):not(.th){background:#fbfcfe}
+#corePrint table.compare tr.compare-note:nth-child(even) td{background:#f7f9fc}
 ul{margin:0 0 1.2mm; padding-left:3.5mm}
 li{margin:0.25mm 0; line-height:1.28}
 p{margin:0 0 1mm; line-height:1.28}
 .x{color:var(--danger); font-weight:700}
-/* Cite/footnote chrome hidden on 핵심본 print */
 sup.fn,.footnotes,.fnn{display:none!important}
-img,svg{max-width:100%; height:auto} /* Fluorescent exam marks */
-mark.hl-pink, .hl-pink{ background:linear-gradient(transparent 10%, #f8bbd0 10%, #f8bbd0 90%, transparent 90%); color:inherit; padding:0 .03em; box-decoration-break:clone; -webkit-box-decoration-break:clone; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+img,svg{max-width:100%; height:auto}
+/* Fluorescent marks — same colors/stops as study split-shell */
+mark.hl-pink, .hl-pink{
+  background:linear-gradient(transparent 8%, #f8bbd0 8%, #f8bbd0 92%, transparent 92%);
+  color:inherit; padding:0 .05em;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
-mark.hl-yellow, .hl-yellow{ background:linear-gradient(transparent 10%, #fff59d 10%, #fff59d 90%, transparent 90%); color:inherit; padding:0 .03em; box-decoration-break:clone; -webkit-box-decoration-break:clone; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+mark.hl-yellow, .hl-yellow{
+  background:linear-gradient(transparent 8%, #fff59d 8%, #fff59d 92%, transparent 92%);
+  color:inherit; padding:0 .05em;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
-mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 46% no-repeat, linear-gradient(#fff59d,#fff59d) bottom / 100% 46% no-repeat; color:inherit; padding:0 .04em; box-decoration-break:clone; -webkit-box-decoration-break:clone; box-shadow:none; border:none; text-decoration:none; -webkit-print-color-adjust:exact; print-color-adjust:exact;
-} /* Section keep-together (JS wraps h2/h3 groups) */
-.print-sec, .print-sub{ break-inside:avoid; page-break-inside:avoid; -webkit-column-break-inside:avoid;
+mark.hl-both, .hl-both{
+  background:linear-gradient(#f8bbd0,#f8bbd0) top / 100% 46% no-repeat,
+             linear-gradient(#fff59d,#fff59d) bottom / 100% 46% no-repeat;
+  color:inherit; padding:0 .06em;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  box-shadow:none; border:none; text-decoration:none;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
-.print-sec{margin:0 0 0.8mm}
-.print-sec.allow-break,
-.print-sec.allow-break > .print-sub.allow-break{ break-inside:auto; page-break-inside:auto;
+/* Keep each topic/unit on one page when it fits. Only the cheat block
+   (taller than A4) may span pages — and then only between rows, never mid-cell. */
+.print-sec{
+  margin:0 0 0.8mm;
+  break-inside:avoid; page-break-inside:avoid;
+  -webkit-column-break-inside:avoid;
 }
-.print-sec.allow-break > h2,
-.print-sub > h3{ break-after:avoid; page-break-after:avoid;
+.print-sec:has(.cheat-table){
+  break-inside:auto; page-break-inside:auto;
 }
-.print-sec.allow-break > h2 + *,
-.print-sub > h3 + *{ break-before:avoid; page-break-before:avoid;
-}
-/* Prefer split between subsections; keep rows intact */
-tr, td, th{break-inside:avoid; page-break-inside:avoid}
+.print-sec > h2 + *, .print-sec > h3 + *{ break-before:avoid; page-break-before:avoid; }
+tr, td, th{ break-inside:avoid; page-break-inside:avoid; }
 thead{display:table-header-group}
 tfoot{display:table-footer-group}
-h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL/date/page chrome in margin boxes. Chrome/Edge still honor the print-dialog "Headers and footers" checkbox separately; blanking document.title on print (below) reduces that leftover when the box is checked. */
-@page{ size:A4; margin:10mm 9mm 11mm 9mm; @top-left{content:none} @top-center{content:none} @top-right{content:none} @bottom-left{content:none} @bottom-center{content:none} @bottom-right{content:none} @left-top{content:none} @left-middle{content:none} @left-bottom{content:none} @right-top{content:none} @right-middle{content:none} @right-bottom{content:none}
-} @media print{ .toolbar{display:none!important} html,body,#corePrint{overflow:visible!important; height:auto!important; max-height:none!important} body{max-width:none; width:auto; padding:0; margin:0; font-size:8.2pt; line-height:1.26} table{font-size:7.4pt; page-break-inside:auto; width:100%!important; table-layout:fixed} th,td{padding:0.35mm 0.65mm} h2{margin:1.6mm 0 0.5mm; padding:1mm 1.6mm; font-size:9pt} h3{margin:1.2mm 0 0.4mm; padding:0.7mm 1.4mm; font-size:8pt} h1{font-size:12pt; margin:0 0 2mm} a{color:inherit; text-decoration:none} th,.th,.l1,h2,h3, mark.hl-pink,.hl-pink,mark.hl-yellow,.hl-yellow,mark.hl-both,.hl-both{ -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; } .print-sec:not(.allow-break), .print-sub:not(.allow-break){ break-inside:avoid!important; page-break-inside:avoid!important; }
+table.cheat-table{
+  break-inside:auto; page-break-inside:auto;
+  table-layout:fixed;
+}
+table.cheat-table td.l1{width:22%}
+table.cheat-table td{font-size:7.4pt; line-height:1.3}
+h1,h2,h3{orphans:3; widows:3}
+@page{ size:A4; margin:10mm 9mm 11mm 9mm;
+  @top-left{content:none} @top-center{content:none} @top-right{content:none}
+  @bottom-left{content:none} @bottom-center{content:none} @bottom-right{content:none}
+  @left-top{content:none} @left-middle{content:none} @left-bottom{content:none}
+  @right-top{content:none} @right-middle{content:none} @right-bottom{content:none}
+}
+@media print{
+  .toolbar{display:none!important}
+  html,body,#corePrint{overflow:visible!important; height:auto!important; max-height:none!important}
+  body{max-width:none; width:auto; padding:0; margin:0; font-size:8.2pt; line-height:1.28}
+  table{font-size:7.6pt; width:100%!important}
+  .print-sec{ break-inside:avoid!important; page-break-inside:avoid!important; }
+  .print-sec:has(.cheat-table){ break-inside:auto!important; page-break-inside:auto!important; }
+  table:not(.cheat-table){ break-inside:avoid!important; page-break-inside:avoid!important; }
+  table.cheat-table{ break-inside:auto!important; page-break-inside:auto!important; }
+  tr, td, th{ break-inside:avoid!important; page-break-inside:avoid!important; }
+  h2, h3{ break-after:avoid!important; page-break-after:avoid!important; }
+  th,td{padding:0.5mm 0.8mm}
+  h2{margin:1.6mm 0 0.5mm; padding:1mm 1.6mm; font-size:9pt}
+  h3{margin:1.2mm 0 0.4mm; padding:0.7mm 1.4mm; font-size:8pt}
+  h1{font-size:12pt; margin:0 0 2mm}
+  a{color:inherit; text-decoration:none}
+  th,.th,.l1,h2,h3,
+  mark.hl-pink,.hl-pink,mark.hl-yellow,.hl-yellow,mark.hl-both,.hl-both{
+    -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important;
+  }
 }
 .cell{margin:0 0 1mm; line-height:1.28}
 .callout{margin:0 0 1.2mm; padding:0.8mm 1.6mm; font-size:7.6pt; line-height:1.3}
 .callout.gap{background:#fff8e1; border-left:2.5px solid #f0a500; color:#5a4300; -webkit-print-color-adjust:exact; print-color-adjust:exact}
 .cheat-table td{font-size:7.4pt}
+.ex{color:var(--muted); font-size:7.2pt}
 </style>
 </head>
 <body>
@@ -95,7 +157,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </div>
 <div id="corePrint" contenteditable="true" spellcheck="false">
 <h1>영양불백 · PN 핵심 <span class="note">(A4 인쇄/편집)</span></h1>
-<section class="print-sec allow-break" id="sec-eval-0-영양평가-PN-직결만">
+<section class="print-sec" id="sec-eval-0-영양평가-PN-직결만">
 <h2>0. 영양평가</h2>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -170,7 +232,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-indications-1-적응증-시작시점-지연">
+<section class="print-sec" id="sec-indications-1-적응증-시작시점-지연">
 <h2>1. 적응증 · 시작시점 · 지연</h2>
 <div class="cell"><b>판단 순서</b> — 경구·EN 가능? → 충분? → 그래도 부족하면 PN</div>
 <table class="jg nest"><tr>
@@ -275,10 +337,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-cho_gir-2-구성요소">
-<h2>2. 구성요소</h2>
-</section>
-<section class="print-sec allow-break" id="sec-cho_gir-2-1-탄수화물-dextrose">
+<section class="print-sec" id="sec-cho_gir-2-1-탄수화물-dextrose">
 <h3>2.1 탄수화물 (dextrose)</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -403,7 +462,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-lipid-2-2-지방-ILE">
+<section class="print-sec" id="sec-lipid-2-2-지방-ILE">
 <h3>2.2 지방 (ILE)</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -512,7 +571,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-protein-2-3-단백질-아미노산-AA">
+<section class="print-sec" id="sec-protein-2-3-단백질-아미노산-AA">
 <h3>2.3 단백질 (아미노산, AA)</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -589,7 +648,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-fluid_lytes-2-4-수분">
+<section class="print-sec" id="sec-fluid_lytes-2-4-수분">
 <h3>2.4 수분</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -613,7 +672,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-fluid_lytes-2-5-전해질">
+<section class="print-sec" id="sec-fluid_lytes-2-5-전해질">
 <h3>2.5 전해질</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -724,7 +783,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </table>
 <div class="cell">(단위 mEq/L, 별도 표기 제외)</div>
 </section>
-<section class="print-sec allow-break" id="sec-vit_te-2-6-비타민">
+<section class="print-sec" id="sec-vit_te-2-6-비타민">
 <h3>2.6 비타민</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -780,7 +839,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-vit_te-2-7-미량원소-TE">
+<section class="print-sec" id="sec-vit_te-2-7-미량원소-TE">
 <h3>2.7 미량원소 (TE)</h3>
 <div class="cell"><b>성인 1일 권장 (표6-8 / 표9-14)</b></div>
 <div class="cell"><mark class="hl-yellow" title="병원약사회">Furtman®(초기 4종) = Cr·Cu·Mn·Zn</mark>, Se 없음</div>
@@ -852,10 +911,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </ul>
 </div>
 </section>
-<section class="print-sec allow-break" id="sec-route-3-투여경로-제형">
-<h2>3. 투여경로 · 제형</h2>
-</section>
-<section class="print-sec allow-break" id="sec-route-3-1-말초-vs-중심">
+<section class="print-sec" id="sec-route-3-1-말초-vs-중심">
 <h3>3.1 말초 vs 중심</h3>
 <table class="jg nest"><tr>
 <th class="th">구분</th>
@@ -908,7 +964,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </ul>
 </div>
 </section>
-<section class="print-sec allow-break" id="sec-route-3-2-2-in-1-vs-3-in-1-TNA">
+<section class="print-sec" id="sec-route-3-2-2-in-1-vs-3-in-1-TNA">
 <h3>3.2 2-in-1 vs 3-in-1 (TNA)</h3>
 <table class="jg nest"><tr>
 <th class="th">구분</th>
@@ -937,7 +993,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-route-3-3-MCB-다챔버-백-GL-ASPEN-Myths-ISMP-2025">
+<section class="print-sec" id="sec-route-3-3-MCB-다챔버-백-GL-ASPEN-Myths-ISMP-2025">
 <h3>3.3 MCB (다챔버 백)</h3>
 <div class="cell">
 <ul class="bl">
@@ -947,71 +1003,58 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </ul>
 </div>
 </section>
-<section class="print-sec allow-break" id="sec-route-3-4-국내-PN-제품-비교">
+<section class="print-sec" id="sec-route-3-4-국내-PN-제품-비교">
 <h3>3.4 국내 PN 제품 비교</h3>
 <div class="cell">비교 기준: <b>1,000 mL당 조성</b>과 <b>일일 공급량</b>(같은 kcal 또는 같은 AA g을 맞출 때 필요한 부피). 다챔버 백은 <b>모든 챔버 활성화 후</b> 값으로 비교한다.</div>
-<table class="jg nest compare"><tr>
+<table class="jg nest compare"><colgroup><col class="c-name"><col class="c-kind"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup>
+<tr>
 <th class="th">제품</th>
 <th class="th">형태</th>
-<th class="th">허가 확인일</th>
 <th class="th">AA g/L</th>
 <th class="th">포도당 g/L</th>
 <th class="th">지질 g/L</th>
 <th class="th">kcal/L</th>
 <th class="th">mOsm/L</th>
-<th class="th">같은 kcal(2,000 kcal) 공급 부피</th>
-<th class="th">같은 AA · 1 g당 부피</th>
-<th class="th">같은 AA · 1 g당 kcal</th>
-<th class="th">출처 · 비고</th>
 </tr>
 <tr>
 <td class="l1">스모프카비벤주 (SmofKabiven)</td>
 <td>3-in-1 MCB (중심)</td>
-<td>2026-11-14</td>
 <td class="num diff">51</td>
 <td class="num diff">129</td>
 <td class="num diff">38</td>
 <td class="num diff">1114</td>
 <td class="num">—</td>
-<td class="num diff">1,795 mL</td>
-<td class="num diff">19.6 mL</td>
-<td class="num diff">21.8 kcal</td>
-<td>https://www.comedi.kr/drug/article/200811793 · 2세 이상 · 중심정맥 · 성인 주입속도 ≤2.0 mL/kg/h · 권장 1일 최대 35 mL/kg · 챔버 혼합 후 사용 · TG≥4 mmol/L면 중단·감량</td>
+</tr>
+<tr class="compare-note">
+<td colspan="7">2,000 kcal → 1,795 mL · AA 1 g → 19.6 mL · 21.8 kcal/g · 허가 2026-11-14 · https://www.comedi.kr/drug/article/200811793 · 품목기준코드 200811793 · 허가 용량비(35 mL/kg = AA 1.8·포도당 4.5·지방 1.33·39 kcal/kg)로 L당 환산 · 삼투압은 허가 문구 없음 · 2세 이상 · 중심정맥 · 성인 주입속도 ≤2.0 mL/kg/h · 권장 1일 최대 35 mL/kg · 챔버 혼합 후 사용 · TG≥4 mmol/L면 중단·감량</td>
 </tr>
 <tr>
 <td class="l1">스모프리피드20%주 (Smoflipid)</td>
 <td>ILE 단독</td>
-<td>2026-11-14</td>
 <td class="num diff">—</td>
 <td class="num">—</td>
 <td class="num diff">200</td>
 <td class="num">—</td>
 <td class="num">—</td>
-<td class="num">—</td>
-<td class="num diff">—</td>
-<td class="num">—</td>
-<td>https://www.comedi.kr/drug/article/200604122 · 오일비 30:30:25:15 · 성인 지방 1.0–2.0 g/kg/d (5–10 mL/kg/d) · 주입속도 지방 ≤0.15 g/kg/h · 말초·중심 모두 가능</td>
+</tr>
+<tr class="compare-note">
+<td colspan="7">2,000 kcal → — · AA 1 g → — · —/g · 허가 2026-11-14 · https://www.comedi.kr/drug/article/200604122 · 품목기준코드 200604122 · 100 mL 중 대두유 6·MCT 6·올리브유 5·어유 3 g (= 지질 20 g/100 mL). 허가문에 L당 kcal·삼투압 수치 없음 → null · 오일비 30:30:25:15 · 성인 지방 1.0–2.0 g/kg/d (5–10 mL/kg/d) · 주입속도 지방 ≤0.15 g/kg/h · 말초·중심 모두 가능</td>
 </tr>
 <tr>
 <td class="l1">네프라민주 (EAA)</td>
 <td>AA 단독</td>
-<td>2026-11-14</td>
 <td class="num diff">53.6</td>
 <td class="num">—</td>
 <td class="num diff">—</td>
 <td class="num">—</td>
 <td class="num">—</td>
-<td class="num">—</td>
-<td class="num diff">18.7 mL</td>
-<td class="num">—</td>
-<td>https://www.comedi.kr/drug/article/198501824 · 급·만성 신부전 EAA · 성인 1일 250–500 mL · 포도당 병용 권고(케톤혈증 예방) · 간성혼수·고암모니아 금기</td>
+</tr>
+<tr class="compare-note">
+<td colspan="7">2,000 kcal → — · AA 1 g → 18.7 mL · —/g · 허가 2026-11-14 · https://www.comedi.kr/drug/article/198501824 · 품목기준코드 198501824 · 용법 250–500 mL = 필수아미노산 13.4–26.8 g → 53.6 g/L (≈5.4%). 성분표 합(리신 유리형 기준) ≈53.3 g/L · 급·만성 신부전 EAA · 성인 1일 250–500 mL · 포도당 병용 권고(케톤혈증 예방) · 간성혼수·고암모니아 금기</td>
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-calc_filter-4-요구량-투여계획-계산">
-<h2>4. 요구량 · 투여계획 · 계산</h2>
-</section>
-<section class="print-sec allow-break" id="sec-calc_filter-4-1-에너지">
+<section class="print-sec" id="sec-calc_filter-4-1-에너지">
 <h3>4.1 에너지</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -1055,7 +1098,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-calc_filter-4-2-계산-5단계-상한-체크">
+<section class="print-sec" id="sec-calc_filter-4-2-계산-5단계-상한-체크">
 <h3>4.2 계산 5단계 + 상한 체크</h3>
 <div class="cell">
 <ul class="bl">
@@ -1106,7 +1149,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </ul>
 </div>
 </section>
-<section class="print-sec allow-break" id="sec-calc_filter-4-3-삼투압-계산-표9-17-EXAM-p153">
+<section class="print-sec" id="sec-calc_filter-4-3-삼투압-계산-표9-17-EXAM-p153">
 <h3>4.3 삼투압 계산</h3>
 <table class="jg nest"><tr>
 <th class="th">성분</th>
@@ -1146,7 +1189,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </ul>
 </div>
 </section>
-<section class="print-sec allow-break" id="sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE">
+<section class="print-sec" id="sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE">
 <h3>4.4 교정 공식</h3>
 <table class="jg nest formula-table"><tr>
 <th class="th">항목</th>
@@ -1170,10 +1213,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-stability-5-조제-안정성-투여-주의사항">
-<h2>5. 조제 · 안정성 · 투여 (주의사항)</h2>
-</section>
-<section class="print-sec allow-break" id="sec-stability-5-1-혼합-순서">
+<section class="print-sec" id="sec-stability-5-1-혼합-순서">
 <h3>5.1 혼합 순서</h3>
 <div class="cell"><b>외울 것: 인(P) 먼저 · 칼슘 나중 · 비타민 맨 마지막</b><br>
 ① <b>저농도→고농도 포도당 · AA</b> (· 멸균증류수)<br>
@@ -1191,7 +1231,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </ul>
 </div>
 </section>
-<section class="print-sec allow-break" id="sec-stability-5-2-Ca-P-침전">
+<section class="print-sec" id="sec-stability-5-2-Ca-P-침전">
 <h3>5.2 Ca–P 침전</h3>
 <table class="jg nest"><tr>
 <th class="th">L2</th>
@@ -1223,7 +1263,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-stability-5-3-배합금기-Y-site">
+<section class="print-sec" id="sec-stability-5-3-배합금기-Y-site">
 <h3>5.3 배합금기 · Y-site</h3>
 <table class="jg nest"><tr>
 <th class="th">L2</th>
@@ -1251,7 +1291,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-stability-5-4-필터-hang-time-세트-BUD">
+<section class="print-sec" id="sec-stability-5-4-필터-hang-time-세트-BUD">
 <h3>5.4 필터 · hang time · 세트 · BUD</h3>
 <table class="jg nest"><tr>
 <th class="th">L2</th>
@@ -1295,10 +1335,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-complications-6-합병증">
-<h2>6. 합병증</h2>
-</section>
-<section class="print-sec allow-break" id="sec-complications-6-1-3열-요약">
+<section class="print-sec" id="sec-complications-6-1-3열-요약">
 <h3>6.1 3열 요약</h3>
 <table class="jg nest"><tr>
 <th class="th">유형</th>
@@ -1347,7 +1384,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-complications-6-2-재급식-증후군-Refeeding">
+<section class="print-sec" id="sec-complications-6-2-재급식-증후군-Refeeding">
 <h3>6.2 <mark class="hl-both" title="전문약사+병원약사회">재급식</mark> 증후군 (Refeeding)</h3>
 <table class="jg nest"><tr>
 <th class="th">L2</th>
@@ -1379,7 +1416,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-complications-6-3-간담도-합병증-PNALD">
+<section class="print-sec" id="sec-complications-6-3-간담도-합병증-PNALD">
 <h3>6.3 간담도 합병증 (PNALD)</h3>
 <table class="jg nest"><tr>
 <th class="th">L2</th>
@@ -1411,7 +1448,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-complications-6-4-대사성-골질환-MBD">
+<section class="print-sec" id="sec-complications-6-4-대사성-골질환-MBD">
 <h3>6.4 대사성 골질환 (MBD)</h3>
 <div class="cell">
 <ul class="bl">
@@ -1422,7 +1459,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </ul>
 </div>
 </section>
-<section class="print-sec allow-break" id="sec-lipid-6-5-필수지방산-결핍-EFAD">
+<section class="print-sec" id="sec-lipid-6-5-필수지방산-결핍-EFAD">
 <h3>6.5 <mark class="hl-yellow" title="병원약사회">필수지방</mark>산 결핍 (<mark class="hl-yellow" title="병원약사회">EFAD</mark>)</h3>
 <table class="jg nest"><tr>
 <th class="th">L2</th>
@@ -1450,10 +1487,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-monitor-7-모니터링-Lab-중단">
-<h2>7. 모니터링 · Lab · 중단</h2>
-</section>
-<section class="print-sec allow-break" id="sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179">
+<section class="print-sec" id="sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179">
 <h3>7.1 PN 대사합병증 모니터 (표11-1)</h3>
 <div class="cell"><mark class="hl-yellow" title="병원약사회">SOFA coagulation = platelet (≠ INR)</mark> · liver=bilirubin · CNS=GCS · CV=MAP/vaso · renal=Cr/UO · <mark class="hl-yellow" title="병원약사회">NRS-2002 ≥3 = 영양위험</mark> / high risk ≥5 · NUTRIC·mNUTRIC high ≥5 (원 NUTRIC high는 ≥6 주의)</div>
 <table class="jg nest"><tr>
@@ -1499,7 +1533,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </ul>
 </div>
 </section>
-<section class="print-sec allow-break" id="sec-monitor-7-2-Lab-정상범위">
+<section class="print-sec" id="sec-monitor-7-2-Lab-정상범위">
 <h3>7.2 Lab 정상범위 (PN 관련)</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -1544,7 +1578,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-monitor-7-3-PN-중단-이행">
+<section class="print-sec" id="sec-monitor-7-3-PN-중단-이행">
 <h3>7.3 PN 중단 · 이행</h3>
 <div class="cell">
 <ul class="bl">
@@ -1553,7 +1587,7 @@ h1,h2,h3{orphans:3; widows:3} /* Printable margins only — no running title/URL
 </ul>
 </div>
 </section>
-<section class="print-sec allow-break" id="sec-disease-8-질환별-PN">
+<section class="print-sec" id="sec-disease-8-질환별-PN">
 <h2>8. 질환별 PN</h2>
 <table class="jg nest"><tr>
 <th class="th">질환</th>
@@ -1617,7 +1651,7 @@ PD 포도당 흡수 ≈ <b>500–1,000 kcal/d</b> → 열량에 포함<br>
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-disease-8-1-폐-심장-신경계">
+<section class="print-sec" id="sec-disease-8-1-폐-심장-신경계">
 <h3>8.1 폐 · 심장 · 신경계 질환</h3>
 <table class="jg nest"><tr>
 <th class="th">질환</th>
@@ -1632,7 +1666,7 @@ PD 포도당 흡수 ≈ <b>500–1,000 kcal/d</b> → 열량에 포함<br>
 </table>
 <div class="cell"><b>심부전</b>: 수분·Na 제한, 과다열량 회피<br><b>신경계</b>(뇌졸중·외상성 뇌손상): 삼킴장애·의식저하 → EN 우선 · thiamine 결핍 → Wernicke · 간성뇌증 → BCAA</div>
 </section>
-<section class="print-sec allow-break" id="sec-disease-8-2-당뇨-비만">
+<section class="print-sec" id="sec-disease-8-2-당뇨-비만">
 <h3>8.2 당뇨 · 비만</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -1661,7 +1695,7 @@ PD 포도당 흡수 ≈ <b>500–1,000 kcal/d</b> → 열량에 포함<br>
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-disease-8-3-수술-암-화상">
+<section class="print-sec" id="sec-disease-8-3-수술-암-화상">
 <h3>8.3 수술 · 암 · 화상</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -1690,7 +1724,7 @@ PD 포도당 흡수 ≈ <b>500–1,000 kcal/d</b> → 열량에 포함<br>
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-disease-8-4-섭식장애-임부-노인">
+<section class="print-sec" id="sec-disease-8-4-섭식장애-임부-노인">
 <h3>8.4 섭식장애 · 임부 · 노인</h3>
 <table class="jg nest"><tr>
 <th class="th">집단</th>
@@ -1710,7 +1744,7 @@ PD 포도당 흡수 ≈ <b>500–1,000 kcal/d</b> → 열량에 포함<br>
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-disease-8-5-영양소-약물-상호작용">
+<section class="print-sec" id="sec-disease-8-5-영양소-약물-상호작용">
 <h3>8.5 영양소–약물 상호작용</h3>
 <div class="cell">PN·EN 환자에서 자주 문제가 되는 약물·식품 상호작용 대표 사례. 칸마다 <b>① 무슨 일이 생기나 → ② 어떻게 하나</b> 순서로 읽는다.</div>
 <table class="jg nest ddi"><tr>
@@ -1798,7 +1832,7 @@ PD 포도당 흡수 ≈ <b>500–1,000 kcal/d</b> → 열량에 포함<br>
 </table>
 <div class="cell">출처: FDA Consumer Update (자몽–약물 상호작용) · ASPEN Critically Ill Factsheet 2024 (propofol).</div>
 </section>
-<section class="print-sec allow-break" id="sec-peds-9-소아-신생아">
+<section class="print-sec" id="sec-peds-9-소아-신생아">
 <h2>9. 소아 · 신생아</h2>
 <table class="jg nest"><tr>
 <th class="th">L2</th>
@@ -1982,7 +2016,7 @@ PD 포도당 흡수 ≈ <b>500–1,000 kcal/d</b> → 열량에 포함<br>
 </table>
 <div class="cell"><b>ESPEN 값</b> (μg/kg/d): Zn preterm 400–500 · Cu preterm <b>40</b> / term 20 · Se preterm <b>7</b> · Mn ≤1 (max 50 μg/d)<br>※ 미국 시판 multi-TE 조성과 다름 · 참고 — 성인 IV: Fe 미국 일상 비첨가(필요시 월 25–50 mg 별도) · Mo 비첨가 · Mn 55 μg · Se 60–100 μg · <mark class="hl-pink" title="전문약사 EXAM">Zn 3–5</mark> mg</div>
 </section>
-<section class="print-sec allow-break" id="sec-hpn-10-재택-PN-HPN">
+<section class="print-sec" id="sec-hpn-10-재택-PN-HPN">
 <h2>10. 재택 PN (HPN)</h2>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -2058,7 +2092,7 @@ ESPEN HPN은 일일 <b>3–6 g/kg/d</b>도 병기한다 (교재 일일 상한 �
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-hpn-10-1-환자-교육">
+<section class="print-sec" id="sec-hpn-10-1-환자-교육">
 <h3>10.1 HPN 환자 교육</h3>
 <table class="jg nest"><tr>
 <th class="th">항목</th>
@@ -2102,7 +2136,7 @@ NST 연락: 초기에는 수일 간격, 이후 주 단위, 안정되면 월 단�
 </table>
 <div class="cell">출처: ESPEN HPN 2020 · ESPEN HPN practical guideline · ASPEN Administration checklist 2024</div>
 </section>
-<section class="print-sec allow-break" id="sec-cheat-11-치트-암기-블록">
+<section class="print-sec" id="sec-cheat-11-치트-암기-블록">
 <h2>11. 치트 (암기 블록)</h2>
 <table class="jg nest cheat-table" style="font-size:inherit">
 <tr><th class="l1" scope="row">[GIR] </th><td>조건별로 다르다 — 값 하나로 외우지 않는다 (mg/kg/min)<br>
@@ -2187,7 +2221,7 @@ Child-Pugh = 복수·뇌병증 포함 · BCAA · 열량 산출 체중 = 최근 �
 단백 1.2–2.0 g/kg · 비만은 IBW 기준 2.0–2.5 g/kg</td></tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-case-12-처방-검토-사례">
+<section class="print-sec" id="sec-case-12-처방-검토-사례">
 <h2>12. 처방 검토 · DRP 사례</h2>
 <div class="cell">사례마다 ① 어떤 DRP인지 찾고 ② 해결·모니터를 말해 본 뒤 오른쪽 칸을 확인한다.</div>
 <table class="jg nest"><tr>
@@ -2228,11 +2262,11 @@ Child-Pugh = 복수·뇌병증 포함 · BCAA · 열량 산출 체중 = 최근 �
 </table>
 <div class="cell">출처: ASPEN PN Myths 2024 · ASPEN Administration checklist 2024 · ASPEN SPN 2026 · ESPEN HPN 2020 · ASPEN PN 안전 합의 2014 · 인산칼륨 허가사항</div>
 </section>
-<section class="print-sec allow-break" id="sec-common-13-공통영역-의학통계-논문비평">
+<section class="print-sec" id="sec-common-13-공통영역-의학통계-논문비평">
 <h2>13. 공통영역 (의학통계 · 의약논문비평)</h2>
 <div class="cell">공통영역 <b>20문항</b>: EBM·EBCP 이해 · 의약문헌의 종류·특징 · 임상통계 기본 개념 · 논문 해석·비평·임상적용</div>
 </section>
-<section class="print-sec allow-break" id="sec-common-13-1-효과지표-정밀도">
+<section class="print-sec" id="sec-common-13-1-효과지표-정밀도">
 <h3>13.1 효과지표 · 통계 기본 · 연구설계</h3>
 <div class="cell"><b>2×2표 하나로 아래 지표를 모두 계산한다</b> — 예: 사건 = 수술 후 감염, 실험군 사건률(EER) 150/1,000 vs 대조군 사건률(CER) 200/1,000</div>
 <table class="jg nest"><tr>
@@ -2348,7 +2382,7 @@ Child-Pugh = 복수·뇌병증 포함 · BCAA · 열량 산출 체중 = 최근 �
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-common-13-2-논문-해석-사례-메타분석">
+<section class="print-sec" id="sec-common-13-2-논문-해석-사례-메타분석">
 <h3>13.2 논문 해석 사례 — 중증 급성 췌장염 EN 불내성 메타분석</h3>
 <div class="cell">Liao 외, <i>BMC Nutrition</i> 2026 (중증 급성 췌장염 EN 불내성 예측인자 메타분석) · 통계 지표를 실제 논문에 적용하는 연습 — 아래 4가지만 확인한다</div>
 <table class="jg nest"><tr>
@@ -2379,7 +2413,7 @@ Child-Pugh = 복수·뇌병증 포함 · BCAA · 열량 산출 체중 = 최근 �
 </tr>
 </table>
 </section>
-<section class="print-sec allow-break" id="sec-common-13-3-ebm-ebcp">
+<section class="print-sec" id="sec-common-13-3-ebm-ebcp">
 <h3>13.3 근거기반의학·임상실무 (EBM·EBCP)</h3>
 <div class="cell"><b>연구 근거 + 임상 전문성 + 환자의 가치와 선호</b>를 함께 고려한다. 연구 결과가 믿을 만한지와 내 환자에게 적용할 수 있는지는 따로 판단한다.</div>
 <div class="cell">
@@ -2393,7 +2427,7 @@ Child-Pugh = 복수·뇌병증 포함 · BCAA · 열량 산출 체중 = 최근 �
 </div>
 <div class="cell">출처: <a href="https://pubmed.ncbi.nlm.nih.gov/8555924/">Sackett 등, BMJ 1996</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/9190027/">EBM 실무 단계</a></div>
 </section>
-<section class="print-sec allow-break" id="sec-common-13-4-의약문헌">
+<section class="print-sec" id="sec-common-13-4-의약문헌">
 <h3>13.4 의약문헌의 종류·특징</h3>
 <table class="jg nest">
 <tr><th class="th" scope="col">자료</th><th class="th" scope="col">무엇을 볼 수 있나</th></tr>

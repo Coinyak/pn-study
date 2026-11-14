@@ -34,7 +34,7 @@ BANK_FIELDS = ["id", "revision", "topic", "source", "stem", "choices", "answer",
                "reviewStatus", "includeInBasicSet", "language", "coreSectionIds"]
 STUDY_UI_FILES = [("study.css", "style"), ("study-state.js", "script"), ("study-ui.js", "script")]
 SECTION_OPEN = re.compile(
-    r'<section class="sec" data-topic="[^"]+" id="([^"]+)"(?: data-added="[^"]+")?(?: data-hub="1")?(?: hidden)?>'
+    r'<section class="sec" data-topic="[^"]+" id="([^"]+)"(?: data-added="[^"]+")?( data-hub="1")?(?: hidden)?>'
 )
 
 
@@ -57,6 +57,9 @@ def render_products(prod):
     Only confirmed products with held 허가 수치 appear. Unconfirmed / out-of-table
     entries stay in products.json for authors but must never emit work-queue copy
     (미확인, 허가자료 확인 후, 후보, 표 밖 후보, 확인 전) into HTML.
+
+    Numeric columns stay on the data row; 허가일·출처·비고 go on a full-width
+    note row so A4 print (and narrow study panes) stay readable.
     """
     table_products = [p for p in prod["products"] if p.get("inComparisonTable", True)]
     confirmed = [p for p in table_products if p.get("status") == "confirmed"]
@@ -76,27 +79,36 @@ def render_products(prod):
         aa_kcal = f"{kcal / aa:.1f} kcal" if aa and kcal else "—"
         src = p.get("source") or {}
         src_txt = esc(src.get("url") or src.get("heldFile") or "")
+        note_bits = [f"허가 {esc(p['confirmedAsOf'])}"]
+        if src_txt:
+            note_bits.append(src_txt)
+        src_note = src.get("note")
+        if src_note:
+            note_bits.append(esc(src_note))
+        if p.get("note"):
+            note_bits.append(esc(p["note"]))
+        derived = f"2,000 kcal → {vol} · AA 1 g → {aa_vol} · {aa_kcal}/g"
         rows.append(
             "<tr>\n"
             f'<td class="l1">{esc(p["name"])}</td>\n'
             f"<td>{esc(p.get('kind', ''))}</td>\n"
-            f"<td>{esc(p['confirmedAsOf'])}</td>\n"
             + "".join(f'<td class="num">{c}</td>\n' for c in cells)
-            + f'<td class="num">{vol}</td>\n'
-            f'<td class="num">{aa_vol}</td>\n'
-            f'<td class="num">{aa_kcal}</td>\n'
-            f"<td>{src_txt} · {esc(p.get('note', ''))}</td>\n"
+            + "</tr>\n"
+            '<tr class="compare-note">\n'
+            f'<td colspan="7">{derived} · {" · ".join(note_bits)}</td>\n'
             "</tr>"
         )
     head = (
-        '<table class="jg nest compare"><tr>\n'
+        '<table class="jg nest compare">'
+        "<colgroup>"
+        '<col class="c-name"><col class="c-kind">'
+        '<col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num"><col class="c-num">'
+        "</colgroup>\n"
+        "<tr>\n"
         '<th class="th">제품</th>\n<th class="th">형태</th>\n'
-        '<th class="th">허가 확인일</th>\n<th class="th">AA g/L</th>\n<th class="th">포도당 g/L</th>\n'
+        '<th class="th">AA g/L</th>\n<th class="th">포도당 g/L</th>\n'
         '<th class="th">지질 g/L</th>\n<th class="th">kcal/L</th>\n<th class="th">mOsm/L</th>\n'
-        '<th class="th">같은 kcal(2,000 kcal) 공급 부피</th>\n'
-        '<th class="th">같은 AA · 1 g당 부피</th>\n'
-        '<th class="th">같은 AA · 1 g당 kcal</th>\n'
-        '<th class="th">출처 · 비고</th>\n</tr>\n'
+        "</tr>\n"
     )
     return head + "\n".join(rows) + "\n</table>"
 
@@ -267,9 +279,22 @@ def render_a4(core):
     shell = read(SRC / "a4-shell.html")
     if shell.count("<!--@@CORE@@-->") != 1:
         raise SystemExit("a4-shell.html: placeholder <!--@@CORE@@--> must appear once")
-    body = SECTION_OPEN.sub(lambda m: f'<section class="print-sec allow-break" id="{m.group(1)}">', core)
+
+    def _sec_open(m):
+        # Hub TOC stubs are study-nav only — drop from A4 entirely.
+        if m.group(2):
+            return f'<section class="print-sec hub" id="{m.group(1)}" hidden>'
+        return f'<section class="print-sec" id="{m.group(1)}">'
+
+    body = SECTION_OPEN.sub(_sec_open, core)
     body = re.sub(r'<div class="sec-h">(.*?)</div>', a4_heading, body)
-    # Hub menus only repeat the left nav; keep any other content of the hub cell.
+    body = re.sub(
+        r'<section class="print-sec hub"[^>]*>.*?</section>\n?',
+        "",
+        body,
+        flags=re.S,
+    )
+    # Leftover hub chrome if any non-hub section still carries it.
     body = re.sub(r'<p class="hub-lead">.*?</p>\n<ul class="hub-list">.*?</ul>\n', "", body, flags=re.S)
     body = re.sub(r'<div class="cell hub">\n</div>\n', "", body)
     return shell.replace("<!--@@CORE@@-->", body.rstrip("\n"))
