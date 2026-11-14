@@ -709,18 +709,20 @@
       "id": "aspen-pn-safety-consensus-2014",
       "title": "A.S.P.E.N. Parenteral Nutrition Safety Consensus Recommendations. JPEN 2014;38(3):296-333",
       "year": 2014,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24280129/",
-      "accessStatus": "paywalled-unreviewed",
-      "reviewedAt": null,
-      "reviewScope": "none",
+      "url": "https://aspenjournals.onlinelibrary.wiley.com/doi/full/10.1177/0148607113511992",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
       "kind": "designated-guideline",
       "designatedByNotice": true,
-      "note": "PMID 24280129, DOI 10.1177/0148607113511992. 원문 미열람. 구판 필터 권고(0.22/1.2) 등 현행 자료와의 시대 차이는 Task 2 확인 사항.",
+      "note": "처방의 약사 검토·검증(V2)과 조제 전 확인을 원문에서 대조했다.",
       "pendingLocator": [
         "필터·라벨·투여 안전 권고문과 쪽 확인 대기"
       ],
       "scopeIds": [
-        "spec-plan-personalized"
+        "spec-plan-personalized",
+        "format-appropriateness",
+        "format-drp"
       ]
     },
     {
@@ -1491,10 +1493,12 @@
       "reviewScope": "selected-sections",
       "kind": "guideline",
       "designatedByNotice": false,
-      "note": "§6.1.11.1: 장루 손실, 염소·아세트산염과 산염기 균형",
+      "note": "§6.1.11.1: 장루 손실, 염소·아세트산염과 산염기 균형 및 저마그네슘혈증이 동반된 저칼륨혈증",
       "scopeIds": [
         "spec-dz-gi",
-        "spec-hpn"
+        "spec-hpn",
+        "spec-components",
+        "spec-monitoring"
       ]
     },
     {
@@ -1510,6 +1514,114 @@
       "note": "권고 38(R18) 및 관련 도해 정오표: KRT 방식별 단백질",
       "scopeIds": [
         "spec-dz-renal"
+      ]
+    },
+    {
+      "id": "dailymed-potassium-phosphates-2025",
+      "title": "Potassium Phosphates Injection · 미국 허가사항",
+      "year": 2025,
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=41a85cca-c463-4f39-9335-177b04c290a9",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "drug-label",
+      "designatedByNotice": false,
+      "note": "금기 및 고칼륨혈증 경고",
+      "scopeIds": [
+        "format-appropriateness",
+        "format-drp"
+      ]
+    },
+    {
+      "id": "and-aspen-adult-malnutrition-2012",
+      "title": "AND/ASPEN 성인 영양불량 진단 합의문",
+      "year": 2012,
+      "url": "https://aspenjournals.onlinelibrary.wiley.com/doi/10.1177/0148607112440285",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "guideline",
+      "designatedByNotice": false,
+      "note": "성인 영양불량의 임상 특징 및 표 1",
+      "scopeIds": [
+        "spec-assessment"
+      ]
+    },
+    {
+      "id": "glim-malnutrition-update-2025",
+      "title": "GLIM 영양불량 진단 합의 5년 업데이트",
+      "year": 2025,
+      "url": "https://aspenjournals.onlinelibrary.wiley.com/doi/full/10.1002/jpen.2756",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "guideline",
+      "designatedByNotice": false,
+      "note": "진단 기준, 그림 1 및 표 5",
+      "scopeIds": [
+        "spec-assessment"
+      ]
+    },
+    {
+      "id": "short-bowel-refractory-hypokalemia-2013",
+      "title": "단장증후군에서 저마그네슘혈증을 동반한 난치성 저칼륨혈증 사례",
+      "year": 2013,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23387283/",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "abstract",
+      "kind": "case-report",
+      "designatedByNotice": false,
+      "note": "초록의 저칼륨혈증 경과와 마그네슘 보충",
+      "scopeIds": [
+        "spec-components",
+        "spec-monitoring"
+      ]
+    },
+    {
+      "id": "cochrane-interpreting-results",
+      "title": "Cochrane Handbook · Interpreting results and drawing conclusions",
+      "year": null,
+      "url": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-15",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "methodology",
+      "designatedByNotice": false,
+      "note": "15.3.1 신뢰구간과 임상적 중요성",
+      "scopeIds": [
+        "common-clinical-statistics",
+        "common-appraisal-application"
+      ]
+    },
+    {
+      "id": "espen-surgery-2025",
+      "title": "ESPEN 수술 영양 지침 2025 업데이트",
+      "year": 2025,
+      "url": "https://www.espen.org/files/ESPEN-guideline-on-clinical-nutrition-in-surgery-Update-2025.pdf",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "guideline",
+      "designatedByNotice": false,
+      "note": "권고 27 수술 전 PN",
+      "scopeIds": [
+        "spec-surgery"
+      ]
+    },
+    {
+      "id": "rcog-hyperemesis-2024",
+      "title": "RCOG Green-top Guideline No. 69 · 임신오조",
+      "year": 2024,
+      "url": "https://doi.org/10.1111/1471-0528.17739",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "guideline",
+      "designatedByNotice": false,
+      "note": "7.2 영양지원 권고 및 2025·2026년 정오표 확인",
+      "scopeIds": [
+        "spec-pregnancy"
       ]
     }
   ]

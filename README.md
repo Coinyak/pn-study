@@ -32,9 +32,9 @@ The curated bank is `content/questions.json`. Edit it there and run the build. T
 
 ## Content version and verification status
 
-- `contentVersion`: `2026-11-14.14`. The bank has 590 records: **252 verified**, 206 pending and 132 excluded.
+- `contentVersion`: `2026-11-14.15`. The bank has 590 records: **259 verified**, 199 pending and 132 excluded.
 - Verified means the question has been checked against recorded references for study. It is not an official exam answer or a clinical certification.
-- Scope coverage: 33 partial, 5 missing, 0 fully covered. EBM/EBCP and literature types now have core notes and original practice. The scope map still lists lung, heart and neurological disease, pregnancy, and older adults as gaps.
+- Scope coverage: 34 partial, 4 missing, 0 fully covered. EBM/EBCP and literature types now have core notes and original practice. The scope map still lists lung, heart and neurological disease and older adults as gaps.
 - Confirmed domestic product rows: 스모프카비벤주, 스모프리피드20% and 네프라민주.
 - See `docs/content-audit.md` for scope and errata and `docs/pending-review-plan.md` for the historical review batches.
 

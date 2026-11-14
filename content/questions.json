@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "contentVersion": "2026-11-14.14",
+    "contentVersion": "2026-11-14.15",
     "extractedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
     "source": {
@@ -12,8 +12,8 @@
     },
     "rawCount": 583,
     "finalCount": 590,
-    "verifiedCount": 252,
-    "pendingCount": 206,
+    "verifiedCount": 259,
+    "pendingCount": 199,
     "excludedCount": 132,
     "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
     "displayLanguage": "ko-only",
@@ -397,53 +397,57 @@
     },
     {
       "id": "quizlet-pn-001",
-      "revision": 1,
-      "topic": "indications",
+      "revision": 2,
+      "topic": "disease",
       "scopeIds": [
-        "spec-components",
-        "spec-plan-personalized",
         "spec-pregnancy"
       ],
       "source": "QZ",
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
-      "referenceIds": [],
-      "stem": "임신부가 임신오조(hyperemesis gravidarum, HG)로 입원했다. 다음 중 정맥영양(PN)을 쓰는 임상 적응증은?",
+      "referenceIds": [
+        "rcog-hyperemesis-2024"
+      ],
+      "stem": "RCOG 임신오조 지침에 따르면, 입원한 임신부에게 경장영양이나 정맥영양(PN)을 검토할 시점은?",
       "choices": [
-        "보존적 치료로 48시간 안에 구토가 조절되지 않음",
-        "경장영양(EN) 시도와 보존적 치료에 불내성",
-        "환자가 경장영양(EN) 튜브 삽입을 거부함",
-        "수분·전해질(electrolytes) 불균형"
+        "보존적 치료를 시작한 지 48시간이 지나도 구토가 지속될 때",
+        "다른 치료를 모두 시도해도 증상이 충분히 조절되지 않을 때",
+        "임신부가 경장영양 튜브 삽입을 거부할 때",
+        "수분·전해질 불균형이 확인된 직후"
       ],
       "answer": 1,
-      "explain": "임신오조(HG)는 임신으로 생기는 오심·구토의 중증형이다. 구토 때문에 몇 주째 섭취가 부족했을 가능성이 커서 경장영양(EN)이나 정맥영양(PN)이 필요할 수 있다. 영양치료에 앞서 수분·전해질(electrolytes) 불균형, 케톤뇨, 탈수를 IV 수액으로 먼저 교정한다. 비타민 섭취 부족을 메우고 신경병증(B6·B12), 베르니케 뇌병증(티아민(thiamine)), 신경관 결손(엽산)을 막기 위해 B군을 추가한 종합비타민을 흔히 함께 준다. 진토제를 시작하고 경구 섭취는 잠시 멈춘다. 이런 보존적 치료를 24–48시간 해도 경구 섭취가 안 되면 EN을 시도한다. 오심·구토·설사 악화, 많은 위잔류량, 튜브 이탈로 EN이 실패하고 임상적으로 의미 있는 체중 감소(체중의 5% 초과)가 동반되면 그때 PN을 시작한다.",
-      "needle": "임신성 과다구토",
+      "explain": "RCOG는 다른 치료를 모두 시도해도 증상이 충분히 조절되지 않으면 기존 치료를 이어가면서 경장영양 또는 PN을 검토하도록 권고한다. 소화기내과 협진과 다학제 평가를 통해 영양지원 방법을 정한다.",
+      "needle": "임신오조",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "보존적 치료 48시간은 지침에서 정한 PN 시작 기준이 아니다.",
+        "다른 치료를 모두 시도해도 증상이 지속될 때 다학제로 영양지원을 검토한다.",
+        "경장영양 튜브 거부만으로 PN의 적응증이 정해지지 않는다.",
+        "수분·전해질 불균형은 평가와 교정이 필요한 소견이다. 그 자체로 PN 시작을 결정하지 않는다."
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-disease-8-4-섭식장애-임부-노인"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
-      "errataIds": [
-        "E6-pn-indication-timing"
+      "evidence": [
+        {
+          "referenceId": "rcog-hyperemesis-2024",
+          "locator": "7.2 · 경장·정맥영양을 고려하는 시점",
+          "quote": "When all other medical therapies have failed to sufficiently manage symptoms"
+        }
       ],
+      "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "선택지 해설 미작성. 단원 교정(수분·전해질→적응증). BLOCKER 배치6: 임신성 과다구토는 적응 후보로만 있다. EN 시도와 보존치료에 불내성인 뒤에만 PN이라는 조건 문장은 없다. 인덱스는 유지한다.",
+      "reviewNote": "공개 원문에서 정답과 적용 조건을 대조하고 선택지별 해설을 작성했다.",
       "htmlTopic": "fluid_lytes"
     },
     {
@@ -1273,52 +1277,57 @@
     },
     {
       "id": "quizlet-pn-017",
-      "revision": 1,
-      "topic": "indications",
+      "revision": 2,
+      "topic": "disease",
       "scopeIds": [
-        "spec-assessment",
-        "spec-plan-personalized",
-        "spec-surgery",
-        "spec-critical-care"
+        "spec-surgery"
       ],
       "source": "QZ",
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "medium",
-      "referenceIds": [],
-      "stem": "위장관이 기능하지 않는 환자 중 수술 전 정맥영양(PN)을 일상적으로 쓰는 대상은?",
+      "referenceIds": [
+        "espen-surgery-2025"
+      ],
+      "stem": "ESPEN 2025 수술 영양 지침에 따르면, 수술 전 정맥영양(PN)을 권고하는 대상은?",
       "choices": [
-        "영양 상태가 정상인 환자",
-        "경도–중등도 영양불량 환자",
-        "동반질환이 있는 경도 영양불량 환자",
-        "중증 영양불량 환자"
+        "영양 상태가 정상이고 대사 위험이 낮은 환자",
+        "경도·중등도 영양불량이 있고 경구·경장영양이 가능한 환자",
+        "중증 영양불량이 있으나 경구·경장영양이 가능한 환자",
+        "경구·경장영양이 불가능한 환자 중 중증 영양불량이 있거나 대사 위험이 높은 환자"
       ],
       "answer": 3,
-      "explain": "여러 연구에서 수술 전 정맥영양(PN) 영양지원의 이득을 보는 대상은 중증 영양불량 환자였다. 수술 환자 대상 수술 전 PN 연구들에서 수술 전후 사망률이 전반적으로 줄지는 않았다. 그러나 중증 영양불량 환자가 수술 전 7일 넘게 PN을 받으면 수술 전후 합병증이 의미 있게 줄었다.",
-      "needle": "중증 영양불량",
+      "explain": "ESPEN 2025는 중증 영양불량이나 높은 대사 위험이 있고 경구·경장영양을 할 수 없는 환자에게 수술 전 PN을 권고한다. 영양 위험과 경구·경장영양 가능성을 함께 평가한다.",
+      "needle": "수술 전 PN",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정상 영양 상태이고 대사 위험이 낮아 해당하지 않는다.",
+        "경구·경장영양을 이용할 수 있으며, 경도·중등도 영양불량만으로 수술 전 PN을 권고하지 않는다.",
+        "중증 영양불량이 있어도 경구·경장영양이 가능하면 해당 경로를 우선한다.",
+        "영양 위험과 경구·경장영양 불가 조건을 모두 충족한다."
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-disease-8-3-수술-암-화상"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-surgery-2025",
+          "locator": "권고 27 · 수술 전 PN 적응증",
+          "quote": "severe malnutrition and/or at high metabolic risk in whom oral/enteral nutrition is not feasible"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: EN이 불가하고 중등–중증 영양불량이면 가능한 한 빨리 PN이다. 수술 전 PN을 중증에게만 일상적으로 쓴다는 문장은 없다. 인덱스는 유지한다."
+      "reviewNote": "공개 원문에서 정답과 적용 조건을 대조하고 선택지별 해설을 작성했다."
     },
     {
       "id": "quizlet-pn-018",
@@ -9189,9 +9198,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
-      "referenceIds": [],
+      "referenceIds": [
+        "and-aspen-adult-malnutrition-2012"
+      ],
       "stem": "임상에서 성인 영양불량 진단에 쓰는 ASPEN/AND 합의 기준은?",
       "choices": [
         "6가지 특징 중 최소 2개 충족: 에너지 섭취 부족, 체중 감소, 근육량 감소, 피하지방 감소, 체액 저류, 또는 악력 감소",
@@ -9200,31 +9211,37 @@
         "주관적 포괄 평가(SGA) 등급 C"
       ],
       "answer": 0,
-      "explain": "ASPEN/AND 합의안은 6가지 임상 특징 중 최소 2개를 확인하면 영양불량으로 정의한다: (1) 에너지 섭취 부족, (2) 체중 감소, (3) 근육량 감소, (4) 피하지방 감소, (5) 국소 또는 전신 체액 저류, (6) 기능 저하(예: 악력 감소). 중증도(중등도 vs 중증)와 맥락(급성 질환·만성 질환·사회/환경)으로도 분류한다.",
-      "needle": "알부민",
+      "explain": "AND/ASPEN 성인 기준은 에너지 섭취 부족, 체중 감소, 근육량 감소, 피하지방 감소, 체액 저류, 악력으로 평가한 기능 저하 중 최소 두 가지를 확인한다.",
+      "needle": "AND/ASPEN 2012",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "AND/ASPEN 합의문의 성인 진단 기준이다.",
+        "알부민은 여섯 특징에 포함되지 않으며 이 BMI 조합은 AND/ASPEN 기준이 아니다.",
+        "체중 감소는 한 가지 특징이다. 프리알부민은 진단 특징에 포함되지 않는다.",
+        "SGA-C는 별도 평가 도구인 SGA의 중증 분류다."
       ],
       "coreSectionIds": [
         "sec-eval-0-영양평가-PN-직결만"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "and-aspen-adult-malnutrition-2012",
+          "locator": "성인 영양불량 진단의 임상 특징 · 표 1",
+          "quote": "2 or more of the following 6 characteristics"
+        }
+      ],
       "errataIds": [
         "E1-prealbumin"
       ],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "E1과 일치. 합의 원문 미보유. BLOCKER 배치8: 6특징 중 최소 2개라는 합의 원문은 미보유다. 인덱스는 유지한다. BLOCKER 배치10: 6특징 중 최소 2개의 깨끗한 문장을 PDF115에서 확정하지 못했다. 인덱스는 유지한다."
+      "reviewNote": "공개 원문에서 정답과 적용 조건을 대조하고 선택지별 해설을 작성했다."
     },
     {
       "id": "bcnsp-038",
@@ -10366,9 +10383,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "medium",
-      "referenceIds": [],
+      "referenceIds": [
+        "glim-malnutrition-update-2025"
+      ],
       "stem": "GLIM 체계에서 영양불량을 진단하려면 어떤 조합이 필요한가?",
       "choices": [
         "표현형 기준 두 가지만",
@@ -10377,27 +10396,35 @@
         "표현형 기준 최소 하나와 원인 기준 최소 하나"
       ],
       "answer": 3,
-      "explain": "Global Leadership Initiative on Malnutrition(GLIM)은 표현형 기준(체중 감소, 낮은 BMI, 근육량 감소) 최소 하나와 원인 기준(섭취·흡수 감소 또는 염증·질병 부담) 최소 하나를 요구한다. 중증도는 이후 표현형 기준으로 등급을 매긴다.",
-      "needle": "표현형 기준 최소 하나와 원인 기준 최소 하나",
+      "explain": "GLIM은 선별 후 비의도적 체중 감소·낮은 BMI·근육량 감소 중 하나 이상과 섭취·흡수 감소 또는 염증·질병 부담 중 하나 이상을 확인해 진단한다. 중증도는 표현형 기준으로 평가한다.",
+      "needle": "GLIM 2025",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "표현형을 두 가지 충족해도 원인 기준이 하나 이상 필요하다.",
+        "원인 기준 외에 표현형 기준이 하나 이상 필요하다.",
+        "평가할 항목은 다섯 가지지만 진단에는 각 범주에서 하나 이상을 충족하면 된다.",
+        "표현형과 원인 기준에서 각각 하나 이상 충족한다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-eval-0-영양평가-PN-직결만"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "glim-malnutrition-update-2025",
+          "locator": "진단 절차 · 그림 1 및 표 5",
+          "quote": "at least one phenotypic and one etiologic criterion must be present"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "공개 원문에서 정답과 적용 조건을 대조하고 선택지별 해설을 작성했다."
     },
     {
       "id": "cnsc-nutrition-support-014",
@@ -18731,47 +18758,58 @@
     },
     {
       "id": "bcnsp-084",
-      "revision": 1,
-      "topic": "stability",
+      "revision": 2,
+      "topic": "common",
       "scopeIds": [
-        "spec-compatibility"
+        "common-clinical-statistics",
+        "common-appraisal-application"
       ],
       "source": "BCNSP",
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "medium",
-      "referenceIds": [],
-      "stem": "한 연구에서 신규 경장 제형이 표준 제형 대비 재원일수를 1.5일 단축했다고 보고했다(p = 0.03, 95% CI: 0.3–2.7 days). 이 결과를 가장 잘 해석한 것은?",
+      "referenceIds": [
+        "cochrane-interpreting-results"
+      ],
+      "stem": "한 연구에서 신규 경장 제형이 표준 제형보다 평균 재원일수를 1.5일 단축했다고 보고했다(95% 신뢰구간 0.3–2.7일). 이 결과를 가장 잘 해석한 것은?",
       "choices": [
         "신뢰구간이 1 미만 값을 포함하므로 통계적으로 유의하지 않다",
-        "통계적으로 유의하며 실제 단축 폭은 0.3–2.7일로 보이나, 임상적 유의성도 따로 따져야 한다",
+        "95% 신뢰구간이 0일을 포함하지 않아 통계적으로 유의하다. 임상적으로 의미 있는 차이인지는 별도로 판단한다.",
         "신규 제형이 항상 표준 제형보다 우월함을 입증한다",
-        "p값 0.03은 제형이 효과 있을 확률이 3%라는 뜻이다"
+        "개별 환자의 95%에서 재원일수가 0.3–2.7일 단축된다는 뜻이다"
       ],
       "answer": 1,
-      "explain": "p = 0.03(<0.05)은 통계적 유의성을 뜻하며, 관찰된 차이가 우연만일 가능성은 낮다. 95% CI(0.3–2.7 days)가 0을 포함하지 않아 유의성을 뒷받침하고 실제 단축을 시사한다. 다만 임상적 유의성은 별도로 본다. 0.3–2.7일 단축이 환자 결과·삶의 질·비용 측면에서 의미 있는지가 관건이다. 통계적 유의성과 임상적 유의성은 다른 개념이다.",
-      "needle": "2.7",
+      "explain": "평균 재원일수 차이의 무효값은 0일이다. 95% 신뢰구간이 0을 포함하지 않아 통계적으로 유의하다. 점추정치 1.5일과 신뢰구간 0.3–2.7일을 함께 보고, 이 정도의 단축이 환자와 진료에 의미 있는지는 별도로 판단한다.",
+      "needle": "95% 신뢰구간",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "평균 차이의 무효값은 0이다. 1은 RR·OR 같은 비의 무효값이다.",
+        "통계적 유의성과 임상적 중요성을 각각 판단한다.",
+        "한 연구의 평균 차이만으로 모든 환자에서 우월하다고 결론 내릴 수 없다.",
+        "이 구간은 평균 재원일수 차이 추정치의 불확실성을 나타낸다. 개별 환자의 단축 일수 분포를 나타내지 않는다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-common-13-1-효과지표-정밀도"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "cochrane-interpreting-results",
+          "locator": "15.3.1 · 신뢰구간과 임상적 중요성",
+          "quote": "The confidence interval describes the uncertainty inherent in any estimate"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "공개 원문에서 정답과 적용 조건을 대조하고 선택지별 해설을 작성했다."
     },
     {
       "id": "bcnsp-089",
@@ -19294,20 +19332,21 @@
     {
       "id": "medex-001",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "case",
       "scopeIds": [
-        "spec-components",
-        "spec-plan-route",
-        "spec-surgery",
-        "spec-monitoring"
+        "format-appropriateness",
+        "format-drp"
       ],
       "source": "MedEx",
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "medium",
-      "referenceIds": [],
+      "referenceIds": [
+        "aspen-pn-safety-consensus-2014",
+        "dailymed-potassium-phosphates-2025"
+      ],
       "stem": "수술 후 성인, 새로 삽입한 PICC 환자에게 dextrose 250 g, amino acids 90 g, potassium phosphate 40 mmol을 24시간에 걸쳐 IV 투여하는 PN 처방이 입력되었다. 약사 검증 중 최근 potassium이 6.1 mEq/L이고 hemolysis 주석이 없다. 가장 적절한 약사 조치는?",
       "choices": [
         "처방에서 potassium phosphate를 빼고 PN을 불출한 뒤 사후에 변경 사항을 기록한다.",
@@ -19316,27 +19355,40 @@
         "PICC로 일회성 생리식염수 flush를 해 개통을 확인한 뒤 조제를 진행한다."
       ],
       "answer": 1,
-      "explain": "정답은 보류 후 확인이다. 고칼륨혈증은 중요한 안전 신호다. 약사는 결과 확인과 처방자 연락이 끝날 때까지 potassium이 든 PN을 불출하지 않아야 한다. 독립 처방보다 검증·모니터링·에스컬레이션이 약사 역할이다. NOTICE: potassium 6.1 mEq/L인데 potassium 함유 PN. SAY: 즉시 처방 확인을 권고하고, 적절하면 potassium 없는 대안을 논의한다. MONITOR: 팀 긴급도에 따라 potassium 재검과 ECG·임상 상태를 본다. HOLD/CLARIFY/ESCALATE: 불일치가 해소될 때까지 불출을 보류한다. A는 potassium 노출을 줄이지만, 정책·처방자 승인 없이 처방을 단독 변경하는 것은 권한을 넘는다. C는 연속 주입이 위험한 potassium 부하를 없애 주지 않는다. D는 이 문항의 문제는 카테터 기능이 아니라 처방 안전이며, 그런 방식으로 라인을 다루거나 평가하는 것은 이 상황에서 약사 역할이 아니다.",
-      "needle": "6.1",
+      "explain": "고칼륨혈증은 인산칼륨 주사제의 금기다. 칼륨이 포함된 PN은 조제를 보류하고 처방자와 신속히 검사 결과와 처방을 확인한다. 처방을 수정하면 변경 내용을 처방자에게 전달하고 기록한다.",
+      "needle": "고칼륨혈증",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "불출 전에 처방 변경을 확인하고 기록한다.",
+        "조제를 보류하고 검사 결과와 처방을 확인하는 것이 우선이다.",
+        "연속 주입이어도 고칼륨혈증에서 인산칼륨을 투여할 위험이 남는다.",
+        "카테터 개통 여부는 환자의 칼륨 수치나 처방 적절성을 확인해 주지 않는다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-case-12-처방-검토-사례"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "aspen-pn-safety-consensus-2014",
+          "locator": "V2 · 처방 검토 및 조제 전 검증",
+          "quote": "Before any PN formulation is compounded, the PN order is reviewed and verified."
+        },
+        {
+          "referenceId": "dailymed-potassium-phosphates-2025",
+          "locator": "4 Contraindications · Hyperkalemia",
+          "quote": "Potassium Phosphates Injection is contraindicated in patients with: hyperkalemia"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 혈청 칼륨 정상은 3.5–5.0 mEq/L다. 6.1에서 조제 보류 후 처방자와 확인하라는 절차 문장은 없다. 인덱스는 유지한다."
+      "reviewNote": "공개 원문에서 정답과 적용 조건을 대조하고 선택지별 해설을 작성했다."
     },
     {
       "id": "medex-002",
@@ -23953,15 +24005,18 @@
       "topic": "fluid_lytes",
       "scopeIds": [
         "spec-components",
-        "spec-dz-diabetes"
+        "spec-monitoring"
       ],
       "source": "QZ",
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "medium",
-      "referenceIds": [],
+      "referenceIds": [
+        "espen-cif-adults-2023",
+        "short-bowel-refractory-hypokalemia-2013"
+      ],
       "stem": "난치성 저칼륨혈증(hypokalemia) 환자는 어떤 관련 전해질(electrolytes) 이상을 평가해야 하는가?",
       "choices": [
         "고혈당(hyperglycemia)",
@@ -23970,27 +24025,40 @@
         "저마그네슘혈증(hypomagnesemia)"
       ],
       "answer": 3,
-      "explain": "마그네슘은 세포 내 칼륨 조절에 중요하다. 저마그네슘혈증(hypomagnesemia)이 있으면 신장의 칼륨 손실이 빨라지거나 나트륨-칼륨 펌프 기능이 떨어져 난치성 저칼륨혈증(hypokalemia)이 생긴다. 두 이상이 함께 있으면 마그네슘 결핍을 먼저 교정해야 저칼륨혈증이 교정된다. 참고문헌: Langley G, Tajchman S. In: The A.S.P.E.N. Adult Nutrition Support Core Curriculum, 2nd ed. 2012: 98-120. Kraft MD, Btaiche IF, Sacks GS, et al. Treatment of electrolyte disorders in adult patients in the intensive care unit. Am J Health Syst Pharm. 2005;62:1663-1682.",
-      "needle": "고혈당",
+      "explain": "칼륨을 보충해도 수치가 잘 오르지 않으면 혈청 마그네슘을 확인한다. 저마그네슘혈증이 원인이라면 마그네슘을 함께 교정해야 칼륨 수치가 회복된다.",
+      "needle": "난치성 저칼륨혈증",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "혈당도 임상 상황에 따라 확인하지만 이 문항이 묻는 전해질 이상은 아니다.",
+        "저나트륨혈증은 이 사례에서 먼저 확인할 동반 이상이 아니다.",
+        "고인산혈증은 이 사례의 칼륨 보충 불응을 설명하는 전형적인 동반 이상이 아니다.",
+        "마그네슘 결핍이 있으면 칼륨 보충만으로 교정하기 어려울 수 있다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-fluid_lytes-2-5-전해질"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-cif-adults-2023",
+          "locator": "6.1.11.1 · 권고 36 해설, p. 1961",
+          "quote": "the magnesium must be corrected before the potassium level will improve"
+        },
+        {
+          "referenceId": "short-bowel-refractory-hypokalemia-2013",
+          "locator": "초록 · 마그네슘 보충 후 경과",
+          "quote": "whose hypokalemia and hypocalcemia were successfully treated with magnesium (Mg) supplementation"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 난치성 저칼륨에서 마그네슘을 본다는 문장은 보유 추출에 없다. 인덱스는 유지한다."
+      "reviewNote": "공개 원문에서 정답과 적용 조건을 대조하고 선택지별 해설을 작성했다."
     },
     {
       "id": "quizlet-iib-029",
