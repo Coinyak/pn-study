@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "contentVersion": "2026-11-14.7",
+    "contentVersion": "2026-11-14.8",
     "extractedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
     "source": {
@@ -12,8 +12,8 @@
     },
     "rawCount": 583,
     "finalCount": 586,
-    "verifiedCount": 187,
-    "pendingCount": 267,
+    "verifiedCount": 204,
+    "pendingCount": 250,
     "excludedCount": 132,
     "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
     "displayLanguage": "ko-only",
@@ -443,7 +443,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "선택지 해설 미작성. 단원 교정(수분·전해질→적응증).",
+      "reviewNote": "선택지 해설 미작성. 단원 교정(수분·전해질→적응증). BLOCKER 배치6: 임신성 과다구토는 적응 후보로만 있다. EN 시도와 보존치료에 불내성인 뒤에만 PN이라는 조건 문장은 없다. 인덱스는 유지한다.",
       "htmlTopic": "fluid_lytes"
     },
     {
@@ -490,7 +490,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "같은 원문 변형 quizlet-pn-042는 정답이 '테타니'. 인산 급속주입의 대표 결과(저칼슘혈증·테타니 vs 혈전정맥염) 확인 필요.",
+      "reviewNote": "같은 원문 변형 quizlet-pn-042는 정답이 '테타니'. 인산 급속주입의 대표 결과(저칼슘혈증·테타니 vs 혈전정맥염) 확인 필요. BLOCKER 배치6: 급속 인 보충의 저칼슘·테타니·말초 혈전정맥염은 문제은행 표기다. 인덱스는 유지한다.",
       "htmlTopic": "stability",
       "relatedIds": [
         "quizlet-pn-042"
@@ -701,7 +701,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 디펩티벤 20%는 조혈모세포이식 등 조건부 급여다. 디펩티드가 유리 글루타민보다 안정하다는 문장은 요약에 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-007",
@@ -801,9 +801,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "ASPEN 정맥영양(PN) 안전성 합의 권고안에 따르면, 오해를 막기 위해 PN 라벨에 포도당 함량을 표기하는 가장 좋은 방법은?",
       "choices": [
         "처음 농도와 첨가량으로 표기(예: 50% 포도당 500 mL)",
@@ -812,27 +814,41 @@
         "24시간 주입량당 그램(예: 225 g/day)"
       ],
       "answer": 3,
-      "explain": "정맥영양(PN) 성분은 성인은 1일 총량으로, 소아·신생아는 kg당 1일 양으로 처방한다. 그러면 리터당 양, 농도 백분율, 부피로부터 환산하다 생기는 혼동이 줄어든다. 1일 총량이란 다량영양소는 g/day, 미량영양소는 mEq·mmol·mcg·mg/day로 나타낸 양이다. 참고문헌: Ayers P, Adams S, Boullata J, et al. A.S.P.E.N. parenteral nutrition safety consensus recommendations. JPEN J Parenter Enteral Nutr. 2014 Mar-Apr;38(3):296-333.",
+      "explain": "성인 PN 성분은 하루 총량인 g/day·mEq/day로 적는다. 소아는 g/kg/day다. 처음 농도와 부피, 리터당 그램, 최종 백분율은 그 하루 총량 단위가 아니다.",
       "needle": "성인 g/day",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 50% 포도당 500 mL처럼 처음 농도와 부피로 적는 방식은 하루 총량이 아니다.",
+        "오답. 리터당 그램은 g/day가 아니다.",
+        "오답. 최종 농도 백분율은 g/day가 아니다.",
+        "정답. 성인은 24시간 주입량의 그램, 곧 g/day로 적는다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-fluid_lytes-2-5-전해질",
+        "sec-peds-9-소아-신생아"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.5 단위",
+          "quote": "성인 g/day·mEq/day"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.5 단위",
+          "quote": "소아 g/kg/day"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.",
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지. 2014 안전성 합의 PDF는 인용하지 않았다. 교재의 성인 g/day 단위만 썼다.",
       "htmlTopic": "cho_gir"
     },
     {
@@ -1317,9 +1333,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
-      "referenceIds": [],
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "성인 암 환자에서 정맥영양(PN) 지원의 적응증은?",
       "choices": [
         "복부 종양으로 소장 폐쇄가 7일 넘게 풀리지 않음",
@@ -1328,31 +1346,46 @@
         "경도 영양불량이며 3일 후 종양 절제 수술 예정"
       ],
       "answer": 0,
-      "explain": "위장관 폐쇄로 최소 1주일 이상 경구 섭취가 불가능한 성인 환자는 영양지원의 이득을 볼 수 있다. 경도 영양불량 환자는 경구 섭취가 1주일 넘게 부족할 것으로 예상될 때만 PN이 필요하다. 말기 암 환자의 완화 목적 영양지원은 적응증이 되는 경우가 드물다. 항암·방사선 부작용 대부분은 정맥영양(PN) 없이 관리할 수 있다. 수술 예정인 중증 영양불량 성인 암 환자는 수술 전 7–10일 PN을 줄 수 있으면 이득을 볼 수 있다.",
+      "explain": "위장관 흡수·통과가 되지 않아 5~7일 이상 섭취가 곤란하면 PN을 본다. 장폐색과 지속 소장폐색이 그 경우다. 완화 목적의 전이암, 항암·방사선 자체, 경도 영양불량의 가까운 수술은 그 문장이 아니다.",
       "needle": "소장폐색",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 소장 폐쇄가 7일 넘게 풀리지 않으면 5~7일 이상의 통과 장애에 해당한다.",
+        "오답. 전이암의 완화치료 자체가 PN 적응으로 적혀 있지 않다.",
+        "오답. 항암과 방사선을 함께 받는다는 사실만으로는 적응이 아니다.",
+        "오답. 경도 영양불량이고 3일 뒤 수술인 경우는 5~7일 이상의 통과 장애가 아니다."
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-indications-1-적응증-시작시점-지연",
+        "sec-disease-8-질환별-PN"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
-      "errataIds": [
-        "E6-pn-indication-timing"
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 1 GI 흡수 불가",
+          "quote": "5~7일 이상"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 1 GI 흡수 불가",
+          "quote": "장폐색"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 Crohn",
+          "quote": "지속 소장폐색"
+        }
       ],
+      "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "선택지 해설 미작성."
+      "reviewNote": "선택지 해설 미작성. 배치6 verified. 정답 인덱스 유지. >500 mL/d 누공 숫자는 쓰지 않았다."
     },
     {
       "id": "quizlet-pn-019",
@@ -1366,9 +1399,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "크론병에서 정맥영양(PN)은 언제 써야 하는가?",
       "choices": [
         "장 휴식을 위한 1차 치료로",
@@ -1377,29 +1412,46 @@
         "영양 상태와 관계없이 수술 전에"
       ],
       "answer": 1,
-      "explain": "크론병 환자에서 정맥영양(PN)과 경장영양(EN)을 비교한 연구들에서 PN의 이점은 없었다. 관해율이 비슷했고 PN으로 장을 쉬게 하는 이점도 확인되지 않았다. 그래서 영양지원이 필요한 크론병 환자에게는 EN을 쓴다. PN은 EN에 불내성인 환자에게만 남겨 둔다. 수술 전후 특수 영양지원은 중증 영양불량이면서 수술을 안전하게 미룰 수 있는 염증성 장질환 환자에게 적응증이 된다.",
+      "explain": "크론병에서 PN은 EN이 실패하거나 쓸 수 없을 때다. 장 휴식을 목적으로 한 PN은 적응이 아니다. 적응으로 적힌 것은 단장, 지속 소장폐색, EN이 불가한 누공, 고배출 장루다.",
       "needle": "Crohn",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 장 휴식 목적의 단독 PN은 적응이 아니다.",
+        "정답. EN이 실패하거나 불가한 뒤에 PN을 본다.",
+        "오답. 영양불량 예방만으로 PN을 시작한다는 문장은 없다.",
+        "오답. 영양 상태와 관계없이 수술 전에 PN을 쓴다는 문장은 없다."
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연"
+        "sec-indications-1-적응증-시작시점-지연",
+        "sec-disease-8-질환별-PN"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 1 Crohn",
+          "quote": "EN 실패/불가 후"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 1 Crohn",
+          "quote": "장휴식 목적 단독 PN X"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 Crohn",
+          "quote": "지속 소장폐색"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지. EN 불내성은 요약의 EN 실패/불가 안에 둔다."
     },
     {
       "id": "quizlet-pn-020",
@@ -1616,7 +1668,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 병상 삽입 후 흉부 X선 확인 전 PN을 시작하지 말라는 문장은 문제은행 표기다. 교재 추출은 끝이 SVC–우심방이고 대퇴 카테터를 피하라고 한다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-024",
@@ -2460,7 +2512,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 자동 조제기가 정확히 전달할 수 있는 양보다 적으면 수동 조제라는 문장을 요약·지침 추출에서 확인하지 못했다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-040",
@@ -2598,7 +2650,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "quizlet-pn-002와 정답 불일치(혈전정맥염 vs 테타니).",
+      "reviewNote": "quizlet-pn-002와 정답 불일치(혈전정맥염 vs 테타니). BLOCKER 배치6: 급속 인 보충의 테타니는 문제은행 표기다. 인덱스는 유지한다.",
       "htmlTopic": "stability",
       "relatedIds": [
         "quizlet-pn-002"
@@ -2696,7 +2748,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: Ca×P >55의 연조직·혈관 석회화 문장을 요약·교재 추출에서 확인하지 못했다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-pn-045",
@@ -5764,7 +5816,7 @@
         "choiceExplanations": "complete",
         "coreLink": "hint"
       },
-      "reviewNote": "해설 자체가 ⑤ Vitamin K도 독성이 낮아 '유일 정답 단정 어려움'으로 기록. 단일 정답 불확정. 배치1 재확인: 해설이 비타민 K도 답이 될 수 있다고 적는다. 인덱스를 바꾸지 않고 pending을 유지한다."
+      "reviewNote": "해설 자체가 ⑤ Vitamin K도 독성이 낮아 '유일 정답 단정 어려움'으로 기록. 단일 정답 불확정. 배치1 재확인: 해설이 비타민 K도 답이 될 수 있다고 적는다. 인덱스를 바꾸지 않고 pending을 유지한다. BLOCKER 배치6: 지용성 A·D·E는 주의, 수용성 C는 상대적으로 낮고, 자연형 K 독성도 낮다고 적혀 C와 K가 같이 남는다. 인덱스는 유지한다."
     },
     {
       "id": "kshp-47",
@@ -6220,7 +6272,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 교재는 대퇴 카테터 PN을 피하라고 한다. 감염을 줄이려고 쇄골하를 선호한다는 문장은 추출에 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-014",
@@ -6422,7 +6474,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 출구 감염은 온찜질·매일 국소치료·경구 항생제다. 정답 보기는 전신 항균제다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-034",
@@ -6528,9 +6580,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "PN을 받는 환자가 오한, 발열, 혈액배양 양성을 보이지만 카테터 출구 부위에 발적이나 고름은 없다. 다음 중 어떤 카테터 감염일 가능성이 큰가?",
       "choices": [
         "터널 감염",
@@ -6539,29 +6593,45 @@
         "카테터 관련 혈류감염"
       ],
       "answer": 3,
-      "explain": "카테터 관련 감염은 감염 유형을 더 정확히 구분하도록 정의되어 있다. 카테터 관련 혈류감염은 혈관내 기구를 가진 환자에서 균혈증·진균혈증이 있고, 혈액배양이 1회 이상 양성이며, 발열 같은 감염 징후가 있고, 카테터 외에는 뚜렷한 감염원이 없는 경우다. 카테터 관련 혈류감염은 카테터 부위에 발적이나 고름 없이 나타나는 경우가 많다.",
+      "explain": "카테터 감염은 출입구, 터널, 포켓, 혈류로 나뉜다. 출구는 국소 치료(온찜질·국소·경구 항생제) 쪽이고, 혈류는 전신 항균제가 들어가는 쪽이다. 출구에 발적·고름이 없고 오한·발열·혈액배양 양성이면 혈류 감염이다.",
       "needle": "CRBSI",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 터널 감염은 출구 소견이 없는 발열·양성 배양과 다른 칸이다.",
+        "오답. 출구 감염은 출구의 국소 소견을 치료하는 칸이다. 발적·고름이 없다.",
+        "오답. 카테터 관련 정맥염은 출입구·터널·포켓·혈류 분류에 없다.",
+        "정답. 국소 출구 소견 없이 발열과 혈액배양이 양성이면 혈류 감염이다."
       ],
       "coreSectionIds": [
         "sec-complications-6-1-3열-요약"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 6.1 감염",
+          "quote": "출입구/터널/포켓/혈류"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 10 감염 치료",
+          "quote": "출입구 = 온찜질·매일 국소치료·경구 항생제"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 10 감염 치료",
+          "quote": "혈류 = antimicrobial lock + 전신 항균제 + 카테터 제거"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지."
     },
     {
       "id": "quizlet-iib-048",
@@ -6822,7 +6892,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 미드라인이 고장성 PN·가정 PN에 부적합하다는 문장을 요약·교재 추출에서 확인하지 못했다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-home-ns-010",
@@ -8053,7 +8123,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 장기 PN 미량원소·비타민은 3–12개월마다다. 6개월과 매년이 둘 다 그 안에 들어 하나로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-home-ns-004",
@@ -9714,7 +9784,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: (80−68)/80 = 15%는 보유 예제(Holliday-Segar 50 kg = 2,100 mL, 교정 칼슘 9.12, 삼투압 1,183 mOsm/L, 나트륨 129.2/130.8)가 아니다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-004",
@@ -9897,7 +9967,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: ICU 선별도구는 NRS 2002와 NUTRIC 둘 다다. NUTRIC만으로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-008",
@@ -9999,9 +10069,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "복수와 말초 부종이 심한 환자에서 영양평가의 정확도를 높이는 조정은 무엇인가?",
       "choices": [
         "측정 체중을 조정 없이 사용한다",
@@ -10010,27 +10082,41 @@
         "BMI만 쓰고 체중 추이는 무시한다"
       ],
       "answer": 2,
-      "explain": "복수·부종·전신부종 같은 수분 저류는 측정 체중을 거짓으로 올리고 근육·지방 소실을 가린다. 과잉 수분 무게를 추정해 빼 건조 체중에 가깝게 잡으면 영양불량 중증도를 과소평가하지 않고, 부풀린 체중 기준으로 과량 공급하는 일도 줄일 수 있다.",
+      "explain": "복수가 있으면 열량에 쓰는 체중은 최근 최저체중 또는 이상체중이고, 그것을 dry weight로 적는다. 측정 체중에 수분 무게를 더하지 않는다.",
       "needle": "과잉 수분의 무게를 추정해 빼고 건조 체중을 구한다",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 복수가 있는데 측정 체중을 그대로 쓰는 방법이 아니다.",
+        "오답. 수분 무게를 더하면 dry weight의 반대다.",
+        "정답. 과잉 수분을 빼 dry weight로 본다. 복수는 최근 최저체중 또는 이상체중이다.",
+        "오답. BMI만 쓰고 체중을 보지 말라는 문장은 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-disease-8-질환별-PN",
+        "sec-eval-0-영양평가-PN-직결만"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 간질환",
+          "quote": "복수 ⟶ dry weight"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 8 간질환",
+          "quote": "최근 최저체중 또는 IBW"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지."
     },
     {
       "id": "cnsc-nutrition-support-011",
@@ -10222,9 +10308,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "AND/ASPEN 영양불량 진단에서 급성 질환·손상 맥락의 중증 체중 감소는 일반적으로 1개월 동안 얼마로 정의되는가?",
       "choices": [
         "5% 초과",
@@ -10233,29 +10321,35 @@
         "15% 초과"
       ],
       "answer": 0,
-      "explain": "급성 질환·손상 맥락에서 AND/ASPEN 중증 영양불량의 1개월 기준은 체중 감소 5% 초과이다. 참고로 3개월 7.5% 초과, 6개월 10% 초과도 있다. 비중증 기준은 같은 기간에 더 낮은 비율이다.",
+      "explain": "급성 질환·외상의 중증 영양불량에서 체중 감소는 1주에 2% 초과, 1개월에 5% 초과, 3개월에 7.5% 초과다. 1개월을 묻는 칸은 5% 초과다.",
       "needle": "5%",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 1개월 기준의 중증 체중 감소는 5% 초과다.",
+        "오답. 2% 초과는 1주 기준이다.",
+        "오답. 1% 초과는 그 기준에 없다.",
+        "오답. 15% 초과는 1개월 기준이 아니다. 3개월은 7.5% 초과다."
       ],
       "coreSectionIds": [
         "sec-eval-0-영양평가-PN-직결만"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 중증 영양불량",
+          "quote": ">2%/1주 · >5%/1월 · >7.5%/3월"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지. 6특징 합의 원문은 인용하지 않았다. 교재의 기간별 체중 감소만 썼다."
     },
     {
       "id": "cnsc-nutrition-support-016",
@@ -11791,9 +11885,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "ccn-summary-nestle-2022"
+      ],
       "stem": "흡수장애와 췌장 기능부전 환자에게 도움이 될 수 있는 경장 제제 유형은?",
       "choices": [
         "표준 고분자 온전 단백 제제",
@@ -11802,27 +11898,35 @@
         "반요소(펩타이드 기반) 또는 요소 제제"
       ],
       "answer": 3,
-      "explain": "반요소(가수분해 펩타이드)나 요소(유리 아미노산) 제제, 흔히 중쇄중성지방(MCT)을 포함한 제품은 소화 부담이 적어 흡수장애, 췌장 기능부전, 단장에서 흡수가 쉽다. 고분자 제제는 소화·흡수 기능이 온전해야 한다.",
+      "explain": "설사가 계속되거나 흡수장애가 의심되면 작은 펩타이드 제제를 고려한다. 흡수장애가 그 경우다. 표준 고분자 제제, 신장용 농축 제제, 고섬유 제제는 그 문장이 아니다.",
       "needle": "반요소(펩타이드 기반) 또는 요소 제제",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 표준 고분자 온전 단백은 흡수장애에 권한 펩타이드 제제가 아니다.",
+        "오답. 신장 특화 농축 제제는 그 문장에 없다.",
+        "오답. 고섬유는 흡수장애의 펩타이드 제제 문장이 아니다. 섬유에 반응이 없을 때 펩타이드를 본다.",
+        "정답. 흡수장애가 의심되면 작은 펩타이드 제제다. 보기의 요소 제제까지 그 문장이 말하진 않는다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-indications-1-적응증-시작시점-지연"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN Summary 2022 Peptides",
+          "quote": "small peptide formulations in the patient with persistent diarrhea, suspected malabsorption"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지. 췌장 기능부전의 별도 문장은 없다. 흡수장애의 펩타이드 제제로 닫았다."
     },
     {
       "id": "cnsc-nutrition-support-068",
@@ -12064,7 +12168,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 공장 볼루스의 덤핑 문장은 없다. CCN은 위 볼루스 불내성일 때 지속 주입을 말한다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-076",
@@ -12273,10 +12377,10 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
+      "reviewStatus": "verified",
+      "priority": "high",
       "referenceIds": [
-        "allaccess-enteral-parenteral-pqs"
+        "ccn-summary-nestle-2022"
       ],
       "stem": "경장 급식 환자가 지난 1주간 볼루스 급식 30분 후 복부 경련성 통증을 호소한다. 적절한 조치는?",
       "choices": [
@@ -12286,27 +12390,35 @@
         "약물 목록에서 솔비톨 함유 약을 확인한다"
       ],
       "answer": 2,
-      "explain": "볼루스 후 15–60분에 경련성 통증이 오면 덤핑형 불내성을 시사한다. 지속 주입으로 바꾸고 속도를 서서히 올리며 등장성 제제를 쓰면 위험이 줄어든다. 침상 두부 상승은 흡인 예방에 가깝고 덤핑에는 덜 맞다. 고장성 제제는 덤핑을 악화한다. 솔비톨 약은 이 시점의 통증보다 설사를 더 잘 일으킨다.",
+      "explain": "위 볼루스 급식에 불내성이면 지속 주입으로 바꾼다. 급식 30분 뒤 반복되는 경련통은 그 불내성이다.",
       "needle": "지속 주입으로 되돌리고 내성에 따라 속도를 서서히 올린다",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 머리 올리기는 흡인 위험의 조치로 적혀 있고, 볼루스 불내성의 조치는 지속 주입이다.",
+        "오답. 고장성 제제로 바꾸라는 문장은 없다.",
+        "정답. 볼루스에 불내성이면 지속 주입으로 바꾼다.",
+        "오답. 솔비톨 함유 약을 확인하라는 문장은 이 불내성 조치에 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-indications-1-적응증-시작시점-지연"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "AllAccessDietetics 경장·정맥영양 연습문제.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN Summary 2022 Aspiration",
+          "quote": "intolerant to bolus gastric EN"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지."
     },
     {
       "id": "allaccess-006",
@@ -12959,9 +13071,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "신생아 정맥영양에서 신생아 전용으로 조제한 아미노산 제제는?",
       "choices": [
         "Clinisol 15%",
@@ -12970,29 +13084,36 @@
         "HepatAmine"
       ],
       "answer": 1,
-      "explain": "TrophAmine과 Premasol은 신생아·소아용으로 특별히 조제한 아미노산 용액이다. 타우린, 티로신, 시스테인, 히스티딘 등 신생아에서 조건적 필수 아미노산 농도가 높고, 모유수유 영아와 비슷한 혈장 아미노산 조성을 목표로 설계되었다. 시스테인은 용액 중에서 불안정해 염산시스테인을 따로 첨가하는 경우가 많다.",
+      "explain": "교재의 소아용 아미노산 예는 Primene, Trophamine, Aminoven infant다. Clinisol·Travasol은 그 소아용 예에 없고, HepatAmine은 간질환용이다.",
       "needle": "EPA",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. Clinisol 15%는 소아용 예로 적혀 있지 않다.",
+        "정답. Trophamine이 소아용 아미노산 예에 있다. Premasol은 그 문장에 없다.",
+        "오답. Travasol 10%는 소아용 예로 적혀 있지 않다.",
+        "오답. HepatAmine은 간용 제제 쪽이다. 소아용 예는 Primene·Trophamine·Aminoven infant다."
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심"
+        "sec-peds-9-소아-신생아",
+        "sec-protein-2-3-단백질-아미노산-AA"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_source_textbook_extract.md PDF147",
+          "quote": "소아 Primene/Trophamine/Aminoven infant"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지. 보기 안의 Premasol은 교재 추출에 없어 해설에서 근거로 쓰지 않았다."
     },
     {
       "id": "bcnsp-090",
@@ -13708,7 +13829,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 기계적 합병증으로 적힌 것은 기흉·동맥손상·위치이상·혈전·폐쇄다. 공기색전 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-053",
@@ -14889,7 +15010,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 나트륨 교정은 ≤12 mmol/L/일이다. 정답의 10–12 mEq/L와 PN 나트륨 감량·자유수 추가는 그 문장으로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-010",
@@ -15154,7 +15275,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 말초신경병증은 크롬 결핍과 셀레늄 독성 문장에 있다. 비타민 E 결핍이 운동실조라는 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-007",
@@ -16179,7 +16300,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 미숙아 단백은 교재 3.0–4.0 g/kg/일이고 ESPEN은 첫날 1.5–2.5, 다음 2.5–3.5다. 정답의 시작 1.5–2.0과 증량 3.5–4.0은 한 칸이 아니다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-028",
@@ -17216,7 +17337,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 고용량 포도당에서 요구가 는다고 적힌 전해질은 인이다. 칼륨만으로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-047",
@@ -17275,9 +17396,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "ccn-summary-nestle-2022"
+      ],
       "stem": "공장루 관으로 경장영양을 받는 환자에게 심한 설사가 생겼다. 먼저 시도할 중재는?",
       "choices": [
         "볼루스 급식으로 전환한다",
@@ -17286,27 +17409,45 @@
         "Loperamide 16 mg을 하루 4회 추가한다"
       ],
       "answer": 1,
-      "explain": "공장 급식 중 설사는 먼저 주입 속도를 줄이고 제제 삼투압을 평가한다. 현재 제제에 섬유가 없으면 섬유 함유 제제로, 흡수장애가 의심되면 반요소 제제로 바꾸는 것이 도움이 될 수 있다. Clostridium difficile 감염, 약물(특히 sorbitol 함유 액제, 항생제, 마그네슘), 제제 오염도 배제한다. 대부분 급식 관련 설사는 EN을 끊지 않고 관리할 수 있다.",
+      "explain": "설사가 있다고 경장영양을 바로 끊지 않는다. 섬유가 금기가 아니면 발효성 가용성 섬유 10–20 g을 24시간에 나눠 고려하고, 설사가 계속되거나 흡수장애가 의심되면 작은 펩타이드 제제를 고려한다.",
       "needle": "Loperamide",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 설사가 있을 때 볼루스로 바꾸는 문장은 없다. 볼루스 불내성에는 지속 주입을 본다.",
+        "정답. EN을 유지한 채 섬유 또는 펩타이드(반요소) 제제를 보는 쪽이다. 속도 감량의 보유 숫자는 없다.",
+        "오답. 설사만으로 EN을 끊고 PN으로 바꾸지 않는다.",
+        "오답. 로페라미드 16 mg을 하루 4회 쓴다는 문장은 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-indications-1-적응증-시작시점-지연"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN Summary 2022 Diarrhea",
+          "quote": "EN should not be automatically interrupted for diarrhea"
+        },
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN Summary 2022 Diarrhea",
+          "quote": "10–20 gm of fermentable soluble fiber is suggested"
+        },
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "CCN Summary 2022 Peptides",
+          "quote": "small peptide formulations in the patient with persistent diarrhea, suspected malabsorption"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지. 공장루와 속도 감량은 보유 문장에 없어 근거로 쓰지 않았다."
     },
     {
       "id": "bcnsp-085",
@@ -19296,9 +19437,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "1.6 kg 미숙아의 PN 처방을 검증한다. amino acids 3 g/kg/day, dextrose 10%, SMOFlipid 20% 2 g/kg/day IV 연속 투여. 불출 전 가장 중요한 추가 연령 특이 검증 항목은?",
       "choices": [
         "골 요구가 비슷하므로 안정 성인과 같은 calcium-phosphate 농도를 목표로 한다.",
@@ -19307,27 +19450,36 @@
         "급속 성장으로 비타민 요구가 늘어 표준 성인 종합비타민 용량을 사용한다."
       ],
       "answer": 1,
-      "explain": "B가 맞다. 미숙아는 담도 배설이 미성숙하고 생리적 여유가 적어 미량원소 노출을 연령 특이적으로 검토해야 한다. 특히 담즙정체가 생기면 manganese와 copper가 축적될 수 있다. 신생아 PN의 핵심 약사 검증 단계다. NOTICE: 미숙, 저체중, 장기 PN, 담즙정체 위험. SAY: 일상적 성인형 노출 대신 개별화된 신생아 미량원소를 권고한다. MONITOR: direct bilirubin과 간검사를 최소 주 1회 본다. HOLD/CLARIFY/ESCALATE: 미숙아에 표준 미량원소 용량이 처방되면 확인한다. C는 sodium 관리가 중요해도 성인 유지 목표는 부적절하며 미성숙 신 처리에 개별 용량이 필요하다. D는 성장 요구가 있어도 성인 종합비타민은 소아 과량이 될 수 있다. A는 신생아 골 무기질화가 중요해도 성인 calcium-phosphate 농도가 자동으로 적절하지 않으며 안전 조제 한도를 넘을 수 있다. 신생아 특이 용량·용해도 지침을 본다.",
+      "explain": "담즙정체·간담도 질환에서는 구리와 망간을 감량한다. 신생아라도 성인 칼슘-인 농도, 성인 나트륨, 성인 종합비타민을 그대로 쓰는 문장은 그 감량 문장이 아니다.",
       "needle": "Cu·Mn",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 성인과 같은 칼슘-인 농도를 신생아 목표로 둔다는 문장은 없다.",
+        "정답. 담즙정체에서는 구리와 망간을 감량하므로 그 용량을 확인한다.",
+        "오답. 신생아 나트륨을 성인 유지량까지 올린다는 문장은 없다.",
+        "오답. 성인 종합비타민 용량을 이 연령에 쓴다는 문장은 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-vit_te-2-7-미량원소-TE",
+        "sec-complications-6-3-간담도-합병증-PNALD"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.7 질환 조정",
+          "quote": "담즙울체/간담도 ⟶ Cu·Mn 감량·제한"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지. 처방의 지질 2 g/kg는 신생아 상한 3–4 안이라 정답 근거로 쓰지 않았다."
     },
     {
       "id": "medex-012",
@@ -19547,9 +19699,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "단백-열량 영양불량(protein-calorie malnutrition)에 대한 설명으로 옳은 것은?",
       "choices": [
         "marasmus라고도 한다",
@@ -19558,27 +19712,50 @@
         "스트레스 반응 뒤에 따른다"
       ],
       "answer": 0,
-      "explain": "단백-열량 영양불량은 marasmus라고도 하며, 장기간 섭취 부족과 연관된다.",
+      "explain": "마라스무스는 열량 결핍이다. 알부민은 3.0 g/dL보다 높게 유지되고 체지방과 근육이 준다. 알부민이 3.0 미만이고 부종이 있는 쪽은 콰시오커(단백 결핍)다. 단백-열량 영양불량은 그 열량 결핍 형태인 마라스무스에 해당한다.",
       "needle": "알부민",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 열량 결핍 형태는 마라스무스다. 알부민은 3.0보다 높게 유지된다.",
+        "오답. 수주에서 수개월에 걸친다는 시간 경과는 그 문장에 없다.",
+        "오답. 저알부민혈증은 콰시오커(단백 결핍, 알부민 <3.0) 쪽이다.",
+        "오답. 스트레스 반응 뒤에 따른다는 문장은 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-eval-0-영양평가-PN-직결만"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 기아성 영양불량",
+          "quote": "콰시오커 = 단백 결핍"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 기아성 영양불량",
+          "quote": "마라스무스 = 열량 결핍"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 기아성 영양불량",
+          "quote": "알부민 >3.0 유지"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 기아성 영양불량",
+          "quote": "체지방·근육 소모"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지. 발생 기간은 보유 문장에 없어 해설에 넣지 않았다."
     },
     {
       "id": "rxk-1_1-4",
@@ -19695,9 +19872,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "영양불량의 두 형태는 단백 영양불량과 _____ 이다.",
       "choices": [
         "kwashiorkor",
@@ -19706,29 +19885,40 @@
         "에너지 영양불량"
       ],
       "answer": 2,
-      "explain": "전통적으로 단백 영양불량(kwashiorkor)과 단백-열량 영양불량(marasmus)으로 나눈다.",
+      "explain": "기아성 영양불량의 두 이름은 콰시오커와 마라스무스다. 콰시오커는 단백 결핍이고, 마라스무스는 열량 결핍이다.",
       "needle": "알부민",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 콰시오커는 단백 결핍이라, 빈칸의 단백 영양불량과 같은 쪽이다.",
+        "오답. 저알부민은 콰시오커의 소견이지 다른 형태의 이름이 아니다.",
+        "정답. 단백 결핍(콰시오커)과 짝인 이름은 열량 결핍인 마라스무스다.",
+        "오답. 교재가 쓴 짝 이름은 에너지 영양불량이 아니라 마라스무스다."
       ],
       "coreSectionIds": [
         "sec-eval-0-영양평가-PN-직결만"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 기아성 영양불량",
+          "quote": "콰시오커 = 단백 결핍"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 0 기아성 영양불량",
+          "quote": "마라스무스 = 열량 결핍"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지."
     },
     {
       "id": "rxk-1_2-2",
@@ -20232,9 +20422,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "단백 요구량이 증가하는 상황은?",
       "choices": [
         "신장질환",
@@ -20243,29 +20435,51 @@
         "간성뇌증"
       ],
       "answer": 2,
-      "explain": "외상·감염 등 스트레스 상태에서는 단백 요구량이 증가한다. 신·간성뇌증에서는 제한을 고려할 수 있다.",
+      "explain": "일반 성인 단백은 0.8~1.0 g/kg/일이고, 중증 스트레스는 1.5~2.0 g/kg/일이다. 비투석 신부전은 0.6–0.8 g/kg/일로 줄인다. 간경화·간성뇌증은 1.0–1.5이고, 결핍이 없으면 1.0–1.2라 스트레스 증량 칸이 아니다.",
       "needle": "스트레스",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 비투석 신부전은 0.6–0.8 g/kg/일로 일반보다 낮다.",
+        "오답. 호흡부전이 단백을 올리는 칸으로 적혀 있지 않다.",
+        "정답. 중증 스트레스는 1.5~2.0 g/kg/일로 일반 0.8~1.0보다 높다.",
+        "오답. 간성뇌증은 1.0–1.5이고 결핍이 없으면 1.0–1.2다. 스트레스 증량 칸이 아니다."
       ],
       "coreSectionIds": [
+        "sec-protein-2-3-단백질-아미노산-AA",
         "sec-disease-8-질환별-PN"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.3 요구량",
+          "quote": "중증 스트레스 1.5~2.0"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.3 요구량",
+          "quote": "일반 성인 0.8~1.0"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.3 표4-5",
+          "quote": "신부전(비투석) 0.6–0.8"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.3 표4-5",
+          "quote": "간경화·간성뇌증 1.0–1.5"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지."
     },
     {
       "id": "rxk-1_4-1",
@@ -20309,7 +20523,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: EN 금기 목록에 폐질환은 없다. 중증 급성췌장염도 경장영양 우선이라 아닌 것이 폐질환 하나로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-1_4-4",
@@ -20815,7 +21029,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 재급식 고위험은 알코올 중독·신경성 식욕부진·심한 영양결핍이다. 장기 정맥영양과 심한 스트레스·고갈이 그 목록 밖에 같이 남는다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-3_1-1",
@@ -20915,9 +21129,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "수분 요구량이 증가하는 상황은?",
       "choices": [
         "신부전",
@@ -20926,29 +21142,35 @@
         "간경변"
       ],
       "answer": 1,
-      "explain": "누공으로 체액 손실이 크면 수분 요구가 늘어난다. 신·심·간부전에서는 보통 제한한다.",
+      "explain": "이미 있는 탈수는 먼저 맞추고, 진행 중인 설사·누공·위장관 흡인은 수분에 더한다. 누공이 그 진행 손실이다.",
       "needle": "신부전",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 신부전이 진행 손실로 수분을 더하는 상황으로 적혀 있지 않다.",
+        "정답. 누공은 설사·위장관 흡인과 함께 진행 손실이라 수분을 더한다.",
+        "오답. 울혈성 심부전이 그 추가 목록에 없다.",
+        "오답. 간경변이 그 추가 목록에 없다."
       ],
       "coreSectionIds": [
-        "sec-disease-8-질환별-PN"
+        "sec-fluid_lytes-2-4-수분"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.4 성인 수액",
+          "quote": "진행 손실(설사·누공·위장관 흡인)은 추가"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지."
     },
     {
       "id": "rxk-3_1-4",
@@ -21007,34 +21229,44 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "단백은 에너지 계산에 절대 포함해서는 안 된다.",
       "choices": [
         "참",
         "거짓"
       ],
       "answer": 1,
-      "explain": "거짓이다. 기관·목적에 따라 비단백열량만 계산하기도 하고, 총열량에 단백을 포함하기도 한다. ‘절대 포함 금지’는 틀리다.",
+      "explain": "아미노산은 4 kcal/g다. 총열량에서 단백을 절대 빼라는 문장은 그 계수와 맞지 않는다. 그래서 '절대 포함하지 않는다'는 거짓이다.",
       "needle": "핵심",
       "choiceExplanations": [
-        "",
-        ""
+        "오답. 아미노산 4 kcal/g는 에너지 계수다. 총열량에서 절대 빼라는 뜻이 아니다.",
+        "정답. 단백을 에너지 계산에 절대 넣지 않는다는 말은 4 kcal/g와 맞지 않아 거짓이다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-protein-2-3-단백질-아미노산-AA"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.3 기본",
+          "quote": "4 kcal/g"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "none"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지. NPC:N에서 단백 열량을 빼는 칸은 문제은행 표기라 인용하지 않았다."
     },
     {
       "id": "rxk-3_1-6",
@@ -21124,7 +21356,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: BCAA는 만성 뇌증 stage II에서만 인정한다는 문장과, 간성뇌증에 일관된 근거가 낮아 권하지 않는다는 문장이 갈린다. 간질환 일반으로 올리지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-3_2-1",
@@ -21588,7 +21820,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 인을 빨리 주면 저칼슘이라는 문장은 문제은행 표기다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-3_3-6",
@@ -21869,7 +22101,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 대사성 골질환 조정은 고단백·과도한 나트륨을 피하고 칼슘·인·마그네슘을 맞추며 알루미늄을 최소화한다. 운동 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-4_1-5",
@@ -21882,9 +22114,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "TPN 환자에서 적절한 철 투여 방법은?",
       "choices": [
         "TNA에 iron dextran을 섞는다",
@@ -21893,27 +22127,40 @@
         "해당 없음"
       ],
       "answer": 3,
-      "explain": "철은 TNA에 섞거나 함부로 piggyback하지 않는다. 별도 평가 후 안전한 경로로 투여한다(원 퀴즈: 보기 중 적절한 것 없음).",
+      "explain": "철은 배합 제한 때문에 PN과 따로 준다. 필요할 때의 용량으로 적힌 것은 월 25–50 mg이다. TNA에 섞거나 TNA에 곁달아 주거나, 주 3회 피하 25 mg은 그 문장이 아니다.",
       "needle": "1.2",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 철은 PN에 섞지 않고 따로 준다.",
+        "오답. TNA에 곁달아 주는 방법은 그 별도 주입 문장이 아니다.",
+        "오답. 주 3회 피하 25 mg은 월 25–50 mg 별도 용량이 아니다.",
+        "정답. 세 방법 모두 보유 문장과 같지 않다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-vit_te-2-7-미량원소-TE"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.7 철",
+          "quote": "PN과 별도"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 2.7 철",
+          "quote": "필요시 별도, 월 25–50 mg"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치6 verified. 정답 인덱스 유지. iron dextran 혼합 금지는 문제은행이라 인용하지 않았다. 별도 주입과 월 25–50 mg만 썼다."
     },
     {
       "id": "rxk-4_1-6",
@@ -23285,7 +23532,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 재급식 고위험은 알코올 중독·신경성 식욕부진·심한 영양결핍이다. 흡수장애와 3일 섭취 부족이 그 목록 밖에 있어 아닌 것이 하나로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-030",
@@ -23585,7 +23832,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 알칼리증에서 염화물:아세트산 비를 올린다는 방향은 문제은행 표기다. 교재가 확정한 것은 중탄산염 대신 acetate 1:1이다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-037",
