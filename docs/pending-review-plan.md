@@ -1,6 +1,6 @@
 # Pending review plan
 
-확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 2 적용 후 verified 109 · pending 345 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
+확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 3 적용 후 verified 139 · pending 315 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
 
 verified의 뜻은 README와 같다. 보유한 자료로 stem·선지·정답 인덱스·해설을 되짚은 상태이며, 공식 임상 인증이 아니다.
 
@@ -67,7 +67,7 @@ stem·선지·정답 인덱스는 유지한다. 채우는 것은 referenceIds, e
 - `python3 scripts/build.py`, `python3 scripts/check_content.py`, `node --test tests/*.cjs`, `python3 -m unittest discover -s tests -p 'test_*.py'`가 통과한다.
 - `main`으로 PR을 열어 GitHub Pages에 반영한다.
 
-재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`와 `scripts/review_batch2.py`를 적용하므로 배치 1·2 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py` 다음 `python3 scripts/review_batch2.py`를 쓴다.
+재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`, `scripts/review_batch2.py`, `scripts/review_batch3.py`를 적용하므로 배치 1–3 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`, `python3 scripts/review_batch2.py`, `python3 scripts/review_batch3.py` 순서이다.
 
 ## 7. 배치 1 — 승격 26건
 
@@ -173,13 +173,85 @@ Myths의 성인 칼슘 10–15 mEq/일, 나트륨 1–2 mEq/kg/일, MCB는 챔�
 
 MCB를 정답으로 둔 한국어 문항은 없었다. 필터 0.22를 정답으로 둔 문항의 인덱스는 바꾸지 않았다.
 
-## 11. 남은 일 · 다음 배치
+## 11. 배치 3 전에 잡아 둔 후보
 
-pending 345. 영문 번역은 그다음이다.
+배치 3에서 이 목록을 대조했다. 결과는 §12이다.
 
-다음 배치(배치 3, 15–30건) 후보:
-
-1. 교재에 쪽수가 있는 말단회장 B12(`bcnsp-052`, 절제 ≥20 cm와 '침범'의 차이 확인), 3-in-1의 한 백 장점(`bcnsp-068`), IFALD에서 대두유 감량·어유·주기 투여(`cnsc-nutrition-support-049`).
-2. 현행 단일 1.2 μm가 정답인 필터 문항. 0.22 μm를 정답으로 둔 문항은 그대로 둔다.
+1. 말단회장 B12(`bcnsp-052`), 3-in-1 한 백(`bcnsp-068`), IFALD 대두유·어유·주기 투여(`cnsc-nutrition-support-049`).
+2. 현행 단일 1.2 μm가 정답인 필터 문항. 0.22 μm 정답은 그대로.
 3. Y-site 금기(시스플라틴·로라제팜)처럼 교재 표가 있는 배합 문항.
-4. 질소 평형 공식의 '+4 g'은 교재 추출에 없다. 그 문장을 확보하기 전에는 `bcnsp-053`·`rxk-1_3-4`를 올리지 않는다.
+4. 질소 평형 '+4 g'은 교재 추출에 없다. `bcnsp-053`·`rxk-1_3-4`는 그 문장 전까지 올리지 않는다.
+
+## 12. 배치 3 — 승격 30건
+
+현행 단일 1.2 μm를 정답 보기로 둔 pending 문항은 없었다. `oe-filter`는 이미 verified이다. `cnsc-nutrition-support-045`의 정답은 필터 크기가 아니라 3-in-1의 입자 합병증이고, 해설의 2-in-1 0.22 μm 문장은 뺐다. 시스플라틴·로라제팜을 정답으로 둔 한국어 pending 문항은 없었다. 교재 표12-3은 그대로 둔다.
+
+핵심표에 새 숫자는 넣지 않았다. 이미 있던 칸에 보유 쪽수·지침만 붙였다.
+
+- 2.2 일일 ≤2.5 g/kg 옆에 교재 PDF144
+- 2.6 비타민 K 150 μg 옆에 교재 표9-11 PDF149
+- 2.6 티아민 50–100 mg × 5–7일 옆에 교재 PDF184
+- 2.7 아연 결핍 옆에 교재 p093·p273
+- 3.1 대퇴 카테터 회피 옆에 교재 PDF174
+- 3.2 한 백 간편 옆에 교재 PDF145
+- 5.2 유기 Ca·P 염 옆에 ESPEN 소아 PN Ca·P R8.7
+- 6.3 관리(대두유 감량·어유·주기 주입) 옆에 교재 p188·p273·p284
+- 6.5 triene:tetraene ≥0.2 옆에 교재 p182. 문제은행의 >0.2는 같은 컷
+- 7.1 모세혈 혈당 q6h 옆에 교재 PDF179
+
+| ID | 보유 근거 | 핵심표 |
+|---|---|---|
+| `bcnsp-068` | 교재 PDF145, 3-in-1은 한 백으로 투여가 간편 | 3.2 |
+| `cnsc-nutrition-support-049` | 교재 6.3 관리. ESPEN 소아 지질 R4.18은 대두유·어유 쪽 | 6.3·2.2·10 |
+| `cnsc-nutrition-support-045` | Myths p.3 단일 1.2 μm는 >2 μm 입자. 침전은 폐색·색전 | 5.4·5.2 |
+| `quizlet-pn-045`, `bcnsp-029` | 교재 p182, triene:tetraene 0.2 이상 | 6.5 |
+| `quizlet-pn-050` | 교재 PDF179, 목표 도달까지 모세혈 혈당 q6h | 7.1 |
+| `quizlet-pn-051`, `quizlet-iib-007` | 교재 PDF181, 급중단은 반동 저혈당, 감속 1–2시간 | 7.3 |
+| `bcnsp-023`, `bcnsp-072`, `oep-bcscp-q-060` | 인산칼슘 침전은 주입하지 않음. 폐색·색전·사망 가능 | 5.2 |
+| `bcnsp-097` | ESPEN 소아 Ca·P, 유기 인산염은 칼슘 침전을 피함. R8.7 | 5.2 |
+| `bcnsp-010` | 아연 결핍 = 미각 변화·탈모·발진. 구리·셀레늄·크롬 표지와 구분 | 2.7 |
+| `bcnsp-037` | 누공 고배출은 아연 보충. 12 mg/L·18 mg은 보유 문장에 없어 뺐다 | 2.7 |
+| `bcnsp-049` | 고용량 아연 ≥40 mg/일 → 구리 결핍(호중구감소·빈혈) | 2.7 |
+| `quizlet-iib-003` | 성인·과도 공급 = 지방증. 70 kg·3,000 kcal | 6.3 |
+| `rx-pnald-prevent` | 과도 공급을 피하고 경구 자극은 남긴다. 구리는 감량 | 6.3 |
+| `quizlet-iib-041` | ALP·GGT·직접 빌리루빈, 정의 ≥2 mg/dL | 6.3 |
+| `quizlet-iib-042` | 주기 12–18시간은 간독성 예방. '선호' 태그는 문제은행이라 쓰지 않음 | 10·6.3 |
+| `bcnsp-025` | HPN 야간 10–12시간. 대두유 증량·포도당 추가·AA 3 g/kg는 아님 | 10·6.3 |
+| `bcnsp-085` | 같은 담즙정체 표지와 간경변 진행. 요약의 PNALD/IFALD | 6.3 |
+| `allaccess-008` | 20% 2.0 kcal/mL, 10 kcal/g. 40 g ÷ 43 kg ÷ 12 h ≈ 0.08 | 2.2 |
+| `allaccess-009` | 일일 상한 2.5 g/kg × 82 kg = 205 g | 2.2 |
+| `bcnsp-027` | 교재, MTX는 엽산 결핍을 유발 | 2.6 |
+| `cnsc-nutrition-support-028` | CCN 2022, BMI 30–40은 ≥2.0 g/kg IBW. ≥40은 최대 2.5 | 8.2 |
+| `quizlet-pn-026` | 말초는 AA 3–5% · 포도당 5–10%. 10% 초과는 중심 | 3.1 |
+| `bcnsp-066` | 성인 MVI 표9-11, 비타민 K 150 μg. 국내 제품에 K가 없는 문장과 구분 | 2.6 |
+| `quizlet-pn-021` | PICC 끝은 SVC | 3.1 |
+| `quizlet-pn-025` | 대퇴 카테터 PN은 피한다. 교재 PDF174 | 3.1 |
+| `bcnsp-067` | 장기 기아 PN 초기 티아민 50–100 mg × 5–7일. 100–300 mg은 뺐다 | 2.6 |
+
+## 13. 배치 3에서 pending으로 남긴 것
+
+| ID | 이유 |
+|---|---|
+| `bcnsp-052` | 교재는 말단회장 ≥20 cm 절제 → B12 1 mg/월. stem은 절제 길이 없는 '침범'. 해설 60 cm는 20 cm와 다름. 회장 소실은 지용성 비타민도 포함. 인덱스 유지 |
+| `bcnsp-053`, `rxk-1_3-4` | '+4 g'이 교재 추출·요약에 없음. 인덱스 유지 |
+| `kshp-28`, `cnsc-nutrition-support-059`, `bcnsp-086` | 정답 0.22 μm 또는 0.22/1.2 이원. 현행 단일 1.2 μm와 충돌. 인덱스 유지 |
+| `bcnsp-030`, `cnsc-nutrition-support-047` | 조건 없는 4–5 또는 고혈당 위험(<4)과 4–5가 한 문항에 섞임. E2. 인덱스 유지 |
+| `bcnsp-012` | 0.11 g/kg/h와 20% 약 0.55 mL/kg/h가 단위가 다른 보기에 갈림 |
+| `quizlet-pn-049` | ILE+비타민의 INR 문장은 문제은행. 보유 문장은 고용량 비타민 E |
+| `bcnsp-036`, `bcnsp-099` | Omegaven·FDA 승인은 보유 문장에 없음. 순수 어유는 ESPEN에서 단기 rescue |
+| `bcnsp-039` | 젖산산증·심기능 장애는 티아민 50–100 mg 문장에 없음 |
+| `bcnsp-047`, `quizlet-pn-035`, `quizlet-iib-006` | 파킨슨양 망간 독성은 문제은행 표기 |
+| `rxk-3_2-2` | 포도당 농도의 영향이 가장 작다는 보기는, 최종 포도당 농도를 높게 유지하라는 문장과 함께 닫히지 않음 |
+| `quizlet-pn-011` | 2014 라벨 합의 원문 미보유. 필터 1.2 또는 0.22는 구 표기 |
+
+## 14. 남은 일 · 다음 배치
+
+pending 315. 영문 번역은 그다음이다.
+
+다음 배치(배치 4, 15–30건) 후보:
+
+1. 비만 열량 `bcnsp-063`(CCN 11–14 kcal/kg 실제체중은 BMI 30–50, BMI >50은 22–25 kcal/kg IBW를 해설에 남길 것).
+2. 주기 주입 12–18시간·야간 10–12시간·시작·끝 1시간 감속(`quizlet-pn-048`, `cnsc-nutrition-support-050`, `rx-cyclic-pn-night`, `rxk-1_1-5`, `rxk-3_2-6`). '장기 PN에서 선호'는 문제은행 태그이니 간독성 예방 문장으로만 닫을 것.
+3. EFAD 피부염·탈모(`nbnsc-cnsc-sample-03`), 탄수화물 과다 = 지방증(`quizlet-iib-049`), 고배출 장루의 아연 피부염(`medex-012`).
+4. 시판 복합 미량원소의 망간(`quizlet-home-ns-002`). 파킨슨양 문항은 §13대로 둔다.
+5. `bcnsp-052`의 '침범', 0.22 μm 정답, 질소 '+4 g', Omegaven 상품명은 보유 문장이 생기기 전에는 올리지 않는다.
