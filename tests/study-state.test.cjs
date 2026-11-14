@@ -122,7 +122,27 @@ test("selectReviewQuestions: aliases and unknown filter", () => {
   assert.equal(S.normalizeFilter("헷갈림"), "unsure");
   assert.equal(S.normalizeFilter("favorites"), "bookmarked");
   assert.equal(S.normalizeFilter("즐겨찾기"), "bookmarked");
+  assert.equal(S.normalizeFilter("별"), "bookmarked");
+  assert.equal(S.normalizeFilter("O"), "o");
+  assert.equal(S.normalizeFilter("X"), "x");
   assert.throws(() => S.selectReviewQuestions(QUESTIONS, s, "bogus"), /filter/);
+});
+
+test("selectReviewQuestions: o and x follow the self-check, not attempt correctness", () => {
+  let s = build([
+    [QUESTIONS[0], 0, "sure"], // q1 attempt is wrong (answer 2)
+    [QUESTIONS[1], 0, "sure"], // q2 attempt is correct (answer 0)
+  ]);
+  s = S.setCheck(s, "q1", "o");
+  s = S.setCheck(s, "q2", "x");
+  s = S.toggleBookmark(s, "q4");
+  assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "o")), ["q1"]);
+  assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "O")), ["q1"]);
+  assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "x")), ["q2"]);
+  assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "X")), ["q2"]);
+  assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "wrong")), ["q1"]);
+  assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "별")), ["q4"]);
+  assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "all")).length, 4);
 });
 
 test("cycleCheck: none → o → x → none", () => {

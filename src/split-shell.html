@@ -129,8 +129,17 @@ button.fn:active{opacity:1}
 button.fn.active{color:var(--fn-hover);opacity:1;outline:2px solid var(--chip-on);outline-offset:1px;border-radius:2px}
 button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertical-align:baseline;line-height:1}
 .quiz-sticky{flex-shrink:0;background:var(--quiz);border-bottom:1px solid var(--line);z-index:3}
-.quiz-head{padding:8px 12px;font-size:13.5px;font-weight:700;line-height:1.4;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.quiz-head-title{min-width:0;flex:1}
+.quiz-head{padding:8px 12px;font-size:13.5px;font-weight:700;line-height:1.4;display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:8px 10px}
+.quiz-head-title{min-width:0;flex:0 1 auto}
+.quiz-scope{display:flex;flex:0 0 auto;align-items:center;gap:4px}
+.quiz-scope button{font:inherit;font-size:12px;font-weight:700;line-height:1;color:var(--muted);background:#fff;border:1px solid #c5d0e0;border-radius:3px;padding:4px 8px;min-height:28px;cursor:pointer;white-space:nowrap}
+.quiz-scope button:hover{border-color:var(--chip-on);color:var(--chip-on)}
+.quiz-scope button[aria-pressed="true"]{background:#e7f0fb;border-color:var(--chip-on);color:var(--chip-on);box-shadow:inset 0 -2px 0 var(--chip-on)}
+.quiz-scope button[data-filter="o"][aria-pressed="true"]{background:#ecfdf3;border-color:#16a34a;color:#16a34a;box-shadow:inset 0 -2px 0 #16a34a}
+.quiz-scope button[data-filter="x"][aria-pressed="true"]{background:#fef2f2;border-color:#dc2626;color:#dc2626;box-shadow:inset 0 -2px 0 #dc2626}
+.quiz-scope button[data-filter="bookmarked"][aria-pressed="true"]{background:#fff8e1;border-color:#b08a00;color:#8a6a00;box-shadow:inset 0 -2px 0 #b08a00}
+.quiz-scope button:focus-visible{outline:2px solid var(--chip-on);outline-offset:1px}
+@media (max-width:899px){.quiz-scope button{min-height:32px}}
 .cite-box{display:none;padding:0 12px 10px}
 .cite-box.show{display:block}
 .cite-box .cite-inner{background:#fff;border:1px solid #d0d7e2;padding:12px 14px;font-size:13.5px;line-height:1.55}
@@ -190,7 +199,7 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 <body class="mode-core">
 <div class="app"> <div class="header"> <div class="header-title"><a class="home" href="index.html" title="홈으로">영양불백</a> <span>정맥영양(PN)</span></div> <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사(임상영양길라잡이 EXAM)</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회 영양약료</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div> </div> <div class="tabs" id="tabs"> <button type="button" class="active" data-pane="core">핵심</button> <button type="button" data-pane="quiz">문제</button> </div> <div class="main"> <nav class="nav" id="nav" aria-label="소단원"><!--@@NAV@@--></nav> <section class="pane pane-core" id="core">
 <!--@@CORE@@-->
-<p class="muted" style="padding:10px">문항 카드를 누르면 관련 본문으로 이동합니다.</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
+<p class="muted" style="padding:10px">문항 카드를 누르면 관련 본문으로 이동합니다.</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span><div class="quiz-scope" id="sbScope" role="group" aria-label="범위"><button type="button" data-scope="topic" aria-pressed="true">단원별</button><button type="button" data-scope="all" aria-pressed="false">전체</button></div><div class="quiz-scope" id="sbFilter" role="group" aria-label="표시"><button type="button" data-filter="all" aria-pressed="true">전체</button><button type="button" data-filter="o" aria-pressed="false">O</button><button type="button" data-filter="x" aria-pressed="false">X</button><button type="button" data-filter="bookmarked" aria-pressed="false">별</button></div></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
 </div>
 <script>
 const QUESTION_BANK = /*@@QUESTION_BANK@@*/[];
@@ -461,8 +470,7 @@ const CORE_HINTS = {
     "Loperamide"
   ],
   "kshp-42": [
-    "B12",
-    "회장"
+    "말단회장 20 cm"
   ],
   "kshp-43": [
     "야간 10–12",
@@ -570,7 +578,7 @@ const CORE_HINTS = {
     "수술 전 PN"
   ],
   "quizlet-pn-018": [
-    "5~7일"
+    "5~7일 이상"
   ],
   "quizlet-pn-019": [
     "Crohn",
@@ -645,8 +653,7 @@ const CORE_HINTS = {
     "저Ca·테타니"
   ],
   "quizlet-pn-043": [
-    "고K",
-    "대사성 산증"
+    "고칼륨혈증의 원인"
   ],
   "quizlet-pn-045": [
     "triene:tetraene"
@@ -737,9 +744,7 @@ const CORE_HINTS = {
     "필터 (현행)"
   ],
   "quizlet-iib-004": [
-    "티아민",
-    "thiamine",
-    "재급식"
+    "전 또는 동시"
   ],
   "quizlet-iib-011": [
     "쇄골하",
@@ -907,7 +912,7 @@ const CORE_HINTS = {
     "위장관"
   ],
   "quizlet-nsr-015": [
-    "80%"
+    "목표열량의 ≥80%"
   ],
   "quizlet-ss2-005": [
     "가능한 한 빨리"
@@ -963,7 +968,7 @@ const CORE_HINTS = {
     "흡기 O₂"
   ],
   "medex-017": [
-    "DNR ≠ HPN"
+    "이익보다 해"
   ],
   "medex-019": [
     "HPN",
@@ -1108,7 +1113,7 @@ const CORE_HINTS = {
     "98%"
   ],
   "cnsc-nutrition-support-061": [
-    "24–48시간"
+    "24–48시간 이내"
   ],
   "cnsc-nutrition-support-064": [
     "소펩타이드"
@@ -1199,8 +1204,7 @@ const CORE_HINTS = {
     "터널형"
   ],
   "cnsc-nutrition-support-045": [
-    "1.2",
-    "필터"
+    "유화 파괴"
   ],
   "cnsc-nutrition-support-046": [
     "온도↓"
@@ -1638,7 +1642,7 @@ const CORE_HINTS = {
     "모두 해당"
   ],
   "rxk-2_1-1": [
-    "MCT"
+    "리파아제"
   ],
   "rxk-2_1-3": [
     "1 kcal"
@@ -1763,8 +1767,7 @@ const CORE_HINTS = {
     "췌장염 유발"
   ],
   "quizlet-iib-009": [
-    "고혈당",
-    "140~180"
+    "Cr 결핍"
   ],
   "quizlet-iib-010": [
     "신부전",
@@ -1821,9 +1824,7 @@ const CORE_HINTS = {
     "Crohn"
   ],
   "quizlet-iib-032": [
-    "Ca–P",
-    "gluconate",
-    "침전"
+    "피브린 막"
   ],
   "quizlet-iib-033": [
     "Ca–P",
@@ -2700,9 +2701,13 @@ function setupScrollSpy(){
     if(current.id === activeSecId) return;
     activeSecId = current.id;
     syncNavHighlight(current.id);
-    // Browsing after a question jump should update the TOC without replacing the quiz list.
-    if(current.dataset.topic !== activeTopic && !core.querySelector(".core-hl")){
-      activeTopic = current.dataset.topic;
+    if(current.dataset.topic === activeTopic) return;
+    // 문제 클릭의 프로그램 스크롤은 위의 spyLock에서 이미 빠진다.
+    // 단원이 바뀌면 이전 핵심 표시를 지워 목록이 옛 .core-hl에 고정되지 않게 한다.
+    // 단원별만 오른쪽 목록을 그 단원으로 갱신하고, 전체는 한 단원으로 줄이지 않는다.
+    activeTopic = current.dataset.topic;
+    clearCoreHl();
+    if(window.quizListScope !== "all"){
       renderQuiz();
       hideCite();
     }

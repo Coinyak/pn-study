@@ -139,16 +139,51 @@ h1,h2,h3{orphans:3; widows:3}
 }
 @media print{
   .toolbar{display:none!important}
-  html,body,#corePrint{overflow:visible!important; height:auto!important; max-height:none!important}
-  body{max-width:none; width:auto; padding:0; margin:0; font-size:8.2pt; line-height:1.28}
-  table{font-size:7.6pt; width:100%!important}
+  html,body,#corePrint{overflow:visible!important; height:auto!important; max-height:none!important; max-width:100%}
+  body{max-width:100%; width:auto; padding:0; margin:0; font-size:8.2pt; line-height:1.28}
+  /* 표는 페이지 너비(100%)를 넘기지 않는다. nowrap·긴 토큰의 min-content가 칸을 밀지 않게 한다. */
+  table{font-size:7.6pt; width:100%!important; max-width:100%!important}
   .print-sec{ break-inside:avoid!important; page-break-inside:avoid!important; }
   .print-sec:has(.cheat-table){ break-inside:auto!important; page-break-inside:auto!important; }
   table:not(.cheat-table){ break-inside:avoid!important; page-break-inside:avoid!important; }
   table.cheat-table{ break-inside:auto!important; page-break-inside:auto!important; }
   tr, td, th{ break-inside:avoid!important; page-break-inside:avoid!important; }
   h2, h3{ break-after:avoid!important; page-break-after:avoid!important; }
-  th,td{padding:0.5mm 0.8mm}
+  th,td{
+    padding:0.5mm 0.8mm;
+    min-width:0;
+    overflow:visible;
+  }
+  /* 화면용 nowrap·overflow:hidden 은 인쇄에서 글자를 칸 밖에 두거나 잘라 낸다. */
+  #corePrint .nowrap,
+  #corePrint td.dose,
+  #corePrint td.num,
+  #corePrint .dose{
+    white-space:normal!important;
+    min-width:0;
+    overflow:visible!important;
+    overflow-wrap:anywhere!important;
+    word-break:break-word!important;
+  }
+  #corePrint table.compare td,
+  #corePrint table.compare th,
+  #corePrint table.dense td,
+  #corePrint table.dense th,
+  #corePrint table.cheat-table td,
+  #corePrint table.cheat-table th{
+    min-width:0;
+    overflow:visible;
+    overflow-wrap:anywhere;
+  }
+  #corePrint table.compare td.l1,
+  #corePrint table.compare th.l1,
+  #corePrint table.compare th.th:first-child{
+    overflow:visible!important;
+    min-width:0;
+    white-space:normal!important;
+    overflow-wrap:anywhere!important;
+    word-break:break-word!important;
+  }
   h2{margin:1.6mm 0 0.5mm; padding:1mm 1.6mm; font-size:9pt}
   h3{margin:1.2mm 0 0.4mm; padding:0.7mm 1.4mm; font-size:8pt}
   h1{font-size:12pt; margin:0 0 2mm}

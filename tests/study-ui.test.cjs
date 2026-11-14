@@ -23,6 +23,26 @@ test("public pool is verified Korean only even if legacy flags are supplied", ()
   assert.deepEqual(ids(UI.basePool(BANK, true)), ["v1", "v2", "v3"]);
 });
 
+test("buildList sourceLabel keeps a single label and unions several", () => {
+  const st = SS.createEmptyState();
+  const bank = [
+    q("kshp-1", "lipid"),
+    q("bcnsp-1", "lipid"),
+    q("cnsc-1", "lipid"),
+    q("kshp-2", "protein"),
+  ];
+  const all = { filter: "all", scope: "all" };
+  assert.deepEqual(ids(UI.buildList(bank, st, Object.assign({ sourceLabel: "병원약사회" }, all), SS)), ["kshp-1", "kshp-2"]);
+  assert.deepEqual(ids(UI.buildList(bank, st, Object.assign({ sourceLabel: ["병원약사회", "BCNSP"] }, all), SS)), ["kshp-1", "bcnsp-1", "kshp-2"]);
+  assert.deepEqual(ids(UI.buildList(bank, st, Object.assign({ sourceLabel: new Set(["CNSC", "BCNSP"]) }, all), SS)), ["bcnsp-1", "cnsc-1"]);
+  assert.deepEqual(ids(UI.buildList(bank, st, Object.assign({ sourceLabel: "" }, all), SS)), ["kshp-1", "bcnsp-1", "cnsc-1", "kshp-2"]);
+  assert.deepEqual(ids(UI.buildList(bank, st, Object.assign({ sourceLabel: [] }, all), SS)), ["kshp-1", "bcnsp-1", "cnsc-1", "kshp-2"]);
+  assert.deepEqual(
+    ids(UI.buildList(bank, st, { filter: "all", scope: "topic", topic: "lipid", sourceLabel: ["병원약사회", "CNSC"] }, SS)),
+    ["kshp-1", "cnsc-1"]
+  );
+});
+
 test("buildList scopes by topic, and search spans all topics", () => {
   const st = SS.createEmptyState();
   assert.deepEqual(ids(UI.buildList(BANK, st, { filter: "all", topic: "lipid", scope: "topic" }, SS)), ["v1", "v2"]);
@@ -61,7 +81,7 @@ test("old pending/excluded marks and favorites stay stored but never appear", ()
 
 test("state-derived filters need a revision; focus moves to the next remaining card", () => {
   assert.equal(UI.filterUsesState("all"), false);
-  ["unseen", "marked", "bookmarked"].forEach((f) => assert.equal(UI.filterUsesState(f), true, f));
+  ["unseen", "marked", "o", "x", "bookmarked"].forEach((f) => assert.equal(UI.filterUsesState(f), true, f));
   let st = SS.createEmptyState();
   const opts = { filter: "unseen", topic: "lipid", scope: "topic" };
   assert.deepEqual(ids(UI.buildList(BANK, st, opts, SS)), ["v1", "v2"]);
@@ -75,9 +95,25 @@ test("state-derived filters need a revision; focus moves to the next remaining c
   assert.equal(UI.focusAfterRebuild(["a", "b"], "a", ["a", "b"]), "a");
 });
 
-test("FILTERS expose mark-based views only", () => {
-  assert.deepEqual(UI.FILTERS.map((f) => f[0]), ["all", "unseen", "marked", "bookmarked"]);
-  assert.deepEqual(UI.FILTERS.map((f) => f[1]), ["전체", "미표시", "표시 있음", "즐겨찾기"]);
+test("FILTERS are the four mark buttons", () => {
+  assert.deepEqual(UI.FILTERS.map((f) => f[0]), ["all", "o", "x", "bookmarked"]);
+  assert.deepEqual(UI.FILTERS.map((f) => f[1]), ["전체", "O", "X", "별"]);
+});
+
+test("buildList o and x follow the card check, not attempt correctness", () => {
+  let st = SS.createEmptyState();
+  st = SS.setCheck(st, "v1", "o");
+  st = SS.recordAttempt(st, BANK[0], 0, "sure", 1);
+  st = SS.setCheck(st, "v2", "x");
+  st = SS.recordAttempt(st, BANK[1], 1, "sure", 2);
+  st = SS.toggleBookmark(st, "v3");
+  const opts = (filter) => ({ filter, scope: "all" });
+  assert.deepEqual(ids(UI.buildList(BANK, st, opts("o"), SS)), ["v1"]);
+  assert.deepEqual(ids(UI.buildList(BANK, st, opts("O"), SS)), ["v1"]);
+  assert.deepEqual(ids(UI.buildList(BANK, st, opts("x"), SS)), ["v2"]);
+  assert.deepEqual(ids(UI.buildList(BANK, st, opts("X"), SS)), ["v2"]);
+  assert.deepEqual(ids(UI.buildList(BANK, st, opts("bookmarked"), SS)), ["v3"]);
+  assert.deepEqual(ids(UI.buildList(BANK, st, opts("별"), SS)), ["v3"]);
 });
 
 test("focus falls back to the first new card when no old card survives", () => {

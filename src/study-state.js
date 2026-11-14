@@ -20,14 +20,16 @@
  * no longer exist in the bank stay in storage ("orphans") but are never matched to a question.
  *
  * Review filters (selectReviewQuestions): canonical
- * `wrong | unsure | unseen | marked | bookmarked`, plus `all`.
+ * `wrong | unsure | unseen | marked | o | x | bookmarked`, plus `all`.
  * Aliases: incorrect/오답 -> wrong; confused/헷갈림 -> unsure;
  * new/미풀이/미표시 -> unseen; 표시 있음 -> marked;
- * bookmark/bookmarks/favorite/favorites/즐겨찾기 -> bookmarked.
+ * bookmark/bookmarks/favorite/favorites/즐겨찾기/별 -> bookmarked.
  *   wrong      latest current-revision attempt is incorrect (session/compat)
  *   unsure     latest current-revision attempt was marked "unsure" (session/compat)
  *   unseen     no O/X check (or missing); attempts do not affect this
  *   marked     check is "o" or "x"
+ *   o          getCheck === "o" (not latestAttempt.correct)
+ *   x          getCheck === "x"
  *   bookmarked id is in state.bookmarks
  *
  * Restore flow: parseBackup(text, questions) -> preview (pure, no storage) ->
@@ -56,7 +58,8 @@
     unseen: "unseen", new: "unseen", "미풀이": "unseen", "미표시": "unseen",
     marked: "marked", "표시 있음": "marked", "표시있음": "marked",
     bookmarked: "bookmarked", bookmark: "bookmarked", bookmarks: "bookmarked",
-    favorite: "bookmarked", favorites: "bookmarked", "즐겨찾기": "bookmarked",
+    favorite: "bookmarked", favorites: "bookmarked", "즐겨찾기": "bookmarked", "별": "bookmarked",
+    o: "o", x: "x",
     all: "all",
   };
 
@@ -205,6 +208,8 @@
       if (f === "bookmarked") return state.bookmarks.indexOf(q.id) >= 0;
       if (f === "unseen") return !hasCheck(getCheck(state, q.id));
       if (f === "marked") return hasCheck(getCheck(state, q.id));
+      if (f === "o") return getCheck(state, q.id) === CHECK_O;
+      if (f === "x") return getCheck(state, q.id) === CHECK_X;
       const last = latestAttempt(q, state);
       if (last === null) return false;
       if (f === "wrong") return !last.correct;

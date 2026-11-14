@@ -14,7 +14,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function (root) {
   "use strict";
 
-  const FILTERS = [["all", "전체"], ["unseen", "미표시"], ["marked", "표시 있음"], ["bookmarked", "즐겨찾기"]];
+  const FILTERS = [["all", "전체"], ["o", "O"], ["x", "X"], ["bookmarked", "별"]];
 
   function coreSourceLabel(q) {
     const id = String((q && q.id) || "");
@@ -81,13 +81,31 @@
     return terms.every((t) => hay.indexOf(t) >= 0);
   }
 
+  function selectedSourceLabels(raw) {
+    if (raw == null || raw === "") return [];
+    const list = typeof raw === "string" ? [raw] : Array.from(raw);
+    const out = [];
+    const seen = new Set();
+    for (const item of list) {
+      const lab = String(item || "").trim();
+      if (!lab || seen.has(lab)) continue;
+      seen.add(lab);
+      out.push(lab);
+    }
+    return out;
+  }
+
   function buildList(bank, state, opts, SS) {
     const o = opts || {};
     const filter = SS.normalizeFilter(o.filter || "all");
     let pool = basePool(bank);
     if (normSearch(o.search)) pool = pool.filter((q) => matchesSearch(q, o.search));
     else if (o.scope !== "all" && o.topic) pool = pool.filter((q) => q.topic === o.topic);
-    if (o.sourceLabel) pool = pool.filter((q) => coreSourceLabel(q) === o.sourceLabel);
+    const labels = selectedSourceLabels(o.sourceLabel);
+    if (labels.length) {
+      const want = new Set(labels);
+      pool = pool.filter((q) => want.has(coreSourceLabel(q)));
+    }
     return SS.selectReviewQuestions(pool, state, filter);
   }
 
@@ -132,17 +150,16 @@
     const loadStatus = loaded.status;
 
     const ui = {
-      filter: "all", scope: "all", search: "", sourceLabel: "",
+      filter: "all", scope: "topic", search: "", sourceLabels: [],
       listVersion: 0, stateRev: 0, lastKey: null, lastSaveReason: null,
     };
+    root.quizListScope = "topic";
 
     const bar = doc.createElement("div");
     bar.className = "study-bar";
     bar.id = "studyBar";
     bar.innerHTML =
       '<div class="sb-row sb-top">' +
-        '<select id="sbFilter" aria-label="보기">' + FILTERS.map((f) => '<option value="' + f[0] + '">' + f[1] + "</option>").join("") + "</select>" +
-        '<select id="sbScope" aria-label="범위"><option value="all">전체</option><option value="topic">소단원</option></select>' +
         '<input type="search" id="sbSearch" class="sb-search" placeholder="검색" aria-label="문항 검색" enterkeyhint="search">' +
         '<span class="sb-sum" id="sbSum"></span>' +
       "</div>" +
@@ -152,8 +169,36 @@
       '<div class="sb-notice" id="sbNotice" role="status" aria-live="polite" hidden></div>';
     head.insertAdjacentElement("afterend", bar);
     const $ = (id) => doc.getElementById(id);
+    function ensureButtonGroup(id, label, buttonsHtml) {
+      let group = $(id);
+      if (group && group.tagName === "SELECT") {
+        group.remove();
+        group = null;
+      }
+      if (!group) {
+        group = doc.createElement("div");
+        group.id = id;
+        group.className = "quiz-scope";
+        group.setAttribute("role", "group");
+        group.setAttribute("aria-label", label);
+        head.appendChild(group);
+      }
+      if (!group.querySelector("button")) group.innerHTML = buttonsHtml;
+      return group;
+    }
+    const scopeEl = ensureButtonGroup(
+      "sbScope",
+      "범위",
+      '<button type="button" data-scope="topic" aria-pressed="true">단원별</button>' +
+        '<button type="button" data-scope="all" aria-pressed="false">전체</button>'
+    );
+    const filterEl = ensureButtonGroup(
+      "sbFilter",
+      "표시",
+      FILTERS.map((f) => '<button type="button" data-filter="' + f[0] + '" aria-pressed="' + (f[0] === "all") + '">' + f[1] + "</button>").join("")
+    );
     const el = {
-      filter: $("sbFilter"), scope: $("sbScope"), source: $("sbSources"), search: $("sbSearch"),
+      filter: filterEl, scope: scopeEl, source: $("sbSources"), search: $("sbSearch"),
       sum: $("sbSum"), notice: $("sbNotice"), title: $("quizHeadTitle") || head,
     };
 
@@ -183,7 +228,7 @@
 
     function listKey() {
       return JSON.stringify([
-        ui.filter, ui.scope, ui.search, ui.sourceLabel,
+        ui.filter, ui.scope, ui.search, ui.sourceLabels.slice().sort(),
         ui.scope === "all" || ui.search ? "" : topicNow(), ui.listVersion,
         filterUsesState(ui.filter) ? ui.stateRev : 0,
       ]);
@@ -191,14 +236,28 @@
     function currentItems() {
       return buildList(BANK, state, {
         filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
-        sourceLabel: ui.sourceLabel || "",
+        sourceLabel: ui.sourceLabels,
       }, SS);
     }
     function poolForSources() {
       return buildList(BANK, state, {
         filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
-        sourceLabel: "",
+        sourceLabel: [],
       }, SS);
+    }
+    function syncScopeButtons() {
+      ui.scope = ui.scope === "all" ? "all" : "topic";
+      root.quizListScope = ui.scope;
+      el.scope.querySelectorAll("button[data-scope]").forEach((b) => {
+        b.setAttribute("aria-pressed", b.getAttribute("data-scope") === ui.scope ? "true" : "false");
+      });
+    }
+    function syncFilterButtons() {
+      const known = FILTERS.some((f) => f[0] === ui.filter);
+      if (!known) ui.filter = "all";
+      el.filter.querySelectorAll("button[data-filter]").forEach((b) => {
+        b.setAttribute("aria-pressed", b.getAttribute("data-filter") === ui.filter ? "true" : "false");
+      });
     }
     function renderSourceOptions() {
       const pool = poolForSources();
@@ -207,13 +266,17 @@
         const lab = coreSourceLabel(q);
         counts.set(lab, (counts.get(lab) || 0) + 1);
       });
-      if (ui.sourceLabel && !counts.has(ui.sourceLabel)) ui.sourceLabel = "";
+      const kept = ui.sourceLabels.filter((lab) => counts.has(lab));
+      if (kept.length !== ui.sourceLabels.length) ui.sourceLabels = kept;
+      const selected = new Set(ui.sourceLabels);
       const labels = Array.from(counts.keys()).sort((a, b) => counts.get(b) - counts.get(a) || a.localeCompare(b, "ko"));
-      const cur = ui.sourceLabel || "";
-      const btn = (lab, text, n) =>
-        '<button type="button" class="sb-src' + (lab === cur ? " on" : "") + '" data-src="' + esc(lab) +
-        '" aria-pressed="' + (lab === cur) + '" title="' + esc(text) + " " + n + '문항">' +
+      const pressed = (lab) => (lab ? selected.has(lab) : selected.size === 0);
+      const btn = (lab, text, n) => {
+        const on = pressed(lab);
+        return '<button type="button" class="sb-src' + (on ? " on" : "") + '" data-src="' + esc(lab) +
+        '" aria-pressed="' + (on ? "true" : "false") + '" title="' + esc(text) + " " + n + '문항">' +
         esc(text) + ' <span class="sb-n">' + n + "</span></button>";
+      };
       const keep = el.source.scrollLeft;
       const focusedSource = el.source.contains(doc.activeElement) ? doc.activeElement.dataset.src : undefined;
       el.source.innerHTML = btn("", "전체", pool.length) + labels.map((lab) => btn(lab, lab, counts.get(lab))).join("");
@@ -268,9 +331,10 @@
     }
 
     function headTitle(items) {
-      const f = FILTERS.find((x) => x[0] === ui.filter)[1];
+      const found = FILTERS.find((x) => x[0] === ui.filter);
+      const f = found ? found[1] : "";
       const where = ui.search ? "검색「" + ui.search + "」" : ui.scope === "all" ? "전체 단원" : topicLabel(topicNow());
-      const src = ui.sourceLabel ? " · " + ui.sourceLabel : "";
+      const src = ui.sourceLabels.length ? " · " + ui.sourceLabels.join(" · ") : "";
       return "관련 문제 · " + where + src + (ui.filter === "all" ? "" : " · " + f) + " (" + items.length + ")";
     }
 
@@ -286,6 +350,8 @@
     }
 
     function renderQuiz(force) {
+      syncScopeButtons();
+      syncFilterButtons();
       renderSourceOptions();
       const key = listKey();
       const items = currentItems();
@@ -412,23 +478,41 @@
     });
 
     function readControls() {
-      ui.filter = el.filter.value;
-      ui.scope = el.scope.value;
       ui.search = el.search.value.trim();
     }
+    el.scope.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-scope]");
+      if (!b || !el.scope.contains(b)) return;
+      const next = b.getAttribute("data-scope") === "all" ? "all" : "topic";
+      if (next === ui.scope) return;
+      ui.scope = next;
+      ui.listVersion++;
+      renderQuiz(true);
+    });
+    el.filter.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-filter]");
+      if (!b || !el.filter.contains(b)) return;
+      const next = b.getAttribute("data-filter") || "all";
+      if (next === ui.filter) return;
+      if (!FILTERS.some((f) => f[0] === next)) return;
+      ui.filter = next;
+      ui.listVersion++;
+      renderQuiz(true);
+    });
     el.source.addEventListener("click", (e) => {
       const b = e.target.closest("button[data-src]");
       if (!b) return;
       const lab = b.getAttribute("data-src") || "";
-      ui.sourceLabel = lab && lab === ui.sourceLabel ? "" : lab; // 다시 누르면 해제
+      if (!lab) ui.sourceLabels = [];
+      else {
+        const next = new Set(ui.sourceLabels);
+        if (next.has(lab)) next.delete(lab);
+        else next.add(lab);
+        ui.sourceLabels = Array.from(next);
+      }
       ui.listVersion++;
       renderQuiz(true);
     });
-    [el.filter, el.scope].forEach((c) => c.addEventListener("change", () => {
-      readControls();
-      ui.listVersion++;
-      renderQuiz(true);
-    }));
     let searchTimer = null;
     el.search.addEventListener("input", () => {
       clearTimeout(searchTimer);

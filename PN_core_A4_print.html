@@ -139,16 +139,51 @@ h1,h2,h3{orphans:3; widows:3}
 }
 @media print{
   .toolbar{display:none!important}
-  html,body,#corePrint{overflow:visible!important; height:auto!important; max-height:none!important}
-  body{max-width:none; width:auto; padding:0; margin:0; font-size:8.2pt; line-height:1.28}
-  table{font-size:7.6pt; width:100%!important}
+  html,body,#corePrint{overflow:visible!important; height:auto!important; max-height:none!important; max-width:100%}
+  body{max-width:100%; width:auto; padding:0; margin:0; font-size:8.2pt; line-height:1.28}
+  /* 표는 페이지 너비(100%)를 넘기지 않는다. nowrap·긴 토큰의 min-content가 칸을 밀지 않게 한다. */
+  table{font-size:7.6pt; width:100%!important; max-width:100%!important}
   .print-sec{ break-inside:avoid!important; page-break-inside:avoid!important; }
   .print-sec:has(.cheat-table){ break-inside:auto!important; page-break-inside:auto!important; }
   table:not(.cheat-table){ break-inside:avoid!important; page-break-inside:avoid!important; }
   table.cheat-table{ break-inside:auto!important; page-break-inside:auto!important; }
   tr, td, th{ break-inside:avoid!important; page-break-inside:avoid!important; }
   h2, h3{ break-after:avoid!important; page-break-after:avoid!important; }
-  th,td{padding:0.5mm 0.8mm}
+  th,td{
+    padding:0.5mm 0.8mm;
+    min-width:0;
+    overflow:visible;
+  }
+  /* 화면용 nowrap·overflow:hidden 은 인쇄에서 글자를 칸 밖에 두거나 잘라 낸다. */
+  #corePrint .nowrap,
+  #corePrint td.dose,
+  #corePrint td.num,
+  #corePrint .dose{
+    white-space:normal!important;
+    min-width:0;
+    overflow:visible!important;
+    overflow-wrap:anywhere!important;
+    word-break:break-word!important;
+  }
+  #corePrint table.compare td,
+  #corePrint table.compare th,
+  #corePrint table.dense td,
+  #corePrint table.dense th,
+  #corePrint table.cheat-table td,
+  #corePrint table.cheat-table th{
+    min-width:0;
+    overflow:visible;
+    overflow-wrap:anywhere;
+  }
+  #corePrint table.compare td.l1,
+  #corePrint table.compare th.l1,
+  #corePrint table.compare th.th:first-child{
+    overflow:visible!important;
+    min-width:0;
+    white-space:normal!important;
+    overflow-wrap:anywhere!important;
+    word-break:break-word!important;
+  }
   h2{margin:1.6mm 0 0.5mm; padding:1mm 1.6mm; font-size:9pt}
   h3{margin:1.2mm 0 0.4mm; padding:0.7mm 1.4mm; font-size:8pt}
   h1{font-size:12pt; margin:0 0 2mm}
@@ -210,7 +245,7 @@ h1,h2,h3{orphans:3; widows:3}
 <li>AND/ASPEN 2012 합의: 6특징 중 <b>최소 2개</b> — 에너지 섭취 부족 · 체중 감소 · <b>근육량 감소</b> · 피하지방 감소 · 체액 저류 · <b>기능 저하(악력)</b></li>
 <li><b>GLIM 2025:</b> 선별 후 <b>표현형 기준 1개 이상</b>(비의도적 체중 감소·낮은 BMI·근육량 감소)과 <b>원인 기준 1개 이상</b>(섭취·흡수 감소 또는 염증·질병 부담)을 함께 확인한다. 중증도는 표현형 기준으로 평가한다.</li>
 <li>병인: 기아성 / 만성질환 / 급성질환·손상 · 교재 PDF115는 급성 질환·손상, 만성 질환, 기아 등 사회 환경</li>
-<li><b>혈액검사 수치(알부민·prealbumin)는 진단 기준에 넣지 않는다</b></li>
+<li><b>혈액검사 수치(알부민·prealbumin)는 진단 기준에 넣지 않는다</b>. CRP·백혈구·사이토카인·고혈당은 염증 지표다</li>
 </ul></td>
 </tr>
 <tr>
@@ -742,7 +777,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">난치성 저칼륨혈증</td>
-<td>K를 보충해도 잘 교정되지 않으면 <b>저마그네슘혈증</b>을 확인한다. Mg 결핍이 원인이라면 함께 교정해야 K 수치가 회복된다 · ESPEN 성인 장부전 2023, 권고 36 해설</td>
+<td>K를 보충해도 잘 교정되지 않으면 <b>저마그네슘혈증</b>을 확인한다. Mg 결핍이 원인이라면 함께 교정해야 K 수치가 회복된다. 저마그네슘은 저칼슘도 동반할 수 있다 · ESPEN 성인 장부전 2023, 권고 36 해설</td>
 </tr>
 <tr>
 <td class="l1">저Ca 원인</td>
@@ -1378,7 +1413,7 @@ Dipiro 성인 정맥 비타민 K <b>0.7–2.5 mg</b>. 소아(6개월 초과) 200
 </tr>
 <tr>
 <td class="l1">기계적</td>
-<td>기흉·동맥손상·위치이상·혈전·폐쇄(Ca-P 침전) · 상대정맥 폐색이면 <b>머리·목 부종</b> · 공기색전은 <b>기침·숨가쁨</b><br>피브린 막은 혈액을 뽑지 못한다. 약·지질 침전으로 막히면 <b>0.1 N 염산, 중탄산나트륨, 에탄올</b>을 쓴다</td>
+<td>기흉·동맥손상·위치이상·혈전·폐쇄(Ca-P 침전) · 상대정맥 폐색이면 <b>머리·목 부종</b> · 공기색전은 <b>기침·숨가쁨·흉통</b><br>피브린 막은 혈액을 뽑지 못한다. 약·지질 침전으로 막히면 <b>0.1 N 염산, 중탄산나트륨, 에탄올</b>을 쓴다</td>
 <td>tip 위치 확인(CXR) · 대퇴 회피 · 침전 예방 · 삽입 시 흉부 X선으로 위치 확인(ASPEN 투여 점검표 2024)</td>
 </tr>
 <tr>
@@ -1661,7 +1696,7 @@ ASPEN 2016: EN이 불가능하면 발생 <b>1주 뒤</b> PN을 고려. 위와 �
 예) 70 kg, 중증 + 간헐투석 1.3–1.5 → <b>91–105 g/day</b> (체중은 실제 체중이 아니라 평소·입원 전 체중 우선)<br>
 <b>기본 암기 = 위 ESPEN 값</b> · 교재 구표기(HD·PD 1.2–1.3→1.5–1.8, CRRT 2.0–2.5)는 '더 높을 수 있음'의 상한 설명 · 문제에 1.2 g/kg이 주어지면 그 값(70 kg × 1.2 = 84 g)<br>
 <b><mark class="hl-both" title="전문약사+병원약사회">표준 AA</mark></b> 사용 · HD 1회 AA 10–13 g 손실<br>
-열량 20–45 kcal/kg/d · CHO 50–60%<br>
+열량 20–45 kcal/kg/d · CHO 50–60%. 열량은 신부전 자체보다 기저질환과 임상상태에 따라 달라진다<br>
 전해질: 고K·고P·저Ca·산증·Mg↑<br>
 CRRT: 저인산·Cu/Se/Zn·수용성 비타민 손실 모니터</td>
 </tr>
