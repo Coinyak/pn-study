@@ -810,7 +810,9 @@
         "오답. 라벨과 같은 순서로 나열한다.",
         "오답. 표준 처방서 사용을 권한다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-calc_filter-4-2-계산-5단계-상한-체크"
+      ],
       "language": "ko",
       "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -923,7 +925,9 @@
         "오답. 그림 10-1에 검사실 모니터링 칸은 없다.",
         "오답. 퍼센트 농도가 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-calc_filter-4-2-계산-5단계-상한-체크"
+      ],
       "language": "ko",
       "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
@@ -1035,8 +1039,7 @@
         "오답. 지방 45 g은 맞지만 1,470 kcal는 단백 360 kcal가 빠진 값이다."
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-lipid-2-2-지방-ILE"
+        "sec-calc_filter-4-2-계산-5단계-상한-체크"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -1104,8 +1107,7 @@
         "정답. 단백 117×4=468, 포도당 273×3.4=928, 20% 250 mL=500. 합 1,896 kcal ÷ 75 kg = 25.3 kcal/kg/day. 65 mL/h는 이 일일 계산에 쓰지 않는다."
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose",
-        "sec-lipid-2-2-지방-ILE"
+        "sec-calc_filter-4-2-계산-5단계-상한-체크"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -4196,7 +4198,7 @@
         "오답. 2.5 g/kg/일이다."
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-disease-8-질환별-PN"
       ],
       "language": "ko",
       "includeInBasicSet": true,
