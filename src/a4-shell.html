@@ -184,6 +184,14 @@ h1,h2,h3{orphans:3; widows:3}
     overflow-wrap:anywhere!important;
     word-break:break-word!important;
   }
+  /* 비고 행의 break-all은 줄 끝에서 20·53.6처럼 숫자를 갈라 읽기 어렵게 한다. */
+  #corePrint table.compare tr.compare-note td,
+  #corePrint table.compare tr.compare-note td a{
+    font-size:7.2pt;
+    line-height:1.35;
+    word-break:keep-all!important;
+    overflow-wrap:anywhere;
+  }
   h2{margin:1.6mm 0 0.5mm; padding:1mm 1.6mm; font-size:9pt}
   h3{margin:1.2mm 0 0.4mm; padding:0.7mm 1.4mm; font-size:8pt}
   h1{font-size:12pt; margin:0 0 2mm}

@@ -184,6 +184,14 @@ h1,h2,h3{orphans:3; widows:3}
     overflow-wrap:anywhere!important;
     word-break:break-word!important;
   }
+  /* 비고 행의 break-all은 줄 끝에서 20·53.6처럼 숫자를 갈라 읽기 어렵게 한다. */
+  #corePrint table.compare tr.compare-note td,
+  #corePrint table.compare tr.compare-note td a{
+    font-size:7.2pt;
+    line-height:1.35;
+    word-break:keep-all!important;
+    overflow-wrap:anywhere;
+  }
   h2{margin:1.6mm 0 0.5mm; padding:1mm 1.6mm; font-size:9pt}
   h3{margin:1.2mm 0 0.4mm; padding:0.7mm 1.4mm; font-size:8pt}
   h1{font-size:12pt; margin:0 0 2mm}
@@ -370,7 +378,7 @@ AND/ASPEN·GLIM 진단 기준과는 다른 분류다</td>
 </tr>
 <tr>
 <td class="l1">EN 내성</td>
-<td>4주 이하이면 비위·비십이지장·비공장관. 4주 이상이면 위루·공장루. 볼루스는 관 끝이 십이지장·공장이면 쓰지 않는다. 볼루스에 불내성이면 <b>지속 주입</b>으로 바꾼다. 흡인 위험이 높거나 위를 견디지 못하면 유문 이후로 바꾼다. 위배출 촉진은 metoclopramide, erythromycin. 설사가 있어도 EN을 바로 끊지 않는다. 섬유가 금기가 아니면 발효성 가용성 섬유 <b>10–20 g/24 h</b>. 설사가 계속되거나 흡수장애가 의심되면 <b>소펩타이드</b> 제제. CCN 요약 2022</td>
+<td>4주 이하이면 비위·비십이지장·비공장관. 4주 이상이면 위루·공장루. 볼루스는 관 끝이 십이지장·공장이면 쓰지 않는다. 볼루스에 불내성이면 <b>지속 주입</b>으로 바꾼다. 흡인 위험이 높거나 위를 견디지 못하면 유문 이후로 바꾼다. 위배출 촉진은 metoclopramide, erythromycin. 경장 급식 프로토콜은 목표 열량 대비 공급 비율을 올린다. 설사가 있어도 EN을 바로 끊지 않는다. 섬유가 금기가 아니면 발효성 가용성 섬유 <b>10–20 g/24 h</b>. 설사가 계속되거나 흡수장애가 의심되면 <b>소펩타이드</b> 제제. CCN 요약 2022</td>
 </tr>
 <tr>
 <td class="l1">위잔류·체위·구강</td>
@@ -551,7 +559,7 @@ Stable 5–7을 24시간 내내 주면 일일 7 g/kg를 넘는다. 연속 주입
 <td class="l1">성인 용량</td>
 <td><ul class="bl">
 <li>요구량 ≈ <b>1 g/kg/d</b> · 하루 <b>≤2.5 g/kg</b> · 교재 PDF144 · <b>총열량 ≤30%</b></li>
-<li>모니터링 칸: 용량 <b>&lt;2.5 g/kg/d</b>, 속도 <b>&lt;0.11 g/kg/h</b>. 일일량은 g/kg/d, 속도는 g/kg/h. SMOFlipid 0.125–0.15 g/kg/h는 인쇄된 상한이 아니다</li>
+<li>속도 상한 <b>&lt;0.11 g/kg/h</b>, 하루 <b>&lt;2.5 g/kg</b>. 0.15 g/kg/h는 이 상한이 아니다</li>
 <li>중환자 · 고TG 예방: <b>≤1 g/kg/d</b></li>
 <li><b>&gt;1 g/kg/d</b> 장기 ⟶ 만성 <mark class="hl-yellow" title="병원약사회">담즙정체</mark>·중증 <mark class="hl-yellow" title="병원약사회">PNALD</mark> 연관</li>
 </ul></td>
@@ -872,8 +880,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">Vit K</td>
-<td><b>국내 MVI에 Vit K 미포함 ⟶ 장기 PN 별도 공급(5–10 mg/주)</b> · 흡수 = <b><mark class="hl-pink" title="전문약사 EXAM">담즙산</mark></b> 의존 · warfarin: ILE + K 포함 MVI가 INR에 영향<br>
-Dipiro 성인 정맥 비타민 K <b>0.7–2.5 mg</b>. 소아(6개월 초과) 200 mcg. ESPEN 재택·장기 PN의 K1은 <b>150 μg/일</b>. 국내 장기 PN은 5–10 mg/주</td>
+<td><b>국내 장기 PN: 5–10 mg/주</b> (국내 MVI에 K가 없음). Dipiro 성인 0.7–2.5 mg, 소아(6개월 초과) 200 mcg. ESPEN 재택은 K1 <b>150 μg/일</b>. 흡수에 <b><mark class="hl-pink" title="전문약사 EXAM">담즙산</mark></b>이 필요하고, K가 든 지방유제는 warfarin INR에 영향을 준다</td>
 </tr>
 <tr>
 <td class="l1">Vit E</td>
@@ -958,7 +965,7 @@ Dipiro 성인 정맥 비타민 K <b>0.7–2.5 mg</b>. 소아(6개월 초과) 200
 <div class="cell">
 <ul class="bl">
 <li>시판 예: 1 mL = Zn 3 mg + Cu 0.3 mg + Mn <mark class="hl-pink" title="전문약사 EXAM">55 μg</mark> + Se 60 μg (= ASPEN 성인 용량과 같다)</li>
-<li>ESPEN 미량원소 지침의 한 문장은 망간 <b>55 μg/일</b>이다. 같은 지침의 다른 칸 0.2–0.3 mg와 숫자가 다르다</li>
+<li>외울 기본은 ASPEN <b>55 μg/일</b>. ESPEN 열은 0.2–0.3 mg로 다른 권고다</li>
 <li>질환 조정: <b>설사 ⟶ Zn 보충</b> · <b>담즙울체/간담도 ⟶ <mark class="hl-both" title="전문약사+병원약사회">Cu·Mn</mark> 감량·제한</b> · <b>신부전 ⟶ <mark class="hl-both" title="전문약사+병원약사회">Cr·Se</mark> 제한</b></li>
 <li><b>Zn 결핍</b> · 교재 p093·p273: 피부염·발진·탈모·<b>야맹증</b>·미각변화·면역↓·설사·상처치유 지연</li>
 <li><b>Zn 독성·주의</b>: 위장장애·<b>HDL↓</b> · 고용량 Zn(≥40 mg/d) ⟶ <b>Cu 결핍</b></li>
@@ -1137,7 +1144,7 @@ Dipiro 성인 정맥 비타민 K <b>0.7–2.5 mg</b>. 소아(6개월 초과) 200
 </tr>
 <tr>
 <td class="l1">SF</td>
-<td>경수술 1.2 · 골격외상 1.35 · 수술 1.44 · 감염 1.1–1.8 · 패혈증 1.6–1.8 · <b>화상 2.1–2.5</b></td>
+<td>경수술 1.2 · 골격외상 1.35 · 수술 1.44 · 감염 경증 <b>1.1</b> · 중등 <b>1.5</b> · 중증 <b>1.8</b> · 패혈증 1.6–1.8 · <b>화상 2.1–2.5</b></td>
 </tr>
 <tr>
 <td class="l1">kcal/kg</td>
@@ -1249,7 +1256,7 @@ Dipiro 성인 정맥 비타민 K <b>0.7–2.5 mg</b>. 소아(6개월 초과) 200
 <p><b>예제</b> — D 100 g + AA 40 g + lipid 10 g + NaCl 10 mL(2 mEq/mL), 총 800 mL</p>
 <ul class="bl">
 <li>합: 500 + 400 + 7.1 + 40 = <b>947.1 mOsm</b></li>
-<li>농도: 947.1 ÷ 0.8 L = <b>1,184 mOsm/L</b></li>
+<li>농도: 947.1 ÷ 0.8 L = <b>1,183.9 mOsm/L</b> (교재 표기 1,183)</li>
 <li>판정: <b>900 초과 → 중심정맥</b></li>
 </ul>
 </div>
@@ -1413,7 +1420,7 @@ Dipiro 성인 정맥 비타민 K <b>0.7–2.5 mg</b>. 소아(6개월 초과) 200
 </tr>
 <tr>
 <td class="l1">기계적</td>
-<td>기흉·동맥손상·위치이상·혈전·폐쇄(Ca-P 침전) · 상대정맥 폐색이면 <b>머리·목 부종</b> · 공기색전은 <b>기침·숨가쁨·흉통</b>. 핀치오프는 팔을 들면 카테터가 간헐적으로 막힌다<br>피브린 막은 혈액을 뽑지 못한다. 약·지질 침전으로 막히면 <b>0.1 N 염산, 중탄산나트륨, 에탄올</b>을 쓴다</td>
+<td>기흉·동맥손상·위치이상·혈전·폐쇄(Ca-P 침전) · 상대정맥 폐색이면 <b>머리·목 부종</b> · 공기색전은 <b>기침·숨가쁨·흉통</b>. 핀치오프는 팔을 들면 카테터가 간헐적으로 막힌다<br>피브린 막은 혈액을 뽑지 못한다. 내강 혈전은 혈전용해제를 쓴다. 약·지질 침전으로 막히면 <b>0.1 N 염산, 중탄산나트륨, 에탄올</b>을 쓴다</td>
 <td>tip 위치 확인(CXR) · 대퇴 회피 · 침전 예방 · 삽입 시 흉부 X선으로 위치 확인(ASPEN 투여 점검표 2024)</td>
 </tr>
 <tr>
@@ -1677,7 +1684,7 @@ ASPEN 2016: EN이 불가능하면 발생 <b>1주 뒤</b> PN을 고려. 위와 �
 </tr>
 <tr>
 <td class="l1"><b><mark class="hl-yellow" title="병원약사회">Crohn</mark>·IBD</b></td>
-<td>단백 <b>1~1.5 g/kg</b> (활동기 IBD <mark class="hl-both" title="전문약사+병원약사회">1.2–1.5</mark> · 관해기 ≈1.0) · 누공·빈번 설사 ⟶ <b>Zn 결핍 ⟶ Zn 모니터</b> · PN 적응 = SBS·지속 소장폐색·EN 불가 누공·고배출 장루 · <mark class="hl-yellow" title="병원약사회">말단회장 20 cm 초과 절제 또는 B12 결핍 확인 ⟶ B12 보충</mark> (ESPEN IBD 2023 권고 64) · UC sulfasalazine ⟶ 엽산 </td>
+<td>단백 <b>1~1.5 g/kg</b> (활동기 IBD <mark class="hl-both" title="전문약사+병원약사회">1.2–1.5</mark> · 관해기 ≈1.0) · 누공·빈번 설사 ⟶ <b>Zn 결핍 ⟶ Zn 모니터</b> · PN 적응 = SBS·지속 소장폐색·EN 불가 누공·고배출 장루 · <mark class="hl-yellow" title="병원약사회">말단회장 20 cm 초과 절제 또는 B12 결핍 확인 ⟶ B12 보충</mark> (ESPEN IBD 2023 권고 64) · UC sulfasalazine ⟶ 엽산 보충</td>
 </tr>
 <tr>
 <td class="l1"><b>장부전·SBS</b></td>
@@ -1939,7 +1946,7 @@ ASPEN 2021도 성인 중환자 단백은 <b>1.2–2.0 g/kg/일</b>에서 환자�
 </tr>
 <tr>
 <td class="l1">열량 단계</td>
-<td>ESPEN 2018, kcal/kg/day. 칸은 2005 · 2016 회복 · 2016 안정 · 2016 급성. 급성 칸 주석은 생후 첫날.<br>
+<td>ESPEN 2018, kcal/kg/day. 숫자 순서는 <b>2005 · 2016 회복 · 2016 안정 · 2016 급성</b>. 급성 칸은 생후 첫날.<br>
 미숙아 <b>110–120 · 90–120 · 45–50 · 45–55</b><br>
 0–1세 90–100 · 75–85 · 60–65 · 45–50<br>
 1–7세 75–90 · 65–75 · 55–60 · 40–45<br>
@@ -2190,12 +2197,10 @@ ASPEN 2021도 성인 중환자 단백은 <b>1.2–2.0 g/kg/일</b>에서 환자�
 </tr>
 <tr>
 <td class="l1">주기주입</td>
-<td>교재 PDF154: 지속 24 h vs <b>주기 12–18 h</b>(간독성 예방·HPN).<br>
-HPN은 대부분 <b>야간 10–12 h</b>(요약 [TXT p210]).<br>
-장기 PN에서 선호 — 문제은행 표기. 교재 문장으로 쓰지 않음.<br>
-시작·끝 <b>1 h</b> 단계 증감은 요약이 p155로 적었으나, p155 전사는 교정 칼슘·나트륨이다.<br>
-주기 주입은 24시간보다 짧게 주고 쉬는 시간이 있다. 교재는 보통 <b>8–12시간</b>으로 적는다. ESPEN HPN은 끝날 때 속도를 낮춰 반동 저혈당을 피한다(예: 마지막 30분은 절반 속도).<br>
-수분 균형 평가: 소변량 + 정기적 체중 측정</td>
+<td>교재: 지속 24 h 또는 <b>주기 12–18 h</b>(간 부담을 줄일 때).<br>
+재택은 대부분 <b>야간 10–12 h</b>. 또 다른 교재 문장은 보통 <b>8–12시간</b>이고 쉬는 시간이 있다.<br>
+끝날 때 속도를 낮춰 반동 저혈당을 피한다(마지막 30분은 절반 속도).<br>
+수분 균형: 소변량과 체중</td>
 </tr>
 <tr>
 <td class="l1">주입속도 상한</td>
