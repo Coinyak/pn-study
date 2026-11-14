@@ -237,7 +237,7 @@ def question_bank(qdoc):
     return [
         {
             **{k: q[k] for k in BANK_FIELDS},
-            "evidence": [{k: e[k] for k in ("referenceId", "locator")} for e in q["evidence"]],
+            "evidence": [{k: e[k] for k in ("referenceId", "locator") if k in e} for e in q["evidence"]],
         }
         for q in qdoc["questions"]
         if q["includeInBasicSet"] and q["reviewStatus"] == "verified" and q["language"] == "ko"
@@ -262,7 +262,7 @@ def render_split(core, nav, qdoc, refs):
     out = shell.replace("<!--@@NAV@@-->", render_nav(nav))
     out = out.replace("<!--@@CORE@@-->\n", core.rstrip("\n") + " ")
     bank = question_bank(qdoc)
-    used = {e["referenceId"] for q in bank for e in q["evidence"]}
+    used = {e["referenceId"] for q in bank for e in q["evidence"] if e.get("referenceId")}
     citations = {r["id"]: {"title": r["title"], "url": r.get("url")} for r in refs["references"] if r["id"] in used}
     out = out.replace("/*@@QUESTION_BANK@@*/[]", script_json(bank))
     out = out.replace("/*@@QUESTION_REFERENCES@@*/{}", script_json(citations))

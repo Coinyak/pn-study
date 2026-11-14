@@ -1623,6 +1623,82 @@
       "scopeIds": [
         "spec-pregnancy"
       ]
+    },
+    {
+      "id": "kshp-symp-2026-pn-calc-safety",
+      "title": "2026 제2차 영양약료 심화교육(심포지엄) PN Calculation & Safety 교육자료 (로컬 검토)",
+      "year": 2026,
+      "url": null,
+      "accessStatus": "have-extract",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "partial-pages",
+      "kind": "educational-lecture",
+      "designatedByNotice": false,
+      "note": "로컬 PDF 보유(공개 repo·참고문헌_정리에는 원문 미포함). 2026-11-14 closeRead: S02 p69·p86–87, 그리고 p170·p171·p246. access는 보유+열람, 배포는 하지 않음. 공식 시험 지정 교재 아님.",
+      "scopeIds": [
+        "spec-plan-calc"
+      ]
+    },
+    {
+      "id": "kshp-symp-2026-1st",
+      "title": "2026 제1차 영양약료 심화교육(심포지엄) 교재 (로컬 검토)",
+      "year": 2026,
+      "url": null,
+      "accessStatus": "have-extract",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "partial-pages",
+      "kind": "educational-lecture",
+      "designatedByNotice": false,
+      "note": "로컬 PDF 보유. 공개 저장소에는 원문 없음. 2026-11-14에 S01 p50·p238 슬라이드를 열어 확인.",
+      "scopeIds": [
+        "spec-critical-care"
+      ]
+    },
+    {
+      "id": "cruzat-nutrients-2018",
+      "title": "Cruzat et al. Glutamine: Metabolism and immune function, supplementation and clinical translation. Nutrients 2018",
+      "year": 2018,
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6266414/",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "review",
+      "designatedByNotice": false,
+      "note": "PMC HTML에서 TPN 글루타민 디펩티드의 멸균 안정성 문장을 읽음.",
+      "scopeIds": [
+        "spec-components"
+      ]
+    },
+    {
+      "id": "life-2025-icu-overfeeding",
+      "title": "A New Perspective on Overfeeding in the ICU. Life 2025",
+      "year": 2025,
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12113162/",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "review",
+      "designatedByNotice": false,
+      "note": "PMC HTML에서 RQ>1이 과급식을 나타낸다는 문장을 읽음.",
+      "scopeIds": [
+        "spec-requirements"
+      ]
+    },
+    {
+      "id": "fda-21cfr-201-323",
+      "title": "21 CFR 201.323 Aluminum in large and small volume parenterals used in total parenteral nutrition",
+      "year": 2000,
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-201/subpart-G/section-201.323",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "regulation",
+      "designatedByNotice": false,
+      "note": "2026-11-14 eCFR (e) 경고문을 읽음. 신기능 저하에서 비경구 알루미늄이 4–5 µg/kg/day를 넘으면 중추신경·뼈 독성과 연관된 축적. LVP 25 µg/L는 다른 조항.",
+      "scopeIds": [
+        "spec-components",
+        "spec-neonate"
+      ]
     }
   ]
 }
