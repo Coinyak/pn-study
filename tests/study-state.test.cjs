@@ -103,7 +103,7 @@ test("selectReviewQuestions: wrong / unseen / unsure / bookmarked / marked", () 
     [QUESTIONS[2], 1, "sure"], // q3 correct sure
   ]);
   s = S.toggleBookmark(s, "q4");
-  s = S.setMark(s, "q1", 0, true);
+  s = S.setCheck(s, "q1", "o");
   assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "wrong")), ["q1"]);
   assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, "unsure")), ["q2"]);
   // unseen/marked are mark-based (attempts do not matter)
@@ -114,7 +114,7 @@ test("selectReviewQuestions: wrong / unseen / unsure / bookmarked / marked", () 
 
 test("selectReviewQuestions: aliases and unknown filter", () => {
   let s = build([[QUESTIONS[0], 0, "sure"]]);
-  s = S.setMark(s, "q1", 2, true);
+  s = S.setCheck(s, "q1", "o");
   for (const a of ["incorrect", "오답"]) assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, a)), ["q1"], a);
   for (const a of ["new", "미풀이", "미표시"]) assert.equal(S.selectReviewQuestions(QUESTIONS, s, a).length, 3, a);
   for (const a of ["marked", "표시 있음"]) assert.deepEqual(ids(S.selectReviewQuestions(QUESTIONS, s, a)), ["q1"], a);
@@ -125,27 +125,26 @@ test("selectReviewQuestions: aliases and unknown filter", () => {
   assert.throws(() => S.selectReviewQuestions(QUESTIONS, s, "bogus"), /filter/);
 });
 
-test("setMark: independent slots, toggle, clear when all false", () => {
+test("cycleCheck: none → o → x → none", () => {
   const s0 = S.createEmptyState(CV);
-  assert.deepEqual(S.getMarks(s0, "q1"), [false, false, false, false, false]);
-  const s1 = S.setMark(s0, "q1", 0, true);
-  assert.deepEqual(S.getMarks(s1, "q1"), [true, false, false, false, false]);
-  const s2 = S.setMark(s1, "q1", 3, true);
-  assert.deepEqual(S.getMarks(s2, "q1"), [true, false, false, true, false]);
-  const s3 = S.setMark(s2, "q1", 0); // toggle off
-  assert.deepEqual(S.getMarks(s3, "q1"), [false, false, false, true, false]);
-  const s4 = S.setMark(s3, "q1", 3, false);
-  assert.equal(Object.prototype.hasOwnProperty.call(s4.marksByQuestionId, "q1"), false);
-  assert.throws(() => S.setMark(s0, "q1", 5, true), /index/);
+  assert.equal(S.getCheck(s0, "q1"), "none");
+  const s1 = S.cycleCheck(s0, "q1");
+  assert.equal(S.getCheck(s1, "q1"), "o");
+  assert.equal(s1.marksByQuestionId.q1, "o");
+  const s2 = S.cycleCheck(s1, "q1");
+  assert.equal(S.getCheck(s2, "q1"), "x");
+  const s3 = S.cycleCheck(s2, "q1");
+  assert.equal(S.getCheck(s3, "q1"), "none");
+  assert.equal(Object.prototype.hasOwnProperty.call(s3.marksByQuestionId, "q1"), false);
+  assert.throws(() => S.setCheck(s0, "q1", "yes"), /check/);
 });
 
-test("sanitize/backup: missing marks ok; invalid marks coerced; merge ORs slots", () => {
+test("sanitize/backup: missing marks ok; legacy arrays migrate; merge prefers x over o", () => {
   const st = fakeStorage();
   const store = S.createStore({ storage: st, contentVersion: CV });
-  let s = S.setMark(S.createEmptyState(CV), "q1", 0, true);
-  s = S.setMark(s, "q1", 2, true);
+  let s = S.setCheck(S.createEmptyState(CV), "q1", "o");
   assert.deepEqual(store.save(s), { ok: true });
-  assert.deepEqual(store.load().state.marksByQuestionId.q1, [true, false, true, false, false]);
+  assert.equal(store.load().state.marksByQuestionId.q1, "o");
 
   const oldText = JSON.stringify({
     schemaVersion: 1, contentVersion: CV, attemptsByQuestionId: {}, bookmarks: [], lastSession: null,
@@ -156,17 +155,17 @@ test("sanitize/backup: missing marks ok; invalid marks coerced; merge ORs slots"
 
   const badText = JSON.stringify({
     schemaVersion: 1, contentVersion: CV, attemptsByQuestionId: {}, bookmarks: [], lastSession: null,
-    marksByQuestionId: { q2: [true], q3: [1, 0, 0, 0, 0], q4: [true, false, false, false, false] },
+    marksByQuestionId: { q2: [true], q3: [1, 0, 0, 0, 0], q4: [true, false, false, false, false], q5: "x" },
   });
   const bad = S.parseBackup(badText, QUESTIONS);
   assert.equal(bad.ok, true);
-  assert.deepEqual(bad.payload.marksByQuestionId, { q4: [true, false, false, false, false] });
+  assert.deepEqual(bad.payload.marksByQuestionId, { q4: "o", q5: "x" });
   assert.ok(bad.summary.invalidDropped >= 2);
 
-  const remote = S.setMark(S.createEmptyState(CV), "q1", 4, true);
+  const remote = S.setCheck(S.createEmptyState(CV), "q1", "x");
   const prev = S.parseBackup(S.exportBackup(remote), QUESTIONS);
   const merged = S.applyBackup(prev, s, { confirmed: true });
-  assert.deepEqual(merged.marksByQuestionId.q1, [true, false, true, false, true]);
+  assert.equal(merged.marksByQuestionId.q1, "x");
 });
 
 test("re-solving a wrong question correctly removes it from wrong (latest state wins)", () => {

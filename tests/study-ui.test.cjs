@@ -33,8 +33,8 @@ test("buildList scopes by topic, and search spans all topics", () => {
 
 test("buildList reacts to state: unseen/marked/bookmarked (mark-based)", () => {
   let st = SS.createEmptyState();
-  st = SS.setMark(st, "v1", 0, true);
-  st = SS.setMark(st, "v2", 3, true);
+  st = SS.setCheck(st, "v1", "o");
+  st = SS.setCheck(st, "v2", "x");
   st = SS.toggleBookmark(st, "v3");
   const opts = (filter) => ({ filter, topic: "lipid", scope: "all" });
   assert.deepEqual(ids(UI.buildList(BANK, st, opts("marked"), SS)), ["v1", "v2"]);
@@ -46,7 +46,7 @@ test("buildList reacts to state: unseen/marked/bookmarked (mark-based)", () => {
 test("old pending/excluded marks and favorites stay stored but never appear", () => {
   let st = SS.createEmptyState();
   for (const id of ["v1", "p1", "x1", "e1"]) {
-    st = SS.setMark(st, id, 0, true);
+    st = SS.setCheck(st, id, "o");
     st = SS.toggleBookmark(st, id);
   }
   const view = (filter, search) => ids(UI.buildList(BANK, st, { filter, scope: "all", includePending: true, search }, SS));
@@ -55,7 +55,7 @@ test("old pending/excluded marks and favorites stay stored but never appear", ()
   assert.deepEqual(view("bookmarked"), ["v1"]);
   assert.deepEqual(view("unseen"), ["v2", "v3"]);
   assert.deepEqual(view("bookmarked", "p1"), []);
-  assert.equal(SS.getMarks(st, "p1")[0], true);
+  assert.equal(SS.getCheck(st, "p1"), "o");
   assert.ok(st.bookmarks.includes("p1"));
 });
 
@@ -65,7 +65,7 @@ test("state-derived filters need a revision; focus moves to the next remaining c
   let st = SS.createEmptyState();
   const opts = { filter: "unseen", topic: "lipid", scope: "topic" };
   assert.deepEqual(ids(UI.buildList(BANK, st, opts, SS)), ["v1", "v2"]);
-  st = SS.setMark(st, "v1", 0, true);
+  st = SS.setCheck(st, "v1", "o");
   const after = ids(UI.buildList(BANK, st, opts, SS));
   assert.deepEqual(after, ["v2"]);
   assert.equal(UI.focusAfterRebuild(["v1", "v2"], "v1", after), "v2");
