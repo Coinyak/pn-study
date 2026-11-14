@@ -140,9 +140,9 @@ h1,h2,h3{orphans:3; widows:3}
 @media print{
   .toolbar{display:none!important}
   html,body,#corePrint{overflow:visible!important; height:auto!important; max-height:none!important; max-width:100%}
-  body{max-width:100%; width:auto; padding:0; margin:0; font-size:8.2pt; line-height:1.28}
+  body{max-width:100%; width:auto; padding:0; margin:0; font-size:8.6pt; line-height:1.38}
   /* 표는 페이지 너비(100%)를 넘기지 않는다. nowrap·긴 토큰의 min-content가 칸을 밀지 않게 한다. */
-  table{font-size:7.6pt; width:100%!important; max-width:100%!important}
+  table{font-size:8pt; width:100%!important; max-width:100%!important}
   .print-sec{ break-inside:avoid!important; page-break-inside:avoid!important; }
   .print-sec:has(.cheat-table){ break-inside:auto!important; page-break-inside:auto!important; }
   table:not(.cheat-table){ break-inside:avoid!important; page-break-inside:avoid!important; }
@@ -150,9 +150,12 @@ h1,h2,h3{orphans:3; widows:3}
   tr, td, th{ break-inside:avoid!important; page-break-inside:avoid!important; }
   h2, h3{ break-after:avoid!important; page-break-after:avoid!important; }
   th,td{
-    padding:0.5mm 0.8mm;
+    padding:0.6mm 1mm;
     min-width:0;
     overflow:visible;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+    line-height:1.38;
   }
   /* 화면용 nowrap·overflow:hidden 은 인쇄에서 글자를 칸 밖에 두거나 잘라 낸다. */
   #corePrint .nowrap,
@@ -162,8 +165,8 @@ h1,h2,h3{orphans:3; widows:3}
     white-space:normal!important;
     min-width:0;
     overflow:visible!important;
-    overflow-wrap:anywhere!important;
-    word-break:break-word!important;
+    word-break:keep-all!important;
+    overflow-wrap:break-word!important;
   }
   #corePrint table.compare td,
   #corePrint table.compare th,
@@ -173,7 +176,9 @@ h1,h2,h3{orphans:3; widows:3}
   #corePrint table.cheat-table th{
     min-width:0;
     overflow:visible;
-    overflow-wrap:anywhere;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+    line-height:1.38;
   }
   #corePrint table.compare td.l1,
   #corePrint table.compare th.l1,
@@ -181,8 +186,8 @@ h1,h2,h3{orphans:3; widows:3}
     overflow:visible!important;
     min-width:0;
     white-space:normal!important;
-    overflow-wrap:anywhere!important;
-    word-break:break-word!important;
+    word-break:keep-all!important;
+    overflow-wrap:break-word!important;
   }
   /* 비고 행의 break-all은 줄 끝에서 20·53.6처럼 숫자를 갈라 읽기 어렵게 한다. */
   #corePrint table.compare tr.compare-note td,

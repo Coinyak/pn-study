@@ -1735,7 +1735,7 @@
         },
         {
           "referenceId": "aspen-pn-checklist-04-administration-2024",
-          "locator": "ASPEN_Admin_full.txt VAD examination",
+          "locator": "VAD examination",
           "quote": "x-ray confirmation at VAD placement"
         }
       ],
@@ -2301,7 +2301,7 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_exam_highlights_all.md PDF185",
+          "locator": "PDF185",
           "quote": "간담도계 질환 → 망간·구리 감량"
         }
       ],
@@ -2992,7 +2992,8 @@
         "오답. 고나트륨혈증은 이 병용의 보유 결과가 아니다."
       ],
       "coreSectionIds": [
-        "sec-lipid-2-2-지방-ILE"
+        "sec-lipid-2-2-지방-ILE",
+        "sec-complications-6-1-3열-요약"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -5448,7 +5449,7 @@
         "✗ 옳지 않은 진술(정답) — Coagulation component는 INR이 아니라 platelet count이다."
       ],
       "coreSectionIds": [
-        "sec-monitor-7-모니터링-Lab-중단"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -5565,7 +5566,7 @@
         "맞는 서술. mNUTRIC 고위험은 ≥5이다."
       ],
       "coreSectionIds": [
-        "sec-monitor-7-모니터링-Lab-중단"
+        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -6693,7 +6694,7 @@
       "evidence": [
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt R14.11",
+          "locator": "R14.11",
           "quote": "education for users on correct maintenance and safety of the catheter are strongly recommended"
         }
       ],
@@ -6914,17 +6915,17 @@
       "evidence": [
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt SVC occlusion",
+          "locator": "SVC occlusion",
           "quote": "include head and neck swelling"
         },
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt pinch-off",
+          "locator": "pinch-off",
           "quote": "compression of a CVC between the clavicle and first rib"
         },
         {
           "referenceId": "espen-hpn-2020",
-          "locator": "ESPEN_HPN_full.txt PICC thrombosis",
+          "locator": "PICC thrombosis",
           "quote": "possible higher risk of catheter-related venous thrombosis"
         }
       ],
@@ -7770,12 +7771,12 @@
       "evidence": [
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt R14.13",
+          "locator": "R14.13",
           "quote": "matrix table should be sought from the supplier of the formulation detailing permissible limits for additions of electrolytes"
         },
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt R14.16",
+          "locator": "R14.16",
           "quote": "stability matrices and order of mixing must be strictly adhered to"
         }
       ],
@@ -8254,7 +8255,7 @@
       "evidence": [
         {
           "referenceId": "kshp-lecture-a03-protein-2026",
-          "locator": "A03 물리 p39 (푸터 37/73), Long term Simple starvation 표",
+          "locator": "A03 , Long term Simple starvation 표",
           "quote": "Long term Simple starvation: Metabolic rate ↓, Protein catabolism ↓, Protein synthesis ↓, Protein turnover ↓, Nitrogen balance ↓, Gluconeogenesis ↓. Stress starvation: those arrows reverse except Nitrogen balance ↓↓."
         }
       ],
@@ -9445,7 +9446,7 @@
         "정답. RQ>1."
       ],
       "coreSectionIds": [
-        "sec-calc_filter-4-1-에너지"
+        "sec-eval-0-영양평가-PN-직결만"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -9801,7 +9802,7 @@
       "evidence": [
         {
           "referenceId": "ccn-summary-nestle-2022",
-          "locator": "CCN_Summary_full.txt Obesity protein",
+          "locator": "Obesity protein",
           "quote": "Protein is suggested at ≥ 2.0 gm/kg IBW**/day for BMI 30–40, and up to 2.5 gm/kg IBW**/day for BMI ≥ 40"
         }
       ],
@@ -11420,7 +11421,7 @@
         "오답. 정상 변이는 그 저하 문장이 아니다."
       ],
       "coreSectionIds": [
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-peds-9-소아-신생아"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -11428,12 +11429,12 @@
       "evidence": [
         {
           "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
-          "locator": "_kshp_extract.txt 소아 성장",
+          "locator": "소아 성장",
           "quote": "Weight-for-height 저하는 현재 체중 소모(wasting), 즉 급성 영양불량"
         },
         {
           "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
-          "locator": "_kshp_extract.txt 소아 성장",
+          "locator": "소아 성장",
           "quote": "만성 영양불량은 height-for-age 저하(stunting)"
         }
       ],
@@ -14741,7 +14742,7 @@
       "evidence": [
         {
           "referenceId": "aspen-adult-critically-ill-factsheet-2024",
-          "locator": "ASPEN_Fact_full.txt Question 1 clinical application",
+          "locator": "Question 1 clinical application",
           "quote": "When EN or PN is associated with problems in glycemic control, respiratory acidosis or high serum triglyceride concentrations, consider whether feedings should be reduced."
         },
         {
@@ -15350,12 +15351,12 @@
       "evidence": [
         {
           "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
-          "locator": "_kshp_extract.txt carnitine",
+          "locator": "carnitine",
           "quote": "Carnitine은 지방산 운반에 관여"
         },
         {
           "referenceId": "espen-ped-pn-2018-03-lipids",
-          "locator": "ESPEN_lipids_full.txt MCT vs LCT",
+          "locator": "MCT vs LCT",
           "quote": "less dependency on carnitine for beta-oxidation"
         }
       ],
@@ -16163,12 +16164,12 @@
       "evidence": [
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt CLABSI definition",
+          "locator": "CLABSI definition",
           "quote": "all bloodstream infections in patients with a CVC are classified as CLABSI"
         },
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt pathogens",
+          "locator": "pathogens",
           "quote": "The major pathogens isolated are Gram-positive coagulase-negative"
         }
       ],
@@ -17760,12 +17761,12 @@
       "evidence": [
         {
           "referenceId": "ccn-summary-nestle-2022",
-          "locator": "CCN_Summary_full.txt aspiration",
+          "locator": "aspiration",
           "quote": "Suggest prokinetic agents be initiated in patients at high risk of aspiration"
         },
         {
           "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
-          "locator": "_kshp_extract.txt 중환자 prokinetic",
+          "locator": "중환자 prokinetic",
           "quote": "metoclopramide/erythromycin 등 prokinetic을 고려할 수 있다"
         }
       ],
@@ -19245,12 +19246,12 @@
       "evidence": [
         {
           "referenceId": "espen-hpn-2020",
-          "locator": "ESPEN_HPN_full.txt R53",
+          "locator": "R53",
           "quote": "quality of care (e.g. CRBSI rate, readmission rate etc.)"
         },
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt CLABSI definition",
+          "locator": "CLABSI definition",
           "quote": "all bloodstream infections in patients with a CVC are classified as CLABSI"
         }
       ],
@@ -20169,7 +20170,7 @@
       "evidence": [
         {
           "referenceId": "aspen-adult-critically-ill-factsheet-2024",
-          "locator": "ASPEN_Fact_full.txt Question 1 clinical application",
+          "locator": "Question 1 clinical application",
           "quote": "When EN or PN is associated with problems in glycemic control, respiratory acidosis or high serum triglyceride concentrations, consider whether feedings should be reduced."
         },
         {
@@ -20227,12 +20228,12 @@
       "evidence": [
         {
           "referenceId": "aspen-pn-myths-practice-tool-2024",
-          "locator": "ASPEN_Myths_full.txt p.2 timing",
+          "locator": "p.2 timing",
           "quote": "Nutritionally at risk: 3-5 days"
         },
         {
           "referenceId": "aspen-pn-myths-practice-tool-2024",
-          "locator": "ASPEN_Myths_full.txt p.2 PN early",
+          "locator": "p.2 PN early",
           "quote": "a contraindication to Enteral Nutrition (EN) exists"
         }
       ],
@@ -20805,7 +20806,7 @@
       "evidence": [
         {
           "referenceId": "espen-hpn-2020",
-          "locator": "ESPEN_HPN_full.txt introduction",
+          "locator": "introduction",
           "quote": "provided through the intravenous administration of nutrients"
         }
       ],
@@ -22737,7 +22738,7 @@
         "오답. 간기능 검사 수치 감소를 적는다."
       ],
       "coreSectionIds": [
-        "sec-monitor-7-3-PN-중단-이행"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -22990,12 +22991,12 @@
       "evidence": [
         {
           "referenceId": "aspen-pn-myths-practice-tool-2024",
-          "locator": "ASPEN_Myths_full.txt p.2 hyponatremia",
+          "locator": "p.2 hyponatremia",
           "quote": "Higher doses of sodium in the setting of hyponatremia is not always required."
         },
         {
           "referenceId": "aspen-pn-myths-practice-tool-2024",
-          "locator": "ASPEN_Myths_full.txt p.2 volume overload",
+          "locator": "p.2 volume overload",
           "quote": "If hyponatremia etiology is from volume overload, additional sodium may worsen"
         }
       ],
@@ -23311,7 +23312,7 @@
         "정답. 세 방법 모두 보유 문장과 같지 않다."
       ],
       "coreSectionIds": [
-        "sec-vit_te-2-7-미량원소-TE"
+        "sec-route-3-2-2-in-1-vs-3-in-1-TNA"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -23908,7 +23909,7 @@
         "정답. 네 원인에 없다."
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-complications-6-1-3열-요약"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -24459,12 +24460,12 @@
       "evidence": [
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt R14.8",
+          "locator": "R14.8",
           "quote": "Tissue plasminogen activator (tPA, alteplase) is currently the recommended agent"
         },
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt Cochrane",
+          "locator": "Cochrane",
           "quote": "alteplase 2 mg/2 ml vs placebo"
         }
       ],
@@ -24586,7 +24587,7 @@
       "evidence": [
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt lipid occlusion",
+          "locator": "lipid occlusion",
           "quote": "Ethyl alcohol at a 70% solution may be used to dissolve lipid occlusions"
         }
       ],
@@ -24646,12 +24647,12 @@
         },
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt pinch-off",
+          "locator": "pinch-off",
           "quote": "compression of a CVC between the clavicle and first rib"
         },
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt pinch-off",
+          "locator": "pinch-off",
           "quote": "repeated compression (caused by shoulder and arm movement)"
         }
       ],
@@ -25750,7 +25751,7 @@
       "evidence": [
         {
           "referenceId": "aspen-adult-critically-ill-factsheet-2024",
-          "locator": "ASPEN_Fact_full.txt Question 3",
+          "locator": "Question 3",
           "quote": "Optimal glycemic control and catheter care are also important factors in the provision of PN to reduce infectious complications"
         },
         {
