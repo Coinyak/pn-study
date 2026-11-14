@@ -1623,6 +1623,21 @@
       "scopeIds": [
         "spec-pregnancy"
       ]
+    },
+    {
+      "id": "kshp-symp-2026-pn-calc-safety",
+      "title": "2026 제2차 영양약료 심화교육(심포지엄) PN Calculation & Safety 교육자료 (로컬 검토)",
+      "year": 2026,
+      "url": null,
+      "accessStatus": "not-held",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "partial-pages",
+      "kind": "educational-lecture",
+      "designatedByNotice": false,
+      "note": "원문 PDF는 공개 저장소에 포함하지 않음. 로컬 검토에서 p69·86–87 등 closeRead. 공식 시험 지정 교재 아님.",
+      "scopeIds": [
+        "spec-plan-calc"
+      ]
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "contentVersion": "2026-11-14.15",
+    "contentVersion": "2026-11-14.20-kshp-enrich-blindfix",
     "extractedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
     "source": {
@@ -11,9 +11,9 @@
       "originalPractice": "자체 연습문항(op-*)은 현행 questions.json에서 관리한다."
     },
     "rawCount": 583,
-    "finalCount": 590,
+    "finalCount": 595,
     "verifiedCount": 259,
-    "pendingCount": 199,
+    "pendingCount": 204,
     "excludedCount": 132,
     "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
     "displayLanguage": "ko-only",
@@ -44,7 +44,7 @@
       "E2-gir": "GIR은 조건(안정 성인 산화 상한 ~4–5, 중환자·고혈당 ≤4, HPN 주기주입 순간 5–7, 일일 ≤7 g/kg/day, 소아는 ESPEN 표)별로 다르다. 조건 없는 단일 정답 금지.",
       "E3-dextrose-factor": "IV dextrose는 일수화물 3.4 kcal/g. 교재 예제의 3.85 kcal/g 계산(286 g)은 3.4 기준(324 g)과 다르다.",
       "E4-bud": "PN BUD는 USP<797> Table 13을 그대로 쓰지 않고 안정성 포함 실온 30 h / 냉장 9일(ASPEN Myths 2024). 핵심표 국내(2019) 범주 수치 누락은 교재값(범주1 냉장 24 h, 범주2 냉장 3일)으로 복원 대상.",
-      "E5-filter": "현행 ASPEN(Myths 2024·Administration checklist): 모든 PN에 단일 1.2 μm. 2-in-1 0.22 / 3-in-1·ILE 1.2 이원 체계는 구 권고(강의자료·해외 문제은행).",
+      "E5-filter": "현행 단일 1.2 μm의 주출처는 ASPEN Myths 2024. 투여 체크리스트는 원위·hub 근접·동시주입 회피. 강의의 FDA 이원 표와 ASPEN ‘Filter All PN’ 그림(0.22/1.2)은 이원 체계 — 체크리스트를 단일 1.2의 출처로 쓰지 말 것. 2-in-1 0.22 / 3-in-1·ILE 1.2는 구·강의 표기.",
       "E6-pn-indication-timing": "PN 개시: 영양위험 3–5일, 중등–중증 영양불량은 가능한 빨리, 잘영양·안정은 7일 대기 가능, 중증 대사불안정은 호전까지 지연(ASPEN Myths 2024). 잘영양 ICU SPN은 day 7 이전 비시작(ASPEN SPN 2026·CCN 요약).",
       "E7-aki-protein": "AKI+간헐적 투석 단백: 강의자료 1.2 g/kg(84 g) vs ESPEN 2024 1.3–1.5 g/kg(91–105 g). ESPEN 2024 권고 38(R18) 원문 확인.",
       "E8-trace-element-dose": "AMA 1979 미량원소 용량(Cu 1 mg·Mn 500 μg)은 현행 ASPEN TE 권고(Cu 0.3–0.5 mg·Mn 55 μg)와 다르다."
@@ -160,7 +160,7 @@
     },
     {
       "id": "oe-filter",
-      "revision": 1,
+      "revision": 3,
       "topic": "stability",
       "scopeIds": [
         "spec-plan-route"
@@ -184,13 +184,13 @@
         "5 μm"
       ],
       "answer": 2,
-      "explain": "3-in-1에는 지질이 들어 있어 0.22 μm 필터를 통과하지 못한다. 현행 권고는 모든 PN에 1.2 μm 필터 하나를 쓰는 것이다.",
+      "explain": "정답은 1.2 μm이다.\n① 0.22 μm: 구 권고에서 2-in-1에 쓰이던 크기. 지질이 있으면 막히고, 현행 ASPEN Myths 2024는 모든 PN에 단일 1.2 μm를 권한다.\n② 0.45 μm: PN 표준 인라인 필터 크기가 아니다.\n③ 1.2 μm: 현행 Myths 권고. 위치(원위·hub 근접)와 동시주입 회피는 투여 체크리스트. 강의의 FDA 이원 표·‘Filter All PN’ 이원 그림과 혼동하지 말 것.\n④ 5 μm: 입자·지방구 차단 목적으로 쓰는 PN 표준이 아니다.",
       "needle": "필터 (현행)",
       "choiceExplanations": [
-        "오답. 0.22 μm는 지질 입자를 통과시키지 못해 3-in-1에 쓰지 않는다(구 권고에서도 2-in-1 전용).",
-        "오답. 0.45 μm는 PN 표준 필터 크기가 아니다.",
-        "정답. 3-in-1은 구 권고·현행(모든 PN 단일 1.2 μm) 모두 1.2 μm.",
-        "오답. 5 μm는 PN 인라인 필터 권고 크기가 아니다."
+        "오답. 구 권고의 2-in-1용. 지질 포함 시 부적합하고 현행 Myths는 단일 1.2 μm.",
+        "오답. PN 인라인 필터 표준 크기가 아니다.",
+        "정답. Myths 2024: 모든 PN에 1.2 μm. 원위·hub 근접은 체크리스트.",
+        "오답. PN 표준 인라인 필터로 쓰지 않는다."
       ],
       "coreSectionIds": [
         "sec-stability-5-4-필터-hang-time-세트-BUD"
@@ -219,7 +219,7 @@
         "choiceExplanations": "complete",
         "coreLink": "hint"
       },
-      "reviewNote": "선택지 해설은 보유 ASPEN Myths 2024 본문 대조로 Task 2에서 작성.",
+      "reviewNote": "선택지 해설은 보유 ASPEN Myths 2024 본문 대조로 Task 2에서 작성. | 2026-11-14 KSHP symp filter dual vs ASPEN 1.2 보강(rev2)",
       "htmlTopic": "calc_filter"
     },
     {
@@ -5883,7 +5883,7 @@
     },
     {
       "id": "kshp-47",
-      "revision": 1,
+      "revision": 2,
       "topic": "complications",
       "scopeIds": [
         "spec-components",
@@ -5936,7 +5936,7 @@
         "choiceExplanations": "complete",
         "coreLink": "hint"
       },
-      "reviewNote": "",
+      "reviewNote": "[B] ASPEN 2020: routine thiamine level 가치 낮음 — 해설은 예방적 보충·징후 감시로 구분 권고.",
       "relatedIds": [
         "kshp-38"
       ]
@@ -15893,7 +15893,7 @@
     },
     {
       "id": "cnsc-nutrition-support-083",
-      "revision": 2,
+      "revision": 3,
       "topic": "complications",
       "scopeIds": [
         "spec-requirements",
@@ -15916,13 +15916,13 @@
         "첫 24시간은 제한된 열량으로 시작하고, 전해질을 확인·보정하며, 시작 전에 티아민을 투여하고 단계적으로 증량한다."
       ],
       "answer": 3,
-      "explain": "첫 24시간에는 10–20 kcal/kg 또는 포도당 100–150 g으로 시작한다. 영양을 주기 전 인·칼륨·마그네슘을 확인하고 티아민을 투여한다. 전해질이 심하게 낮으면 교정할 때까지 시작이나 증량을 미룬다.",
+      "explain": "ASPEN 2020 성인 재급식 위험군: 첫 24시간은 10–20 kcal/kg 또는 포도당 100–150 g으로 시작하고, 시작 전·동시 thiamine, P·K·Mg 확인·교정, 1–2일마다 목표의 약 33%씩 증량한다.\n① 처음부터 목표 전량은 위험하다.\n② 탄수화물 없이 단백만은 합의 전략이 아니다.\n③ 7일 전부 보류는 PEPaNIC 등 PICU 연구 맥락과 혼동한 오답이다.\n④ 정답. 고위험은 첫 3일 12시간마다 전해질을 보고, 급락·교정 실패 시 열량/포도당을 약 50% 감량한 뒤 재증량한다.",
       "needle": "20 kcal/kg",
       "choiceExplanations": [
-        "처음부터 목표 열량을 모두 주지 않는다.",
-        "탄수화물을 전부 빼고 단백질만 주라는 권고는 없다.",
-        "7일을 일률적으로 기다리지 않는다. 심한 전해질 이상이 있으면 교정 후 시작한다.",
-        "제한된 시작 열량, 전해질 확인·교정과 티아민 투여를 함께 적용한다."
+        "오답. 위험군은 제한 열량으로 시작한다.",
+        "오답. 탄수화물 재공급과 전해질·티아민 관리가 핵심이다.",
+        "오답. 성인 재급식 합의의 표준 시작 전략이 아니다(소아 PICU 연구와 혼동).",
+        "정답. 제한 시작·전해질·티아민·단계 증량(급락 시 50% 감량 포함)."
       ],
       "coreSectionIds": [
         "sec-complications-6-2-재급식-증후군-Refeeding"
@@ -15949,7 +15949,7 @@
         "choiceExplanations": "complete",
         "coreLink": "override"
       },
-      "reviewNote": "ASPEN 2020 표 6 원문으로 대상, 열량, 전해질 및 티아민 근거를 보완했다. 정답 인덱스는 유지했다."
+      "reviewNote": "ASPEN 2020 표 6 원문으로 대상, 열량, 전해질 및 티아민 근거를 보완했다. 정답 인덱스는 유지했다. | 2026-11-14 A08/ASPEN 2020 12h·50% 보강(rev3)"
     },
     {
       "id": "cnsc-nutrition-support-084",
@@ -30851,6 +30851,302 @@
         "coreLink": "override"
       },
       "reviewNote": "체계적 고찰과 메타분석: 공개 자료의 정의 및 해당 절과 정답 대조."
+    },
+    {
+      "id": "kshp-add-2026-001",
+      "revision": 2,
+      "topic": "calc_filter",
+      "scopeIds": [
+        "spec-plan-calc",
+        "spec-plan-personalized",
+        "format-appropriateness"
+      ],
+      "source": "자체 연습(KSHP 심포지엄 학습목표 기반)",
+      "sourceUrl": null,
+      "sourceYear": 2026,
+      "originType": "originalPractice",
+      "reviewStatus": "pending",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-pn-myths-practice-tool-2024",
+        "aspen-pn-checklist-04-administration-2024",
+        "kshp-symp-2026-pn-calc-safety"
+      ],
+      "stem": "성인 PN 처방을 새로 설계할 때, 아래 중 가장 적절한 검토 순서는?",
+      "choices": [
+        "주입속도 결정 → 원액 mL 계산 → 적응증 확인 → 모니터링 계획",
+        "환자 평가·적응증 → 요구량(에너지·단백·GIR·지질·수분/전해질) → 삼투압·경로 → 조성·주입속도 → 안정성·필터·BUD·hang time → 모니터링",
+        "필터·BUD만 확인한 뒤 바로 투여를 시작하고, 요구량은 다음날 계산한다",
+        "미국 원액 농도 가정으로 mL를 구한 뒤, 국내 재고 농도와 달라도 같은 mL를 쓴다",
+        "삼투압과 경로만 보면 되고 Ca-P·필터는 조제실 재량이다"
+      ],
+      "answer": 1,
+      "explain": "정답은 평가·요구량 → 경로 → 조성·속도 → 안전점검 → 모니터링 흐름이다.\n① 적응증·요구량 전에 속도부터 정하면 과다·경로 오류를 놓친다.\n② 정답. 계산과 안전점검이 한 흐름이다.\n③ 안전·요구량 확인 전 투여는 부적절하다.\n④ 원액 농도가 바뀌면 g→mL를 다시 계산해야 한다.\n⑤ Ca-P·필터·BUD는 처방 검토의 필수 안전 항목이다.",
+      "needle": "처방 설계 흐름",
+      "choiceExplanations": [
+        "오답. 적응증·요구량보다 속도를 앞세운다.",
+        "정답. 평가→요구량→경로→조성·속도→안전→모니터.",
+        "오답. 시작 전 설계·안전점검이 필요하다.",
+        "오답. 국내/미국 원액 농도가 다르면 mL를 재계산한다.",
+        "오답. 안정성·필터는 검토 항목이다."
+      ],
+      "coreSectionIds": [
+        "sec-calc_filter-4-2-계산-5단계-상한-체크",
+        "sec-stability-5-4-필터-hang-time-세트-BUD"
+      ],
+      "language": "ko",
+      "includeInBasicSet": false,
+      "sourceNote": "2026 심포지엄 계산 알고리즘 학습목표 기반 자작. 교육문제 복제·공식 기출 아님.",
+      "evidence": [
+        {
+          "referenceId": "aspen-pn-checklist-04-administration-2024",
+          "locator": "ASPEN PN administration checklist — filter placement / verify components before infusion",
+          "quote": "Use 1.2 micron filter on distal end of tubing below any Y-sites and as close to catheter hub as practical."
+        }
+      ],
+      "errataIds": [],
+      "checks": {
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
+      },
+      "reviewNote": "S02 p69 알고리즘 closeRead 후 자작. 원문 복제 없음. [A 2026-11-14] 독립 검산·원문 귀속 재확인 전 verified 보류. [blind] 정답 일치·evidence 불일치·허수 오답. pending 유지."
+    },
+    {
+      "id": "kshp-add-2026-002",
+      "revision": 3,
+      "topic": "cho_gir",
+      "scopeIds": [
+        "spec-components",
+        "spec-plan-calc"
+      ],
+      "source": "자체 연습(계산)",
+      "sourceUrl": null,
+      "sourceYear": 2026,
+      "originType": "originalPractice",
+      "reviewStatus": "pending",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-05-carbohydrates"
+      ],
+      "stem": "체중 0.90 kg 신생아에게 10% dextrose를 3.00 mL/h로 24시간 일정 주입한다. PN 외 포도당 주입은 없다. GIR(mg/kg/min)에 가장 가까운 값은? (GIR = dextrose% × mL/h × 0.167 ÷ kg)",
+      "choices": [
+        "3.7",
+        "5.0",
+        "5.6",
+        "7.5",
+        "10.0"
+      ],
+      "answer": 2,
+      "explain": "독립 검산: 10 × 3.00 × 0.167 ÷ 0.90 ≈ 5.57 → ≈5.6 mg/kg/min.\n같은 경로: 3.00 mL/h × 0.10 g/mL = 0.30 g/h = 300 mg/h = 5 mg/min ÷ 0.90 kg ≈ 5.56.\n① 3.7: 체중을 1.35 kg로 둔 오산.\n② 5.0: kg로 나누기 전 mg/min 단계.\n③ 정답.\n④ 7.5: 체중 0.67 kg 가정 등.\n⑤ 10.0: %만 남기고 속도·체중을 빠뜨린 오산.",
+      "needle": "GIR",
+      "choiceExplanations": [
+        "오답. 체중을 크게 잡은 값.",
+        "오답. kg로 나누기 전 mg/min이다.",
+        "정답. ≈5.6 mg/kg/min.",
+        "오답. 체중 가정을 바꾼 값.",
+        "오답. 속도·체중 나눗셈을 생략한 값."
+      ],
+      "coreSectionIds": [
+        "sec-cho_gir-2-1-탄수화물-dextrose",
+        "sec-peds-9-소아-신생아"
+      ],
+      "language": "ko",
+      "includeInBasicSet": false,
+      "sourceNote": "가상 수치. 강의 증례 식별정보 미사용. 공식 기출 아님.",
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-05-carbohydrates",
+          "locator": "R5.4/R5.6 glucose dosing reported as mg/kg per min (g/kg per day in parentheses)",
+          "quote": "Recommended parenteral glucose supply ... mg/kg per min (g/kg per day)."
+        }
+      ],
+      "errataIds": [],
+      "checks": {
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
+      },
+      "reviewNote": "[blind] 수치를 P04 증례와 분리해 재작성. 산술 일치. pending(작성자 외 재검 1회 더)."
+    },
+    {
+      "id": "kshp-add-2026-003",
+      "revision": 3,
+      "topic": "stability",
+      "scopeIds": [
+        "spec-plan-route",
+        "format-drp"
+      ],
+      "source": "자체 연습(필터 출처 구별)",
+      "sourceUrl": null,
+      "sourceYear": 2026,
+      "originType": "originalPractice",
+      "reviewStatus": "pending",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-pn-myths-practice-tool-2024",
+        "aspen-pn-checklist-04-administration-2024",
+        "kshp-symp-2026-pn-calc-safety"
+      ],
+      "stem": "지질이 없는 2-in-1 PN을 투여한다. 교육 자료에는 2-in-1/3-in-1 이원 필터 표와 ASPEN 투여 체크리스트가 함께 있다. 현행 ASPEN 실무 권고에 가장 잘 맞는 선택은?",
+      "choices": [
+        "2-in-1이므로 반드시 0.22 μm만 사용한다",
+        "모든 PN에 1.2 μm 인라인 필터를 쓰고, Y-site보다 원위·catheter hub에 가깝게 둔다",
+        "필터는 생략하고 육안 검사만 한다",
+        "5 μm 필터를 쓰면 0.22와 1.2를 대체할 수 있다",
+        "필터 크기는 펌프 브랜드가 정하므로 처방 검토 대상이 아니다"
+      ],
+      "answer": 1,
+      "explain": "현행 ASPEN Myths 2024는 제형과 관계없이 단일 1.2 μm를 권한다. 투여 체크리스트는 필터를 원위·hub 근접에 두고 동시주입을 피하라고 하며, 이원 크기 표의 대체 정답이 아니다.\n① 오답. 이원 표를 현행으로 착각.\n② 정답.\n③ 필터 생략은 권고에 어긋난다.\n④ 5 μm는 대체 표준이 아니다.\n⑤ 필터는 투여 안전 검토 항목이다.",
+      "needle": "단일 1.2",
+      "choiceExplanations": [
+        "오답. 구·강의 이원 체계를 현행으로 착각.",
+        "정답. Myths 2024 단일 1.2 μm + 체크리스트 원위·hub 근접.",
+        "오답. 인라인 필터를 생략하지 않는다.",
+        "오답. 5 μm 대체 주장은 근거 없음.",
+        "오답. 처방·투여 검토 대상이다."
+      ],
+      "coreSectionIds": [
+        "sec-stability-5-4-필터-hang-time-세트-BUD"
+      ],
+      "language": "ko",
+      "includeInBasicSet": false,
+      "sourceNote": "S02 p86–87 출처 혼재 학습목표 기반 자작. 숫자만 암기하는 문제 아님.",
+      "evidence": [
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "inline filter recommendation for PN",
+          "quote": "A 1.2-micron filter is recommended for all PN infusions."
+        },
+        {
+          "referenceId": "aspen-pn-checklist-04-administration-2024",
+          "locator": "filter placement",
+          "quote": "Use 1.2 micron filter on distal end of tubing below any Y-sites and as close to catheter hub as practical."
+        }
+      ],
+      "errataIds": [],
+      "checks": {
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
+      },
+      "reviewNote": "E-FILTER-MIX 교육용. 구 표 암기 정답화 안 함. [A 2026-11-14] 독립 검산·원문 귀속 재확인 전 verified 보류. [blind] 지문 출처 힌트 완화. evidence 원문 인용 정리 전 pending."
+    },
+    {
+      "id": "kshp-add-2026-004",
+      "revision": 2,
+      "topic": "complications",
+      "scopeIds": [
+        "spec-components"
+      ],
+      "source": "자체 연습(재급식 조치)",
+      "sourceUrl": null,
+      "sourceYear": 2026,
+      "originType": "originalPractice",
+      "reviewStatus": "pending",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-refeeding-2020"
+      ],
+      "stem": "재급식 고위험 성인에게 PN을 시작한 뒤 인·칼륨·마그네슘이 급격히 떨어지고 교정이 어렵다. 생명위협 수준의 부정맥·호흡부전은 없다. ASPEN 2020 합의에 따른 다음 조치로 가장 적절한 것은?",
+      "choices": [
+        "목표 열량까지 즉시 증량한다",
+        "열량 또는 포도당 공급을 약 50% 줄인 뒤, 안정되면 1–2일마다 목표의 약 33%씩 다시 증량한다",
+        "전해질과 무관하게 단백만 두 배로 올린다",
+        "티아민만 중단하고 열량은 유지한다",
+        "모든 정맥 수액을 중지하고 경구수액만 준다"
+      ],
+      "answer": 1,
+      "explain": "전해질 급락·교정 실패 시 열량/포도당을 약 50% 감량하고, 이후 임상 경과에 따라 목표의 ≈33%씩 재증량한다.\n① 증량은 위험하다.\n② 정답.\n③ 단백만 올리는 전략이 아니다.\n④ 티아민은 유지·보충이 필요하고 열량 조정이 핵심이다.\n⑤ 일률적 전면 중지는 합의의 1차 표현이 아니다(생명위협 시 중단 고려는 별도).",
+      "needle": "50%",
+      "choiceExplanations": [
+        "오답. 급락 시 증량 금지.",
+        "정답. ≈50% 감량 후 단계 재증량.",
+        "오답. 단백 증량이 해법이 아니다.",
+        "오답. 티아민을 끊지 않는다.",
+        "오답. 1차 조치는 열량/당 감량이다."
+      ],
+      "coreSectionIds": [
+        "sec-complications-6-2-재급식-증후군-Refeeding"
+      ],
+      "language": "ko",
+      "includeInBasicSet": false,
+      "sourceNote": "ASPEN 2020·A08 학습목표 기반 자작. 공식 기출 아님.",
+      "evidence": [
+        {
+          "referenceId": "aspen-refeeding-2020",
+          "locator": "Treatment recommendations for refeeding syndrome — calorie reduction if electrolytes drop",
+          "quote": "If electrolytes are difficult to correct or drop precipitously during initiation, decrease calories/grams of dextrose by 50%."
+        }
+      ],
+      "errataIds": [],
+      "checks": {
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
+      },
+      "reviewNote": "A08 p44 closeRead 후 작성. [A 2026-11-14] 독립 검산·원문 귀속 재확인 전 verified 보류. [blind] 산술/개념 일치. 생명위협 경계 명시. evidence 원문 인용 정리 후 promote 후보."
+    },
+    {
+      "id": "kshp-add-2026-005",
+      "revision": 3,
+      "topic": "peds",
+      "scopeIds": [
+        "spec-components",
+        "spec-pediatric"
+      ],
+      "source": "자체 연습(소아 GIR 단계)",
+      "sourceUrl": null,
+      "sourceYear": 2026,
+      "originType": "originalPractice",
+      "reviewStatus": "pending",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-05-carbohydrates"
+      ],
+      "stem": "체중 18 kg 소아. 기계환기·승압제로 급성기(vital organ support) 상태다. ESPEN/ESPGHAN 2018 R5.6(체중×질병 단계) 기준 비경구 포도당 GIR(mg/kg/min) 범위로 옳은 것은?",
+      "choices": [
+        "6–10",
+        "1.5–2.5",
+        "4–6",
+        "10–14",
+        "0.5–1"
+      ],
+      "answer": 1,
+      "explain": "11–30 kg · 급성기 = 1.5–2.5 mg/kg/min (ESPEN/ESPGHAN 2018 R5.6). g/kg/d ≈ ×1.44 → 2.2–3.6.\n① 오답. 회복기 등 다른 단계·체중군 값.\n② 정답.\n③ 오답. 안정기 또는 다른 체중 행.\n④ 오답. ASPEN 영아 목표를 18 kg 급성기에 이식.\n⑤ 오답. >45 kg 급성기 행.",
+      "needle": "1.5–2.5",
+      "choiceExplanations": [
+        "오답. 다른 단계/체중군 값.",
+        "정답. 11–30 kg 급성기 1.5–2.5.",
+        "오답. 안정기/다른 행.",
+        "오답. ASPEN 영아 목표를 잘못 이식.",
+        "오답. >45 kg 행."
+      ],
+      "coreSectionIds": [
+        "sec-peds-9-소아-신생아"
+      ],
+      "language": "ko",
+      "includeInBasicSet": false,
+      "sourceNote": "ESPEN R5.6 기반 자작. 강의 괄호 오기 비사용.",
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-05-carbohydrates",
+          "locator": "R5.6 table: 11–30 kg, acute phase",
+          "quote": "11–30 kg: acute 1.5–2.5 mg/kg per min (2.2–3.6 g/kg per day)."
+        }
+      ],
+      "errataIds": [],
+      "checks": {
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
+      },
+      "reviewNote": "ESPEN p2 요약 괄호 2.2–3.6 확인. P12 괄호 오류 비채택. [A 2026-11-14] 독립 검산·원문 귀속 재확인 전 verified 보류. [C] 오타 부모테랄→비경구 수정. [blind] 오답 괄호 힌트 제거. evidence 정리 후 promote 후보. pending 유지."
     }
   ]
 }

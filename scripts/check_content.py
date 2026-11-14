@@ -24,7 +24,7 @@ SRC = ROOT / "src"
 DEFAULT_NOTES_ROOT = ROOT.parent.parent.parent / "참고문헌_정리"
 
 SECTION_OPEN = re.compile(
-    r'<section class="sec" data-topic="([^"]+)" id="([^"]+)"( data-added="[^"]+")?(?: data-hub="1")?(?: hidden)?>'
+    r'<section class="sec" data-topic="([^"]+)" id="([^"]+)"( data-added="[^"]+")?( data-hub="1")?(?: hidden)?>'
 )
 CHEAT_ROW = re.compile(r'<tr><th class="l1" scope="row">\[([^\]]+)\]\s*</th><td>(.*?)</td></tr>', re.S)
 MARK = re.compile(r'<mark class="(hl-[a-z]+)" title="([^"]*)">(.*?)</mark>', re.S)
@@ -67,7 +67,7 @@ def parse_core(text, errors):
             errors.append(f"core.html: section {m.group(2)} is not closed before the next section")
             continue
         sections.append({"topic": m.group(1), "id": m.group(2), "added": bool(m.group(3)),
-                         "html": text[m.end():end]})
+                         "hub": bool(m.group(4)), "html": text[m.end():end]})
     opens, closes = text.count("<section"), text.count("</section>")
     if opens != closes or opens != len(sections):
         errors.append(f"core.html: {opens} <section> / {closes} </section> / {len(sections)} parsed")
@@ -364,12 +364,17 @@ def run(no_build=False, notes_root=DEFAULT_NOTES_ROOT):
                 errors.append(f"{name}: out of date with content/* — run python3 scripts/build.py")
         split_re = re.compile(r'<section class="sec" data-topic="[^"]+" id="([^"]+)"[^>]*>')
         a4_re = re.compile(r'<section class="print-sec[^"]*" id="([^"]+)">')
+        hub_ids = {s["id"] for s in sections if s.get("hub")}
         for name, rx in (("PN_study_split.html", split_re), ("PN_core_A4_print.html", a4_re)):
             text = rendered[name]
             secs = sections_text(text, rx)
-            missing = ids_core - set(secs)
+            # A4 intentionally omits data-hub navigation stubs; split must keep all section ids.
+            expected = ids_core if name.startswith("PN_study_split") else (ids_core - hub_ids)
+            missing = expected - set(secs)
             if missing:
                 errors.append(f"{name}: {len(missing)} core sections missing, e.g. {sorted(missing)[:3]}")
+            if name.startswith("PN_core_A4") and (set(secs) & hub_ids):
+                errors.append(f"{name}: hub sections should stay out of A4 print body")
             check_facts(sections, name, secs, cheat_of(text, rx), errors)
 
     return errors, notes, clinical_report(qdoc, scope, refs, prod, sections, st)

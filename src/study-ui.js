@@ -251,7 +251,7 @@
       const explain =
         '<details class="q-details"><summary>정답·해설 보기</summary>' +
         "<p><b>정답:</b> " + (q.answer + 1) + ". " + esc(ans) + "</p>" +
-        (q.explain ? "<p>" + esc(q.explain) + "</p>" : "") +
+        (q.explain ? "<p>" + esc(q.explain).replace(/\n/g, "<br>") + "</p>" : "") +
         evidenceHtml(q) + "</details>";
       return '<article class="qcard sq' + (linked ? " q-linked" : "") + '" data-qid="' + esc(q.id) + '" data-idx="' + idx + '"' +
         (linked ? ' title="클릭하면 핵심본 위치로 이동합니다"' : "") + ">" +
