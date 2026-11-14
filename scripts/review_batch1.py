@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 QUESTIONS = ROOT / "content" / "questions.json"
 CORE = ROOT / "content" / "core.html"
 REFS = ROOT / "content" / "references.json"
-CONTENT_VERSION = "2026-11-14.3"
+CONTENT_VERSION = "2026-11-14.4"
 
 MYTHS = "aspen-pn-myths-practice-tool-2024"
 CARBS = "espen-ped-pn-2018-05-carbohydrates"

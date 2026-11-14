@@ -30,7 +30,7 @@ OUT = ROOT / "content" / "questions.json"
 DEFAULT_NOTES = ROOT.parent.parent.parent / "참고문헌_정리" / "06_학습_노트"
 
 EXTRACTED_AT = "2026-11-14"
-CONTENT_VERSION = "2026-11-14.3"
+CONTENT_VERSION = "2026-11-14.4"
 
 KSHP_REF = "kshp-yeongyang-yakryo-lecture-answers"
 MYTHS_REF = "aspen-pn-myths-practice-tool-2024"
@@ -666,15 +666,17 @@ def main():
             "reviewNote": spec["reviewNote"],
         })
 
-    # Batch promotions live in scripts/review_batch1.py so a later export keeps them.
-    # Do not run this exporter to refresh questions.json until the post-export
-    # explanation edits already in questions.json are folded back into the raw path.
-    _batch_path = Path(__file__).with_name("review_batch1.py")
-    if _batch_path.exists():
-        _spec = importlib.util.spec_from_file_location("review_batch1", _batch_path)
-        _mod = importlib.util.module_from_spec(_spec)
-        _spec.loader.exec_module(_mod)
-        out = _mod.apply_to_records(out)
+    # Batch promotions live in scripts/review_batch1.py and review_batch2.py so a
+    # later export keeps them. Do not run this exporter to refresh questions.json
+    # until the post-export explanation edits already in questions.json are folded
+    # back into the raw path.
+    for _name in ("review_batch1.py", "review_batch2.py"):
+        _batch_path = Path(__file__).with_name(_name)
+        if _batch_path.exists():
+            _spec = importlib.util.spec_from_file_location(_name[:-3], _batch_path)
+            _mod = importlib.util.module_from_spec(_spec)
+            _spec.loader.exec_module(_mod)
+            out = _mod.apply_to_records(out)
 
     st = Counter(r["reviewStatus"] for r in out)
     meta = {
