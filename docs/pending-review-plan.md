@@ -1,6 +1,6 @@
 # Pending review plan
 
-확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 8 적용 후 verified 232 · pending 222 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
+확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 9 적용 후 verified 234 · pending 220 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
 
 verified의 뜻은 README와 같다. 보유한 자료로 stem·선지·정답 인덱스·해설을 되짚은 상태이며, 공식 임상 인증이 아니다.
 
@@ -67,7 +67,7 @@ stem·선지·정답 인덱스는 유지한다. 채우는 것은 referenceIds, e
 - `python3 scripts/build.py`, `python3 scripts/check_content.py`, `node --test tests/*.cjs`, `python3 -m unittest discover -s tests -p 'test_*.py'`가 통과한다.
 - `main`으로 PR을 열어 GitHub Pages에 반영한다.
 
-재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`부터 `scripts/review_batch8.py`까지 적용하므로 배치 1–8 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`부터 `python3 scripts/review_batch8.py`까지 순서대로이다.
+재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`부터 `scripts/review_batch9.py`까지 적용하므로 배치 1–9 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`부터 `python3 scripts/review_batch9.py`까지 순서대로이다.
 
 ## 7. 배치 1 — 승격 26건
 
@@ -589,3 +589,48 @@ pending 222. 영문 번역은 그다음이다.
 2. 필터를 허브에 가깝게, 단독 ILE 12시간·TNA 24시간·두 용기, 병원 없이 집에서 시작, 말초 10–14일, 급성 간 포도당+지질, Child-Pugh 복수·뇌병증, 2단계 구음장애. 핵심표에 출처를 붙였다. 보기가 그 문장으로 닫힐 때만.
 3. 6특징, 중증 패혈증의 아르기닌, 마그네슘·난치성 저칼륨·저칼슘·QTc, `quizlet-iib-023`의 전신 항균제는 그대로 둔다.
 4. 구조지질, 0.22 μm, 질소 '+4 g', Omegaven, 회장 '침범', 비타민 K 이원, CRRT 상한, 알루미늄 5 μg/kg/일, Curreri, 28–30 kcal/kg는 그대로 둔다. 비타민 직전·24시간, 셀레나이트, 50% 포도당, 계산 예제 네 가지와 숫자가 다를 때도 그대로 둔다.
+
+## 30. 배치 9 — 승격 2건
+
+배치 9에서 이 목록을 대조했다. 위잔류 500 mL 미만, 머리 30–45°, 클로르헥시딘 가글 하루 2회를 정답으로 둔 pending 문항은 없었다. 필터를 허브에 가깝게, 단독 ILE 12시간·TNA 24시간·두 용기, 병원 없이 집에서 시작, 말초 10–14일, 급성 간 포도당+지질, Child-Pugh 복수·뇌병증, 2단계 구음장애를 정답으로 둔 문항도 없었다.
+
+거의 준비된 한국어 pending을 다시 훑었다. 체크리스트를 통과한 것은 2건이다. 나머지 후보는 보유 문장이 보기를 하나로 닫지 않거나, 이미 적힌 충돌과 어긋난다. 승격 수확은 얇아졌다.
+
+핵심표에 보유 문장만 올렸다.
+
+- 1장에 위잔류 &lt;500 mL에서는 EN을 끊지 않는다, 머리 30–45°, 클로르헥시딘 가글 하루 2회. CCN 요약 2022. 피부 소독용 클로르헥시딘과는 다른 문장
+- 6.1 기계적 합병증에 상대정맥 폐색의 머리·목 부종. ESPEN 소아 합병증
+- 10장 포트 바늘은 적어도 주 1회. ESPEN HPN R31. 돌봄의 질 예로 CRBSI 발생률
+
+| ID | 보유 근거 | 핵심표 |
+|---|---|---|
+| `quizlet-iib-051` | ESPEN 소아 합병증. 상대정맥 폐색이면 머리·목 부종. 재택 PICC는 정맥 혈전 위험이 더 높을 수 있다. 핀치오프는 쇄골과 첫 갈비뼈 사이 | 3.1·6.1 |
+| `bcnsp-045` | ESPEN HPN R53. 돌봄의 질 예는 CRBSI 발생률. 중심정맥관 혈류감염은 CLABSI로 분류 | 10·6.1 |
+
+## 31. 배치 9에서 pending으로 남긴 것
+
+| ID | 이유 |
+|---|---|
+| `quizlet-iib-044` | CCN 클로르헥시딘은 가글 하루 2회. 정답은 삽입 시 최대 차단. 피부 소독은 보기에 없음 |
+| `cnsc-nutrition-support-116` | 위잔류 500 mL 문장과 다름. 정답은 목표 도달 시간·급식 중단 감소 |
+| `quizlet-iib-011` | ESPEN HPN R12는 내경정맥 또는 쇄골하. 정답은 쇄골하 하나 |
+| `quizlet-home-ns-003` | R55는 비타민·미량금속을 적어도 연 1회. 6개월이 그 문장으로 닫히지 않음 |
+| `quizlet-home-ns-009` | 터널형·포트·PICC(&lt;6개월)·끝 위치는 있다. 미드라인 금지 문장은 없음 |
+| `bcnsp-094` | 주 2–3회는 체중. 전해질 안정 후는 주 1–2회 |
+| `quizlet-iib-033` | 비혈전 폐색은 지질·인산칼슘·꼬임·끝 위치·핀치오프. 섬유소 덮개와 사용 중 이동은 이름이 없음 |
+| `quizlet-iib-046` | 기계적 원인 확인은 있다. 가이드와이어 교체가 초기 조치로 부적절하다는 문장은 없음 |
+
+구조지질, 0.22 μm, 질소 '+4 g', Omegaven, 회장 '침범', 비타민 K 이원, CRRT 상한, 알루미늄 5 μg/kg/일, Curreri, 28–30 kcal/kg, 6특징, 중증 패혈증의 아르기닌, 마그네슘·난치성 저칼륨·저칼슘·QTc, `quizlet-iib-023`, 비타민 직전·24시간, 셀레나이트, 50% 포도당, 계산 예제 네 가지와 다른 숫자, 파킨슨양 망간, 주기 주입 시작 증속, 주 2–3회 전해질은 그대로다.
+
+## 32. 남은 일 · 다음 배치
+
+pending 220. 영문 번역은 그다음이다.
+
+승격 수확이 얇다. 배치 9에서 체크리스트를 통과한 것은 2건이다. 같은 방식으로 15–30건을 더 찾기는 어렵다. 다음 작업은 승격 배치를 잠시 멈추거나, 보유 PDF를 쪽 단위로 다시 읽는 쪽으로 바꾸는 편이 낫다. 대상은 길라잡이 OCR에서 uncertain으로 남은 쪽, 그리고 `_gl_extract`에 아직 없는 have-pdf 지침이다. paywalled인 ASPEN 2014 안전 합의는 쓰지 않는다.
+
+이미 핵심표에 있고, 보기가 그 문장 하나로 닫힐 때만 올릴 것:
+
+1. 위잔류 500 mL 미만, 머리 30–45°, 클로르헥시딘 가글 하루 2회.
+2. 주입 펌프, 생리식염수 잠금, 포트 바늘 주 1회, 비타민·미량원소는 주입 직전. ESPEN HPN에 있다. 지금 pending 정답은 그 문장이 아니다.
+3. 6특징, 중증 패혈증의 아르기닌, 마그네슘·난치성 저칼륨·저칼슘·QTc, `quizlet-iib-023`은 그대로 둔다.
+4. 구조지질, 0.22 μm, 질소 '+4 g', Omegaven, 회장 '침범', 비타민 K 이원, CRRT 상한, 알루미늄 5 μg/kg/일, Curreri, 28–30 kcal/kg는 그대로 둔다. 셀레나이트, 50% 포도당, 계산 예제 네 가지와 숫자가 다를 때도 그대로 둔다.
