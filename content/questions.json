@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "contentVersion": "2026-11-14.2",
+    "contentVersion": "2026-11-14.3",
     "extractedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
     "source": {
@@ -12,8 +12,8 @@
     },
     "rawCount": 583,
     "finalCount": 586,
-    "verifiedCount": 53,
-    "pendingCount": 401,
+    "verifiedCount": 79,
+    "pendingCount": 375,
     "excludedCount": 132,
     "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
     "displayLanguage": "ko-only",
@@ -291,9 +291,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
-      "referenceIds": [],
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "aspen-pn-myths-practice-tool-2024"
+      ],
       "stem": "성인에서 정맥 지질을 감량하거나 중단을 고려하는 중성지방(TG) 기준으로 가장 많이 쓰이는 값은?",
       "choices": [
         "TG >150 mg/dL",
@@ -305,26 +308,42 @@
       "explain": "TG ≥400 → 감량/중단. TG>200은 개시 신중 문맥.",
       "needle": "TG ≥400",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 150 mg/dL는 감량·중단 기준이 아니다.",
+        "오답. 200 mg/dL 초과는 저용량으로 신중히 시작하는 기준이다. 감량·중단 컷이 아니다.",
+        "정답. 성인에서 ILE를 피하거나 감량·중단하는 기준으로 외우는 값은 TG ≥400 mg/dL이다.",
+        "오답. 1,000 mg/dL 초과는 췌장염을 일으킬 수 있는 더 높은 값이다. 감량·중단을 고려하는 컷은 400이다."
       ],
       "coreSectionIds": [
         "sec-lipid-2-2-지방-ILE"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "OpenExamPrep BCNSP/CNSC 빈출 주제의 재게시·축약본(원 문항과 중복 가능). 자체 창작 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md TG 컷 감량·중단 [EXAM p181]",
+          "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.1 hypertriglyceridemia 항목",
+          "quote": "Cautious initiation of PN may be warranted in adult patients with hypertriglyceridemia (serum triglycerides >200 mg/dL)."
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "TG 컷 췌장염 유발 [TXT p182·p210]",
+          "quote": "대개 TG >1,000"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "TG 기준(개시 >200 주의 vs ≥400 감량·중단 vs 소아)은 Task 1 §7 후보. 보유 원문 수치 근거 미연결."
+      "reviewNote": "TG 기준(개시 >200 주의 vs ≥400 감량·중단 vs 소아)은 Task 1 §7 후보. 보유 원문 수치 근거 미연결. 배치1 verified. 정답 인덱스 유지. ≥400은 교재 p181, >200 개시는 ASPEN Myths 2024."
     },
     {
       "id": "oe-refeed",
@@ -521,7 +540,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER: '가장 흔한 합병증=고혈당'은 교재 정리의 문제은행 빈도 표기만 있고 쪽·지침 문장으로 확인하지 못했다. pending을 유지한다."
     },
     {
       "id": "quizlet-pn-004",
@@ -536,9 +555,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "kshp-yeongyang-yakryo-lecture-answers"
+      ],
       "stem": "대부분의 성인 중환자에서 혈당 목표 범위는?",
       "choices": [
         "80–110 mg/dL",
@@ -547,29 +569,46 @@
         "180–220 mg/dL"
       ],
       "answer": 2,
-      "explain": "미국임상내분비학회(AACE)와 미국당뇨병학회(ADA)는 대부분의 성인 중환자에서 혈당을 140–180 mg/dL로 유지하도록 권고한다. 일부 환자에서는 110–140 mg/dL의 더 낮은 목표가 맞을 수 있으나 안전하게 도달할 수 있을 때만 해당한다. 110 mg/dL 미만 목표는 저혈당(hypoglycemia) 위험 때문에 권장하지 않는다.",
+      "explain": "성인 입원 PN과 중환자에서 목표 혈당으로 외우는 범위는 140–180 mg/dL이다. 110 mg/dL 미만을 목표로 한 집중 조절은 저혈당 위험 때문에 권하지 않는다.",
       "needle": "140~180",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 80–110 mg/dL는 110 mg/dL 미만 집중 조절에 걸쳐 있어 표준 목표가 아니다.",
+        "오답. 220–240 mg/dL는 180 mg/dL를 넘는 고혈당 쪽이다.",
+        "정답. 성인 입원 PN·중환자 목표 혈당은 140–180 mg/dL이다.",
+        "오답. 180–220 mg/dL는 상한이 180을 넘는다."
       ],
       "coreSectionIds": [
+        "sec-disease-8-2-당뇨-비만",
         "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 혈당 PN 성인 [EXAM p034] [TXT p179]",
+          "quote": "PN 성인 140~180 mg/dL"
+        },
+        {
+          "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
+          "locator": "1. 탄수화물.pdf p.42–43, 문제 1",
+          "quote": "ASPEN guideline에서 추천하는 정맥영양을 받는 성인 입원환자에서의 적절한 혈당 조절 범위는 140–180 mg/dL이다. 110 mg/dL 미만을 목표로 한 집중 혈당조절은 저혈당 위험 때문에 권고되지 않는다."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 해설의 AACE/ADA 귀속은 원문이 없어 교재·영양약료 강의 문장으로 좁혔다.",
+      "relatedIds": [
+        "cnsc-nutrition-support-085",
+        "kshp-01",
+        "quizlet-cnsc-practice-002"
+      ]
     },
     {
       "id": "quizlet-pn-005",
@@ -900,9 +939,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
-      "referenceIds": [],
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "환자의 정맥영양(PN) 처방은 2400 mL에 포도당 300 g, 단백질 90 g이고, 여기에 20% 지질유제(ILE) 225 mL를 더한다. 환자가 받는 총열량과 지방량은?",
       "choices": [
         "1830 kcal, 지방 40 g",
@@ -914,28 +955,45 @@
       "explain": "포도당 1 g은 3.4 kcal이므로 300 g은 1,020 kcal다. 단백질 1 g은 4 kcal이므로 90 g은 360 kcal다. 20% 지질유제(ILE) 1 mL는 2 kcal이고 100 mL당 지방 20 g을 담고 있다. 225 mL는 지방 45 g, 450 kcal다. 합하면 1,830 kcal, 지방 45 g이다.",
       "needle": "3.4 kcal/g",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 열량 1,830 kcal는 맞지만 지방은 40 g이 아니다. 20% 225 mL는 지방 45 g이다.",
+        "오답. 포도당을 4 kcal/g로 두면 총열량이 2,010 kcal 쪽으로 올라가고, 지방 40 g도 틀리다.",
+        "정답. 포도당 300×3.4=1,020, 단백 90×4=360, 20% 225 mL=450 kcal·지방 45 g. 합은 1,830 kcal, 지방 45 g.",
+        "오답. 지방 45 g은 맞지만 1,470 kcal는 단백 360 kcal가 빠진 값이다."
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-cho_gir-2-1-탄수화물-dextrose",
+        "sec-lipid-2-2-지방-ILE"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 형태·열량 [TXT p143]",
+          "quote": "일수화물(monohydrate) 3.4 kcal/g = IV 계산 기본"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "단백질 행",
+          "quote": "결정 AA 형태 · 4 kcal/g"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "지질 열량 행 [EXAM p144]",
+          "quote": "10% 1.1 kcal/mL · 20% 2.0 kcal/mL · 3-in-1 계산 시 지방 10 kcal/g"
+        }
+      ],
       "errataIds": [
         "E3-dextrose-factor"
       ],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "3.4 kcal/g 사용, E3와 일치. 선택지 해설 미작성."
+      "reviewNote": "3.4 kcal/g 사용, E3와 일치. 선택지 해설 미작성. 배치1 verified. 정답 인덱스 유지. 계수 3.4·4·20% 2 kcal/mL는 교재 정리. 산술만 검산."
     },
     {
       "id": "quizlet-pn-013",
@@ -950,9 +1008,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
-      "referenceIds": [],
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "체중 75 kg 환자가 단백질 117 g, 포도당 273 g이 든 2-in-1 정맥영양(PN)을 65 mL/h로 받고, 20% 지질유제(ILE) 250 mL를 따로 받는다. 이 처방의 체중 kg당 1일 열량은?",
       "choices": [
         "27.5 kcal/kg/day",
@@ -964,28 +1024,45 @@
       "explain": "포도당 1 g은 3.4 kcal, 단백질 1 g은 4 kcal, 20% 지질유제(ILE) 1 mL는 2 kcal다. 1일 총열량은 단백질 468 kcal + 포도당 928 kcal + ILE 500 kcal = 1,896 kcal다. 이를 체중 75 kg으로 나누면 25.3 kcal/kg/day다.",
       "needle": "3.4 kcal/g",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 27.5 kcal/kg/day는 포도당을 3.4이 아닌 4 kcal/g로 둔 쪽에 가깝다.",
+        "오답. 21.9 kcal/kg/day는 1,896 kcal를 75 kg으로 나눈 값이 아니다.",
+        "오답. 26.5 kcal/kg/day도 같은 계수로 나누면 나오지 않는다.",
+        "정답. 단백 117×4=468, 포도당 273×3.4=928, 20% 250 mL=500. 합 1,896 kcal ÷ 75 kg = 25.3 kcal/kg/day. 65 mL/h는 이 일일 계산에 쓰지 않는다."
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-cho_gir-2-1-탄수화물-dextrose",
+        "sec-lipid-2-2-지방-ILE"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 형태·열량 [TXT p143]",
+          "quote": "일수화물(monohydrate) 3.4 kcal/g = IV 계산 기본"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "단백질 행",
+          "quote": "결정 AA 형태 · 4 kcal/g"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "지질 열량 행 [EXAM p144]",
+          "quote": "20% 2.0 kcal/mL"
+        }
+      ],
       "errataIds": [
         "E3-dextrose-factor"
       ],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "3.4 kcal/g 사용, E3와 일치. 선택지 해설 미작성."
+      "reviewNote": "3.4 kcal/g 사용, E3와 일치. 선택지 해설 미작성. 배치1 verified. 정답 인덱스 유지. 273×3.4는 928.2이며 합을 75로 나누면 25.3으로 반올림된다."
     },
     {
       "id": "quizlet-pn-014",
@@ -1001,9 +1078,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "ccn-summary-nestle-2022"
+      ],
       "stem": "SCCM과 ASPEN은 비만 중환자의 열량·단백질 공급 지침을 함께 냈다. 체질량지수(BMI) > 33.4 kg/m2인 환자에서 정맥영양(PN)·경장영양(EN) 단백질 공급 권고를 가장 잘 반영한 것은?",
       "choices": [
         "이상체중(IBW) 기준 2.0 g/kg/day 미만",
@@ -1015,26 +1094,37 @@
       "explain": "체질량지수(BMI) > 30 kg/m2인 모든 비만 등급에서 정맥영양(PN)·경장영양(EN) 목표는 간접열량측정으로 잰 목표 에너지의 65–70%를 넘지 않게 잡는다. 간접열량측정을 쓸 수 없으면 BMI 30–50 kg/m2는 실제체중 기준 11–14 kcal/kg/day, BMI > 50 kg/m2는 이상체중 기준 22–25 kcal/kg/day의 체중 공식을 권장한다. 단백질은 BMI 30–40 kg/m2에서 이상체중 기준 2.0 g/kg/day 이상, BMI ≥ 40 kg/m2에서 이상체중 기준 최대 2.5 g/kg/day까지 준다.",
       "needle": "비만 IBW",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 이상체중 기준 2.0 g/kg/day 미만은 BMI 30–40 권고보다 낮다.",
+        "정답. 비만 중환자 단백은 실제체중이 아니라 이상체중 기준이다. BMI 30–40은 2.0 g/kg/day 이상, BMI ≥40은 최대 2.5 g/kg/day까지이며 둘 다 이상체중 기준 2.0 이상에 해당한다.",
+        "오답. 실제체중 기준 2.0 미만은 체중 기준부터 다르다.",
+        "오답. 2.0 이상이어도 실제체중 기준이면 이 권고와 맞지 않는다."
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-disease-8-2-당뇨-비만"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "OBESITY",
+          "quote": "Protein is suggested at ≥ 2.0 gm/kg IBW**/day for BMI 30–40, and up to 2.5 gm/kg IBW**/day for BMI ≥ 40."
+        },
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "각주",
+          "quote": "**IBW is Ideal Body Weight"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.",
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. stem의 BMI >33.4는 보기 중 IBW ≥2.0만 CCN 비만 단백과 맞다.",
       "htmlTopic": "cho_gir"
     },
     {
@@ -1627,9 +1717,13 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "aspen-pn-myths-practice-tool-2024",
+        "aspen-pn-checklist-03-compounding-2024"
+      ],
       "stem": "정맥영양(PN)에서 인산칼슘 침전 위험을 줄이는 것은?",
       "choices": [
         "아미노산(amino acids) 농도 증가",
@@ -1641,26 +1735,52 @@
       "explain": "아미노산(amino acids) 농도가 높으면 칼슘과 가용성 복합체를 만들어, 불용성 2염기 인산칼슘 침전을 만들 유리 칼슘 이온이 줄어든다. 아미노산 농도가 높으면 PN의 pH도 낮아져 인산칼슘 용해도가 좋아진다. 염화칼슘은 글루콘산칼슘보다 쉽게 해리되어 인산과 결합할 유리 칼슘 이온을 늘린다. 온도가 오르면 칼슘염 해리가 늘어나고, 냉장 보관하면 침전 위험이 준다. 조제할 때는 인산을 먼저 넣고 칼슘은 조제 끝 무렵에 넣어 정맥영양(PN) 부피를 최대한 활용해 희석한다. 칼슘염과 인산염을 연달아 넣으면 충분히 섞이기 전에 국소 고농도가 생긴다.",
       "needle": "Ca–P 침전",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 아미노산 농도를 높이면 인산칼슘이 덜 침전된다.",
+        "오답. 염화칼슘은 글루콘산칼슘보다 잘 해리되어 침전에 쓸 유리 칼슘이 늘어난다.",
+        "오답. 온도가 오르면 용해도가 떨어진다. 온도를 낮추는 쪽이 침전을 줄인다.",
+        "오답. 인산염을 먼저 넣고 칼슘은 마지막에 넣는다. 인산염 직후 칼슘을 바로 넣지 않는다."
       ],
       "coreSectionIds": [
         "sec-stability-5-2-Ca-P-침전"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md Ca-P 용해도↑ [EXAM p153] [TXT p153]",
+          "quote": "AA 농도↑ · cysteine 포함(산성화) · Ca gluconate(CaCl₂보다 해리↓) · pH↓ · 온도↓"
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.4 calcium salts 항목",
+          "quote": "Calcium gluconate and calcium chloride are not interchangeable."
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.4 같은 항목",
+          "quote": "rendering less free calcium ions to form calcium phosphate precipitates."
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "Ca-P 위험 행 [TXT p201]",
+          "quote": "P 먼저 / Ca 마지막"
+        },
+        {
+          "referenceId": "aspen-pn-checklist-03-compounding-2024",
+          "locator": "Manual compounding sequence, calcium row",
+          "quote": "Calcium gluconate. The preferred source of calcium when using inorganic phosphate salts."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 교재 p153·p201, ASPEN Myths p.4, Compounding checklist 순서."
     },
     {
       "id": "quizlet-pn-028",
@@ -1815,9 +1935,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "성인에서 지질유제(ILE) 투여 부작용을 가장 잘 예방하는 방법은?",
       "choices": [
         "L-카르니틴 보충",
@@ -1826,29 +1948,45 @@
         "혈청 중성지방 >400 mg/dL 피하기"
       ],
       "answer": 3,
-      "explain": "여러 연구자는 심각한 대사 영향을 피하려면 지질유제(ILE) 주입 속도가 성인 0.11 g/kg/h, 소아 0.15 g/kg/h, 신생아 0.17 g/kg/h를 넘지 않아야 한다고 보았다. 10% ILE는 20%보다 인지질이 많아 혈장 지질 이상과 관련이 있다. 20% ILE가 중성지방 청소와 대사에 더 효율적이다. ILE 용량은 혈청 중성지방이 성인 >400 mg/dL, 소아 >200 mg/dL가 되지 않도록 조절한다. L-카르니틴 결핍은 혈액투석 중인 말기 신질환 환자 등 특정 집단에서 흔할 수 있고 보충으로 치료한다. 결핍이 지질 이상을 악화시킨다고 보지만, 보충이 고중성지방혈증(hypertriglyceridemia)을 교정한다는 근거는 없다.",
+      "explain": "성인에서 지질유제는 혈청 중성지방이 400 mg/dL 이상이 되지 않도록 감량하거나 중단한다. 성인 주입 속도 상한은 0.11 g/kg/h이다. 20% 제형은 10%보다 인지질 대 중성지방 비가 낮아 청소에 유리하다.",
       "needle": "TG ≥400",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. L-카르니틴 보충은 성인 ILE 부작용을 막는 보유 기준이 아니다.",
+        "오답. 0.05 g/kg/h가 상한이 아니다. 성인 속도 상한은 0.11 g/kg/h이다.",
+        "오답. 10%보다 20%가 인지질 대 중성지방 비가 낮아 선호된다.",
+        "정답. 혈청 중성지방이 400 mg/dL를 넘지 않도록 용량을 맞추는 것이 보유 기준의 예방이다."
       ],
       "coreSectionIds": [
         "sec-lipid-2-2-지방-ILE"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md TG 컷 [EXAM p181]",
+          "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "주입속도 행 [EXAM p144]",
+          "quote": "성인 ≤0.11 g/kg/h"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "20% 선호 행 [EXAM p044]",
+          "quote": "인지질:TG 비 낮음(유리인지질↓)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 해설의 소아 속도·TG 수치는 보유 인용과 달라 성인 기준만 남겼다."
     },
     {
       "id": "quizlet-pn-032",
@@ -2516,9 +2654,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "ICU 환자가 지질유제(ILE)와 프로포폴(propofol)을 동시에 주입받고 있다. 이 병용으로 생길 수 있는 것은?",
       "choices": [
         "고혈당(hyperglycemia)",
@@ -2530,26 +2670,32 @@
       "explain": "프로포폴(propofol)은 중환자실에서 진정에 쓰는 마취제다. 이 약의 운반체는 10% 정맥 지질유제(ILE)다. 정맥영양(PN)의 ILE와 프로포폴을 함께 주면서 용량을 조정하지 않으면 지질유제가 권장량을 넘고 고중성지방혈증(hypertriglyceridemia)이 생길 수 있다.",
       "needle": "propofol",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 프로포폴 운반체와 겹치는 문제는 혈당이 아니라 지질 열량과 중성지방이다.",
+        "정답. 프로포폴은 10% 지방유제에 들어 있다. PN 지질과 열량·중성지방을 합산하지 않으면 고중성지방혈증이 될 수 있다.",
+        "오답. 고질소혈증은 이 병용의 보유 결과가 아니다.",
+        "오답. 고나트륨혈증은 이 병용의 보유 결과가 아니다."
       ],
       "coreSectionIds": [
         "sec-lipid-2-2-지방-ILE"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md Propofol 행 [TXT p182]",
+          "quote": "10% 지방유제 vehicle(1.1 kcal/mL) ⟶ kcal·TG 합산, PN 지질 감량/중단 고려"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 교재 p182 propofol은 10% 지방유제, kcal·TG 합산."
     },
     {
       "id": "quizlet-pn-047",
@@ -2562,9 +2708,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "aspen-pn-myths-practice-tool-2024"
+      ],
       "stem": "성인 정맥영양(PN) 환자에서 혈청 중성지방이 얼마를 넘으면 정맥 지질유제(ILE) 사용을 제한해야 하는가?",
       "choices": [
         "400 mg/dL",
@@ -2576,26 +2725,37 @@
       "explain": "혈청 중성지방은 체내 지질 청소 능력을 합리적으로 추정하는 지표다. 성인의 고중성지방혈증(hypertriglyceridemia)은 폐기능 저하, 면역 억제, 췌장염(pancreatitis) 위험 증가와 관련이 있다. 혈청 중성지방이 400 mg/dL를 넘으면 지질유제(ILE) 주입량을 지방산 결핍을 막을 수준까지 줄인다.",
       "needle": "TG ≥400",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 성인 PN에서 ILE를 제한하는 혈청 중성지방 컷은 400 mg/dL이다.",
+        "오답. 300 mg/dL는 그 컷이 아니다.",
+        "오답. 200 mg/dL 초과는 시작을 낮춰 신중히 하는 기준이지, 사용을 제한하는 컷은 아니다.",
+        "오답. 100 mg/dL는 제한 기준이 아니다."
       ],
       "coreSectionIds": [
         "sec-lipid-2-2-지방-ILE"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md TG 컷 [EXAM p181]",
+          "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.1 hypertriglyceridemia 항목",
+          "quote": "serum triglycerides >200 mg/dL"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 교재 p181 ≥400."
     },
     {
       "id": "quizlet-pn-048",
@@ -2889,7 +3049,10 @@
       },
       "reviewNote": "",
       "relatedIds": [
-        "kshp-48"
+        "cnsc-nutrition-support-085",
+        "kshp-48",
+        "quizlet-cnsc-practice-002",
+        "quizlet-pn-004"
       ]
     },
     {
@@ -3688,7 +3851,7 @@
         "choiceExplanations": "complete",
         "coreLink": "hint"
       },
-      "reviewNote": "원 해설집 문구 '강의자료 기준' 복원(HTML 표시본에서 누락). 강의자료 정답(84 g)과 ESPEN 2024(91–105 g) 불일치. 최신 지침만 쓰면 보기 중 정답 없음. ESPEN 원문 미보유."
+      "reviewNote": "원 해설집 문구 '강의자료 기준' 복원(HTML 표시본에서 누락). 강의자료 정답(84 g)과 ESPEN 2024(91–105 g) 불일치. 최신 지침만 쓰면 보기 중 정답 없음. ESPEN 원문 미보유. 배치1 재확인: 강의 정답 84 g은 유지한다. ESPEN 2024 원문이 없어 verified로 올리지 않는다."
     },
     {
       "id": "kshp-16",
@@ -4431,7 +4594,7 @@
         "choiceExplanations": "complete",
         "coreLink": "hint"
       },
-      "reviewNote": "정답(0.22/1.2 이원)이 보유 현행 ASPEN Myths 2024·Administration checklist의 단일 1.2 μm 권고와 충돌. 구 권고 기준임을 stem에 명시할지 결정 필요.",
+      "reviewNote": "정답(0.22/1.2 이원)이 보유 현행 ASPEN Myths 2024·Administration checklist의 단일 1.2 μm 권고와 충돌. 구 권고 기준임을 stem에 명시할지 결정 필요. 배치1 재확인: 정답 0.22/1.2는 현행 단일 1.2 μm와 충돌한다. 인덱스를 바꾸지 않고 pending을 유지한다.",
       "htmlTopic": "calc_filter"
     },
     {
@@ -4768,7 +4931,7 @@
         "choiceExplanations": "complete",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "정답 선지가 AMA 1979 용량으로 현행 ASPEN TE 권고와 다름. 현행 기준이면 '옳은 것'이 없음."
+      "reviewNote": "정답 선지가 AMA 1979 용량으로 현행 ASPEN TE 권고와 다름. 현행 기준이면 '옳은 것'이 없음. 배치1 재확인: 정답 용량은 AMA 1979 값이라 현행 ASPEN TE와 다르다. 인덱스를 바꾸지 않고 pending을 유지한다."
     },
     {
       "id": "kshp-35",
@@ -5054,7 +5217,7 @@
         "choiceExplanations": "complete",
         "coreLink": "hint"
       },
-      "reviewNote": "①'NUTRIC ≥5 high'는 원 NUTRIC(IL-6 포함) 기준 ≥6이라 함께 틀릴 수 있음(해설도 인정). 단일 정답 불확정."
+      "reviewNote": "①'NUTRIC ≥5 high'는 원 NUTRIC(IL-6 포함) 기준 ≥6이라 함께 틀릴 수 있음(해설도 인정). 단일 정답 불확정. 배치1 재확인: NUTRIC ≥5와 ≥6이 한 문항에 섞여 단일 정답이 불확정이다. pending을 유지한다."
     },
     {
       "id": "kshp-40",
@@ -5450,7 +5613,7 @@
         "choiceExplanations": "complete",
         "coreLink": "hint"
       },
-      "reviewNote": "해설 자체가 ⑤ Vitamin K도 독성이 낮아 '유일 정답 단정 어려움'으로 기록. 단일 정답 불확정."
+      "reviewNote": "해설 자체가 ⑤ Vitamin K도 독성이 낮아 '유일 정답 단정 어려움'으로 기록. 단일 정답 불확정. 배치1 재확인: 해설이 비타민 K도 답이 될 수 있다고 적는다. 인덱스를 바꾸지 않고 pending을 유지한다."
     },
     {
       "id": "kshp-47",
@@ -5567,7 +5730,7 @@
         "choiceExplanations": "complete",
         "coreLink": "hint"
       },
-      "reviewNote": "kshp-01과 같은 개념(ASPEN 성인 입원 PN 목표 혈당 140–180). 대표 문항은 kshp-01이며 본 문항은 추가 연습.",
+      "reviewNote": "kshp-01과 같은 개념(ASPEN 성인 입원 PN 목표 혈당 140–180). 대표 문항은 kshp-01이며 본 문항은 추가 연습. 배치1 재확인: kshp-01과 같은 140–180 문항이다. 기본 세트에 넣지 않고 추가 연습으로 pending을 유지한다.",
       "relatedIds": [
         "kshp-01"
       ]
@@ -5814,9 +5977,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "재급식 증후군(refeeding syndrome) 위험 환자에게 보충해야 하는 것은?",
       "choices": [
         "비타민 A",
@@ -5825,30 +5990,40 @@
         "아스코르브산"
       ],
       "answer": 2,
-      "explain": "티아민(thiamine)은 수용성 비타민이라 영양불량, 체중 감소, 만성 알코올중독으로 체내 저장량이 쉽게 고갈된다. 포도당을 주입하면 탄수화물 대사의 필수 조효소인 티아민 수요가 더 늘어난다. 영양불량, 체중 감소, 만성 알코올중독 환자는 티아민 요구량이 늘어 있으므로, 결핍 위험이 있으면 5–7일간 50–100 mg/day IV 또는 최소 100 mg/day PO를 추가로 준다. 종합비타민과 엽산 1 mg/day 추가 보충도 필요할 수 있다.",
+      "explain": "재급식 위험이 있으면 티아민을 보충한다. 장기 기아·알코올 환자에서 PN 초기 5–7일간 thiamine 50–100 mg/day와 folate 1 mg/day를 준다. 포도당을 주면 티아민 요구가 늘어난다.",
       "needle": "티아민",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 비타민 A는 재급식 때 우선 보충하는 비타민이 아니다.",
+        "오답. 비타민 K도 그 보충 대상이 아니다.",
+        "정답. 재급식 위험 환자에게 보충하는 것은 티아민이다. 교재는 초기 5–7일 50–100 mg/day이다.",
+        "오답. 아스코르브산이 아니라 티아민이다. 같이 적힌 보조는 folate 1 mg/day이다."
       ],
       "coreSectionIds": [
-        "sec-complications-6-2-재급식-증후군-Refeeding",
-        "sec-complications-6-1-3열-요약"
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md Vit B1 [TXT p184]",
+          "quote": "장기기아/알코올: PN 초기 5–7일 thiamine 50–100 mg/d + folate 1 mg/d"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "재급식 정의 [TXT p185]",
+          "quote": "수분·전해질·비타민·미네랄(P·Mg·K·thiamine) 대사변화"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 용량 문장을 교재 p184(50–100 mg/d, folate 1 mg)에 맞췄다."
     },
     {
       "id": "quizlet-iib-011",
@@ -6519,9 +6694,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
-      "referenceIds": [],
+      "referenceIds": [
+        "aspen-pn-myths-practice-tool-2024",
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "체중 70 kg 성인 TPN(포도당 250 g, 아미노산 100 g, 지질 50 g/2 L) 중 혈당 350 mg/dL가 확인됐다. 가장 적절한 조치는?",
       "choices": [
         "포도당 부하를 더 올린다",
@@ -6533,26 +6711,51 @@
       "explain": "이 처방의 GIR은 약 2.5 mg/kg/min 수준이라 포도당 과다만으로 단정하기 어렵다. 감염·스테로이드·인슐린 부족 등 원인을 보고, 증량을 보류하며 혈당 조절을 맞춘다.",
       "needle": "고혈당",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 혈당이 180 mg/dL를 넘으면 포도당을 더 올리지 않는다. 시작 용량을 낮추는 쪽이다.",
+        "정답. 이 처방의 GIR은 250,000 mg ÷ (70×1,440) ≈ 2.5 mg/kg/min이라 포도당 과다만으로 단정하지 않는다. 원인을 보고 증량을 보류하며 혈당을 감시하고 인슐린으로 조절한다.",
+        "오답. 혈당 350 mg/dL만으로 평가 없이 PN 전체를 즉시 끊는 권고는 아니다. 고혈당은 PN 절대 금기가 아니다.",
+        "오답. 영양팀과 상의하지 않고 당장 경장영양만으로 바꾸는 대응은 보유 권고가 아니다."
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-cho_gir-2-1-탄수화물-dextrose",
+        "sec-disease-8-2-당뇨-비만"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "OpenExamPrep BCNSP/CNSC 빈출 주제의 재게시·축약본(원 문항과 중복 가능). 자체 창작 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.1 hyperglycemia 항목",
+          "quote": "Cautious initiation of PN may be warranted in adult patients with hyperglycemia (glucose >180 mg/dL)."
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.1 같은 항목",
+          "quote": "Advance PN more conservatively with vigilant laboratory monitoring and prompt intervention, if indicated."
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.1 같은 항목",
+          "quote": "Use insulin per institutional protocols to control glucose levels."
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "GIR 공식 [TXT p144]",
+          "quote": "mg dextrose ÷ (kg × 1440)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "선택지 해설 미작성."
+      "reviewNote": "선택지 해설 미작성. 배치1 verified. 정답 인덱스 유지. 혈당 >180의 보수적 증량·감시·인슐린은 ASPEN Myths 2024 p.1.",
+      "relatedIds": [
+        "oep-bcscp-q-064"
+      ]
     },
     {
       "id": "rx-pn-indication-enteral",
@@ -6898,9 +7101,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-pn-myths-practice-tool-2024",
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "약사가 70 kg 성인의 완전정맥영양(TPN) 처방을 검토한다. 2 L에 덱스트로스 250 g, 아미노산 100 g, 지질 50 g이 들어 있다. 환자에게 고혈당(350 mg/dL)이 생겼다. 가장 적절한 중재는?",
       "choices": [
         "덱스트로스 부하를 늘린다",
@@ -6912,24 +7118,46 @@
       "explain": "현재 덱스트로스 주입 속도는 250,000 mg ÷ 70 kg ÷ 1,440분으로 약 2.48 mg/kg/min이다. 이 속도에서 고혈당이 생겼다고 해서 덱스트로스 용량만이 과하다고 단정할 수는 없다. 팀은 덱스트로스 증량을 피하고 질병 상태, 약물, 기저 당뇨 조절 정도를 평가한다. 혈당을 모니터링하면서 임상적으로 필요하면 프로토콜에 따른 인슐린 투여나 조성 변경을 한다.",
       "needle": "고혈당",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 혈당 350 mg/dL에서 덱스트로스 부하를 늘리지 않는다.",
+        "정답. 250 g ÷ (70 kg × 1,440 min) ≈ 2.48 mg/kg/min이다. 증량을 보류하고 원인 평가, 감시, 혈당 조절을 같이 한다.",
+        "오답. 평가 없이 PN을 전부 중단하는 것은 고혈당 환자의 보유 대응이 아니다.",
+        "오답. 상의 없이 즉시 경장영양으로 바꾸라는 권고는 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-cho_gir-2-1-탄수화물-dextrose",
+        "sec-disease-8-2-당뇨-비만"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "OpenExamPrep BCSCP 문항(번역).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.1 hyperglycemia 항목",
+          "quote": "Cautious initiation of PN may be warranted in adult patients with hyperglycemia (glucose >180 mg/dL)."
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.1 같은 항목",
+          "quote": "Initiate PN with lower dextrose dose adjusted for hyperglycemia."
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "GIR 공식 [TXT p144]",
+          "quote": "mg dextrose ÷ (kg × 1440)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. oe-hypergly-assess와 같은 사실.",
+      "relatedIds": [
+        "oe-hypergly-assess"
+      ]
     },
     {
       "id": "oep-bcscp-q-093",
@@ -7571,9 +7799,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "kshp-yeongyang-yakryo-lecture-answers"
+      ],
       "stem": "중환자의 입원 중 혈당 목표 범위는?",
       "choices": [
         "80-110 mg/dL",
@@ -7585,26 +7816,42 @@
       "explain": "110 mg/dL 미만 목표는 권장하지 않는다.",
       "needle": "180 mg/dL",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 80–110 mg/dL는 110 미만 집중 조절에 걸치고 표준 목표가 아니다.",
+        "정답. 중환자 입원 중 목표 혈당은 140–180 mg/dL이다.",
+        "오답. 181–210 mg/dL는 180을 넘는다.",
+        "오답. 211–240 mg/dL도 목표 범위가 아니다."
       ],
       "coreSectionIds": [
-        "sec-cho_gir-2-1-탄수화물-dextrose"
+        "sec-disease-8-2-당뇨-비만"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 혈당 PN 성인 [EXAM p034] [TXT p179]",
+          "quote": "PN 성인 140~180 mg/dL"
+        },
+        {
+          "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
+          "locator": "1. 탄수화물.pdf p.42–43, 문제 1 선택지 해설",
+          "quote": "110 mg/dL 미만을 목표로 한 집중 혈당조절은 저혈당 위험 때문에 권고되지 않는다."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 기존 해설(110 미만 비권고)은 영양약료 강의 문제 1과 맞다.",
+      "relatedIds": [
+        "cnsc-nutrition-support-085",
+        "kshp-01",
+        "quizlet-pn-004"
+      ]
     },
     {
       "id": "quizlet-cnsc-practice-003",
@@ -10285,9 +10532,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "ccn-summary-nestle-2022",
+        "aspen-adult-critically-ill-factsheet-2024"
+      ],
       "stem": "2016 SCCM/ASPEN 중환자 가이드라인에 따르면, 대부분의 중증 성인에게 권장하는 단백 범위는?",
       "choices": [
         "0.6 to 0.8 g/kg/day",
@@ -10299,26 +10549,37 @@
       "explain": "2016 SCCM/ASPEN 가이드라인은 대부분 중환자에게 단백 1.2 to 2.0 g/kg/day를 권한다. 중증 질환의 이화·단백분해를 상쇄하기 위해서다. 화상, 다발 외상, 비만 보정 요법에서는 더 높일 수 있다.",
       "needle": "1.2",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 0.6–0.8 g/kg/day는 중환자 권고 범위보다 낮다.",
+        "정답. 2016 SCCM/ASPEN을 요약한 자료와 2024 팩트시트 모두 대부분 중환자 단백을 1.2–2.0 g/kg/day로 둔다.",
+        "오답. 0.8–1.0 g/kg/day도 그 범위보다 낮다.",
+        "오답. 2.5–3.0 g/kg/day는 대부분 중환자의 기본 범위가 아니다. 화상·다발외상은 더 높일 수 있으나 이 보기 자체가 기본 권고는 아니다."
       ],
       "coreSectionIds": [
-        "sec-calc_filter-4-1-에너지"
+        "sec-disease-8-질환별-PN"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "PROTEIN",
+          "quote": "Suggest sufficient (high-dose) protein should be provided in the range of 1.2-2.0g/kg ABW*/day in the patient with BMI less than 30 and may likely be even higher in burn or multi-trauma patients."
+        },
+        {
+          "referenceId": "aspen-adult-critically-ill-factsheet-2024",
+          "locator": "Guideline question 2",
+          "quote": "we cannot make a new recommendation at this time beyond the 2016 guideline suggestion for 1.2-2.0 g/kg/day."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.",
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. CCN 요약 2022 PROTEIN 항·ASPEN Factsheet 2024 question 2.",
       "relatedIds": [
         "bcnsp-003"
       ]
@@ -10334,9 +10595,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
-      "referenceIds": [],
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "espen-ped-pn-2018-05-carbohydrates"
+      ],
       "stem": "정맥용 포도당 일수화물 1 g이 공급하는 열량은?",
       "choices": [
         "3.4 kcal/g",
@@ -10348,28 +10612,44 @@
       "explain": "정맥용 포도당은 일수화물(dextrose monohydrate)로 3.4 kcal/g이다. 수화 수분 때문에 무수 경구 탄수화물의 4 kcal/g보다 약간 낮다. PN 제형의 탄수화물 열량 계산에 꼭 쓰는 값이다.",
       "needle": "3.4 kcal",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. IV 포도당은 일수화물로 3.4 kcal/g이다.",
+        "오답. 4.0 kcal/g는 무수 포도당·경구 탄수화물 계수이다.",
+        "오답. 7.0 kcal/g는 IV 포도당 계수가 아니다.",
+        "오답. 9.0 kcal/g는 순수 지방의 Atwater 계수에 가깝고 포도당 계수가 아니다."
       ],
       "coreSectionIds": [
         "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md 형태·열량 행 [TXT p143]",
+          "quote": "일수화물(monohydrate) 3.4 kcal/g = IV 계산 기본"
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-05-carbohydrates",
+          "locator": "Introduction",
+          "quote": "carbohydrate is provided as dextrose (D-Glucose), in its monohydrate form."
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "같은 행 [TXT p033]",
+          "quote": "무수화물 4"
+        }
+      ],
       "errataIds": [
         "E3-dextrose-factor"
       ],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "3.4 kcal/g 정답은 E3와 일치. 보유 ESPEN carbs는 '일수화물' 서술만 있고 3.4 수치는 2차 자료."
+      "reviewNote": "3.4 kcal/g 정답은 E3와 일치. 보유 ESPEN carbs는 '일수화물' 서술만 있고 3.4 수치는 2차 자료. 배치1 verified. 정답 인덱스 유지. E3와 같은 방향(3.4). 수치는 교재 p143, 일수화물 형태는 ESPEN carbs."
     },
     {
       "id": "cnsc-nutrition-support-024",
@@ -11452,9 +11732,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "정맥영양(PN) 중 혈청 중성지방이 450 mg/dL로 올랐다. 정맥 지질유제(IVLE)에 대한 가장 적절한 조치는?",
       "choices": [
         "IVLE를 현재 속도로 유지하고 48시간 후 중성지방을 재검한다",
@@ -11466,24 +11748,32 @@
       "explain": "PN 중 혈청 중성지방이 400 mg/dL를 넘으면 ASPEN은 IVLE 용량을 줄이거나 잠시 보류한 뒤 재검할 것을 권고한다. 고중성지방혈증은 췌장염 위험을 높인다. 중성지방을 400 mg/dL 미만으로 유지하면서 필수 지방산 결핍을 막기에 충분한 지방을 준다.",
       "needle": "TG ≥400",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 450 mg/dL는 400 이상이므로 같은 속도로 유지하지 않는다.",
+        "정답. TG ≥400 mg/dL이면 ILE를 감량하거나 보류하고 다시 측정한다.",
+        "오답. 중성지방이 올랐다고 정맥영양 전체를 바로 끊는 기준은 아니다.",
+        "오답. 30% 제형으로 바꾸는 것이 보유 기준의 대응이 아니다. 대응은 감량·보류 후 재검이다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-lipid-2-2-지방-ILE"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md TG 컷 [EXAM p181]",
+          "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 450 mg/dL는 교재 ≥400 감량·중단 구간에 들어간다."
     },
     {
       "id": "bcnsp-005",
@@ -12054,9 +12344,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-pn-myths-practice-tool-2024"
+      ],
       "stem": "말초정맥으로 주입하는 말초 PN에서 일반적으로 안전한 최대 삼투압 농도는?",
       "choices": [
         "약 900 mOsm/L",
@@ -12068,26 +12360,32 @@
       "explain": "ASPEN은 말초 PN의 삼투압 농도가 약 900 mOsm/L를 넘지 않도록 권고한다. 이보다 높으면 말초 정맥 손상과 혈전정맥염이 생긴다. 900 mOsm/L를 넘는 용액은 혈류가 빠른 중심정맥 경로로 투여해 고장성 용액을 희석해야 한다.",
       "needle": "900 mOsm/L",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. ASPEN Myths 2024: 말초 PN은 900 mOsm/L를 넘기지 않는다.",
+        "오답. 600 mOsm/L는 그 상한보다 낮다. 상한으로 외우는 값은 900이다.",
+        "오답. 1,500 mOsm/L는 말초 상한 900을 넘는다.",
+        "오답. 2,800 mOsm/L도 말초 상한 900을 넘는다."
       ],
       "coreSectionIds": [
         "sec-route-3-1-말초-vs-중심"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.3 'PN must always be infused through a central line' 항목",
+          "quote": "For peripheral PN, do not exceed 900 mOsm/L."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.",
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. ASPEN Myths 2024 p.3 말초 PN ≤900 mOsm/L.",
       "relatedIds": [
         "rx-ppn-900"
       ]
@@ -12103,9 +12401,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-05-carbohydrates",
+        "aspen-pn-myths-practice-tool-2024"
+      ],
       "stem": "최종 PN 용액의 삼투압 농도에 가장 크게 기여하는 성분은?",
       "choices": [
         "지방유제",
@@ -12117,26 +12418,38 @@
       "explain": "포도당(탄수화물)이 PN 삼투압에 가장 큰 영향을 준다. 그래서 말초 PN의 최종 포도당 농도는 보통 약 10% 이하로 제한한다. 아미노산과 전해질도 기여하지만, 지방유제는 거의 등삼투성이라 첨가하면 전체 삼투압을 오히려 낮춘다.",
       "needle": "10%",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 따로 주는 지질유제는 등장성에 가깝다. 최종 용액 삼투압의 대부분은 포도당이 만든다.",
+        "오답. 미량원소는 소량이라 최종 삼투압의 주성분이 아니다.",
+        "오답. 종합비타민도 소량이라 최종 삼투압의 주성분이 아니다.",
+        "정답. ESPEN 소아 탄수화물 지침: PN의 탄수화물은 일수화물 dextrose이고, 보통 PN 용액 삼투압에 가장 크게 기여한다."
       ],
       "coreSectionIds": [
+        "sec-cho_gir-2-1-탄수화물-dextrose",
         "sec-route-3-1-말초-vs-중심"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-05-carbohydrates",
+          "locator": "Introduction",
+          "quote": "In parenteral nutrition (PN) carbohydrate is provided as dextrose (D-Glucose), in its monohydrate form. Dextrose usually contributes most to the osmolality of the PN-solution."
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.3 ILE hang time 항목",
+          "quote": "This is due to the increased risk of microbial contamination due to the isotonic nature of ILE solutions."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. ESPEN pediatric carbohydrates 서론."
     },
     {
       "id": "cnsc-nutrition-support-043",
@@ -12183,7 +12496,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER: 중심 PN 1,500–2,800 mOsm/L를 적은 보유 원문 인용을 찾지 못했다. 정답 인덱스는 유지하고 pending으로 둔다."
     },
     {
       "id": "cnsc-nutrition-support-044",
@@ -12573,9 +12886,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-pn-myths-practice-tool-2024"
+      ],
       "stem": "지질 함유 완전영양혼합액(3-in-1) PN을 스파이크한 뒤 권장 최대 hang time은?",
       "choices": [
         "12 hours",
@@ -12584,27 +12899,41 @@
         "72 hours"
       ],
       "answer": 2,
-      "explain": "지질 함유 혼합액은 미생물 성장을 돕기 때문에 3-in-1 PN의 hang time은 24시간을 넘기지 않는다. 따로 주입하는 지질은 12시간 이하다. 지질이 없는 포도당/아미노산(2-in-1) 용액도 USP·ASPEN 안전 실무상 보통 최대 24시간이다.",
+      "explain": "지질이 3-in-1(TNA)에 들어 있으면 최대 24시간까지 주입할 수 있다. 2-in-1과 따로 주는 지질유제는 등장성이라 미생물 위험이 커서 12시간으로 제한한다.",
       "needle": "24시간",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 12시간은 2-in-1과 따로 주입하는 지질유제의 상한이다. 3-in-1이 아니다.",
+        "오답. 48시간은 TNA hang time 상한 24시간을 넘는다.",
+        "정답. 지질이 TNA(3-in-1) 안에 있으면 최대 24시간까지 주입할 수 있다.",
+        "오답. 72시간은 24시간 상한을 넘는다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-stability-5-4-필터-hang-time-세트-BUD",
+        "sec-lipid-2-2-지방-ILE"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.3 'ILE has a hang time of 24 hours when y-sited' 항목",
+          "quote": "If ILE are formulated in a Total Nutrient Admixture (TNA), the TNA can be infused for up to 24 hours."
+        },
+        {
+          "referenceId": "aspen-pn-myths-practice-tool-2024",
+          "locator": "p.3 같은 항목",
+          "quote": "If ILE are infused separately from a 2–in–1 PN admixture (whether in a repackaged container or in the original container), the maximum hang time should be limited to 12 hours."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 해설에서 근거 없는 2-in-1 24시간 문장만 뺐다."
     },
     {
       "id": "cnsc-nutrition-support-055",
@@ -12698,7 +13027,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "정답 0.22 μm는 구 권고. 현행(모든 PN 단일 1.2 μm)이면 1.2가 정답 — 답이 시대에 따라 바뀜.",
+      "reviewNote": "정답 0.22 μm는 구 권고. 현행(모든 PN 단일 1.2 μm)이면 1.2가 정답 — 답이 시대에 따라 바뀜. BLOCKER: 정답 0.22 μm는 구 권고이다. 현행 단일 1.2 μm와 충돌하므로 인덱스를 바꾸지 않고 pending을 유지한다.",
       "htmlTopic": "calc_filter"
     },
     {
@@ -12803,10 +13132,10 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
+      "reviewStatus": "verified",
       "priority": "high",
       "referenceIds": [
-        "allaccess-enteral-parenteral-pqs"
+        "imsangyoungyang-gilajabi"
       ],
       "stem": "체중 70 kg 환자가 PN으로 D15 용액 2 L를 받고 있다. 포도당 주입 속도(GIR)는?",
       "choices": [
@@ -12819,28 +13148,32 @@
       "explain": "D15 2 L는 포도당 300 g = 300,000 mg이다. GIR = 300,000 / (70 kg × 1440 min) ≈ 2.98 mg/kg/min.",
       "needle": "GIR",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 0.003은 mg 환산이나 1,440분 환산이 빠진 자릿수이다.",
+        "오답. 0.30은 2.98보다 10배 작다.",
+        "정답. D15 2 L는 포도당 300 g = 300,000 mg. 300,000 ÷ (70 × 1,440) = 2.98 mg/kg/min.",
+        "오답. 30은 2.98보다 10배 크다."
       ],
       "coreSectionIds": [
         "sec-cho_gir-2-1-탄수화물-dextrose"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "AllAccessDietetics 경장·정맥영양 연습문제.",
-      "evidence": [],
-      "errataIds": [
-        "E2-gir"
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md GIR 공식 [TXT p144]",
+          "quote": "GIR (mg/kg/min) = [Dex(%) × 속도(mL/h) × 0.167] ÷ 체중(kg) = mg dextrose ÷ (kg × 1440)"
+        }
       ],
+      "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "계산(2.98) 자체는 맞음. 선택지 해설 미작성."
+      "reviewNote": "계산(2.98) 자체는 맞음. 선택지 해설 미작성. 배치1 verified. 정답 인덱스 유지. E2(조건 없는 GIR 상한)와 무관한 계산 문항이라 errata 연결을 뗐다."
     },
     {
       "id": "allaccess-008",
@@ -13858,9 +14191,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "재급식증후군(refeeding syndrome)의 가장 흔한 대사 합병증은?",
       "choices": [
         "Hypernatremia",
@@ -13872,27 +14207,32 @@
       "explain": "Hypophosphatemia는 재급식증후군의 대표적인 대사 이상이다. 영양실조 환자에게 탄수화물 영양이 들어가면 인슐린 분비로 phosphate가 ATP와 2,3-DPG 합성을 위해 세포 내로 이동한다. 중증 hypophosphatemia가 오면 호흡부전, 심기능 장애, 횡문근융해, 사망까지 이어질 수 있어 조기 발견과 교정이 필수다.",
       "needle": "재급식",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 고나트륨혈증이 재급식의 대표 소견이 아니다.",
+        "정답. 재급식 증후군의 핵심 대사 이상은 저인산혈증이다.",
+        "오답. 칼륨은 오르지 않고 떨어진다.",
+        "오답. 고칼슘혈증이 대표 소견이 아니다."
       ],
       "coreSectionIds": [
-        "sec-complications-6-1-3열-요약",
         "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "재급식 표지",
+          "quote": "저인산혈증(핵심) + ↓K · ↓Mg (+ thiamine 결핍)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 교재는 저인산혈증을 재급식의 핵심 표지로 둔다."
     },
     {
       "id": "bcnsp-021",
@@ -14091,9 +14431,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "재급식 증후군에서 가장 특징적인 전해질 이상 삼징후는?",
       "choices": [
         "고인산혈증, 고칼륨혈증, 고마그네슘혈증",
@@ -14102,29 +14444,40 @@
         "저칼륨혈증, 고나트륨혈증, 고인산혈증"
       ],
       "answer": 1,
-      "explain": "재급식 증후군은 저인산혈증·저칼륨혈증·저마그네슘혈증이 특징이다(저칼슘혈증과 티아민 고갈이 동반되는 경우도 흔하다). 탄수화물 재급식 때 인슐린으로 인해 이들 전해질이 세포 내로 들어가 혈청 농도가 떨어진다. 영양을 늘리기 전·도중에 반드시 보정한다.",
+      "explain": "재급식 증후군은 저인산혈증·저칼륨혈증·저마그네슘혈증이 같이 오고 티아민 결핍이 동반된다. 탄수화물을 다시 주면 이들 전해질이 세포 안으로 이동해 혈청 농도가 떨어진다.",
       "needle": "재급식",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 인산·칼륨·마그네슘이 오르는 쪽이 아니다. 떨어진다.",
+        "정답. 저인산혈증, 저칼륨혈증, 저마그네슘혈증이 재급식의 전해질 삼징후이다.",
+        "오답. 고나트륨·저칼슘·고인산 조합이 아니다.",
+        "오답. 저칼륨은 맞을 수 있으나 고나트륨·고인산은 삼징후가 아니다."
       ],
       "coreSectionIds": [
-        "sec-monitor-7-1-PN-대사합병증-모니터-표11-1-TXT-p179"
+        "sec-complications-6-2-재급식-증후군-Refeeding"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "재급식 표지",
+          "quote": "저인산혈증(핵심) + ↓K · ↓Mg (+ thiamine 결핍)"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "재급식 정의 [TXT p185]",
+          "quote": "P·Mg·K·thiamine"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 교재 재급식 표지(저인산·↓K·↓Mg)."
     },
     {
       "id": "cnsc-nutrition-support-083",
@@ -14230,9 +14583,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi",
+        "kshp-yeongyang-yakryo-lecture-answers"
+      ],
       "stem": "영양지원을 받는 대부분의 중환자에서 일반적으로 권장하는 목표 혈당 범위는?",
       "choices": [
         "80–110 mg/dL",
@@ -14241,27 +14597,45 @@
         "70 mg/dL 미만"
       ],
       "answer": 1,
-      "explain": "대부분의 중환자에서 SCCM/ASPEN 등 중환자 지침은 혈당 약 140–180 mg/dL를 목표로 한다. 80–110 mg/dL처럼 더 조이면 사망률 이득 없이 저혈당 위험이 커진다. 180 mg/dL를 넘는 지속 고혈당은 예후 악화와 관련된다.",
+      "explain": "영양지원을 받는 대부분의 중환자에서 목표 혈당은 140–180 mg/dL이다. 80–110 mg/dL처럼 더 조이거나 70 mg/dL 미만은 이 목표가 아니다.",
       "needle": "180 mg/dL",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 80–110 mg/dL는 표준 목표 140–180보다 낮다.",
+        "정답. 대부분의 중환자 목표 혈당은 140–180 mg/dL이다.",
+        "오답. 200–250 mg/dL는 180을 넘는 범위이다.",
+        "오답. 70 mg/dL 미만은 저혈당이지 목표 범위가 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-disease-8-2-당뇨-비만"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "중환자 행 BG",
+          "quote": "BG 140–180"
+        },
+        {
+          "referenceId": "kshp-yeongyang-yakryo-lecture-answers",
+          "locator": "1. 탄수화물.pdf p.42–43, 문제 1",
+          "quote": "110 mg/dL 미만을 목표로 한 집중 혈당조절은 저혈당 위험 때문에 권고되지 않는다."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. 사망률 문장은 보유 인용에 없어 범위 설명만 남겼다.",
+      "relatedIds": [
+        "kshp-01",
+        "quizlet-cnsc-practice-002",
+        "quizlet-pn-004"
+      ]
     },
     {
       "id": "cnsc-nutrition-support-086",
@@ -14413,9 +14787,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "PN 중인 환자에서 혈청 중성지방이 450 mg/dL인 고중성지방혈증이 생겼다. 적절한 조치는?",
       "choices": [
         "내성을 높이기 위해 지질 용량을 늘린다",
@@ -14427,24 +14803,32 @@
       "explain": "혈청 중성지방이 약 400 mg/dL를 넘으면 대개 정맥 지질(IV lipid)을 줄이거나 보류한다. 청소율 저하, 췌장염 위험, 면역·폐 기능 변화를 피하기 위해서다. 중성지방을 감시하고 수치가 좋아지면 조심스럽게 재개한다. 장기적으로는 필수지방산 결핍 예방 수준의 지질이 필요할 수 있다.",
       "needle": "TG ≥400",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 중성지방이 이미 450 mg/dL인데 지질을 늘리지 않는다.",
+        "오답. 1,000 mg/dL까지 기다리지 않는다. 감량·중단 컷은 400이다.",
+        "오답. 덱스트로스를 늘리는 것은 고중성지방의 대응이 아니다.",
+        "정답. 정맥 지질을 줄이거나 보류하고 중성지방을 다시 측정한다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-lipid-2-2-지방-ILE"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "PN_jjageuri_summary.md TG 컷 [EXAM p181]",
+          "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. bcnsp-004와 같은 교재 p181 기준."
     },
     {
       "id": "cnsc-nutrition-support-090",
@@ -14504,9 +14888,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "ccn-summary-nestle-2022"
+      ],
       "stem": "ASPEN 지침에 따르면, BMI 28 kg/m²인 중증 성인 환자에서 권장 단백 섭취량은?",
       "choices": [
         "0.6–0.8 g/kg 실제체중/일",
@@ -14518,24 +14904,37 @@
       "explain": "ASPEN/SCCM 지침은 중증 성인에게 단백 1.2–2.0 g/kg 실제체중/일을 권장한다. 이화 스트레스 반응기에는 상처 치유, 면역 기능, 제지방량 보존을 위해 단백 공급을 늘린다. BMI 28(비만이 아닌 경우)에서는 실제체중으로 용량을 잡는 것이 적절하다.",
       "needle": "1.2",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 0.6–0.8 g/kg 실제체중은 BMI 30 미만 중환자 범위보다 낮다.",
+        "정답. BMI 28은 30 미만이므로 1.2–2.0 g/kg 실제체중(ABW)/일이다.",
+        "오답. 2.5–3.0 g/kg 이상체중은 BMI 28의 권고가 아니다.",
+        "오답. 0.8–1.0 g/kg 이상체중은 범위와 체중 기준이 모두 다르다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-disease-8-질환별-PN"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "PROTEIN",
+          "quote": "Suggest sufficient (high-dose) protein should be provided in the range of 1.2-2.0g/kg ABW*/day in the patient with BMI less than 30"
+        },
+        {
+          "referenceId": "ccn-summary-nestle-2022",
+          "locator": "각주",
+          "quote": "*ABW is Actual Body Weight"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.",
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. BMI 28은 CCN 요약의 BMI <30 · ABW 1.2–2.0에 해당.",
       "relatedIds": [
         "cnsc-nutrition-support-022"
       ]
@@ -16131,7 +16530,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "USP<797>(2023) Category 2 일반 CSP 실온 4일. PN에는 Table 13을 그대로 쓰지 않는다(ASPEN Myths) — PN 문항으로 오인 방지 주석 필요."
+      "reviewNote": "USP<797>(2023) Category 2 일반 CSP 실온 4일. PN에는 Table 13을 그대로 쓰지 않는다(ASPEN Myths) — PN 문항으로 오인 방지 주석 필요. BLOCKER: 일반 CSP 실온 4일을 적은 USP <797> 원문이 없다. PN BUD(실온 30시간·냉장 9일)와 섞지 않도록 pending을 유지한다."
     },
     {
       "id": "bcnsp-023",
@@ -16191,9 +16590,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-08-calcium-phosphorus-magnesium"
+      ],
       "stem": "PN을 받는 환자에서 알루미늄 독성이 우려될 때, 알루미늄 오염의 주된 공급원은 어느 PN 성분인가?",
       "choices": [
         "아미노산",
@@ -16202,29 +16603,35 @@
         "종합비타민 첨가제"
       ],
       "answer": 2,
-      "explain": "칼슘·인산염이 PN 알루미늄 오염의 주된 공급원이다. FDA는 대용량 주사제에 25 mcg/L 한도를 두었으나, 글루콘산칼슘·인산칼륨·인산나트륨 같은 소용량 첨가제는 부피당 알루미늄 농도가 더 높은 경우가 많다. 알루미늄은 뼈와 뇌 조직에 축적되며 특히 신기능 저하 환자에서 뇌병증과 골연화증을 유발한다.",
+      "explain": "유리병에 담긴 글루콘산칼슘은 알루미늄에 오염될 수 있어 PN 알루미늄 노출의 주요 공급원으로 다룬다. 아미노산, 포도당, 종합비타민은 그 문장에 없다.",
       "needle": "인산염",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 아미노산이 그 알루미늄 오염원으로 지목되지 않는다.",
+        "오답. 포도당도 아니다.",
+        "정답. ESPEN 소아 Ca·P 권고 R8.6은 유리병의 글루콘산칼슘을 알루미늄 오염원으로 지목한다. 그 성분이 들어 있는 보기가 정답이다.",
+        "오답. 종합비타민 첨가제는 그 문장의 오염원이 아니다."
       ],
       "coreSectionIds": [
-        "sec-stability-5-2-Ca-P-침전"
+        "sec-vit_te-2-7-미량원소-TE"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-08-calcium-phosphorus-magnesium",
+          "locator": "R 8.6",
+          "quote": "Acidic solutions packaged in glass vials, such as calcium gluconate, are contaminated with aluminum and should not be used in PN"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치1 verified. 정답 인덱스 유지. FDA 25 mcg/L 문장은 원문이 없어 해설에서 뺐다. 인산염은 정답 보기에 함께 적혀 있고, 보유 문장이 이름 붙인 성분은 글루콘산칼슘이다."
     },
     {
       "id": "bcnsp-064",
@@ -16413,7 +16820,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "정답 0.22 μm는 구 권고. 현행이면 1.2 — 답이 시대에 따라 바뀜.",
+      "reviewNote": "정답 0.22 μm는 구 권고. 현행이면 1.2 — 답이 시대에 따라 바뀜. BLOCKER: 정답 0.22 μm는 구 권고이다. 현행이면 1.2 μm라 답이 시대에 따라 바뀐다. pending을 유지한다.",
       "htmlTopic": "calc_filter"
     },
     {
@@ -19516,7 +19923,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "정답 방향 일치. 선택지 해설 미작성."
+      "reviewNote": "정답 방향 일치. 선택지 해설 미작성. BLOCKER: 유화가 깨진 TNA를 주지 않는다는 문장은 핵심표에 있으나 태그가 문제은행이라 지침 인용으로 승격하지 않았다. 정답(해롭다)은 유지한다."
     },
     {
       "id": "rxk-3_2-6",
