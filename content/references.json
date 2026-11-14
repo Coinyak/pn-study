@@ -1640,6 +1640,21 @@
       ]
     },
     {
+      "id": "kshp-lecture-a03-protein-2026",
+      "title": "병원약사회 정맥영양 강의 3. 단백질 (로컬 검토)",
+      "year": 2026,
+      "url": null,
+      "accessStatus": "have-extract",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "partial-pages",
+      "kind": "educational-lecture",
+      "designatedByNotice": false,
+      "note": "로컬 PDF '3. 단백질.pdf'. 2026-11-14에 물리 p39(푸터 37/73) 장기 단순 기아·스트레스 기아 표를 열었다. 공개 저장소에는 원문 없음.",
+      "scopeIds": [
+        "spec-components"
+      ]
+    },
+    {
       "id": "kshp-symp-2026-1st",
       "title": "2026 제1차 영양약료 심화교육(심포지엄) 교재 (로컬 검토)",
       "year": 2026,
