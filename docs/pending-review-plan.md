@@ -67,7 +67,7 @@ stem·선지·정답 인덱스는 유지한다. 채우는 것은 referenceIds, e
 - `python3 scripts/build.py`, `python3 scripts/check_content.py`, `node --test tests/*.cjs`, `python3 -m unittest discover -s tests -p 'test_*.py'`가 통과한다.
 - `main`으로 PR을 열어 GitHub Pages에 반영한다.
 
-재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`부터 `scripts/review_batch9.py`까지 적용하므로 배치 1–9 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`부터 `python3 scripts/review_batch9.py`까지 순서대로이다.
+재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`부터 `scripts/review_batch10.py`까지 적용하므로 배치 1–10 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`부터 `python3 scripts/review_batch10.py`까지 순서대로이다.
 
 ## 7. 배치 1 — 승격 26건
 
@@ -633,4 +633,47 @@ pending 220. 영문 번역은 그다음이다.
 1. 위잔류 500 mL 미만, 머리 30–45°, 클로르헥시딘 가글 하루 2회.
 2. 주입 펌프, 생리식염수 잠금, 포트 바늘 주 1회, 비타민·미량원소는 주입 직전. ESPEN HPN에 있다. 지금 pending 정답은 그 문장이 아니다.
 3. 6특징, 중증 패혈증의 아르기닌, 마그네슘·난치성 저칼륨·저칼슘·QTc, `quizlet-iib-023`은 그대로 둔다.
-4. 구조지질, 0.22 μm, 질소 '+4 g', Omegaven, 회장 '침범', 비타민 K 이원, CRRT 상한, 알루미늄 5 μg/kg/일, Curreri, 28–30 kcal/kg는 그대로 둔다. 셀레나이트, 50% 포도당, 계산 예제 네 가지와 숫자가 다를 때도 그대로 둔다.
+4. 구조지질, 0.22 μm, 회장 '침범', 비타민 K 이원, CRRT 상한, 알루미늄 5 μg/kg/일, Curreri, 28–30 kcal/kg는 그대로 둔다. 질소 '+4 g'과 Omegaven FDA 승인은 §33에서 문장이 확인된 문항만 올렸다. `bcnsp-099`의 '가장 확실한 변경'은 그대로다. 셀레나이트, 50% 포도당, 계산 예제 네 가지와 숫자가 다를 때도 그대로 둔다.
+
+## 33. 쪽 스윕 — 승격 10건
+
+적용 후 verified 244 · pending 210 · excluded 132.
+
+같은 almost-ready 패스는 하지 않았다. 디스크에 있는 보유본을 쪽 단위로 읽고, 문장이 pending 정답과 같을 때만 올렸다. 2014 안전 합의 본문은 읽지 않았다.
+
+읽은 것:
+
+- 『임상영양길라잡이』 OCR PDF 353쪽 키워드 검색. 문장을 확정한 쪽은 PDF62(질소 +4 g), PDF99(망간·파킨슨양), PDF115(SGA-C, 세 병인), PDF172(ISO Class 5, 냉장 2–8°C, 범주2 실온 24시간), PDF173(비타민은 투여 직전, 24시간 이내).
+- ASPEN Compounding Checklist 2024 2쪽. ACD 정확 전달량 미만이면 수동 조제.
+- ASPEN Prescribing Checklist 2024 3쪽. CPOE의 배합·용량 경고, 모니터링 표.
+- ASPEN Role of PN in Malnutrition 2025 3쪽. 개시 시점, 미숙아 아미노산 3–3.5 g/kg/일, Omegaven FDA 승인 각주.
+- 같이 읽고 승격이 없었던 것: Order Review 2쪽, Safe Care Transition 2쪽. ESPEN 소아 정맥접근·비타민·수분 전해질 PDF는 미드라인·섬유소 덮개·Groshong·티아민·운동실조·QTc만 검색했다.
+
+| ID | 보유 근거 | 핵심표 |
+|---|---|---|
+| `quizlet-pn-039` | Compounding Checklist p.2, ACD보다 적은 부피는 수동 조제 | 5.1 |
+| `bcnsp-089` | Prescribing Checklist p.2, CPOE의 배합·용량 경고 | 5.1 |
+| `bcnsp-036` | Role of PN 2025 각주, Omegaven은 소아 PNAC의 FDA 승인 어유 | 6.3 |
+| `bcnsp-053`, `rxk-1_3-4` | 교재 PDF62, [소변요소질소 + 4 g] × 6.25 | 2.3 |
+| `cnsc-nutrition-support-101` | 교재 PDF115, SGA-C = severely malnourished | 0 |
+| `cnsc-nutrition-support-017` | 교재 PDF115, 급성 질환·손상 / 만성 질환 / 기아 등 사회 환경 | 0 |
+| `quizlet-pn-035`, `quizlet-iib-006` | 교재 PDF99, 망간 침착의 파킨슨 같은 운동장애 | 2.7 |
+| `cnsc-nutrition-support-112` | 교재 PDF172, ISO Class 5 장비와 공간 | 5.1 |
+
+핵심표에 올린 보유 문장: PDF62의 +4 g, PDF99의 파킨슨양 증상, PDF115의 SGA-C와 세 병인, PDF172의 ISO Class 5, PDF173의 비타민 직전·24시간(칸은 원래 있었음), Compounding의 수동 조제(칸은 원래 있었음), Prescribing의 CPOE, Role of PN의 Omegaven 승인. 형광과 기존 숫자는 지우지 않았다.
+
+아직 막힌 이유:
+
+- `bcnsp-099`는 FDA 승인 각주가 생겼지만, '가장 확실한 변경'이 순수 어유 전환인지는 ESPEN 강권고와 충돌한다.
+- `bcnsp-047`은 증상 문장만 있고 망간 중단 지시는 없다.
+- `bcnsp-019`는 시작 1.5–2.0·증량 3.5–4.0이 보유한 3–3.5와 다르다.
+- `bcnsp-044`·`cnsc-nutrition-support-103`의 7일·5–7일은 잘영양 7일과 영양위험 3–5일을 한 칸으로 묶는다.
+- `bcnsp-008`의 범주2 실온 4일은 PDF172의 24시간과 다르다. `bcnsp-094`의 주 2–3회는 전해질 주 1–2회와 다르다.
+- `cnsc-nutrition-support-001`·`bcnsp-032`의 '6가지 중 2개'는 PDF115 OCR이 병인 목록과 붙어서 단정하지 못했다. `cnsc-nutrition-support-020`은 세 이름은 있으나 염증 없음 = 기아라는 문장이 없다.
+- `quizlet-pn-010`·`quizlet-pn-011`은 2014 라벨·필수 목록 본문이 없다.
+- `quizlet-home-ns-010`은 Baseline과 시작 전을 가르지 못한다. `rxk-4_1-1`은 급여와 보호자는 있으나 환자 수용도까지 '모두'가 아니다.
+- `oep-bcscp-q-034`의 2–8°C는 BUD 표의 냉장 칸이다. 실온화 복약 문장은 없다.
+- `quizlet-iib-021`은 Groshong 밸브가 끝 혈전을 막을 것이라는 기대가 임상에서 확인되지 않았다고 한다.
+- 353쪽 검색에서 공기색전, 크리밍, Hamwi, 디펩티드, 구조지질, QTc의 문장은 나오지 않았다. 비타민 직전·24시간을 정답으로 둔 pending 문항도 없었다.
+
+다음: 같은 OCR을 키워드로 한 번 더 훑는 수확은 얇다. 아직 추출본이 없는 ESPEN 소아 정맥접근·비타민·수분 전해질을 권고문 단위로 읽는 한 번은 가치가 있다. 그 패스도 얇으면 승격 배치를 멈춘다.
