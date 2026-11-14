@@ -130,6 +130,7 @@ button.fn sup{font-size:1em;font-weight:inherit;position:static;top:auto;vertica
 @media (max-width:899px){ :root{--base:15.5px;--lh:1.75} .tabs{display:flex} .main{grid-template-columns:60px 1fr} .splitter{display:none!important} .pane-quiz{border-left:0;grid-column:2} body.mode-core .pane-quiz{display:none} body.mode-quiz .pane-core{display:none} body.mode-quiz .nav{display:none} body.mode-quiz .main{grid-template-columns:1fr} body.mode-quiz .pane-quiz{grid-column:1} .header{flex-wrap:wrap;row-gap:6px} .hl-legend{flex:1 1 100%;flex-wrap:wrap;white-space:normal;justify-content:flex-start;gap:8px 12px} table.jg.nest{font-size:13px} table.jg.nest.dense{font-size:12.5px} #sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE table{table-layout:fixed} #sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE .l1{white-space:normal;overflow-wrap:anywhere} .sec-h{font-size:15px;padding:11px 12px} .cell,.qcard .stem{font-size:15px}
 } .qcard{cursor:pointer}
 .qcard.no-core{cursor:default}
+.sec-h.core-hl{box-shadow:inset 3px 0 #ef6c00}
 .qcard .stem[role="button"]:focus-visible{outline:2px solid var(--chip-on);outline-offset:2px}
 .qcard:hover{border-color:#9eb6d4}
 .qcard:focus-visible{outline:2px solid var(--chip-on);outline-offset:2px}
@@ -167,10 +168,11 @@ mark.hl-both, .hl-both{ background: linear-gradient(#f8bbd0,#f8bbd0) top / 100% 
 <body class="mode-core">
 <div class="app"> <div class="header"> <div class="header-title"><a class="home" href="index.html" title="홈으로">영양불백</a> <span>정맥영양(PN)</span></div> <div class="hl-legend" aria-label="형광 범례"><span><i class="swatch hl-pink" aria-hidden="true"></i>전문약사(임상영양길라잡이 EXAM)</span><span><i class="swatch hl-yellow" aria-hidden="true"></i>병원약사회 영양약료</span><span><i class="swatch hl-both" aria-hidden="true"></i>둘 다(위 분홍·아래 노랑)</span></div> </div> <div class="tabs" id="tabs"> <button type="button" class="active" data-pane="core">핵심</button> <button type="button" data-pane="quiz">문제</button> </div> <div class="main"> <nav class="nav" id="nav" aria-label="소단원"><!--@@NAV@@--></nav> <section class="pane pane-core" id="core">
 <!--@@CORE@@-->
-<p class="muted" style="padding:10px">카드를 누르면 핵심본 위치로 이동합니다</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
+<p class="muted" style="padding:10px">문항 카드를 누르면 관련 본문으로 이동합니다.</p> </section> <button type="button" class="splitter" id="splitter" aria-label="핵심·문제 영역 너비 조절" aria-orientation="vertical" title="드래그하여 너비 조절"><span class="split-grip" aria-hidden="true"></span></button> <section class="pane pane-quiz" id="quiz"> <div class="quiz-sticky"> <div class="quiz-head" id="quizHead"><span class="quiz-head-title" id="quizHeadTitle">관련 문제</span></div> <div class="cite-box" id="citeBox" aria-live="polite"></div> </div> <div id="quizList"></div> </section> </div>
 </div>
 <script>
 const QUESTION_BANK = /*@@QUESTION_BANK@@*/[];
+const QUESTION_REFERENCES = /*@@QUESTION_REFERENCES@@*/{};
 const QUESTIONS = QUESTION_BANK.filter(q => q.includeInBasicSet === true);
 const CITATIONS = [{"id": 1, "raw": "[EXAM p142]", "kind": "EXAM", "pages": ["p142"]}, {"id": 2, "raw": "[NOTE]", "kind": "NOTE", "pages": []}, {"id": 3, "raw": "[TXT p143]", "kind": "TXT", "pages": ["p143"]}, {"id": 4, "raw": "[GL:ASPEN/SCCM]", "kind": "GL", "pages": []}, {"id": 5, "raw": "[EXAM p116·p120]", "kind": "EXAM", "pages": ["p116", "p120"]}, {"id": 6, "raw": "[TXT p120]", "kind": "TXT", "pages": ["p120"]}, {"id": 7, "raw": "[EXAM p119]", "kind": "EXAM", "pages": ["p119"]}, {"id": 8, "raw": "[TXT]", "kind": "TXT", "pages": []}, {"id": 9, "raw": "[EXAM p239]", "kind": "EXAM", "pages": ["p239"]}, {"id": 10, "raw": "[EXAM+ p110]", "kind": "EXAM+", "pages": ["p110"]}, {"id": 11, "raw": "[EXAM+ p122]", "kind": "EXAM+", "pages": ["p122"]}, {"id": 12, "raw": "[TXT p122]", "kind": "TXT", "pages": ["p122"]}, {"id": 13, "raw": "[EXAM p156]", "kind": "EXAM", "pages": ["p156"]}, {"id": 14, "raw": "[TXT p156]", "kind": "TXT", "pages": ["p156"]}, {"id": 15, "raw": "[EXAM p126]", "kind": "EXAM", "pages": ["p126"]}, {"id": 16, "raw": "[짜]", "kind": "짜", "pages": []}, {"id": 17, "raw": "[QB 3]", "kind": "QB", "pages": []}, {"id": 18, "raw": "[QB]", "kind": "QB", "pages": []}, {"id": 19, "raw": "[TXT p211]", "kind": "TXT", "pages": ["p211"]}, {"id": 20, "raw": "[GL:ASPEN Myths]", "kind": "GL", "pages": []}, {"id": 21, "raw": "[GL:ASPEN Factsheet·SPN 2026]", "kind": "GL", "pages": []}, {"id": 22, "raw": "[GL:ASPEN Factsheet]", "kind": "GL", "pages": []}, {"id": 23, "raw": "[GL:ESPEN]", "kind": "GL", "pages": []}, {"id": 24, "raw": "[QB 5]", "kind": "QB", "pages": []}, {"id": 25, "raw": "[TXT p033]", "kind": "TXT", "pages": ["p033"]}, {"id": 26, "raw": "[NOTE p033]", "kind": "NOTE", "pages": ["p033"]}, {"id": 27, "raw": "[EXAM p033]", "kind": "EXAM", "pages": ["p033"]}, {"id": 28, "raw": "[TXT p166]", "kind": "TXT", "pages": ["p166"]}, {"id": 29, "raw": "[QB 4]", "kind": "QB", "pages": []}, {"id": 30, "raw": "[EXAM p153]", "kind": "EXAM", "pages": ["p153"]}, {"id": 31, "raw": "[TXT p144]", "kind": "TXT", "pages": ["p144"]}, {"id": 32, "raw": "[EXAM p034]", "kind": "EXAM", "pages": ["p034"]}, {"id": 33, "raw": "[EXAM p143]", "kind": "EXAM", "pages": ["p143"]}, {"id": 34, "raw": "[EXAM p034·p143]", "kind": "EXAM", "pages": ["p034", "p143"]}, {"id": 35, "raw": "[EXAM p035]", "kind": "EXAM", "pages": ["p035"]}, {"id": 36, "raw": "[TXT p035]", "kind": "TXT", "pages": ["p035"]}, {"id": 37, "raw": "[TXT p034·p166]", "kind": "TXT", "pages": ["p034", "p166"]}, {"id": 38, "raw": "[TXT p170]", "kind": "TXT", "pages": ["p170"]}, {"id": 39, "raw": "[EXAM+ p170]", "kind": "EXAM+", "pages": ["p170"]}, {"id": 40, "raw": "[TXT p280]", "kind": "TXT", "pages": ["p280"]}, {"id": 41, "raw": "[GL:ESPEN HPN]", "kind": "GL", "pages": []}, {"id": 42, "raw": "[TXT p035–036]", "kind": "TXT", "pages": ["p035"]}, {"id": 43, "raw": "[NOTE p172]", "kind": "NOTE", "pages": ["p172"]}, {"id": 44, "raw": "[EXAM p172]", "kind": "EXAM", "pages": ["p172"]}, {"id": 45, "raw": "[TXT p179]", "kind": "TXT", "pages": ["p179"]}, {"id": 46, "raw": "[TXT p034]", "kind": "TXT", "pages": ["p034"]}, {"id": 47, "raw": "[GL:ESPEN carbs R5.8–5.11]", "kind": "GL", "pages": []}, {"id": 48, "raw": "[EXAM p144]", "kind": "EXAM", "pages": ["p144"]}, {"id": 49, "raw": "[EXAM p044]", "kind": "EXAM", "pages": ["p044"]}, {"id": 50, "raw": "[TXT p044]", "kind": "TXT", "pages": ["p044"]}, {"id": 51, "raw": "[EXAM+ p188]", "kind": "EXAM+", "pages": ["p188"]}, {"id": 52, "raw": "[TXT p188]", "kind": "TXT", "pages": ["p188"]}, {"id": 53, "raw": "[NOTE p044]", "kind": "NOTE", "pages": ["p044"]}, {"id": 54, "raw": "[EXAM p144·p243]", "kind": "EXAM", "pages": ["p144", "p243"]}, {"id": 55, "raw": "[EXAM p181]", "kind": "EXAM", "pages": ["p181"]}, {"id": 56, "raw": "[TXT p181]", "kind": "TXT", "pages": ["p181"]}, {"id": 57, "raw": "[EXAM]", "kind": "EXAM", "pages": []}, {"id": 58, "raw": "[EXAM p144·p176]", "kind": "EXAM", "pages": ["p144", "p176"]}, {"id": 59, "raw": "[TXT p170·p183]", "kind": "TXT", "pages": ["p170", "p183"]}, {"id": 60, "raw": "[TXT p182]", "kind": "TXT", "pages": ["p182"]}, {"id": 61, "raw": "[NOTE p144]", "kind": "NOTE", "pages": ["p144"]}, {"id": 62, "raw": "[EXAM p210·p218]", "kind": "EXAM", "pages": ["p210", "p218"]}, {"id": 63, "raw": "[TXT p182·p210]", "kind": "TXT", "pages": ["p182", "p210"]}, {"id": 64, "raw": "[GL:ESPEN lipids R4.21]", "kind": "GL", "pages": []}, {"id": 65, "raw": "[EXAM p061]", "kind": "EXAM", "pages": ["p061"]}, {"id": 66, "raw": "[TXT p061]", "kind": "TXT", "pages": ["p061"]}, {"id": 67, "raw": "[TXT p168–169]", "kind": "TXT", "pages": ["p168"]}, {"id": 68, "raw": "[TXT p266]", "kind": "TXT", "pages": ["p266"]}, {"id": 69, "raw": "[EXAM p063·p227]", "kind": "EXAM", "pages": ["p063", "p227"]}, {"id": 70, "raw": "[TXT p063–064]", "kind": "TXT", "pages": ["p063"]}, {"id": 71, "raw": "[EXAM p064]", "kind": "EXAM", "pages": ["p064"]}, {"id": 72, "raw": "[QB 2]", "kind": "QB", "pages": []}, {"id": 73, "raw": "[EXAM p243]", "kind": "EXAM", "pages": ["p243"]}, {"id": 74, "raw": "[TXT p064]", "kind": "TXT", "pages": ["p064"]}, {"id": 75, "raw": "[TXT p063]", "kind": "TXT", "pages": ["p063"]}, {"id": 76, "raw": "[EXAM p263]", "kind": "EXAM", "pages": ["p263"]}, {"id": 77, "raw": "[EXAM p152]", "kind": "EXAM", "pages": ["p152"]}, {"id": 78, "raw": "[TXT p152]", "kind": "TXT", "pages": ["p152"]}, {"id": 79, "raw": "[TXT p147]", "kind": "TXT", "pages": ["p147"]}, {"id": 80, "raw": "[EXAM p191·p193]", "kind": "EXAM", "pages": ["p191", "p193"]}, {"id": 81, "raw": "[GL:ASPEN Myths Na 1–2/kg, Ca 10–15]", "kind": "GL", "pages": []}, {"id": 82, "raw": "[EXAM p162]", "kind": "EXAM", "pages": ["p162"]}, {"id": 83, "raw": "[EXAM+ p078]", "kind": "EXAM+", "pages": ["p078"]}, {"id": 84, "raw": "[TXT p174]", "kind": "TXT", "pages": ["p174"]}, {"id": 85, "raw": "[EXAM+ p076]", "kind": "EXAM+", "pages": ["p076"]}, {"id": 86, "raw": "[TXT p078]", "kind": "TXT", "pages": ["p078"]}, {"id": 87, "raw": "[EXAM p228]", "kind": "EXAM", "pages": ["p228"]}, {"id": 88, "raw": "[TXT p228]", "kind": "TXT", "pages": ["p228"]}, {"id": 89, "raw": "[TXT p154]", "kind": "TXT", "pages": ["p154"]}, {"id": 90, "raw": "[TXT p173]", "kind": "TXT", "pages": ["p173"]}, {"id": 91, "raw": "[EXAM p171]", "kind": "EXAM", "pages": ["p171"]}, {"id": 92, "raw": "[TXT p149]", "kind": "TXT", "pages": ["p149"]}, {"id": 93, "raw": "[TXT p170·p184]", "kind": "TXT", "pages": ["p170", "p184"]}, {"id": 94, "raw": "[EXAM p070]", "kind": "EXAM", "pages": ["p070"]}, {"id": 95, "raw": "[EXAM p069 밑줄]", "kind": "EXAM", "pages": ["p069"]}, {"id": 96, "raw": "[EXAM p069]", "kind": "EXAM", "pages": ["p069"]}, {"id": 97, "raw": "[TXT p184]", "kind": "TXT", "pages": ["p184"]}, {"id": 98, "raw": "[EXAM p212]", "kind": "EXAM", "pages": ["p212"]}, {"id": 99, "raw": "[EXAM+ p071]", "kind": "EXAM+", "pages": ["p071"]}, {"id": 100, "raw": "[TXT p071]", "kind": "TXT", "pages": ["p071"]}, {"id": 101, "raw": "[EXAM p104·p150]", "kind": "EXAM", "pages": ["p104", "p150"]}, {"id": 102, "raw": "[TXT p150–151]", "kind": "TXT", "pages": ["p150"]}, {"id": 103, "raw": "[TXT p104]", "kind": "TXT", "pages": ["p104"]}, {"id": 104, "raw": "[TXT p150]", "kind": "TXT", "pages": ["p150"]}, {"id": 105, "raw": "[TXT p185]", "kind": "TXT", "pages": ["p185"]}, {"id": 106, "raw": "[GL:ASPEN TE tool]", "kind": "GL", "pages": []}, {"id": 107, "raw": "[EXAM p185]", "kind": "EXAM", "pages": ["p185"]}, {"id": 108, "raw": "[TXT p273]", "kind": "TXT", "pages": ["p273"]}, {"id": 109, "raw": "[EXAM+ p093·p094]", "kind": "EXAM+", "pages": ["p093", "p094"]}, {"id": 110, "raw": "[TXT p093]", "kind": "TXT", "pages": ["p093"]}, {"id": 111, "raw": "[EXAM+ p102]", "kind": "EXAM+", "pages": ["p102"]}, {"id": 112, "raw": "[EXAM p101]", "kind": "EXAM", "pages": ["p101"]}, {"id": 113, "raw": "[TXT p101]", "kind": "TXT", "pages": ["p101"]}, {"id": 114, "raw": "[GL:ESPEN R8.6]", "kind": "GL", "pages": []}, {"id": 115, "raw": "[QB 6]", "kind": "QB", "pages": []}, {"id": 116, "raw": "[GL:ASPEN SPN]", "kind": "GL", "pages": []}, {"id": 117, "raw": "[TXT p145·p176]", "kind": "TXT", "pages": ["p145", "p176"]}, {"id": 118, "raw": "[TXT p201]", "kind": "TXT", "pages": ["p201"]}, {"id": 119, "raw": "[TXT p141]", "kind": "TXT", "pages": ["p141"]}, {"id": 120, "raw": "[TXT p140]", "kind": "TXT", "pages": ["p140"]}, {"id": 121, "raw": "[TXT p209·p218]", "kind": "TXT", "pages": ["p209", "p218"]}, {"id": 122, "raw": "[TXT p157]", "kind": "TXT", "pages": ["p157"]}, {"id": 123, "raw": "[EXAM+ p157]", "kind": "EXAM+", "pages": ["p157"]}, {"id": 124, "raw": "[TXT p171]", "kind": "TXT", "pages": ["p171"]}, {"id": 125, "raw": "[TXT p153]", "kind": "TXT", "pages": ["p153"]}, {"id": 126, "raw": "[TXT p173–174]", "kind": "TXT", "pages": ["p173"]}, {"id": 127, "raw": "[GL:ASPEN Compounding]", "kind": "GL", "pages": []}, {"id": 128, "raw": "[GL:ESPEN R8.7]", "kind": "GL", "pages": []}, {"id": 129, "raw": "[EXAM p286]", "kind": "EXAM", "pages": ["p286"]}, {"id": 130, "raw": "[EXAM p201]", "kind": "EXAM", "pages": ["p201"]}, {"id": 131, "raw": "[EXAM p202]", "kind": "EXAM", "pages": ["p202"]}, {"id": 132, "raw": "[TXT p202]", "kind": "TXT", "pages": ["p202"]}, {"id": 133, "raw": "[NOTE p202]", "kind": "NOTE", "pages": ["p202"]}, {"id": 134, "raw": "[TXT p174·p201]", "kind": "TXT", "pages": ["p174", "p201"]}, {"id": 135, "raw": "[TXT p175]", "kind": "TXT", "pages": ["p175"]}, {"id": 136, "raw": "[GL:ASPEN Myths·Admin 2024]", "kind": "GL", "pages": []}, {"id": 137, "raw": "[EXAM p176]", "kind": "EXAM", "pages": ["p176"]}, {"id": 138, "raw": "[EXAM p174]", "kind": "EXAM", "pages": ["p174"]}, {"id": 139, "raw": "[TXT p172]", "kind": "TXT", "pages": ["p172"]}, {"id": 140, "raw": "[GL]", "kind": "GL", "pages": []}, {"id": 141, "raw": "[TXT p036·p181]", "kind": "TXT", "pages": ["p036", "p181"]}, {"id": 142, "raw": "[TXT p183]", "kind": "TXT", "pages": ["p183"]}, {"id": 143, "raw": "[TXT p186]", "kind": "TXT", "pages": ["p186"]}, {"id": 144, "raw": "[TXT p209]", "kind": "TXT", "pages": ["p209"]}, {"id": 145, "raw": "[PAPER:32115791]", "kind": "PAPER", "pages": []}, {"id": 146, "raw": "[EXAM p186]", "kind": "EXAM", "pages": ["p186"]}, {"id": 147, "raw": "[TXT p273·p284]", "kind": "TXT", "pages": ["p273", "p284"]}, {"id": 148, "raw": "[TXT p191]", "kind": "TXT", "pages": ["p191"]}, {"id": 149, "raw": "[EXAM p193]", "kind": "EXAM", "pages": ["p193"]}, {"id": 150, "raw": "[EXAM p182]", "kind": "EXAM", "pages": ["p182"]}, {"id": 151, "raw": "[EXAM p040]", "kind": "EXAM", "pages": ["p040"]}, {"id": 152, "raw": "[GL:ESPEN lipids]", "kind": "GL", "pages": []}, {"id": 153, "raw": "[EXAM p155]", "kind": "EXAM", "pages": ["p155"]}, {"id": 154, "raw": "[TXT p210]", "kind": "TXT", "pages": ["p210"]}, {"id": 155, "raw": "[TXT p036]", "kind": "TXT", "pages": ["p036"]}, {"id": 156, "raw": "[EXAM p273]", "kind": "EXAM", "pages": ["p273"]}, {"id": 157, "raw": "[EXAM p208]", "kind": "EXAM", "pages": ["p208"]}, {"id": 158, "raw": "[TXT p208]", "kind": "TXT", "pages": ["p208"]}, {"id": 159, "raw": "[TXT p218]", "kind": "TXT", "pages": ["p218"]}, {"id": 160, "raw": "[EXAM p209]", "kind": "EXAM", "pages": ["p209"]}, {"id": 161, "raw": "[EXAM p211]", "kind": "EXAM", "pages": ["p211"]}, {"id": 162, "raw": "[EXAM p215]", "kind": "EXAM", "pages": ["p215"]}, {"id": 163, "raw": "[NOTE ★밑줄 p215]", "kind": "NOTE", "pages": ["p215"]}, {"id": 164, "raw": "[TXT p215]", "kind": "TXT", "pages": ["p215"]}, {"id": 165, "raw": "[EXAM p225]", "kind": "EXAM", "pages": ["p225"]}, {"id": 166, "raw": "[TXT p225]", "kind": "TXT", "pages": ["p225"]}, {"id": 167, "raw": "[EXAM p227]", "kind": "EXAM", "pages": ["p227"]}, {"id": 168, "raw": "[TXT p227]", "kind": "TXT", "pages": ["p227"]}, {"id": 169, "raw": "[EXAM/TXT p228]", "kind": "EXAM", "pages": ["p228"]}, {"id": 170, "raw": "[EXAM+ p226]", "kind": "EXAM+", "pages": ["p226"]}, {"id": 171, "raw": "[TXT p226]", "kind": "TXT", "pages": ["p226"]}, {"id": 172, "raw": "[EXAM p234]", "kind": "EXAM", "pages": ["p234"]}, {"id": 173, "raw": "[EXAM p233]", "kind": "EXAM", "pages": ["p233"]}, {"id": 174, "raw": "[TXT p233]", "kind": "TXT", "pages": ["p233"]}, {"id": 175, "raw": "[EXAM+ p232]", "kind": "EXAM+", "pages": ["p232"]}, {"id": 176, "raw": "[TXT p232]", "kind": "TXT", "pages": ["p232"]}, {"id": 177, "raw": "[EXAM+ p235]", "kind": "EXAM+", "pages": ["p235"]}, {"id": 178, "raw": "[TXT p235]", "kind": "TXT", "pages": ["p235"]}, {"id": 179, "raw": "[TXT p243]", "kind": "TXT", "pages": ["p243"]}, {"id": 180, "raw": "[GL:ASPEN]", "kind": "GL", "pages": []}, {"id": 181, "raw": "[EXAM+ p199]", "kind": "EXAM+", "pages": ["p199"]}, {"id": 182, "raw": "[EXAM+ p198]", "kind": "EXAM+", "pages": ["p198"]}, {"id": 183, "raw": "[EXAM p247]", "kind": "EXAM", "pages": ["p247"]}, {"id": 184, "raw": "[EXAM p250]", "kind": "EXAM", "pages": ["p250"]}, {"id": 185, "raw": "[TXT p250]", "kind": "TXT", "pages": ["p250"]}, {"id": 186, "raw": "[TXT p146]", "kind": "TXT", "pages": ["p146"]}, {"id": 187, "raw": "[EXAM p266]", "kind": "EXAM", "pages": ["p266"]}, {"id": 188, "raw": "[GL:ESPEN AA]", "kind": "GL", "pages": []}, {"id": 189, "raw": "[GL:ESPEN R8.9·R8.12]", "kind": "GL", "pages": []}, {"id": 190, "raw": "[EXAM+ p106]", "kind": "EXAM+", "pages": ["p106"]}, {"id": 191, "raw": "[GL:ESPEN TE]", "kind": "GL", "pages": []}, {"id": 192, "raw": "[TXT p106]", "kind": "TXT", "pages": ["p106"]}, {"id": 193, "raw": "[TXT p278]", "kind": "TXT", "pages": ["p278"]}, {"id": 194, "raw": "[EXAM+ p280]", "kind": "EXAM+", "pages": ["p280"]}, {"id": 195, "raw": "[PAPER:30339287]", "kind": "PAPER", "pages": []}, {"id": 196, "raw": "[TXT p155]", "kind": "TXT", "pages": ["p155"]}, {"id": 197, "raw": "[EXAM p284]", "kind": "EXAM", "pages": ["p284"]}, {"id": 198, "raw": "[TXT p284]", "kind": "TXT", "pages": ["p284"]}, {"id": 199, "raw": "[TXT p286]", "kind": "TXT", "pages": ["p286"]}, {"id": 200, "raw": "[EXAM p033·p034·p035·p143]", "kind": "EXAM", "pages": ["p033", "p034", "p035", "p143"]}, {"id": 201, "raw": "[QB C1]", "kind": "QB", "pages": []}, {"id": 202, "raw": "[GL:ESPEN R4.21]", "kind": "GL", "pages": []}, {"id": 203, "raw": "[EXAM p144·p181]", "kind": "EXAM", "pages": ["p144", "p181"]}, {"id": 204, "raw": "[TXT p167]", "kind": "TXT", "pages": ["p167"]}, {"id": 205, "raw": "[TXT p168]", "kind": "TXT", "pages": ["p168"]}, {"id": 206, "raw": "[EXAM p104]", "kind": "EXAM", "pages": ["p104"]}, {"id": 207, "raw": "[PAPER]", "kind": "PAPER", "pages": []}, {"id": 208, "raw": "[GL:ESPEN R5.4]", "kind": "GL", "pages": []}, {"id": 209, "raw": "[GL:ESPEN R5.6]", "kind": "GL", "pages": []}];
 const TOPIC_LABEL = {"eval": "평가", "indications": "적응증", "cho_gir": "GIR·당", "lipid": "지질", "protein": "단백", "fluid_lytes": "수분·전해질", "vit_te": "비타민·TE", "route": "경로·제형", "calc_filter": "요구·계산", "stability": "조제·투여", "complications": "합병증", "monitor": "모니터", "disease": "질환별", "peds": "소아", "hpn": "HPN", "cheat": "치트", "case": "처방사례", "common": "공통영역"};
@@ -607,12 +609,12 @@ const CORE_HINTS = {
     "파킨슨"
   ],
   "quizlet-pn-036": [
-    "지용성",
-    "같다"
+    "비슷하다",
+    "지용성"
   ],
   "quizlet-pn-037": [
-    "수용성",
-    "더 높다"
+    "더 높다",
+    "수용성"
   ],
   "quizlet-pn-038": [
     "중위험",
@@ -1628,6 +1630,7 @@ const CORE_HINTS = {
     "dextrose"
   ],
   "medex-010": [
+    "성인 장루 사례",
     "acetate"
   ],
   "medex-011": [
@@ -2512,14 +2515,18 @@ function scoreNode(node, needles, ansN){
   if(raw.length > 500) score -= Math.min(60, Math.floor(raw.length/80));
   return {node, score, raw};
 }
+function visibleCoreSections(q){
+  return (q.coreSectionIds || []).map(id=>document.getElementById(id))
+    .filter(sec=>sec && !sec.hidden && sec.matches("#core .sec"));
+}
 function highlightFromQuestion(q){
   clearCoreHl();
-  if(!q) return;
-  if(typeof CORE_SKIP !== "undefined" && CORE_SKIP.has(q.id)) return;
-  // Stay on the quiz topic the user is viewing — never switch 단원/quiz list on click
-  const topic = activeTopic || q.topic;
-  const topicSecs = [...document.querySelectorAll('#core .sec[data-topic="'+topic+'"]')];
-  const allSecs = [...document.querySelectorAll("#core .sec")];
+  if(!q) return null;
+  const mapped = visibleCoreSections(q);
+  if(!mapped.length && CORE_SKIP.has(q.id)) return null;
+  // Preserve the active quiz scope while moving the core pane.
+  const allSecs = [...document.querySelectorAll("#core .sec:not([hidden])")];
+  const topicSecs = allSecs.filter(sec=>sec.dataset.topic === q.topic);
   const needles = needlesFromQuestion(q);
   const ansN = (q.choices && q.choices[q.answer] != null) ? normTxt(q.choices[q.answer]) : "";
   const minScore = 80;
@@ -2555,9 +2562,12 @@ function highlightFromQuestion(q){
     });
     return hits[0];
   };
-  let candidates = collect(topicSecs.length ? topicSecs : allSecs);
+  let candidates = collect(mapped.length ? mapped : topicSecs.length ? topicSecs : allSecs);
   let usedWider = false;
-  if(hintNs.length){
+  if(mapped.length){
+    const mappedHint = preferLeafHint(candidates, hasTop) || preferLeafHint(candidates, hasHint);
+    if(mappedHint) candidates = [mappedHint, ...candidates.filter(c=>c !== mappedHint)];
+  } else if(hintNs.length){
     const wider = collect(allSecs);
     const localTop = preferLeafHint(candidates, hasTop);
     const wideTop = preferLeafHint(wider, hasTop);
@@ -2587,7 +2597,10 @@ function highlightFromQuestion(q){
   }
   const best = candidates[0];
   if(!best || best.score < minScore){
-    return;
+    if(!mapped.length) return null;
+    const heading = mapped[0].querySelector(".sec-h") || mapped[0];
+    heading.classList.add("core-hl");
+    return landCore(heading, false);
   }
   let target = best.node;
   if(target.tagName === "TD") target = target.closest("tr") || target;
@@ -2631,23 +2644,16 @@ function highlightFromQuestion(q){
   if(exact){
     exact.classList.add("core-hl-exact");
   }
-  if(target.tagName === "TR" || target.tagName === "LI") target.classList.add("core-hl");
-  else if(exact) (exact.closest("tr, li") || target).classList.add("core-hl");
-
-  // Scroll core to the hit, but do NOT change activeTopic / quiz list
+  (exact?.closest("tr, li") || target).classList.add("core-hl");
+  return landCore(exact || target, usedWider);
+}
+function landCore(aim, usedWider){
   spyLock = true;
-  const aim = exact || target;
   const landedSec = aim.closest(".sec");
   if(landedSec){
-    // Same-topic landing: keep quiz stable, still sync left-nav to the hit section
-    if(landedSec.dataset.topic === activeTopic){
-      activeSecId = landedSec.id;
-      spyLastId = landedSec.id;
-      syncNavHighlight(landedSec.id, activeTopic);
-    } else {
-      // Cross-topic (hint widen): freeze spy id so unlock does not flicker nav/topic
-      spyLastId = landedSec.id;
-    }
+    activeSecId = landedSec.id;
+    spyLastId = landedSec.id;
+    syncNavHighlight(landedSec.id, activeTopic);
   }
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const behavior = (usedWider && !reduceMotion) ? "smooth" : "auto";
@@ -2656,6 +2662,7 @@ function highlightFromQuestion(q){
   scrollCoreTo(aim, {center:true, behavior});
   clearTimeout(spyTimer);
   spyTimer = setTimeout(()=>{ spyLock = false; }, behavior === "smooth" ? 2000 : 450);
+  return landedSec;
 }
 function isKoreanStem(stem){
   const letters=String(stem||"").match(/[A-Za-z가-힣]/g)||[];
@@ -2864,11 +2871,11 @@ function activateQcard(card){
 }
 document.getElementById("quizList").addEventListener("click", e=>{
   // Answering (radio/label/buttons in study-ui cards) must never jump the core pane.
-  const stem = e.target.closest('.stem[role="button"]'); if(!stem) return;
+  const stem = e.target.closest('.stem[role="button"]'); if(!stem || stem.closest(".sq")) return;
   activateQcard(stem.closest(".qcard"));
 });
 document.getElementById("quizList").addEventListener("keydown", e=>{
-  if(!e.target.matches('.stem[role="button"]') || (e.key !== "Enter" && e.key !== " ")) return;
+  if(!e.target.matches('.qcard:not(.sq) .stem[role="button"]') || (e.key !== "Enter" && e.key !== " ")) return;
   e.preventDefault();
   activateQcard(e.target.closest(".qcard"));
 });
@@ -2889,14 +2896,20 @@ setupScrollSpy();
 
   function clampPct(n){
     n = Number(n);
-    if(!Number.isFinite(n)) return 50;
-    return Math.min(MAX_PCT, Math.max(MIN_PCT, n));
+    if(!Number.isFinite(n)) n = 50;
+    const {usable} = contentBounds();
+    // At the desktop breakpoint, both panes still need enough room to read.
+    const min = desktopMq.matches ? Math.max(MIN_PCT, Math.min(50, Math.ceil(100 * 280 / usable))) : MIN_PCT;
+    const max = Math.min(MAX_PCT, 100 - min);
+    return Math.min(max, Math.max(min, n));
   }
   function applySplit(pct){
     corePct = clampPct(pct);
     main.style.setProperty("--split-core", corePct + "fr");
     main.style.setProperty("--split-quiz", (100 - corePct) + "fr");
     splitter.setAttribute("aria-valuenow", String(Math.round(corePct)));
+    splitter.setAttribute("aria-valuemin", String(clampPct(MIN_PCT)));
+    splitter.setAttribute("aria-valuemax", String(clampPct(MAX_PCT)));
   }
   function loadStored(){
     try{
@@ -2910,10 +2923,6 @@ setupScrollSpy();
   }
 
   splitter.setAttribute("role", "separator");
-  splitter.setAttribute("aria-valuemin", String(MIN_PCT));
-  splitter.setAttribute("aria-valuemax", String(MAX_PCT));
-  applySplit(loadStored());
-
   let dragging = false;
   function contentBounds(){
     const rect = main.getBoundingClientRect();
@@ -2924,6 +2933,8 @@ setupScrollSpy();
     const usable = Math.max(1, rect.width - navW - splitW);
     return {left, usable};
   }
+  applySplit(loadStored());
+  window.addEventListener("resize", () => applySplit(corePct));
   function pctFromClientX(clientX){
     const {left, usable} = contentBounds();
     return clampPct(((clientX - left) / usable) * 100);

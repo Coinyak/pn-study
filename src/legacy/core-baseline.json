@@ -548,7 +548,7 @@
   {
    "class": "hl-yellow",
    "title": "병원약사회",
-   "html": "같다",
+   "html": "비슷하다",
    "count": 1
   },
   {
@@ -650,7 +650,7 @@
   {
    "class": "hl-yellow",
    "title": "병원약사회",
-   "html": "회장 ≥20 cm 절제 ⟶ B12",
+   "html": "말단회장 20 cm 초과 절제 또는 B12 결핍 확인 ⟶ B12 보충",
    "count": 1
   }
  ]

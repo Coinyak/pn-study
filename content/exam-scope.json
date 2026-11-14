@@ -191,33 +191,30 @@
       "id": "common-ebm-ebcp",
       "label": "EBM·EBCP 이해",
       "topicIds": [
-        "sec-common-13-공통영역-의학통계-논문비평"
+        "sec-common-13-3-ebm-ebcp"
       ],
-      "coverage": "missing",
-      "gapNote": "핵심표·문항 모두 없음(핵심표 본문에 EBM/NNT/RRR/신뢰구간 용어 0건). 지정 교재(Users' Guides 3판 등)는 미확보. 보유 CMAJ EBM 시리즈 3편은 공지 지정 문헌이 아니므로 보조 자료로만 사용. 단원 신설은 Task 3. [문항 매핑 v1: 3건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 공통영역 메뉴·단원(13)을 신설했으나 EBM·EBCP 개념 서술은 지정 교재 미보유로 비어 있다. missing 유지.]",
+      "coverage": "partial",
+      "gapNote": "공개 근거로 핵심표와 자체 연습문항을 추가했다. 공지 지정 교재의 장·쪽 대조가 남아 있다.",
       "officialLineId": "C1",
       "group": "common",
       "officialText": "근거기반의학(Evidence-Based Medicine) 및 근거기반임상실무(Evidence-Based Clinical Practice, EBCP)의 이해",
-      "questionTopicKeys": [],
+      "questionTopicKeys": [
+        "common"
+      ],
       "referenceIds": [
         "users-guides-3e-2015",
         "yakryojeongbo-2021",
         "dicenzo-biostat-2e-2015",
-        "cmaj-ebm-intro-wyer-2004"
+        "cmaj-ebm-intro-wyer-2004",
+        "sackett-ebm-1996"
       ],
-      "questionMapping": "keyword-heuristic-v1",
+      "questionMapping": "manual-practice-v1",
       "questionIds": [
-        "kshp-09",
-        "cnsc-nutrition-support-119",
-        "cnsc-nutrition-support-122"
+        "op-ebm-integrate"
       ],
       "questionIdsByBasis": {
-        "topicAndKeyword": [],
-        "topicOnly": [],
-        "keywordOnly": [
-          "kshp-09",
-          "cnsc-nutrition-support-119",
-          "cnsc-nutrition-support-122"
+        "manualPractice": [
+          "op-ebm-integrate"
         ]
       }
     },
@@ -225,24 +222,35 @@
       "id": "common-literature-types",
       "label": "의약문헌의 종류·특징",
       "topicIds": [
-        "sec-common-13-공통영역-의학통계-논문비평"
+        "sec-common-13-4-의약문헌"
       ],
-      "coverage": "missing",
-      "gapNote": "전용 단원·문항 없음. 지정 교재(Malone Drug Information 7판, 약료정보학 Section III 제9–13·16장)는 미확보라 장·쪽 확인 대기. [문항 매핑 v1: 해당 문항 0건.] [Task 3: 13단원에 범위만 표시. 문헌 종류 서술·문항 없음. missing 유지.]",
+      "coverage": "partial",
+      "gapNote": "공개 근거로 핵심표와 자체 연습문항을 추가했다. 공지 지정 교재의 장·쪽 대조가 남아 있다.",
       "officialLineId": "C2",
       "group": "common",
       "officialText": "의약문헌의 종류 및 특징",
-      "questionTopicKeys": [],
+      "questionTopicKeys": [
+        "common"
+      ],
       "referenceIds": [
         "malone-drug-info-7e-2022",
-        "yakryojeongbo-2021"
+        "yakryojeongbo-2021",
+        "uconn-drug-information-sources",
+        "cdc-epi-study-designs",
+        "cochrane-meta-analysis"
       ],
-      "questionMapping": "none-found",
-      "questionIds": [],
+      "questionMapping": "manual-practice-v1",
+      "questionIds": [
+        "op-literature-index",
+        "op-literature-case-control",
+        "op-literature-pooling"
+      ],
       "questionIdsByBasis": {
-        "topicAndKeyword": [],
-        "topicOnly": [],
-        "keywordOnly": []
+        "manualPractice": [
+          "op-literature-index",
+          "op-literature-case-control",
+          "op-literature-pooling"
+        ]
       }
     },
     {

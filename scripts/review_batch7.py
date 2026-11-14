@@ -10,7 +10,7 @@ No pending item keys vitamin-immediately-before-use within 24 h, selenite kept
 lists do not close a single leftover choice. quizlet-iib-023 stays pending
 because the keyed choice is systemic antibiotics.
 
-Usage: python3 scripts/review_batch7.py
+Historical batch; replayed by export_questions.py in a comparison file.
 """
 import json
 import re
@@ -595,4 +595,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit("Historical review batch; use export_questions.py --output NEW_FILE for a comparison.")

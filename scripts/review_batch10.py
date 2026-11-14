@@ -5,7 +5,7 @@ Reads textbook OCR pages and short ASPEN PDFs already on disk, then promotes
 pending Korean items whose keyed answer matches a sentence on those pages.
 Does not change stems, choices, or answer indexes.
 
-Usage: python3 scripts/review_batch10.py
+Historical batch; replayed by export_questions.py in a comparison file.
 """
 import json
 import re
@@ -431,4 +431,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit("Historical review batch; use export_questions.py --output NEW_FILE for a comparison.")

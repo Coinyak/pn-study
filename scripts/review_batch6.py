@@ -12,7 +12,7 @@ numbers. Chromium/glucose intolerance and selenium/cardiomyopathy are already
 verified. No pending stem asks for egg-phospholipid allergy, the compounding
 order, or acetate 1:1 in place of bicarbonate.
 
-Usage: python3 scripts/review_batch6.py
+Historical batch; replayed by export_questions.py in a comparison file.
 """
 import json
 import re
@@ -610,4 +610,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit("Historical review batch; use export_questions.py --output NEW_FILE for a comparison.")

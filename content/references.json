@@ -260,18 +260,15 @@
     },
     {
       "id": "espen-ibd-2023",
-      "title": "ESPEN practical guideline on clinical nutrition in inflammatory bowel disease",
+      "title": "ESPEN guideline on Clinical Nutrition in inflammatory bowel disease",
       "year": 2023,
-      "url": null,
-      "accessStatus": "not-held",
-      "reviewedAt": null,
-      "reviewScope": "none",
+      "url": "https://www.espen.org/files/ESPEN-Guidelines/ESPEN_guideline_on_Clinical_nutrition_in_inflammatory_bowel_disease.pdf",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
       "kind": "designated-guideline-candidate",
       "designatedByNotice": false,
-      "note": "대표 항목 후보(공지는 개별 항목을 열거하지 않음). 서지·판본은 ESPEN 공식 목록에서 확인 필요.",
-      "pendingLocator": [
-        "권고문·환자군·연도 대조 필요: 원문 확보 후 장·쪽 기록"
-      ],
+      "note": "권고 64 및 해설: 크론병에서 말단회장 20 cm 초과 절제 또는 확인된 B12 결핍.",
       "scopeIds": [
         "spec-dz-gi"
       ]
@@ -455,7 +452,7 @@
       "id": "espen-ped-pn-2018-09-vitamins",
       "title": "ESPGHAN/ESPEN/ESPR/CSPEN guidelines on pediatric parenteral nutrition: Vitamins",
       "year": 2018,
-      "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
+      "url": "https://wvvw.espen.org/files/ESPEN-Guidelines/Pediatrics/ESPGHAN_ESPEN_ESPR_CSPEN-guidelines-on-pediatric-parenteral-nutrition-Vitamins.pdf",
       "accessStatus": "have-pdf",
       "reviewedAt": "2026-11-14",
       "reviewScope": "recommendations",
@@ -640,16 +637,13 @@
       "id": "aspen-refeeding-2020",
       "title": "ASPEN Consensus Recommendations for Refeeding Syndrome. NCP 2020;35:178-195",
       "year": 2020,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/32115791/",
-      "accessStatus": "paywalled-unreviewed",
-      "reviewedAt": null,
-      "reviewScope": "none",
+      "url": "https://doi.org/10.1002/ncp.10474",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
       "kind": "designated-guideline",
       "designatedByNotice": true,
-      "note": "PMID 32115791, DOI 10.1002/ncp.10474. 원문 미열람.",
-      "pendingLocator": [
-        "위험군 정의·열량 증량·전해질·thiamine 권고문과 쪽 확인 대기"
-      ],
+      "note": "표 6 성인 재급식 위험군의 첫 24시간 열량·증량·전해질 확인.",
       "scopeIds": [
         "spec-eating-disorder",
         "spec-monitoring"
@@ -1426,6 +1420,97 @@
       "heldFile": "06_학습_노트/_kshp_extract.txt (+ _kshp_questions.json)",
       "note": "전문약사 정맥영양 자격시험 공지와 별개인 '영양약료' 교육/시험 자료. 강의 PDF 11권 원본은 보유 폴더에 없음. 문항 originType·기출 여부 추정 금지(Task 2). Task 2에서 HTML 52문항을 해설집 정답·선택지 해설과 문항별 대조(정답 index·stem 복원·pending 5건 사유는 questions.json). 강의 PDF 쪽수는 해설집의 [강의 근거] 표기를 옮긴 것이며 강의 PDF 자체는 대조하지 않음.",
       "scopeIds": []
+    },
+    {
+      "id": "sackett-ebm-1996",
+      "title": "Sackett et al. Evidence based medicine: what it is and what it isn't",
+      "year": 1996,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8555924/",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "methodology",
+      "designatedByNotice": false,
+      "note": "정의와 임상 전문성·근거·환자 선택",
+      "scopeIds": [
+        "common-ebm-ebcp"
+      ]
+    },
+    {
+      "id": "uconn-drug-information-sources",
+      "title": "UConn School of Pharmacy. Drug Information Done Right",
+      "year": 2026,
+      "url": "https://pharmacy.uconn.edu/course/druginformationdoneright/",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "methodology",
+      "designatedByNotice": false,
+      "note": "의약정보 자료의 1차·2차·3차 분류와 PubMed/MEDLINE 예.",
+      "scopeIds": [
+        "common-literature-types"
+      ]
+    },
+    {
+      "id": "cdc-epi-study-designs",
+      "title": "CDC. Principles of Epidemiology in Public Health Practice, 3rd ed.",
+      "year": 2012,
+      "url": "https://stacks.cdc.gov/view/cdc/13178/cdc_13178_DS1.pdf",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "methodology",
+      "designatedByNotice": false,
+      "note": "Lesson 1: Types of Studies",
+      "scopeIds": [
+        "common-literature-types"
+      ]
+    },
+    {
+      "id": "cochrane-meta-analysis",
+      "title": "Cochrane Handbook. Chapter 10: Analysing data and undertaking meta-analyses",
+      "year": 2024,
+      "url": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "methodology",
+      "designatedByNotice": false,
+      "note": "§10.2: 적절할 때만 정량 합산",
+      "scopeIds": [
+        "common-literature-types"
+      ]
+    },
+    {
+      "id": "espen-cif-adults-2023",
+      "title": "ESPEN guideline on chronic intestinal failure in adults — Update 2023",
+      "year": 2023,
+      "url": "https://www.espen.org/files/ESPEN-Guidelines/ESPEN_guideline_on_chronic_intestinal_failure_in_adults.pdf",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "guideline",
+      "designatedByNotice": false,
+      "note": "§6.1.11.1: 장루 손실, 염소·아세트산염과 산염기 균형",
+      "scopeIds": [
+        "spec-dz-gi",
+        "spec-hpn"
+      ]
+    },
+    {
+      "id": "espen-kidney-2024",
+      "title": "ESPEN practical guideline on clinical nutrition in hospitalized patients with acute or chronic kidney disease",
+      "year": 2024,
+      "url": "https://www.espen.org/files/ESPEN-Guidelines/ESPEN_practical_guideline_on_clinical_nutrition_in_hospitalized_patients_with_acute_or_chronic_kidney_disease-text.pdf",
+      "accessStatus": "public-url",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "selected-sections",
+      "kind": "guideline",
+      "designatedByNotice": false,
+      "note": "권고 38(R18) 및 관련 도해 정오표: KRT 방식별 단백질",
+      "scopeIds": [
+        "spec-dz-renal"
+      ]
     }
   ]
 }

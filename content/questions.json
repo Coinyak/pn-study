@@ -1,18 +1,18 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "contentVersion": "2026-11-14.13",
+    "contentVersion": "2026-11-14.14",
     "extractedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
     "source": {
       "file": "src/legacy/quiz-raw.json",
       "array": "PN_study_split.html @ 8309229의 const QUESTIONS (583건, 동결 사본)",
       "renderRule": "당시 renderQuiz()는 QUESTIONS.filter(q=>q.topic===activeTopic)만 그렸다. 런타임 후처리 없음. Task 3부터 HTML은 scripts/build.py가 이 파일에서 생성하며 기본 퀴즈 = includeInBasicSet.",
-      "originalPractice": "ORIGINAL_PRACTICE(export_questions.py)에 선언된 Task 3 자체 연습문항을 뒤에 덧붙인다."
+      "originalPractice": "자체 연습문항(op-*)은 현행 questions.json에서 관리한다."
     },
     "rawCount": 583,
-    "finalCount": 586,
-    "verifiedCount": 248,
+    "finalCount": 590,
+    "verifiedCount": 252,
     "pendingCount": 206,
     "excludedCount": 132,
     "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
@@ -31,12 +31,12 @@
       }
     },
     "fieldNotes": {
-      "originType": "officialSample(공식 공개 샘플)·reportedExam(시험 복원·재구성)·thirdParty(해외·상업 문제은행)·originalPractice(자체 연습문항). officialSample은 없다. originalPractice는 Task 3 자체 연습문항(op-*)뿐이다.",
+      "originType": "officialSample(공식 공개 샘플)·reportedExam(시험 복원·재구성)·thirdParty(해외·상업 문제은행)·originalPractice(자체 연습문항). officialSample은 없다. originalPractice는 자체 연습문항(op-*)뿐이다.",
       "priority": "high=검증 시드 또는 임상 정오표 관련, medium=일반 대기, low=중복·영문·해설 불완전",
       "scopeIds": "exam-scope.json의 keyword-heuristic-v1 매핑을 그대로 상속(근거 매핑 아님).",
       "coreSectionIds": "CORE_HINTS 문구가 들어 있고 문항 단원에 허용된 sec-* ID(CORE_ALLOW)만. 검증·정오표 문항은 CORE_OVERRIDE로 수기 확인. 맞는 절이 없으면 빈 배열(topic 단위 연결만, checks.coreLink).",
-      "revision": "1=HTML 표시본 그대로, 2=Task 2에서 stem/choices/answer를 원문 근거로 수정.",
-      "evidence": "정답 근거 위치. 보유 추출본·PDF 기준이며 지정 교재(ASPEN Adult Core 4판) 쪽수는 기록하지 않음.",
+      "revision": "문항 본문·선지·정답을 수정할 때 기존 ID를 유지하고 개정 번호를 올린다.",
+      "evidence": "정답 근거 문헌과 원문 위치. 학습 화면에는 문헌명·위치만 표시한다.",
       "needle": "구 HTML 퀴즈의 핵심본 위치 찾기 문구(CORE_HINTS 보조). 내용 근거가 아님."
     },
     "errata": {
@@ -46,7 +46,7 @@
       "E4-bud": "PN BUD는 USP<797> Table 13을 그대로 쓰지 않고 안정성 포함 실온 30 h / 냉장 9일(ASPEN Myths 2024). 핵심표 국내(2019) 범주 수치 누락은 교재값(범주1 냉장 24 h, 범주2 냉장 3일)으로 복원 대상.",
       "E5-filter": "현행 ASPEN(Myths 2024·Administration checklist): 모든 PN에 단일 1.2 μm. 2-in-1 0.22 / 3-in-1·ILE 1.2 이원 체계는 구 권고(강의자료·해외 문제은행).",
       "E6-pn-indication-timing": "PN 개시: 영양위험 3–5일, 중등–중증 영양불량은 가능한 빨리, 잘영양·안정은 7일 대기 가능, 중증 대사불안정은 호전까지 지연(ASPEN Myths 2024). 잘영양 ICU SPN은 day 7 이전 비시작(ASPEN SPN 2026·CCN 요약).",
-      "E7-aki-protein": "AKI+간헐적 투석 단백: 강의자료 1.2 g/kg(84 g) vs ESPEN 2024 1.3–1.5 g/kg(91–105 g). ESPEN 원문 미보유.",
+      "E7-aki-protein": "AKI+간헐적 투석 단백: 강의자료 1.2 g/kg(84 g) vs ESPEN 2024 1.3–1.5 g/kg(91–105 g). ESPEN 2024 권고 38(R18) 원문 확인.",
       "E8-trace-element-dose": "AMA 1979 미량원소 용량(Cu 1 mg·Mn 500 μg)은 현행 ASPEN TE 권고(Cu 0.3–0.5 mg·Mn 55 μg)와 다르다."
     }
   },
@@ -2353,7 +2353,7 @@
     },
     {
       "id": "quizlet-pn-036",
-      "revision": 1,
+      "revision": 2,
       "topic": "vit_te",
       "scopeIds": [
         "spec-components"
@@ -2367,16 +2367,16 @@
       "referenceIds": [
         "espen-ped-pn-2018-09-vitamins"
       ],
-      "stem": "경구 지용성 비타민의 식이섭취기준(DRI)과 비교할 때, 비경구 지용성 비타민 권장량은?",
+      "stem": "2018 ESPEN 소아 정맥영양 지침에서 지용성 비타민의 1일 비경구 용량은 경구 권장량과 비교해 어떠한가?",
       "choices": [
         "더 낮다",
-        "같다",
+        "대체로 비슷하다",
         "2배 높다",
         "4배 높다"
       ],
       "answer": 1,
-      "explain": "비경구 지용성 비타민의 하루 용량은 경구 권장량과 비슷하다. 생체이용률은 더 높지만 요구량도 더 높다. 더 낮다, 2배, 4배는 그 문장이 아니다.",
-      "needle": "지용성",
+      "explain": "소아 지침에서는 지용성 비타민의 1일 비경구 용량이 경구 권장량과 대체로 비슷하다고 설명한다. 비타민별 용량이 모두 같다는 뜻은 아니다.",
+      "needle": "비슷하다",
       "choiceExplanations": [
         "오답. 경구 권장량보다 낮다는 문장은 없다.",
         "정답. 비경구 지용성 하루 용량은 경구 권장량과 비슷하다.",
@@ -2392,7 +2392,7 @@
       "evidence": [
         {
           "referenceId": "espen-ped-pn-2018-09-vitamins",
-          "locator": "ESPEN 소아 PN 비타민, 지용성 용량",
+          "locator": "ESPEN 소아 PN 비타민 §3 (지용성)",
           "quote": "Generally, daily parenteral doses of the fat-soluble vitamins are similar to oral recommended daily allowances (higher bioavailability, but also higher requirements)."
         }
       ],
@@ -2403,11 +2403,11 @@
         "choiceExplanations": "complete",
         "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 지용성 비경구 권장이 경구 DRI와 같다는 칸은 핵심표에만 있고 요약·강의 추출·지침 문장에는 없다. 인덱스는 유지한다. 배치11 ESPEN 소아 권고 verified. 정답 인덱스 유지. 원문은 similar to oral recommended daily allowances다. 보기 가운데 그 비교는 '같다'다."
+      "reviewNote": "ESPEN 소아 지침 §3의 대상과 similar 표현을 문항·선지에 반영했다."
     },
     {
       "id": "quizlet-pn-037",
-      "revision": 1,
+      "revision": 2,
       "topic": "vit_te",
       "scopeIds": [
         "spec-components"
@@ -2421,7 +2421,7 @@
       "referenceIds": [
         "espen-ped-pn-2018-09-vitamins"
       ],
-      "stem": "경구 수용성 비타민의 식이섭취기준(DRI)과 비교할 때, 비경구 수용성 비타민 권장량은?",
+      "stem": "2018 ESPEN 소아 정맥영양 지침에서 수용성 비타민의 1일 비경구 용량은 경구 권장량과 비교해 어떠한가?",
       "choices": [
         "1/3",
         "1/2",
@@ -2429,7 +2429,7 @@
         "더 높다"
       ],
       "answer": 3,
-      "explain": "비경구 수용성 비타민의 하루 용량은 경구 권장량보다 여러 배 높다. 요구량이 더 크고 소변으로 더 많이 빠지기 때문이다. 1/3, 1/2, 같다는 그 문장이 아니다.",
+      "explain": "소아 지침에서는 수용성 비타민의 1일 비경구 용량이 경구 권장량보다 대체로 여러 배 높다고 설명한다. 요구량과 소변 배설량이 더 많기 때문이다.",
       "needle": "더 높다",
       "choiceExplanations": [
         "오답. 1/3은 그 문장이 아니다.",
@@ -2446,7 +2446,7 @@
       "evidence": [
         {
           "referenceId": "espen-ped-pn-2018-09-vitamins",
-          "locator": "ESPEN 소아 PN 비타민, 수용성 용량",
+          "locator": "ESPEN 소아 PN 비타민 §4.1 (수용성)",
           "quote": "Generally, daily parenteral doses of the water-soluble vitamins are several times higher than the oral recommended daily allowances (due to higher requirements and increased urinary excretion)."
         }
       ],
@@ -2457,7 +2457,7 @@
         "choiceExplanations": "complete",
         "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 수용성 비경구 권장이 경구보다 높다는 칸은 핵심표에만 있고 요약·강의 추출·지침 문장에는 없다. 인덱스는 유지한다. 배치11 ESPEN 소아 권고 verified. 정답 인덱스 유지. 원문은 several times higher다. 해설에 있던 2–2.5배는 그 문장에 없어 뺐다."
+      "reviewNote": "ESPEN 소아 지침 §4.1의 대상과 비교 표현을 문항·해설에 반영했다."
     },
     {
       "id": "quizlet-pn-038",
@@ -4108,7 +4108,7 @@
         "choiceExplanations": "complete",
         "coreLink": "hint"
       },
-      "reviewNote": "원 해설집 문구 '강의자료 기준' 복원(HTML 표시본에서 누락). 강의자료 정답(84 g)과 ESPEN 2024(91–105 g) 불일치. 최신 지침만 쓰면 보기 중 정답 없음. ESPEN 원문 미보유. 배치1 재확인: 강의 정답 84 g은 유지한다. ESPEN 2024 원문이 없어 verified로 올리지 않는다."
+      "reviewNote": "원 해설집 문구 '강의자료 기준' 복원(HTML 표시본에서 누락). 강의자료 정답(84 g)과 ESPEN 2024(91–105 g) 불일치. 최신 지침만 쓰면 보기 중 정답 없음. ESPEN 원문 미보유. 배치1 재확인: 강의 정답 84 g은 유지한다. ESPEN 2024 원문이 없어 verified로 올리지 않는다. 후속 검토: ESPEN 2024 권고 38(R18) 원문에서 간헐 KRT 범위를 확인했다. 강의와 지침의 차이는 남아 대기 유지."
     },
     {
       "id": "kshp-16",
@@ -15866,8 +15866,8 @@
     },
     {
       "id": "cnsc-nutrition-support-083",
-      "revision": 1,
-      "topic": "monitor",
+      "revision": 2,
+      "topic": "complications",
       "scopeIds": [
         "spec-requirements",
         "spec-monitoring"
@@ -15879,23 +15879,23 @@
       "reviewStatus": "verified",
       "priority": "high",
       "referenceIds": [
-        "imsangyoungyang-gilajabi"
+        "aspen-refeeding-2020"
       ],
-      "stem": "ASPEN 합의 권고에 따르면, 재급식 증후군 고위험 환자에서 영양 개시의 적절한 전략은?",
+      "stem": "ASPEN 2020 합의문에 따르면, 재급식 증후군 위험이 있는 성인에서 영양 개시의 적절한 전략은?",
       "choices": [
         "목표 열량을 처음부터 전량 투여한다",
         "탄수화물 없이 단백질만 공급한다",
         "영양을 7일간 전부 보류한다",
-        "열량을 줄여 시작하고(약 10–20 kcal/kg 또는 목표의 대략 25%), 전해질을 보정하고, 티아민을 보충하며, 천천히 증량한다"
+        "첫 24시간은 제한된 열량으로 시작하고, 전해질을 확인·보정하며, 시작 전에 티아민을 투여하고 단계적으로 증량한다."
       ],
       "answer": 3,
-      "explain": "위험군은 15–20 kcal/kg에서 열량을 천천히 올리고, 인·칼륨·마그네슘을 보정하며 티아민을 준다. 그 내용이 들어 있는 보기는 열량을 줄여 시작하는 쪽이다. ASPEN 2020 원문은 인용하지 않는다.",
+      "explain": "첫 24시간에는 10–20 kcal/kg 또는 포도당 100–150 g으로 시작한다. 영양을 주기 전 인·칼륨·마그네슘을 확인하고 티아민을 투여한다. 전해질이 심하게 낮으면 교정할 때까지 시작이나 증량을 미룬다.",
       "needle": "20 kcal/kg",
       "choiceExplanations": [
-        "오답. 목표 열량을 처음부터 전량 주면 천천히 시작하라는 문장과 어긋난다.",
-        "오답. 탄수화물 없이 단백만 주는 방식이 교재 시작 원칙이 아니다.",
-        "오답. 영양을 7일간 전부 보류하라는 문장은 없다.",
-        "정답. 15–20 kcal/kg는 열량을 줄여 시작하는 보기에 들어간다. 전해질 보정과 티아민도 재급식 정의에 있다."
+        "처음부터 목표 열량을 모두 주지 않는다.",
+        "탄수화물을 전부 빼고 단백질만 주라는 권고는 없다.",
+        "7일을 일률적으로 기다리지 않는다. 심한 전해질 이상이 있으면 교정 후 시작한다.",
+        "제한된 시작 열량, 전해질 확인·교정과 티아민 투여를 함께 적용한다."
       ],
       "coreSectionIds": [
         "sec-complications-6-2-재급식-증후군-Refeeding"
@@ -15905,19 +15905,14 @@
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [
         {
-          "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "시작열량 [TXT p209]",
-          "quote": "위험군 15–20 kcal/kg"
+          "referenceId": "aspen-refeeding-2020",
+          "locator": "표 6 · 성인 위험군, Initiation of calories / Electrolytes",
+          "quote": "Check serum potassium, magnesium, and phosphorus before initiation of nutrition."
         },
         {
-          "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "재급식 원칙 [EXAM p185]",
-          "quote": "열량·수액은 천천히 시작·진행"
-        },
-        {
-          "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "재급식 정의 [TXT p185]",
-          "quote": "영양불량 환자에 적극 영양 ⟶ 수분·전해질·비타민·미네랄(P·Mg·K·thiamine) 대사변화"
+          "referenceId": "aspen-refeeding-2020",
+          "locator": "표 6 · Thiamin and multivitamins",
+          "quote": "Supplement thiamin 100 mg before feeding"
         }
       ],
       "errataIds": [],
@@ -15927,7 +15922,7 @@
         "choiceExplanations": "complete",
         "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치2 verified. 정답 인덱스 유지. 10–20·목표 25%는 문제은행 표기라 근거로 쓰지 않았다. 15–20이 그 보기를 고른다."
+      "reviewNote": "ASPEN 2020 표 6 원문으로 대상, 열량, 전해질 및 티아민 근거를 보완했다. 정답 인덱스는 유지했다."
     },
     {
       "id": "cnsc-nutrition-support-084",
@@ -16407,8 +16402,8 @@
     },
     {
       "id": "bcnsp-011",
-      "revision": 1,
-      "topic": "indications",
+      "revision": 2,
+      "topic": "complications",
       "scopeIds": [
         "spec-assessment",
         "spec-requirements",
@@ -16422,23 +16417,23 @@
       "reviewStatus": "verified",
       "priority": "high",
       "referenceIds": [
-        "imsangyoungyang-gilajabi"
+        "aspen-refeeding-2020"
       ],
-      "stem": "재급식 증후군 위험이 있는 중증 영양불량 환자에서 PN을 시작할 때 권장 시작 열량은?",
+      "stem": "ASPEN 2020 합의문에 따르면, 재급식 증후군 위험이 있는 성인에서 영양을 시작할 때 첫 24시간 열량과 이후 증량의 원칙은?",
       "choices": [
         "추정 열량 요구를 처음부터 전량",
-        "10–20 kcal/kg/일, 3–5일에 걸쳐 증량",
+        "첫 24시간 10–20 kcal/kg, 이후 1–2일마다 목표 열량의 33%씩 증량",
         "첫날부터 30–35 kcal/kg/일",
         "5 kcal/kg/일, 14일에 걸쳐 증량"
       ],
       "answer": 1,
-      "explain": "교재 PDF209의 재급식 위험군 시작 열량은 15–20 kcal/kg이고, 열량과 수액은 천천히 올린다. 그 값이 들어가는 보기는 10–20 kcal/kg이다. 전량, 첫날 30–35, 5 kcal를 14일 끄는 보기는 그 범위가 아니다.",
-      "needle": "20 kcal/kg",
+      "explain": "ASPEN 성인 권고는 첫 24시간 10–20 kcal/kg 또는 포도당 100–150 g으로 시작하고, 이후 1–2일마다 목표 열량의 33%씩 올리는 것이다. 인·칼륨·마그네슘이 심하게 낮으면 교정할 때까지 시작이나 증량을 미룬다.",
+      "needle": "시작열량",
       "choiceExplanations": [
-        "오답. 추정 열량을 첫날 전량 주면 천천히 시작하라는 문장과 어긋난다.",
-        "정답. 교재의 위험군 시작은 15–20 kcal/kg이다. 보기 가운데 그 값이 들어 있는 것은 10–20 kcal/kg이다.",
-        "오답. 첫날 30–35 kcal/kg는 위험군 시작 15–20보다 높다.",
-        "오답. 5 kcal/kg를 14일 끄는 값은 교재 15–20이 아니다."
+        "시작부터 목표 전량을 주지 않는다.",
+        "표 6의 성인 시작 열량과 증량 간격에 해당한다.",
+        "첫날 권고 시작 범위보다 높다.",
+        "이 보기의 5 kcal/kg와 14일 일정은 ASPEN 표 6 기준이 아니다."
       ],
       "coreSectionIds": [
         "sec-complications-6-2-재급식-증후군-Refeeding"
@@ -16448,14 +16443,9 @@
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
       "evidence": [
         {
-          "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 시작열량 [TXT p209]",
-          "quote": "위험군 15–20 kcal/kg"
-        },
-        {
-          "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "재급식 원칙 [EXAM p185]",
-          "quote": "열량·수액은 천천히 시작·진행"
+          "referenceId": "aspen-refeeding-2020",
+          "locator": "표 6 · 성인 재급식 위험군, Initiation of calories",
+          "quote": "10–20 kcal/kg for the first 24 hours; advance by 33% of goal every 1 to 2 days"
         }
       ],
       "errataIds": [],
@@ -16465,7 +16455,7 @@
         "choiceExplanations": "complete",
         "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치2 verified. 정답 인덱스 유지. 보유 쪽수는 15–20 kcal/kg(PDF209)이고 10–20 보기에 들어간다. ASPEN 2020 원문은 인용하지 않았다. 해설의 25–50%·3–5일 귀속은 뺐다."
+      "reviewNote": "표 6 원문 확인. 대상과 첫 24시간·증량 간격을 수정했다. 정답 인덱스는 유지했다."
     },
     {
       "id": "bcnsp-013",
@@ -19751,7 +19741,7 @@
     {
       "id": "medex-010",
       "revision": 1,
-      "topic": "eval",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-components"
       ],
@@ -19762,7 +19752,7 @@
       "reviewStatus": "verified",
       "priority": "high",
       "referenceIds": [
-        "espen-ped-pn-2018-06-fluid-electrolytes"
+        "espen-cif-adults-2023"
       ],
       "stem": "sodium chloride 120 mEq IV over 24 hours, potassium chloride 40 mEq IV over 24 hours가 포함된 PN 처방을 검증하던 중, pH 7.29, HCO3− 16 mEq/L, PaCO2 31 mm Hg, 회장루 소실 증가를 확인했다. 약사로서 처방자와 논의할 가장 적절한 PN 전해질 수정은?",
       "choices": [
@@ -19772,13 +19762,13 @@
         "탄수화물 산화가 bicarbonate 결손을 교정하므로 먼저 dextrose 농도를 올린다."
       ],
       "answer": 0,
-      "explain": "나트륨 손실을 염화나트륨으로만 보충하면 염소가 쌓여 고염소성 대사성 산증이 된다. 나트륨의 일부를 아세트산나트륨이나 젖산나트륨으로 바꾼다. 전해질을 모두 빼거나, 염소를 더 늘리거나, 포도당을 먼저 올리는 것은 그 문장이 아니다.",
-      "needle": "acetate",
+      "explain": "장루 배출이 늘면 중탄산염 손실이 산증에 기여할 수 있고, PN의 염화염은 염소 부하를 더한다. 보기 중 염화염 일부를 아세트산염으로 바꾸는 것이 이 부하를 낮추는 조치다. 실제 처방에서는 혈중 염소·음이온차와 장루 손실 등 산증의 원인도 함께 확인한다.",
+      "needle": "성인 장루 사례",
       "choiceExplanations": [
-        "정답. 염화나트륨으로 준 나트륨의 일부를 아세트산염으로 바꾼다.",
-        "오답. 나트륨과 칼륨을 모두 빼라는 문장은 없다.",
-        "오답. 염소를 더 늘리면 그 산증 쪽이다.",
-        "오답. 포도당을 먼저 올려 중탄산염을 채운다는 문장은 없다."
+        "염화염 일부를 대체해 염소 부하를 줄인다.",
+        "나트륨과 칼륨을 일괄 보류할 근거가 없다.",
+        "염화염을 더 늘리면 염소 부하가 늘어난다.",
+        "포도당 증량은 장루의 중탄산염 손실이나 염소 부하를 줄이지 않는다."
       ],
       "coreSectionIds": [
         "sec-fluid_lytes-2-5-전해질"
@@ -19788,14 +19778,9 @@
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
       "evidence": [
         {
-          "referenceId": "espen-ped-pn-2018-06-fluid-electrolytes",
-          "locator": "ESPEN 소아 PN 수액·전해질, 염소와 산증",
-          "quote": "replacing sodium losses only with sodium chloride solutions exposes to high cumulative Cl intake and risk of metabolic acidosis associated hyperchloraemia"
-        },
-        {
-          "referenceId": "espen-ped-pn-2018-06-fluid-electrolytes",
-          "locator": "ESPEN 소아 PN 수액·전해질, 아세트산염 교체",
-          "quote": "part of sodium intake, in the form of sodium chloride solutions, should be replaced by, for instance, sodium lactate or sodium acetate"
+          "referenceId": "espen-cif-adults-2023",
+          "locator": "§6.1.11.1 · 권고 36 해설, 산염기 균형",
+          "quote": "hyperchloremic acidosis, which may be prevented by an acetate-based regimen"
         }
       ],
       "errataIds": [],
@@ -19805,7 +19790,7 @@
         "choiceExplanations": "complete",
         "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치2: 산증에서 염화 일부를 acetate로 바꾼다는 방향은 문제은행 표기이다. 보유 쪽 문장은 중탄산염 대신 acetate 1:1이다. 인덱스는 유지한다. 배치11 ESPEN 소아 권고 verified. 정답 인덱스 유지. 문장은 미숙아와, 수분·전해질 손실이 큰 연장 소아에 있다. stem은 성인 용량의 회장루다. 닫은 것은 염화나트륨의 일부를 아세트산염으로 바꾸는 조치다. 아세트산이 중탄산염이 된다는 말은 이 문장에 없어 뺐다."
+      "reviewNote": "성인 ESPEN 장부전 지침 §6.1.11.1에서 장루의 중탄산염 소실과 염화염 대신 아세트산염을 사용하는 근거를 확인했다. 정답 유지."
     },
     {
       "id": "medex-011",
@@ -30582,6 +30567,222 @@
         "coreLink": "override"
       },
       "reviewNote": "Task 3 자체 작성 공통영역 문항. 보유 OA 논문 본문 추출 텍스트로 대조. 지정 교재 기준 검토는 아직."
+    },
+    {
+      "id": "op-ebm-integrate",
+      "revision": 1,
+      "topic": "common",
+      "scopeIds": [
+        "common-ebm-ebcp"
+      ],
+      "source": "자체 연습",
+      "sourceUrl": null,
+      "sourceYear": 2026,
+      "originType": "originalPractice",
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "sackett-ebm-1996"
+      ],
+      "stem": "무작위시험에서 중재의 효과가 보고됐지만, 담당 환자는 시험 대상보다 기저 위험이 낮고 부작용 부담을 특히 걱정한다. 근거기반 임상실무에 맞는 다음 단계는?",
+      "choices": [
+        "논문에서 유의한 결과가 나왔으므로 곧바로 같은 치료를 선택한다.",
+        "연구의 타당성과 환자에게 예상되는 이득·위해를 살펴보고, 환자의 선호를 확인해 함께 결정한다.",
+        "환자와 연구 대상이 조금이라도 다르면 연구 근거를 모두 배제한다.",
+        "시험 규모가 충분히 크다면 환자의 선호는 고려하지 않아도 된다."
+      ],
+      "answer": 1,
+      "explain": "연구 근거·임상 판단·환자 선호를 함께 반영한다.",
+      "needle": "환자의 가치와 선호",
+      "choiceExplanations": [
+        "유의성만으로 환자 개인에게 예상되는 이득과 위해를 결정할 수 없다.",
+        "연구 근거·임상 판단·환자 선호를 함께 반영한다.",
+        "대상군의 차이는 근거를 적용할 수 있는지 평가할 이유다.",
+        "표본 크기는 환자의 가치와 선호를 대신하지 않는다."
+      ],
+      "coreSectionIds": [
+        "sec-common-13-3-ebm-ebcp"
+      ],
+      "language": "ko",
+      "includeInBasicSet": true,
+      "sourceNote": "공통영역 자체 연습문항.",
+      "evidence": [
+        {
+          "referenceId": "sackett-ebm-1996",
+          "locator": "BMJ 1996;312:71–72 · EBM 정의와 적용",
+          "quote": "integrating individual clinical expertise and the best external evidence"
+        }
+      ],
+      "errataIds": [],
+      "checks": {
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
+      },
+      "reviewNote": "PICO와 임상 적용: 공개 자료의 정의 및 해당 절과 정답 대조."
+    },
+    {
+      "id": "op-literature-index",
+      "revision": 1,
+      "topic": "common",
+      "scopeIds": [
+        "common-literature-types"
+      ],
+      "source": "자체 연습",
+      "sourceUrl": null,
+      "sourceYear": 2026,
+      "originType": "originalPractice",
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "uconn-drug-information-sources"
+      ],
+      "stem": "최근 발표된 무작위시험 원저를 찾으려고 PubMed에서 제목과 초록을 검색한다. 이때 PubMed 자체는 의약정보 분류에서 무엇인가?",
+      "choices": [
+        "1차 자료: 연구자가 발표한 무작위시험 원저",
+        "3차 자료: 교과서처럼 연구를 종합해 설명한 자료",
+        "2차 자료: 원저를 찾도록 돕는 색인·초록 자료",
+        "메타분석: 여러 시험의 효과 추정치를 통계적으로 합친 자료"
+      ],
+      "answer": 2,
+      "explain": "PubMed는 논문을 찾아 주는 색인·초록 자원이다.",
+      "needle": "색인·초록",
+      "choiceExplanations": [
+        "링크를 열어 읽는 연구 논문이 1차 자료다.",
+        "교과서나 약물정보집이 3차 자료의 예다.",
+        "PubMed는 논문을 찾아 주는 색인·초록 자원이다.",
+        "검색 결과를 모아 보여 주는 것은 효과 추정치를 통계적으로 합치는 작업이 아니다."
+      ],
+      "coreSectionIds": [
+        "sec-common-13-4-의약문헌"
+      ],
+      "language": "ko",
+      "includeInBasicSet": true,
+      "sourceNote": "공통영역 자체 연습문항.",
+      "evidence": [
+        {
+          "referenceId": "uconn-drug-information-sources",
+          "locator": "Primary, Secondary, and Tertiary Resources · Secondary resources",
+          "quote": "Secondary resources are indexing and abstracting tools that help users locate primary literature."
+        }
+      ],
+      "errataIds": [],
+      "checks": {
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
+      },
+      "reviewNote": "의약정보 자료 분류: 공개 자료의 정의 및 해당 절과 정답 대조."
+    },
+    {
+      "id": "op-literature-case-control",
+      "revision": 1,
+      "topic": "common",
+      "scopeIds": [
+        "common-literature-types"
+      ],
+      "source": "자체 연습",
+      "sourceUrl": null,
+      "sourceYear": 2026,
+      "originType": "originalPractice",
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "cdc-epi-study-designs"
+      ],
+      "stem": "약물 이상반응이 발생한 환자군과 발생하지 않은 대조군을 먼저 선정한 뒤, 의무기록에서 과거 약물 노출 여부를 비교했다. 어떤 연구 설계인가?",
+      "choices": [
+        "환자-대조군 연구",
+        "후향 코호트 연구",
+        "단면 연구",
+        "무작위 대조시험"
+      ],
+      "answer": 0,
+      "explain": "결과 발생 유무로 집단을 정하고 과거 노출을 비교했다.",
+      "needle": "환자-대조군",
+      "choiceExplanations": [
+        "결과 발생 유무로 집단을 정하고 과거 노출을 비교했다.",
+        "후향 코호트도 과거 자료를 쓸 수 있지만 노출 기준으로 집단을 구성한다.",
+        "단면 연구는 노출과 결과를 같은 시점에 조사한다.",
+        "연구자가 중재를 배정하지 않았다."
+      ],
+      "coreSectionIds": [
+        "sec-common-13-4-의약문헌"
+      ],
+      "language": "ko",
+      "includeInBasicSet": true,
+      "sourceNote": "공통영역 자체 연습문항.",
+      "evidence": [
+        {
+          "referenceId": "cdc-epi-study-designs",
+          "locator": "Lesson 1 · Types of Studies (pp. 1-48–1-49)",
+          "quote": "then compare previous exposures between the two groups"
+        }
+      ],
+      "errataIds": [],
+      "checks": {
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
+      },
+      "reviewNote": "연구 설계 구분: 공개 자료의 정의 및 해당 절과 정답 대조."
+    },
+    {
+      "id": "op-literature-pooling",
+      "revision": 1,
+      "topic": "common",
+      "scopeIds": [
+        "common-literature-types"
+      ],
+      "source": "자체 연습",
+      "sourceUrl": null,
+      "sourceYear": 2026,
+      "originType": "originalPractice",
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "cochrane-meta-analysis"
+      ],
+      "stem": "연구팀은 사전에 정한 기준으로 논문을 찾아 평가했다. 연구마다 환자군과 결과 정의가 크게 달라 효과 추정치를 합산하지 않았다. 가장 적절한 설명은?",
+      "choices": [
+        "합산이 없으므로 체계적 문헌고찰이 될 수 없다.",
+        "여러 연구를 포함했으므로 메타분석을 시행한 것이다.",
+        "연구가 서로 다르면 통계 모형만 바꾸어 반드시 합쳐야 한다.",
+        "체계적 문헌고찰이며, 비교가 어려워 메타분석을 하지 않을 수 있다."
+      ],
+      "answer": 3,
+      "explain": "연구 간 비교가 가능한지 판단한 뒤에만 통계적으로 합산한다.",
+      "needle": "메타분석",
+      "choiceExplanations": [
+        "체계적 검색·선별·평가는 정량 합산 없이도 가능하다.",
+        "메타분석은 결과의 통계적 합산을 뜻한다.",
+        "모형을 바꿔도 환자군이나 결과 정의의 차이가 사라지지 않는다.",
+        "연구 간 비교가 가능한지 판단한 뒤에만 통계적으로 합산한다."
+      ],
+      "coreSectionIds": [
+        "sec-common-13-4-의약문헌"
+      ],
+      "language": "ko",
+      "includeInBasicSet": true,
+      "sourceNote": "공통영역 자체 연습문항.",
+      "evidence": [
+        {
+          "referenceId": "cochrane-meta-analysis",
+          "locator": "Chapter 10 §10.2 · Introduction to meta-analysis",
+          "quote": "whether it is appropriate to combine the numerical results"
+        }
+      ],
+      "errataIds": [],
+      "checks": {
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
+      },
+      "reviewNote": "체계적 고찰과 메타분석: 공개 자료의 정의 및 해당 절과 정답 대조."
     }
   ]
 }

@@ -238,5 +238,15 @@
   "topic": "common",
   "target": "sec-common-13-2-논문-해석-사례-메타분석",
   "label": "논문해석"
+ },
+ {
+  "topic": "common",
+  "target": "sec-common-13-3-ebm-ebcp",
+  "label": "EBM·EBCP"
+ },
+ {
+  "topic": "common",
+  "target": "sec-common-13-4-의약문헌",
+  "label": "문헌유형"
  }
 ]
