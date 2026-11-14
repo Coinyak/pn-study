@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "contentVersion": "2026-11-14.11",
+    "contentVersion": "2026-11-14.12",
     "extractedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
     "source": {
@@ -12,8 +12,8 @@
     },
     "rawCount": 583,
     "finalCount": 586,
-    "verifiedCount": 234,
-    "pendingCount": 220,
+    "verifiedCount": 244,
+    "pendingCount": 210,
     "excludedCount": 132,
     "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
     "displayLanguage": "ko-only",
@@ -893,7 +893,7 @@
         "choiceExplanations": "missing",
         "coreLink": "none"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전.",
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치10: 2024 처방 점검표는 모니터링 변수를 기록 항목에 넣는다. 검사실 모니터링이 필수에서 빠지는 구분은 2014 합의 본문이 있어야 한다. 그 논문은 읽지 않았다. 인덱스는 유지한다.",
       "htmlTopic": "cho_gir"
     },
     {
@@ -940,7 +940,7 @@
         "choiceExplanations": "missing",
         "coreLink": "none"
       },
-      "reviewNote": "라벨 항목 '필터 크기(1.2 또는 0.22)'는 2014 합의 시대 표기. BLOCKER 배치3: 라벨 필수 항목에서 빠지는 것이 이온 표기라는 결론은 2014 안전 합의 원문이 있어야 한다. 그 합의는 미보유이고, 해설의 필터 1.2 또는 0.22는 구 표기이다. 인덱스는 유지한다.",
+      "reviewNote": "라벨 항목 '필터 크기(1.2 또는 0.22)'는 2014 합의 시대 표기. BLOCKER 배치3: 라벨 필수 항목에서 빠지는 것이 이온 표기라는 결론은 2014 안전 합의 원문이 있어야 한다. 그 합의는 미보유이고, 해설의 필터 1.2 또는 0.22는 구 표기이다. 인덱스는 유지한다. BLOCKER 배치10: 전해질을 완전한 염으로 적는 문장은 처방 점검표에 있다. 라벨 필수에서 이온 표기가 빠지고 필터 1.2 또는 0.22가 필수라는 목록은 2014 합의 본문이다. 인덱스는 유지한다.",
       "htmlTopic": "lipid"
     },
     {
@@ -2308,9 +2308,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "장기 정맥영양(PN) 환자에게 파킨슨병 유사 증상이 나타났다. 이런 증상을 보일 가능성이 가장 큰 미량원소(trace elements) 독성은?",
       "choices": [
         "망간",
@@ -2319,29 +2321,35 @@
         "셀레늄"
       ],
       "answer": 0,
-      "explain": "망간(manganese)은 장기 PN에 일상적으로 넣는 필수 미량원소(trace elements)다. 결핍은 매우 드물지만 장기 정맥영양(PN) 환자의 독성은 잘 알려져 있다. 과다한 망간이 뇌에 쌓이면 떨림, 불수의 운동, 경직 같은 파킨슨병 유사 증상이 생긴다. 망간은 주로 담즙으로 배설되어 간기능 이상이 있으면 독성 위험이 커진다. PN 용액의 제조·운송 과정에서도 망간 오염이 생긴다. 그래도 독성 증상이나 간기능 장애가 없는 환자에게 망간 없는 PN을 쓸 근거는 부족하다. 장기 PN 환자는 망간 관련 간효소와 망간 독성 징후·증상을 모니터링한다. 만성 간질환 환자는 배설 장애가 있으므로 망간을 뺀 PN을 준다.",
+      "explain": "정맥영양 뒤에 신경절에 망간이 침착하면 파킨슨과 같은 운동장애가 온다. 그 표의 예는 떨림, 보행 어려움, 안면근육 경련이다. 구리·아연·셀레늄 독성 문장이 아니다.",
       "needle": "파킨슨",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 파킨슨과 같은 운동장애는 망간 침착 문장이다.",
+        "오답. 그 증상 문장은 구리가 아니다.",
+        "오답. 그 증상 문장은 아연이 아니다.",
+        "오답. 그 증상 문장은 셀레늄이 아니다."
       ],
       "coreSectionIds": [
         "sec-vit_te-2-7-미량원소-TE"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "임상영양길라잡이 OCR PDF99 망간 독성",
+          "quote": "파킨슨과 같은 운동 장애 (떨림, 보행 어려움, 안면근육 경련)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 파킨슨병 유사 증상을 망간으로 닫는 문장은 문제은행 표기이다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 파킨슨병 유사 증상을 망간으로 닫는 문장은 문제은행 표기이다. 인덱스는 유지한다. 배치10 쪽 스윕 verified. 정답 인덱스 유지."
     },
     {
       "id": "quizlet-pn-036",
@@ -2501,9 +2509,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-pn-checklist-03-compounding-2024"
+      ],
       "stem": "ASPEN 정맥영양(PN) 안전성 합의 권고안에 따르면, 안전한 PN 조제를 가장 잘 설명한 것은?",
       "choices": [
         "자동 조제기(ACD)로 조제하면 오류 없는 과정이 보장된다",
@@ -2512,29 +2522,35 @@
         "모든 환자군의 무균 조제 제제(CSP)는 같은 시간에 조제해야 한다"
       ],
       "answer": 2,
-      "explain": "ACD 조제도 오류가 없지 않다. 보고된 오류율은 자동 조제 22%, 수동 조제 37%다. ACD를 쓰면 조제 정확도가 높아지고, 올바른 조제 순서를 지키게 되며, 사람 손에 의한 오염 기회가 준다. 의약품안전관리연구소(ISMP)는 약국과 ACD 처방 입력 시스템에 자동 용량 한계 경고를 설치·시험·최대 활용하고, 기관마다 환자군에 맞는 체중 기반 용량 한계를 정하도록 권고한다. 미국병원약사회(ASHP)의 ACD 안전 사용 지침은 약제부가 ACD를 늘 안전하고 효과적으로 쓰도록 모니터링·감시 계획을 세우라고 한다. 여기에는 용량 한계 경고와 무시 기록 검토가 들어간다. ACD를 쓸 때는 모든 정맥영양(PN) 성분을 ACD로 전달한다. 수동 조제는 PN 성분 부피가 ACD가 정확히 전달할 수 있는 양보다 적을 때, PN 성분과 ACD 부품 사이에 상호작용이 있을 때 적절하다. 첨가 순서로 화학적 상호작용을 막을 수 없을 때나 약품 부족 시 절약 차원에서도 수동 조제를 한다. 성인·소아·신생아를 모두 보는 기관은 환자군별로 CSP 조제를 분리하고 오류를 줄이는 분리 전략을 세운다.",
+      "explain": "섞을 PN 성분의 부피가 자동 조제기(ACD)가 정확히 전달할 수 있는 양보다 적으면 수동 조제가 맞다. ACD를 쓴다고 오류가 없어지는 것은 아니고, 한계 경고를 무시하라는 문장도 없다.",
       "needle": "ACD",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. ACD 조제가 오류 없는 과정을 보장한다는 문장은 없다.",
+        "오답. 한계 경고를 무시할 권한을 주라는 문장은 없다.",
+        "정답. 전달량이 ACD의 정확 범위보다 작으면 수동 조제다.",
+        "오답. 모든 환자군을 같은 시각에 조제하라는 문장은 없다."
       ],
       "coreSectionIds": [
         "sec-stability-5-1-혼합-순서"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "aspen-pn-checklist-03-compounding-2024",
+          "locator": "Compounding Checklist 2024 p.2 Manual Compounding",
+          "quote": "The volume of PN component to be mixed is less than the ACD can accurately deliver."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 자동 조제기가 정확히 전달할 수 있는 양보다 적으면 수동 조제라는 문장을 요약·지침 추출에서 확인하지 못했다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 자동 조제기가 정확히 전달할 수 있는 양보다 적으면 수동 조제라는 문장을 요약·지침 추출에서 확인하지 못했다. 인덱스는 유지한다. 배치10 쪽 스윕 verified. 정답 인덱스 유지. stem은 2014 안전 합의를 가리키지만, 그 논문은 읽지 않았다. 같은 규칙은 보유한 2024 조제 점검표에 있다. 해설의 22%·37% 오류율은 그 점검표에 없어 뺐다."
     },
     {
       "id": "quizlet-pn-040",
@@ -6999,7 +7015,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: HPN 혈액검사는 첫 달 매주 뒤 매달이다. 시작 전과 시작 당일을 가르는 문장은 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: HPN 혈액검사는 첫 달 매주 뒤 매달이다. 시작 전과 시작 당일을 가르는 문장은 없다. 인덱스는 유지한다. BLOCKER 배치10: 모니터링 표에 Baseline 열이 있다. 시작 전과 시작 당일을 가르는 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "oe-crystal-home",
@@ -7448,7 +7464,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: 구 USP BUD는 실온 30시간·냉장 9일이다. 2–8°C로 보관한 뒤 실온화하라는 복약 문장은 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: 구 USP BUD는 실온 30시간·냉장 9일이다. 2–8°C로 보관한 뒤 실온화하라는 복약 문장은 없다. 인덱스는 유지한다. BLOCKER 배치10: PDF172 표의 냉장 칸은 2–8°C다. 가정 PN을 냉장했다가 지시에 따라 실온화하라는 복약 문장은 아니다. 인덱스는 유지한다."
     },
     {
       "id": "oep-bcscp-q-060",
@@ -9192,7 +9208,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "E1과 일치. 합의 원문 미보유. BLOCKER 배치8: 6특징 중 최소 2개라는 합의 원문은 미보유다. 인덱스는 유지한다."
+      "reviewNote": "E1과 일치. 합의 원문 미보유. BLOCKER 배치8: 6특징 중 최소 2개라는 합의 원문은 미보유다. 인덱스는 유지한다. BLOCKER 배치10: 6특징 중 최소 2개의 깨끗한 문장을 PDF115에서 확정하지 못했다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-038",
@@ -9384,9 +9400,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "질소 균형 계산에 사용하는 공식은?",
       "choices": [
         "질소 균형 = 단백 섭취(g) / 6.25 − (24시간 요요소 질소 + 4 g)",
@@ -9395,27 +9413,40 @@
         "질소 균형 = 혈청 프리알부민 × 체중"
       ],
       "answer": 0,
-      "explain": "질소 균형 = 질소 IN − 질소 OUT이다. 질소 IN은 단백 섭취(g)를 6.25로 나눈 값(단백의 약 16%가 질소)이고, 질소 OUT은 24시간 요요소 질소(UUN)에 불감 손실 추정치 4 g(피부·대변·비요소 요질소)을 더한 값이다. 양성이면 동화, 음성이면 이화다. 영양지원에서는 하루 +2 ~ +4 g의 양성 균형을 목표로 한다.",
+      "explain": "질소평형이 0일 때의 단백량은 [소변요소질소 + 4 g] × 6.25다. 4 g은 소변의 비요소 질소와 대변·피부 손실이다. 그래서 질소 균형 = 단백 섭취(g) / 6.25 − (24시간 요요소질소 + 4 g)이다.",
       "needle": "24시간",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 단백 섭취를 6.25로 나눈 값에서 (요요소질소 + 4 g)을 뺀다.",
+        "오답. 빼는 방향이 반대다.",
+        "오답. 총칼로리를 단백으로 나누는 식은 그 문장이 아니다.",
+        "오답. 프리알부민에 체중을 곱하는 식은 그 문장이 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-protein-2-3-단백질-아미노산-AA"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "임상영양길라잡이 OCR PDF62",
+          "quote": "+ 4g*]x 6.25"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "임상영양길라잡이 OCR PDF62 4 g 주석",
+          "quote": "소변을 통해 배출되는 비요소 질소 + 대변과 피부를 통한 질소"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 질소평형 식의 '+4 g'은 교재 추출과 요약에 없다. 그 문장을 확보하기 전에는 올리지 않는다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 질소평형 식의 '+4 g'은 교재 추출과 요약에 없다. 그 문장을 확보하기 전에는 올리지 않는다. 인덱스는 유지한다. 배치10 쪽 스윕 verified. 정답 인덱스 유지. OCR은 깨져 있으나 '+ 4g]x 6.25'와 비요소 질소·대변·피부 주석은 그 쪽에 있다."
     },
     {
       "id": "bcnsp-060",
@@ -9781,7 +9812,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: 6특징 중 최소 2개라는 합의 원문은 미보유다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: 6특징 중 최소 2개라는 합의 원문은 미보유다. 인덱스는 유지한다. BLOCKER 배치10: PDF115는 6가지와 세 병인을 적지만, '2가지'가 6특징 중 2개인지 병인 목록인지 OCR이 붙어서 단정하지 못한다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-002",
@@ -10510,9 +10541,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "AND/ASPEN 체계에서 영양불량은 원인에 따라 어느 세 맥락으로 분류되는가?",
       "choices": [
         "기아 관련, 만성질환 관련, 급성 질환/손상 관련",
@@ -10521,29 +10554,35 @@
         "입원, 외래, 재가"
       ],
       "answer": 0,
-      "explain": "AND/ASPEN 원인 기반 분류는 다음과 같다. 기아 관련(염증 없는 순수 만성 기아, 예: 신경성 식욕부진), 만성질환 관련(경도~중등도 염증, 예: 장기부전, 암), 급성 질환·손상 관련(뚜렷한 염증, 예: 외상, 패혈증, 화상).",
+      "explain": "교재는 영양불량을 급성 질환·손상, 만성 질환, 기아 등 사회 환경의 세 맥락으로 나눈다. 급성·만성·말기, 경도·중등·중증, 입원·외래·재가는 그 문장이 아니다.",
       "needle": "만성질환",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 세 이름은 기아(사회 환경), 만성 질환, 급성 질환·손상이다.",
+        "오답. 말기는 그 세 이름에 없다.",
+        "오답. 경도·중등·중증은 중증도 등급이지 병인이 아니다.",
+        "오답. 입원·외래·재가는 그 문장에 없다."
       ],
       "coreSectionIds": [
         "sec-eval-0-영양평가-PN-직결만"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "임상영양길라잡이 OCR PDF115 병인",
+          "quote": "1) 급성 질환 및손상 관련 영양 불량, 2) 만성 질환 관련 영양 불량, 3) 기아 등"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: 기아·만성질환·급성 질환의 세 병인 합의 원문은 미보유다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: 기아·만성질환·급성 질환의 세 병인 합의 원문은 미보유다. 인덱스는 유지한다. 배치10 쪽 스윕 verified. 정답 인덱스 유지. 교재 순서는 급성, 만성, 기아 등 사회 환경이다. 보기는 같은 세 이름을 다른 순서로 적었다."
     },
     {
       "id": "cnsc-nutrition-support-018",
@@ -10678,7 +10717,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: 염증 없는 만성 식욕부진을 기아 관련 영양불량으로 닫는 합의 원문은 미보유다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: 염증 없는 만성 식욕부진을 기아 관련 영양불량으로 닫는 합의 원문은 미보유다. 인덱스는 유지한다. BLOCKER 배치10: 세 병인 이름은 PDF115에 있다. 염증이 없으면 기아 쪽이라는 구분 문장은 그 쪽에 없다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-101",
@@ -10692,9 +10731,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "Subjective Global Assessment(SGA)에서 환자를 SGA-C로 분류했다면 무엇을 의미하는가?",
       "choices": [
         "영양 상태 양호",
@@ -10703,29 +10744,35 @@
         "과영양"
       ],
       "answer": 2,
-      "explain": "SGA는 검증된 침상 영양평가 도구로, 병력(체중 변화, 섭취, 위장관 증상, 기능 능력)과 신체진찰(피하지방, 근육 소모, 부종, 복수)을 바탕으로 SGA-A(양호), SGA-B(중등도 영양불량 또는 의심), SGA-C(중증 영양불량)로 분류한다.",
+      "explain": "SGA-C는 severely malnourished, 중증 영양불량이다. SGA-A는 정상, SGA-B는 경도에서 중등도다.",
       "needle": "중증 영양불량",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 영양 상태 양호는 SGA-A다.",
+        "오답. 경도–중등은 SGA-B다. '의심'은 그 등급 문장에 없다.",
+        "정답. SGA-C는 중증 영양불량이다.",
+        "오답. 과영양은 SGA 등급 문장에 없다."
       ],
       "coreSectionIds": [
         "sec-eval-0-영양평가-PN-직결만"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "임상영양길라잡이 OCR PDF115 SGA",
+          "quote": "SGA-C (severely malnourished)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치10 쪽 스윕 verified. 정답 인덱스 유지."
     },
     {
       "id": "cnsc-nutrition-support-102",
@@ -10819,7 +10866,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "'5~7일'은 ASPEN Myths의 잘영양·안정 7일 대기와 대체로 일치. 영양지원 일반(EN 포함) 문항. BLOCKER 배치2: 문항은 PN이 아닌 영양지원 일반의 5–7일이다. Myths의 7일은 잘영양·안정에서 PN을 기다릴 수 있다는 문장이다. 인덱스는 유지한다. BLOCKER 배치7: 잘영양·안정은 7일까지 기다릴 수 있고, 영양위험은 3–5일이다. 정답 5~7일은 그 두 칸을 한 간격으로 묶는다. 인덱스는 유지한다."
+      "reviewNote": "'5~7일'은 ASPEN Myths의 잘영양·안정 7일 대기와 대체로 일치. 영양지원 일반(EN 포함) 문항. BLOCKER 배치2: 문항은 PN이 아닌 영양지원 일반의 5–7일이다. Myths의 7일은 잘영양·안정에서 PN을 기다릴 수 있다는 문장이다. 인덱스는 유지한다. BLOCKER 배치7: 잘영양·안정은 7일까지 기다릴 수 있고, 영양위험은 3–5일이다. 정답 5~7일은 그 두 칸을 한 간격으로 묶는다. 인덱스는 유지한다. BLOCKER 배치10: 잘영양·안정은 7일, 영양위험은 3–5일이다. 정답 5–7일은 그 두 칸을 한 간격으로 묶는다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-104",
@@ -12976,9 +13023,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-role-of-pn-malnutrition-2025"
+      ],
       "stem": "정맥영양 관련 담즙정체(PNAC) 소아 환자에 FDA 승인된 어유 기반 정맥 지질유제는?",
       "choices": [
         "Intralipid (대두유)",
@@ -12987,29 +13036,35 @@
         "Clinolipid (대두/올리브유 혼합)"
       ],
       "answer": 1,
-      "explain": "Omegaven(10% 어유 유제)은 소아 PNAC에 특화해 FDA 승인되었다. 어유는 EPA·DHA 등 항염증 오메가-3를 공급하고 대두유보다 피토스테롤이 적다. 대두유에서 어유 기반 IVLE로 바꾼 소아에서 담즙정체 호전과 빌리루빈 개선이 보고되었다.",
+      "explain": "Omegaven은 어유 중성지방 주사제로, 소아의 정맥영양 관련 담즙정체(PNAC)에서 칼로리와 지방산 공급으로 FDA 승인되었다고 적혀 있다. Intralipid, SMOFlipid, Clinolipid는 그 문장에 없다.",
       "needle": "10%",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. Intralipid는 그 FDA 승인 문장에 없다.",
+        "정답. 문장이 이름으로 적은 FDA 승인 어유 유제는 Omegaven이다.",
+        "오답. SMOFlipid는 그 문장에 없다.",
+        "오답. Clinolipid는 그 문장에 없다."
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심"
+        "sec-complications-6-3-간담도-합병증-PNALD"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "aspen-role-of-pn-malnutrition-2025",
+          "locator": "Role of PN in Malnutrition 2025 p.2 note",
+          "quote": "Omegaven (fish oil triglycerides) injectable emulsion is FDA-approved as a source of calories and fatty acids for pediatric patients with parenteral nutrition-associated cholestasis (PNAC)."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: Omegaven의 FDA 승인과 상품명 대조는 보유 지침 문장에 없다. ESPEN 소아 지질은 순수 어유를 일반 사용으로 권하지 않고 중증 IFALD의 단기 rescue로만 적는다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: Omegaven의 FDA 승인과 상품명 대조는 보유 지침 문장에 없다. ESPEN 소아 지질은 순수 어유를 일반 사용으로 권하지 않고 중증 IFALD의 단기 rescue로만 적는다. 인덱스는 유지한다. 배치10 쪽 스윕 verified. 정답 인덱스 유지. 닫은 것은 상품의 FDA 승인 적응이다. ESPEN의 순수 어유 단기 rescue와는 다른 질문이다. 빌리루빈이 줄어든다는 해설은 그 각주에 없어 뺐다."
     },
     {
       "id": "bcnsp-043",
@@ -16481,7 +16536,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 미숙아 단백은 교재 3.0–4.0 g/kg/일이고 ESPEN은 첫날 1.5–2.5, 다음 2.5–3.5다. 정답의 시작 1.5–2.0과 증량 3.5–4.0은 한 칸이 아니다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 미숙아 단백은 교재 3.0–4.0 g/kg/일이고 ESPEN은 첫날 1.5–2.5, 다음 2.5–3.5다. 정답의 시작 1.5–2.0과 증량 3.5–4.0은 한 칸이 아니다. 인덱스는 유지한다. BLOCKER 배치10: Role of PN 2025는 미숙아 아미노산을 최소 3 g/kg/일, 3.5 g/kg/일을 넘기지 말라고 한다. 정답의 시작 1.5–2.0과 증량 3.5–4.0과 한 칸이 아니다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-028",
@@ -16686,7 +16741,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "영양위험·영양불량 조건이 stem에 없어 '7일 후' 단일 정답 불확정(고위험·중증 영양불량은 가능한 빨리). BLOCKER 배치2: '중증 성인이면 7일 후'는 조건이 없다. Myths는 영양위험 3–5일, 중등–중증 영양불량은 가능한 한 빨리, 잘영양·안정만 7일 대기이다. 인덱스는 유지한다."
+      "reviewNote": "영양위험·영양불량 조건이 stem에 없어 '7일 후' 단일 정답 불확정(고위험·중증 영양불량은 가능한 빨리). BLOCKER 배치2: '중증 성인이면 7일 후'는 조건이 없다. Myths는 영양위험 3–5일, 중등–중증 영양불량은 가능한 한 빨리, 잘영양·안정만 7일 대기이다. 인덱스는 유지한다. BLOCKER 배치10: 7일 대기는 잘 영양되고 안정된 성인이다. 중등·중증 영양불량은 가능한 빨리. stem의 중증 성인에 조건이 없다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-056",
@@ -17580,7 +17635,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 파킨슨양 망간 독성은 문제은행 표기이다. 교재가 확정한 표현은 복합제 함량이 높아 신경계 독성이라는 쪽이다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 파킨슨양 망간 독성은 문제은행 표기이다. 교재가 확정한 표현은 복합제 함량이 높아 신경계 독성이라는 쪽이다. 인덱스는 유지한다. BLOCKER 배치10: PDF99에 파킨슨과 같은 운동장애가 망간 침착으로 있다. 미량원소 첨가에서 망간을 중단하라는 문장은 그 쪽에 없다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-069",
@@ -17805,7 +17860,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치4: 안정 전에는 매일이다. 안정 후 표11-1은 주 1–2회이고, 정답 보기는 주 2–3회이다. 인덱스는 유지한다. BLOCKER 배치9: 안정 후 주 2–3회는 투여 점검표의 체중이다. 전해질은 안정 후 주 1–2회다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치4: 안정 전에는 매일이다. 안정 후 표11-1은 주 1–2회이고, 정답 보기는 주 2–3회이다. 인덱스는 유지한다. BLOCKER 배치9: 안정 후 주 2–3회는 투여 점검표의 체중이다. 전해질은 안정 후 주 1–2회다. 인덱스는 유지한다. BLOCKER 배치10: 처방 점검표의 전해질은 안정 전 매일 또는 3일, 이후 주 1–2회다. 정답의 주 2–3회는 그 칸이 아니다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-099",
@@ -17850,7 +17905,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: '근거가 가장 확실한' 변경이 상품명 Omegaven이다. ESPEN R4.19의 순수 어유는 증례 보고 수준의 단기 rescue이고, R4.18의 강권고는 대두유 중단·감량 또는 어유 혼합유제이다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: '근거가 가장 확실한' 변경이 상품명 Omegaven이다. ESPEN R4.19의 순수 어유는 증례 보고 수준의 단기 rescue이고, R4.18의 강권고는 대두유 중단·감량 또는 어유 혼합유제이다. 인덱스는 유지한다. BLOCKER 배치10: Omegaven의 소아 PNAC FDA 승인 각주는 이제 보유한다. 정답은 직접 빌리루빈 4.5에서 가장 근거가 확실한 변경이 상품명 전환이다. ESPEN의 강권고는 대두유 감량·중단 또는 어유 혼합유제이고, 순수 어유는 단기 rescue다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-091",
@@ -18157,7 +18212,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "USP<797>(2023) Category 2 일반 CSP 실온 4일. PN에는 Table 13을 그대로 쓰지 않는다(ASPEN Myths) — PN 문항으로 오인 방지 주석 필요. BLOCKER: 일반 CSP 실온 4일을 적은 USP <797> 원문이 없다. PN BUD(실온 30시간·냉장 9일)와 섞지 않도록 pending을 유지한다."
+      "reviewNote": "USP<797>(2023) Category 2 일반 CSP 실온 4일. PN에는 Table 13을 그대로 쓰지 않는다(ASPEN Myths) — PN 문항으로 오인 방지 주석 필요. BLOCKER: 일반 CSP 실온 4일을 적은 USP <797> 원문이 없다. PN BUD(실온 30시간·냉장 9일)와 섞지 않도록 pending을 유지한다. BLOCKER 배치10: PDF172 범주2의 조절실온 사용가능시간은 24시간이다. 정답 4일과 다르다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-023",
@@ -18710,9 +18765,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "aspen-pn-checklist-01-prescribing-2024"
+      ],
       "stem": "영양지원 안전 측면에서 CPOE(전산 처방 입력)에서 가장 중요한 요소는?",
       "choices": [
         "영양 라벨 자동 출력",
@@ -18721,27 +18778,35 @@
         "경장 제품 자동 재고 관리"
       ],
       "answer": 1,
-      "explain": "CPOE의 용량 범위 점검과 배합 적합성 경고는 PN 안전의 핵심이다. 과도한 포도당 주입 속도, 부적합 칼슘-인 농도, 과다 칼륨, 말초 접근 삼투압 한도 초과 제형 등 위험 처방을 걸러낸다. CPOE 임상의사결정지원은 수기 처방 대비 PN 처방 오류를 30–60% 줄인 것으로 보고된다.",
+      "explain": "전산 처방 입력(CPOE)은 실시간으로 배합·안정성 문제와 용량 안전 경고를 잡도록 쓴다. 라벨 출력, 청구 연동, 경장 재고는 그 문장이 아니다.",
       "needle": "60%",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 영양 라벨 자동 출력은 그 문장에 없다.",
+        "정답. CPOE에 배합·안정성 문제와 용량 안전 경고를 넣으라고 한다.",
+        "오답. 청구 시스템 연동은 그 문장에 없다.",
+        "오답. 경장 제품 재고는 그 문장에 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-stability-5-1-혼합-순서"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "aspen-pn-checklist-01-prescribing-2024",
+          "locator": "Prescribing Checklist 2024 p.2 CPOE",
+          "quote": "detect real-time relevant compatibility and stability problems and dosing safety concerns."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치10 쪽 스윕 verified. 정답 인덱스 유지. '가장 중요한 요소'라는 순위 문장은 없다. 보기 중 점검표에 있는 기능은 용량·배합 경고다. 해설의 오류 30–60% 감소는 그 점검표에 없어 뺐다."
     },
     {
       "id": "bcnsp-092",
@@ -18887,9 +18952,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "USP General Chapter 797에 따르면, 정맥영양 같은 무균조제제제는 어떤 환경에서 조제해야 하는가?",
       "choices": [
         "일반 약국 조제·불출 구역",
@@ -18898,27 +18965,35 @@
         "투약실의 깨끗한 카운터 상판"
       ],
       "answer": 1,
-      "explain": "USP 797은 PN을 포함한 무균제제를 공기질이 통제된 지정 완충구역 안의 ISO Class 5 환경(층류 작업대 또는 무균조제 아이솔레이터)에서 조제하도록 요구한다. 이 기준은 미생물 오염 위험을 최소화한다. PN은 미생물 성장 배지로 매우 적합하기 때문에 특히 중요하다.",
+      "explain": "무균 조제, 그리고 정맥영양은 그 안의 중위험으로, ISO Class 5를 만족하는 장비와 공간에서 조제한다. 일반 조제·불출 구역, 개방 흄 후드, 투약실 카운터는 그 문장이 아니다.",
       "needle": "무균조제",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 일반 약국 조제·불출 구역은 ISO Class 5 문장이 아니다.",
+        "정답. 닫은 기준은 ISO Class 5 장비와 공간이다.",
+        "오답. 개방 흄 후드는 그 문장이 아니다.",
+        "오답. 깨끗한 카운터는 그 문장이 아니다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-stability-5-1-혼합-순서"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 CNSC 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "임상영양길라잡이 OCR PDF172",
+          "quote": "Class 5S 만족하는 장비와 공간에서 균 조제해야 하며"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치10 쪽 스윕 verified. 정답 인덱스 유지. '완충구역'과 '아이솔레이터'라는 단어는 PDF172의 그 문장에 없다. 범주2 조절실온 4일은 같은 쪽의 24시간과 다르다."
     },
     {
       "id": "cnsc-nutrition-support-114",
@@ -20522,9 +20597,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "질소평형(nitrogen balance)의 정의로 가장 가까운 것은?",
       "choices": [
         "질소섭취 − (요질소 + BUN 변화)",
@@ -20533,27 +20610,40 @@
         "질소섭취 − (요질소 + 4)"
       ],
       "answer": 3,
-      "explain": "실무에서 흔히 질소평형 ≈ 질소섭취 − (요중 요소질소 + 4)로 추정한다. +4는 대변·피부 등 비뇨 손실 보정이다.",
+      "explain": "교재의 평형 0 식은 [소변요소질소 + 4 g] × 6.25다. 보기 가운데 그 4 g을 요질소에 더해 섭취 질소에서 빼는 것이 가장 가깝다. BUN 변화를 더하는 식은 그 쪽에 없다.",
       "needle": "6.2",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. BUN 변화를 더하는 항은 그 식에 없다.",
+        "오답. 요질소를 6.25로 나누고 단백 섭취를 빼는 방향이 아니다.",
+        "오답. 여기도 BUN 변화 항이 들어가 있다.",
+        "정답. 섭취 질소에서 (요질소 + 4)를 뺀다. 4 g은 교재 식에 있다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-protein-2-3-단백질-아미노산-AA"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "임상영양길라잡이 OCR PDF62",
+          "quote": "+ 4g*]x 6.25"
+        },
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "임상영양길라잡이 OCR PDF62 4 g 주석",
+          "quote": "소변을 통해 배출되는 비요소 질소 + 대변과 피부를 통한 질소"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 질소평형 식의 '+4'는 교재 추출과 요약에 없다. bcnsp-053과 같이 둔다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 질소평형 식의 '+4'는 교재 추출과 요약에 없다. bcnsp-053과 같이 둔다. 인덱스는 유지한다. 배치10 쪽 스윕 verified. 정답 인덱스 유지. 문항의 '요질소'는 교재의 소변요소질소보다 넓다. 4 g이 있는 보기만 그 식과 맞다."
     },
     {
       "id": "rxk-1_3-5",
@@ -22299,7 +22389,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 안전한 재택 PN에는 동의와 보호자의 수행 능력이 있다. 보험 보장까지 모두 해당으로 닫는 문장은 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 안전한 재택 PN에는 동의와 보호자의 수행 능력이 있다. 보험 보장까지 모두 해당으로 닫는 문장은 없다. 인덱스는 유지한다. BLOCKER 배치10: 전환 점검표에 보호자 수행 능력과 급여·상환 확인이 있다. 환자 수용도를 같은 문장으로 적어 '모두 해당'이 되지는 않는다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-4_1-2",
@@ -22859,9 +22949,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "imsangyoungyang-gilajabi"
+      ],
       "stem": "장기 정맥영양(PN) 환자에게 불수의 운동, 떨림, 경직이 나타났다. 이 증상을 설명할 수 있는 원인은?",
       "choices": [
         "망간 결핍",
@@ -22870,27 +22962,35 @@
         "셀레늄 독성"
       ],
       "answer": 1,
-      "explain": "망간(manganese) 독성의 초기에는 쇠약, 식욕부진, 두통, 무감동이 나타나고, 이어 근육 경직, 가면 얼굴, 비틀거리는 걸음, 미세 떨림 같은 파킨슨 유사 증상이 온다. 복합 미량원소(trace elements) 제제를 장기간 보충받는 환자에서 독성이 생길 수 있다. 망간 배설의 90% 넘게 담즙을 거쳐 대변으로 나가므로 담즙정체(cholestasis)와 담도 폐쇄도 독성 위험을 높인다. 다만 이런 이상이 늘 있지는 않다. 참고문헌: Clark SF. Vitamins and Trace Elements. In: Mueller CM, ed. The A.S.P.E.N. Adult Nutrition Support Core Curriculum, 2nd ed. 2012: 121-151. Hardy G. Gastroenterology 2009;137:S29-S35.",
+      "explain": "장기 정맥영양 뒤의 떨림과 파킨슨 같은 운동장애는 망간 독성 쪽이다. 망간 결핍, 셀레늄 결핍, 셀레늄 독성이 그 문장은 아니다.",
       "needle": "90%",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 문장은 침착과 운동장애라 결핍이 아니다.",
+        "정답. 파킨슨과 같은 운동장애는 망간 독성 표에 있다.",
+        "오답. 셀레늄 결핍의 그 증상 문장은 없다.",
+        "오답. 셀레늄 독성의 그 증상 문장은 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-vit_te-2-7-미량원소-TE"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "imsangyoungyang-gilajabi",
+          "locator": "임상영양길라잡이 OCR PDF99 망간 독성",
+          "quote": "파킨슨과 같은 운동 장애 (떨림, 보행 어려움, 안면근육 경련)"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 떨림·경직의 파킨슨 유사 증상을 망간 독성으로 닫는 문장은 문제은행 표기이다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 떨림·경직의 파킨슨 유사 증상을 망간 독성으로 닫는 문장은 문제은행 표기이다. 인덱스는 유지한다. 배치10 쪽 스윕 verified. 정답 인덱스 유지. 쪽에 있는 증상은 떨림·보행 어려움·안면근육 경련이다. stem의 경직이라는 단어는 그 문장에 없다."
     },
     {
       "id": "quizlet-iib-007",
@@ -23509,7 +23609,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치10: ESPEN 소아 정맥접근은 Groshong 같은 밸브 카테터가 끝 혈전을 막을 것으로 기대했으나 임상에서 확인되지 않았다고 한다. 압력 밸브가 폐색을 줄인다는 정답과 어긋난다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-022",
