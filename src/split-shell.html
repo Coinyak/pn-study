@@ -319,7 +319,7 @@ function wrapPhraseInNode(root, phrase){
 }
 /* q.id → exact core phrases (answer-aligned). Prefer these over fuzzy stem keywords. */
 /* Answer-aligned only. Skip CONTENT_GAP ids (no core row to land on). */
-const CORE_SKIP = new Set(["allaccess-012","hoag-faq-001","quizlet-home-ns-004","quizlet-home-ns-007","quizlet-pn-008","quizlet-pn-010","quizlet-pn-011","rxk-1_1-1","rxk-4_1-2"]);
+const CORE_SKIP = new Set(["allaccess-012","hoag-faq-001","quizlet-home-ns-004","quizlet-home-ns-007","quizlet-pn-008","quizlet-pn-010","quizlet-pn-011","rxk-1_1-1"]);
 const CORE_HINTS = {
   "rx-ppn-900": [
     "900 mOsm/L",
@@ -451,11 +451,10 @@ const CORE_HINTS = {
     "IC 가능하면"
   ],
   "kshp-38": [
-    "적극 영양"
+    "경장만은 아니다"
   ],
   "kshp-34": [
-    "(구) AMA 1979",
-    "AMA 1979"
+    "Mn 500 μg"
   ],
   "kshp-40": [
     "prealbumin",
@@ -671,8 +670,7 @@ const CORE_HINTS = {
     "rebound"
   ],
   "quizlet-pn-052": [
-    "알루미늄",
-    "≤5 μg/kg"
+    "4–5 µg/kg/day"
   ],
   "kshp-12": [
     "질소평형",
@@ -1196,9 +1194,7 @@ const CORE_HINTS = {
     "SO-ILE 감량"
   ],
   "cnsc-nutrition-support-050": [
-    "고혈당",
-    "140~180",
-    "야간 10–12"
+    "시작 속도를 올리고"
   ],
   "cnsc-nutrition-support-052": [
     "공기색전"
@@ -1422,7 +1418,7 @@ const CORE_HINTS = {
     "24시간"
   ],
   "bcnsp-094": [
-    "주 1–2회"
+    "안정 전 매일"
   ],
   "bcnsp-099": [
     "EFAD",
@@ -1514,7 +1510,7 @@ const CORE_HINTS = {
     "공급량 감량"
   ],
   "medex-003": [
-    "Na"
+    "염화나트륨 9 g"
   ],
   "medex-004": [
     "P·K·Mg"
@@ -1651,7 +1647,7 @@ const CORE_HINTS = {
     "성인 일반 20–35"
   ],
   "rxk-3_1-6": [
-    "신부전"
+    "고K·고P·저Ca"
   ],
   "rxk-3_1-7": [
     "간질환"
@@ -1696,10 +1692,10 @@ const CORE_HINTS = {
     "저인산혈증"
   ],
   "rxk-4_1-1": [
-    "HPN"
+    "보험 보장"
   ],
   "rxk-4_1-2": [
-    "24시간"
+    "24시간 대기 홈케어"
   ],
   "rxk-4_1-3": [
     "100%"
@@ -1714,7 +1710,7 @@ const CORE_HINTS = {
     "알루미늄"
   ],
   "quizlet-iib-002": [
-    "장부전·SBS"
+    "단장·회장 소실"
   ],
   "quizlet-iib-003": [
     "지방증"
@@ -1749,7 +1745,7 @@ const CORE_HINTS = {
     "경구 자극"
   ],
   "quizlet-iib-016": [
-    "MBD"
+    "장기 PN 대부분"
   ],
   "quizlet-iib-017": [
     "아세트산염",
@@ -1768,7 +1764,7 @@ const CORE_HINTS = {
     "장루"
   ],
   "quizlet-iib-025": [
-    "70%"
+    "지질 잔여물"
   ],
   "quizlet-iib-026": [
     "핀치오프"

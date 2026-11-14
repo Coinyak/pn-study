@@ -5268,7 +5268,7 @@
       ],
       "answer": 2,
       "explain": "만성 신장애로 2주 이상 PN을 줄 때의 강의 용량이다. Cr 10 μg, Cu 1 mg, Mn 500 μg, Zn 5 mg, I 75 μg, Se 60 μg. 현행 ASPEN은 Cu 0.3–0.5 mg, Mn 55 μg다.",
-      "needle": "AMA 1979",
+      "needle": "Mn 500 μg",
       "choiceExplanations": [
         "[오답] 질환 특이 제제가 반드시 우월한 것은 아니며 표준 제제를 사용하되 전해질·용량을 개별화할 수 있다.",
         "[오답] 안정 CKD에서 충분한 에너지는 보통 25–35 kcal/kg(KDOQI 2020; 강의는 30–35도 인용)/day 범위로 제시되며 20–25는 부족할 수 있다.",
@@ -5276,7 +5276,9 @@
         "[오답] A·D 상태를 평가하고 과잉을 피해야 하지만 모든 지용성 비타민을 일괄 중단하지 않는다.",
         "[오답] CAPD는 단백질·아미노산 손실이 있고 투석액 glucose 흡수 열량도 반드시 계산해야 한다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-disease-8-질환별-PN"
+      ],
       "language": "ko",
       "includeInBasicSet": true,
       "sourceNote": "병원약사회 영양약료 심화강의 시험(55문항) 정답·해설집 추출본(검토 기준일 2026-08-14). 전문약사 정맥영양 자격시험 기출 아님.",
@@ -14377,7 +14379,7 @@
       ],
       "answer": 2,
       "explain": "스마트 펌프가 순환 PN의 시작 속도를 올리고 종료 속도를 낮춰 고혈당과 저혈당을 막도록 프로그래밍할 수 있다고 적는다.\n①②④ 그 문장의 이유가 아니다.\n③ 정답.",
-      "needle": "고혈당과 저혈당",
+      "needle": "시작 속도를 올리고",
       "choiceExplanations": [
         "오답.",
         "오답.",
@@ -14385,7 +14387,7 @@
         "오답."
       ],
       "coreSectionIds": [
-        "sec-monitor-7-3-PN-중단-이행"
+        "sec-hpn-10-재택-PN-HPN"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -15704,7 +15706,7 @@
         "오답."
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-eval-0-영양평가-PN-직결만"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -19670,8 +19672,8 @@
         "위잔류량(GRV) 모니터링 의존이 늘어난다"
       ],
       "answer": 1,
-      "explain": "보유 CCN 요약은 프로토콜이 목표 열량 제공 비율을 높이고, 위잔류 500 mL 미만에서 EN을 중단하지 않는다고 한다. ‘도달 시간 단축’ 문장은 그 요약에 없다.\n표준 EN 급식 프로토콜은 실무 변이를 줄이고 목표 칼로리·단백 도달 시간을 단축하며 불필요한 급식 중단을 줄인다. 간호사가 개별 처방 대기 없이 급식을 증량하고 내약성을 관리할 수 있어 영양 전달 충분도가 개선된다.",
-      "needle": "목표 영양 도달 시간이 줄고 급식 중단이 적어진다",
+      "explain": "보유 CCN 요약은 프로토콜이 목표 열량 제공 비율을 높이고, 위잔류 500 mL 미만에서 EN을 중단하지 않는다고 한다. 도달 시간 단축은 그 요약에 없다.",
+      "needle": "급식 프로토콜",
       "choiceExplanations": [
         "오답. 프로토콜의 목적이 변이 증가가 아니다.",
         "정답. 목표 열량 제공 비율이 늘고 불필요한 중단이 줄어든다.",
@@ -20027,7 +20029,7 @@
       ],
       "answer": 1,
       "explain": "0.9 g/100 mL × 10 = 9 g.\n① 90 g은 10배.\n② 정답.\n③ 0.9 g은 100 mL 분량이다.\n④ 8 g은 이 농도가 아니다.",
-      "needle": "Na",
+      "needle": "염화나트륨 9 g",
       "choiceExplanations": [
         "오답. 10배.",
         "정답. 9 g.",
@@ -23148,12 +23150,14 @@
       ],
       "answer": 0,
       "explain": "응급 대응이 가능한 24시간 홈케어·지원체계가 필요하다.",
-      "needle": "24시간",
+      "needle": "24시간 대기 홈케어",
       "choiceExplanations": [
         "정답. 경험 있는 홈케어 제공자의 상시 연락이 퇴원 평가 항목이다.",
         "오답. Table 7이 24시간 가용을 요구한다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-hpn-10-재택-PN-HPN"
+      ],
       "language": "ko",
       "includeInBasicSet": true,
       "sourceNote": "RxKinetics 주제 퀴즈(번역).",
@@ -23518,7 +23522,7 @@
       ],
       "answer": 0,
       "explain": "회장 소실은 담즙산의 장간 순환을 끊는다. 장간 순환 문제는 PN 관련 간 합병증의 위험으로 적혀 있다. 주기 주입, 경구 자극, UDCA는 그 관리이다.",
-      "needle": "야간 10–12",
+      "needle": "단장·회장 소실",
       "choiceExplanations": [
         "정답. 단장, 그중 회장 소실은 담즙산 장간 순환을 끊고, 그게 간 합병증 위험으로 적혀 있다.",
         "오답. 주기 주입은 간 합병증의 위험이 아니라 관리이다.",
@@ -24051,7 +24055,7 @@
         "오답."
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심"
+        "sec-complications-6-1-3열-요약"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -24566,7 +24570,7 @@
       ],
       "answer": 1,
       "explain": "70% 에틸알코올은 지질 폐색을 녹이는 데 쓴다. 높은 pH 약물 결정은 중탄산염, 낮은 pH 약물 결정은 염산 쪽이다. 인산칼슘은 그 알코올 문장이 아니다.",
-      "needle": "70%",
+      "needle": "지질 잔여물",
       "choiceExplanations": [
         "오답. 인산칼슘은 70% 에탄올 문장이 아니다.",
         "정답. 70% 에틸알코올은 지질 폐색에 쓴다.",
@@ -24574,8 +24578,7 @@
         "오답. 토브라마이신은 그 지질 폐색 문장에 없다."
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심",
-        "sec-stability-5-2-Ca-P-침전"
+        "sec-complications-6-1-3열-요약"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -24983,7 +24986,7 @@
         "오답."
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심"
+        "sec-complications-6-1-3열-요약"
       ],
       "language": "ko",
       "includeInBasicSet": true,
