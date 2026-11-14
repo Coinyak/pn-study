@@ -1,6 +1,6 @@
 # Pending review plan
 
-확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 6 적용 후 verified 204 · pending 250 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
+확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 7 적용 후 verified 219 · pending 235 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
 
 verified의 뜻은 README와 같다. 보유한 자료로 stem·선지·정답 인덱스·해설을 되짚은 상태이며, 공식 임상 인증이 아니다.
 
@@ -67,7 +67,7 @@ stem·선지·정답 인덱스는 유지한다. 채우는 것은 referenceIds, e
 - `python3 scripts/build.py`, `python3 scripts/check_content.py`, `node --test tests/*.cjs`, `python3 -m unittest discover -s tests -p 'test_*.py'`가 통과한다.
 - `main`으로 PR을 열어 GitHub Pages에 반영한다.
 
-재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`부터 `scripts/review_batch6.py`까지 적용하므로 배치 1–6 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`부터 `python3 scripts/review_batch6.py`까지 순서대로이다.
+재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`부터 `scripts/review_batch7.py`까지 적용하므로 배치 1–7 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`부터 `python3 scripts/review_batch7.py`까지 순서대로이다.
 
 ## 7. 배치 1 — 승격 26건
 
@@ -460,3 +460,65 @@ pending 250. 영문 번역은 그다음이다.
 2. 재급식 고위험이 알코올·신경성 식욕부진·심한 영양결핍으로 보기가 닫히는 문항. '아닌 것'이 두 개 남으면 올리지 않는다.
 3. 출구 감염의 국소·경구 치료와 혈류 감염의 전신 치료가 정답 인덱스와 같을 때만. `quizlet-iib-023`은 전신 항균제라 그대로 둔다.
 4. 구조지질, 0.22 μm, 질소 '+4 g', Omegaven, 회장 '침범', 비타민 K 이원, CRRT 상한, 알루미늄 5 μg/kg/일, Curreri, 28–30 kcal/kg, 혼합 순서·acetate 1:1을 정답으로 둔 문항이 새로 생기기 전에는 그대로 둔다. 계산은 보유 예제 네 가지와 숫자가 같을 때만.
+
+## 24. 배치 7 — 승격 15건
+
+배치 7에서 이 목록을 대조했다. 비타민을 투여 직전에 넣고 24시간 안에 쓴다는 문장, 셀레나이트와 비타민 C의 1–4시간 간격, 저혈당의 50% 포도당을 정답으로 둔 pending 문항은 없었다. 재급식 고위험 세 항목으로 보기가 하나로 닫히는 문항도 없었다. `quizlet-iib-023`은 전신 항균제라 그대로다.
+
+핵심표에 새 숫자는 넣지 않았다. 6.1 기계적 합병증의 흉부 X선 칸에 ASPEN 투여 점검표 2024의 삽입 시 위치 확인을 붙였다. 병상 삽입 후 CXR 전 시작 금지 한 줄은 문제은행이라 인용하지 않았다.
+
+| ID | 보유 근거 | 핵심표 |
+|---|---|---|
+| `medex-015` | CCN, BMI ≥40 단백은 이상체중 기준 최대 2.5 g/kg/일. 30–40은 2.0 이상 | 8.2·2.3 |
+| `medex-008` | 교재, 고령 여성 총체수분 0.45×체중. 남성은 0.6 | 0·2.4 |
+| `medex-006` | Factsheet, 혈당 조절이 문제면 공급량 감량 검토. 248 mg/dL는 140–180 밖 | 8.2·2.1·8.1 |
+| `medex-007` | Myths, 영양위험 3–5일. PN은 EN 금기·불내성·장 기능 부족일 때 | 1·0 |
+| `cnsc-nutrition-support-123` | 교재, 조제는 USP 797 무균 지침. ISO Class 5는 넣지 않음 | 5.1 |
+| `bcnsp-024` | 교재, 중환자 선별은 NRS 2002와 NUTRIC. 보기 중 선별 도구는 NRS 2002 | 0 |
+| `bcnsp-083` | 교재, 비투석 0.6–0.8. HD·PD와 CRRT는 감량 칸이 아님 | 2.3·8 |
+| `rxk-1_3-6` | 교재 스트레스계수. 기초요구량에 그 정도를 반영 | 4.1 |
+| `rxk-2_1-5` | 교재, 간질환은 BCAA. 신부전은 표준 아미노산 | 8·2.3 |
+| `rxk-3_1-6` | 교재, 신부전은 체액 증가·고칼륨·고인산·저칼슘·대사성 산증 | 8·2.4·2.5 |
+| `rxk-3_3-6` | Myths, 저나트륨이라도 나트륨을 항상 늘리지 않음. 체액 과부하면 악화 | 2.5 |
+| `quizlet-iib-039` | 교재, 망간 독성은 신경계. 파킨슨양은 쓰지 않음 | 2.7 |
+| `quizlet-pn-023` | 교재 끝 위치는 흉부 X선. 투여 점검표는 삽입 시 X선 확인 | 6.1·3.1 |
+| `allaccess-005` | Factsheet의 호흡성 산증·고중성지방, CLABSI. 신장질환은 그 목록 밖 | 6.1·8.1 |
+| `cnsc-nutrition-support-008` | 교재, 나트륨 135–145 mEq/L. 165는 고나트륨 | 7.2·2.5 |
+
+## 25. 배치 7에서 pending으로 남긴 것
+
+| ID | 이유 |
+|---|---|
+| `quizlet-iib-023` | 출구 감염은 국소·경구. 정답은 전신 항균제 |
+| `rxk-2_3-6`, `quizlet-iib-029` | 재급식 고위험 세 항목으로 '아닌 것'이 하나로 닫히지 않음 |
+| `cnsc-nutrition-support-079`, `quizlet-cnsc-practice-004` | CCN은 수술·외상·TBI에서 아르기닌 포함 제형을 고려. 중증 패혈증 금기 문장 없음 |
+| `bcnsp-070` | 대기 위장관암 수술 전은 SICU·외상·TBI 문장과 다른 대상 |
+| `cnsc-nutrition-support-116` | 프로토콜 문장은 목표 열량 비율. 도달 시간·중단 감소는 없음 |
+| `cnsc-nutrition-support-076` | 1.5–2.0 kcal/mL 없음 |
+| `cnsc-nutrition-support-068` | 비위관 X선 문장 없음. X선은 중심정맥관 끝 |
+| `cnsc-nutrition-support-109` | 경비장관·경피의 기간 문장 없음 |
+| `rxk-2_2-1`, `rxk-2_2-2`, `rxk-2_2-3` | 유문 이후·지속 주입은 있다. 경로·방식의 최상·최하 순위는 없음 |
+| `rxk-1_3-5`, `bcnsp-087` | 단기 모니터는 프리알부민. 질소평형 우선 문장 없음 |
+| `cnsc-nutrition-support-001`, `cnsc-nutrition-support-002`, `cnsc-nutrition-support-005`, `cnsc-nutrition-support-016`, `cnsc-nutrition-support-017`, `cnsc-nutrition-support-020`, `medex-013` | 6특징·음성 급성기·세 병인의 합의 원문 미보유 |
+| `quizlet-pn-017` | 수술 전 PN을 중증에게만 일상적으로 쓴다는 문장 없음 |
+| `cnsc-nutrition-support-103` | 5~7일은 영양위험 3–5일과 잘영양 7일을 한 칸으로 묶음 |
+| `rxk-3_2-1` | 칼슘 염은 비교환. 영향이 가장 작다는 보기와 충돌 |
+| `quizlet-iib-051` | PICC의 혈전과 tip 이동이 한 줄. 부종이 혈전으로 닫히지 않음 |
+| `bcnsp-041` | 글루타민 일상 투여는 하지 않음. 장세포 연료 문장 없음 |
+| `quizlet-home-ns-010` | 시작 전과 시작 당일을 가르는 문장 없음 |
+| `rxk-4_1-2` | 24시간 홈케어 업체 문장 없음 |
+| `oep-bcscp-q-034` | 2–8°C 실온화 문장 없음. BUD는 실온 30시간·냉장 9일 |
+| `cnsc-nutrition-support-014` | 요요소질소로 질소 균형을 본다는 문장 없음. +4 g도 없음 |
+
+구조지질, 0.22 μm, 질소 '+4 g', Omegaven, 회장 '침범', 비타민 K 이원, CRRT 상한, 알루미늄 5 μg/kg/일, Curreri, 28–30 kcal/kg, 혼합 순서·acetate 1:1을 정답으로 둔 문항, 계산 예제 네 가지와 다른 숫자, 파킨슨양 망간, 주기 주입 시작 증속, 주 2–3회는 그대로다.
+
+## 26. 남은 일 · 다음 배치
+
+pending 235. 영문 번역은 그다음이다.
+
+다음 배치(배치 8, 15–30건) 후보:
+
+1. 필터를 카테터 허브에 가깝게 둔다는 Myths 문장, 단독 ILE 12시간과 TNA 24시간, 12시간을 넘기면 두 용기로 나눈다는 문장. 그 문장을 정답으로 둔 문항만.
+2. 집에서 병원 PN 없이 시작할 수 있다는 Myths 조건, 말초 PN은 10–14일을 넘기지 않는다는 SPN 2026 문장. 숫자가 그 문장과 같을 때만.
+3. 급성 간질환의 포도당+지질, 초급성 간부전에서 아미노산이 필수가 아니라는 문장, Child-Pugh의 복수·뇌병증, 간성뇌증 2단계의 구음장애. 보기가 그 항목으로 닫힐 때만.
+4. 6특징·음성 급성기·세 병인, 중증 패혈증의 아르기닌, 마그네슘과 난치성 저칼륨·저칼슘·QTc, 출구 감염의 국소·경구(`quizlet-iib-023`은 전신 항균제)는 보유 문장이 갈라져 있거나 정답과 어긋나 있는 동안 둔다. 비타민 직전·24시간, 셀레나이트 1–4시간, 저혈당 50% 포도당을 정답으로 둔 문항이 새로 생기기 전에는 그대로 둔다. 계산은 보유 예제 네 가지와 숫자가 같을 때만.

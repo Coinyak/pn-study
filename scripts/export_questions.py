@@ -30,7 +30,7 @@ OUT = ROOT / "content" / "questions.json"
 DEFAULT_NOTES = ROOT.parent.parent.parent / "참고문헌_정리" / "06_학습_노트"
 
 EXTRACTED_AT = "2026-11-14"
-CONTENT_VERSION = "2026-11-14.8"
+CONTENT_VERSION = "2026-11-14.9"
 
 KSHP_REF = "kshp-yeongyang-yakryo-lecture-answers"
 MYTHS_REF = "aspen-pn-myths-practice-tool-2024"
@@ -666,11 +666,11 @@ def main():
             "reviewNote": spec["reviewNote"],
         })
 
-    # Batch promotions live in scripts/review_batch1.py through review_batch6.py
+    # Batch promotions live in scripts/review_batch1.py through review_batch7.py
     # so a later export keeps them. Do not run this exporter to refresh
     # questions.json until the post-export explanation edits already in
     # questions.json are folded back into the raw path.
-    for _name in ("review_batch1.py", "review_batch2.py", "review_batch3.py", "review_batch4.py", "review_batch5.py", "review_batch6.py"):
+    for _name in ("review_batch1.py", "review_batch2.py", "review_batch3.py", "review_batch4.py", "review_batch5.py", "review_batch6.py", "review_batch7.py"):
         _batch_path = Path(__file__).with_name(_name)
         if _batch_path.exists():
             _spec = importlib.util.spec_from_file_location(_name[:-3], _batch_path)
