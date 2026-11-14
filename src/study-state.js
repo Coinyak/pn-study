@@ -9,10 +9,11 @@
  *   { schemaVersion: 1,
  *     contentVersion: string|null,          // questions.json meta.contentVersion at save time
  *     attemptsByQuestionId: { [id]: Attempt[] },   // append-only history, oldest -> newest
- *     marksByQuestionId: { [id]: boolean[5] },     // independent "I worked this" slots
+ *     marksByQuestionId: { [id]: "o"|"x" }, // self-check: O (green) / X (red); absent = none
  *     bookmarks: string[],                  // question ids
  *     lastSession: { questionId, at, topic?, filter? } | null }
  *   Attempt = { at, selected, correct, answer, confidence: "sure"|"unsure", revision }
+ *   Legacy boolean[5] mark arrays still load: any true slot → "o".
  *
  * Revision rule: an attempt only counts toward current mastery when attempt.revision ===
  * question.revision (missing revision == 1). Older-revision attempts stay in history. Ids that
@@ -25,8 +26,8 @@
  * bookmark/bookmarks/favorite/favorites/즐겨찾기 -> bookmarked.
  *   wrong      latest current-revision attempt is incorrect (session/compat)
  *   unsure     latest current-revision attempt was marked "unsure" (session/compat)
- *   unseen     all five solve marks false (or missing); attempts do not affect this
- *   marked     at least one solve mark true
+ *   unseen     no O/X check (or missing); attempts do not affect this
+ *   marked     check is "o" or "x"
  *   bookmarked id is in state.bookmarks
  *
  * Restore flow: parseBackup(text, questions) -> preview (pure, no storage) ->
@@ -42,8 +43,11 @@
   const STORAGE_KEY = "pn-study-progress-v1";
   const SCHEMA_VERSION = 1;
   const BACKUP_KIND = "pn-study-progress-backup";
-  const MARK_SLOTS = 5;
-  const EMPTY_MARKS = [false, false, false, false, false];
+  const CHECK_NONE = "none";
+  const CHECK_O = "o";
+  const CHECK_X = "x";
+  const CHECK_CYCLE = [CHECK_NONE, CHECK_O, CHECK_X];
+  const CHECK_RANK = { none: 0, o: 1, x: 2 };
   const CONFIDENCES = ["sure", "unsure"];
   const UNSAFE_KEYS = ["__proto__", "constructor", "prototype"];
   const FILTER_ALIASES = {
@@ -95,41 +99,45 @@
     };
   }
 
-  function emptyMarks() {
-    return EMPTY_MARKS.slice();
-  }
-
-  /** Always returns a fresh length-5 boolean array. Missing id ⇒ all false. */
-  function getMarks(state, id) {
-    if (!state || !isSafeKey(id) || !isPlainObject(state.marksByQuestionId) || !has(state.marksByQuestionId, id)) {
-      return emptyMarks();
+  /** Coerce stored mark value → "none" | "o" | "x". Legacy boolean[5] → "o" if any true. */
+  function coerceCheck(raw) {
+    if (raw === CHECK_O || raw === CHECK_X) return raw;
+    if (Array.isArray(raw) && raw.length === 5) {
+      for (let i = 0; i < 5; i++) if (raw[i] === true) return CHECK_O;
+      return CHECK_NONE;
     }
-    const raw = state.marksByQuestionId[id];
-    if (!Array.isArray(raw) || raw.length !== MARK_SLOTS) return emptyMarks();
-    const out = emptyMarks();
-    for (let i = 0; i < MARK_SLOTS; i++) out[i] = raw[i] === true;
-    return out;
+    return CHECK_NONE;
   }
 
-  function anyMark(marks) {
-    for (let i = 0; i < marks.length; i++) if (marks[i]) return true;
-    return false;
+  /** Always returns "none" | "o" | "x". Missing id ⇒ "none". */
+  function getCheck(state, id) {
+    if (!state || !isSafeKey(id) || !isPlainObject(state.marksByQuestionId) || !has(state.marksByQuestionId, id)) {
+      return CHECK_NONE;
+    }
+    return coerceCheck(state.marksByQuestionId[id]);
+  }
+
+  function hasCheck(check) {
+    return check === CHECK_O || check === CHECK_X;
   }
 
   /**
-   * Set or toggle one independent solve-mark slot (0..4).
-   * When `on` is omitted, the slot is toggled. All-false clears the id from the map.
+   * Set self-check to "none" | "o" | "x". "none" clears the id from the map.
    */
-  function setMark(state, id, index, on) {
-    if (!isSafeKey(id)) throw new TypeError("mark id must be a non-empty string");
-    if (!isIdx(index) || index >= MARK_SLOTS) throw new TypeError("mark index must be an integer 0..4");
-    const prev = getMarks(state, id);
-    const next = prev.slice();
-    next[index] = on === undefined ? !prev[index] : !!on;
+  function setCheck(state, id, value) {
+    if (!isSafeKey(id)) throw new TypeError("check id must be a non-empty string");
+    if (CHECK_CYCLE.indexOf(value) < 0) throw new TypeError('check must be "none", "o", or "x"');
     const marksByQuestionId = Object.assign({}, state.marksByQuestionId || {});
-    if (!anyMark(next)) delete marksByQuestionId[id];
-    else marksByQuestionId[id] = next;
+    if (value === CHECK_NONE) delete marksByQuestionId[id];
+    else marksByQuestionId[id] = value;
     return Object.assign({}, state, { marksByQuestionId });
+  }
+
+  /** Cycle none → o → x → none (one click each). */
+  function cycleCheck(state, id) {
+    const cur = getCheck(state, id);
+    const next = CHECK_CYCLE[(CHECK_CYCLE.indexOf(cur) + 1) % CHECK_CYCLE.length];
+    return setCheck(state, id, next);
   }
 
   function withAttempts(state, id, list) {
@@ -195,8 +203,8 @@
     return questions.filter((q) => {
       if (f === "all") return true;
       if (f === "bookmarked") return state.bookmarks.indexOf(q.id) >= 0;
-      if (f === "unseen") return !anyMark(getMarks(state, q.id));
-      if (f === "marked") return anyMark(getMarks(state, q.id));
+      if (f === "unseen") return !hasCheck(getCheck(state, q.id));
+      if (f === "marked") return hasCheck(getCheck(state, q.id));
       const last = latestAttempt(q, state);
       if (last === null) return false;
       if (f === "wrong") return !last.correct;
@@ -211,8 +219,7 @@
       correct: 0, wrong: 0, unsure: 0, bookmarked: 0, staleQuestions: 0, orphanIds: 0,
     };
     for (const q of questions) {
-      const marks = getMarks(state, q.id);
-      if (anyMark(marks)) { out.marked++; out.seen++; } else out.unseen++;
+      if (hasCheck(getCheck(state, q.id))) { out.marked++; out.seen++; } else out.unseen++;
       const last = latestAttempt(q, state);
       if (last === null) {
         if (has(state.attemptsByQuestionId, q.id) && state.attemptsByQuestionId[q.id].length) out.staleQuestions++;
@@ -246,21 +253,25 @@
 
   const attemptKey = (a) => JSON.stringify([a.at, a.selected, a.confidence, a.revision]);
 
-  /** Coerce one marks array; invalid → all false and bump invalidDropped when raw was present. */
-  function sanitizeMarksArray(raw, stats) {
-    if (raw === undefined || raw === null) return emptyMarks();
-    if (!Array.isArray(raw) || raw.length !== MARK_SLOTS) {
-      stats.invalidDropped++;
-      return emptyMarks();
+  /**
+   * Coerce one check value. Accepts "o"|"x" or legacy boolean[5].
+   * Invalid → null and bump invalidDropped when raw was present.
+   */
+  function sanitizeCheckValue(raw, stats) {
+    if (raw === undefined || raw === null) return null;
+    if (raw === CHECK_O || raw === CHECK_X) return raw;
+    if (Array.isArray(raw) && raw.length === 5) {
+      let bad = false;
+      let any = false;
+      for (let i = 0; i < 5; i++) {
+        if (typeof raw[i] !== "boolean") bad = true;
+        else if (raw[i]) any = true;
+      }
+      if (bad) { stats.invalidDropped++; return null; }
+      return any ? CHECK_O : null;
     }
-    const out = emptyMarks();
-    let bad = false;
-    for (let i = 0; i < MARK_SLOTS; i++) {
-      if (typeof raw[i] !== "boolean") bad = true;
-      else out[i] = raw[i];
-    }
-    if (bad) { stats.invalidDropped++; return emptyMarks(); }
-    return out;
+    stats.invalidDropped++;
+    return null;
   }
 
   /** @returns {{payload, stats}} ; throws nothing. `bank` (optional) = Map id -> question. */
@@ -297,8 +308,8 @@
     const markSrc = isPlainObject(raw.marksByQuestionId) ? raw.marksByQuestionId : {};
     for (const id of Object.keys(markSrc)) {
       if (!isSafeKey(id)) { stats.unsafeKeysSkipped++; continue; }
-      const marks = sanitizeMarksArray(markSrc[id], stats);
-      if (anyMark(marks)) marksByQuestionId[id] = marks;
+      const check = sanitizeCheckValue(markSrc[id], stats);
+      if (check) marksByQuestionId[id] = check;
     }
     const bookmarks = [];
     for (const b of Array.isArray(raw.bookmarks) ? raw.bookmarks : []) {
@@ -474,14 +485,13 @@
     const markIds = Object.keys(state.marksByQuestionId || {}).concat(Object.keys(inc.marksByQuestionId || {}));
     for (const id of markIds) {
       if (has(marksByQuestionId, id)) continue;
-      const merged = emptyMarks();
+      let best = CHECK_NONE;
       for (const src of [state.marksByQuestionId || {}, inc.marksByQuestionId || {}]) {
         if (!has(src, id)) continue;
-        const m = src[id];
-        if (!Array.isArray(m)) continue;
-        for (let i = 0; i < MARK_SLOTS; i++) if (m[i] === true) merged[i] = true;
+        const c = coerceCheck(src[id]);
+        if ((CHECK_RANK[c] || 0) > (CHECK_RANK[best] || 0)) best = c;
       }
-      if (anyMark(merged)) marksByQuestionId[id] = merged;
+      if (best !== CHECK_NONE) marksByQuestionId[id] = best;
     }
     const bookmarks = state.bookmarks.slice();
     for (const b of inc.bookmarks) if (bookmarks.indexOf(b) < 0) bookmarks.push(b);
@@ -498,8 +508,10 @@
   }
 
   return {
-    STORAGE_KEY, SCHEMA_VERSION, BACKUP_KIND, MARK_SLOTS,
-    gradeAttempt, createEmptyState, getMarks, setMark, recordAttempt, latestAttempt, toggleBookmark, setLastSession,
+    STORAGE_KEY, SCHEMA_VERSION, BACKUP_KIND,
+    CHECK_NONE, CHECK_O, CHECK_X,
+    gradeAttempt, createEmptyState, getCheck, setCheck, cycleCheck, hasCheck,
+    recordAttempt, latestAttempt, toggleBookmark, setLastSession,
     normalizeFilter, selectReviewQuestions, summarizeProgress,
     createStore, exportBackup, parseBackup, applyBackup,
   };

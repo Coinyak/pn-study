@@ -239,11 +239,13 @@
     function learnCardHtml(q, idx) {
       const linked = coreLinked(q);
       const bm = state.bookmarks.indexOf(q.id) >= 0;
-      const marks = SS.getMarks(state, q.id);
-      const markBoxes = marks.map((on, i) =>
-        '<label class="q-mark" title="풀이 표시 ' + (i + 1) + '"><input type="checkbox" data-act="mark" data-mi="' + i + '"' +
-          (on ? " checked" : "") + '><span class="sr-only">풀이 표시 ' + (i + 1) + "</span></label>"
-      ).join("");
+      const check = SS.getCheck(state, q.id);
+      const checkGlyph = check === "o" ? "O" : check === "x" ? "X" : "";
+      const checkTitle = check === "o" ? "맞음(O) — 다시 누르면 X" : check === "x" ? "틀림(X) — 다시 누르면 해제" : "풀이 표시 — 누르면 O";
+      const checkBtn =
+        '<button type="button" class="q-check q-check-' + check + '" data-act="check" aria-label="풀이 표시" title="' + checkTitle + '">' +
+        '<span aria-hidden="true">' + checkGlyph + "</span>" +
+        '<span class="sr-only">' + checkTitle + "</span></button>";
       const choices = '<ol class="q-ol">' + (q.choices || []).map((c) => "<li>" + esc(c) + "</li>").join("") + "</ol>";
       const ans = (q.choices && q.choices[q.answer]) || "";
       const explain =
@@ -257,7 +259,7 @@
           '<div class="src"><span class="src-meta ' + sourceToneClass(coreSourceLabel(q)) + '">' + esc(coreSourceLabel(q)) + "</span>" +
           " · " + esc(q.id) + (linked ? "" : " · 핵심 연결 없음") + "</div>" +
           '<span class="q-tools">' +
-            '<span class="q-marks" role="group" aria-label="풀이 횟수 표시">' + markBoxes + "</span>" +
+            checkBtn +
             '<button type="button" class="q-bm" data-act="bookmark" aria-pressed="' + bm + '" aria-label="즐겨찾기" title="즐겨찾기">' + (bm ? "★" : "☆") + "</button>" +
           "</span>" +
         "</div>" +
@@ -347,7 +349,7 @@
       } else {
         notice("현재 보기에서 제외했습니다.", false);
         const t = target && find(target);
-        const f = t ? (t.querySelector('input[data-act="mark"]') || t.querySelector("button")) : null;
+        const f = t ? (t.querySelector('[data-act="check"]') || t.querySelector("button")) : null;
         if (f) f.focus({ preventScroll: true });
         else {
           const e = t || list.querySelector(".empty") || list;
@@ -374,16 +376,18 @@
       }
     }
 
-    list.addEventListener("change", (e) => {
-      const card = e.target.closest(".qcard.sq");
-      if (!card || e.target.dataset.act !== "mark") return;
-      const mi = Number(e.target.dataset.mi);
-      if (!Number.isInteger(mi)) return;
-      state = SS.setMark(state, card.dataset.qid, mi, e.target.checked);
-      persist();
-      afterStateChange(card, 'input[data-act="mark"][data-mi="' + mi + '"]');
-    });
     list.addEventListener("click", (e) => {
+      const checkBtn = e.target.closest('button[data-act="check"]');
+      if (checkBtn) {
+        const card = checkBtn.closest(".qcard.sq");
+        if (!card) return;
+        e.preventDefault();
+        e.stopPropagation();
+        state = SS.cycleCheck(state, card.dataset.qid);
+        persist();
+        afterStateChange(card, '[data-act="check"]');
+        return;
+      }
       const bm = e.target.closest('button[data-act="bookmark"]');
       if (bm) {
         const card = bm.closest(".qcard.sq");
