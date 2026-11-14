@@ -6,7 +6,7 @@ answer is already supported by a held source. Does not change stems, choices,
 or answer indexes. Explain text is narrowed only where it attributed a number
 or a rule the held page does not say.
 
-Usage: python3 scripts/review_batch4.py
+Historical batch; replayed by export_questions.py in a comparison file.
 """
 import json
 import re
@@ -713,4 +713,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit("Historical review batch; use export_questions.py --output NEW_FILE for a comparison.")

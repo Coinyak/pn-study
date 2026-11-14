@@ -1,6 +1,6 @@
 # Pending review plan
 
-현재: 배치 11 적용 후 verified 248 · pending 206 · excluded 132. 승격 배치는 여기서 멈춘다. §34.
+배치 11 종료 시점: verified 248 · pending 206 · excluded 132 (§34). 이후 변경은 §35.
 
 확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 9 적용 후 verified 234 · pending 220 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
 
@@ -69,7 +69,7 @@ stem·선지·정답 인덱스는 유지한다. 채우는 것은 referenceIds, e
 - `python3 scripts/build.py`, `python3 scripts/check_content.py`, `node --test tests/*.cjs`, `python3 -m unittest discover -s tests -p 'test_*.py'`가 통과한다.
 - `main`으로 PR을 열어 GitHub Pages에 반영한다.
 
-재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`부터 `scripts/review_batch11.py`까지 적용하므로 배치 1–11 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`부터 `python3 scripts/review_batch11.py`까지 순서대로이다.
+재생성: 현행 문항의 원본은 `content/questions.json`이다. `scripts/export_questions.py --output <새 파일>`은 배치 1–11을 적용한 과거 비교본만 만든다. 편집된 본문·선지·해설과 새 자체 연습문항은 현행 은행에서 관리한다. 사이트를 갱신할 때는 `python3 scripts/build.py`를 실행한다.
 
 ## 7. 배치 1 — 승격 26건
 
@@ -717,3 +717,10 @@ pending 220. 영문 번역은 그다음이다.
 - R10.19의 정기 교체 금지는 `quizlet-pn-024`의 '감염원일 때만 제거'가 아니다.
 
 권고 밖으로 같은 PDF를 다시 훑거나, 같은 교재 OCR을 키워드로 한 번 더 도는 수확은 얇다. 승격 배치는 멈춘다. 남은 pending 206은 보유 문장이 정답을 닫지 않거나, 숫자·방향이 어긋나 인덱스를 유지하는 항목이다. 영문 번역은 그다음이어도, 새 승격 배치의 후보는 아니다. 2014 안전 합의는 계속 열지 않는다.
+
+## 35. 배포 후속 검토
+
+- 새 자체 연습 4문항을 추가했다. 검증 252 · 대기 206 · 제외 132. 기존 대기 문항을 승격하지 않았다.
+- `quizlet-pn-036/037`은 소아라는 조건을 넣었다. `bcnsp-011`은 ASPEN 2020 표 6의 성인 권고에 맞춰 첫 24시간과 증량 간격을 수정했다. 정답 인덱스는 유지했고 이 문항들과 같은 기준으로 고친 `cnsc-nutrition-support-083`의 개정 번호를 올렸다.
+- `medex-010`은 ESPEN 2023 성인 장부전 지침의 권고 36 해설을 근거로 연결했다. 말단회장 B12 기준은 ESPEN 2023 IBD 권고 64에 맞췄다.
+- 복습 필터는 검증 문항만 표시한다. 예전에 남긴 표시·즐겨찾기는 브라우저에 보존한다.

@@ -12,7 +12,7 @@ glucose plus lipid, Child-Pugh ascites/encephalopathy, or grade-2 dysarthria.
 Hyperacute liver failure without required amino acids is already verified
 as kshp-35. Those sentences were cited on the core table anyway.
 
-Usage: python3 scripts/review_batch8.py
+Historical batch; replayed by export_questions.py in a comparison file.
 """
 import json
 import re
@@ -581,4 +581,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit("Historical review batch; use export_questions.py --output NEW_FILE for a comparison.")

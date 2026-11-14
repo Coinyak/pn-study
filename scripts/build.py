@@ -4,7 +4,7 @@
 Inputs (all read, none written):
   content/core.html       core sections (single source for study page, A4 and cheat)
   content/nav.json        left menu (topic, target section, label)
-  content/questions.json  question bank; all questions are embedded; the default quiz pool is includeInBasicSet
+  content/questions.json  question bank; only the verified Korean study set is published
   content/products.json   domestic product comparison rows (<!--@@PRODUCTS@@-->)
   src/split-shell.html    study page layout, CSS and quiz JS
   src/a4-shell.html       A4 print layout
@@ -29,10 +29,9 @@ SRC = ROOT / "src"
 OUT_SPLIT = "PN_study_split.html"
 OUT_A4 = "PN_core_A4_print.html"
 
-# Fields the study page needs now (Task 4–5 grading/review UI reads the rest).
+# Publish display fields and citation locations, leaving review notes and excerpts in the bank.
 BANK_FIELDS = ["id", "revision", "topic", "source", "stem", "choices", "answer", "explain", "needle",
-               "choiceExplanations", "reviewStatus", "includeInBasicSet", "language", "originType",
-               "coreSectionIds", "scopeIds", "referenceIds", "errataIds"]
+               "reviewStatus", "includeInBasicSet", "language", "coreSectionIds"]
 STUDY_UI_FILES = [("study.css", "style"), ("study-state.js", "script"), ("study-ui.js", "script")]
 SECTION_OPEN = re.compile(
     r'<section class="sec" data-topic="[^"]+" id="([^"]+)"(?: data-added="[^"]+")?(?: data-hub="1")?(?: hidden)?>'
@@ -223,10 +222,14 @@ def render_nav(nav):
 
 
 def question_bank(qdoc):
-    # Embed every question (verified + pending + excluded, ko + en) for the later review UI.
-    # The visible default quiz pool is filtered client-side to includeInBasicSet === true
-    # (verified Korean only; see QUESTIONS in split-shell.html).
-    return [{k: q.get(k, "" if k == "needle" else None) for k in BANK_FIELDS} for q in qdoc["questions"]]
+    return [
+        {
+            **{k: q[k] for k in BANK_FIELDS},
+            "evidence": [{k: e[k] for k in ("referenceId", "locator")} for e in q["evidence"]],
+        }
+        for q in qdoc["questions"]
+        if q["includeInBasicSet"] and q["reviewStatus"] == "verified" and q["language"] == "ko"
+    ]
 
 
 def study_ui_block(content_version):
@@ -239,14 +242,18 @@ def study_ui_block(content_version):
     return "\n".join([hook] + parts)
 
 
-def render_split(core, nav, qdoc):
+def render_split(core, nav, qdoc, refs):
     shell = read(SRC / "split-shell.html")
-    for token in ("<!--@@NAV@@-->", "<!--@@CORE@@-->\n", "/*@@QUESTION_BANK@@*/[]", "<!--@@STUDY_UI@@-->"):
+    for token in ("<!--@@NAV@@-->", "<!--@@CORE@@-->\n", "/*@@QUESTION_BANK@@*/[]", "/*@@QUESTION_REFERENCES@@*/{}", "<!--@@STUDY_UI@@-->"):
         if shell.count(token) != 1:
             raise SystemExit(f"split-shell.html: placeholder {token!r} must appear once")
     out = shell.replace("<!--@@NAV@@-->", render_nav(nav))
     out = out.replace("<!--@@CORE@@-->\n", core.rstrip("\n") + " ")
-    out = out.replace("/*@@QUESTION_BANK@@*/[]", script_json(question_bank(qdoc)))
+    bank = question_bank(qdoc)
+    used = {e["referenceId"] for q in bank for e in q["evidence"]}
+    citations = {r["id"]: {"title": r["title"], "url": r.get("url")} for r in refs["references"] if r["id"] in used}
+    out = out.replace("/*@@QUESTION_BANK@@*/[]", script_json(bank))
+    out = out.replace("/*@@QUESTION_REFERENCES@@*/{}", script_json(citations))
     return out.replace("<!--@@STUDY_UI@@-->", study_ui_block(qdoc["meta"].get("contentVersion")))
 
 
@@ -273,8 +280,9 @@ def render_all():
     nav = json.loads(read(CONTENT / "nav.json"))
     qdoc = json.loads(read(CONTENT / "questions.json"))
     prod = json.loads(read(CONTENT / "products.json"))
+    refs = json.loads(read(CONTENT / "references.json"))
     core = prepare_core(core, prod)
-    return {OUT_SPLIT: render_split(core, nav, qdoc), OUT_A4: render_a4(core)}
+    return {OUT_SPLIT: render_split(core, nav, qdoc, refs), OUT_A4: render_a4(core)}
 
 
 def main():

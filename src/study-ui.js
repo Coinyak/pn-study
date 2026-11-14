@@ -1,5 +1,5 @@
-/* study-ui.js — learn quiz pane (marks, favorites, filters, search, backup/restore)
- * on top of StudyState. Card click → core jump. Compact one-line toolbar.
+/* study-ui.js — learn quiz pane (marks, favorites, filters and search)
+ * on top of StudyState. Card click → core jump. Compact two-row toolbar.
  *
  * Inlined after the split shell's script. Replaces the shell's read-only renderQuiz().
  * Node: require("./study-ui.js") returns the pure helpers only (no DOM).
@@ -15,9 +15,6 @@
   "use strict";
 
   const FILTERS = [["all", "전체"], ["unseen", "미표시"], ["marked", "표시 있음"], ["bookmarked", "즐겨찾기"]];
-  const REVIEW_FILTERS = ["marked", "bookmarked"];
-
-  const isKo = (q) => q.language === undefined || q.language === null || q.language === "ko";
 
   function coreSourceLabel(q) {
     const id = String((q && q.id) || "");
@@ -69,12 +66,8 @@
     return "src-other";
   }
 
-  function isDisplayable(q) {
-    return !!q && q.reviewStatus !== "excluded" && isKo(q);
-  }
-
-  function basePool(bank, includePending) {
-    return bank.filter((q) => q.includeInBasicSet === true || (includePending && q.reviewStatus === "pending" && isKo(q)));
+  function basePool(bank) {
+    return bank.filter((q) => q.includeInBasicSet === true && q.reviewStatus === "verified" && q.language === "ko");
   }
 
   function normSearch(s) {
@@ -91,7 +84,7 @@
   function buildList(bank, state, opts, SS) {
     const o = opts || {};
     const filter = SS.normalizeFilter(o.filter || "all");
-    let pool = REVIEW_FILTERS.indexOf(filter) >= 0 ? bank.filter(isDisplayable) : basePool(bank, !!o.includePending);
+    let pool = basePool(bank);
     if (normSearch(o.search)) pool = pool.filter((q) => matchesSearch(q, o.search));
     else if (o.scope !== "all" && o.topic) pool = pool.filter((q) => q.topic === o.topic);
     if (o.sourceLabel) pool = pool.filter((q) => coreSourceLabel(q) === o.sourceLabel);
@@ -112,7 +105,7 @@
   }
 
   const api = {
-    FILTERS, filterUsesState, focusAfterRebuild, isDisplayable, basePool, matchesSearch, buildList,
+    FILTERS, filterUsesState, focusAfterRebuild, basePool, matchesSearch, buildList,
     coreSourceLabel, sourceToneClass, mount,
   };
 
@@ -130,7 +123,8 @@
       : (s) => String(s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
     const topicNow = () => (typeof activeTopic !== "undefined" ? activeTopic : null);
     const topicLabel = (t) => (typeof TOPIC_LABEL !== "undefined" && TOPIC_LABEL[t]) || t || "";
-    const coreLinked = (q) => !(typeof CORE_SKIP !== "undefined" && CORE_SKIP.has(q.id));
+    const coreLinked = (q) => visibleCoreSections(q).length > 0 || !CORE_SKIP.has(q.id);
+    const references = QUESTION_REFERENCES;
 
     const store = SS.createStore({ contentVersion: CV });
     const loaded = store.load();
@@ -138,7 +132,7 @@
     const loadStatus = loaded.status;
 
     const ui = {
-      filter: "all", scope: "all", search: "", includePending: false, sourceLabel: "",
+      filter: "all", scope: "all", search: "", sourceLabel: "",
       listVersion: 0, stateRev: 0, lastKey: null, lastSaveReason: null,
     };
 
@@ -189,7 +183,7 @@
 
     function listKey() {
       return JSON.stringify([
-        ui.filter, ui.scope, ui.search, ui.includePending, ui.sourceLabel,
+        ui.filter, ui.scope, ui.search, ui.sourceLabel,
         ui.scope === "all" || ui.search ? "" : topicNow(), ui.listVersion,
         filterUsesState(ui.filter) ? ui.stateRev : 0,
       ]);
@@ -197,13 +191,13 @@
     function currentItems() {
       return buildList(BANK, state, {
         filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
-        includePending: ui.includePending, sourceLabel: ui.sourceLabel || "",
+        sourceLabel: ui.sourceLabel || "",
       }, SS);
     }
     function poolForSources() {
       return buildList(BANK, state, {
         filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
-        includePending: ui.includePending, sourceLabel: "",
+        sourceLabel: "",
       }, SS);
     }
     function renderSourceOptions() {
@@ -221,14 +215,30 @@
         '" aria-pressed="' + (lab === cur) + '" title="' + esc(text) + " " + n + '문항">' +
         esc(text) + ' <span class="sb-n">' + n + "</span></button>";
       const keep = el.source.scrollLeft;
+      const focusedSource = el.source.contains(doc.activeElement) ? doc.activeElement.dataset.src : undefined;
       el.source.innerHTML = btn("", "전체", pool.length) + labels.map((lab) => btn(lab, lab, counts.get(lab))).join("");
       el.source.scrollLeft = keep;
+      if (focusedSource !== undefined) {
+        const focus = Array.from(el.source.querySelectorAll("button")).find((b) => b.dataset.src === focusedSource)
+          || el.source.firstElementChild;
+        focus.focus({ preventScroll: true });
+      }
+    }
+
+    function evidenceHtml(q) {
+      const rows = (q.evidence || []).map((e) => {
+        const ref = references[e.referenceId];
+        if (!ref) return "";
+        const title = esc(ref.title);
+        const link = /^https?:\/\//i.test(ref.url || "") ? '<a href="' + esc(ref.url) + '">' + title + "</a>" : title;
+        return "<li>" + link + " · " + esc(e.locator) + "</li>";
+      }).filter(Boolean);
+      return rows.length ? '<div class="q-evidence"><strong>정답 근거</strong><ul>' + [...new Set(rows)].join("") + "</ul></div>" : "";
     }
 
     function learnCardHtml(q, idx) {
       const linked = coreLinked(q);
       const bm = state.bookmarks.indexOf(q.id) >= 0;
-      const pending = q.reviewStatus === "pending" ? ' · <span class="q-pending">검토 대기</span>' : "";
       const marks = SS.getMarks(state, q.id);
       const markBoxes = marks.map((on, i) =>
         '<label class="q-mark" title="풀이 표시 ' + (i + 1) + '"><input type="checkbox" data-act="mark" data-mi="' + i + '"' +
@@ -240,18 +250,18 @@
         '<details class="q-details"><summary>정답·해설 보기</summary>' +
         "<p><b>정답:</b> " + (q.answer + 1) + ". " + esc(ans) + "</p>" +
         (q.explain ? "<p>" + esc(q.explain) + "</p>" : "") +
-        "</details>";
+        evidenceHtml(q) + "</details>";
       return '<article class="qcard sq' + (linked ? " q-linked" : "") + '" data-qid="' + esc(q.id) + '" data-idx="' + idx + '"' +
         (linked ? ' title="클릭하면 핵심본 위치로 이동합니다"' : "") + ">" +
         '<div class="q-top">' +
           '<div class="src"><span class="src-meta ' + sourceToneClass(coreSourceLabel(q)) + '">' + esc(coreSourceLabel(q)) + "</span>" +
-          " · " + esc(q.id) + (linked ? "" : " · 핵심 연결 없음") + pending + "</div>" +
+          " · " + esc(q.id) + (linked ? "" : " · 핵심 연결 없음") + "</div>" +
           '<span class="q-tools">' +
             '<span class="q-marks" role="group" aria-label="풀이 횟수 표시">' + markBoxes + "</span>" +
             '<button type="button" class="q-bm" data-act="bookmark" aria-pressed="' + bm + '" aria-label="즐겨찾기" title="즐겨찾기">' + (bm ? "★" : "☆") + "</button>" +
           "</span>" +
         "</div>" +
-        '<div class="stem" id="stem-' + idx + '">' + esc(q.stem) + "</div>" +
+        '<div class="stem" id="stem-' + idx + '"' + (linked ? ' role="button" tabindex="0" aria-label="' + esc(q.stem) + '"' : "") + '>' + esc(q.stem) + "</div>" +
         choices + explain + "</article>";
     }
 
@@ -269,7 +279,7 @@
     }
 
     function updateSummary() {
-      const s = SS.summarizeProgress(basePool(BANK, ui.includePending), state);
+      const s = SS.summarizeProgress(basePool(BANK), state);
       el.sum.textContent = "표시 " + s.marked + "/" + s.total + " · ★" + s.bookmarked;
     }
 
@@ -281,8 +291,12 @@
       updateSummary();
       if (!force && key === ui.lastKey) return;
       ui.lastKey = key;
+      const openIds = new Set(Array.from(list.querySelectorAll(".q-details[open]"), (d) => d.closest(".qcard").dataset.qid));
       list.dataset.topic = topicNow() || "";
       list.innerHTML = items.length ? items.map(learnCardHtml).join("") : '<div class="empty">' + emptyText() + "</div>";
+      if (openIds.size) list.querySelectorAll(".qcard.sq").forEach((card) => {
+        if (openIds.has(card.dataset.qid)) card.querySelector(".q-details").open = true;
+      });
     }
 
     function rerenderCard(card, focusSel) {
@@ -290,6 +304,8 @@
       const idx = Number(card.dataset.idx);
       card.insertAdjacentHTML("afterend", learnCardHtml(q, idx));
       const next = card.nextElementSibling;
+      next.querySelector(".q-details").open = card.querySelector(".q-details").open;
+      next.classList.toggle("hl", card.classList.contains("hl"));
       card.remove();
       el.title.textContent = headTitle(currentItems());
       updateSummary();
@@ -341,14 +357,21 @@
       }
     }
 
-    function showCore(card) {
+    function showCore(card, focusTarget = false) {
       const q = BY_ID.get(card.dataset.qid);
       if (!q || !coreLinked(q) || typeof highlightFromQuestion !== "function") return;
       list.querySelectorAll(".qcard.hl").forEach((c) => c.classList.toggle("hl", c === card));
       card.classList.add("hl");
-      if (typeof activeTopic !== "undefined" && (ui.scope === "all" || ui.search)) activeTopic = q.topic; // eslint-disable-line no-global-assign
-      highlightFromQuestion(q);
-      if (!doc.querySelector(".core-hl, .core-hl-exact")) notice("핵심본에서 이 문항의 위치를 찾지 못했습니다.", false);
+      const landed = highlightFromQuestion(q);
+      if (!landed) {
+        notice("핵심본에서 이 문항의 위치를 찾지 못했습니다.", false);
+      } else if (focusTarget) {
+        const heading = landed.querySelector(".sec-h");
+        if (heading) {
+          heading.tabIndex = -1;
+          heading.focus({ preventScroll: true });
+        }
+      }
     }
 
     list.addEventListener("change", (e) => {
@@ -378,11 +401,16 @@
       if (card) showCore(card);
     });
 
+    list.addEventListener("keydown", (e) => {
+      if (!e.target.matches('.sq .stem[role="button"]') || (e.key !== "Enter" && e.key !== " ")) return;
+      e.preventDefault();
+      showCore(e.target.closest(".qcard.sq"), true);
+    });
+
     function readControls() {
       ui.filter = el.filter.value;
       ui.scope = el.scope.value;
       ui.search = el.search.value.trim();
-      ui.includePending = false;
     }
     el.source.addEventListener("click", (e) => {
       const b = e.target.closest("button[data-src]");

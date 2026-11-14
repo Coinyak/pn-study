@@ -8,7 +8,7 @@ Static GitHub Pages site for PN core notes and linked quiz study HTML. Everythin
 - Core + questions: https://coinyak.github.io/pn-study/PN_study_split.html
 - Core only (A4 print): https://coinyak.github.io/pn-study/PN_core_A4_print.html
 
-All links inside the pages are relative, so the site also works under the `/pn-study/` sub-path and when a generated HTML file is opened directly (`file://`). The only external request is the Google Fonts stylesheet; without network access the pages fall back to system fonts.
+Internal links work under the `/pn-study/` sub-path and when the generated HTML is opened directly (`file://`). References may link to external publications.
 
 ## Source and build
 
@@ -21,32 +21,25 @@ node --test tests/*.cjs           # study-state and study-ui tests
 python3 -m unittest discover -s tests -p 'test_*.py'   # check_content tests
 ```
 
-`scripts/export_questions.py` regenerates `content/questions.json` from the frozen legacy quiz array (`src/legacy/quiz-raw.json`). Do not hand-edit the generated HTML; the next build overwrites it.
+The curated bank is `content/questions.json`. Edit it there and run the build. The historical exporter only creates a comparison file: `python3 scripts/export_questions.py --output /tmp/pn-legacy-candidate.json`. Supply `--notes-dir` if the held lecture extract is outside the default directory. The historical batch scripts are replayed only for this comparison.
 
 ## Study features (quiz pane)
 
-- Learn cards: numbered choices, up to five independent solve marks, ★ favorite, collapsed 정답·해설, and 핵심 위치. No radio grading, submit, resume, or drill/mock session UI.
-- Filters: 전체 / 미표시 / 표시 있음 / 즐겨찾기 (`marksByQuestionId` + bookmarks). Plus search, source chips, and topic vs all-scope.
-- Example flow:
-  1. Open `PN_study_split.html`, pick a sub-section; the quiz pane lists verified questions (보기 전체, 검토 대기 포함 off).
-  2. Tick solve marks and/or ★ as you work; open 정답·해설 when needed; use 핵심 위치 for the core pane.
-  3. Set 보기 to 미표시 / 표시 있음 / 즐겨찾기 to narrow the list; search spans all topics.
-  4. Press 백업 for `pn-study-backup-YYYYMMDD.json`; later 복원 → preview → merge or replace.
-- Progress is stored only in this browser's `localStorage` under `pn-study-progress-v1`. Clearing site data or switching device loses it; use backup to move it. Older attempt (wrong/unsure) records may still exist in storage but are not used by learn filters.
-- No cloud sync or login in this release.
+- Start with the full verified Korean bank. Use the scope, search and source controls to narrow the list.
+- Use **미표시 / 표시 있음 / 즐겨찾기** to review. Your solve marks and favorites stay in this browser under `pn-study-progress-v1`. The site does not sync across devices.
+- Open **정답·해설 보기** to see the answer, explanation and reference locations. Select a question card to jump to its related note.
+- The public quiz HTML contains only the verified Korean set. Older marks and favorites remain stored by question ID even when the question is not currently in that set.
 
 ## Content version and verification status
 
-- `contentVersion`: `2026-11-14.13` (`content/questions.json` `meta.contentVersion`). Backups record it; restoring a backup from another version shows a warning.
-- Question bank: 586 questions embedded in the HTML (verified 248 · pending 206 · excluded 132). **The default topic quiz shows the 248 verified Korean questions** (kshp-48 stays pending practice; same glucose target as kshp-01). Turning "검토 대기 포함" on also adds pending Korean questions (badge). Filters 표시 있음 / 즐겨찾기 can still show pending items you already marked or bookmarked with the toggle off. Excluded questions are embedded but never displayed.
-- "Verified" means the ID, stem, choices, answer, and explanation were re-checked against the reference material the author holds. It is **not** official clinical certification and has not been reviewed by a licensed clinician or exam body. Do not treat any content here as authoritative for patient care or as an official answer key.
-- Scope coverage: 31 partial, 7 missing, 0 fully covered. Missing: common EBM/EBCP, literature types, lung/heart/neuro disease, pregnancy, elderly.
-- Domestic PN product table: **스모프카비벤주 · 스모프리피드20% · 네프라민주** confirmed from public 허가. Unconfirmed items stay in `products.json` only — learning HTML never shows work-queue notes.
-- Learnability pass (2026-11-14): GIR/kcal/indications/assessment/peds/stats cleaned; open-gap callouts removed from the learning view; kidney/HPN/food–drug rows filled from public ESPEN/FDA sources.
-- Details and errata (E1–E8): `docs/content-audit.md`. Pending-review pipeline and batch 1: `docs/pending-review-plan.md`.
+- `contentVersion`: `2026-11-14.14`. The bank has 590 records: **252 verified**, 206 pending and 132 excluded.
+- Verified means the question has been checked against recorded references for study. It is not an official exam answer or a clinical certification.
+- Scope coverage: 33 partial, 5 missing, 0 fully covered. EBM/EBCP and literature types now have core notes and original practice. The scope map still lists lung, heart and neurological disease, pregnancy, and older adults as gaps.
+- Confirmed domestic product rows: 스모프카비벤주, 스모프리피드20% and 네프라민주.
+- See `docs/content-audit.md` for scope and errata and `docs/pending-review-plan.md` for the historical review batches.
 
 ## Remaining gaps
 
 - Human clinical review of pending questions and of disease subsections that still lack dedicated public-source numbers.
-- Confirm remaining domestic PN product labels (Smoflipid, Nutriflex, 네프라민, Furtman).
+- Check the separate Nutriflex formulations and Furtman where relevant.
 - Real-browser checks (print preview, phone layout, `/pn-study/` on the deployed Pages site) after each Pages deploy.

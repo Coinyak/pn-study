@@ -19,9 +19,8 @@ const BANK = [
 ];
 const ids = (list) => list.map((x) => x.id);
 
-test("default pool is includeInBasicSet only; pending is opt-in; excluded never", () => {
-  assert.deepEqual(ids(UI.basePool(BANK, false)), ["v1", "v2", "v3"]);
-  assert.deepEqual(ids(UI.basePool(BANK, true)), ["v1", "v2", "v3", "p1"]);
+test("public pool is verified Korean only even if legacy flags are supplied", () => {
+  assert.deepEqual(ids(UI.basePool(BANK, true)), ["v1", "v2", "v3"]);
 });
 
 test("buildList scopes by topic, and search spans all topics", () => {
@@ -44,13 +43,20 @@ test("buildList reacts to state: unseen/marked/bookmarked (mark-based)", () => {
   assert.deepEqual(ids(UI.buildList(BANK, st, opts("bookmarked"), SS)), ["v3"]);
 });
 
-test("review filters still surface a marked pending item with the toggle off; excluded stays hidden", () => {
+test("old pending/excluded marks and favorites stay stored but never appear", () => {
   let st = SS.createEmptyState();
-  st = SS.setMark(st, "p1", 1, true);
-  st = SS.setMark(st, "x1", 0, true);
-  const list = UI.buildList(BANK, st, { filter: "marked", scope: "all", includePending: false }, SS);
-  assert.deepEqual(ids(list), ["p1"]);
-  assert.deepEqual(ids(UI.buildList(BANK, st, { filter: "unseen", scope: "all", includePending: false }, SS)), ["v1", "v2", "v3"]);
+  for (const id of ["v1", "p1", "x1", "e1"]) {
+    st = SS.setMark(st, id, 0, true);
+    st = SS.toggleBookmark(st, id);
+  }
+  const view = (filter, search) => ids(UI.buildList(BANK, st, { filter, scope: "all", includePending: true, search }, SS));
+  assert.deepEqual(view("all"), ["v1", "v2", "v3"]);
+  assert.deepEqual(view("marked"), ["v1"]);
+  assert.deepEqual(view("bookmarked"), ["v1"]);
+  assert.deepEqual(view("unseen"), ["v2", "v3"]);
+  assert.deepEqual(view("bookmarked", "p1"), []);
+  assert.equal(SS.getMarks(st, "p1")[0], true);
+  assert.ok(st.bookmarks.includes("p1"));
 });
 
 test("state-derived filters need a revision; focus moves to the next remaining card", () => {

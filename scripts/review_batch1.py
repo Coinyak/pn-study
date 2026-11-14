@@ -5,7 +5,7 @@ Fills evidence, choice explanations, and reference ids on items whose keyed
 answer is already supported by a held source. Does not change stems, choices,
 or answer indexes. Optional explain text is only a narrowing to that source.
 
-Usage: python3 scripts/review_batch1.py
+Historical batch; replayed by export_questions.py in a comparison file.
 """
 import json
 import re
@@ -633,4 +633,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit("Historical review batch; use export_questions.py --output NEW_FILE for a comparison.")

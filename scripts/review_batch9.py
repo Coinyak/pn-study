@@ -10,7 +10,7 @@ head of bed 30–45°, or chlorhexidine mouthwash twice daily. Those sentences
 were added to the core table anyway. Hub, hang time, home start, peripheral
 10–14 days, and the liver sentences still do not close a single choice.
 
-Usage: python3 scripts/review_batch9.py
+Historical batch; replayed by export_questions.py in a comparison file.
 """
 import json
 import re
@@ -252,4 +252,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit("Historical review batch; use export_questions.py --output NEW_FILE for a comparison.")
