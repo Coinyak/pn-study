@@ -1,5 +1,7 @@
 # Pending review plan
 
+현재: 배치 11 적용 후 verified 248 · pending 206 · excluded 132. 승격 배치는 여기서 멈춘다. §34.
+
 확인일: 2026-11-14. 기준 파일: `content/questions.json` (배치 9 적용 후 verified 234 · pending 220 · excluded 132), `scripts/check_content.py`의 verified 규칙, `scripts/export_questions.py`, `content/references.json`, `docs/content-audit.md` §10.
 
 verified의 뜻은 README와 같다. 보유한 자료로 stem·선지·정답 인덱스·해설을 되짚은 상태이며, 공식 임상 인증이 아니다.
@@ -67,7 +69,7 @@ stem·선지·정답 인덱스는 유지한다. 채우는 것은 referenceIds, e
 - `python3 scripts/build.py`, `python3 scripts/check_content.py`, `node --test tests/*.cjs`, `python3 -m unittest discover -s tests -p 'test_*.py'`가 통과한다.
 - `main`으로 PR을 열어 GitHub Pages에 반영한다.
 
-재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`부터 `scripts/review_batch10.py`까지 적용하므로 배치 1–10 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`부터 `python3 scripts/review_batch10.py`까지 순서대로이다.
+재생성: `scripts/export_questions.py`는 끝에서 `scripts/review_batch1.py`부터 `scripts/review_batch11.py`까지 적용하므로 배치 1–11 승격은 export 뒤에도 남는다. 다만 지금 `questions.json`의 영양약료 해설 다듬기는 legacy raw에 다시 넣기 전에는 export로 덮어쓰면 사라진다. 그 정리가 끝나기 전에는 export로 `questions.json`을 다시 쓰지 않는다. 승격만 다시 적용할 때는 `python3 scripts/review_batch1.py`부터 `python3 scripts/review_batch11.py`까지 순서대로이다.
 
 ## 7. 배치 1 — 승격 26건
 
@@ -677,3 +679,41 @@ pending 220. 영문 번역은 그다음이다.
 - 353쪽 검색에서 공기색전, 크리밍, Hamwi, 디펩티드, 구조지질, QTc의 문장은 나오지 않았다. 비타민 직전·24시간을 정답으로 둔 pending 문항도 없었다.
 
 다음: 같은 OCR을 키워드로 한 번 더 훑는 수확은 얇다. 아직 추출본이 없는 ESPEN 소아 정맥접근·비타민·수분 전해질을 권고문 단위로 읽는 한 번은 가치가 있다. 그 패스도 얇으면 승격 배치를 멈춘다.
+
+## 34. ESPEN 소아 권고 스윕 — 승격 4건, 여기서 멈춤
+
+적용 후 verified 248 · pending 206 · excluded 132.
+
+권고 문장만 읽었다. 2014 안전 합의는 열지 않았다. 쪽 번호가 없는 저널 PDF라 locator는 장·권고 번호다. 텍스트층에서 범위의 en dash는 `e`로 뽑힌다. 고나트륨혈증 속도는 인쇄면에서 10–15 mmol/L/24 h로 확인했다.
+
+읽은 파일:
+
+- `참고문헌_정리/01_ESPEN_가이드라인/ESPEN_pediatric_PN_10_venous_access.pdf` — R10.1–R10.45
+- `참고문헌_정리/01_ESPEN_가이드라인/ESPEN_pediatric_PN_09_vitamins.pdf` — R9.1–R9.26와 지용성·수용성 비교, 티아민 결핍
+- `참고문헌_정리/01_ESPEN_가이드라인/ESPEN_pediatric_PN_06_fluid_electrolytes.pdf` — R6.1–R6.13, 염소·아세트산염, 1 mL/kcal, 고나트륨혈증
+
+| ID | 보유 근거 | 핵심표 |
+|---|---|---|
+| `quizlet-pn-036` | 지용성 비경구 하루 용량은 경구 권장량과 비슷하다 | 2.6 |
+| `quizlet-pn-037` | 수용성 비경구 하루 용량은 경구 권장량보다 여러 배 높다 | 2.6 |
+| `bcnsp-039` | 티아민 결핍은 각기병의 신경·심혈관 증상, 정맥영양에서는 심한 젖산산증 | 2.6 |
+| `medex-010` | 나트륨을 염화나트륨으로만 주면 고염소성 산증. 일부를 아세트산나트륨으로 | 2.5 |
+
+핵심표에 올린 보유 문장: 2.6의 경구 대비 비교와 각기병, 2.4의 1 mL/kcal, 2.5의 염화나트륨→아세트산염, 0장의 고나트륨혈증 10–15 mmol/L/24 h. 형광과 기존 숫자(≤12, 30–40 mL/kg, 50–100 mg)는 지우지 않았다.
+
+아직 막힌 이유:
+
+- `bcnsp-082`의 상한 10–12는 소아 권고 10–15와 다르다. PN 나트륨을 줄이고 자유수를 더한다는 문장도 없다.
+- `rxk-1_3-7`의 1–2 mL/kcal는 1 mL/kcal가 아니다.
+- `quizlet-iib-044`의 최대 차단이 가장 효과적이라는 말과 어긋난다. 권고할 근거가 없고, 피부 소독은 2% 클로르헥시딘이다. 그 보기는 없다.
+- `quizlet-iib-020`은 급성 신부전이다. 아세트산염 교체 문장은 고염소성 산증과 손실이 큰 소아에 있다.
+- `kshp-46`은 수용성 전반의 독성이 적다는 문장만 있다. C가 K보다 낮다는 순위는 없다.
+- 알칼리증에서 염소를 늘리는 문항(`bcnsp-009`, `quizlet-iib-036`)은 그 반대 문장이 없다.
+- 비타민 E 결핍의 말초신경병증·운동실조(`bcnsp-076`)는 없다. 운동실조는 비타민 A 만성 독성 쪽에 있다.
+- 미드라인 금지, 섬유소 덮개, 허브가 가장 흔한 경로, 가이드와이어를 초기 폐색 조치로 쓰지 말라는 문장은 권고에 없다.
+- Groshong 밸브는 끝 혈전을 막을 것으로 기대했으나 임상에서 확인되지 않았다. `quizlet-iib-021`은 그대로다.
+- 마그네슘·난치성 저칼륨·저칼슘·QTc는 이 수액 장의 검색 항목(수분·나트륨·칼륨·염소)에 없다.
+- 재급식 티아민 100–300 mg(`bcnsp-021`)은 연장 소아 1.2 mg/일과 다르다.
+- R10.19의 정기 교체 금지는 `quizlet-pn-024`의 '감염원일 때만 제거'가 아니다.
+
+권고 밖으로 같은 PDF를 다시 훑거나, 같은 교재 OCR을 키워드로 한 번 더 도는 수확은 얇다. 승격 배치는 멈춘다. 남은 pending 206은 보유 문장이 정답을 닫지 않거나, 숫자·방향이 어긋나 인덱스를 유지하는 항목이다. 영문 번역은 그다음이어도, 새 승격 배치의 후보는 아니다. 2014 안전 합의는 계속 열지 않는다.
