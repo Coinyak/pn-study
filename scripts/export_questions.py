@@ -666,11 +666,11 @@ def main():
             "reviewNote": spec["reviewNote"],
         })
 
-    # Batch promotions live in scripts/review_batch1.py through review_batch8.py
+    # Batch promotions live in scripts/review_batch1.py through review_batch9.py
     # so a later export keeps them. Do not run this exporter to refresh
     # questions.json until the post-export explanation edits already in
     # questions.json are folded back into the raw path.
-    for _name in ("review_batch1.py", "review_batch2.py", "review_batch3.py", "review_batch4.py", "review_batch5.py", "review_batch6.py", "review_batch7.py", "review_batch8.py"):
+    for _name in ("review_batch1.py", "review_batch2.py", "review_batch3.py", "review_batch4.py", "review_batch5.py", "review_batch6.py", "review_batch7.py", "review_batch8.py", "review_batch9.py"):
         _batch_path = Path(__file__).with_name(_name)
         if _batch_path.exists():
             _spec = importlib.util.spec_from_file_location(_name[:-3], _batch_path)

@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "contentVersion": "2026-11-14.10",
+    "contentVersion": "2026-11-14.11",
     "extractedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
     "source": {
@@ -12,8 +12,8 @@
     },
     "rawCount": 583,
     "finalCount": 586,
-    "verifiedCount": 232,
-    "pendingCount": 222,
+    "verifiedCount": 234,
+    "pendingCount": 220,
     "excludedCount": 132,
     "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
     "displayLanguage": "ko-only",
@@ -6294,7 +6294,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 교재는 대퇴 카테터 PN을 피하라고 한다. 감염을 줄이려고 쇄골하를 선호한다는 문장은 추출에 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 교재는 대퇴 카테터 PN을 피하라고 한다. 감염을 줄이려고 쇄골하를 선호한다는 문장은 추출에 없다. 인덱스는 유지한다. BLOCKER 배치9: ESPEN HPN R12는 상대정맥 접근의 첫 선택이 내경정맥 또는 쇄골하다. 정답은 쇄골하 하나다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-014",
@@ -6730,9 +6730,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-14-complications",
+        "espen-hpn-2020"
+      ],
       "stem": "재택 정맥영양(PN) 환자가 말초삽입 중심카테터(PICC)를 쓴 상태에서 팔·어깨·목 부종으로 왔다. 가장 가능성 높은 원인은?",
       "choices": [
         "핀치오프 증후군(pinch-off syndrome)",
@@ -6741,29 +6744,46 @@
         "카테터 이동(migration)"
       ],
       "answer": 1,
-      "explain": "중심정맥카테터(CVC)는 내피 손상·염증을 일으켜 정맥 혈전증(thrombosis)으로 이어질 수 있다. 혈관벽 염증은 정맥 경로를 따라 통증·압통을 만들고, 혈류가 막히면 측부 정맥 울혈과 부종이 생긴다. 팔·어깨·목 부종, 팔다리·턱·귀 통증, 팔·목·가슴의 측부 정맥 확장은 카테터 관련 중심정맥 혈전증의 전형적 소견이다.",
+      "explain": "상대정맥이 막히면 머리와 목이 붓는다. 그 문장은 중심정맥 혈전 쪽에 있다. 재택 PN에서 PICC는 카테터 관련 정맥 혈전 위험이 더 높을 수 있다. 핀치오프는 쇄골과 첫 갈비뼈 사이의 압박이다.",
       "needle": "혈전",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 핀치오프는 쇄골과 첫 갈비뼈 사이 압박이다. 머리·목 부종 문장은 그 압박이 아니다.",
+        "정답. 상대정맥 폐색의 증상에 머리·목 부종이 있고, 그 문장은 중심정맥 혈전 쪽이다.",
+        "오답. 섬유소 덮개가 팔·목 부종을 만든다는 문장은 없다.",
+        "오답. 카테터 이동이 머리·목 부종을 만든다는 문장은 없다."
       ],
       "coreSectionIds": [
-        "sec-hpn-10-재택-PN-HPN"
+        "sec-route-3-1-말초-vs-중심",
+        "sec-complications-6-1-3열-요약"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt SVC occlusion",
+          "quote": "include head and neck swelling"
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt pinch-off",
+          "quote": "compression of a CVC between the clavicle and first rib"
+        },
+        {
+          "referenceId": "espen-hpn-2020",
+          "locator": "ESPEN_HPN_full.txt PICC thrombosis",
+          "quote": "possible higher risk of catheter-related venous thrombosis"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: PICC는 혈전 증가와 tip 이동이 한 줄에 있다. 팔·어깨·목 부종이 혈전으로 닫힌다는 문장은 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: PICC는 혈전 증가와 tip 이동이 한 줄에 있다. 팔·어깨·목 부종이 혈전으로 닫힌다는 문장은 없다. 인덱스는 유지한다. 배치9 verified. 정답 인덱스 유지. 닫은 징후는 머리·목 부종이다. stem의 팔·어깨는 그 문장에 항목으로 없다. 소아 합병증 문장을 성인 재택 PICC에 옮겼다."
     },
     {
       "id": "nbnsc-cnsc-sample-01",
@@ -6932,7 +6952,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 미드라인이 고장성 PN·가정 PN에 부적합하다는 문장을 요약·교재 추출에서 확인하지 못했다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 미드라인이 고장성 PN·가정 PN에 부적합하다는 문장을 요약·교재 추출에서 확인하지 못했다. 인덱스는 유지한다. BLOCKER 배치9: ESPEN HPN은 터널형·이식형 포트, 기간이 6개월 미만이면 PICC, 끝은 우심방-상대정맥 접합부다. 미드라인 금지를 그 이름으로 적은 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-home-ns-010",
@@ -8175,7 +8195,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 장기 PN 미량원소·비타민은 3–12개월마다다. 6개월과 매년이 둘 다 그 안에 들어 하나로 닫히지 않는다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 장기 PN 미량원소·비타민은 3–12개월마다다. 6개월과 매년이 둘 다 그 안에 들어 하나로 닫히지 않는다. 인덱스는 유지한다. BLOCKER 배치9: ESPEN HPN R55는 비타민·미량금속을 적어도 연 1회 본다. 6개월마다 미량영양소 평가는 그 문장으로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-home-ns-004",
@@ -17785,7 +17805,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치4: 안정 전에는 매일이다. 안정 후 표11-1은 주 1–2회이고, 정답 보기는 주 2–3회이다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치4: 안정 전에는 매일이다. 안정 후 표11-1은 주 1–2회이고, 정답 보기는 주 2–3회이다. 인덱스는 유지한다. BLOCKER 배치9: 안정 후 주 2–3회는 투여 점검표의 체중이다. 전해질은 안정 후 주 1–2회다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-099",
@@ -18541,9 +18561,12 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-hpn-2020",
+        "espen-ped-pn-2018-14-complications"
+      ],
       "stem": "영양지원팀 성과를 측정할 때 흔히 쓰는 질 지표는?",
       "choices": [
         "병원 환자 만족도 점수",
@@ -18552,27 +18575,41 @@
         "전체 입원 환자의 평균 재원일수"
       ],
       "answer": 1,
-      "explain": "중심정맥관으로 PN을 받는 환자의 CLABSI 발생률은 영양지원팀의 핵심 질 지표다. 무균조제, 카테터 관리, 감염 예방 준수 여부를 반영한다. ASPEN과 Joint Commission도 CLABSI 예방을 주요 질 지표로 본다. 대사 합병증률, 영양 목표 도달 시간, 고혈당 발생 등도 지표로 쓴다.",
+      "explain": "HPN 모니터링에서 돌봄의 질을 보는 예에 CRBSI 발생률이 들어 있다. 중심정맥관이 있는 환자의 혈류감염은 다른 원인이 확인되기 전에는 CLABSI로 분류한다. 환자 만족도, 약국 매출, 전체 재원일수는 그 예가 아니다.",
       "needle": "CLABSI",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 환자 만족도는 돌봄의 질 예에 없다.",
+        "정답. 돌봄의 질 예로 CRBSI 발생률이 적혀 있고, 중심정맥관 혈류감염은 CLABSI로 분류한다.",
+        "오답. 약국 매출은 그 예에 없다.",
+        "오답. 전체 입원 재원일수는 그 예에 없다. 재입원률은 다른 예다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-hpn-10-재택-PN-HPN",
+        "sec-complications-6-1-3열-요약"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-hpn-2020",
+          "locator": "ESPEN_HPN_full.txt R53",
+          "quote": "quality of care (e.g. CRBSI rate, readmission rate etc.)"
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-14-complications",
+          "locator": "ESPEN_compl_full.txt CLABSI definition",
+          "quote": "all bloodstream infections in patients with a CVC are classified as CLABSI"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. 배치9 verified. 정답 인덱스 유지. 품질 예의 단어는 CRBSI다. CLABSI는 같은 장의 중심정맥관 혈류감염 분류 이름이다."
     },
     {
       "id": "bcnsp-080",
@@ -18970,7 +19007,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: CCN 프로토콜 문장은 목표 열량 비율을 올리라는 것이다. 목표 도달 시간이 줄고 급식 중단이 적어진다는 결과 문장은 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치7: CCN 프로토콜 문장은 목표 열량 비율을 올리라는 것이다. 목표 도달 시간이 줄고 급식 중단이 적어진다는 결과 문장은 없다. 인덱스는 유지한다. BLOCKER 배치9: CCN은 위잔류 500 mL 미만에서 EN을 끊지 말라고 한다. 정답은 목표 도달 시간 단축과 급식 중단 감소다. 인덱스는 유지한다."
     },
     {
       "id": "cnsc-nutrition-support-119",
@@ -24077,7 +24114,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치9: 비혈전 폐색으로 적힌 것은 지질·인산칼슘·꼬임·끝 위치·핀치오프다. 섬유소 덮개와 사용 중 이동은 그 문장에 이름이 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-035",
@@ -24543,7 +24580,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치9: CCN의 클로르헥시딘은 가글 하루 2회다. 정답은 삽입 시 최대 차단이다. 피부 소독 클로르헥시딘은 보기에 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-046",
@@ -24587,7 +24624,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치9: 기계적 폐색은 꼬임·끝 위치·핀치오프를 본다. 처음부터 가이드와이어 교체가 부적절하다는 문장은 없다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-047",
