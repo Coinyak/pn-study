@@ -12,6 +12,7 @@ Usage: python3 scripts/export_questions.py [--notes-dir PATH]
 """
 import argparse
 import html as htmllib
+import importlib.util
 import json
 import re
 import sys
@@ -29,7 +30,7 @@ OUT = ROOT / "content" / "questions.json"
 DEFAULT_NOTES = ROOT.parent.parent.parent / "참고문헌_정리" / "06_학습_노트"
 
 EXTRACTED_AT = "2026-11-14"
-CONTENT_VERSION = "2026-11-14.1"
+CONTENT_VERSION = "2026-11-14.3"
 
 KSHP_REF = "kshp-yeongyang-yakryo-lecture-answers"
 MYTHS_REF = "aspen-pn-myths-practice-tool-2024"
@@ -127,6 +128,8 @@ STEM_FIX = {
     "kshp-15": ("중환자실에 입원 중인 55세 70 kg 남자에게 PN으로 단백질 63 g/day가 공급되고 있다. "
                 "AKI가 발생하여 간헐적 혈액투석을 시행할 예정이다. 강의자료 기준 적절한 1일 단백질 투여량(g)은?",
                 "원 해설집 문구 '강의자료 기준' 복원(HTML 표시본에서 누락)."),
+    "kshp-48": ("[kshp-01 관련 연습] 성인 입원환자의 TPN 합병증(고혈당·저혈당) 예방을 위해 ASPEN이 권하는 목표 혈당 범위는?",
+                "kshp-01과 같은 혈당 목표. 기본 세트 대표는 kshp-01이고 이 문항은 추가 연습으로 남긴다."),
 }
 
 # KSHP items held back from verified despite full per-choice explanations.
@@ -136,6 +139,8 @@ KSHP_PENDING = {
     "kshp-34": (["E8-trace-element-dose"], "정답 선지가 AMA 1979 용량으로 현행 ASPEN TE 권고와 다름. 현행 기준이면 '옳은 것'이 없음."),
     "kshp-39": ([], "①'NUTRIC ≥5 high'는 원 NUTRIC(IL-6 포함) 기준 ≥6이라 함께 틀릴 수 있음(해설도 인정). 단일 정답 불확정."),
     "kshp-46": ([], "해설 자체가 ⑤ Vitamin K도 독성이 낮아 '유일 정답 단정 어려움'으로 기록. 단일 정답 불확정."),
+    # Same glucose target as kshp-01. Keep as extra practice, not a second basic-set item.
+    "kshp-48": ([], "kshp-01과 같은 개념(ASPEN 성인 입원 PN 목표 혈당 140–180). 대표 문항은 kshp-01이며 본 문항은 추가 연습."),
 }
 
 # Non-KSHP items verified against held ASPEN Myths 2024 text (p.3).
@@ -564,7 +569,7 @@ def main():
                 notes.append("해설집 정답 index와 HTML 불일치")
             if qid in KSHP_PENDING:
                 errata, why = KSHP_PENDING[qid]
-                status, priority = "pending", "high"
+                status, priority = "pending", "low" if qid == "kshp-48" else "high"
                 notes.append(why)
             elif all(choice_ex) and src and src["answer"] == q["answer"]:
                 status, priority = "verified", "high"
@@ -660,6 +665,16 @@ def main():
             "checks": {"translation": "ok", "answerEvidence": "ok", "choiceExplanations": "complete", "coreLink": "override"},
             "reviewNote": spec["reviewNote"],
         })
+
+    # Batch promotions live in scripts/review_batch1.py so a later export keeps them.
+    # Do not run this exporter to refresh questions.json until the post-export
+    # explanation edits already in questions.json are folded back into the raw path.
+    _batch_path = Path(__file__).with_name("review_batch1.py")
+    if _batch_path.exists():
+        _spec = importlib.util.spec_from_file_location("review_batch1", _batch_path)
+        _mod = importlib.util.module_from_spec(_spec)
+        _spec.loader.exec_module(_mod)
+        out = _mod.apply_to_records(out)
 
     st = Counter(r["reviewStatus"] for r in out)
     meta = {
