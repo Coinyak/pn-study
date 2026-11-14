@@ -322,7 +322,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md TG 컷 감량·중단 [EXAM p181]",
+          "locator": "TG 컷 감량·중단 교재 p181",
           "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
         },
         {
@@ -599,7 +599,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 혈당 PN 성인 [EXAM p034] [TXT p179]",
+          "locator": "혈당 PN 성인 교재 p034 교재 p179",
           "quote": "PN 성인 140~180 mg/dL"
         },
         {
@@ -872,12 +872,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.5 단위",
+          "locator": "2.5 단위",
           "quote": "성인 g/day·mEq/day"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.5 단위",
+          "locator": "2.5 단위",
           "quote": "소아 g/kg/day"
         }
       ],
@@ -1044,7 +1044,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 형태·열량 [TXT p143]",
+          "locator": "형태·열량 교재 p143",
           "quote": "일수화물(monohydrate) 3.4 kcal/g = IV 계산 기본"
         },
         {
@@ -1113,7 +1113,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 형태·열량 [TXT p143]",
+          "locator": "형태·열량 교재 p143",
           "quote": "일수화물(monohydrate) 3.4 kcal/g = IV 계산 기본"
         },
         {
@@ -1245,17 +1245,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 1 GI 흡수 불가",
+          "locator": "1 GI 흡수 불가",
           "quote": "위장관 누공"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 Crohn",
+          "locator": "8 Crohn",
           "quote": "EN 불가 누공"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 급성췌장염",
+          "locator": "8 급성췌장염",
           "quote": "EN 우선, 불가 시 PN"
         },
         {
@@ -1427,17 +1427,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 1 GI 흡수 불가",
+          "locator": "1 GI 흡수 불가",
           "quote": "5~7일 이상"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 1 GI 흡수 불가",
+          "locator": "1 GI 흡수 불가",
           "quote": "장폐색"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 Crohn",
+          "locator": "8 Crohn",
           "quote": "지속 소장폐색"
         }
       ],
@@ -1493,17 +1493,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 1 Crohn",
+          "locator": "1 Crohn",
           "quote": "EN 실패/불가 후"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 1 Crohn",
+          "locator": "1 Crohn",
           "quote": "장휴식 목적 단독 PN X"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 Crohn",
+          "locator": "8 Crohn",
           "quote": "지속 소장폐색"
         }
       ],
@@ -1619,7 +1619,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 카테터",
+          "locator": "카테터",
           "quote": "PICC tip SVC"
         }
       ],
@@ -1673,7 +1673,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 접근로 [TXT p280]",
+          "locator": "10 접근로 교재 p280",
           "quote": "독립성↓"
         }
       ],
@@ -1730,7 +1730,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.1 기계적",
+          "locator": "6.1 기계적",
           "quote": "tip 위치 확인(CXR)"
         },
         {
@@ -1835,7 +1835,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 카테터 [TXT p174]",
+          "locator": "카테터 교재 p174",
           "quote": "대퇴 카테터 PN 회피"
         }
       ],
@@ -1890,12 +1890,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 3.1 농도",
+          "locator": "3.1 농도",
           "quote": "AA 3~5% · 포도당 5~10%"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF143",
+          "locator": "교재 p143",
           "quote": "말초 혈전정맥염 위험 → 중심정맥 권장"
         }
       ],
@@ -1951,7 +1951,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md Ca-P 용해도↑ [EXAM p153] [TXT p153]",
+          "locator": "Ca-P 용해도↑ 교재 p153 교재 p153",
           "quote": "AA 농도↑ · cysteine 포함(산성화) · Ca gluconate(CaCl₂보다 해리↓) · pH↓ · 온도↓"
         },
         {
@@ -2027,7 +2027,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 [EXAM p063·p227]",
+          "locator": "2.3 [EXAM p063·p227]",
           "quote": "AKI/신부전 ⟶ 표준 AA"
         }
       ],
@@ -2130,7 +2130,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md EFAD 예방 %kcal [TXT p167]",
+          "locator": "EFAD 예방 %kcal 교재 p167",
           "quote": "LA 2–4% + ALA 0.25–0.5%"
         }
       ],
@@ -2184,7 +2184,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md TG 컷 [EXAM p181]",
+          "locator": "TG 컷 교재 p181",
           "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
         },
         {
@@ -2296,7 +2296,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md 미량원소",
+          "locator": "미량원소",
           "quote": "담즙정체 → Cu·Mn↓"
         },
         {
@@ -2565,7 +2565,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 5.4 BUD",
+          "locator": "5.4 BUD",
           "quote": "PN = 구 USP(pre-2023 중위험)"
         }
       ],
@@ -2935,17 +2935,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.5 진단 [EXAM p182]",
+          "locator": "6.5 진단 교재 p182",
           "quote": "triene:tetraene ≥ 0.2"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.5 진단",
+          "locator": "6.5 진단",
           "quote": "0.2 이상"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.5 예방 용량",
+          "locator": "6.5 예방 용량",
           "quote": "피부도포 = 효과 낮음"
         }
       ],
@@ -3000,7 +3000,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md Propofol 행 [TXT p182]",
+          "locator": "Propofol 행 교재 p182",
           "quote": "10% 지방유제 vehicle(1.1 kcal/mL) ⟶ kcal·TG 합산, PN 지질 감량/중단 고려"
         }
       ],
@@ -3055,7 +3055,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md TG 컷 [EXAM p181]",
+          "locator": "TG 컷 교재 p181",
           "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
         },
         {
@@ -3116,12 +3116,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 주기주입 [TXT p154]",
+          "locator": "10 주기주입 교재 p154",
           "quote": "주기 12–18 h(간독성 예방·HPN)"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 관리",
+          "locator": "6.3 관리",
           "quote": "과도 포도당 피하기 · cyclic PN"
         }
       ],
@@ -3233,7 +3233,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF179",
+          "locator": "교재 p179",
           "quote": "Capillary glucose: 개시 후 goal 도달까지 q6h"
         }
       ],
@@ -3289,7 +3289,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF181",
+          "locator": "교재 p181",
           "quote": "저혈당·반동: 감속 1–2h 또는 속도 절반"
         }
       ],
@@ -6373,7 +6373,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md Vit B1 [TXT p184]",
+          "locator": "Vit B1 교재 p184",
           "quote": "장기기아/알코올: PN 초기 5–7일 thiamine 50–100 mg/d + folate 1 mg/d"
         },
         {
@@ -6491,12 +6491,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md 전해질 요구↑ PDF147",
+          "locator": "전해질 요구↑ 교재 p147",
           "quote": "high protein(Ca)"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 표11-3 [EXAM p193]",
+          "locator": "표11-3 교재 p193",
           "quote": "고용량 단백 피하기"
         },
         {
@@ -6568,27 +6568,27 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.4 성인 수액",
+          "locator": "2.4 성인 수액",
           "quote": "30–40 mL/kg/d"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.1 하루 총량",
+          "locator": "2.1 하루 총량",
           "quote": "≤7 g/kg/day"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.2 성인 용량",
+          "locator": "2.2 성인 용량",
           "quote": "≤2.5 g/kg"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 상한",
+          "locator": "2.3 상한",
           "quote": "max 2.5 g/kg/d"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.1 Azotemia",
+          "locator": "6.1 Azotemia",
           "quote": "과도 AA"
         }
       ],
@@ -6745,7 +6745,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 Mn",
+          "locator": "2.7 Mn",
           "quote": "복합제 함량 높아 독성(신경계"
         }
       ],
@@ -6800,17 +6800,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.1 감염",
+          "locator": "6.1 감염",
           "quote": "출입구/터널/포켓/혈류"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 감염 치료",
+          "locator": "10 감염 치료",
           "quote": "출입구 = 온찜질·매일 국소치료·경구 항생제"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 감염 치료",
+          "locator": "10 감염 치료",
           "quote": "혈류 = antimicrobial lock + 전신 항균제 + 카테터 제거"
         }
       ],
@@ -6978,7 +6978,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 지질 감량·중단 [EXAM p181]",
+          "locator": "지질 감량·중단 교재 p181",
           "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
         }
       ],
@@ -7034,12 +7034,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 [TXT p273]",
+          "locator": "2.7 교재 p273",
           "quote": "복합제 함량 높아 독성"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 시판 예",
+          "locator": "2.7 시판 예",
           "quote": "1 mL = Zn 3 mg + Cu 0.3 mg + Mn 55 μg + Se 60 μg"
         },
         {
@@ -7365,7 +7365,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 7.1 표11-1 [TXT p179]",
+          "locator": "7.1 표11-1 교재 p179",
           "quote": "목표·안정 전 매일"
         }
       ],
@@ -7420,12 +7420,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 주기주입 [TXT p210]",
+          "locator": "10 주기주입 교재 p210",
           "quote": "HPN 대부분 야간 10–12 h"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 주기주입 [TXT p154]",
+          "locator": "10 주기주입 교재 p154",
           "quote": "주기 12–18 h(간독성 예방·HPN)"
         }
       ],
@@ -7527,22 +7527,22 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 지방증",
+          "locator": "6.3 지방증",
           "quote": "원인 = 과도 공급"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 관리",
+          "locator": "6.3 관리",
           "quote": "과도 포도당 피하기 · cyclic PN · SO-ILE 감량"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 담낭",
+          "locator": "6.3 담낭",
           "quote": "sludge·담석 (장 자극 부재)"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 TE",
+          "locator": "6.3 TE",
           "quote": "간담도 ⟶ Mn·Cu 감량"
         }
       ],
@@ -7642,7 +7642,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 5.2 위험",
+          "locator": "5.2 위험",
           "quote": "CaHPO₄ 침전 = 카테터 폐색·색전 ⟶ 사망 가능"
         }
       ],
@@ -7881,7 +7881,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.5 증상 [EXAM p182]",
+          "locator": "6.5 증상 교재 p182",
           "quote": "피부염(기출) · 탈모"
         }
       ],
@@ -7935,22 +7935,22 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 [EXAM p093]",
+          "locator": "2.7 교재 p093",
           "quote": "미각변화"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7",
+          "locator": "2.7",
           "quote": "Cu 결핍 = 호중구감소·빈혈"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7",
+          "locator": "2.7",
           "quote": "Se 결핍 = 심근병증"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 [EXAM p035]",
+          "locator": "2.7 교재 p035",
           "quote": "Cr 결핍 = 포도당불내성"
         }
       ],
@@ -8004,12 +8004,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "locator": "0 간접열량측정",
           "quote": "흡기 O₂ · 호기 CO₂"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "locator": "0 간접열량측정",
           "quote": "IC 가능하면 IC 우선"
         }
       ],
@@ -8064,27 +8064,27 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 7.3 성인 중단",
+          "locator": "7.3 성인 중단",
           "quote": "목표열량의 ≥80%"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 7.3 감량",
+          "locator": "7.3 감량",
           "quote": "1–2 h"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 7.3 감량",
+          "locator": "7.3 감량",
           "quote": "taper (rebound 방지)"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 9 이행",
+          "locator": "9 이행",
           "quote": "75–80%까지 PN 유지"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 9 이행",
+          "locator": "9 이행",
           "quote": "급중단 ⟶ rebound 저혈당"
         }
       ],
@@ -8307,7 +8307,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 시판 예",
+          "locator": "2.7 시판 예",
           "quote": "1 mL = Zn 3 mg + Cu 0.3 mg + Mn 55 μg + Se 60 μg"
         },
         {
@@ -8317,12 +8317,12 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 [TXT p273]",
+          "locator": "2.7 교재 p273",
           "quote": "복합제 함량 높아 독성"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 [TXT p185]",
+          "locator": "2.7 교재 p185",
           "quote": "혈청 TE 농도 = 신뢰도 낮음"
         }
       ],
@@ -8566,7 +8566,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 혈당 PN 성인 [EXAM p034] [TXT p179]",
+          "locator": "혈당 PN 성인 교재 p034 교재 p179",
           "quote": "PN 성인 140~180 mg/dL"
         },
         {
@@ -9020,12 +9020,12 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 7.3 감량",
+          "locator": "7.3 감량",
           "quote": "1–2 h"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 9 이행",
+          "locator": "9 이행",
           "quote": "급중단 ⟶ rebound 저혈당"
         }
       ],
@@ -9275,7 +9275,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 ICU 선별",
+          "locator": "0 ICU 선별",
           "quote": "NRS 2002 · NUTRIC"
         }
       ],
@@ -9331,12 +9331,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "locator": "0 간접열량측정",
           "quote": "흡기 O₂ · 호기 CO₂"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "locator": "0 간접열량측정",
           "quote": "IC 가능하면 IC 우선"
         },
         {
@@ -9875,7 +9875,7 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "locator": "0 간접열량측정",
           "quote": "IC 가능하면 IC 우선"
         }
       ],
@@ -10397,7 +10397,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 7.2 Na",
+          "locator": "7.2 Na",
           "quote": "Na | 135–145 mEq/L"
         }
       ],
@@ -10499,12 +10499,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 간질환",
+          "locator": "8 간질환",
           "quote": "복수 ⟶ dry weight"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 간질환",
+          "locator": "8 간질환",
           "quote": "최근 최저체중 또는 IBW"
         }
       ],
@@ -10765,7 +10765,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 중증 영양불량",
+          "locator": "0 중증 영양불량",
           "quote": ">2%/1주 · >5%/1월 · >7.5%/3월"
         }
       ],
@@ -11712,7 +11712,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 형태·열량 행 [TXT p143]",
+          "locator": "형태·열량 행 교재 p143",
           "quote": "일수화물(monohydrate) 3.4 kcal/g = IV 계산 기본"
         },
         {
@@ -11776,7 +11776,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 지질 열량 [EXAM p144]",
+          "locator": "지질 열량 교재 p144",
           "quote": "20% 2.0 kcal/mL"
         }
       ],
@@ -11830,7 +11830,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF166",
+          "locator": "교재 p166",
           "quote": "Fluid 30–40 mL/kg"
         }
       ],
@@ -11932,12 +11932,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "locator": "0 간접열량측정",
           "quote": "IC 가능하면 IC 우선"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 간접열량측정",
+          "locator": "0 간접열량측정",
           "quote": "흡기 O₂ · 호기 CO₂"
         },
         {
@@ -12056,7 +12056,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 형태·열량 [TXT p143]",
+          "locator": "형태·열량 교재 p143",
           "quote": "일수화물(monohydrate) 3.4 kcal/g = IV 계산 기본"
         },
         {
@@ -12123,7 +12123,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 아미노산 기본 [TXT p146]",
+          "locator": "아미노산 기본 교재 p146",
           "quote": "결정 AA 형태 · 4 kcal/g"
         }
       ],
@@ -12177,12 +12177,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 NPC:N",
+          "locator": "2.3 NPC:N",
           "quote": "동화 목적 NPC:N 120–180:1"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 4.1 단백 kcal",
+          "locator": "4.1 단백 kcal",
           "quote": "NPC:N 계산엔 제외"
         }
       ],
@@ -12236,12 +12236,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md 아미노산 PDF146",
+          "locator": "아미노산 교재 p146",
           "quote": "N 환산 6.25:1"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 아미노산 기본 [EXAM p061]",
+          "locator": "아미노산 기본 교재 p061",
           "quote": "N = 단백(g) ÷ 6.25"
         }
       ],
@@ -12535,7 +12535,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8.5 튜브 세척",
+          "locator": "8.5 튜브 세척",
           "quote": "튜브 세척 = 물, 성인 최소 15 mL"
         }
       ],
@@ -12587,17 +12587,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "locator": "8.5 phenytoin",
           "quote": "phenytoin = EN 튜브 흡착"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "locator": "8.5 phenytoin",
           "quote": "1–2 h EN 중지"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "locator": "8.5 phenytoin",
           "quote": "IV 전환"
         }
       ],
@@ -12845,12 +12845,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 EN 금기",
+          "locator": "0 EN 금기",
           "quote": "확산형 복막염 · 심한 장폐색 · 장관 마비 · 난치성 구토·설사 · 심각한 GI 출혈"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 Crohn",
+          "locator": "8 Crohn",
           "quote": "EN 불가 누공"
         },
         {
@@ -13066,7 +13066,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md TG 컷 [EXAM p181]",
+          "locator": "TG 컷 교재 p181",
           "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
         }
       ],
@@ -13122,7 +13122,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 대두유 [EXAM p044]",
+          "locator": "대두유 교재 p044",
           "quote": "LA ~50% · ALA ~7% ⟶ EFAD 예방"
         }
       ],
@@ -13285,12 +13285,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF143",
+          "locator": "교재 p143",
           "quote": "말초 혈전정맥염 위험 → 중심정맥 권장"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 3.1 농도",
+          "locator": "3.1 농도",
           "quote": "포도당 5~10%"
         }
       ],
@@ -13348,7 +13348,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 형태·열량 [TXT p143]",
+          "locator": "형태·열량 교재 p143",
           "quote": "일수화물(monohydrate) 3.4 kcal/g = IV 계산 기본"
         },
         {
@@ -13586,17 +13586,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 NPC:N",
+          "locator": "2.3 NPC:N",
           "quote": "무스트레스 150:1"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 NPC:N",
+          "locator": "2.3 NPC:N",
           "quote": "스트레스 80~100:1"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 NPC:N",
+          "locator": "2.3 NPC:N",
           "quote": "총열량:N 100–150:1"
         }
       ],
@@ -13650,7 +13650,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 성인 MVI 표9-11 [TXT p149]",
+          "locator": "성인 MVI 표9-11 교재 p149",
           "quote": "K 150 μg"
         }
       ],
@@ -13706,7 +13706,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF147",
+          "locator": "교재 p147",
           "quote": "소아 Primene/Trophamine/Aminoven infant"
         }
       ],
@@ -13762,7 +13762,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 4.2 AA 부피",
+          "locator": "4.2 AA 부피",
           "quote": "g/kg × 체중"
         }
       ],
@@ -13859,7 +13859,7 @@
       ],
       "answer": 3,
       "explain": "포도당(탄수화물)이 PN 삼투압에 가장 큰 영향을 준다. 그래서 말초 PN의 최종 포도당 농도는 보통 약 10% 이하로 제한한다. 아미노산과 전해질도 기여하지만, 지방유제는 거의 등삼투성이라 첨가하면 전체 삼투압을 오히려 낮춘다.",
-      "needle": "10%",
+      "needle": "가장 크게 기여",
       "choiceExplanations": [
         "오답. 따로 주는 지질유제는 등장성에 가깝다. 최종 용액 삼투압의 대부분은 포도당이 만든다.",
         "오답. 미량원소는 소량이라 최종 삼투압의 주성분이 아니다.",
@@ -13983,12 +13983,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 접근로 [EXAM p280]",
+          "locator": "10 접근로 교재 p280",
           "quote": "수개월–수 년 = 터널형 중심정맥"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 접근로 [TXT p280]",
+          "locator": "10 접근로 교재 p280",
           "quote": "implanted port = 활동↑ but 천자·감염·수술"
         }
       ],
@@ -14046,12 +14046,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF201",
+          "locator": "교재 p201",
           "quote": "3-in-1이 2-in-1보다 유화제 때문에 불안정↑"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 5.2 위험",
+          "locator": "5.2 위험",
           "quote": "CaHPO₄ 침전 = 카테터 폐색·색전 ⟶ 사망 가능"
         },
         {
@@ -14102,7 +14102,7 @@
       ],
       "answer": 2,
       "explain": "칼슘-인산염 침전 위험은 온도가 높을수록, 칼슘·인산염 농도가 높을수록 커진다. 염화칼슘(글루콘산칼슘보다 해리도가 큼) 사용, 높은 pH, 낮은 아미노산 함량도 위험을 높인다. 약사는 칼슘-인산염 용해도 곡선을 참고하고 칼슘을 마지막에 넣어 안전하게 조제한다.",
-      "needle": "온도↓",
+      "needle": "침전이 커진다",
       "choiceExplanations": [
         "오답. pH가 낮을수록 용해도가 오른다. pH를 낮추는 것은 침전 위험을 높이지 않는다.",
         "오답. 아미노산 농도가 높을수록 용해도가 오른다.",
@@ -14118,7 +14118,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 5.2 용해도↑ [EXAM p153]",
+          "locator": "5.2 용해도↑ 교재 p153",
           "quote": "AA 농도↑ · cysteine 포함(산성화)"
         },
         {
@@ -14256,7 +14256,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.1 감염",
+          "locator": "6.1 감염",
           "quote": "CLABSI (가장 심각)"
         }
       ],
@@ -14314,27 +14314,27 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 관리",
+          "locator": "6.3 관리",
           "quote": "과도 포도당 피하기 · cyclic PN · SO-ILE 감량"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 관리",
+          "locator": "6.3 관리",
           "quote": "SO+MCT+어유 복합 ILE / fish oil 기반"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 TE 조정",
+          "locator": "6.3 TE 조정",
           "quote": "간담도 ⟶ Mn·Cu 감량"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.5 예방 %kcal",
+          "locator": "6.5 예방 %kcal",
           "quote": "LA 2~4% + ALA 0.25~0.5%"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 IFALD",
+          "locator": "10 IFALD",
           "quote": "fish oil 기반 ILE 추천"
         },
         {
@@ -14668,22 +14668,22 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.5 요구 증가",
+          "locator": "2.5 요구 증가",
           "quote": "GI 손실"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.5 나트륨",
+          "locator": "2.5 나트륨",
           "quote": "장루·설사·위액 손실 시 Na↑"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 아연",
+          "locator": "2.7 아연",
           "quote": "과다 GI 손실"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 아연",
+          "locator": "2.7 아연",
           "quote": "누공 고배출"
         }
       ],
@@ -14744,7 +14744,7 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.1 감염",
+          "locator": "6.1 감염",
           "quote": "CLABSI (가장 심각)"
         }
       ],
@@ -14799,7 +14799,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md GIR 공식 [TXT p144]",
+          "locator": "GIR 공식 교재 p144",
           "quote": "GIR (mg/kg/min) = [Dex(%) × 속도(mL/h) × 0.167] ÷ 체중(kg) = mg dextrose ÷ (kg × 1440)"
         }
       ],
@@ -14854,12 +14854,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 지질 열량 [EXAM p144]",
+          "locator": "지질 열량 교재 p144",
           "quote": "20% 2.0 kcal/mL"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 지질 열량",
+          "locator": "지질 열량",
           "quote": "3-in-1 계산 시 지방 10 kcal/g(대두유)"
         }
       ],
@@ -14914,12 +14914,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 성인 용량 [EXAM p144]",
+          "locator": "성인 용량 교재 p144",
           "quote": "하루 ≤2.5 g/kg"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF144",
+          "locator": "교재 p144",
           "quote": "일일 ≤2.5 g/kg"
         }
       ],
@@ -15035,7 +15035,7 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 EN 금기",
+          "locator": "0 EN 금기",
           "quote": "확산형 복막염 · 심한 장폐색 · 장관 마비 · 난치성 구토·설사 · 심각한 GI 출혈"
         }
       ],
@@ -15090,17 +15090,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 EN 금기",
+          "locator": "0 EN 금기",
           "quote": "확산형 복막염 · 심한 장폐색 · 장관 마비 · 난치성 구토·설사 · 심각한 GI 출혈"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 1 GI 흡수 불가",
+          "locator": "1 GI 흡수 불가",
           "quote": "위장관 누공"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 SBS",
+          "locator": "8 SBS",
           "quote": "장부전·SBS"
         },
         {
@@ -15409,17 +15409,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 신부전",
+          "locator": "8 신부전",
           "quote": "비투석 0.6–0.8"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 신부전",
+          "locator": "8 신부전",
           "quote": "HD·PD 1.2–1.3 → 1.5–1.8"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 신부전",
+          "locator": "8 신부전",
           "quote": "CRRT 1.2–1.3 → 최대 2.0–2.5"
         }
       ],
@@ -15766,17 +15766,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md Zn [EXAM+ p093]",
+          "locator": "Zn [EXAM+ p093]",
           "quote": "발진·탈모·야맹증·미각변화"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 결핍/독성 [TXT p273]",
+          "locator": "결핍/독성 교재 p273",
           "quote": "Zn 결핍 = 피부염·설사·상처치유 지연"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md Cu [TXT p273]",
+          "locator": "Cu 교재 p273",
           "quote": "Cu 결핍 = 호중구감소·빈혈"
         }
       ],
@@ -15832,12 +15832,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.5 진단 [EXAM p182]",
+          "locator": "6.5 진단 교재 p182",
           "quote": "triene:tetraene ≥ 0.2"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.5 진단",
+          "locator": "6.5 진단",
           "quote": "0.2 이상"
         }
       ],
@@ -16221,12 +16221,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 대사-저혈당 [TXT p181]",
+          "locator": "대사-저혈당 교재 p181",
           "quote": "급중단 ⟶ rebound"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF181",
+          "locator": "교재 p181",
           "quote": "저혈당·반동: 감속 1–2h 또는 속도 절반"
         }
       ],
@@ -16580,7 +16580,7 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 혈청 정상 [EXAM+ p078]",
+          "locator": "혈청 정상 [EXAM+ p078]",
           "quote": "P 3.0–4.5 mg/dL"
         },
         {
@@ -16641,7 +16641,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF179",
+          "locator": "교재 p179",
           "quote": "BMP+P+Mg: 안정 전 daily"
         },
         {
@@ -16756,7 +16756,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md TG 컷 [EXAM p181]",
+          "locator": "TG 컷 교재 p181",
           "quote": "TG ≥400 ⟶ ILE 회피·감량·중단"
         }
       ],
@@ -16813,12 +16813,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 지방증",
+          "locator": "6.3 지방증",
           "quote": "지방증 = 과다 열량·포도당"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.1 고혈당 원인",
+          "locator": "6.1 고혈당 원인",
           "quote": "과도 포도당"
         },
         {
@@ -16998,7 +16998,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 Crohn [TXT p211]",
+          "locator": "8 Crohn 교재 p211",
           "quote": "EN 불가 누공"
         }
       ],
@@ -17150,7 +17150,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 신부전 [EXAM p227]",
+          "locator": "8 신부전 교재 p227",
           "quote": "비투석 0.6–0.8"
         }
       ],
@@ -17206,12 +17206,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md Zn 보충 대상",
+          "locator": "Zn 보충 대상",
           "quote": "누공 고배출"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 질환 조정",
+          "locator": "질환 조정",
           "quote": "설사 ⟶ Zn 보충"
         }
       ],
@@ -17387,12 +17387,12 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 4.1 ICU",
+          "locator": "4.1 ICU",
           "quote": "11–14 kcal/kg 실제체중"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 4.1 ICU",
+          "locator": "4.1 ICU",
           "quote": "22–25 kcal/kg IBW"
         }
       ],
@@ -17447,7 +17447,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md Vit B1 [TXT p184]",
+          "locator": "Vit B1 교재 p184",
           "quote": "장기기아/알코올: PN 초기 5–7일 thiamine 50–100 mg/d"
         },
         {
@@ -17596,7 +17596,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 엽산 [TXT p071]",
+          "locator": "엽산 교재 p071",
           "quote": "MTX·trimethoprim·항경련제도 결핍 유발"
         }
       ],
@@ -17698,12 +17698,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md Zn [TXT p093]",
+          "locator": "Zn 교재 p093",
           "quote": "고용량 Zn(≥40 mg/d) ⟶ Cu 결핍"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md Cu [TXT p273]",
+          "locator": "Cu 교재 p273",
           "quote": "Cu 결핍 = 호중구감소·빈혈"
         }
       ],
@@ -17862,17 +17862,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "locator": "8.5 phenytoin",
           "quote": "phenytoin = EN 튜브 흡착"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "locator": "8.5 phenytoin",
           "quote": "1–2 h EN 중지"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8.5 phenytoin",
+          "locator": "8.5 phenytoin",
           "quote": "IV 전환"
         }
       ],
@@ -18063,17 +18063,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 주기주입 [TXT p210]",
+          "locator": "10 주기주입 교재 p210",
           "quote": "HPN 대부분 야간 10–12 h"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 주기주입 [TXT p154]",
+          "locator": "10 주기주입 교재 p154",
           "quote": "주기 12–18 h(간독성 예방·HPN)"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 관리",
+          "locator": "6.3 관리",
           "quote": "과도 포도당 피하기 · cyclic PN · SO-ILE 감량"
         }
       ],
@@ -18293,17 +18293,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 담즙정체",
+          "locator": "6.3 담즙정체",
           "quote": "ALP·GGT·DB↑"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 담즙정체 [EXAM p186]",
+          "locator": "6.3 담즙정체 교재 p186",
           "quote": "conjugated(direct) bilirubin ≥2 mg/dL = 담즙정체 정의"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 담즙정체",
+          "locator": "6.3 담즙정체",
           "quote": "⟶ 간경변·간부전"
         }
       ],
@@ -18370,7 +18370,7 @@
         "choiceExplanations": "complete",
         "coreLink": "override"
       },
-      "reviewNote": "정답 방향은 E1과 일치. 보유 근거 연결·선택지 해설 미작성. BLOCKER 배치7: 프리알부민은 단기 모니터다. 주간 질소평형이 그보다 적절하다는 문장은 없다. 알부민을 진단 단독 지표로 쓰지 말라는 뜻과 질소평형 우선은 다르다. 인덱스는 유지한다. [batch3] core sec-protein-2-3-단백질-아미노산-AA '질소평형 = 섭취 N − (UUN + 4) … 교재 PDF62'; core sec-eval-0-영양평가-PN-직결만 '알부민·prealbumin 음성 급성기 반응물 → 해석 보조·진단/효과 단독 X'; PN_source_textbook_extract.md PDF [hold] 질소평형 방향은 맞으나 이번 턴에 교재 PDF62 문장을 다시 열지 않음. [2026-11-14.37] 프리알부민보다 적절하다는 비교 문장은 그 절에 없다."
+      "reviewNote": "정답 방향은 E1과 일치. 보유 근거 연결·선택지 해설 미작성. BLOCKER 배치7: 프리알부민은 단기 모니터다. 주간 질소평형이 그보다 적절하다는 문장은 없다. 알부민을 진단 단독 지표로 쓰지 말라는 뜻과 질소평형 우선은 다르다. 인덱스는 유지한다. [batch3] core sec-protein-2-3-단백질-아미노산-AA '질소평형 = 섭취 N − (UUN + 4) … 교재 PDF62'; core sec-eval-0-영양평가-PN-직결만 '알부민·prealbumin 음성 급성기 반응물 → 해석 보조·진단/효과 단독 X'; 교재 추출 메모 [hold] 질소평형 방향은 맞으나 이번 턴에 교재 PDF62 문장을 다시 열지 않음. [2026-11-14.37] 프리알부민보다 적절하다는 비교 문장은 그 절에 없다."
     },
     {
       "id": "bcnsp-094",
@@ -18625,7 +18625,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 급성 췌장염 [TXT p218]",
+          "locator": "급성 췌장염 교재 p218",
           "quote": "EN 우선, 불가 시 PN"
         }
       ],
@@ -18747,7 +18747,7 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 지방증",
+          "locator": "6.3 지방증",
           "quote": "지방증 = 과다 열량·포도당"
         }
       ],
@@ -18849,7 +18849,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 5.2 위험",
+          "locator": "5.2 위험",
           "quote": "CaHPO₄ 침전 = 카테터 폐색·색전 ⟶ 사망 가능"
         }
       ],
@@ -19002,22 +19002,22 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF145",
+          "locator": "교재 p145",
           "quote": "3-in-1: 투여 간편·24h 가능"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 3.2 장점",
+          "locator": "3.2 장점",
           "quote": "1 bag·1 line"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 3.2 장점·단점",
+          "locator": "3.2 장점·단점",
           "quote": "침전 육안 확인 쉬움"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 3.2 단점",
+          "locator": "3.2 단점",
           "quote": "불투명 ⟶ 침전 육안 확인 어려움"
         }
       ],
@@ -19072,12 +19072,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 5.2 위험",
+          "locator": "5.2 위험",
           "quote": "CaHPO₄ 침전 = 카테터 폐색·색전 ⟶ 사망 가능"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 5.4 투여 전",
+          "locator": "5.4 투여 전",
           "quote": "환자·라벨 확인 · 육안 검사"
         }
       ],
@@ -19875,7 +19875,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 5.1 혼합",
+          "locator": "5.1 혼합",
           "quote": "조제는 USP 797 무균 지침"
         }
       ],
@@ -20172,7 +20172,7 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 중환자",
+          "locator": "8 중환자",
           "quote": "BG 140–180"
         }
       ],
@@ -20287,7 +20287,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 TBW",
+          "locator": "0 TBW",
           "quote": "고령♀ 0.45 × 체중"
         }
       ],
@@ -20465,7 +20465,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 질환 조정",
+          "locator": "2.7 질환 조정",
           "quote": "담즙울체/간담도 ⟶ Cu·Mn 감량·제한"
         }
       ],
@@ -20519,27 +20519,27 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 [TXT p273]",
+          "locator": "2.7 교재 p273",
           "quote": "Zn 결핍 = 피부염·설사·상처치유 지연"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 [EXAM p093]",
+          "locator": "2.7 교재 p093",
           "quote": "과다 GI 손실"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 [EXAM p093]",
+          "locator": "2.7 교재 p093",
           "quote": "누공 고배출"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7",
+          "locator": "2.7",
           "quote": "Se 결핍 = 심근병증"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7",
+          "locator": "2.7",
           "quote": "Cu 결핍 = 호중구감소·빈혈"
         }
       ],
@@ -20738,17 +20738,17 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 기아성 영양불량",
+          "locator": "0 기아성 영양불량",
           "quote": "마라스무스 = 열량 결핍"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 기아성 영양불량",
+          "locator": "0 기아성 영양불량",
           "quote": "알부민 >3.0 유지"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 0 기아성 영양불량",
+          "locator": "0 기아성 영양불량",
           "quote": "체지방·근육 소모"
         }
       ],
@@ -20858,12 +20858,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 주기주입 [TXT p210]",
+          "locator": "10 주기주입 교재 p210",
           "quote": "HPN 대부분 야간 10–12 h"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 주기주입 [TXT p154]",
+          "locator": "10 주기주입 교재 p154",
           "quote": "주기 12–18 h(간독성 예방·HPN)"
         }
       ],
@@ -21390,7 +21390,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 4.1 스트레스계수",
+          "locator": "4.1 스트레스계수",
           "quote": "경수술 1.2 · 골격외상 1.35 · 수술 1.44 · 감염 1.1–1.8 · 패혈증 1.6–1.8 · 화상 2.1–2.5"
         }
       ],
@@ -21490,22 +21490,22 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 요구량",
+          "locator": "2.3 요구량",
           "quote": "중증 스트레스 1.5~2.0"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 요구량",
+          "locator": "2.3 요구량",
           "quote": "일반 성인 0.8~1.0"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 표4-5",
+          "locator": "2.3 표4-5",
           "quote": "신부전(비투석) 0.6–0.8"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 표4-5",
+          "locator": "2.3 표4-5",
           "quote": "간경화·간성뇌증 1.0–1.5"
         }
       ],
@@ -21841,12 +21841,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 간질환",
+          "locator": "8 간질환",
           "quote": "BCAA(leucine·valine·isoleucine)"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 신부전",
+          "locator": "8 신부전",
           "quote": "표준 AA"
         }
       ],
@@ -22240,7 +22240,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.4 성인 수액",
+          "locator": "2.4 성인 수액",
           "quote": "진행 손실(설사·누공·위장관 흡인)은 추가"
         }
       ],
@@ -22336,7 +22336,8 @@
         "정답. 단백을 에너지 계산에 절대 넣지 않는다는 말은 4 kcal/g와 맞지 않아 거짓이다."
       ],
       "coreSectionIds": [
-        "sec-protein-2-3-단백질-아미노산-AA"
+        "sec-protein-2-3-단백질-아미노산-AA",
+        "sec-calc_filter-4-1-에너지"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -22344,7 +22345,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.3 기본",
+          "locator": "2.3 기본",
           "quote": "4 kcal/g"
         }
       ],
@@ -22401,7 +22402,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 신부전",
+          "locator": "8 신부전",
           "quote": "체액↑·Na 조절이상·고K·고P·저Ca·대사성 산증"
         }
       ],
@@ -23314,12 +23315,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 철",
+          "locator": "2.7 철",
           "quote": "PN과 별도"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.7 철",
+          "locator": "2.7 철",
           "quote": "필요시 별도, 월 25–50 mg"
         }
       ],
@@ -23479,7 +23480,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.4 표11-3 [EXAM p193]",
+          "locator": "6.4 표11-3 교재 p193",
           "quote": "Al 최소화"
         }
       ],
@@ -23534,32 +23535,32 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 SBS",
+          "locator": "8 SBS",
           "quote": "장부전·SBS"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 회장",
+          "locator": "8 회장",
           "quote": "회장 소실"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 9 PNALD 위험",
+          "locator": "9 PNALD 위험",
           "quote": "장간순환 문제"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 9 PNALD 치료",
+          "locator": "9 PNALD 치료",
           "quote": "cyclic PN"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 9 PNALD 치료",
+          "locator": "9 PNALD 치료",
           "quote": "경구 자극"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 9 PNALD 치료",
+          "locator": "9 PNALD 치료",
           "quote": "UDCA"
         }
       ],
@@ -23615,17 +23616,17 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 지방증 [TXT p186]",
+          "locator": "6.3 지방증 교재 p186",
           "quote": "성인 흔함 · PN 2주 내 AST/ALT 경미 상승"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 지방증",
+          "locator": "6.3 지방증",
           "quote": "원인 = 과도 공급"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 담즙정체",
+          "locator": "6.3 담즙정체",
           "quote": "ALP·GGT·DB↑"
         }
       ],
@@ -23681,12 +23682,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 4.4 고혈당 Na",
+          "locator": "4.4 고혈당 Na",
           "quote": "고혈당 Na 교정"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 4.4 Katz",
+          "locator": "4.4 Katz",
           "quote": "0.016"
         }
       ],
@@ -23797,7 +23798,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_source_textbook_extract.md PDF36·PDF181",
+          "locator": "교재 p36·교재 p181",
           "quote": "저혈당·반동: 감속 1–2h 또는 속도 절반"
         }
       ],
@@ -23852,12 +23853,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.2 TG 컷 [TXT p182]",
+          "locator": "2.2 TG 컷 교재 p182",
           "quote": "TG >1,000"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.2 TG 컷",
+          "locator": "2.2 TG 컷",
           "quote": "췌장염 유발"
         }
       ],
@@ -24113,12 +24114,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 담낭 [TXT p186]",
+          "locator": "6.3 담낭 교재 p186",
           "quote": "sludge·담석 (장 자극 부재)"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 관리 [TXT p273]",
+          "locator": "6.3 관리 교재 p273",
           "quote": "경구 자극"
         }
       ],
@@ -24174,7 +24175,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.4 위험 [TXT p191]",
+          "locator": "6.4 위험 교재 p191",
           "quote": "장기 PN 대부분"
         }
       ],
@@ -24436,8 +24437,8 @@
         "스트렙토키나제 10,000 units"
       ],
       "answer": 1,
-      "explain": "혈전으로 막힌 카테터에는 섬유소 용해제를 쓴다. 현재 권하는 약은 alteplase다. 보유 문장에 alteplase 2 mg/2 mL가 있다.",
-      "needle": "110%",
+      "explain": "혈전으로 막힌 카테터에는 섬유소 용해제를 쓴다. ESPEN 소아는 alteplase를 권하고, 비교 연구 용량은 2 mg/2 mL다.",
+      "needle": "알테플라제",
       "choiceExplanations": [
         "오답. 헤파린 100 units/mL는 그 권고 약물이 아니다.",
         "정답. 혈전 폐색의 권고 약물은 alteplase이고, 2 mg/2 mL가 적혀 있다.",
@@ -24525,7 +24526,7 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 성인 수분 [TXT p152]",
+          "locator": "성인 수분 교재 p152",
           "quote": "진행 손실(설사·누공·위장관 흡인)은 추가"
         }
       ],
@@ -24620,7 +24621,7 @@
       ],
       "answer": 1,
       "explain": "핀치오프는 카테터가 쇄골과 첫 갈비뼈 사이에서 눌리는 것이다. 어깨와 팔의 움직임이 그 압박을 반복하고, 그 결과 기계적 폐쇄가 생긴다. 팔을 들면 풀리는 간헐 이상은 그 팔 움직임 문장에 해당한다.",
-      "needle": "증후군",
+      "needle": "핀치오프",
       "choiceExplanations": [
         "오답. 섬유소 덮개가 팔을 들면 풀린다는 문장은 없다.",
         "정답. 팔·어깨 움직임으로 쇄골과 첫 갈비뼈 사이가 눌려 기계적 폐쇄가 생긴다.",
@@ -24628,7 +24629,8 @@
         "오답. 카테터 이동은 그 팔 움직임 압박과 다른 문장이다."
       ],
       "coreSectionIds": [
-        "sec-route-3-1-말초-vs-중심"
+        "sec-route-3-1-말초-vs-중심",
+        "sec-complications-6-1-3열-요약"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -24636,7 +24638,7 @@
       "evidence": [
         {
           "referenceId": "espen-ped-pn-2018-14-complications",
-          "locator": "ESPEN_compl_full.txt pinch-off",
+          "locator": "ESPEN 소아 합병증, pinch-off",
           "quote": "pinch-off syndrome"
         },
         {
@@ -24883,12 +24885,12 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 4.1 kcal/kg",
+          "locator": "4.1 kcal/kg",
           "quote": "중환자 25–30"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 4.1 kcal/kg",
+          "locator": "4.1 kcal/kg",
           "quote": "성인 일반 20–35"
         }
       ],
@@ -25239,12 +25241,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 8 신부전",
+          "locator": "8 신부전",
           "quote": "고K·고P·저Ca·대사성 산증"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.5 고K",
+          "locator": "2.5 고K",
           "quote": "regular insulin(+glucose) → Na/K-ATPase로 K 세포내 이동"
         }
       ],
@@ -25298,7 +25300,7 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.4 진단 [TXT p191]",
+          "locator": "6.4 진단 교재 p191",
           "quote": "진단: DEXA"
         }
       ],
@@ -25353,12 +25355,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 담즙정체",
+          "locator": "6.3 담즙정체",
           "quote": "ALP·GGT·DB↑"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 담즙정체 [EXAM p186]",
+          "locator": "6.3 담즙정체 교재 p186",
           "quote": "conjugated(direct) bilirubin ≥2 mg/dL = 담즙정체 정의"
         }
       ],
@@ -25415,12 +25417,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 10 주기주입 [TXT p154]",
+          "locator": "10 주기주입 교재 p154",
           "quote": "주기 12–18 h(간독성 예방·HPN)"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 관리",
+          "locator": "6.3 관리",
           "quote": "과도 포도당 피하기 · cyclic PN · SO-ILE 감량"
         }
       ],
@@ -25618,12 +25620,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.1 일일 상한",
+          "locator": "2.1 일일 상한",
           "quote": "≤7 g/kg/d"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.1 고혈당 원인 [EXAM p035]",
+          "locator": "6.1 고혈당 원인 교재 p035",
           "quote": "과도 포도당"
         }
       ],
@@ -25678,12 +25680,12 @@
       "evidence": [
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 기여인자 [TXT p188]",
+          "locator": "6.3 기여인자 교재 p188",
           "quote": "지방증 = 과다 열량·포도당"
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 6.3 지방증 [TXT p186]",
+          "locator": "6.3 지방증 교재 p186",
           "quote": "원인 = 과도 공급"
         },
         {
@@ -25750,7 +25752,7 @@
         },
         {
           "referenceId": "imsangyoungyang-gilajabi",
-          "locator": "PN_jjageuri_summary.md 2.1 혈당",
+          "locator": "2.1 혈당",
           "quote": "개시 후 혈당 안정까지 6시간마다"
         }
       ],

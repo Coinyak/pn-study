@@ -319,7 +319,7 @@ function wrapPhraseInNode(root, phrase){
 }
 /* q.id → exact core phrases (answer-aligned). Prefer these over fuzzy stem keywords. */
 /* Answer-aligned only. Skip CONTENT_GAP ids (no core row to land on). */
-const CORE_SKIP = new Set(["allaccess-012","hoag-faq-001","quizlet-home-ns-004","quizlet-home-ns-007","quizlet-pn-008","quizlet-pn-010","quizlet-pn-011","rxk-1_1-1","rxk-3_1-5","rxk-4_1-2"]);
+const CORE_SKIP = new Set(["allaccess-012","hoag-faq-001","quizlet-home-ns-004","quizlet-home-ns-007","quizlet-pn-008","quizlet-pn-010","quizlet-pn-011","rxk-1_1-1","rxk-4_1-2"]);
 const CORE_HINTS = {
   "rx-ppn-900": [
     "900 mOsm/L",
@@ -733,7 +733,7 @@ const CORE_HINTS = {
     "전 또는 동시"
   ],
   "quizlet-iib-011": [
-    "쇄골하",
+    "내경정맥 또는 쇄골하",
     "대퇴 회피"
   ],
   "quizlet-iib-014": [
@@ -747,9 +747,7 @@ const CORE_HINTS = {
     "고름"
   ],
   "quizlet-iib-034": [
-    "CRBSI",
-    "클로르헥시딘",
-    "교육"
+    "유지와 안전을 교육"
   ],
   "quizlet-iib-039": [
     "Mn 독성"
@@ -1173,7 +1171,7 @@ const CORE_HINTS = {
     "900 mOsm/L"
   ],
   "cnsc-nutrition-support-042": [
-    "10%"
+    "가장 크게 기여"
   ],
   "cnsc-nutrition-support-043": [
     "900",
@@ -1186,7 +1184,7 @@ const CORE_HINTS = {
     "유화 파괴"
   ],
   "cnsc-nutrition-support-046": [
-    "온도↓"
+    "침전이 커진다"
   ],
   "cnsc-nutrition-support-047": [
     "최대 당 산화"
@@ -1203,9 +1201,7 @@ const CORE_HINTS = {
     "야간 10–12"
   ],
   "cnsc-nutrition-support-052": [
-    "재급식",
-    "고혈당",
-    "저인산혈증"
+    "공기색전"
   ],
   "cnsc-nutrition-support-053": [
     "Hang — TNA"
@@ -1221,9 +1217,7 @@ const CORE_HINTS = {
     "위장관 흡인"
   ],
   "allaccess-005": [
-    "CLABSI",
-    "TG ≥400",
-    "CLABSI(=CRBSI)"
+    "신장질환은 이 합병증 표에 없다"
   ],
   "allaccess-007": [
     "1.44"
@@ -1559,7 +1553,7 @@ const CORE_HINTS = {
     "마라스무스"
   ],
   "rxk-1_1-4": [
-    "EN 금기"
+    "영양소를 정맥으로 투여"
   ],
   "rxk-1_1-5": [
     "야간 10–12",
@@ -1765,11 +1759,10 @@ const CORE_HINTS = {
     "acetate↑"
   ],
   "quizlet-iib-021": [
-    "PICC",
-    "PICC tip SVC"
+    "Groshong"
   ],
   "quizlet-iib-022": [
-    "혈전용해제"
+    "알테플라제"
   ],
   "quizlet-iib-024": [
     "장루"
@@ -1829,7 +1822,7 @@ const CORE_HINTS = {
     "적신호 사건(sentinel event)"
   ],
   "quizlet-iib-044": [
-    "카테터"
+    "2% chlorhexidine"
   ],
   "quizlet-iib-046": [
     "가이드와이어로 카테터를 교체한다"
