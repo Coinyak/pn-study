@@ -37,8 +37,8 @@ python3 -m unittest discover -s tests -p 'test_*.py'   # check_content tests
 
 ## Content version and verification status
 
-- `contentVersion`: `2026-11-14.5` (`content/questions.json` `meta.contentVersion`). Backups record it; restoring a backup from another version shows a warning.
-- Question bank: 586 questions embedded in the HTML (verified 79 · pending 375 · excluded 132). **The default topic quiz shows the 79 verified Korean questions** (kshp-48 stays pending practice; same glucose target as kshp-01). Turning "검토 대기 포함" on also adds pending Korean questions (badge). Filters 표시 있음 / 즐겨찾기 can still show pending items you already marked or bookmarked with the toggle off. Excluded questions are embedded but never displayed.
+- `contentVersion`: `2026-11-14.6` (`content/questions.json` `meta.contentVersion`). Backups record it; restoring a backup from another version shows a warning.
+- Question bank: 586 questions embedded in the HTML (verified 166 · pending 288 · excluded 132). **The default topic quiz shows the 166 verified Korean questions** (kshp-48 stays pending practice; same glucose target as kshp-01). Turning "검토 대기 포함" on also adds pending Korean questions (badge). Filters 표시 있음 / 즐겨찾기 can still show pending items you already marked or bookmarked with the toggle off. Excluded questions are embedded but never displayed.
 - "Verified" means the ID, stem, choices, answer, and explanation were re-checked against the reference material the author holds. It is **not** official clinical certification and has not been reviewed by a licensed clinician or exam body. Do not treat any content here as authoritative for patient care or as an official answer key.
 - Scope coverage: 31 partial, 7 missing, 0 fully covered. Missing: common EBM/EBCP, literature types, lung/heart/neuro disease, pregnancy, elderly.
 - Domestic PN product table: **스모프카비벤주 · 스모프리피드20% · 네프라민주** confirmed from public 허가. Unconfirmed items stay in `products.json` only — learning HTML never shows work-queue notes.
