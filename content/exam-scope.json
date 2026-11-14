@@ -261,7 +261,7 @@
         "sec-common-13-2-논문-해석-사례-메타분석"
       ],
       "coverage": "partial",
-      "gapNote": "전용 단원·문항 없음. 효과지표(RRR/ARR/NNT)·신뢰구간은 보유 CMAJ 2편이 있으나 아직 어떤 핵심표에도 반영되지 않음. 교재 장·쪽(DiCenzo 2판, Browner 5판, 임상실무약학 27·29장 등) 확인 대기. [문항 매핑 v1: 해당 문항 0건.] [Task 3: 13.1 효과지표 정의표(표준 정의식, 지정 교재 장·쪽 대조 전) + 13.2 보유 OA 메타분석의 OR·CI·I² 해석. 검증 문항 2건(op-ebm-*)은 보유 논문 본문 대조. 지정 교재 미보유라 covered 불가.]",
+      "gapNote": "효과지표 정의와 신뢰구간을 본문에 정리했다. 재원일수의 평균 차이와 임상적 중요성을 해석하는 문항을 포함한다. 지정 교재 장·쪽 대조는 남아 있다.",
       "officialLineId": "C3",
       "group": "common",
       "officialText": "임상통계의 기본 개념",
@@ -271,12 +271,14 @@
         "browner-designing-5e-2022",
         "imsangsilmu-yakhak-2024",
         "cmaj-ebm-rrr-arr-nnt-barratt-2004",
-        "cmaj-ebm-ci-montori-2004"
+        "cmaj-ebm-ci-montori-2004",
+        "cochrane-interpreting-results"
       ],
       "questionMapping": "manual-task3",
       "questionIds": [
         "op-ebm-model-rule",
-        "op-ebm-incidence-measure"
+        "op-ebm-incidence-measure",
+        "bcnsp-084"
       ],
       "questionIdsByBasis": {
         "topicAndKeyword": [],
@@ -284,7 +286,8 @@
         "keywordOnly": [],
         "manual": [
           "op-ebm-model-rule",
-          "op-ebm-incidence-measure"
+          "op-ebm-incidence-measure",
+          "bcnsp-084"
         ]
       }
     },
@@ -295,7 +298,7 @@
         "sec-common-13-2-논문-해석-사례-메타분석"
       ],
       "coverage": "partial",
-      "gapNote": "전용 단원·문항 없음. 영양지원 논문(보유 OA 논문 4편 등)을 이용한 해석 사례는 아직 없음. 공통영역 문항은 검증 가능한 원문 확보 전 작성하지 않는다. [문항 매핑 v1: 해당 문항 0건.] [Task 3: 13.2 영양지원 메타분석(Liao 2026, 보유 OA PDF) 비평 사례 + 검증 문항 2건. 그림·보충표 미확인, 지정 교재 미보유.]",
+      "gapNote": "영양지원 메타분석 비평 사례와 신뢰구간 해석 문항을 포함한다. 메타분석의 보충표와 지정 교재는 대조가 필요하다.",
       "officialLineId": "C4",
       "group": "common",
       "officialText": "논문해석과 비평, 임상적용",
@@ -303,12 +306,14 @@
       "referenceIds": [
         "users-guides-3e-2015",
         "dicenzo-biostat-2e-2015",
-        "oa-neonatal-pn-treatment-problems-2024"
+        "oa-neonatal-pn-treatment-problems-2024",
+        "cochrane-interpreting-results"
       ],
       "questionMapping": "manual-task3",
       "questionIds": [
         "op-ebm-model-rule",
-        "op-ebm-incidence-measure"
+        "op-ebm-incidence-measure",
+        "bcnsp-084"
       ],
       "questionIdsByBasis": {
         "topicAndKeyword": [],
@@ -316,7 +321,8 @@
         "keywordOnly": [],
         "manual": [
           "op-ebm-model-rule",
-          "op-ebm-incidence-measure"
+          "op-ebm-incidence-measure",
+          "bcnsp-084"
         ]
       }
     },
@@ -355,7 +361,9 @@
         "espen-ped-pn-2018-09-vitamins",
         "aspen-pn-trace-element-practice-tool-2024",
         "aspen-ile-safety-part1-2020",
-        "imsangyoungyang-gilajabi"
+        "imsangyoungyang-gilajabi",
+        "espen-cif-adults-2023",
+        "short-bowel-refractory-hypokalemia-2013"
       ],
       "questionMapping": "keyword-heuristic-v1",
       "questionIds": [
@@ -363,7 +371,6 @@
         "oe-hang",
         "oe-tg400",
         "oe-refeed",
-        "quizlet-pn-001",
         "quizlet-pn-004",
         "quizlet-pn-005",
         "quizlet-pn-006",
@@ -493,7 +500,6 @@
         "bcnsp-033",
         "bcnsp-094",
         "bcnsp-086",
-        "medex-001",
         "medex-002",
         "medex-004",
         "medex-006",
@@ -649,7 +655,6 @@
           "rxk-3_2-4",
           "rxk-3_3-6",
           "quizlet-iib-027",
-          "quizlet-iib-028",
           "quizlet-iib-030",
           "quizlet-iib-047",
           "quizlet-a14pn-006",
@@ -671,7 +676,6 @@
         ],
         "topicOnly": [
           "oe-tg400",
-          "quizlet-pn-001",
           "quizlet-pn-004",
           "quizlet-pn-005",
           "quizlet-pn-006",
@@ -808,7 +812,6 @@
           "bcnsp-033",
           "bcnsp-094",
           "bcnsp-086",
-          "medex-001",
           "medex-002",
           "medex-004",
           "medex-006",
@@ -826,6 +829,9 @@
           "quizlet-m2b-019",
           "quizlet-m2b-037",
           "quizlet-m2b-051"
+        ],
+        "manual": [
+          "quizlet-iib-028"
         ]
       }
     },
@@ -836,7 +842,7 @@
         "sec-eval-0-영양평가-PN-직결만"
       ],
       "coverage": "partial",
-      "gapNote": "IC/Weir, 체중감소 기준, NRS-2002·NUTRIC, AND/ASPEN 영양불량 진단, 알부민·prealbumin 항목이 있음. prealbumin 해석(염증지표 vs 영양지원 모니터)과 소아·노인·비만 평가는 원문 대조 전. 신체계측·근감소 평가 도구(GLIM 등) 서술 여부 미확인. [문항 매핑 v1: 73건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.]",
+      "gapNote": "AND/ASPEN 성인 영양불량 진단과 GLIM 진단 기준을 본문과 문항에 정리했다. 소아·노인·비만 평가와 세부 신체계측은 추가 검토가 필요하다.",
       "officialLineId": "S2a",
       "group": "specialty",
       "officialText": "영양지원계획 및 조성 선택 > 영양상태 평가",
@@ -846,12 +852,13 @@
       "referenceIds": [
         "aspen-adult-core-4e-2025",
         "imsangyoungyang-gilajabi",
-        "aspen-adult-critically-ill-2022"
+        "aspen-adult-critically-ill-2022",
+        "and-aspen-adult-malnutrition-2012",
+        "glim-malnutrition-update-2025"
       ],
       "questionMapping": "keyword-heuristic-v1",
       "questionIds": [
         "quizlet-pn-014",
-        "quizlet-pn-017",
         "kshp-14",
         "kshp-36",
         "kshp-39",
@@ -929,7 +936,6 @@
         "topicOnly": [],
         "keywordOnly": [
           "quizlet-pn-014",
-          "quizlet-pn-017",
           "kshp-14",
           "kshp-36",
           "kshp-39",
@@ -937,7 +943,6 @@
           "quizlet-ss2-007",
           "bcnsp-002",
           "bcnsp-024",
-          "bcnsp-032",
           "bcnsp-050",
           "bcnsp-053",
           "bcnsp-060",
@@ -952,7 +957,6 @@
           "cnsc-nutrition-support-010",
           "cnsc-nutrition-support-011",
           "cnsc-nutrition-support-012",
-          "cnsc-nutrition-support-013",
           "cnsc-nutrition-support-014",
           "cnsc-nutrition-support-015",
           "cnsc-nutrition-support-016",
@@ -1001,6 +1005,10 @@
           "quizlet-cna-011",
           "quizlet-cna-012",
           "quizlet-cp-011"
+        ],
+        "manual": [
+          "bcnsp-032",
+          "cnsc-nutrition-support-013"
         ]
       }
     },
@@ -1142,10 +1150,8 @@
       ],
       "questionMapping": "keyword-heuristic-v1",
       "questionIds": [
-        "quizlet-pn-001",
         "quizlet-pn-015",
         "quizlet-pn-016",
-        "quizlet-pn-017",
         "quizlet-pn-018",
         "quizlet-pn-019",
         "quizlet-pn-023",
@@ -1178,12 +1184,10 @@
           "bcnsp-013"
         ],
         "topicOnly": [
-          "quizlet-pn-017",
           "quizlet-pn-019",
           "rx-pn-indication-enteral"
         ],
         "keywordOnly": [
-          "quizlet-pn-001",
           "quizlet-pn-023",
           "quizlet-pn-050",
           "quizlet-pn-051",
@@ -1381,7 +1385,6 @@
         "bcnsp-031",
         "bcnsp-068",
         "bcnsp-086",
-        "medex-001",
         "medex-002",
         "medex-004",
         "medex-008",
@@ -1476,7 +1479,6 @@
           "bcnsp-031",
           "bcnsp-068",
           "bcnsp-086",
-          "medex-001",
           "medex-002",
           "medex-004",
           "medex-008",
@@ -1918,7 +1920,6 @@
         "quizlet-iib-007",
         "quizlet-iib-009",
         "quizlet-iib-010",
-        "quizlet-iib-028",
         "quizlet-iib-050",
         "quizlet-a14pn-003",
         "quizlet-m2b-005",
@@ -1956,7 +1957,6 @@
           "quizlet-iib-007",
           "quizlet-iib-009",
           "quizlet-iib-010",
-          "quizlet-iib-028",
           "quizlet-iib-050",
           "quizlet-a14pn-003",
           "quizlet-m2b-005",
@@ -2019,17 +2019,19 @@
         "sec-disease-8-3-수술-암-화상"
       ],
       "coverage": "partial",
-      "gapNote": "'수술 전후' 적응증 한 줄과 스트레스계수(수술 1.44)뿐. 수술 전후 영양·ERAS·면역영양은 없음. ESPEN 수술 2017 미확보. [문항 매핑 v1: 14건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.3에 ASPEN SPN 2026(보유 공개자료)의 복부수술 SPN 근거·사례를 정리. ESPEN 수술 2017·Core 4판 미보유, ERAS·면역영양 미작성.]",
+      "gapNote": "ESPEN 2025의 수술 전 PN 대상과 복부수술 후 SPN을 정리했다. ERAS와 면역영양은 추가 검토가 필요하다.",
       "officialLineId": "S3b",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 수술, 암, 중환자/화상환자에서의 영양지원",
       "questionTopicKeys": [
         "indications",
-        "calc_filter"
+        "calc_filter",
+        "disease"
       ],
       "referenceIds": [
         "espen-surgery-2017",
-        "aspen-adult-core-4e-2025"
+        "aspen-adult-core-4e-2025",
+        "espen-surgery-2025"
       ],
       "questionMapping": "keyword-heuristic-v1",
       "questionIds": [
@@ -2039,7 +2041,6 @@
         "quizlet-iib-019",
         "quizlet-ss2-007",
         "bcnsp-037",
-        "medex-001",
         "quizlet-iib-020",
         "quizlet-iib-036",
         "quizlet-a14pn-014",
@@ -2052,13 +2053,11 @@
         "topicAndKeyword": [],
         "topicOnly": [],
         "keywordOnly": [
-          "quizlet-pn-017",
           "kshp-09",
           "kshp-12",
           "quizlet-iib-019",
           "quizlet-ss2-007",
           "bcnsp-037",
-          "medex-001",
           "quizlet-iib-020",
           "quizlet-iib-036",
           "quizlet-a14pn-014",
@@ -2066,6 +2065,9 @@
           "quizlet-m2b-020",
           "quizlet-m2b-049",
           "quizlet-m4-012"
+        ],
+        "manual": [
+          "quizlet-pn-017"
         ]
       }
     },
@@ -2140,7 +2142,6 @@
         "quizlet-pn-004",
         "quizlet-pn-014",
         "quizlet-pn-016",
-        "quizlet-pn-017",
         "quizlet-pn-041",
         "quizlet-pn-046",
         "kshp-12",
@@ -2202,7 +2203,6 @@
           "quizlet-pn-004",
           "quizlet-pn-014",
           "quizlet-pn-016",
-          "quizlet-pn-017",
           "quizlet-pn-041",
           "quizlet-pn-046",
           "kshp-12",
@@ -2345,19 +2345,19 @@
       "id": "spec-pregnancy",
       "label": "임부",
       "topicIds": [
-        "sec-indications-1-적응증-시작시점-지연",
         "sec-disease-8-4-섭식장애-임부-노인"
       ],
-      "coverage": "missing",
-      "gapNote": "임신성 과다구토 적응증 한 줄, 양의 질소평형, 임신 중 엽산 결핍 언급 정도. 임부 영양요구량·임신성 당뇨·임신 중 PN은 없음. [문항 매핑 v1: 2건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 8.4에 기존 단편 위치만 연결. missing 유지.]",
+      "coverage": "partial",
+      "gapNote": "임신오조에서 영양지원을 검토하는 시점을 RCOG 지침과 문항으로 보강했다. 임신 중 영양요구량과 기타 임부 상황은 추가 검토가 필요하다.",
       "officialLineId": "S3c",
       "group": "specialty",
       "officialText": "특수 상황 및 주요 질환별 영양집중치료 > 섭식장애, 임부, 신생아, 미숙아, 소아, 노인환자의 영양지원",
       "questionTopicKeys": [
-        "indications"
+        "disease"
       ],
       "referenceIds": [
-        "aspen-adult-core-4e-2025"
+        "aspen-adult-core-4e-2025",
+        "rcog-hyperemesis-2024"
       ],
       "questionMapping": "keyword-heuristic-v1",
       "questionIds": [
@@ -2368,8 +2368,10 @@
         "topicAndKeyword": [],
         "topicOnly": [],
         "keywordOnly": [
-          "quizlet-pn-001",
           "quizlet-a14pn-001"
+        ],
+        "manual": [
+          "quizlet-pn-001"
         ]
       }
     },
@@ -2660,7 +2662,9 @@
         "aspen-refeeding-2020",
         "espen-ped-pn-2018-14-complications",
         "espen-hpn-2020",
-        "aspen-pn-checklist-02-order-review-2024"
+        "aspen-pn-checklist-02-order-review-2024",
+        "espen-cif-adults-2023",
+        "short-bowel-refractory-hypokalemia-2013"
       ],
       "questionMapping": "keyword-heuristic-v1",
       "questionIds": [
@@ -2745,7 +2749,6 @@
         "cnsc-nutrition-support-121",
         "cnsc-nutrition-support-122",
         "cnsc-nutrition-support-123",
-        "medex-001",
         "medex-002",
         "medex-003",
         "medex-004",
@@ -2808,7 +2811,8 @@
         "quizlet-m4-009",
         "quizlet-m4-010",
         "quizlet-m4-014",
-        "quizlet-cp-006"
+        "quizlet-cp-006",
+        "quizlet-iib-028"
       ],
       "questionIdsByBasis": {
         "topicAndKeyword": [
@@ -2888,7 +2892,6 @@
           "cnsc-nutrition-support-121",
           "cnsc-nutrition-support-122",
           "cnsc-nutrition-support-123",
-          "medex-001",
           "medex-002",
           "medex-003",
           "medex-004",
@@ -2961,6 +2964,9 @@
           "quizlet-m2b-045",
           "quizlet-m4-009",
           "quizlet-m4-010"
+        ],
+        "manual": [
+          "quizlet-iib-028"
         ]
       }
     },
@@ -3051,7 +3057,6 @@
         "bcnsp-097",
         "bcnsp-045",
         "bcnsp-080",
-        "bcnsp-084",
         "bcnsp-089",
         "bcnsp-092",
         "bcnsp-095",
@@ -3090,7 +3095,6 @@
           "bcnsp-097",
           "bcnsp-045",
           "bcnsp-080",
-          "bcnsp-084",
           "bcnsp-089",
           "bcnsp-092",
           "bcnsp-095",
@@ -3175,14 +3179,16 @@
         "sec-case-12-처방-검토-사례"
       ],
       "coverage": "partial",
-      "gapNote": "처방 검토 사례형 콘텐츠 없음(치트 블록은 수치 암기). 출제유형이므로 Task 3에서 처방 검토 사례를 추가. [문항 매핑 v1: 5건 — 키워드/주제 휴리스틱이며 문항 정답·내용 검증은 아님; 경장(EN)·타 범위 문항이 섞일 수 있어 coverage를 올리지 않음.] [Task 3: 12단원 처방 검토 사례 5건(보유 ASPEN·ESPEN 공개자료 근거) + 검증 문항 1건(op-case-ppn-osm). ASPEN Safety/Ordering 2014 미보유.]",
+      "gapNote": "PPN 삼투압과 고칼륨혈증에서의 조제 전 처방 확인을 사례와 문항으로 다룬다.",
       "officialLineId": "F1",
       "group": "format",
       "officialText": "약물요법의 적절성 검토",
       "questionTopicKeys": [],
       "referenceIds": [
         "aspen-pn-ordering-review-compounding-2014",
-        "aspen-pn-checklist-02-order-review-2024"
+        "aspen-pn-checklist-02-order-review-2024",
+        "aspen-pn-safety-consensus-2014",
+        "dailymed-potassium-phosphates-2025"
       ],
       "questionMapping": "keyword-heuristic-v1",
       "questionIds": [
@@ -3191,7 +3197,8 @@
         "medex-016",
         "medex-017",
         "medex-019",
-        "op-case-ppn-osm"
+        "op-case-ppn-osm",
+        "medex-001"
       ],
       "questionIdsByBasis": {
         "topicAndKeyword": [],
@@ -3204,7 +3211,8 @@
           "medex-019"
         ],
         "manual": [
-          "op-case-ppn-osm"
+          "op-case-ppn-osm",
+          "medex-001"
         ]
       }
     },
@@ -3215,7 +3223,7 @@
         "sec-case-12-처방-검토-사례"
       ],
       "coverage": "partial",
-      "gapNote": "DRP 사례 없음. PN 안전 체크리스트(보유 ASPEN 4종)를 사례 설계 근거 후보로만 확인. [문항 매핑 v1: 해당 문항 0건.] [Task 3: 12단원 사례별 DRP·해결 열. 체계적 DRP 분류 틀은 지정 교재 미보유.]",
+      "gapNote": "처방 검토 사례별 약물치료 문제와 해결을 다룬다. 체계적 DRP 분류 틀은 지정 교재 대조가 필요하다.",
       "officialLineId": "F2",
       "group": "format",
       "officialText": "약물요법 관련 문제(drug-related problems) 파악 및 해결방안 제시",
@@ -3224,18 +3232,22 @@
         "aspen-pn-checklist-01-prescribing-2024",
         "aspen-pn-checklist-02-order-review-2024",
         "aspen-pn-checklist-03-compounding-2024",
-        "aspen-pn-checklist-04-administration-2024"
+        "aspen-pn-checklist-04-administration-2024",
+        "aspen-pn-safety-consensus-2014",
+        "dailymed-potassium-phosphates-2025"
       ],
       "questionMapping": "manual-task3",
       "questionIds": [
-        "op-case-ppn-osm"
+        "op-case-ppn-osm",
+        "medex-001"
       ],
       "questionIdsByBasis": {
         "topicAndKeyword": [],
         "topicOnly": [],
         "keywordOnly": [],
         "manual": [
-          "op-case-ppn-osm"
+          "op-case-ppn-osm",
+          "medex-001"
         ]
       }
     },
