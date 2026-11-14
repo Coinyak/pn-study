@@ -140,9 +140,9 @@ h1,h2,h3{orphans:3; widows:3}
 @media print{
   .toolbar{display:none!important}
   html,body,#corePrint{overflow:visible!important; height:auto!important; max-height:none!important; max-width:100%}
-  body{max-width:100%; width:auto; padding:0; margin:0; font-size:8.2pt; line-height:1.28}
+  body{max-width:100%; width:auto; padding:0; margin:0; font-size:8.6pt; line-height:1.38}
   /* 표는 페이지 너비(100%)를 넘기지 않는다. nowrap·긴 토큰의 min-content가 칸을 밀지 않게 한다. */
-  table{font-size:7.6pt; width:100%!important; max-width:100%!important}
+  table{font-size:8pt; width:100%!important; max-width:100%!important}
   .print-sec{ break-inside:avoid!important; page-break-inside:avoid!important; }
   .print-sec:has(.cheat-table){ break-inside:auto!important; page-break-inside:auto!important; }
   table:not(.cheat-table){ break-inside:avoid!important; page-break-inside:avoid!important; }
@@ -150,9 +150,12 @@ h1,h2,h3{orphans:3; widows:3}
   tr, td, th{ break-inside:avoid!important; page-break-inside:avoid!important; }
   h2, h3{ break-after:avoid!important; page-break-after:avoid!important; }
   th,td{
-    padding:0.5mm 0.8mm;
+    padding:0.6mm 1mm;
     min-width:0;
     overflow:visible;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+    line-height:1.38;
   }
   /* 화면용 nowrap·overflow:hidden 은 인쇄에서 글자를 칸 밖에 두거나 잘라 낸다. */
   #corePrint .nowrap,
@@ -162,8 +165,8 @@ h1,h2,h3{orphans:3; widows:3}
     white-space:normal!important;
     min-width:0;
     overflow:visible!important;
-    overflow-wrap:anywhere!important;
-    word-break:break-word!important;
+    word-break:keep-all!important;
+    overflow-wrap:break-word!important;
   }
   #corePrint table.compare td,
   #corePrint table.compare th,
@@ -173,7 +176,9 @@ h1,h2,h3{orphans:3; widows:3}
   #corePrint table.cheat-table th{
     min-width:0;
     overflow:visible;
-    overflow-wrap:anywhere;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+    line-height:1.38;
   }
   #corePrint table.compare td.l1,
   #corePrint table.compare th.l1,
@@ -181,8 +186,8 @@ h1,h2,h3{orphans:3; widows:3}
     overflow:visible!important;
     min-width:0;
     white-space:normal!important;
-    overflow-wrap:anywhere!important;
-    word-break:break-word!important;
+    word-break:keep-all!important;
+    overflow-wrap:break-word!important;
   }
   /* 비고 행의 break-all은 줄 끝에서 20·53.6처럼 숫자를 갈라 읽기 어렵게 한다. */
   #corePrint table.compare tr.compare-note td,
@@ -245,10 +250,10 @@ h1,h2,h3{orphans:3; widows:3}
 <td class="l1">선별도구</td>
 <td><ul class="bl">
 <li><b><mark class="hl-both" title="전문약사+병원약사회">NRS 2002 · NUTRIC</mark></b> (NUTRIC = ICU 위험도)</li>
-<li>교재 표 7-4: NRS-2002 지표는 BMI · 비의도적 체중 감소 · 질병 중증도 · 전반적 건강상태 저하 · 70세 이상(급성 입원·수술·노인). NUTRIC 적용 대상은 중증환자이며 지표는 APACHE II · SOFA · 동반질환 수 · 병동 입원부터 ICU까지 일수 · PDF113</li>
+<li>교재 표 7-4: NRS-2002 지표는 BMI · 비의도적 체중 감소 · 질병 중증도 · 전반적 건강상태 저하 · 70세 이상(급성 입원·수술·노인). NUTRIC 적용 대상은 중증환자이며 지표는 APACHE II · SOFA · 동반질환 수 · 병동 입원부터 ICU까지 일수</li>
 <li><b>NRS 2002 ≥3점</b> = 영양 위험 → 종합 영양평가</li>
 <li>기타 선별: SGA · MUST</li>
-<li><b>SGA-C</b> = 중증 영양불량 · SGA-A 정상 · SGA-B 경도–중등 · 교재 PDF115</li>
+<li><b>SGA-C</b> = 중증 영양불량 · SGA-A 정상 · SGA-B 경도–중등</li>
 </ul></td>
 </tr>
 <tr>
@@ -256,7 +261,7 @@ h1,h2,h3{orphans:3; widows:3}
 <td><ul class="bl">
 <li>AND/ASPEN 2012 합의: 6특징 중 <b>최소 2개</b> — 에너지 섭취 부족 · 체중 감소 · <b>근육량 감소</b> · 피하지방 감소 · 체액 저류 · <b>기능 저하(악력)</b></li>
 <li><b>GLIM 2025:</b> 선별 후 <b>표현형 기준 1개 이상</b>(비의도적 체중 감소·낮은 BMI·근육량 감소)과 <b>원인 기준 1개 이상</b>(섭취·흡수 감소 또는 염증·질병 부담)을 함께 확인한다. 중증도는 표현형 기준으로 평가한다.</li>
-<li>병인: 기아성 / 만성질환 / 급성질환·손상 · 교재 PDF115는 급성 질환·손상, 만성 질환, 기아 등 사회 환경</li>
+<li>병인: 기아성 / 만성질환 / 급성질환·손상</li>
 <li><b>혈액검사 수치(알부민·prealbumin)는 진단 기준에 넣지 않는다</b>. CRP·백혈구·사이토카인·고혈당은 염증 지표다</li>
 </ul></td>
 </tr>
@@ -411,7 +416,7 @@ PN은 영양소를 정맥으로 투여하는 치료다.</div>
 </tr>
 <tr>
 <td class="l1">형태·열량</td>
-<td>일수화물(monohydrate) <b>3.4 kcal/g</b> · IV 포도당 계산은 <b>3.4 하나로</b> · D50 1 mL = 0.5 g = <b>1.7 kcal</b> · 삼투압 5 mOsm/g · 교재 p143의 무수화물은 <b>3.85 kcal/g</b>. glycerol 4.3은 참고</td>
+<td>일수화물(monohydrate) <b>3.4 kcal/g</b> · IV 포도당 계산은 <b>3.4 하나로</b> · D50 1 mL = 0.5 g = <b>1.7 kcal</b> · 삼투압 5 mOsm/g · 무수화물은 <b>3.85 kcal/g</b>. glycerol 4.3은 참고</td>
 </tr>
 <tr>
 <td class="l1">비중</td>
@@ -419,7 +424,7 @@ PN은 영양소를 정맥으로 투여하는 치료다.</div>
 </tr>
 <tr>
 <td class="l1">용액</td>
-<td>pH <b>3.5~6.5</b> · 국내 최고 <b>50%</b> (해외 2.5–70%) · <b>&gt;10% ⟶ 말초 혈전정맥염 ⟶ 중심정맥</b> · 교재 PDF143</td>
+<td>pH <b>3.5~6.5</b> · 국내 최고 <b>50%</b> (해외 2.5–70%) · <b>&gt;10% ⟶ 말초 혈전정맥염 ⟶ 중심정맥</b></td>
 </tr>
 <tr>
 <td class="l1">삼투압</td>
@@ -432,7 +437,6 @@ PN은 영양소를 정맥으로 투여하는 치료다.</div>
 <li>같은 식: [Dex(%) × 수액(mL/kg/d)] ÷ 144 = mg dextrose ÷ (kg × 1440)</li>
 <li>예: D10, 40 mL/h, 10 kg ⟶ (10 × 40 × 0.167) ÷ 10 = <b>6.67</b></li>
 <li>환산: <b>1 mg/kg/min × 1.44 ≈ g/kg/d</b></li>
-<li>공식 출처: 교재 p144</li>
 <li>경장 지속주입: mL/h = (kcal/일 ÷ kcal/mL) ÷ 시간. 예: 1,800 kcal, 1.2 kcal/mL, 24 h → 1,500 mL/일 → 62.5 → <b>63 mL/h</b></li>
 </ul></td>
 </tr>
@@ -539,7 +543,7 @@ Stable 5–7을 24시간 내내 주면 일일 7 g/kg를 넘는다. 연속 주입
 <tr>
 <td class="l1">열량</td>
 <td><ul class="bl">
-<li>10% <b>1.1 kcal/mL</b> · 20% <b>2.0 kcal/mL</b> · 교재 PDF144</li>
+<li>10% <b>1.1 kcal/mL</b> · 20% <b>2.0 kcal/mL</b></li>
 <li>g 단위 계산(3-in-1): 지방 <b>10 kcal/g</b>(대두유) · 순수 지방 g × 9 (Atwater, 정맥 계산 계수 아님)</li>
 <li>MCT 복합: 10% 1.06 / 20% 1.91 kcal/mL, 3-in-1 <b>9.5 kcal/g</b></li>
 </ul></td>
@@ -563,7 +567,7 @@ Stable 5–7을 24시간 내내 주면 일일 7 g/kg를 넘는다. 연속 주입
 <tr>
 <td class="l1">성인 용량</td>
 <td><ul class="bl">
-<li>요구량 ≈ <b>1 g/kg/d</b> · 하루 <b>≤2.5 g/kg</b> · 교재 PDF144 · <b>총열량 ≤30%</b></li>
+<li>요구량 ≈ <b>1 g/kg/d</b> · 하루 <b>≤2.5 g/kg</b> · <b>총열량 ≤30%</b></li>
 <li>속도 상한 <b>&lt;0.11 g/kg/h</b>, 하루 <b>&lt;2.5 g/kg</b>. 0.15 g/kg/h는 이 상한이 아니다</li>
 <li>중환자 · 고TG 예방: <b>≤1 g/kg/d</b></li>
 <li><b>&gt;1 g/kg/d</b> 장기 ⟶ 만성 <mark class="hl-yellow" title="병원약사회">담즙정체</mark>·중증 <mark class="hl-yellow" title="병원약사회">PNALD</mark> 연관</li>
@@ -624,7 +628,7 @@ Stable 5–7을 24시간 내내 주면 일일 7 g/kg를 넘는다. 연속 주입
 </tr>
 <tr>
 <td class="l1">감량·중단</td>
-<td><b><mark class="hl-pink" title="전문약사 EXAM">TG ≥400</mark></b> ⟶ ILE 회피·감량·중단 (교재 p181, ASPEN 인용)</td>
+<td><b><mark class="hl-pink" title="전문약사 EXAM">TG ≥400</mark></b> ⟶ ILE 회피·감량·중단 (ASPEN)</td>
 </tr>
 <tr>
 <td class="l1">췌장염 재개</td>
@@ -649,15 +653,15 @@ Stable 5–7을 24시간 내내 주면 일일 7 g/kg를 넘는다. 연속 주입
 <tr>
 <td class="l1">기본</td>
 <td><ul class="bl">
-<li>결정 AA 형태 · <b>4 kcal/g</b> · 교재 PDF146</li>
+<li>결정 AA 형태 · <b>4 kcal/g</b></li>
 <li>삼투 ≈ <b>%당 100 mOsm</b> (= 10 mOsm/g)</li>
-<li><b>N = 단백(g) ÷ 6.25</b> · 교재 PDF146</li>
+<li><b>N = 단백(g) ÷ 6.25</b></li>
 <li>단백의 25–30% = 필수AA 권장</li>
 </ul></td>
 </tr>
 <tr>
 <td class="l1">질소평형</td>
-<td><mark class="hl-yellow" title="병원약사회">질소평형 = 섭취 N − (UUN + 4)</mark> · <b>양(+)</b> = 임신·성장·회복기 / <b>음(−)</b> = 감염·발열·화상·스트레스 · 교재 PDF62: 평형 0의 단백 = [소변요소질소 + 4 g] × 6.25. 4 g = 비요소 소변 질소 + 대변·피부</td>
+<td><mark class="hl-yellow" title="병원약사회">질소평형 = 섭취 N − (UUN + 4)</mark> · <b>양(+)</b> = 임신·성장·회복기 / <b>음(−)</b> = 감염·발열·화상·스트레스 · 평형 0의 단백 = [소변요소질소 + 4 g] × 6.25. 4 g = 비요소 소변 질소 + 대변·피부</td>
 </tr>
 <tr>
 <td class="l1">단순 기아와 스트레스</td>
@@ -741,7 +745,7 @@ Stable 5–7을 24시간 내내 주면 일일 7 g/kg를 넘는다. 연속 주입
 </tr>
 <tr>
 <td class="l1">성인 대략</td>
-<td><b>30–40 mL/kg/d</b> · 탈수 등 기존 손실 먼저, 진행 손실(설사·누공·위장관 흡인)은 추가 · 교재 PDF166 · ESPEN 소아 수액: 유지 수분은 에너지와 나란히 <b>1 mL/kcal</b></td>
+<td><b>30–40 mL/kg/d</b> · 탈수 등 기존 손실 먼저, 진행 손실(설사·누공·위장관 흡인)은 추가 · ESPEN 소아 수액: 유지 수분은 에너지와 나란히 <b>1 mL/kcal</b></td>
 </tr>
 </table>
 </section>
@@ -782,7 +786,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">Acetate ↔ Cl</td>
-<td>대사성 산증 ⟶ <b>acetate↑ · Cl↓</b> (acetate ⟶ HCO₃⁻) · 대사성 알칼리증 ⟶ <b>Cl↑ · acetate↓</b> (교재 표9-8: acetate 증량은 산증·중탄산염 손실, chloride 증량은 알칼리증·용적 감소)<br>중탄산염은 PN 산성에서 CO₂ 생성·탄산Ca/Mg 침전 ⟶ <b>sodium acetate</b> 등 전구체 사용 · NaHCO₃ 대신 acetate <b>1 mEq : 1 mEq</b> · 교재 PDF174<br>성인 장루 사례: 중탄산염 손실과 PN의 과도한 염소 부하가 산증에 기여할 수 있다. 필요하면 염화염 일부를 아세트산염으로 바꿔 염소 부하를 낮춘다 · ESPEN 성인 장부전 2023, 권고 36 해설<br>고칼륨혈증의 원인: 과잉 공급, 대사성 산증, 신기능 저하. 치료는 보충 제한, 공급량 감량, 필요하면 아세테이트염</td>
+<td>대사성 산증 ⟶ <b>acetate↑ · Cl↓</b> (acetate ⟶ HCO₃⁻) · 대사성 알칼리증 ⟶ <b>Cl↑ · acetate↓</b> (교재 표9-8: acetate 증량은 산증·중탄산염 손실, chloride 증량은 알칼리증·용적 감소)<br>중탄산염은 PN 산성에서 CO₂ 생성·탄산Ca/Mg 침전 ⟶ <b>sodium acetate</b> 등 전구체 사용 · NaHCO₃ 대신 acetate <b>1 mEq : 1 mEq</b><br>성인 장루 사례: 중탄산염 손실과 PN의 과도한 염소 부하가 산증에 기여할 수 있다. 필요하면 염화염 일부를 아세트산염으로 바꿔 염소 부하를 낮춘다 · ESPEN 성인 장부전 2023, 권고 36 해설<br>고칼륨혈증의 원인: 과잉 공급, 대사성 산증, 신기능 저하. 치료는 보충 제한, 공급량 감량, 필요하면 아세테이트염</td>
 </tr>
 <tr>
 <td class="l1">K 결손 추정</td>
@@ -865,7 +869,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">원칙</td>
-<td>PN <b>필수</b> 구성성분 · <b>투여 직전 첨가, 혼합 후 <mark class="hl-pink" title="전문약사 EXAM">24시간</mark> 이내 투여</b> · 조제 시 맨 마지막 · 교재 PDF173</td>
+<td>PN <b>필수</b> 구성성분 · <b>투여 직전 첨가, 혼합 후 <mark class="hl-pink" title="전문약사 EXAM">24시간</mark> 이내 투여</b> · 조제 시 맨 마지막</td>
 </tr>
 <tr>
 <td class="l1">성인 MVI 조성 (표9-11, 해외 기준)</td>
@@ -889,7 +893,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">Vit E</td>
-<td>결핍: 말초신경장애 · 간헐성 파행 · 근육 약화 · 용혈성 빈혈. 장기간 고용량은 비타민 K 기능을 상쇄해 <b>warfarin 항응고 작용↑</b> · 교재 PDF69(인쇄 61)</td>
+<td>결핍: 말초신경장애 · 간헐성 파행 · 근육 약화 · 용혈성 빈혈. 장기간 고용량은 비타민 K 기능을 상쇄해 <b>warfarin 항응고 작용↑</b></td>
 </tr>
 <tr>
 <td class="l1">Vit D</td>
@@ -897,7 +901,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">Vit B1</td>
-<td><b>만성 알코올 중독</b> ⟶ <mark class="hl-both" title="전문약사+병원약사회">thiamine</mark> 보충 · 결핍 시 <b>Wernicke</b> 뇌병증·<b>젖산산증</b> · 각기병의 신경·심혈관 증상 (ESPEN 소아 비타민) · 장기기아/알코올: PN 초기 <b>5–7일 <mark class="hl-both" title="전문약사+병원약사회">thiamine</mark> 50–100 mg/d + folate 1 mg/d</b> · 교재 PDF184</td>
+<td><b>만성 알코올 중독</b> ⟶ <mark class="hl-both" title="전문약사+병원약사회">thiamine</mark> 보충 · 결핍 시 <b>Wernicke</b> 뇌병증·<b>젖산산증</b> · 각기병의 신경·심혈관 증상 (ESPEN 소아 비타민) · 장기기아/알코올: PN 초기 <b>5–7일 <mark class="hl-both" title="전문약사+병원약사회">thiamine</mark> 50–100 mg/d + folate 1 mg/d</b></td>
 </tr>
 <tr>
 <td class="l1">Vit <mark class="hl-yellow" title="병원약사회">B12</mark></td>
@@ -972,12 +976,12 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 <li>시판 예: 1 mL = Zn 3 mg + Cu 0.3 mg + Mn <mark class="hl-pink" title="전문약사 EXAM">55 μg</mark> + Se 60 μg (= ASPEN 성인 용량과 같다)</li>
 <li>외울 기본은 ASPEN <b>55 μg/일</b>. ESPEN 열은 0.2–0.3 mg로 다른 권고다</li>
 <li>질환 조정: <b>설사 ⟶ Zn 보충</b> · <b>담즙울체/간담도 ⟶ <mark class="hl-both" title="전문약사+병원약사회">Cu·Mn</mark> 감량·제한</b> · <b>신부전 ⟶ <mark class="hl-both" title="전문약사+병원약사회">Cr·Se</mark> 제한</b></li>
-<li><b>Zn 결핍</b> · 교재 p093·p273: 피부염·발진·탈모·<b>야맹증</b>·미각변화·면역↓·설사·상처치유 지연</li>
+<li><b>Zn 결핍</b> · 피부염·발진·탈모·<b>야맹증</b>·미각변화·면역↓·설사·상처치유 지연</li>
 <li><b>Zn 독성·주의</b>: 위장장애·<b>HDL↓</b> · 고용량 Zn(≥40 mg/d) ⟶ <b>Cu 결핍</b></li>
 <li><b>Zn 보충 대상</b>: 열손상·외상성 뇌손상 등 대사항진, 설사·욕창·<b>누공 고배출</b>·<b>과다 GI 손실</b> · 혈장 Zn ≤70 μg/dL = low</li>
 <li><b>Cu 결핍</b>: 호중구감소·빈혈</li>
 <li><b>Cr 결핍</b>: <b><mark class="hl-yellow" title="병원약사회">포도당불내성</mark>·인슐린저항(⟶ 고혈당)</b> · 포도당·아미노산 사용 장애 · 혈장 지질↑ · 말초신경병증</li>
-<li><b>Mn 독성</b>: 복합제 함량이 높아 신경계 독성(파킨슨양) · 교재 PDF99: 정맥영양 후 신경절에 망간 침착, 파킨슨과 같은 운동장애(떨림·보행 어려움·안면근육 경련)</li>
+<li><b>Mn 독성</b>: 복합제 함량이 높아 신경계 독성(파킨슨양) · 정맥영양 후 신경절에 망간 침착, 파킨슨과 같은 운동장애(떨림·보행 어려움·안면근육 경련)</li>
 <li><b>Se 결핍</b>: Keshan 심근병증·T3↓ · 장기 PN에서 Se를 보충하지 않으면 심근병증 보고</li>
 <li><b>Se 독성·상한</b>: 탈모·손발톱·마늘냄새·말초신경증 · <b>200 μg/d 미만, 5 μg/kg/d <span class="x">초과X</span></b> · eltrombopag ⟶ Se 흡수↓</li>
 <li><b>Se 제제</b>: <b>sodium <mark class="hl-pink" title="전문약사 EXAM">selenite</mark> pentahydrate</b> ⟶ pH &lt;7 또는 <b>Vit C</b>(환원제) 혼합 시 침전 ⟶ Vit C와 <b>1~4시간 간격</b> · <b>selenious acid</b> = Vit C 혼합 가능</li>
@@ -1306,7 +1310,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 <div class="cell">
 <ul class="bl">
 <li>최종 산도 낮게 · 포도당·AA 최종농도 높게 · ILE 최종농도 낮게</li>
-<li>조제는 <b>USP 797</b> 무균 지침 · <b>ISO Class 5</b> 장비와 공간 · 교재 PDF172 · 최종제품 검사 매일</li>
+<li>조제는 <b>USP 797</b> 무균 지침 · <b>ISO Class 5</b> 장비와 공간 · 최종제품 검사 매일</li>
 <li><mark class="hl-yellow" title="병원약사회">ACD</mark>(자동 조제기): 성분이 ACD 정확 전달량보다 적으면 <b>수동 조제</b> 적절 · 화학 상호작용·절약 시에도 수동 고려 · ASPEN Compounding Checklist 2024</li>
 <li>CPOE는 실시간 배합·안정성 문제와 용량 안전 경고를 본다 · ASPEN Prescribing Checklist 2024</li>
 </ul>
@@ -1438,12 +1442,12 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">감염</td>
-<td><b>CLABSI(=CRBSI)</b> (가장 심각) · 출입구(출구)감염 / 터널감염 / 포켓 / 혈류 · <span title="길라잡이 외·시험은행 보충">원인균 예: 응고음성포도알균(S. epidermidis)</span></td>
+<td><b>CLABSI(=CRBSI)</b> (가장 심각) · 출입구(출구)감염 / 터널감염 / 포켓 / 혈류 · 원인균 예: 응고음성포도알균(S. epidermidis)</td>
 <td><b>care bundle</b> · 무균조제 · line care · <b>혈당조절</b> · 사용자에게 카테터 <b>유지와 안전을 교육</b>한다 · 소아 IF: <b>ethanol lock</b></td>
 </tr>
 <tr>
 <td class="l1">대사-고혈당</td>
-<td><b>가장 흔한 대사 합병증</b> · 원인: 과도 포도당 · 약물 · 스트레스(급성질환·패혈증) · <b>Cr 결핍</b> · 인슐린 부족 · ⟶ HHS·비케톤성 탈수·혼수<br>스트레스 대사: 체내 포도당 생성↑ · 세포 포도당 흡수↓ · 인슐린 저항</td>
+<td><b>가장 흔한 대사 합병증</b> · 원인: 과도 포도당 · 약물 · 스트레스(급성질환·패혈증) · <b>Cr 결핍</b> · 인슐린 부족 · ⟶ HHS·비케톤성 탈수·혼수. 갑상선기능저하증은 이 목록에 없다<br>스트레스 대사: 체내 포도당 생성↑ · 세포 포도당 흡수↓ · 인슐린 저항</td>
 <td>GIR↓ · RI(PN 혼합) · 140–180 · Cr 결핍 시 multi-TE로 Cr 보충</td>
 </tr>
 <tr>
@@ -1489,7 +1493,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">고위험</td>
-<td><b>알코올 중독 · 신경성 식욕부진 · 심한 영양결핍</b> · 교재 PDF185</td>
+<td><b>알코올 중독 · 신경성 식욕부진 · 심한 영양결핍</b></td>
 </tr>
 <tr>
 <td class="l1">원칙</td>
@@ -1497,7 +1501,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">시작열량</td>
-<td><b>ASPEN 2020 성인 위험군:</b> 첫 24시간 <b>10–20 kcal/kg</b> 또는 포도당 100–150 g으로 시작하고, 1–2일마다 목표량의 33%씩 증량한다. P·K·Mg가 심하게 낮으면 시작 또는 증량을 교정 후로 미룬다 (표 6).<br>열량·수액은 천천히 · 교재 PDF185<br>IV 포도당 수액·약물 희석액 칼로리도 한도에 포함한다. 재급식은 경구·경장·정맥·포도당 수액 어디서든 생기고, 열량원이 경장만은 아니다<br>며칠간 유지수액·약물 dextrose만 받고 무증상·전해질이 안정이면, 다시 시작할 열량을 위 권고보다 높게 잡을 수 있다 (ASPEN 2020)</td>
+<td><b>ASPEN 2020 성인 위험군:</b> 첫 24시간 <b>10–20 kcal/kg</b> 또는 포도당 100–150 g으로 시작하고, 1–2일마다 목표량의 33%씩 증량한다. P·K·Mg가 심하게 낮으면 시작 또는 증량을 교정 후로 미룬다 (표 6).<br>열량·수액은 천천히<br>IV 포도당 수액·약물 희석액 칼로리도 한도에 포함한다. 재급식은 경구·경장·정맥·포도당 수액 어디서든 생기고, 열량원이 경장만은 아니다<br>며칠간 유지수액·약물 dextrose만 받고 무증상·전해질이 안정이면, 다시 시작할 열량을 위 권고보다 높게 잡을 수 있다 (ASPEN 2020)</td>
 </tr>
 <tr>
 <td class="l1">모니터·조치</td>
@@ -1533,7 +1537,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">TE 조정</td>
-<td>간담도 ⟶ <b><mark class="hl-pink" title="전문약사 EXAM">Mn·Cu</mark> 감량</b> · 교재 PDF185</td>
+<td>간담도 ⟶ <b><mark class="hl-pink" title="전문약사 EXAM">Mn·Cu</mark> 감량</b></td>
 </tr>
 <tr>
 <td class="l1">기여인자</td>
@@ -1594,7 +1598,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 </tr>
 <tr>
 <td class="l1">모세혈 혈당</td>
-<td>PN 목표 도달까지 <b>q6h</b> · 교재 PDF179, 이후 필요시 ⟶ <b>140–180</b> 유지</td>
+<td>PN 목표 도달까지 <b>6시간마다</b> · 이후 필요시 ⟶ <b>140–180</b> 유지</td>
 <td>일상<span class="x">X</span> · 주입 주기 맞춰 필요시</td>
 </tr>
 <tr>
@@ -1679,7 +1683,7 @@ Dipiro 표의 성인 PN은 Ca <b>0–15 mEq</b>, P 20–45 mmol, Mg 10–20 mEq�
 <h3>7.3 PN 중단 · 이행</h3>
 <div class="cell">
 <ul class="bl">
-<li>성인: 경구/EN으로 <b>목표열량의 ≥80%</b> 공급 가능하면 PN 중단 고려 · 감량 <b>1–2 h</b> taper (rebound 방지) · 급중단 ⟶ 반동 저혈당 · 교재 PDF181</li>
+<li>성인: 경구/EN으로 <b>목표열량의 ≥80%</b> 공급 가능하면 PN 중단 고려 · 감량 <b>1–2 h</b> taper (rebound 방지) · 급중단 ⟶ 반동 저혈당</li>
 <li>소아: 성인보다 <b>점진적</b> 이행 · 열량 요구의 <b>75–80%</b> 공급 가능할 때까지 PN 유지 · 너무 빠름/느림 = 결핍/과잉</li>
 </ul>
 </div>
@@ -2097,7 +2101,7 @@ ASPEN 2021도 성인 중환자 단백은 <b>1.2–2.0 g/kg/일</b>에서 환자�
 </tr>
 <tr>
 <td class="l1">특수 AA</td>
-<td>소아용 예: Primene · Trophamine · Aminoven infant. 신부전용·간용(BCAA) 제제와 구분 · 교재 PDF147</td>
+<td>소아용 예: Primene · Trophamine · Aminoven infant. 신부전용·간용(BCAA) 제제와 구분</td>
 </tr>
 <tr>
 <td class="l1">단백 — ESPEN 표18-10</td>
@@ -2409,7 +2413,7 @@ Child-Pugh = 복수·뇌병증 포함 · BCAA · 열량 산출 체중 = 최근 �
 <tr>
 <td class="l1">B. 2-in-1에 0.22 μm, ILE 별도 라인에 1.2 μm 필터 지시</td>
 <td>0.22 μm 필터는 지질 입자가 통과하지 못해 ILE가 들어가는 라인에 쓸 수 없다. 구 권고 체계이며 현행은 모든 PN에 단일 1.2 μm</td>
-<td>기관 지침이 현행 ASPEN을 따르는지 확인 후 단일 1.2 μm로 통일 · 강의자료·구 문제은행은 0.22/1.2 이원 체계를 쓰기도 한다</td>
+<td>기관 지침이 현행 ASPEN을 따르는지 확인 후 단일 1.2 μm로 통일 · 예전 자료는 0.22/1.2 이원 체계를 쓰기도 한다</td>
 </tr>
 <tr>
 <td class="l1">C. ILE 단독 1일량을 24시간 동안 한 용기로 주입</td>
