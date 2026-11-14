@@ -56,6 +56,10 @@ class CheckContentTest(unittest.TestCase):
         self.edit_json("questions.json", lambda d: d["questions"].append(dict(d["questions"][0])))
         self.assertFails("duplicate question id")
 
+    def test_duplicate_nav_target(self):
+        self.edit_json("nav.json", lambda d: d.append({**d[0], "label": "같은 본문"}))
+        self.assertFails("nav.json: duplicate target")
+
     def test_answer_out_of_range(self):
         self.edit_json("questions.json", lambda d: self.verified(d).update(answer=9))
         self.assertFails("out of range")

@@ -12,11 +12,6 @@
  {
   "topic": "cho_gir",
   "target": "sec-cho_gir-2-1-탄수화물-dextrose",
-  "label": "구성"
- },
- {
-  "topic": "cho_gir",
-  "target": "sec-cho_gir-2-1-탄수화물-dextrose",
   "label": "GIR·당"
  },
  {
@@ -52,11 +47,6 @@
  {
   "topic": "route",
   "target": "sec-route-3-1-말초-vs-중심",
-  "label": "경로"
- },
- {
-  "topic": "route",
-  "target": "sec-route-3-1-말초-vs-중심",
   "label": "말초·중심"
  },
  {
@@ -77,11 +67,6 @@
  {
   "topic": "calc_filter",
   "target": "sec-calc_filter-4-1-에너지",
-  "label": "요구량"
- },
- {
-  "topic": "calc_filter",
-  "target": "sec-calc_filter-4-1-에너지",
   "label": "에너지"
  },
  {
@@ -98,11 +83,6 @@
   "topic": "calc_filter",
   "target": "sec-calc_filter-4-4-교정-공식-EXAM-p155-여러-수치-주고-옳은-것-찾기-NOTE",
   "label": "교정"
- },
- {
-  "topic": "stability",
-  "target": "sec-stability-5-1-혼합-순서",
-  "label": "조제"
  },
  {
   "topic": "stability",
@@ -128,11 +108,6 @@
   "topic": "complications",
   "target": "sec-complications-6-1-3열-요약",
   "label": "합병증"
- },
- {
-  "topic": "complications",
-  "target": "sec-complications-6-1-3열-요약",
-  "label": "합병증요"
  },
  {
   "topic": "complications",

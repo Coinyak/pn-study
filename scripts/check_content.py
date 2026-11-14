@@ -99,10 +99,12 @@ def check_core(core_text, sections, nav, errors):
     for s in sections:
         if s["added"] and s["id"] in base["sectionIds"]:
             errors.append(f"core.html: legacy section {s['id']} marked data-added")
-    for n in nav:
-        if n["target"] not in ids:
-            errors.append(f"nav.json: target {n['target']} not in core.html")
-    nav_targets = {n["target"] for n in nav}
+    nav_targets = Counter(n["target"] for n in nav)
+    for target, count in nav_targets.items():
+        if target not in ids:
+            errors.append(f"nav.json: target {target} not in core.html")
+        if count > 1:
+            errors.append(f"nav.json: duplicate target {target}")
     for s in sections:
         if s["added"] and s["id"] not in nav_targets:
             errors.append(f"nav.json: new section {s['id']} has no menu entry")
