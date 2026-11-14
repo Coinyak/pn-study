@@ -407,11 +407,12 @@
       "year": 2018,
       "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
       "accessStatus": "have-pdf",
-      "reviewedAt": null,
-      "reviewScope": "none",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "recommendations",
       "kind": "designated-guideline",
       "designatedByNotice": false,
       "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_06_fluid_electrolytes.pdf",
+      "note": "2026-11-14 권고 R6.1–R6.13과 염소·아세트산염·유지 수분·고나트륨혈증 문장을 읽음. 전권 대조 아님. 텍스트층의 en dash는 e로 뽑히고, 고나트륨혈증 교정 속도는 인쇄면 10–15 mmol/L/24 h.",
       "scopeIds": [
         "spec-components"
       ]
@@ -456,11 +457,12 @@
       "year": 2018,
       "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
       "accessStatus": "have-pdf",
-      "reviewedAt": null,
-      "reviewScope": "none",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "recommendations",
       "kind": "designated-guideline",
       "designatedByNotice": true,
       "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_09_vitamins.pdf",
+      "note": "2026-11-14 권고 R9.1–R9.26과 지용성·수용성 용량 비교, 티아민 결핍 문장을 읽음. 전권 대조 아님. 용량 표의 숫자로 성인 문항을 닫지 않음.",
       "scopeIds": [
         "spec-components"
       ]
@@ -471,11 +473,12 @@
       "year": 2018,
       "url": "https://www.espen.org/guidelines/espen-scientific-guidelines-pdf-versions",
       "accessStatus": "have-pdf",
-      "reviewedAt": null,
-      "reviewScope": "none",
+      "reviewedAt": "2026-11-14",
+      "reviewScope": "recommendations",
       "kind": "designated-guideline",
       "designatedByNotice": false,
       "heldFile": "01_ESPEN_가이드라인/ESPEN_pediatric_PN_10_venous_access.pdf",
+      "note": "2026-11-14 권고 R10.1–R10.45를 읽음. 전권 대조 아님. 정답과 맞은 pending 문항은 없었다. Groshong 밸브는 임상에서 확인되지 않았다는 본문, 차단 예방조치의 정도에 대한 근거 없음, 2% 클로르헥시딘 피부 소독을 확인.",
       "scopeIds": [
         "spec-plan-route"
       ]

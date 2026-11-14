@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "contentVersion": "2026-11-14.12",
+    "contentVersion": "2026-11-14.13",
     "extractedAt": "2026-11-14",
     "timezone": "Asia/Seoul",
     "source": {
@@ -12,8 +12,8 @@
     },
     "rawCount": 583,
     "finalCount": 586,
-    "verifiedCount": 244,
-    "pendingCount": 210,
+    "verifiedCount": 248,
+    "pendingCount": 206,
     "excludedCount": 132,
     "basicSetRule": "includeInBasicSet === (reviewStatus === 'verified' && language === 'ko'). 영문(language=en)과 pending·excluded는 학습 표시 세트에 넣지 않는다.",
     "displayLanguage": "ko-only",
@@ -2362,9 +2362,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-09-vitamins"
+      ],
       "stem": "경구 지용성 비타민의 식이섭취기준(DRI)과 비교할 때, 비경구 지용성 비타민 권장량은?",
       "choices": [
         "더 낮다",
@@ -2373,29 +2375,35 @@
         "4배 높다"
       ],
       "answer": 1,
-      "explain": "현재 비경구 지용성 비타민의 1일 권장량은 경구 권장섭취량(RDA)이나 충분섭취량(AI)과 거의 같다. 정맥 비타민의 생체이용률이 경구보다 훨씬 높지만, 정맥영양(PN)이 필요한 환자는 비타민 요구량이 더 높은 경우가 많다. 영양불량, 기저 비타민 결핍, 급만성 질환에 따른 대사 변화가 흔하기 때문이다. 고용량 비경구 비타민은 30년 넘게 써 왔고 독성 보고는 없다.",
+      "explain": "비경구 지용성 비타민의 하루 용량은 경구 권장량과 비슷하다. 생체이용률은 더 높지만 요구량도 더 높다. 더 낮다, 2배, 4배는 그 문장이 아니다.",
       "needle": "지용성",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 경구 권장량보다 낮다는 문장은 없다.",
+        "정답. 비경구 지용성 하루 용량은 경구 권장량과 비슷하다.",
+        "오답. 2배라는 배수는 지용성 문장에 없다.",
+        "오답. 4배라는 배수는 지용성 문장에 없다."
       ],
       "coreSectionIds": [
         "sec-vit_te-2-6-비타민"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-09-vitamins",
+          "locator": "ESPEN 소아 PN 비타민, 지용성 용량",
+          "quote": "Generally, daily parenteral doses of the fat-soluble vitamins are similar to oral recommended daily allowances (higher bioavailability, but also higher requirements)."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 지용성 비경구 권장이 경구 DRI와 같다는 칸은 핵심표에만 있고 요약·강의 추출·지침 문장에는 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 지용성 비경구 권장이 경구 DRI와 같다는 칸은 핵심표에만 있고 요약·강의 추출·지침 문장에는 없다. 인덱스는 유지한다. 배치11 ESPEN 소아 권고 verified. 정답 인덱스 유지. 원문은 similar to oral recommended daily allowances다. 보기 가운데 그 비교는 '같다'다."
     },
     {
       "id": "quizlet-pn-037",
@@ -2408,9 +2416,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-09-vitamins"
+      ],
       "stem": "경구 수용성 비타민의 식이섭취기준(DRI)과 비교할 때, 비경구 수용성 비타민 권장량은?",
       "choices": [
         "1/3",
@@ -2419,29 +2429,35 @@
         "더 높다"
       ],
       "answer": 3,
-      "explain": "현재 비경구 수용성 비타민 1일 용량은 RDA나 AI의 2–2.5배다. 영양불량, 기저 비타민 결핍으로 요구량이 늘고, 정맥으로 주면 수용성 비타민의 소변 배설도 늘기 때문이다.",
+      "explain": "비경구 수용성 비타민의 하루 용량은 경구 권장량보다 여러 배 높다. 요구량이 더 크고 소변으로 더 많이 빠지기 때문이다. 1/3, 1/2, 같다는 그 문장이 아니다.",
       "needle": "더 높다",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 1/3은 그 문장이 아니다.",
+        "오답. 1/2는 그 문장이 아니다.",
+        "오답. 경구 권장량과 같다는 말은 지용성 문장이다.",
+        "정답. 수용성 비경구 하루 용량은 경구 권장량보다 여러 배 높다."
       ],
       "coreSectionIds": [
         "sec-vit_te-2-6-비타민"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "Quizlet 공개 세트(ASPEN 자가학습·CNSC 연습 등 재게시). 원 출판물 대조 안 함.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-09-vitamins",
+          "locator": "ESPEN 소아 PN 비타민, 수용성 용량",
+          "quote": "Generally, daily parenteral doses of the water-soluble vitamins are several times higher than the oral recommended daily allowances (due to higher requirements and increased urinary excretion)."
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 수용성 비경구 권장이 경구보다 높다는 칸은 핵심표에만 있고 요약·강의 추출·지침 문장에는 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 수용성 비경구 권장이 경구보다 높다는 칸은 핵심표에만 있고 요약·강의 추출·지침 문장에는 없다. 인덱스는 유지한다. 배치11 ESPEN 소아 권고 verified. 정답 인덱스 유지. 원문은 several times higher다. 해설에 있던 2–2.5배는 그 문장에 없어 뺐다."
     },
     {
       "id": "quizlet-pn-038",
@@ -5854,7 +5870,7 @@
         "choiceExplanations": "complete",
         "coreLink": "hint"
       },
-      "reviewNote": "해설 자체가 ⑤ Vitamin K도 독성이 낮아 '유일 정답 단정 어려움'으로 기록. 단일 정답 불확정. 배치1 재확인: 해설이 비타민 K도 답이 될 수 있다고 적는다. 인덱스를 바꾸지 않고 pending을 유지한다. BLOCKER 배치6: 지용성 A·D·E는 주의, 수용성 C는 상대적으로 낮고, 자연형 K 독성도 낮다고 적혀 C와 K가 같이 남는다. 인덱스는 유지한다."
+      "reviewNote": "해설 자체가 ⑤ Vitamin K도 독성이 낮아 '유일 정답 단정 어려움'으로 기록. 단일 정답 불확정. 배치1 재확인: 해설이 비타민 K도 답이 될 수 있다고 적는다. 인덱스를 바꾸지 않고 pending을 유지한다. BLOCKER 배치6: 지용성 A·D·E는 주의, 수용성 C는 상대적으로 낮고, 자연형 K 독성도 낮다고 적혀 C와 K가 같이 남는다. 인덱스는 유지한다. BLOCKER 배치11: 수용성 비타민 과잉은 신장으로 빠져 독성이 적다고 한다. 비타민 A의 만성 독성에는 운동실조가 있다. C가 K보다 독성이 낮다는 순위는 없다. 인덱스는 유지한다."
     },
     {
       "id": "kshp-47",
@@ -15232,7 +15248,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 나트륨 교정은 ≤12 mmol/L/일이다. 정답의 10–12 mEq/L와 PN 나트륨 감량·자유수 추가는 그 문장으로 닫히지 않는다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치6: 나트륨 교정은 ≤12 mmol/L/일이다. 정답의 10–12 mEq/L와 PN 나트륨 감량·자유수 추가는 그 문장으로 닫히지 않는다. 인덱스는 유지한다. BLOCKER 배치11: ESPEN 소아 수액은 고나트륨혈증을 10–15 mmol/L/24 h로 내리라고 한다. 빠르게 내리면 뇌부종이 올 수 있다고 한다. 정답의 상한 10–12, PN 나트륨 감량, 자유수 추가는 그 문장으로 닫히지 않는다. 인덱스는 유지한다."
     },
     {
       "id": "bcnsp-010",
@@ -15370,9 +15386,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-09-vitamins"
+      ],
       "stem": "종합비타민 없이 장기 정맥영양을 받을 때 젖산산증과 심기능 장애로 나타나는 비타민 결핍은?",
       "choices": [
         "Vitamin A",
@@ -15381,29 +15399,40 @@
         "Vitamin E"
       ],
       "answer": 1,
-      "explain": "Thiamine(vitamin B1) 결핍은 pyruvate dehydrogenase 활성을 떨어뜨려 혐기 대사에 따른 젖산산증을 만든다. PN이 탄수화물만 주고 thiamine이 없으면 심기능 장애(wet beriberi)와 신경 증상(Wernicke encephalopathy)이 빠르게 올 수 있다. 전국 IV 종합비타민 품절 시 PN 환자에서 치명적 젖산산증이 보고된 바 있다.",
+      "explain": "티아민이 부족하면 각기병으로 신경 증상과 심혈관 증상이 온다. 정맥영양을 받는 영아와 소아에서 공급이 부족하면 심한 젖산산증과 베르니케 뇌병증이 생기고, 수일에서 수주 안에 사망할 수 있다. 비타민 A·C·E의 그 문장은 아니다.",
       "needle": "Wernicke",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "오답. 젖산산증과 심혈관 증상을 적은 결핍 문장은 비타민 A가 아니다.",
+        "정답. 각기병의 심혈관 증상과, 정맥영양에서 부족한 티아민의 젖산산증이 그 문장이다.",
+        "오답. 그 문장은 비타민 C가 아니다.",
+        "오답. 그 문장은 비타민 E가 아니다."
       ],
       "coreSectionIds": [
         "sec-vit_te-2-6-비타민"
       ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "해외 BCNSP 대비 문제은행(번역). 국내 기출 아님.",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-09-vitamins",
+          "locator": "ESPEN 소아 PN 비타민, 티아민 결핍",
+          "quote": "Deficiency of thiamine may lead to beriberi with neurologic and cardiovascular symptoms."
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-09-vitamins",
+          "locator": "ESPEN 소아 PN 비타민, 티아민과 젖산산증",
+          "quote": "In parenterally fed infants and children a deficient thiamine supply may lead to severe lactic acidosis, Wernicke's encephalopathy and even death within a period of days to weeks"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "hint"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 교재는 장기 기아·알코올에 티아민 50–100 mg을 적는다. 종합비타민 없이 젖산산증과 심기능 장애가 온다는 표현은 그 문장에 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치3: 교재는 장기 기아·알코올에 티아민 50–100 mg을 적는다. 종합비타민 없이 젖산산증과 심기능 장애가 온다는 표현은 그 문장에 없다. 인덱스는 유지한다. 배치11 ESPEN 소아 권고 verified. 정답 인덱스 유지. 심혈관 증상은 각기병 문장이고, 젖산산증은 정맥영양 결핍 문장이다. stem의 '장기'와 '심기능 장애'라는 단어는 없다. 피루브산 탈수소효소와 전국 품절은 이 쪽에 없어 뺐다."
     },
     {
       "id": "bcnsp-052",
@@ -19730,9 +19759,11 @@
       "sourceUrl": null,
       "sourceYear": null,
       "originType": "thirdParty",
-      "reviewStatus": "pending",
-      "priority": "medium",
-      "referenceIds": [],
+      "reviewStatus": "verified",
+      "priority": "high",
+      "referenceIds": [
+        "espen-ped-pn-2018-06-fluid-electrolytes"
+      ],
       "stem": "sodium chloride 120 mEq IV over 24 hours, potassium chloride 40 mEq IV over 24 hours가 포함된 PN 처방을 검증하던 중, pH 7.29, HCO3− 16 mEq/L, PaCO2 31 mm Hg, 회장루 소실 증가를 확인했다. 약사로서 처방자와 논의할 가장 적절한 PN 전해질 수정은?",
       "choices": [
         "PN 산 부하를 줄이기 위해 chloride salt의 일부를 acetate salt로 대체한다.",
@@ -19741,27 +19772,40 @@
         "탄수화물 산화가 bicarbonate 결손을 교정하므로 먼저 dextrose 농도를 올린다."
       ],
       "answer": 0,
-      "explain": "정답은 chloride salt의 일부를 acetate salt로 바꿔 PN 산 부하를 줄인다. 이 소견은 적절한 호흡 보상이 있는 대사성 산증에 가장 부합한다. PN에서 acetate는 bicarbonate로 대사되고, chloride 풍부 조성은 특히 GI bicarbonate 소실이 있을 때 non-anion gap 산증을 악화시킬 수 있다. chloride에서 acetate로의 전환 논의는 산–염기 원리와 PN 지침에 맞는 약사 수준 조성 조정이다. NOTICE: 낮은 bicarbonate, 보상적 낮은 PaCO2, PN의 높은 chloride 부하. SAY: 대사성 산증으로 부분 chloride→acetate 전환을 권고한다. MONITOR: BMP, 혈액가스, chloride, 배액량을 매일 본다. HOLD/CLARIFY/ESCALATE: 산증 악화 또는 acetate 대사를 제한하는 장기 기능 장애 시 에스컬레이션한다. C는 GI 소실에 Na·Cl 보충이 필요할 수 있어",
+      "explain": "나트륨 손실을 염화나트륨으로만 보충하면 염소가 쌓여 고염소성 대사성 산증이 된다. 나트륨의 일부를 아세트산나트륨이나 젖산나트륨으로 바꾼다. 전해질을 모두 빼거나, 염소를 더 늘리거나, 포도당을 먼저 올리는 것은 그 문장이 아니다.",
       "needle": "acetate",
       "choiceExplanations": [
-        "",
-        "",
-        "",
-        ""
+        "정답. 염화나트륨으로 준 나트륨의 일부를 아세트산염으로 바꾼다.",
+        "오답. 나트륨과 칼륨을 모두 빼라는 문장은 없다.",
+        "오답. 염소를 더 늘리면 그 산증 쪽이다.",
+        "오답. 포도당을 먼저 올려 중탄산염을 채운다는 문장은 없다."
       ],
-      "coreSectionIds": [],
+      "coreSectionIds": [
+        "sec-fluid_lytes-2-5-전해질"
+      ],
       "language": "ko",
-      "includeInBasicSet": false,
+      "includeInBasicSet": true,
       "sourceNote": "MedExPrep 사례형 문항(번역·재작성).",
-      "evidence": [],
+      "evidence": [
+        {
+          "referenceId": "espen-ped-pn-2018-06-fluid-electrolytes",
+          "locator": "ESPEN 소아 PN 수액·전해질, 염소와 산증",
+          "quote": "replacing sodium losses only with sodium chloride solutions exposes to high cumulative Cl intake and risk of metabolic acidosis associated hyperchloraemia"
+        },
+        {
+          "referenceId": "espen-ped-pn-2018-06-fluid-electrolytes",
+          "locator": "ESPEN 소아 PN 수액·전해질, 아세트산염 교체",
+          "quote": "part of sodium intake, in the form of sodium chloride solutions, should be replaced by, for instance, sodium lactate or sodium acetate"
+        }
+      ],
       "errataIds": [],
       "checks": {
-        "translation": "unchecked",
-        "answerEvidence": "unchecked",
-        "choiceExplanations": "missing",
-        "coreLink": "topicOnly"
+        "translation": "ok",
+        "answerEvidence": "ok",
+        "choiceExplanations": "complete",
+        "coreLink": "override"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치2: 산증에서 염화 일부를 acetate로 바꾼다는 방향은 문제은행 표기이다. 보유 쪽 문장은 중탄산염 대신 acetate 1:1이다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치2: 산증에서 염화 일부를 acetate로 바꾼다는 방향은 문제은행 표기이다. 보유 쪽 문장은 중탄산염 대신 acetate 1:1이다. 인덱스는 유지한다. 배치11 ESPEN 소아 권고 verified. 정답 인덱스 유지. 문장은 미숙아와, 수분·전해질 손실이 큰 연장 소아에 있다. stem은 성인 용량의 회장루다. 닫은 것은 염화나트륨의 일부를 아세트산염으로 바꾸는 조치다. 아세트산이 중탄산염이 된다는 말은 이 문장에 없어 뺐다."
     },
     {
       "id": "medex-011",
@@ -20785,7 +20829,7 @@
         "choiceExplanations": "missing",
         "coreLink": "topicOnly"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 성인 수액은 30–40 mL/kg/일이다. 1–2 mL/kcal 문장은 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치8: 성인 수액은 30–40 mL/kg/일이다. 1–2 mL/kcal 문장은 없다. 인덱스는 유지한다. BLOCKER 배치11: ESPEN 소아 수액은 수분 요구가 에너지와 나란히 1 mL/kcal라고 한다. 정답의 1–2 mL/kcal는 그 문장이 아니다. 인덱스는 유지한다."
     },
     {
       "id": "rxk-1_3-8",
@@ -23563,7 +23607,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치2: 염화물:아세트산 비를 낮추는 방향은 문제은행 표기이다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치2: 염화물:아세트산 비를 낮추는 방향은 문제은행 표기이다. 인덱스는 유지한다. BLOCKER 배치11: 염화나트륨의 일부를 아세트산염으로 바꾸는 문장은 고염소성 산증과 수분·전해질 손실이 큰 소아에 있다. stem은 급성 신부전이고 염소 부하가 적혀 있지 않다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-021",
@@ -24680,7 +24724,7 @@
         "choiceExplanations": "missing",
         "coreLink": "hint"
       },
-      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치9: CCN의 클로르헥시딘은 가글 하루 2회다. 정답은 삽입 시 최대 차단이다. 피부 소독 클로르헥시딘은 보기에 없다. 인덱스는 유지한다."
+      "reviewNote": "자동 이관 기본값. 정답 근거(보유 문헌)·선택지 해설·번역 검토 전. BLOCKER 배치9: CCN의 클로르헥시딘은 가글 하루 2회다. 정답은 삽입 시 최대 차단이다. 피부 소독 클로르헥시딘은 보기에 없다. 인덱스는 유지한다. BLOCKER 배치11: ESPEN 소아 정맥접근은 차단 예방조치의 정도를 권고할 근거가 없다고 한다. 피부 소독 권고는 2% 클로르헥시딘·70% 이소프로필 알코올이고 보기에 없다. 예방적 항생제와 삽입 부위 국소 항균제의 일상 사용은 하지 말라고 한다. 정답이 최대 차단을 가장 효과적이라고 한 것과 어긋난다. 인덱스는 유지한다."
     },
     {
       "id": "quizlet-iib-046",
