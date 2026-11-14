@@ -146,24 +146,21 @@
     bar.className = "study-bar";
     bar.id = "studyBar";
     bar.innerHTML =
-      '<div class="sb-row sb-one">' +
+      '<div class="sb-row sb-top">' +
         '<select id="sbFilter" aria-label="보기">' + FILTERS.map((f) => '<option value="' + f[0] + '">' + f[1] + "</option>").join("") + "</select>" +
         '<select id="sbScope" aria-label="범위"><option value="all">전체</option><option value="topic">소단원</option></select>' +
-        '<div class="sb-srcs" id="sbSources" role="group" aria-label="출처"></div>' +
         '<input type="search" id="sbSearch" class="sb-search" placeholder="검색" aria-label="문항 검색" enterkeyhint="search">' +
-        '<label class="sb-chk" title="검토 대기 문항 포함"><input type="checkbox" id="sbPending"> 대기</label>' +
-        '<button type="button" class="sb-btn" id="sbExport" title="학습 기록 파일로 저장">저장</button>' +
-        '<button type="button" class="sb-btn" id="sbImport" title="학습 기록 파일 불러오기">불러오기</button>' +
-        '<input type="file" id="sbFile" accept=".json,application/json" hidden>' +
         '<span class="sb-sum" id="sbSum"></span>' +
+      "</div>" +
+      '<div class="sb-row sb-srcs-row">' +
+        '<div class="sb-srcs" id="sbSources" role="group" aria-label="출처"></div>' +
       "</div>" +
       '<div class="sb-notice" id="sbNotice" role="status" aria-live="polite" hidden></div>';
     head.insertAdjacentElement("afterend", bar);
     const $ = (id) => doc.getElementById(id);
     const el = {
-      filter: $("sbFilter"), scope: $("sbScope"), source: $("sbSources"), search: $("sbSearch"), pending: $("sbPending"),
-      exp: $("sbExport"), imp: $("sbImport"), file: $("sbFile"), sum: $("sbSum"),
-      notice: $("sbNotice"), title: $("quizHeadTitle") || head,
+      filter: $("sbFilter"), scope: $("sbScope"), source: $("sbSources"), search: $("sbSearch"),
+      sum: $("sbSum"), notice: $("sbNotice"), title: $("quizHeadTitle") || head,
     };
 
     let noticeTimer = null;
@@ -187,7 +184,7 @@
       return false;
     }
     if (loadStatus === "unavailable") notice(SAVE_MSG["no-storage"], false);
-    else if (loadStatus === "corrupt") notice("저장된 기록이 손상돼 읽지 못했습니다. 「불러오기」로 교체할 수 있습니다.", true);
+    else if (loadStatus === "corrupt") notice("저장된 기록이 손상돼 읽지 못했습니다. 표시·즐겨찾기가 초기화될 수 있습니다.", true);
     else if (loadStatus === "unknown-schema") notice("다른 버전의 기록이 있어 읽지 못했습니다.", true);
 
     function listKey() {
@@ -385,7 +382,7 @@
       ui.filter = el.filter.value;
       ui.scope = el.scope.value;
       ui.search = el.search.value.trim();
-      ui.includePending = el.pending.checked;
+      ui.includePending = false;
     }
     el.source.addEventListener("click", (e) => {
       const b = e.target.closest("button[data-src]");
@@ -395,7 +392,7 @@
       ui.listVersion++;
       renderQuiz(true);
     });
-    [el.filter, el.scope, el.pending].forEach((c) => c.addEventListener("change", () => {
+    [el.filter, el.scope].forEach((c) => c.addEventListener("change", () => {
       readControls();
       ui.listVersion++;
       renderQuiz(true);
@@ -404,48 +401,6 @@
     el.search.addEventListener("input", () => {
       clearTimeout(searchTimer);
       searchTimer = setTimeout(() => { readControls(); renderQuiz(); }, 200);
-    });
-
-    el.exp.addEventListener("click", () => {
-      const text = SS.exportBackup(state);
-      const blob = new Blob([text], { type: "application/json" });
-      const a = doc.createElement("a");
-      const d = new Date();
-      const pad = (n) => String(n).padStart(2, "0");
-      a.download = "pn-study-backup-" + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + ".json";
-      a.href = URL.createObjectURL(blob);
-      doc.body.appendChild(a);
-      a.click();
-      setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 0);
-      notice("저장했습니다.", false);
-    });
-    el.imp.addEventListener("click", () => { el.file.value = ""; el.file.click(); });
-    el.file.addEventListener("change", () => {
-      const f = el.file.files && el.file.files[0];
-      if (!f) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        const p = SS.parseBackup(String(reader.result || ""), BANK);
-        if (!p.ok) {
-          notice("불러올 수 없는 파일입니다" + (p.errors && p.errors[0] ? ": " + p.errors[0] : "."), false);
-          return;
-        }
-        const s = p.summary || {};
-        const msg = "기록을 합칠까요?\n표시 " + (s.markedQuestions || 0) + " · ★" + (s.bookmarks || 0) +
-          "\n확인=합치기 / 취소=덮어쓰기";
-        const merge = root.confirm(msg);
-        if (!merge && !root.confirm("지금 기록을 지우고 파일로 덮어쓸까요?")) return;
-        const mode = merge ? "merge" : "replace";
-        state = SS.applyBackup(p, state, { confirmed: true, mode, contentVersion: CV });
-        const blocked = loadStatus === "corrupt" || loadStatus === "unknown-schema";
-        const saved = persist(blocked || mode === "replace" ? { overwrite: true } : undefined);
-        ui.listVersion++;
-        ui.stateRev++;
-        renderQuiz(true);
-        if (saved) notice(mode === "merge" ? "합쳤습니다." : "덮어썼습니다.", false);
-      };
-      reader.onerror = () => notice("파일을 읽지 못했습니다.", false);
-      reader.readAsText(f);
     });
 
     const tabs = doc.getElementById("tabs");
