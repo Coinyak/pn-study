@@ -43,6 +43,18 @@ test("buildList sourceLabel keeps a single label and unions several", () => {
   );
 });
 
+test("buildList topic scope follows the open section", () => {
+  const st = SS.createEmptyState();
+  const bank = [
+    q("ile", "lipid", { coreSectionIds: ["sec-lipid-2-2"] }),
+    q("efad", "lipid", { coreSectionIds: ["sec-lipid-6-5"] }),
+    q("other", "protein", { coreSectionIds: ["sec-protein"] }),
+  ];
+  assert.deepEqual(ids(UI.buildList(bank, st, { filter: "all", scope: "topic", topic: "lipid", sectionId: "sec-lipid-2-2" }, SS)), ["ile"]);
+  assert.deepEqual(ids(UI.buildList(bank, st, { filter: "all", scope: "topic", topic: "lipid", sectionId: "sec-lipid-6-5" }, SS)), ["efad"]);
+  assert.deepEqual(ids(UI.buildList(bank, st, { filter: "all", scope: "all", topic: "lipid", sectionId: "sec-lipid-2-2" }, SS)), ["ile", "efad", "other"]);
+});
+
 test("buildList scopes by topic, and search spans all topics", () => {
   const st = SS.createEmptyState();
   assert.deepEqual(ids(UI.buildList(BANK, st, { filter: "all", topic: "lipid", scope: "topic" }, SS)), ["v1", "v2"]);

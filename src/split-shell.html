@@ -2658,16 +2658,14 @@ function setupScrollSpy(){
     if(current.id === activeSecId) return;
     activeSecId = current.id;
     syncNavHighlight(current.id);
-    if(current.dataset.topic === activeTopic) return;
-    // 문제 클릭의 프로그램 스크롤은 위의 spyLock에서 이미 빠진다.
-    // 단원이 바뀌면 이전 핵심 표시를 지워 목록이 옛 .core-hl에 고정되지 않게 한다.
-    // 단원별만 오른쪽 목록을 그 단원으로 갱신하고, 전체는 한 단원으로 줄이지 않는다.
-    activeTopic = current.dataset.topic;
-    clearCoreHl();
-    if(window.quizListScope !== "all"){
-      renderQuiz();
+    // 같은 단원 안의 다른 절(2.2 지방과 6.5 EFAD)도 그 절의 문제만 보여 준다.
+    // 단원별만 오른쪽 목록을 갱신하고, 전체는 한 절로 줄이지 않는다.
+    if(current.dataset.topic !== activeTopic){
+      activeTopic = current.dataset.topic;
+      clearCoreHl();
       hideCite();
     }
+    if(window.quizListScope !== "all") renderQuiz();
   }
 
   core.addEventListener("scroll", ()=>{
