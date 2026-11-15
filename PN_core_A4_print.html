@@ -109,12 +109,12 @@ mark.hl-both, .hl-both{
   box-shadow:none; border:none; text-decoration:none;
   -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
-/* Keep each topic/unit on one page when it fits. Only the cheat block
-   (taller than A4) may span pages — and then only between rows, never mid-cell. */
+/* A section may cross a page so a block taller than A4 is not clipped.
+   Each table stays together when it fits. Only the cheat table, which is
+   taller than one page, breaks between rows and never through a cell. */
 .print-sec{
   margin:0 0 0.8mm;
-  break-inside:avoid; page-break-inside:avoid;
-  -webkit-column-break-inside:avoid;
+  break-inside:auto; page-break-inside:auto;
 }
 .print-sec:has(.cheat-table){
   break-inside:auto; page-break-inside:auto;
@@ -143,11 +143,11 @@ h1,h2,h3{orphans:3; widows:3}
   body{max-width:100%; width:auto; padding:0; margin:0; font-size:8.6pt; line-height:1.38}
   /* 표는 페이지 너비(100%)를 넘기지 않는다. nowrap·긴 토큰의 min-content가 칸을 밀지 않게 한다. */
   table{font-size:8pt; width:100%!important; max-width:100%!important}
-  .print-sec{ break-inside:avoid!important; page-break-inside:avoid!important; }
+  .print-sec{ break-inside:auto!important; page-break-inside:auto!important; }
   .print-sec:has(.cheat-table){ break-inside:auto!important; page-break-inside:auto!important; }
   table:not(.cheat-table){ break-inside:avoid!important; page-break-inside:avoid!important; }
   table.cheat-table{ break-inside:auto!important; page-break-inside:auto!important; }
-  tr, td, th{ break-inside:avoid!important; page-break-inside:avoid!important; }
+  tr, td, th, li{ break-inside:avoid!important; page-break-inside:avoid!important; }
   h2, h3{ break-after:avoid!important; page-break-after:avoid!important; }
   th,td{
     padding:0.7mm 1.3mm;
