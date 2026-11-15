@@ -100,7 +100,13 @@
     const filter = SS.normalizeFilter(o.filter || "all");
     let pool = basePool(bank);
     if (normSearch(o.search)) pool = pool.filter((q) => matchesSearch(q, o.search));
-    else if (o.scope !== "all" && o.topic) pool = pool.filter((q) => q.topic === o.topic);
+    else if (o.scope !== "all" && o.sectionId) {
+      pool = pool.filter((q) => {
+        const ids = q.coreSectionIds || [];
+        if (ids.length) return ids.indexOf(o.sectionId) >= 0;
+        return !o.topic || q.topic === o.topic;
+      });
+    } else if (o.scope !== "all" && o.topic) pool = pool.filter((q) => q.topic === o.topic);
     const labels = selectedSourceLabels(o.sourceLabel);
     if (labels.length) {
       const want = new Set(labels);
@@ -140,6 +146,14 @@
     const esc = typeof escapeHtml === "function" ? escapeHtml
       : (s) => String(s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
     const topicNow = () => (typeof activeTopic !== "undefined" ? activeTopic : null);
+    const sectionNow = () => (typeof activeSecId !== "undefined" ? activeSecId : null);
+    const sectionLabel = () => {
+      const id = sectionNow();
+      if (!id || !doc.getElementById) return "";
+      const sec = doc.getElementById(id);
+      const heading = sec && sec.querySelector(".sec-h");
+      return heading ? heading.textContent.replace(/\s+/g, " ").trim() : "";
+    };
     const topicLabel = (t) => (typeof TOPIC_LABEL !== "undefined" && TOPIC_LABEL[t]) || t || "";
     const coreLinked = (q) => visibleCoreSections(q).length > 0 || !CORE_SKIP.has(q.id);
     const references = QUESTION_REFERENCES;
@@ -238,19 +252,20 @@
     function listKey() {
       return JSON.stringify([
         ui.filter, ui.scope, ui.search, ui.sourceLabels.slice().sort(),
-        ui.scope === "all" || ui.search ? "" : topicNow(), ui.listVersion,
+        ui.scope === "all" || ui.search ? "" : topicNow(),
+        ui.scope === "all" || ui.search ? "" : sectionNow(), ui.listVersion,
         filterUsesState(ui.filter) ? ui.stateRev : 0,
       ]);
     }
     function currentItems() {
       return buildList(BANK, state, {
-        filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
+        filter: ui.filter, search: ui.search, topic: topicNow(), sectionId: sectionNow(), scope: ui.scope,
         sourceLabel: ui.sourceLabels,
       }, SS);
     }
     function poolForSources() {
       return buildList(BANK, state, {
-        filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
+        filter: ui.filter, search: ui.search, topic: topicNow(), sectionId: sectionNow(), scope: ui.scope,
         sourceLabel: [],
       }, SS);
     }
@@ -342,7 +357,7 @@
     function headTitle(items) {
       const found = FILTERS.find((x) => x[0] === ui.filter);
       const f = found ? found[1] : "";
-      const where = ui.search ? "검색「" + ui.search + "」" : ui.scope === "all" ? "전체 단원" : topicLabel(topicNow());
+      const where = ui.search ? "검색「" + ui.search + "」" : ui.scope === "all" ? "전체 단원" : (sectionLabel() || topicLabel(topicNow()));
       const src = ui.sourceLabels.length ? " · " + ui.sourceLabels.join(" · ") : "";
       return "관련 문제 · " + where + src + (ui.filter === "all" ? "" : " · " + f) + " (" + items.length + ")";
     }

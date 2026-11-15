@@ -5078,16 +5078,14 @@ function setupScrollSpy(){
     if(current.id === activeSecId) return;
     activeSecId = current.id;
     syncNavHighlight(current.id);
-    if(current.dataset.topic === activeTopic) return;
-    // 문제 클릭의 프로그램 스크롤은 위의 spyLock에서 이미 빠진다.
-    // 단원이 바뀌면 이전 핵심 표시를 지워 목록이 옛 .core-hl에 고정되지 않게 한다.
-    // 단원별만 오른쪽 목록을 그 단원으로 갱신하고, 전체는 한 단원으로 줄이지 않는다.
-    activeTopic = current.dataset.topic;
-    clearCoreHl();
-    if(window.quizListScope !== "all"){
-      renderQuiz();
+    // 같은 단원 안의 다른 절(2.2 지방과 6.5 EFAD)도 그 절의 문제만 보여 준다.
+    // 단원별만 오른쪽 목록을 갱신하고, 전체는 한 절로 줄이지 않는다.
+    if(current.dataset.topic !== activeTopic){
+      activeTopic = current.dataset.topic;
+      clearCoreHl();
       hideCite();
     }
+    if(window.quizListScope !== "all") renderQuiz();
   }
 
   core.addEventListener("scroll", ()=>{
@@ -6149,7 +6147,13 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
     const filter = SS.normalizeFilter(o.filter || "all");
     let pool = basePool(bank);
     if (normSearch(o.search)) pool = pool.filter((q) => matchesSearch(q, o.search));
-    else if (o.scope !== "all" && o.topic) pool = pool.filter((q) => q.topic === o.topic);
+    else if (o.scope !== "all" && o.sectionId) {
+      pool = pool.filter((q) => {
+        const ids = q.coreSectionIds || [];
+        if (ids.length) return ids.indexOf(o.sectionId) >= 0;
+        return !o.topic || q.topic === o.topic;
+      });
+    } else if (o.scope !== "all" && o.topic) pool = pool.filter((q) => q.topic === o.topic);
     const labels = selectedSourceLabels(o.sourceLabel);
     if (labels.length) {
       const want = new Set(labels);
@@ -6189,6 +6193,14 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
     const esc = typeof escapeHtml === "function" ? escapeHtml
       : (s) => String(s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
     const topicNow = () => (typeof activeTopic !== "undefined" ? activeTopic : null);
+    const sectionNow = () => (typeof activeSecId !== "undefined" ? activeSecId : null);
+    const sectionLabel = () => {
+      const id = sectionNow();
+      if (!id || !doc.getElementById) return "";
+      const sec = doc.getElementById(id);
+      const heading = sec && sec.querySelector(".sec-h");
+      return heading ? heading.textContent.replace(/\s+/g, " ").trim() : "";
+    };
     const topicLabel = (t) => (typeof TOPIC_LABEL !== "undefined" && TOPIC_LABEL[t]) || t || "";
     const coreLinked = (q) => visibleCoreSections(q).length > 0 || !CORE_SKIP.has(q.id);
     const references = QUESTION_REFERENCES;
@@ -6287,19 +6299,20 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
     function listKey() {
       return JSON.stringify([
         ui.filter, ui.scope, ui.search, ui.sourceLabels.slice().sort(),
-        ui.scope === "all" || ui.search ? "" : topicNow(), ui.listVersion,
+        ui.scope === "all" || ui.search ? "" : topicNow(),
+        ui.scope === "all" || ui.search ? "" : sectionNow(), ui.listVersion,
         filterUsesState(ui.filter) ? ui.stateRev : 0,
       ]);
     }
     function currentItems() {
       return buildList(BANK, state, {
-        filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
+        filter: ui.filter, search: ui.search, topic: topicNow(), sectionId: sectionNow(), scope: ui.scope,
         sourceLabel: ui.sourceLabels,
       }, SS);
     }
     function poolForSources() {
       return buildList(BANK, state, {
-        filter: ui.filter, search: ui.search, topic: topicNow(), scope: ui.scope,
+        filter: ui.filter, search: ui.search, topic: topicNow(), sectionId: sectionNow(), scope: ui.scope,
         sourceLabel: [],
       }, SS);
     }
@@ -6391,7 +6404,7 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
     function headTitle(items) {
       const found = FILTERS.find((x) => x[0] === ui.filter);
       const f = found ? found[1] : "";
-      const where = ui.search ? "검색「" + ui.search + "」" : ui.scope === "all" ? "전체 단원" : topicLabel(topicNow());
+      const where = ui.search ? "검색「" + ui.search + "」" : ui.scope === "all" ? "전체 단원" : (sectionLabel() || topicLabel(topicNow()));
       const src = ui.sourceLabels.length ? " · " + ui.sourceLabels.join(" · ") : "";
       return "관련 문제 · " + where + src + (ui.filter === "all" ? "" : " · " + f) + " (" + items.length + ")";
     }
