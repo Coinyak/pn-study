@@ -5251,6 +5251,12 @@ setupScrollSpy();
 })();
 </script>
 <!-- STUDY_UI_HOOK: src/study.css · src/study-state.js · src/study-ui.js are inlined here when present (Task 4–5) -->
+<script>
+window.PN_SUPABASE = {"url":"","anonKey":"","redirectPath":"/pn-study/PN_study_split.html"};
+if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
+  window.PN_SUPABASE.redirectTo = location.origin + window.PN_SUPABASE.redirectPath;
+}
+</script>
 <script>const PN_CONTENT_VERSION = "2026-11-14.38";</script>
 <style>
 /* study.css — compact quiz bar + learn cards. Light theme, dense. */
@@ -5272,6 +5278,14 @@ setupScrollSpy();
 .study-bar select:disabled,.study-bar input:disabled{opacity:.5;cursor:not-allowed}
 .study-bar select:focus-visible,.sb-search:focus-visible,.q-bm:focus-visible,.q-check:focus-visible{outline:2px solid var(--chip-on);outline-offset:1px}
 .sb-sum{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;flex:0 0 auto}
+.quiz-sync-btn{font:inherit;font-size:12px;font-weight:700;color:var(--chip-on);background:#fff;border:1px solid #c5d0e0;border-radius:3px;min-height:28px;padding:3px 8px;cursor:pointer}
+.quiz-sync-btn:hover{border-color:var(--chip-on)}
+.quiz-sync-panel{margin-top:6px;padding:8px;border:1px solid #c5d0e0;border-radius:4px;background:#f7fafc}
+.quiz-sync-panel[hidden]{display:none}
+.quiz-sync-status{margin:0 0 6px;color:var(--muted)}
+.quiz-sync-email{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.quiz-sync-email input{flex:1;font:inherit;font-size:12px;min-height:28px;border:1px solid #c5d0e0;border-radius:3px;padding:3px 6px}
+.quiz-sync-actions{display:flex;flex-wrap:wrap;gap:6px}
 .sb-notice{margin-top:4px;padding:4px 8px;background:#fff8e1;border-left:3px solid #f0a500;color:#5a4300}
 
 .qcard.sq{cursor:pointer}
@@ -5852,6 +5866,223 @@ setupScrollSpy();
 });
 </script>
 <script>
+/* study-sync.js — optional Supabase sync layered on StudyState (never replaces it).
+ *
+ * Merge: bookmarks union; attempts via StudyState.applyBackup(mode:"merge").
+ * Push: pull → merge → save local → upsert. Never overwrite newer remote with older payload.
+ */
+(function (root) {
+  "use strict";
+  if (!root.StudyState) {
+    console.warn("StudySync: StudyState missing; sync disabled");
+    return;
+  }
+
+  const S = root.StudyState;
+  let client = null;
+  let sessionUser = null;
+  let pushTimer = null;
+  let lastKnownRemoteMs = 0;
+  let questionBank = [];
+
+  function cfg() { return root.PN_SUPABASE || null; }
+
+  function isConfigured() {
+    const c = cfg();
+    return !!(c && c.url && c.anonKey && String(c.anonKey).indexOf("YOUR_") < 0);
+  }
+
+  function getStore() {
+    return S.createStore({
+      storage: typeof localStorage !== "undefined" ? localStorage : null,
+      contentVersion: typeof root.PN_CONTENT_VERSION === "string" ? root.PN_CONTENT_VERSION : null,
+    });
+  }
+
+  function stateUpdatedAt(state) {
+    let max = 0;
+    if (state && state.lastSession) {
+      const t = Date.parse(state.lastSession.at) || Number(state.lastSession.at) || 0;
+      if (t > max) max = t;
+    }
+    const attempts = (state && state.attemptsByQuestionId) || {};
+    Object.keys(attempts).forEach(function (id) {
+      (attempts[id] || []).forEach(function (a) {
+        const t = Date.parse(a.at) || Number(a.at) || 0;
+        if (t > max) max = t;
+      });
+    });
+    if (state && typeof state.updatedAt === "number" && state.updatedAt > max) max = state.updatedAt;
+    return max;
+  }
+
+  function stamp(state) {
+    return Object.assign({}, state, { updatedAt: Math.max(stateUpdatedAt(state), Date.now()) });
+  }
+
+  function mergeRemoteIntoLocal(local, remotePayload, questions) {
+    const text = S.exportBackup(remotePayload);
+    const preview = S.parseBackup(text, questions || questionBank || []);
+    if (!preview.ok) {
+      return { state: local, warnings: preview.errors || ["remote-parse-failed"] };
+    }
+    const merged = S.applyBackup(preview, local, { confirmed: true, mode: "merge" });
+    return { state: stamp(merged), warnings: preview.warnings || [] };
+  }
+
+  async function ensureClient() {
+    if (!isConfigured()) return null;
+    if (!root.supabase || !root.supabase.createClient) {
+      console.warn("StudySync: supabase-js CDN not loaded");
+      return null;
+    }
+    if (!client) {
+      client = root.supabase.createClient(cfg().url, cfg().anonKey, {
+        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
+      });
+      client.auth.onAuthStateChange(function (_ev, session) {
+        sessionUser = session && session.user ? session.user : null;
+        if (typeof root.PN_STUDY_ON_AUTH === "function") root.PN_STUDY_ON_AUTH(sessionUser);
+      });
+    }
+    const { data } = await client.auth.getSession();
+    sessionUser = data.session && data.session.user ? data.session.user : null;
+    return client;
+  }
+
+  async function pullRemote() {
+    const sb = await ensureClient();
+    if (!sb || !sessionUser) return null;
+    const { data, error } = await sb
+      .from("study_progress")
+      .select("payload, updated_at")
+      .eq("user_id", sessionUser.id)
+      .maybeSingle();
+    if (error) throw error;
+    if (!data) return null;
+    const remoteMs = Date.parse(data.updated_at) || 0;
+    const payloadAt = (data.payload && Number(data.payload.updatedAt)) || 0;
+    const effective = Math.max(remoteMs, payloadAt);
+    lastKnownRemoteMs = Math.max(lastKnownRemoteMs, effective);
+    return { payload: data.payload, updatedAtMs: effective, rowUpdatedAt: data.updated_at };
+  }
+
+  async function upsertMerged(merged, basedOnRemoteMs) {
+    const sb = await ensureClient();
+    if (!sb || !sessionUser) return { ok: false, reason: "not-signed-in" };
+
+    const again = await pullRemote();
+    let toSave = merged;
+    if (again && again.updatedAtMs > (basedOnRemoteMs || 0)) {
+      const store = getStore();
+      const local = store.load().state;
+      const remixed = mergeRemoteIntoLocal(local, again.payload, questionBank);
+      toSave = remixed.state;
+      store.save(toSave);
+      basedOnRemoteMs = again.updatedAtMs;
+    }
+
+    const localMs = stateUpdatedAt(toSave);
+    if (again && again.updatedAtMs > localMs) {
+      return { ok: false, reason: "remote-newer", remoteMs: again.updatedAtMs, localMs: localMs };
+    }
+
+    const payload = stamp(toSave);
+    const { error } = await sb.from("study_progress").upsert({
+      user_id: sessionUser.id,
+      payload: payload,
+      updated_at: new Date(payload.updatedAt).toISOString(),
+    });
+    if (error) throw error;
+    lastKnownRemoteMs = Math.max(lastKnownRemoteMs, payload.updatedAt);
+    getStore().save(payload);
+    return { ok: true, state: payload };
+  }
+
+  async function syncNow(questions) {
+    if (questions) questionBank = questions;
+    const store = getStore();
+    let local = store.load().state;
+    if (!sessionUser) await ensureClient();
+    if (!sessionUser) return { synced: false, reason: "login-required", state: local };
+
+    const remote = await pullRemote();
+    const basedOn = remote ? remote.updatedAtMs : 0;
+    if (remote && remote.payload) {
+      const { state, warnings } = mergeRemoteIntoLocal(local, remote.payload, questionBank);
+      local = state;
+      store.save(local);
+      const pushed = await upsertMerged(local, basedOn);
+      return { synced: !!pushed.ok, state: pushed.state || local, warnings: warnings, push: pushed };
+    }
+    const pushed = await upsertMerged(stamp(local), 0);
+    return { synced: !!pushed.ok, state: pushed.state || local, push: pushed };
+  }
+
+  function scheduleSync(questions) {
+    if (!isConfigured() || !sessionUser) return;
+    if (questions) questionBank = questions;
+    clearTimeout(pushTimer);
+    pushTimer = setTimeout(function () {
+      syncNow(questionBank).catch(function (err) {
+        console.warn("StudySync: background sync failed", err);
+      });
+    }, 700);
+  }
+
+  function persistLocal(mutator, questions) {
+    const store = getStore();
+    const cur = store.load().state;
+    const next = stamp(mutator(cur));
+    const saved = store.save(next);
+    scheduleSync(questions || questionBank);
+    return { state: next, save: saved };
+  }
+
+  async function signInWithEmail(email) {
+    const sb = await ensureClient();
+    if (!sb) throw new Error("Supabase 미설정 — content/supabase.json 후 빌드 필요");
+    const c = cfg();
+    const redirectTo = c.redirectTo || (root.location && root.location.href.split("#")[0]);
+    const { error } = await sb.auth.signInWithOtp({
+      email: email,
+      options: { emailRedirectTo: redirectTo },
+    });
+    if (error) throw error;
+  }
+
+  async function signOut() {
+    const sb = await ensureClient();
+    if (!sb) return;
+    await sb.auth.signOut();
+    sessionUser = null;
+  }
+
+  async function init(questions) {
+    if (questions) questionBank = questions;
+    await ensureClient();
+    if (sessionUser) {
+      try { await syncNow(questionBank); }
+      catch (err) { console.warn("StudySync: initial sync failed", err); }
+    }
+    return { configured: isConfigured(), user: sessionUser };
+  }
+
+  root.StudySync = {
+    isConfigured: isConfigured,
+    init: init,
+    syncNow: syncNow,
+    scheduleSync: scheduleSync,
+    persistLocal: persistLocal,
+    signInWithEmail: signInWithEmail,
+    signOut: signOut,
+    getUser: function () { return sessionUser; },
+    getStore: getStore,
+    stateUpdatedAt: stateUpdatedAt,
+  };
+})(typeof globalThis !== "undefined" ? globalThis : this);
+</script>
+<script>
 /* study-ui.js — learn quiz pane (marks, favorites, filters and search)
  * on top of StudyState. Card click → core jump. Compact two-row toolbar.
  *
@@ -6016,6 +6247,7 @@ setupScrollSpy();
       '<div class="sb-row sb-top">' +
         '<input type="search" id="sbSearch" class="sb-search" placeholder="검색" aria-label="문항 검색" enterkeyhint="search">' +
         '<span class="sb-sum" id="sbSum"></span>' +
+        '<button type="button" class="quiz-sync-btn" id="quizSyncBtn">연동</button>' +
       "</div>" +
       '<div class="sb-row sb-srcs-row">' +
         '<div class="sb-srcs" id="sbSources" role="group" aria-label="출처"></div>' +
@@ -6070,8 +6302,17 @@ setupScrollSpy();
       "blocked-unknown-schema": "다른 버전의 기록이 있어 덮어쓰지 않았습니다.",
     };
     function persist(opts) {
+      const prev = state.lastSession && state.lastSession.questionId;
+      state = SS.setLastSession(state, {
+        questionId: prev || "progress",
+        at: new Date().toISOString(),
+      });
       const r = store.save(state, opts);
-      if (r.ok) { ui.lastSaveReason = null; return true; }
+      if (r.ok) {
+        ui.lastSaveReason = null;
+        if (root.StudySync && root.StudySync.scheduleSync) root.StudySync.scheduleSync(BANK);
+        return true;
+      }
       if (r.reason !== ui.lastSaveReason) notice(SAVE_MSG[r.reason] || "기록을 저장하지 못했습니다.", false);
       ui.lastSaveReason = r.reason;
       return false;
@@ -6406,6 +6647,93 @@ setupScrollSpy();
 
     root.renderQuiz = renderQuiz;
     renderQuiz(true);
+
+    const syncBtn = $("quizSyncBtn");
+    const syncPanel = doc.createElement("div");
+    syncPanel.className = "quiz-sync-panel";
+    syncPanel.hidden = true;
+    syncPanel.innerHTML =
+      '<p class="quiz-sync-status" id="quizSyncStatus"></p>' +
+      '<label class="quiz-sync-email">이메일 <input type="email" id="quizSyncEmail" autocomplete="email" inputmode="email"></label>' +
+      '<div class="quiz-sync-actions">' +
+        '<button type="button" class="quiz-sync-btn" id="quizSyncSend">로그인 링크</button>' +
+        '<button type="button" class="quiz-sync-btn" id="quizSyncNow">지금 맞추기</button>' +
+        '<button type="button" class="quiz-sync-btn" id="quizSyncOut">로그아웃</button>' +
+      "</div>";
+    bar.appendChild(syncPanel);
+
+    function applySyncedState() {
+      const again = store.load();
+      if (again && again.state) {
+        state = again.state;
+        ui.stateRev++;
+        ui.listVersion++;
+        renderQuiz(true);
+      }
+    }
+    function syncStatus(user) {
+      const status = $("quizSyncStatus");
+      const on = $("quizSyncBtn");
+      if (!root.StudySync || !root.StudySync.isConfigured()) {
+        if (status) status.textContent = "이 빌드에는 슈퍼베이스 주소가 없습니다.";
+        return;
+      }
+      if (user && user.email) {
+        if (status) status.textContent = user.email + " 계정과 맞추는 중입니다.";
+        if (on) on.textContent = "연동됨";
+      } else {
+        if (status) status.textContent = "같은 이메일로 로그인하면 별표·O/X·풀이가 기기에 맞춰집니다.";
+        if (on) on.textContent = "연동";
+      }
+    }
+    root.PN_STUDY_ON_AUTH = syncStatus;
+    if (syncBtn) {
+      syncBtn.addEventListener("click", () => {
+        syncPanel.hidden = !syncPanel.hidden;
+        syncStatus(root.StudySync && root.StudySync.getUser ? root.StudySync.getUser() : null);
+      });
+    }
+    const sendBtn = $("quizSyncSend");
+    if (sendBtn) {
+      sendBtn.addEventListener("click", async () => {
+        const email = ($("quizSyncEmail").value || "").trim();
+        if (!email) { notice("이메일을 입력하세요.", false); return; }
+        try {
+          await root.StudySync.signInWithEmail(email);
+          notice("로그인 링크를 보냈습니다. 그 메일의 링크로 이 페이지를 여세요.", false);
+        } catch (err) {
+          notice(String(err && err.message || err), true);
+        }
+      });
+    }
+    const nowBtn = $("quizSyncNow");
+    if (nowBtn) {
+      nowBtn.addEventListener("click", async () => {
+        try {
+          const res = await root.StudySync.syncNow(BANK);
+          applySyncedState();
+          notice(res.synced ? "별표와 풀이 기록을 맞췄습니다." : "로그인하면 다른 기기와 맞출 수 있습니다.", false);
+        } catch (err) {
+          notice(String(err && err.message || err), true);
+        }
+      });
+    }
+    const outBtn = $("quizSyncOut");
+    if (outBtn) {
+      outBtn.addEventListener("click", async () => {
+        await root.StudySync.signOut();
+        syncStatus(null);
+        notice("이 브라우저의 로그인만 끊었습니다. 이미 저장된 별표는 이 기기에 남습니다.", false);
+      });
+    }
+    if (root.StudySync && root.StudySync.init) {
+      root.StudySync.init(BANK).then((res) => {
+        syncStatus(res && res.user);
+        if (res && res.user) applySyncedState();
+      }).catch((err) => {
+        notice(String(err && err.message || err), true);
+      });
+    }
   }
 
   return api;
