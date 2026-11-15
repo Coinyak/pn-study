@@ -8,6 +8,7 @@ assets/_zoom_*.png
 __pycache__/
 # Personal study-progress backups exported from the quiz pane
 pn-study-backup-*.json
+content/supabase.json
 
 node_modules/
 package-lock.json

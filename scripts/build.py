@@ -32,7 +32,12 @@ OUT_A4 = "PN_core_A4_print.html"
 # Publish display fields and citation locations, leaving review notes and excerpts in the bank.
 BANK_FIELDS = ["id", "revision", "topic", "source", "stem", "choices", "answer", "explain", "needle",
                "reviewStatus", "includeInBasicSet", "language", "coreSectionIds"]
-STUDY_UI_FILES = [("study.css", "style"), ("study-state.js", "script"), ("study-ui.js", "script")]
+STUDY_UI_FILES = [
+    ("study.css", "style"),
+    ("study-state.js", "script"),
+    ("study-sync.js", "script"),
+    ("study-ui.js", "script"),
+]
 SECTION_OPEN = re.compile(
     r'<section class="sec" data-topic="[^"]+" id="([^"]+)"(?: data-added="[^"]+")?( data-hub="1")?(?: hidden)?>'
 )
@@ -244,8 +249,38 @@ def question_bank(qdoc):
     ]
 
 
+def supabase_boot():
+    path = ROOT / "content" / "supabase.json"
+    payload = {"url": "", "anonKey": "", "redirectPath": "/pn-study/PN_study_split.html"}
+    if path.is_file():
+        try:
+            raw = json.loads(read(path))
+        except json.JSONDecodeError as exc:
+            raise SystemExit(f"content/supabase.json: {exc}") from exc
+        url = str(raw.get("url") or "")
+        anon = str(raw.get("anonKey") or "")
+        if url and anon and "YOUR_" not in anon:
+            payload = {
+                "url": url,
+                "anonKey": anon,
+                "redirectPath": raw.get("redirectPath") or payload["redirectPath"],
+            }
+    script = (
+        '<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>\n'
+        if payload["url"] else ""
+    )
+    return (
+        script
+        + "<script>\nwindow.PN_SUPABASE = "
+        + script_json(payload)
+        + ";\nif (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {\n"
+        + "  window.PN_SUPABASE.redirectTo = location.origin + window.PN_SUPABASE.redirectPath;\n"
+        + "}\n</script>"
+    )
+
+
 def study_ui_block(content_version):
-    parts = [f"<script>const PN_CONTENT_VERSION = {script_json(content_version)};</script>"]
+    parts = [supabase_boot(), f"<script>const PN_CONTENT_VERSION = {script_json(content_version)};</script>"]
     for name, tag in STUDY_UI_FILES:
         path = SRC / name
         if path.is_file():

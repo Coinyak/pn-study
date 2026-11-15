@@ -162,6 +162,7 @@
       '<div class="sb-row sb-top">' +
         '<input type="search" id="sbSearch" class="sb-search" placeholder="검색" aria-label="문항 검색" enterkeyhint="search">' +
         '<span class="sb-sum" id="sbSum"></span>' +
+        '<button type="button" class="quiz-sync-btn" id="quizSyncBtn">연동</button>' +
       "</div>" +
       '<div class="sb-row sb-srcs-row">' +
         '<div class="sb-srcs" id="sbSources" role="group" aria-label="출처"></div>' +
@@ -216,8 +217,17 @@
       "blocked-unknown-schema": "다른 버전의 기록이 있어 덮어쓰지 않았습니다.",
     };
     function persist(opts) {
+      const prev = state.lastSession && state.lastSession.questionId;
+      state = SS.setLastSession(state, {
+        questionId: prev || "progress",
+        at: new Date().toISOString(),
+      });
       const r = store.save(state, opts);
-      if (r.ok) { ui.lastSaveReason = null; return true; }
+      if (r.ok) {
+        ui.lastSaveReason = null;
+        if (root.StudySync && root.StudySync.scheduleSync) root.StudySync.scheduleSync(BANK);
+        return true;
+      }
       if (r.reason !== ui.lastSaveReason) notice(SAVE_MSG[r.reason] || "기록을 저장하지 못했습니다.", false);
       ui.lastSaveReason = r.reason;
       return false;
@@ -552,6 +562,93 @@
 
     root.renderQuiz = renderQuiz;
     renderQuiz(true);
+
+    const syncBtn = $("quizSyncBtn");
+    const syncPanel = doc.createElement("div");
+    syncPanel.className = "quiz-sync-panel";
+    syncPanel.hidden = true;
+    syncPanel.innerHTML =
+      '<p class="quiz-sync-status" id="quizSyncStatus"></p>' +
+      '<label class="quiz-sync-email">이메일 <input type="email" id="quizSyncEmail" autocomplete="email" inputmode="email"></label>' +
+      '<div class="quiz-sync-actions">' +
+        '<button type="button" class="quiz-sync-btn" id="quizSyncSend">로그인 링크</button>' +
+        '<button type="button" class="quiz-sync-btn" id="quizSyncNow">지금 맞추기</button>' +
+        '<button type="button" class="quiz-sync-btn" id="quizSyncOut">로그아웃</button>' +
+      "</div>";
+    bar.appendChild(syncPanel);
+
+    function applySyncedState() {
+      const again = store.load();
+      if (again && again.state) {
+        state = again.state;
+        ui.stateRev++;
+        ui.listVersion++;
+        renderQuiz(true);
+      }
+    }
+    function syncStatus(user) {
+      const status = $("quizSyncStatus");
+      const on = $("quizSyncBtn");
+      if (!root.StudySync || !root.StudySync.isConfigured()) {
+        if (status) status.textContent = "이 빌드에는 슈퍼베이스 주소가 없습니다.";
+        return;
+      }
+      if (user && user.email) {
+        if (status) status.textContent = user.email + " 계정과 맞추는 중입니다.";
+        if (on) on.textContent = "연동됨";
+      } else {
+        if (status) status.textContent = "같은 이메일로 로그인하면 별표·O/X·풀이가 기기에 맞춰집니다.";
+        if (on) on.textContent = "연동";
+      }
+    }
+    root.PN_STUDY_ON_AUTH = syncStatus;
+    if (syncBtn) {
+      syncBtn.addEventListener("click", () => {
+        syncPanel.hidden = !syncPanel.hidden;
+        syncStatus(root.StudySync && root.StudySync.getUser ? root.StudySync.getUser() : null);
+      });
+    }
+    const sendBtn = $("quizSyncSend");
+    if (sendBtn) {
+      sendBtn.addEventListener("click", async () => {
+        const email = ($("quizSyncEmail").value || "").trim();
+        if (!email) { notice("이메일을 입력하세요.", false); return; }
+        try {
+          await root.StudySync.signInWithEmail(email);
+          notice("로그인 링크를 보냈습니다. 그 메일의 링크로 이 페이지를 여세요.", false);
+        } catch (err) {
+          notice(String(err && err.message || err), true);
+        }
+      });
+    }
+    const nowBtn = $("quizSyncNow");
+    if (nowBtn) {
+      nowBtn.addEventListener("click", async () => {
+        try {
+          const res = await root.StudySync.syncNow(BANK);
+          applySyncedState();
+          notice(res.synced ? "별표와 풀이 기록을 맞췄습니다." : "로그인하면 다른 기기와 맞출 수 있습니다.", false);
+        } catch (err) {
+          notice(String(err && err.message || err), true);
+        }
+      });
+    }
+    const outBtn = $("quizSyncOut");
+    if (outBtn) {
+      outBtn.addEventListener("click", async () => {
+        await root.StudySync.signOut();
+        syncStatus(null);
+        notice("이 브라우저의 로그인만 끊었습니다. 이미 저장된 별표는 이 기기에 남습니다.", false);
+      });
+    }
+    if (root.StudySync && root.StudySync.init) {
+      root.StudySync.init(BANK).then((res) => {
+        syncStatus(res && res.user);
+        if (res && res.user) applySyncedState();
+      }).catch((err) => {
+        notice(String(err && err.message || err), true);
+      });
+    }
   }
 
   return api;
