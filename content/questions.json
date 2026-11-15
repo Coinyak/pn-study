@@ -19931,7 +19931,7 @@
     },
     {
       "id": "medex-002",
-      "revision": 4,
+      "revision": 5,
       "topic": "fluid_lytes",
       "scopeIds": [
         "spec-monitoring",
@@ -19963,7 +19963,7 @@
         "오답. phosphate 보충이 시간이 지나면 potassium을 낮출 수 있으므로 처방대로 PN을 계속한다."
       ],
       "coreSectionIds": [
-        "sec-fluid_lytes-2-5-전해질"
+        "sec-case-12-처방-검토-사례"
       ],
       "language": "ko",
       "includeInBasicSet": true,
