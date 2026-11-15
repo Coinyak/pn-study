@@ -319,7 +319,7 @@ function wrapPhraseInNode(root, phrase){
 }
 /* q.id → exact core phrases (answer-aligned). Prefer these over fuzzy stem keywords. */
 /* Answer-aligned only. Skip CONTENT_GAP ids (no core row to land on). */
-const CORE_SKIP = new Set(["allaccess-012","hoag-faq-001","quizlet-home-ns-004","quizlet-home-ns-007","quizlet-pn-011","rxk-1_1-1"]);
+const CORE_SKIP = new Set(["allaccess-012","quizlet-home-ns-004","quizlet-home-ns-007","rxk-1_1-1"]);
 const CORE_HINTS = {
   "rx-ppn-900": [
     "900 mOsm/L",
@@ -720,7 +720,7 @@ const CORE_HINTS = {
     "완전한 염"
   ],
   "quizlet-pn-011": [
-    "필터 (현행)"
+    "완전한 염"
   ],
   "quizlet-iib-004": [
     "전 또는 동시"
@@ -1038,7 +1038,7 @@ const CORE_HINTS = {
     "70세 이상"
   ],
   "cnsc-nutrition-support-021": [
-    "중환자 25–30"
+    "성인 일반"
   ],
   "cnsc-nutrition-support-022": [
     "1.2–2.0"
@@ -1222,7 +1222,7 @@ const CORE_HINTS = {
     "day"
   ],
   "hoag-faq-001": [
-    "EN 금기"
+    "영양소를 정맥으로"
   ],
   "hoag-faq-002": [
     "고배출"
@@ -1261,7 +1261,7 @@ const CORE_HINTS = {
     "10 mEq"
   ],
   "bcnsp-082": [
-    "10–15 mmol"
+    "≤12 mmol/L/day"
   ],
   "bcnsp-010": [
     "피부염",
@@ -1602,7 +1602,7 @@ const CORE_HINTS = {
     "모두 해당"
   ],
   "rxk-2_1-1": [
-    "리파아제"
+    "청소율 MCT"
   ],
   "rxk-2_1-3": [
     "1 kcal"
@@ -1614,7 +1614,7 @@ const CORE_HINTS = {
     "간질환"
   ],
   "rxk-2_2-1": [
-    "유문 이후"
+    "비위·비십이지장"
   ],
   "rxk-2_2-2": [
     "공장루"

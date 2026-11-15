@@ -950,8 +950,8 @@
     },
     {
       "id": "quizlet-pn-011",
-      "revision": 4,
-      "topic": "stability",
+      "revision": 5,
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -981,7 +981,7 @@
         "정답. 개별 이온으로 표기한 전해질(electrolytes) 함량"
       ],
       "coreSectionIds": [
-        "sec-stability-5-4-필터-hang-time-세트-BUD"
+        "sec-calc_filter-4-2-계산-5단계-상한-체크"
       ],
       "language": "ko",
       "includeInBasicSet": true,
@@ -14967,8 +14967,8 @@
     },
     {
       "id": "hoag-faq-001",
-      "revision": 1,
-      "topic": "eval",
+      "revision": 2,
+      "topic": "indications",
       "scopeIds": [],
       "source": "HOAG",
       "sourceUrl": null,
@@ -14989,16 +14989,15 @@
       ],
       "answer": 0,
       "explain": "EN이 금기이거나 내성이 없거나 장 기능이 영양을 유지·회복하지 못하면 PN을 쓴다. 경구 보충제, 위관 급식, 근육 주사는 그 문장이 아니다.",
-      "needle": "EN 금기",
+      "needle": "영양소를 정맥으로",
       "choiceExplanations": [
-        "정답. 장을 충분히 쓸 수 없을 때 정맥으로 영양을 공급하는 것이 그 적응 문장이다.",
+        "정답. 정맥영양은 영양소를 정맥으로 투여하는 치료다.",
         "오답. 경구 보충제는 정맥영양이 아니다.",
         "오답. 위로 넣는 관급식은 경장영양이다.",
         "오답. 근육 주사 비타민은 정맥영양이 아니다."
       ],
       "coreSectionIds": [
-        "sec-indications-1-적응증-시작시점-지연",
-        "sec-eval-0-영양평가-PN-직결만"
+        "sec-indications-1-적응증-시작시점-지연"
       ],
       "language": "ko",
       "includeInBasicSet": true,
