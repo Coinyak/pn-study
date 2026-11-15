@@ -5279,14 +5279,6 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
 .study-bar select:disabled,.study-bar input:disabled{opacity:.5;cursor:not-allowed}
 .study-bar select:focus-visible,.sb-search:focus-visible,.q-bm:focus-visible,.q-check:focus-visible{outline:2px solid var(--chip-on);outline-offset:1px}
 .sb-sum{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;flex:0 0 auto}
-.quiz-sync-btn{font:inherit;font-size:12px;font-weight:700;color:var(--chip-on);background:#fff;border:1px solid #c5d0e0;border-radius:3px;min-height:28px;padding:3px 8px;cursor:pointer}
-.quiz-sync-btn:hover{border-color:var(--chip-on)}
-.quiz-sync-panel{margin-top:6px;padding:8px;border:1px solid #c5d0e0;border-radius:4px;background:#f7fafc}
-.quiz-sync-panel[hidden]{display:none}
-.quiz-sync-status{margin:0 0 6px;color:var(--muted)}
-.quiz-sync-email{display:flex;align-items:center;gap:6px;margin-bottom:6px}
-.quiz-sync-email input{flex:1;font:inherit;font-size:12px;min-height:28px;border:1px solid #c5d0e0;border-radius:3px;padding:3px 6px}
-.quiz-sync-actions{display:flex;flex-wrap:wrap;gap:6px}
 .sb-notice{margin-top:4px;padding:4px 8px;background:#fff8e1;border-left:3px solid #f0a500;color:#5a4300}
 
 .qcard.sq{cursor:pointer}
@@ -5869,6 +5861,7 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
 <script>
 /* study-sync.js — optional Supabase sync layered on StudyState (never replaces it).
  *
+ * One shared row, no login. Stars and marks save locally first, then this pushes them.
  * Merge: bookmarks union; attempts via StudyState.applyBackup(mode:"merge").
  * Push: pull → merge → save local → upsert. Never overwrite newer remote with older payload.
  */
@@ -5880,8 +5873,8 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
   }
 
   const S = root.StudyState;
+  const SHARED_ID = "00000000-0000-4000-8000-000000000001";
   let client = null;
-  let sessionUser = null;
   let pushTimer = null;
   let lastKnownRemoteMs = 0;
   let questionBank = [];
@@ -5939,25 +5932,19 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
     }
     if (!client) {
       client = root.supabase.createClient(cfg().url, cfg().anonKey, {
-        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
-      });
-      client.auth.onAuthStateChange(function (_ev, session) {
-        sessionUser = session && session.user ? session.user : null;
-        if (typeof root.PN_STUDY_ON_AUTH === "function") root.PN_STUDY_ON_AUTH(sessionUser);
+        auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
       });
     }
-    const { data } = await client.auth.getSession();
-    sessionUser = data.session && data.session.user ? data.session.user : null;
     return client;
   }
 
   async function pullRemote() {
     const sb = await ensureClient();
-    if (!sb || !sessionUser) return null;
+    if (!sb) return null;
     const { data, error } = await sb
       .from("study_progress")
       .select("payload, updated_at")
-      .eq("user_id", sessionUser.id)
+      .eq("user_id", SHARED_ID)
       .maybeSingle();
     if (error) throw error;
     if (!data) return null;
@@ -5970,7 +5957,7 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
 
   async function upsertMerged(merged, basedOnRemoteMs) {
     const sb = await ensureClient();
-    if (!sb || !sessionUser) return { ok: false, reason: "not-signed-in" };
+    if (!sb) return { ok: false, reason: "not-configured" };
 
     const again = await pullRemote();
     let toSave = merged;
@@ -5990,7 +5977,7 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
 
     const payload = stamp(toSave);
     const { error } = await sb.from("study_progress").upsert({
-      user_id: sessionUser.id,
+      user_id: SHARED_ID,
       payload: payload,
       updated_at: new Date(payload.updatedAt).toISOString(),
     });
@@ -6004,8 +5991,7 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
     if (questions) questionBank = questions;
     const store = getStore();
     let local = store.load().state;
-    if (!sessionUser) await ensureClient();
-    if (!sessionUser) return { synced: false, reason: "login-required", state: local };
+    if (!isConfigured()) return { synced: false, reason: "not-configured", state: local };
 
     const remote = await pullRemote();
     const basedOn = remote ? remote.updatedAtMs : 0;
@@ -6021,7 +6007,7 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
   }
 
   function scheduleSync(questions) {
-    if (!isConfigured() || !sessionUser) return;
+    if (!isConfigured()) return;
     if (questions) questionBank = questions;
     clearTimeout(pushTimer);
     pushTimer = setTimeout(function () {
@@ -6040,33 +6026,16 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
     return { state: next, save: saved };
   }
 
-  async function signInWithEmail(email) {
-    const sb = await ensureClient();
-    if (!sb) throw new Error("Supabase 미설정 — content/supabase.json 후 빌드 필요");
-    const c = cfg();
-    const redirectTo = c.redirectTo || (root.location && root.location.href.split("#")[0]);
-    const { error } = await sb.auth.signInWithOtp({
-      email: email,
-      options: { emailRedirectTo: redirectTo },
-    });
-    if (error) throw error;
-  }
-
-  async function signOut() {
-    const sb = await ensureClient();
-    if (!sb) return;
-    await sb.auth.signOut();
-    sessionUser = null;
-  }
-
   async function init(questions) {
     if (questions) questionBank = questions;
-    await ensureClient();
-    if (sessionUser) {
-      try { await syncNow(questionBank); }
-      catch (err) { console.warn("StudySync: initial sync failed", err); }
+    if (!isConfigured()) return { configured: false, synced: false };
+    try {
+      await syncNow(questionBank);
+      return { configured: true, synced: true };
+    } catch (err) {
+      console.warn("StudySync: initial sync failed", err);
+      return { configured: true, synced: false, error: err };
     }
-    return { configured: isConfigured(), user: sessionUser };
   }
 
   root.StudySync = {
@@ -6075,9 +6044,6 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
     syncNow: syncNow,
     scheduleSync: scheduleSync,
     persistLocal: persistLocal,
-    signInWithEmail: signInWithEmail,
-    signOut: signOut,
-    getUser: function () { return sessionUser; },
     getStore: getStore,
     stateUpdatedAt: stateUpdatedAt,
   };
@@ -6248,7 +6214,6 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
       '<div class="sb-row sb-top">' +
         '<input type="search" id="sbSearch" class="sb-search" placeholder="검색" aria-label="문항 검색" enterkeyhint="search">' +
         '<span class="sb-sum" id="sbSum"></span>' +
-        '<button type="button" class="quiz-sync-btn" id="quizSyncBtn">연동</button>' +
       "</div>" +
       '<div class="sb-row sb-srcs-row">' +
         '<div class="sb-srcs" id="sbSources" role="group" aria-label="출처"></div>' +
@@ -6649,20 +6614,6 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
     root.renderQuiz = renderQuiz;
     renderQuiz(true);
 
-    const syncBtn = $("quizSyncBtn");
-    const syncPanel = doc.createElement("div");
-    syncPanel.className = "quiz-sync-panel";
-    syncPanel.hidden = true;
-    syncPanel.innerHTML =
-      '<p class="quiz-sync-status" id="quizSyncStatus"></p>' +
-      '<label class="quiz-sync-email">이메일 <input type="email" id="quizSyncEmail" autocomplete="email" inputmode="email"></label>' +
-      '<div class="quiz-sync-actions">' +
-        '<button type="button" class="quiz-sync-btn" id="quizSyncSend">로그인 링크</button>' +
-        '<button type="button" class="quiz-sync-btn" id="quizSyncNow">지금 맞추기</button>' +
-        '<button type="button" class="quiz-sync-btn" id="quizSyncOut">로그아웃</button>' +
-      "</div>";
-    bar.appendChild(syncPanel);
-
     function applySyncedState() {
       const again = store.load();
       if (again && again.state) {
@@ -6672,65 +6623,10 @@ if (window.PN_SUPABASE.redirectPath && !window.PN_SUPABASE.redirectTo) {
         renderQuiz(true);
       }
     }
-    function syncStatus(user) {
-      const status = $("quizSyncStatus");
-      const on = $("quizSyncBtn");
-      if (!root.StudySync || !root.StudySync.isConfigured()) {
-        if (status) status.textContent = "이 빌드에는 슈퍼베이스 주소가 없습니다.";
-        return;
-      }
-      if (user && user.email) {
-        if (status) status.textContent = user.email + " 계정과 맞추는 중입니다.";
-        if (on) on.textContent = "연동됨";
-      } else {
-        if (status) status.textContent = "같은 이메일로 로그인하면 별표·O/X·풀이가 기기에 맞춰집니다.";
-        if (on) on.textContent = "연동";
-      }
-    }
-    root.PN_STUDY_ON_AUTH = syncStatus;
-    if (syncBtn) {
-      syncBtn.addEventListener("click", () => {
-        syncPanel.hidden = !syncPanel.hidden;
-        syncStatus(root.StudySync && root.StudySync.getUser ? root.StudySync.getUser() : null);
-      });
-    }
-    const sendBtn = $("quizSyncSend");
-    if (sendBtn) {
-      sendBtn.addEventListener("click", async () => {
-        const email = ($("quizSyncEmail").value || "").trim();
-        if (!email) { notice("이메일을 입력하세요.", false); return; }
-        try {
-          await root.StudySync.signInWithEmail(email);
-          notice("로그인 링크를 보냈습니다. 그 메일의 링크로 이 페이지를 여세요.", false);
-        } catch (err) {
-          notice(String(err && err.message || err), true);
-        }
-      });
-    }
-    const nowBtn = $("quizSyncNow");
-    if (nowBtn) {
-      nowBtn.addEventListener("click", async () => {
-        try {
-          const res = await root.StudySync.syncNow(BANK);
-          applySyncedState();
-          notice(res.synced ? "별표와 풀이 기록을 맞췄습니다." : "로그인하면 다른 기기와 맞출 수 있습니다.", false);
-        } catch (err) {
-          notice(String(err && err.message || err), true);
-        }
-      });
-    }
-    const outBtn = $("quizSyncOut");
-    if (outBtn) {
-      outBtn.addEventListener("click", async () => {
-        await root.StudySync.signOut();
-        syncStatus(null);
-        notice("이 브라우저의 로그인만 끊었습니다. 이미 저장된 별표는 이 기기에 남습니다.", false);
-      });
-    }
     if (root.StudySync && root.StudySync.init) {
       root.StudySync.init(BANK).then((res) => {
-        syncStatus(res && res.user);
-        if (res && res.user) applySyncedState();
+        if (res && res.synced) applySyncedState();
+        else if (res && res.error) notice("이 브라우저에는 저장됐습니다. 다른 기기와는 맞추지 못했습니다.", false);
       }).catch((err) => {
         notice(String(err && err.message || err), true);
       });

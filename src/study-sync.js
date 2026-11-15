@@ -1,5 +1,6 @@
 /* study-sync.js — optional Supabase sync layered on StudyState (never replaces it).
  *
+ * One shared row, no login. Stars and marks save locally first, then this pushes them.
  * Merge: bookmarks union; attempts via StudyState.applyBackup(mode:"merge").
  * Push: pull → merge → save local → upsert. Never overwrite newer remote with older payload.
  */
@@ -11,8 +12,8 @@
   }
 
   const S = root.StudyState;
+  const SHARED_ID = "00000000-0000-4000-8000-000000000001";
   let client = null;
-  let sessionUser = null;
   let pushTimer = null;
   let lastKnownRemoteMs = 0;
   let questionBank = [];
@@ -70,25 +71,19 @@
     }
     if (!client) {
       client = root.supabase.createClient(cfg().url, cfg().anonKey, {
-        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
-      });
-      client.auth.onAuthStateChange(function (_ev, session) {
-        sessionUser = session && session.user ? session.user : null;
-        if (typeof root.PN_STUDY_ON_AUTH === "function") root.PN_STUDY_ON_AUTH(sessionUser);
+        auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
       });
     }
-    const { data } = await client.auth.getSession();
-    sessionUser = data.session && data.session.user ? data.session.user : null;
     return client;
   }
 
   async function pullRemote() {
     const sb = await ensureClient();
-    if (!sb || !sessionUser) return null;
+    if (!sb) return null;
     const { data, error } = await sb
       .from("study_progress")
       .select("payload, updated_at")
-      .eq("user_id", sessionUser.id)
+      .eq("user_id", SHARED_ID)
       .maybeSingle();
     if (error) throw error;
     if (!data) return null;
@@ -101,7 +96,7 @@
 
   async function upsertMerged(merged, basedOnRemoteMs) {
     const sb = await ensureClient();
-    if (!sb || !sessionUser) return { ok: false, reason: "not-signed-in" };
+    if (!sb) return { ok: false, reason: "not-configured" };
 
     const again = await pullRemote();
     let toSave = merged;
@@ -121,7 +116,7 @@
 
     const payload = stamp(toSave);
     const { error } = await sb.from("study_progress").upsert({
-      user_id: sessionUser.id,
+      user_id: SHARED_ID,
       payload: payload,
       updated_at: new Date(payload.updatedAt).toISOString(),
     });
@@ -135,8 +130,7 @@
     if (questions) questionBank = questions;
     const store = getStore();
     let local = store.load().state;
-    if (!sessionUser) await ensureClient();
-    if (!sessionUser) return { synced: false, reason: "login-required", state: local };
+    if (!isConfigured()) return { synced: false, reason: "not-configured", state: local };
 
     const remote = await pullRemote();
     const basedOn = remote ? remote.updatedAtMs : 0;
@@ -152,7 +146,7 @@
   }
 
   function scheduleSync(questions) {
-    if (!isConfigured() || !sessionUser) return;
+    if (!isConfigured()) return;
     if (questions) questionBank = questions;
     clearTimeout(pushTimer);
     pushTimer = setTimeout(function () {
@@ -171,33 +165,16 @@
     return { state: next, save: saved };
   }
 
-  async function signInWithEmail(email) {
-    const sb = await ensureClient();
-    if (!sb) throw new Error("Supabase 미설정 — content/supabase.json 후 빌드 필요");
-    const c = cfg();
-    const redirectTo = c.redirectTo || (root.location && root.location.href.split("#")[0]);
-    const { error } = await sb.auth.signInWithOtp({
-      email: email,
-      options: { emailRedirectTo: redirectTo },
-    });
-    if (error) throw error;
-  }
-
-  async function signOut() {
-    const sb = await ensureClient();
-    if (!sb) return;
-    await sb.auth.signOut();
-    sessionUser = null;
-  }
-
   async function init(questions) {
     if (questions) questionBank = questions;
-    await ensureClient();
-    if (sessionUser) {
-      try { await syncNow(questionBank); }
-      catch (err) { console.warn("StudySync: initial sync failed", err); }
+    if (!isConfigured()) return { configured: false, synced: false };
+    try {
+      await syncNow(questionBank);
+      return { configured: true, synced: true };
+    } catch (err) {
+      console.warn("StudySync: initial sync failed", err);
+      return { configured: true, synced: false, error: err };
     }
-    return { configured: isConfigured(), user: sessionUser };
   }
 
   root.StudySync = {
@@ -206,9 +183,6 @@
     syncNow: syncNow,
     scheduleSync: scheduleSync,
     persistLocal: persistLocal,
-    signInWithEmail: signInWithEmail,
-    signOut: signOut,
-    getUser: function () { return sessionUser; },
     getStore: getStore,
     stateUpdatedAt: stateUpdatedAt,
   };
