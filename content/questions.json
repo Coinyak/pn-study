@@ -225,7 +225,7 @@
     {
       "id": "oe-hang",
       "revision": 1,
-      "topic": "lipid",
+      "topic": "stability",
       "scopeIds": [
         "spec-components",
         "spec-plan-route"
@@ -726,7 +726,7 @@
     {
       "id": "quizlet-pn-007",
       "revision": 5,
-      "topic": "lipid",
+      "topic": "route",
       "scopeIds": [
         "spec-components",
         "spec-pediatric"
@@ -781,7 +781,7 @@
     {
       "id": "quizlet-pn-008",
       "revision": 3,
-      "topic": "stability",
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-plan-personalized"
       ],
@@ -835,7 +835,7 @@
     {
       "id": "quizlet-pn-009",
       "revision": 1,
-      "topic": "stability",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-components"
       ],
@@ -896,7 +896,7 @@
     {
       "id": "quizlet-pn-010",
       "revision": 3,
-      "topic": "stability",
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-plan-personalized"
       ],
@@ -1008,7 +1008,7 @@
     {
       "id": "quizlet-pn-012",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-components",
         "spec-plan-calc"
@@ -1075,7 +1075,7 @@
     {
       "id": "quizlet-pn-013",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-components",
         "spec-plan-calc",
@@ -1143,7 +1143,7 @@
     {
       "id": "quizlet-pn-014",
       "revision": 1,
-      "topic": "protein",
+      "topic": "disease",
       "scopeIds": [
         "spec-components",
         "spec-assessment",
@@ -1521,7 +1521,7 @@
     {
       "id": "quizlet-pn-020",
       "revision": 1,
-      "topic": "lipid",
+      "topic": "stability",
       "scopeIds": [
         "spec-components",
         "spec-plan-route"
@@ -1637,7 +1637,7 @@
     {
       "id": "quizlet-pn-022",
       "revision": 1,
-      "topic": "route",
+      "topic": "hpn",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -1853,7 +1853,7 @@
     {
       "id": "quizlet-pn-026",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "route",
       "scopeIds": [
         "spec-components",
         "spec-plan-route"
@@ -2963,7 +2963,7 @@
     {
       "id": "quizlet-pn-046",
       "revision": 1,
-      "topic": "lipid",
+      "topic": "complications",
       "scopeIds": [
         "spec-components",
         "spec-critical-care"
@@ -3195,7 +3195,7 @@
     {
       "id": "quizlet-pn-050",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "monitor",
       "scopeIds": [
         "spec-components",
         "spec-plan-personalized",
@@ -3252,7 +3252,7 @@
     {
       "id": "quizlet-pn-051",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "monitor",
       "scopeIds": [
         "spec-components",
         "spec-plan-personalized",
@@ -3308,7 +3308,7 @@
     {
       "id": "quizlet-pn-052",
       "revision": 3,
-      "topic": "stability",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-components",
         "spec-neonate"
@@ -3596,7 +3596,7 @@
     {
       "id": "kshp-05",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "protein",
       "scopeIds": [
         "spec-components"
       ],
@@ -4050,7 +4050,7 @@
     {
       "id": "kshp-13",
       "revision": 1,
-      "topic": "protein",
+      "topic": "peds",
       "scopeIds": [
         "spec-components",
         "spec-plan-calc"
@@ -4164,7 +4164,7 @@
     {
       "id": "kshp-15",
       "revision": 5,
-      "topic": "protein",
+      "topic": "disease",
       "scopeIds": [
         "spec-components",
         "spec-dz-renal",
@@ -4968,7 +4968,7 @@
     {
       "id": "kshp-29",
       "revision": 1,
-      "topic": "peds",
+      "topic": "eval",
       "scopeIds": [
         "spec-requirements",
         "spec-pediatric"
@@ -5137,7 +5137,7 @@
     {
       "id": "kshp-32",
       "revision": 1,
-      "topic": "disease",
+      "topic": "protein",
       "scopeIds": [
         "spec-dz-liver"
       ],
@@ -6166,7 +6166,7 @@
     {
       "id": "kshp-51",
       "revision": 1,
-      "topic": "hpn",
+      "topic": "cheat",
       "scopeIds": [
         "spec-dz-diabetes",
         "spec-hpn",
@@ -6279,7 +6279,7 @@
     {
       "id": "kshp-54",
       "revision": 1,
-      "topic": "hpn",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-components",
         "spec-dz-liver",
@@ -6527,7 +6527,7 @@
     {
       "id": "quizlet-iib-019",
       "revision": 1,
-      "topic": "route",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-components",
         "spec-plan-personalized",
@@ -6656,7 +6656,7 @@
     {
       "id": "quizlet-iib-034",
       "revision": 1,
-      "topic": "route",
+      "topic": "complications",
       "scopeIds": [
         "spec-plan-route",
         "spec-monitoring"
@@ -6876,7 +6876,7 @@
     {
       "id": "quizlet-iib-051",
       "revision": 1,
-      "topic": "hpn",
+      "topic": "route",
       "scopeIds": [
         "spec-plan-route",
         "spec-hpn"
@@ -7208,7 +7208,7 @@
     {
       "id": "oe-hypergly-assess",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "disease",
       "scopeIds": [
         "spec-components",
         "spec-dz-diabetes"
@@ -7664,7 +7664,7 @@
     {
       "id": "oep-bcscp-q-064",
       "revision": 1,
-      "topic": "lipid",
+      "topic": "disease",
       "scopeIds": [
         "spec-components",
         "spec-dz-diabetes",
@@ -7794,7 +7794,7 @@
     {
       "id": "nbnsc-cnsc-sample-02",
       "revision": 5,
-      "topic": "monitor",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -7848,7 +7848,7 @@
     {
       "id": "nbnsc-cnsc-sample-03",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "lipid",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -7971,7 +7971,7 @@
     {
       "id": "nbnsc-cnsc-sample-06",
       "revision": 1,
-      "topic": "calc_filter",
+      "topic": "eval",
       "scopeIds": [
         "spec-requirements"
       ],
@@ -8030,7 +8030,7 @@
     {
       "id": "nbnsc-cnsc-sample-07",
       "revision": 1,
-      "topic": "route",
+      "topic": "monitor",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -8219,7 +8219,7 @@
     {
       "id": "nbnsc-cnsc-sample-11",
       "revision": 3,
-      "topic": "monitor",
+      "topic": "protein",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -8273,7 +8273,7 @@
     {
       "id": "quizlet-home-ns-002",
       "revision": 1,
-      "topic": "complications",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -8343,7 +8343,7 @@
     {
       "id": "quizlet-home-ns-003",
       "revision": 3,
-      "topic": "disease",
+      "topic": "hpn",
       "scopeIds": [],
       "source": "VERIFIED/ASPEN SAP Home NS (Quizlet indexed)",
       "sourceUrl": null,
@@ -8530,7 +8530,7 @@
     {
       "id": "quizlet-cnsc-practice-002",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "disease",
       "scopeIds": [
         "spec-components",
         "spec-dz-diabetes",
@@ -8597,7 +8597,7 @@
     {
       "id": "quizlet-cnsc-practice-003",
       "revision": 4,
-      "topic": "cho_gir",
+      "topic": "complications",
       "scopeIds": [
         "spec-components"
       ],
@@ -9604,7 +9604,7 @@
     {
       "id": "bcnsp-053",
       "revision": 1,
-      "topic": "eval",
+      "topic": "protein",
       "scopeIds": [
         "spec-assessment",
         "spec-plan-calc"
@@ -9760,7 +9760,7 @@
     {
       "id": "medex-015",
       "revision": 1,
-      "topic": "eval",
+      "topic": "protein",
       "scopeIds": [
         "spec-components",
         "spec-assessment",
@@ -9896,7 +9896,7 @@
     {
       "id": "medex-017",
       "revision": 2,
-      "topic": "eval",
+      "topic": "indications",
       "scopeIds": [
         "spec-plan-personalized",
         "spec-plan-route",
@@ -10365,7 +10365,7 @@
     {
       "id": "cnsc-nutrition-support-008",
       "revision": 1,
-      "topic": "eval",
+      "topic": "monitor",
       "scopeIds": [],
       "source": "CNSC",
       "sourceUrl": null,
@@ -10677,7 +10677,7 @@
     {
       "id": "cnsc-nutrition-support-014",
       "revision": 3,
-      "topic": "eval",
+      "topic": "protein",
       "scopeIds": [
         "spec-assessment"
       ],
@@ -11150,7 +11150,7 @@
     {
       "id": "cnsc-nutrition-support-103",
       "revision": 3,
-      "topic": "eval",
+      "topic": "indications",
       "scopeIds": [
         "spec-plan-personalized"
       ],
@@ -11392,7 +11392,7 @@
     {
       "id": "cnsc-nutrition-support-108",
       "revision": 1,
-      "topic": "eval",
+      "topic": "peds",
       "scopeIds": [
         "spec-assessment",
         "spec-pediatric"
@@ -11452,7 +11452,7 @@
     {
       "id": "cnsc-nutrition-support-109",
       "revision": 4,
-      "topic": "eval",
+      "topic": "indications",
       "scopeIds": [
         "spec-assessment"
       ],
@@ -11615,7 +11615,7 @@
     {
       "id": "cnsc-nutrition-support-022",
       "revision": 1,
-      "topic": "calc_filter",
+      "topic": "disease",
       "scopeIds": [
         "spec-critical-care"
       ],
@@ -11678,7 +11678,7 @@
     {
       "id": "cnsc-nutrition-support-023",
       "revision": 1,
-      "topic": "calc_filter",
+      "topic": "cho_gir",
       "scopeIds": [
         "spec-components"
       ],
@@ -11745,7 +11745,7 @@
     {
       "id": "cnsc-nutrition-support-024",
       "revision": 1,
-      "topic": "calc_filter",
+      "topic": "lipid",
       "scopeIds": [],
       "source": "CNSC",
       "sourceUrl": null,
@@ -11797,7 +11797,7 @@
     {
       "id": "cnsc-nutrition-support-025",
       "revision": 1,
-      "topic": "calc_filter",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-requirements"
       ],
@@ -11898,7 +11898,7 @@
     {
       "id": "cnsc-nutrition-support-027",
       "revision": 1,
-      "topic": "calc_filter",
+      "topic": "eval",
       "scopeIds": [
         "spec-requirements"
       ],
@@ -11963,7 +11963,7 @@
     {
       "id": "cnsc-nutrition-support-028",
       "revision": 1,
-      "topic": "calc_filter",
+      "topic": "disease",
       "scopeIds": [
         "spec-assessment",
         "spec-dz-obesity",
@@ -12144,7 +12144,7 @@
     {
       "id": "cnsc-nutrition-support-036",
       "revision": 1,
-      "topic": "calc_filter",
+      "topic": "protein",
       "scopeIds": [
         "spec-plan-calc"
       ],
@@ -12203,7 +12203,7 @@
     {
       "id": "cnsc-nutrition-support-037",
       "revision": 1,
-      "topic": "calc_filter",
+      "topic": "protein",
       "scopeIds": [
         "spec-plan-calc"
       ],
@@ -12502,7 +12502,7 @@
     {
       "id": "cnsc-nutrition-support-069",
       "revision": 1,
-      "topic": "indications",
+      "topic": "disease",
       "scopeIds": [
         "spec-ddi-nutrient-drug"
       ],
@@ -12556,7 +12556,7 @@
     {
       "id": "cnsc-nutrition-support-070",
       "revision": 1,
-      "topic": "indications",
+      "topic": "disease",
       "scopeIds": [],
       "source": "CNSC",
       "sourceUrl": null,
@@ -12618,7 +12618,7 @@
     {
       "id": "cnsc-nutrition-support-072",
       "revision": 4,
-      "topic": "indications",
+      "topic": "cho_gir",
       "scopeIds": [],
       "source": "CNSC",
       "sourceUrl": null,
@@ -13033,7 +13033,7 @@
     {
       "id": "bcnsp-004",
       "revision": 1,
-      "topic": "route",
+      "topic": "lipid",
       "scopeIds": [
         "spec-components"
       ],
@@ -13087,7 +13087,7 @@
     {
       "id": "bcnsp-005",
       "revision": 1,
-      "topic": "route",
+      "topic": "lipid",
       "scopeIds": [
         "spec-components",
         "spec-monitoring"
@@ -13143,7 +13143,7 @@
     {
       "id": "bcnsp-009",
       "revision": 4,
-      "topic": "route",
+      "topic": "fluid_lytes",
       "scopeIds": [],
       "source": "BCNSP",
       "sourceUrl": null,
@@ -13195,7 +13195,7 @@
     {
       "id": "bcnsp-012",
       "revision": 3,
-      "topic": "route",
+      "topic": "lipid",
       "scopeIds": [
         "spec-components",
         "spec-requirements"
@@ -13250,7 +13250,7 @@
     {
       "id": "bcnsp-014",
       "revision": 1,
-      "topic": "route",
+      "topic": "cho_gir",
       "scopeIds": [
         "spec-components",
         "spec-plan-route"
@@ -13435,7 +13435,7 @@
     {
       "id": "bcnsp-036",
       "revision": 1,
-      "topic": "route",
+      "topic": "complications",
       "scopeIds": [
         "spec-components",
         "spec-dz-liver",
@@ -13492,7 +13492,7 @@
     {
       "id": "bcnsp-043",
       "revision": 3,
-      "topic": "route",
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-plan-calc"
       ],
@@ -13553,7 +13553,7 @@
     {
       "id": "bcnsp-057",
       "revision": 1,
-      "topic": "route",
+      "topic": "protein",
       "scopeIds": [
         "spec-critical-care"
       ],
@@ -13617,7 +13617,7 @@
     {
       "id": "bcnsp-066",
       "revision": 1,
-      "topic": "route",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-components"
       ],
@@ -13671,7 +13671,7 @@
     {
       "id": "bcnsp-088",
       "revision": 1,
-      "topic": "route",
+      "topic": "peds",
       "scopeIds": [
         "spec-components",
         "spec-neonate"
@@ -13727,7 +13727,7 @@
     {
       "id": "bcnsp-090",
       "revision": 1,
-      "topic": "route",
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-components",
         "spec-requirements"
@@ -13841,7 +13841,7 @@
     {
       "id": "cnsc-nutrition-support-042",
       "revision": 1,
-      "topic": "route",
+      "topic": "cho_gir",
       "scopeIds": [
         "spec-plan-calc"
       ],
@@ -13949,7 +13949,7 @@
     {
       "id": "cnsc-nutrition-support-044",
       "revision": 1,
-      "topic": "route",
+      "topic": "hpn",
       "scopeIds": [
         "spec-plan-route",
         "spec-hpn"
@@ -14009,7 +14009,7 @@
     {
       "id": "cnsc-nutrition-support-045",
       "revision": 1,
-      "topic": "stability",
+      "topic": "route",
       "scopeIds": [
         "spec-plan-route",
         "spec-monitoring"
@@ -14083,7 +14083,7 @@
     {
       "id": "cnsc-nutrition-support-046",
       "revision": 1,
-      "topic": "route",
+      "topic": "stability",
       "scopeIds": [
         "spec-compatibility"
       ],
@@ -14221,7 +14221,7 @@
     {
       "id": "cnsc-nutrition-support-048",
       "revision": 1,
-      "topic": "route",
+      "topic": "complications",
       "scopeIds": [
         "spec-plan-route",
         "spec-critical-care",
@@ -14277,7 +14277,7 @@
     {
       "id": "cnsc-nutrition-support-049",
       "revision": 1,
-      "topic": "route",
+      "topic": "complications",
       "scopeIds": [
         "spec-dz-liver",
         "spec-dz-gi"
@@ -14414,7 +14414,7 @@
     {
       "id": "cnsc-nutrition-support-052",
       "revision": 3,
-      "topic": "route",
+      "topic": "complications",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -14468,7 +14468,7 @@
     {
       "id": "cnsc-nutrition-support-053",
       "revision": 1,
-      "topic": "route",
+      "topic": "stability",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -14528,7 +14528,7 @@
     {
       "id": "cnsc-nutrition-support-055",
       "revision": 3,
-      "topic": "route",
+      "topic": "cho_gir",
       "scopeIds": [
         "spec-dz-diabetes"
       ],
@@ -14633,7 +14633,7 @@
     {
       "id": "cnsc-nutrition-support-060",
       "revision": 1,
-      "topic": "route",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-components"
       ],
@@ -14704,7 +14704,7 @@
     {
       "id": "allaccess-005",
       "revision": 1,
-      "topic": "route",
+      "topic": "complications",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -14992,7 +14992,7 @@
     {
       "id": "hoag-faq-001",
       "revision": 1,
-      "topic": "route",
+      "topic": "eval",
       "scopeIds": [],
       "source": "HOAG",
       "sourceUrl": null,
@@ -15056,7 +15056,7 @@
     {
       "id": "hoag-faq-002",
       "revision": 1,
-      "topic": "route",
+      "topic": "indications",
       "scopeIds": [],
       "source": "HOAG",
       "sourceUrl": null,
@@ -15374,7 +15374,7 @@
     {
       "id": "bcnsp-083",
       "revision": 1,
-      "topic": "lipid",
+      "topic": "protein",
       "scopeIds": [
         "spec-components",
         "spec-dz-renal"
@@ -15678,7 +15678,7 @@
     {
       "id": "bcnsp-082",
       "revision": 3,
-      "topic": "fluid_lytes",
+      "topic": "eval",
       "scopeIds": [
         "spec-neonate",
         "spec-pediatric"
@@ -15797,7 +15797,7 @@
     {
       "id": "bcnsp-029",
       "revision": 1,
-      "topic": "vit_te",
+      "topic": "lipid",
       "scopeIds": [
         "spec-components",
         "spec-assessment",
@@ -16187,7 +16187,7 @@
     {
       "id": "bcnsp-035",
       "revision": 1,
-      "topic": "complications",
+      "topic": "monitor",
       "scopeIds": [
         "spec-components",
         "spec-monitoring"
@@ -16247,7 +16247,7 @@
     {
       "id": "cnsc-nutrition-support-081",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "complications",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -16301,7 +16301,7 @@
     {
       "id": "cnsc-nutrition-support-082",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "complications",
       "scopeIds": [
         "spec-components",
         "spec-monitoring"
@@ -16421,7 +16421,7 @@
     {
       "id": "cnsc-nutrition-support-084",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "complications",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -16475,7 +16475,7 @@
     {
       "id": "cnsc-nutrition-support-085",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "disease",
       "scopeIds": [
         "spec-dz-diabetes",
         "spec-critical-care",
@@ -16542,7 +16542,7 @@
     {
       "id": "cnsc-nutrition-support-086",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "complications",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -16667,7 +16667,7 @@
     {
       "id": "cnsc-nutrition-support-088",
       "revision": 2,
-      "topic": "monitor",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-components",
         "spec-critical-care",
@@ -16723,7 +16723,7 @@
     {
       "id": "cnsc-nutrition-support-089",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "lipid",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -16777,7 +16777,7 @@
     {
       "id": "cnsc-nutrition-support-090",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "disease",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -16844,7 +16844,7 @@
     {
       "id": "bcnsp-003",
       "revision": 1,
-      "topic": "indications",
+      "topic": "disease",
       "scopeIds": [
         "spec-assessment",
         "spec-critical-care"
@@ -17019,7 +17019,7 @@
     {
       "id": "bcnsp-019",
       "revision": 2,
-      "topic": "indications",
+      "topic": "peds",
       "scopeIds": [
         "spec-components",
         "spec-preterm"
@@ -17117,7 +17117,7 @@
     {
       "id": "bcnsp-034",
       "revision": 1,
-      "topic": "indications",
+      "topic": "disease",
       "scopeIds": [
         "spec-dz-renal"
       ],
@@ -17171,7 +17171,7 @@
     {
       "id": "bcnsp-037",
       "revision": 1,
-      "topic": "indications",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-components",
         "spec-dz-gi",
@@ -17334,7 +17334,7 @@
     {
       "id": "bcnsp-063",
       "revision": 1,
-      "topic": "indications",
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-assessment",
         "spec-requirements",
@@ -17413,7 +17413,7 @@
     {
       "id": "bcnsp-067",
       "revision": 1,
-      "topic": "indications",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-components"
       ],
@@ -17562,7 +17562,7 @@
     {
       "id": "bcnsp-027",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-monitoring",
         "spec-ddi-nutrient-drug"
@@ -17663,7 +17663,7 @@
     {
       "id": "bcnsp-049",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-components",
         "spec-hpn",
@@ -17724,7 +17724,7 @@
     {
       "id": "bcnsp-058",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "indications",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -17828,7 +17828,7 @@
     {
       "id": "bcnsp-071",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "disease",
       "scopeIds": [
         "spec-monitoring",
         "spec-ddi-nutrient-drug"
@@ -18028,7 +18028,7 @@
     {
       "id": "bcnsp-025",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "hpn",
       "scopeIds": [
         "spec-dz-liver",
         "spec-monitoring"
@@ -18140,7 +18140,7 @@
     {
       "id": "bcnsp-047",
       "revision": 2,
-      "topic": "monitor",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -18195,7 +18195,7 @@
     {
       "id": "bcnsp-069",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "indications",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -18259,7 +18259,7 @@
     {
       "id": "bcnsp-085",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "complications",
       "scopeIds": [
         "spec-dz-liver",
         "spec-monitoring"
@@ -18324,7 +18324,7 @@
     {
       "id": "bcnsp-087",
       "revision": 3,
-      "topic": "monitor",
+      "topic": "protein",
       "scopeIds": [
         "spec-assessment"
       ],
@@ -18482,7 +18482,7 @@
     {
       "id": "cnsc-nutrition-support-091",
       "revision": 3,
-      "topic": "disease",
+      "topic": "protein",
       "scopeIds": [
         "spec-dz-renal",
         "spec-critical-care"
@@ -18537,7 +18537,7 @@
     {
       "id": "cnsc-nutrition-support-093",
       "revision": 3,
-      "topic": "disease",
+      "topic": "protein",
       "scopeIds": [
         "spec-dz-liver"
       ],
@@ -18870,7 +18870,7 @@
     {
       "id": "bcnsp-059",
       "revision": 1,
-      "topic": "stability",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-compatibility"
       ],
@@ -18968,7 +18968,7 @@
     {
       "id": "bcnsp-068",
       "revision": 1,
-      "topic": "stability",
+      "topic": "route",
       "scopeIds": [
         "spec-plan-route",
         "spec-compatibility"
@@ -19208,7 +19208,7 @@
     {
       "id": "bcnsp-045",
       "revision": 1,
-      "topic": "stability",
+      "topic": "hpn",
       "scopeIds": [
         "spec-compatibility"
       ],
@@ -19654,7 +19654,7 @@
     {
       "id": "cnsc-nutrition-support-116",
       "revision": 2,
-      "topic": "stability",
+      "topic": "indications",
       "scopeIds": [
         "spec-compatibility"
       ],
@@ -19842,7 +19842,7 @@
     {
       "id": "cnsc-nutrition-support-123",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "stability",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -19957,7 +19957,7 @@
     {
       "id": "medex-002",
       "revision": 3,
-      "topic": "monitor",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-monitoring",
         "spec-components"
@@ -20012,7 +20012,7 @@
     {
       "id": "medex-003",
       "revision": 3,
-      "topic": "monitor",
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -20066,7 +20066,7 @@
     {
       "id": "medex-004",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "complications",
       "scopeIds": [
         "spec-components",
         "spec-plan-route",
@@ -20129,7 +20129,7 @@
     {
       "id": "medex-006",
       "revision": 1,
-      "topic": "eval",
+      "topic": "disease",
       "scopeIds": [
         "spec-components",
         "spec-dz-diabetes",
@@ -20308,7 +20308,7 @@
     {
       "id": "medex-009",
       "revision": 1,
-      "topic": "eval",
+      "topic": "complications",
       "scopeIds": [
         "spec-components",
         "spec-plan-route"
@@ -20428,7 +20428,7 @@
     {
       "id": "medex-011",
       "revision": 1,
-      "topic": "eval",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-components",
         "spec-requirements",
@@ -20486,7 +20486,7 @@
     {
       "id": "medex-012",
       "revision": 1,
-      "topic": "eval",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-components"
       ],
@@ -20699,7 +20699,7 @@
     {
       "id": "rxk-1_1-3",
       "revision": 2,
-      "topic": "protein",
+      "topic": "eval",
       "scopeIds": [
         "spec-components",
         "spec-assessment"
@@ -20769,7 +20769,7 @@
     {
       "id": "rxk-1_1-4",
       "revision": 1,
-      "topic": "route",
+      "topic": "indications",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -21254,7 +21254,7 @@
     {
       "id": "rxk-1_3-4",
       "revision": 1,
-      "topic": "eval",
+      "topic": "protein",
       "scopeIds": [
         "spec-assessment"
       ],
@@ -21357,7 +21357,7 @@
     {
       "id": "rxk-1_3-6",
       "revision": 1,
-      "topic": "eval",
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-requirements"
       ],
@@ -21456,7 +21456,7 @@
     {
       "id": "rxk-1_3-8",
       "revision": 1,
-      "topic": "disease",
+      "topic": "protein",
       "scopeIds": [
         "spec-requirements"
       ],
@@ -21806,7 +21806,7 @@
     {
       "id": "rxk-2_1-5",
       "revision": 1,
-      "topic": "fluid_lytes",
+      "topic": "disease",
       "scopeIds": [
         "spec-components",
         "spec-dz-liver"
@@ -22206,7 +22206,7 @@
     {
       "id": "rxk-3_1-3",
       "revision": 1,
-      "topic": "disease",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-requirements",
         "spec-dz-renal"
@@ -22366,7 +22366,7 @@
     {
       "id": "rxk-3_1-6",
       "revision": 1,
-      "topic": "fluid_lytes",
+      "topic": "disease",
       "scopeIds": [
         "spec-components",
         "spec-dz-renal"
@@ -22654,7 +22654,7 @@
     {
       "id": "rxk-3_2-5",
       "revision": 2,
-      "topic": "calc_filter",
+      "topic": "route",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -23229,7 +23229,7 @@
     {
       "id": "rxk-4_1-4",
       "revision": 3,
-      "topic": "hpn",
+      "topic": "complications",
       "scopeIds": [
         "spec-hpn",
         "spec-monitoring"
@@ -23284,7 +23284,7 @@
     {
       "id": "rxk-4_1-5",
       "revision": 1,
-      "topic": "hpn",
+      "topic": "route",
       "scopeIds": [
         "spec-hpn"
       ],
@@ -23392,7 +23392,7 @@
     {
       "id": "rxk-4_1-7",
       "revision": 3,
-      "topic": "hpn",
+      "topic": "vit_te",
       "scopeIds": [
         "spec-components",
         "spec-hpn"
@@ -23650,7 +23650,7 @@
     {
       "id": "quizlet-iib-005",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "calc_filter",
       "scopeIds": [
         "spec-components",
         "spec-dz-diabetes"
@@ -23764,7 +23764,7 @@
     {
       "id": "quizlet-iib-007",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "monitor",
       "scopeIds": [
         "spec-components",
         "spec-plan-personalized",
@@ -23821,7 +23821,7 @@
     {
       "id": "quizlet-iib-008",
       "revision": 1,
-      "topic": "disease",
+      "topic": "lipid",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -23881,7 +23881,7 @@
     {
       "id": "quizlet-iib-009",
       "revision": 3,
-      "topic": "cho_gir",
+      "topic": "complications",
       "scopeIds": [
         "spec-dz-diabetes"
       ],
@@ -24028,7 +24028,7 @@
     {
       "id": "quizlet-iib-013",
       "revision": 3,
-      "topic": "fluid_lytes",
+      "topic": "complications",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -24082,7 +24082,7 @@
     {
       "id": "quizlet-iib-015",
       "revision": 1,
-      "topic": "monitor",
+      "topic": "complications",
       "scopeIds": [
         "spec-requirements",
         "spec-monitoring"
@@ -24142,7 +24142,7 @@
     {
       "id": "quizlet-iib-016",
       "revision": 1,
-      "topic": "hpn",
+      "topic": "complications",
       "scopeIds": [
         "spec-hpn",
         "spec-monitoring"
@@ -24198,7 +24198,7 @@
     {
       "id": "quizlet-iib-017",
       "revision": 3,
-      "topic": "hpn",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-components",
         "spec-compatibility"
@@ -24253,7 +24253,7 @@
     {
       "id": "quizlet-iib-018",
       "revision": 1,
-      "topic": "fluid_lytes",
+      "topic": "complications",
       "scopeIds": [
         "spec-components",
         "spec-monitoring"
@@ -24423,7 +24423,7 @@
     {
       "id": "quizlet-iib-022",
       "revision": 1,
-      "topic": "route",
+      "topic": "complications",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -24549,7 +24549,7 @@
     {
       "id": "quizlet-iib-025",
       "revision": 1,
-      "topic": "fluid_lytes",
+      "topic": "complications",
       "scopeIds": [
         "spec-components",
         "spec-plan-route",
@@ -24605,7 +24605,7 @@
     {
       "id": "quizlet-iib-026",
       "revision": 1,
-      "topic": "route",
+      "topic": "complications",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -24670,7 +24670,7 @@
     {
       "id": "quizlet-iib-027",
       "revision": 1,
-      "topic": "fluid_lytes",
+      "topic": "complications",
       "scopeIds": [
         "spec-components",
         "spec-monitoring"
@@ -24845,7 +24845,7 @@
     {
       "id": "quizlet-iib-030",
       "revision": 1,
-      "topic": "protein",
+      "topic": "disease",
       "scopeIds": [
         "spec-components",
         "spec-critical-care"
@@ -24959,7 +24959,7 @@
     {
       "id": "quizlet-iib-032",
       "revision": 3,
-      "topic": "fluid_lytes",
+      "topic": "complications",
       "scopeIds": [
         "spec-plan-route"
       ],
@@ -25107,7 +25107,7 @@
     {
       "id": "quizlet-iib-036",
       "revision": 3,
-      "topic": "disease",
+      "topic": "fluid_lytes",
       "scopeIds": [
         "spec-components",
         "spec-dz-gi"
@@ -25268,7 +25268,7 @@
     {
       "id": "quizlet-iib-040",
       "revision": 1,
-      "topic": "eval",
+      "topic": "complications",
       "scopeIds": [
         "spec-monitoring"
       ],
@@ -25322,7 +25322,7 @@
     {
       "id": "quizlet-iib-041",
       "revision": 1,
-      "topic": "fluid_lytes",
+      "topic": "complications",
       "scopeIds": [
         "spec-components",
         "spec-dz-liver"
@@ -25382,7 +25382,7 @@
     {
       "id": "quizlet-iib-042",
       "revision": 1,
-      "topic": "lipid",
+      "topic": "hpn",
       "scopeIds": [
         "spec-components",
         "spec-dz-liver",
@@ -25586,7 +25586,7 @@
     {
       "id": "quizlet-iib-047",
       "revision": 1,
-      "topic": "fluid_lytes",
+      "topic": "cho_gir",
       "scopeIds": [
         "spec-components",
         "spec-requirements",
@@ -25647,7 +25647,7 @@
     {
       "id": "quizlet-iib-049",
       "revision": 1,
-      "topic": "disease",
+      "topic": "complications",
       "scopeIds": [],
       "source": "QZ",
       "sourceUrl": null,
@@ -25712,7 +25712,7 @@
     {
       "id": "quizlet-iib-050",
       "revision": 1,
-      "topic": "cho_gir",
+      "topic": "complications",
       "scopeIds": [
         "spec-components",
         "spec-dz-diabetes"
@@ -31214,7 +31214,7 @@
     {
       "id": "op-case-ppn-osm",
       "revision": 1,
-      "topic": "case",
+      "topic": "calc_filter",
       "scopeIds": [
         "format-appropriateness",
         "format-drp",
@@ -31676,7 +31676,7 @@
     {
       "id": "kshp-add-2026-002",
       "revision": 4,
-      "topic": "cho_gir",
+      "topic": "peds",
       "scopeIds": [
         "spec-components",
         "spec-plan-calc"
